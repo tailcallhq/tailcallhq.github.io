@@ -1,5 +1,5 @@
 {
-  "name": "my-website",
+  "name": "tailcall.in",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -42,5 +42,10 @@
   },
   "engines": {
     "node": ">=16.14"
-  }
+  },
+  "main": "index.js",
+  "repository": "git@github.com:tailcallhq/tailcallhq.github.io.git",
+  "author": "Tushar Mathur <tusharmath@gmail.com>",
+  "license": "MIT",
+  "packageManager": "yarn@3.2.3"
 }
