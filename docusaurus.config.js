@@ -8,7 +8,7 @@ const title = "Tailcall"
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title,
-  tagline: "Developer productivity tools",
+  tagline: "The fastest way to create GraphQL endpoints",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -54,80 +54,53 @@ const config = {
     ],
   ],
 
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      navbar: {
-        title: title,
-        logo: {
-          alt: "My Site Logo",
-          src: "img/logo.svg",
+  themeConfig: {
+    navbar: {
+      title: title,
+      logo: {
+        alt: "Tailcall Logo",
+        src: "img/logo.svg",
+      },
+      items: [
+        // {
+        //   type: "doc",
+        //   docId: "intro",
+        //   position: "left",
+        //   label: "Tutorial",
+        // },
+        // {to: "/blog", label: "Blog", position: "left"},
+        // {
+        //   href: "https://github.com/tailcallhq",
+        //   label: "GitHub",
+        //   position: "right",
+        // },
+      ],
+    },
+    footer: {
+      style: "dark",
+      links: [
+        {
+          title: "Contact",
+          items: [
+            {
+              label: "hi@tailcall.in",
+              to: "mailto:hi@tailcall.in",
+            },
+          ],
         },
-        items: [
-          {
-            type: "doc",
-            docId: "intro",
-            position: "left",
-            label: "Tutorial",
-          },
-          {to: "/blog", label: "Blog", position: "left"},
-          {
-            href: "https://github.com/facebook/docusaurus",
-            label: "GitHub",
-            position: "right",
-          },
-        ],
-      },
-      footer: {
-        style: "dark",
-        links: [
-          {
-            title: "Docs",
-            items: [
-              {
-                label: "Tutorial",
-                to: "/docs/intro",
-              },
-            ],
-          },
-          {
-            title: "Community",
-            items: [
-              {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
-              },
-              {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/docusaurus",
-              },
-            ],
-          },
-          {
-            title: "More",
-            items: [
-              {
-                label: "Blog",
-                to: "/blog",
-              },
-              {
-                label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} ${title}, Inc. `,
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} ${title}, Inc. `,
+    },
+    prism: {
+      theme: lightCodeTheme,
+      darkTheme: darkCodeTheme,
+    },
+    colorMode: {
+      disableSwitch: true,
+      defaultMode: "dark",
+      respectPrefersColorScheme: false,
+    },
+  },
 }
 
 module.exports = config
