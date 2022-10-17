@@ -14,7 +14,7 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.tagline}</h1>
         <p className="hero__subtitle">
-          Tailcall's <b>Developer Platform</b> dramatically improves developer
+          Tailcall's <b>developer platform</b> dramatically improves developer
           productivity, reduces infrastructural complexity, save costs, and is
           designed to work for scale.
         </p>
