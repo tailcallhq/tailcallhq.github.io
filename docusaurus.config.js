@@ -9,7 +9,7 @@ const title = "Tailcall"
 const config = {
   title,
   tagline: "The fastest way to create GraphQL endpoints",
-  url: "https://your-docusaurus-test-site.com",
+  url: "https://tailcall.in",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -69,12 +69,12 @@ const config = {
         //   position: "left",
         //   label: "Tutorial",
         // },
-        // {to: "/blog", label: "Blog", position: "left"},
-        // {
-        //   href: "https://github.com/tailcallhq",
-        //   label: "GitHub",
-        //   position: "right",
-        // },
+        {to: "/about", label: "About", position: "right"},
+        {
+          to: "https://github.com/tailcallhq",
+          label: "GitHub",
+          position: "right",
+        },
       ],
     },
     footer: {
@@ -84,8 +84,16 @@ const config = {
           title: "Contact",
           items: [
             {
+              label: "Discord",
+              to: "https://discord.gg/WCKdNykh",
+            },
+            {
               label: "hi@tailcall.in",
               to: "mailto:hi@tailcall.in",
+            },
+            {
+              label: "Linkedin",
+              to: "https://www.linkedin.com/company/tailcall",
             },
           ],
         },

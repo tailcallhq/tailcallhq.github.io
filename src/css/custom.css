@@ -20,6 +20,10 @@
   --ifm-font-family-base: "Open Sans", sans-serif;
   --ifm-container-width-xl: 1024px;
   font-weight: 300;
+  --ifm-h1-font-size: 6em;
+  --ifm-h2-font-size: 4em;
+  --ifm-h3-font-size: 2em;
+  --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.9);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -35,9 +39,10 @@
 }
 
 @media (min-width: 650px) {
-.hero__title {
-  font-size: 6rem;
-}}
+  .hero__title {
+    font-size: 6rem;
+  }
+}
 
 .navbar__title {
   color: #ff0;
