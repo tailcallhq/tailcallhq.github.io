@@ -21,7 +21,7 @@ and having the best people to work together.
 That's why we are hard believers of open source software and
 are committed to making it sustainable.
 
-Check us out at [Github]! Or char with us on [Discord].
+Check us out at [Github]! Or chat with us on [Discord].
 
 [github]: https://github.com/tailcallhq
 [discord]: https://discord.gg/WCKdNykh
