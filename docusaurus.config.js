@@ -31,6 +31,13 @@ const config = {
 
   presets: [
     [
+      "@docusaurus/plugin-google-analytics",
+      {
+        trackingID: "UA-141789564-1",
+        anonymizeIP: true,
+      },
+    ],
+    [
       "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
