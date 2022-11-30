@@ -24,4 +24,4 @@ are committed to making it sustainable.
 Check us out at [Github]! Or chat with us on [Discord].
 
 [github]: https://github.com/tailcallhq
-[discord]: https://discord.gg/WCKdNykh
+[discord]: https://discord.gg/7fseDEXUNU

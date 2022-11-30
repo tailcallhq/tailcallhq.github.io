@@ -92,7 +92,7 @@ const config = {
           items: [
             {
               label: "Discord",
-              to: "https://discord.gg/WCKdNykh",
+              to: "https://discord.gg/7fseDEXUNU",
             },
             {
               label: "hi@tailcall.in",
