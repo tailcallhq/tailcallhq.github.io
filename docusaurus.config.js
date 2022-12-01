@@ -31,16 +31,13 @@ const config = {
 
   presets: [
     [
-      "@docusaurus/plugin-google-analytics",
-      {
-        trackingID: "UA-141789564-1",
-        anonymizeIP: true,
-      },
-    ],
-    [
       "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+        googleAnalytics: {
+          trackingID: "UA-141789564-1",
+          anonymizeIP: true,
+        },
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
