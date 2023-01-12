@@ -51,7 +51,7 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
 
       <main>
-        <BrowserOnly fallback={<div>Loading...</div>}>
+        <BrowserOnly>
           {() =>
             dimensions.height > -1 ? (
               <div
