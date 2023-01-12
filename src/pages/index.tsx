@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import clsx from "clsx"
 import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
@@ -6,6 +6,7 @@ import Layout from "@theme/Layout"
 import HomepageFeatures from "@site/src/components/HomepageFeatures"
 
 import styles from "./index.module.css"
+import BrowserOnly from "@docusaurus/BrowserOnly"
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext()
@@ -34,8 +35,14 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext()
 
-  const width = Math.min(800, screen.width)
-  const height = (width / 16) * 9
+  const [dimensions, setDimensions] = useState({height: -1, width: -1})
+  useEffect(() => {
+    const width = Math.min(800, screen.width)
+    const height = (width / 16) * 9
+
+    setDimensions({width, height})
+  })
+
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
@@ -44,23 +51,29 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
 
       <main>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            paddingTop: "2rem",
-          }}
-        >
-          <iframe
-            width={width}
-            height={height}
-            src="https://www.youtube.com/embed/VhOS5bT7-po"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
+        <BrowserOnly fallback={<div>Loading...</div>}>
+          {() =>
+            dimensions.height > -1 ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  paddingTop: "2rem",
+                }}
+              >
+                <iframe
+                  width={dimensions.width}
+                  height={dimensions.height}
+                  src="https://www.youtube.com/embed/VhOS5bT7-po"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            ) : null
+          }
+        </BrowserOnly>
 
         <HomepageFeatures />
       </main>
