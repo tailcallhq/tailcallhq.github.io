@@ -33,13 +33,35 @@ function HomepageHeader() {
 
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext()
+
+  const width = Math.min(800, screen.width)
+  const height = (width / 16) * 9
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
       description="Simplify your edge layer with Tailcall's developer platform."
     >
       <HomepageHeader />
+
       <main>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: "2rem",
+          }}
+        >
+          <iframe
+            width={width}
+            height={height}
+            src="https://www.youtube.com/embed/VhOS5bT7-po"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+
         <HomepageFeatures />
       </main>
     </Layout>
