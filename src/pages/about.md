@@ -52,7 +52,7 @@ Because BFF layers are typically custom-written for each use case, it can be dif
 
 Eventually, this layer turns out to be a big monolith touching every service in your backend. The layer contains a lot of handwritten spaghetti code that's hard to maintain. Onboarding new engineers also become harder and upgrading libraries or architecture gets costlier. Any tiny change requires a full-fledged deployment on your infrastructure.
 
-### Canary Support (Lack of)
+### Canary Support (Lack thereof)
 
 Every change that happens in the backend requires the deployment of the BFF layer. In fact, any feature that is built on the client also requires changes on the BFF layer. Such frequent changes can not be exposed to 100% of users because the reliability and performance of this system are unknown. A common way to solve this problem is to use [Blue Green] deployments. This requires additional infrastructure and complex routing mechanisms. A first-class support to do canary releases is very important and should be part of a modern BFF layer, however, most companies rely on DevOps for its support.
 
