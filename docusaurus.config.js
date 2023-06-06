@@ -9,7 +9,7 @@ const title = "Tailcall"
 const config = {
   title,
   tagline: "<tagline>",
-  url: "https://tailcall.in",
+  url: "https://tailcall.run",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -92,8 +92,8 @@ const config = {
               to: "https://discord.gg/7fseDEXUNU",
             },
             {
-              label: "hi@tailcall.in",
-              to: "mailto:hi@tailcall.in",
+              label: "hi@tailcall.run",
+              to: "mailto:hi@tailcall.run",
             },
             {
               label: "Linkedin",
