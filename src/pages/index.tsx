@@ -13,8 +13,7 @@ function HomepageHeader() {
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">
-          <span>GraphQL for fearless scaling, </span>
-          <span style={{color: "white", textShadow: "rgb(0 0 0 / 92%) 0px 2px 4px"}}>unleashed!</span>
+          GraphQL for fearless scaling, unleashed!
         </h1>
         <p className="hero__subtitle">
           Tailcall's <b>developer platform</b> dramatically simplifies
