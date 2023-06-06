@@ -8,7 +8,7 @@ const title = "Tailcall"
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title,
-  tagline: "The fastest way to create GraphQL endpoints",
+  tagline: "<tagline>",
   url: "https://tailcall.in",
   baseUrl: "/",
   onBrokenLinks: "throw",

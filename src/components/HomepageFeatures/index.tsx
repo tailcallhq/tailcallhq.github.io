@@ -10,7 +10,18 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Reliability",
+    title: "🚀 Performance",
+    Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
+    description: (
+      <>
+        Leverage class leading optimizations to deliver the fastest experience
+        to your users and reduce your cloud bill.
+      </>
+    ),
+  },
+
+  {
+    title: "💪 Robustness",
     Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: (
       <>
@@ -20,7 +31,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: "Maintenance",
+    title: "👷‍♀️ Maintenance",
     Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
     description: (
       <>
@@ -29,12 +40,12 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: "Performance",
-    Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
+    title: "❤️ Open Source",
+    Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: (
       <>
-        Leverage class leading optimizations to extract maximum out of your
-        cloud.
+        It's not just using a tool, join a global community of developers
+        committed to shaping the future of API orchestration.
       </>
     ),
   },
@@ -59,7 +70,12 @@ export default function HomepageFeatures(): JSX.Element {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props, idx) => (
+          {FeatureList.slice(0, 3).map((props, idx) => (
+            <Feature key={idx} {...props} />
+          ))}
+        </div>
+        <div className="row row-center">
+          {FeatureList.slice(3).map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}
         </div>

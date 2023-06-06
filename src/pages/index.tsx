@@ -1,23 +1,25 @@
-import React, {useEffect, useState} from "react"
-import clsx from "clsx"
 import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
-import Layout from "@theme/Layout"
 import HomepageFeatures from "@site/src/components/HomepageFeatures"
+import Layout from "@theme/Layout"
+import clsx from "clsx"
+import React, {useEffect, useState} from "react"
 
 import styles from "./index.module.css"
-import BrowserOnly from "@docusaurus/BrowserOnly"
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext()
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.tagline}</h1>
+        <h1 className="hero__title">
+          <span>GraphQL for fearless scaling, </span>
+          <span style={{color: "white", textShadow: "rgb(0 0 0 / 92%) 0px 2px 4px"}}>unleashed!</span>
+        </h1>
         <p className="hero__subtitle">
-          Tailcall's <b>developer platform</b> dramatically improves developer
-          productivity, reduces infrastructural complexity, saves costs, and is
-          designed to work for scale.
+          Tailcall's <b>developer platform</b> dramatically simplifies
+          infrastructural complexity and streamlines collaboration between
+          teams.
         </p>
         <div className={styles.buttons}>
           <Link
@@ -51,30 +53,6 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
 
       <main>
-        <BrowserOnly>
-          {() =>
-            dimensions.height > -1 ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  paddingTop: "2rem",
-                }}
-              >
-                <iframe
-                  width={dimensions.width}
-                  height={dimensions.height}
-                  src="https://www.youtube.com/embed/VhOS5bT7-po"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            ) : null
-          }
-        </BrowserOnly>
-
         <HomepageFeatures />
       </main>
     </Layout>
