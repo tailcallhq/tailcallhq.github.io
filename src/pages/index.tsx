@@ -8,13 +8,10 @@ import React, {useEffect, useState} from "react"
 import styles from "./index.module.css"
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext()
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">
-          GraphQL for fearless scaling, unleashed!
-        </h1>
+        <h1 className="hero__title">GraphQL backend for scale</h1>
         <p className="hero__subtitle">
           Tailcall's <b>developer platform</b> dramatically simplifies
           infrastructural complexity and streamlines collaboration between
