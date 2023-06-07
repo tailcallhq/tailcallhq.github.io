@@ -35,22 +35,12 @@ function HomepageHeader() {
 
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext()
-
-  const [dimensions, setDimensions] = useState({height: -1, width: -1})
-  useEffect(() => {
-    const width = Math.min(800, screen.width)
-    const height = (width / 16) * 9
-
-    setDimensions({width, height})
-  })
-
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
       description="Simplify your edge layer with Tailcall's developer platform."
     >
       <HomepageHeader />
-
       <main>
         <HomepageFeatures />
       </main>
