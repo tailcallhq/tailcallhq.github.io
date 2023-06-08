@@ -75,7 +75,7 @@ const config = {
         // },
         {to: "/about", label: "About", position: "right"},
         {
-          to: "https://github.com/tailcallhq",
+          to: "https://github.com/tailcallhq/tailcall",
           label: "GitHub",
           position: "right",
         },
