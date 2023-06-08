@@ -6,9 +6,7 @@ title: Tailcall Tutorial
 
 ### Requirements:
 
-To run Tailcall, you need to have the following installed:
-* Java 11
-* *TODO*
+To run Tailcall, you need to have Java 11 or above installed on your machine.
 
 
 ### Installation
@@ -53,11 +51,12 @@ Now execute it by clicking on the arrow button. You should see an empty result s
 }
 ```
 
-### Compose REST apis into a GraphQL schema
+### Composing REST apis into a GraphQL schema
 
 For our first example, we are going to compose a graphql schema from the REST apis at <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a>, a free online REST api with some fake data.
 We will use the api at `https://jsonplaceholder.typicode.com/users` to get a list of users, and `https://jsonplaceholder.typicode.com/users/<id>/posts` to get the posts for each user, and compose them into a single GraphQL schema.
 
+#### Create the schema definition
 Create a file called `jsonplaceholder.graphql` and paste the following contents into it.
 
 ```graphql
@@ -91,6 +90,7 @@ In the above schema definition, we
 3. Define the data types `User` and `Post`
 4. Specify how to fetch the `posts` for a user
 
+#### Register the schema definition with the server
 Now, again in the `bin` directory, run the following command to register this schema with the server. Specify the full path to the `jsonplaceholder.graphql` file that you created above.
 ```shell
 ./tailcall_cli_main publish -r http://localhost:8080 jsonplaceholder.graphql
@@ -105,7 +105,9 @@ Playground: http://localhost:8080/graphql/4ee03fde640e2f4c3e65c570971cc8b9ef6964
 N + 1:      1
 ```
 
-The server registers the schema, and makes it available for querying at the playground URL in the output. Open the playground URL in a new tab in your browser. You can query the composed schema here. 
+The server registers the schema, and makes it available for querying at the playground URL in the output. Open the playground URL in a new tab in your browser. You can query the composed schema here.
+
+#### Query the registered schema
 Lets try the following query, to get all the users, and the title of each post of each user.
 
 ```graphql
