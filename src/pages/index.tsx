@@ -11,7 +11,9 @@ function HomepageHeader() {
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">GraphQL backend for scale</h1>
+        <h1 className="hero__title">
+          <div>The GraphQL backend for scale</div>
+        </h1>
         <p className="hero__subtitle">
           Tailcall's <b>developer platform</b> dramatically simplifies
           infrastructural complexity and streamlines collaboration between
