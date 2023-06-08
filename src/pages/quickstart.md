@@ -11,7 +11,7 @@ To run Tailcall, you need to have Java 11 or above installed on your machine.
 
 ### Installation
 
-1. Download the latest release of Tailcall from <a href="https://github.com/tailcallhq/monotail/releases/latest" target="_blank">this page </a>. The release is named `tailcall-v<x.y.z>.zip` where `x.y.z` is the latest release version.
+1. Download the latest release of Tailcall from <a href="https://github.com/tailcallhq/monotail/releases/latest" target="_blank">the latest release page </a>. The release is named `tailcall-v<x.y.z>.zip` where `x.y.z` is the latest release version.
 2. Create a directory and unzip the file in the directory. The unzipped file contains two directories, `bin` and `lib`. 
 3. `bin` contains the executable files for the tailcall server and the tailcall command line interface (cli)
 
@@ -51,7 +51,7 @@ Now execute it by clicking on the arrow button. You should see an empty result s
 }
 ```
 
-### Composing REST apis into a GraphQL schema
+### Compose REST apis into a GraphQL schema
 
 For our first example, we are going to compose a graphql schema from the REST apis at <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a>, a free online REST api with some fake data.
 We will use the api at `https://jsonplaceholder.typicode.com/users` to get a list of users, and `https://jsonplaceholder.typicode.com/users/<id>/posts` to get the posts for each user, and compose them into a single GraphQL schema.
