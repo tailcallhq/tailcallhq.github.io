@@ -74,7 +74,6 @@ const config = {
         //   label: "Tutorial",
         // },
         {to: "/about", label: "About", position: "right"},
-        {to: "/quickstart", label: "Quickstart", position: "right"},
         {
           to: "https://github.com/tailcallhq/tailcall",
           label: "GitHub",
