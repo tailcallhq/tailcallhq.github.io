@@ -11,18 +11,27 @@ function HomepageHeader() {
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">GraphQL backend for scale</h1>
+        <h1 className="hero__title">
+          <div>GraphQL Gateway</div>
+          <div>for</div>
+          <div>Microservices</div>
+        </h1>
         <p className="hero__subtitle">
-          Tailcall's <b>developer platform</b> dramatically simplifies
-          infrastructural complexity and streamlines collaboration between
-          teams.
+          Simplify infrastructural complexity and streamline collaboration
+          between teams.
         </p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="https://docs.google.com/forms/d/e/1FAIpQLSdNnaVhv1lR-EN6I9HAH6eIycN_0T-1URIch9IdXo0yZm9t3Q/viewform"
           >
-            Join the waitlist!
+            Get in touch!
+          </Link>
+          <Link
+            className="button button--secondary button--lg"
+            to="/quickstart"
+          >
+            Try it out!
           </Link>
         </div>
       </div>

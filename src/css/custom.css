@@ -63,6 +63,8 @@
 
 .button.button--secondary {
   box-shadow: 0px 3px 8px 0px #00000094;
+  margin-right: 12px;
+  width: 220px;
 }
 
 .row.row-center {

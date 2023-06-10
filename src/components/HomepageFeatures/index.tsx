@@ -10,32 +10,33 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "🚀 Performance",
+    title: "🔥 Blazingly Fast",
     Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
     description: (
       <>
-        Leverage class leading optimizations to deliver the fastest experience
-        to your users and reduce your cloud bill.
+        Leverage break through performance optimizations to deliver the fastest
+        experience to your users.
       </>
     ),
   },
 
   {
-    title: "💪 Robustness",
+    title: "🛡️ Battle Tested",
     Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: (
       <>
-        From tiny modifications to breaking changes, deploy to production
-        fearlessly.
+        Trust in Tailcall's robust and reliable system, proven in the toughest
+        tech environments at scale.
       </>
     ),
   },
   {
-    title: "👷‍♀️ Maintenance",
+    title: "🚀 Productive",
     Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
     description: (
       <>
-        No need of a dedicated team to write, manage or scale GraphQL anymore.
+        Boost your team's productivity with seamless API integration, compile
+        time validations and simplified collaboration.
       </>
     ),
   },
