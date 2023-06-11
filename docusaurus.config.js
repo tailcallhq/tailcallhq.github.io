@@ -55,11 +55,11 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-        // sitemap: {
-        //   changefreq: "weekly",
-        //   priority: 0.5,
-        //   ignorePatterns: ["/blog/**"],
-        // },
+        sitemap: {
+          changefreq: "weekly",
+          priority: 0.5,
+          ignorePatterns: ["/blog/**", "/docs/**"],
+        },
       }),
     ],
   ],
@@ -78,6 +78,11 @@ const config = {
         //   position: "left",
         //   label: "Tutorial",
         // },
+        {
+          to: "/docs/intro",
+          label: "Docs",
+          position: "right",
+        },
         {to: "/about", label: "About", position: "right"},
         {
           to: "https://github.com/tailcallhq/tailcall",
