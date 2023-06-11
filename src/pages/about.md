@@ -11,4 +11,4 @@ We are aiming to build the worlds most powerful GraphQL infrastructure. At our c
 
 But even the most exciting journey is better with companions, right? We're scouting for fellow tech enthusiasts who aren't afraid to confront functional programming's quirks, and share our passion for creating out-of-this-world solutions. 🌌 If you're all about solving complex problems, love flexibility in your work, and want to be part of a team that enjoys the journey as much as the destination, then you're our kind of person! 🚀
 
-Fancy being part of this thrilling journey or build a stateful memory whilst on it? Send us a message at `hi@tailcall.run`. We can't wait to hear from you! ❤️
+Fancy being part of this thrilling journey and building a stateful memory whilst on it? Send us a message at `hi@tailcall.run`. We can't wait to hear from you! ❤️
