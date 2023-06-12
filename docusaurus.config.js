@@ -72,14 +72,8 @@ const config = {
         src: "img/logo.svg",
       },
       items: [
-        // {
-        //   type: "doc",
-        //   docId: "intro",
-        //   position: "left",
-        //   label: "Tutorial",
-        // },
         {
-          to: "/docs/intro",
+          to: "/docs/intro/api-composition",
           label: "Docs",
           position: "right",
         },
@@ -120,7 +114,7 @@ const config = {
     },
     colorMode: {
       disableSwitch: true,
-      defaultMode: "dark",
+      defaultMode: "light",
       respectPrefersColorScheme: false,
     },
   },

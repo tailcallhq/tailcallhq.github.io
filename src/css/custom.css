@@ -19,11 +19,13 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-font-family-base: "Open Sans", sans-serif;
   --ifm-container-width-xl: 1024px;
-  font-weight: 300;
+  font-weight: 400;
   --ifm-h1-font-size: 6em;
   --ifm-h2-font-size: 4em;
   --ifm-h3-font-size: 2em;
   --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.9);
+  --ifm-heading-color: #000;
+  --ifm-hero-text-color: #000;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -38,6 +40,11 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+[data-theme="light"] {
+  --ifm-navbar-background-color: #000;
+  --ifm-navbar-link-color: #e3e3e3;
+}
+
 @media (min-width: 650px) {
   .hero__title {
     font-size: 6rem;
@@ -47,7 +54,7 @@
 @media (max-width: 480px) {
   .hero__title {
     font-size: 2.5rem;
-  }  
+  }
 }
 
 .navbar__title {
@@ -56,7 +63,11 @@
 }
 
 .hero {
-  --ifm-hero-background-color: #ff0;
+  background-image: linear-gradient(136deg, white, #d7d7ff);
+}
+
+.hero--primary {
+  --ifm-hero-text-color: #1b1b1d;
 }
 
 .footer--dark {
