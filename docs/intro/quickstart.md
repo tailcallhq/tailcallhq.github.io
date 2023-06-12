@@ -11,7 +11,7 @@ To run Tailcall, you need to have Java 11 or above installed on your machine.
 ### Installation
 
 1. Download the latest release of Tailcall from <a href="https://github.com/tailcallhq/monotail/releases/latest" target="_blank">the latest release page </a>. The release is named `tailcall-v<x.y.z>.zip` where `x.y.z` is the latest release version.
-2. Create a directory and unzip the file in the directory. The unzipped file contains the following directory structure -
+2. Create a directory and unzip the file in the directory. The unzipped file contains a bunch of file in the following directory structure -
 
    ```
    .
@@ -27,10 +27,10 @@ To run Tailcall, you need to have Java 11 or above installed on your machine.
        └── server-assembly-0.1.0-SNAPSHOT.jar
    ```
 
-3. `bin` contains the executable files for the tailcall server and the tailcall command line interface (cli)
+3. `bin` contains the executable files for the tailcall server and the tailcall command line interface (cli).
+4. `lib` contains all the jar files required for the shell scripts in `bin` to run.
 
-Tailcall consists of two parts, the `CLI` or Command Line Interface, and the `Server`.
-The CLI is used to define, validate and register a composed api definition with the server, and once registered, graphql queries can be made to the server. An instance of the server is running in ephemeral mode on `https://cloud.tailcall.run/graphql`.
+Tailcall consists of two parts, the `CLI` or Command Line Interface, and the `Server`. The CLI is used to define, validate and register a composed api definition with the server, and once registered, graphql queries can be made to the server. The server is responsible for executing the queries, and returning the results. For this demo, we won't be running the server locally, but will use the server running in ephemeral mode on `https://cloud.tailcall.run/graphql`.
 
 ### Compose REST apis into a GraphQL schema
 
@@ -42,23 +42,30 @@ We will use the api at `https://jsonplaceholder.typicode.com/users` to get a lis
 Create a file called `jsonplaceholder.graphql` and paste the following contents into it.
 
 ```graphql showLineNumbers
+# Specify a base url for all http requests
 schema @server(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
 }
 
 type Query {
+  # Specify the http path for the users query
   users: [User] @http(path: "/users")
 }
 
+# Create a user type with the fields returned by the users api
 type User {
   id: Int!
   name: String!
   username: String!
   email: String!
   email: String!
+
+  # Extend the user type with the posts field
+  # Use the current user's id to construct the path
   posts: [Post] @http(path: "/users/{{value.id}}/posts")
 }
 
+# Create a post type with the fields returned by the posts api
 type Post {
   id: Int!
   title: String!
@@ -66,12 +73,7 @@ type Post {
 }
 ```
 
-In the above schema definition, we
-
-1. Define a base URL for the resources that will be composed together
-2. Define a query to query all users
-3. Define the data types `User` and `Post`
-4. Specify how to fetch the `posts` for a user
+The above file is a standard `.graphQL` file, with a few additions such as `@server` and `@http` directives. So basically we specify the graphQL schema and how to resolve that graphQL schema in the same file, without having to write any code! Here is a quick overview of what the above schema does:
 
 #### Register the schema definition with the server
 
