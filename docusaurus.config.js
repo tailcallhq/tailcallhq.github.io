@@ -73,7 +73,7 @@ const config = {
       },
       items: [
         {
-          to: "/docs/intro/api-composition",
+          to: "/docs",
           label: "Docs",
           position: "right",
         },

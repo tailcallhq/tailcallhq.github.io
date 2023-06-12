@@ -43,11 +43,12 @@
 [data-theme="light"] {
   --ifm-navbar-background-color: #000;
   --ifm-navbar-link-color: #e3e3e3;
+  --ifm-navbar-link-hover-color: #ff0;
 }
 
 @media (min-width: 650px) {
   .hero__title {
-    font-size: 6rem;
+    font-size: 4rem;
   }
 }
 
