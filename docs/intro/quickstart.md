@@ -10,8 +10,8 @@ To run Tailcall, you need to have Java 11 or above installed on your machine.
 
 ### Installation
 
-1. Download the latest release of Tailcall from <a href="https://github.com/tailcallhq/monotail/releases/latest" target="_blank">the latest release page </a>. The release is named `tailcall-v<x.y.z>.zip` where `x.y.z` is the latest release version.
-2. Create a directory and unzip the file in the directory. The unzipped file contains a bunch of file in the following directory structure -
+1. Download the latest release of Tailcall from <a href="https://github.com/tailcallhq/monotail/releases/latest" target="_blank">the latest release page</a>. The release is named `tailcall-v<x.y.z>.zip` where `x.y.z` is the latest release version.
+2. Create a directory and unzip the file in the directory. The unzipped file contains a bunch of files in the following directory structure -
 
    ```
    .
@@ -30,11 +30,11 @@ To run Tailcall, you need to have Java 11 or above installed on your machine.
 3. `bin` contains the executable files for the tailcall server and the tailcall command line interface (cli).
 4. `lib` contains all the jar files required for the shell scripts in `bin` to run.
 
-Tailcall consists of two parts, the `CLI` or Command Line Interface, and the `Server`. The CLI is used to define, validate and register a composed api definition with the server, and once registered, graphql queries can be made to the server. The server is responsible for executing the queries, and returning the results. For this demo, we won't be running the server locally, but will use the server running in ephemeral mode on `https://cloud.tailcall.run/graphql`.
+Tailcall consists of two parts, the `CLI` or Command Line Interface, and the `Server`. The CLI is used to define, validate and register a composed API definition with the server, and once registered, graphQL queries can be made to the server. The server is responsible for executing the queries and returning the results. For this demo, we won't be running the server locally but will use the server running in ephemeral mode on `https://cloud.tailcall.run/graphql`.
 
 ### Compose REST apis into a GraphQL schema
 
-For our first example, we are going to compose a graphql schema from the REST apis at <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a>, a free online REST api with some fake data.
+For our first example, we are going to compose a graphQL schema from the REST apis at <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a>, a free online REST api with some fake data.
 We will use the api at `https://jsonplaceholder.typicode.com/users` to get a list of users, and `https://jsonplaceholder.typicode.com/users/:id/posts` to get the posts for each user, and compose them into a single GraphQL schema.
 
 #### Create the schema definition
@@ -94,11 +94,11 @@ Playground: http://cloud.tailcall.run/graphql/4ee03fde640e2f4c3e65c570971cc8b9ef
 N + 1:      1
 ```
 
-The server registers the schema, and makes it available for querying at the playground URL in the output. Open the **playground URL** in a new tab in your browser. You can query the composed schema here.
+The server registers the schema and makes it available for querying at the playground URL in the output. Open the **playground URL** in a new tab in your browser. You can query the composed schema here.
 
 #### Query the registered schema
 
-Lets try the following query, to get all the users, and the title of each post of each user.
+Let's try the following query, to get all the users and the title of each post of each user.
 
 ```graphql showLineNumbers
 query {

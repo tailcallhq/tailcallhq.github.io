@@ -73,17 +73,17 @@ const config = {
         src: "img/logo.svg",
       },
       items: [
-        {
-          to: "https://blog.tailcall.run",
-          label: "Blog",
-          position: "right",
-        },
+        {to: "/about", label: "About", position: "right"},
         {
           to: "/docs",
           label: "Docs",
           position: "right",
         },
-        {to: "/about", label: "About", position: "right"},
+        {
+          to: "https://blog.tailcall.run",
+          label: "Blog",
+          position: "right",
+        },
         {
           to: "https://github.com/tailcallhq/tailcall",
           label: "GitHub",
