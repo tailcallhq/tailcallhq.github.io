@@ -67,6 +67,7 @@ const config = {
   themeConfig: {
     navbar: {
       title: title,
+      hideOnScroll: true,
       logo: {
         alt: "Tailcall Logo",
         src: "img/logo.svg",
@@ -116,6 +117,7 @@ const config = {
     prism: {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
+      showLineNumbers: true,
     },
     colorMode: {
       disableSwitch: true,

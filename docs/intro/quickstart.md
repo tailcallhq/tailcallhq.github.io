@@ -30,39 +30,7 @@ To run Tailcall, you need to have Java 11 or above installed on your machine.
 3. `bin` contains the executable files for the tailcall server and the tailcall command line interface (cli)
 
 Tailcall consists of two parts, the `CLI` or Command Line Interface, and the `Server`.
-The CLI is used to define, validate and register a composed api definition with the server, and once registered, graphql queries can be made to the server.
-
-### Start the tailcall server
-
-Change to the bin directory, and run the `tailcall_server_main` file. You should see a message like the one below
-
-```shell
-timestamp=2023-06-05T17:37:03.223098Z level=INFO thread=#zio-fiber-4 message="Server started: http://localhost:8080/graphql" location=tailcall.server.Main.run file=Main.scala line=15
-```
-
-Go to <a href="http://localhost:8080/graphql" target="_blank">http://localhost:8080/graphql</a> in your browser, and you should see the graphql playground where you can query the registered definitions on the server.
-
-Lets try it now by querying for all existing blueprints on the server. A **blueprint** represents a registered composed schema definition on the server.
-
-Paste the following query into the left hand pane.
-
-```graphql
-query {
-  blueprints {
-    url
-  }
-}
-```
-
-Now execute it by clicking on the arrow button. You should see an empty result set for `blueprints` in the right hand pane, since we have not registered anything yet.
-
-```graphql
-{
-  "data": {
-    "blueprints": []
-  }
-}
-```
+The CLI is used to define, validate and register a composed api definition with the server, and once registered, graphql queries can be made to the server. An instance of the server is running in ephemeral mode on `https://cloud.tailcall.run/graphql`.
 
 ### Compose REST apis into a GraphQL schema
 
@@ -73,7 +41,7 @@ We will use the api at `https://jsonplaceholder.typicode.com/users` to get a lis
 
 Create a file called `jsonplaceholder.graphql` and paste the following contents into it.
 
-```graphql
+```graphql showLineNumbers
 schema @server(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
 }
@@ -110,27 +78,27 @@ In the above schema definition, we
 Now, again in the `bin` directory, run the following command to register this schema with the server. Specify the full path to the `jsonplaceholder.graphql` file that you created above.
 
 ```shell
-./tailcall_cli_main publish -r http://localhost:8080 jsonplaceholder.graphql
+./tailcall_cli_main publish jsonplaceholder.graphql
 ```
 
-If the command succeds, you should see output like the following below.
+If the command succeeds, you should see output like the following below.
 
 ```shell
 Deployment was completed successfully.
 Digest:     4ee03fde640e2f4c3e65c570971cc8b9ef6964926a79eed884eca6f864a43165
 Endpoints:  2
 Unsafe:     0
-Playground: http://localhost:8080/graphql/4ee03fde640e2f4c3e65c570971cc8b9ef6964926a79eed884eca6f864a43165.
+Playground: http://cloud.tailcall.run/graphql/4ee03fde640e2f4c3e65c570971cc8b9ef6964926a79eed884eca6f864a43165.
 N + 1:      1
 ```
 
-The server registers the schema, and makes it available for querying at the playground URL in the output. Open the playground URL in a new tab in your browser. You can query the composed schema here.
+The server registers the schema, and makes it available for querying at the playground URL in the output. Open the **playground URL** in a new tab in your browser. You can query the composed schema here.
 
 #### Query the registered schema
 
 Lets try the following query, to get all the users, and the title of each post of each user.
 
-```graphql
+```graphql showLineNumbers
 query {
   users {
     id
@@ -144,7 +112,7 @@ query {
 
 You should see output like the following:
 
-```graphql
+```json showLineNumbers
 {
   "data": {
     "users": [
