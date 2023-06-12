@@ -26,6 +26,7 @@
   --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.9);
   --ifm-heading-color: #000;
   --ifm-hero-text-color: #000;
+  --tailcall-color: #ff0;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -43,13 +44,17 @@
 [data-theme="light"] {
   --ifm-navbar-background-color: #000;
   --ifm-navbar-link-color: #e3e3e3;
-  --ifm-navbar-link-hover-color: #ff0;
+  --ifm-navbar-link-hover-color: var(--tailcall-color);
 }
 
 @media (min-width: 650px) {
   .hero__title {
     font-size: 4rem;
   }
+}
+
+.clean-btn {
+  color: var(--tailcall-color);
 }
 
 @media (max-width: 480px) {
@@ -59,12 +64,12 @@
 }
 
 .navbar__title {
-  color: #ff0;
+  color: var(--tailcall-color);
   text-transform: lowercase;
 }
 
 .hero {
-  background-image: linear-gradient(136deg, white, #d7d7ff);
+  background-image: linear-gradient(45deg, white, #d7d7ff);
 }
 
 .hero--primary {

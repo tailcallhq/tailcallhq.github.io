@@ -73,6 +73,11 @@ const config = {
       },
       items: [
         {
+          to: "https://blog.tailcall.run",
+          label: "Blog",
+          position: "right",
+        },
+        {
           to: "/docs",
           label: "Docs",
           position: "right",

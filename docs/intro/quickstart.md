@@ -1,10 +1,10 @@
 ---
-title: Tailcall Tutorial
+sidebar_position: 1
+title: Quick Start
+slug: /
 ---
 
-## Quickstart
-
-### Requirements:
+### Requirements
 
 To run Tailcall, you need to have Java 11 or above installed on your machine.
 
