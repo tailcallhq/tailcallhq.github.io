@@ -115,70 +115,63 @@ The `@modify` operator in GraphQL provides the flexibility to alter the attribut
    `@modify(omit: true)` tells GraphQL that the `id` field should not be included in the schema, thus it won't be accessible to the client.
 
 ### @inline
+The `@inline` operator simplifies data structures and fetch processes by 'inlining' or flattening a field or node within your schema. It works by modifying the schema and the data transformation process, essentially streamlining how nested data is accessed and presented.
 
-The `@inline` operator offers the ability to 'inline' or flatten a field or node in your schema. You provide the path to the field or node you wish to inline as an argument to the operator. This is particularly useful for simplifying your schema by reducing unnecessary levels of nesting. This operator is also changing your actual schema along with doing the data transformation.
+For instance, consider a schema involving types: `Post`, `User`, and `Address`, with `Post` having a field `user` of type `User`, and `User` having a field `address` of type `Address`. Here, `Query` is the root query type.
 
-Consider the following GraphQL schema:
-
-```graphql showLineNumbers
+```graphql
 schema {
     query: Query
 }
 
 type Post {
-    id: Int!
-    user: User
+  id: Int!
+  user: User!
 }
 
 type User {
-    id: Int!
-    name: String!
-    email: String!
-    address: Address
+  id: Int!
+  name: String!
+  email: String!
+  address: Address!
 }
 
 type Address {
-    street: String!
-    city: String!
-    state: String!
+  street: String!
+  city: String!
+  state: String!
 }
 
 type Query {
-    postUserStreet(id: Int): Post @inline(path: ["user","address", "street"])
+    postUserStreet(id: Int): Post! @inline(path: ["user","address", "street"])
 }
 ```
 
-Breaking down the above:
+The `@inline` operator, in this case, is applied to the `postUserStreet` field of the `Query` type. It includes a `path` argument, indicating the chain of fields to be traversed from `Post` to the field to be inlined.
 
-1. The schema is defined with `Query` as the root query type.
-2. Three types `Post`, `User`, and `Address` are defined:
+Post application, the schema becomes:
 
-- `Post` has a field `user` of type `User`.
-- `User` has a field `address` of type `Address`.
-- `Address` has three fields `street`, `city`, and `state`.
-
-3. The root query type `Query` has a field `postUserAddress` of type `Post`.
-
-The `@inline` operator is used on the `postUserAddress` field of the `Query` type. The `path` argument to `@inline` specifies the sequence of fields to traverse from `Post` to the field to be inlined, `address` in this case. Thus, `["user","address","street"]` denotes the path `Post` -> `User` -> `Address`.
-
-After applying the `@inline` operator, your schema is transformed to:
-
-```graphql showLineNumbers
+```graphql
 schema {
     query: Query
 }
 
 type Query {
-   postUserAddress(id: Int): String
+    postUserStreet(id: Int): String
 }
 ```
 
-Here's what happened:
+As seen, the `Post`, `User`, and `Address` types are eliminated from the schema. The `postUserStreet` now directly returns a `String` representing the address street, thereby simplifying the client-side data fetch process.
 
-1. The `@inline` operator effectively removed the `Post`, `User` and `Address` types from your schema, along with their associated fields.
-2. Instead of `postUserAddress` returning a `Post` object which would then require traversing `post` to get to `User` and then `user` to get to `Address`, and then `address` to get to `street`, `postUserAddress` now directly returns a `string` which represents address street.
+Additionally, `@inline` supports indexing, meaning you can specify the array index to be inlined. If a field `users` is of type `[User]`, and you want to inline the first user, you can specify the path as [`"users"`,`"0"`,`"name"`].
 
-This operator helps to declutter your schema and simplifies the data fetching process for the client, as it reduces the depth of the queries they need to make.
+```graphql
+type Post {
+    firstUser: User @inline(path: ["users", "0", "name"]) @http(path: "/users")
+}
+```
+
+In conclusion, the `@inline` operator helps tidy up your schema and streamline data fetching by reducing query depth, promoting better performance and simplicity.
 
 
 ## Advanced Topics
