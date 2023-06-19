@@ -27,7 +27,7 @@ function HomepageHeader() {
             Get in touch!
           </Link>
           <Link
-            className="button button--secondary button--lg"
+            className="button button--primary button--lg"
             to="/docs"
           >
             Try it out!
