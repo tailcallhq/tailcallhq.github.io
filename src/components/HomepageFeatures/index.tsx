@@ -14,7 +14,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
     description: (
       <>
-        Leverage break through performance optimizations to deliver the fastest
+        Leverage breakthrough performance optimizations to deliver the fastest
         experience to your users.
       </>
     ),
