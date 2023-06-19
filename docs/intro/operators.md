@@ -117,9 +117,9 @@ The `@modify` operator in GraphQL provides the flexibility to alter the attribut
 ### @inline
 The `@inline` operator simplifies data structures and fetch processes by 'inlining' or flattening a field or node within your schema. It works by modifying the schema and the data transformation process, essentially streamlining how nested data is accessed and presented.
 
-For instance, consider a schema involving types: `Post`, `User`, and `Address`, with `Post` having a field `user` of type `User`, and `User` having a field `address` of type `Address`. Here, `Query` is the root query type.
+For instance, consider a schema:
 
-```graphql
+```graphql showLineNumbers
 schema {
     query: Query
 }
@@ -151,7 +151,7 @@ The `@inline` operator, in this case, is applied to the `postUserStreet` field o
 
 Post application, the schema becomes:
 
-```graphql
+```graphql showLineNumbers
 schema {
     query: Query
 }
@@ -161,11 +161,11 @@ type Query {
 }
 ```
 
-As seen, the `Post`, `User`, and `Address` types are eliminated from the schema. The `postUserStreet` now directly returns a `String` representing the address street, thereby simplifying the client-side data fetch process.
+As seen, the `Post`, `User`, and `Address` types are eliminated from the schema. The `postUserStreet` now directly returns a `String` representing the address street, thereby simplifying the client-side data fetch process. `@inline` operator also take cares of nullablity of the fields. If any of the fields in the path is nullable, the resulting type will be nullable.
 
 Additionally, `@inline` supports indexing, meaning you can specify the array index to be inlined. If a field `users` is of type `[User]`, and you want to inline the first user, you can specify the path as [`"users"`,`"0"`,`"name"`].
 
-```graphql
+```graphql showLineNumbers
 type Post {
     firstUser: User @inline(path: ["users", "0", "name"]) @http(path: "/users")
 }
@@ -187,6 +187,7 @@ type User {
     id: Int
     name: String
 }
+
 type Post {
     user: User @inline(path: ["name"]) @modify(name: "userName") @http(path: "/users/{{userId}}")
     userId: Int!
@@ -203,11 +204,12 @@ However, it uses a series of operators to modify the `user` field.
 
 The schema after this transformation looks like this:
 
-```graphql
+```graphql showLineNumbers
 type User {
     id: Int
     name: String
 }
+
 type Post {
     userName: String
     userId: Int!
