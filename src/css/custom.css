@@ -50,6 +50,7 @@
   --ifm-pre-code-border: 1px solid #eee;
   --ifm-color-primary: #326fff;
   --ifm-color-primary-dark: #2652ba;
+  --ifm-color-primary-darker: #1d3e8c;
 }
 
 pre code {
