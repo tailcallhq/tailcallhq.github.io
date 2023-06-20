@@ -8,8 +8,8 @@ If you landed here while searching for the literal meaning of a "tail call," her
 
 ### Now a little bit about us
 
-We are aiming to build the worlds most powerful GraphQL infrastructure. At our core, we're not just a tech company; we're an adventurous troupe, thinking from principles, challenging everything we already know. Our pride and joy? A product that's as game-changing and finding secret hacks in the race for optimization. 💡 How do we do it? We create a culture that champions flexibility, 'higher-order' thinking, and a performance obsession that'd make a Formula 1 pit crew look laid-back!
+We are aiming to build the world's most powerful GraphQL infrastructure. At our core, we're not just a tech company; we're an adventurous troupe, with first principles thinking, challenging everything we already know. Our pride and joy? A product that's as game-changing and writing the fastest code possible. 💡 How do we do it? We create a culture that champions flexibility, 'higher-order' thinking, and a performance obsession that'd make a Formula 1 pit crew look laid-back!
 
-But even the most exciting journey is better with companions, right? We're scouting for fellow tech enthusiasts who aren't afraid to confront functional programming's quirks, and share our passion for creating out-of-this-world solutions. 🌌 If you're all about solving complex problems, love flexibility in your work, and want to be part of a team that enjoys the journey as much as the destination, then you're our kind of person! 🚀
+But even the most exciting journey is better with companions, right? We're scouting for fellow enthusiasts who share our passion for creating out-of-this-world solutions. 🌌 If you're all about solving complex problems, love flexibility in your work, and want to be part of a team that enjoys the journey as much as the destination, then you're our kind of person! 🚀
 
-Fancy being part of this thrilling journey and building a stateful memory whilst on it? Send us a message at `hi@tailcall.run`. We can't wait to hear from you! ❤️
+Fancy being part of this thrilling journey? Send us a message at **hi@tailcall.run**. We can't wait to hear from you! ❤️
