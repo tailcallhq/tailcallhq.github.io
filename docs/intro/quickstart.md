@@ -9,21 +9,20 @@ slug: /
 To run Tailcall, you need to have Java 11 or above installed on your machine.
 
 ### Installation
+
 #### Homebrew
+
 1. If you don't already have Homebrew installed, you can find the instructions [here](https://brew.sh/).
 2. Add the Tailcall repository to Homebrew by running the following command in your terminal:
    ```shell
    brew tap tailcallhq/tailcall
-   ```
-3. Now, install the latest version of Tailcall with the following command:
-   ```shell
    brew install tailcall
    ```
-4. Verify that Tailcall is installed correctly by running:
+3. Verify that Tailcall is installed correctly by running:
    ```shell
-   tc --help
+   tc --version
    ```
-5. To start the Tailcall server, execute the following command:
+4. To start the Tailcall server, execute the following command:
    ```shell
    tc-server
    ```
@@ -91,7 +90,7 @@ Playground: http://cloud.tailcall.run/graphql/4ee03fde640e2f4c3e65c570971cc8b9ef
 N + 1:      1
 ```
 
-The server registers the schema and makes it available for querying at the playground URL in the output. Open the **playground URL** in a new tab in your browser. You can query the composed schema here.
+The server registers the schema and prints out a load of meta information. We will cover those in detail in a bit for now open the **playground URL** in a new tab in your browser and try it out for yourself!
 
 #### Query the registered schema
 
