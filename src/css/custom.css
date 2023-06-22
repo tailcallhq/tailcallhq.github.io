@@ -108,3 +108,11 @@ pre code {
 .row.row-center {
   justify-content: center;
 }
+
+blockquote {
+  background-color: #eef;
+  border-radius: 8px;
+  padding: 12px 18px;
+  box-shadow: none;
+  border: 0;
+}

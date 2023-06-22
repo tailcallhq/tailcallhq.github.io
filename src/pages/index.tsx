@@ -28,7 +28,7 @@ function HomepageHeader() {
           </Link>
           <Link
             className="button button--primary button--lg"
-            to="/docs"
+            to="/docs/intro/quickstart"
           >
             Try it out!
           </Link>
