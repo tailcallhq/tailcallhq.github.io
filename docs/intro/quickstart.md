@@ -10,47 +10,24 @@ To run Tailcall, you need to have Java 11 or above installed on your machine.
 
 ### Installation
 #### Homebrew
-1. If you don't already have Homebrew installed, you can find the instructions \[here\](https://brew.sh/).
+1. If you don't already have Homebrew installed, you can find the instructions [here](https://brew.sh/).
 2. Add the Tailcall repository to Homebrew by running the following command in your terminal:
-   ```bash
+   ```shell
    brew tap tailcallhq/tailcall
    ```
 3. Now, install the latest version of Tailcall with the following command:
-   ```bash
+   ```shell
    brew install tailcall
    ```
 4. Verify that Tailcall is installed correctly by running:
-   ```bash
+   ```shell
    tc --help
    ```
 5. To start the Tailcall server, execute the following command:
-   ```bash
+   ```shell
    tc-server
    ```
    This will initiate the server at `http://localhost:8080/graphql`.
-
-#### Source
-1. Download the latest release of Tailcall from <a href="https://github.com/tailcallhq/monotail/releases/latest" target="_blank">the latest release page</a>. The release is named `tailcall-v<x.y.z>.zip` where `x.y.z` is the latest release version.
-2. Create a directory and unzip the file in the directory. The unzipped file contains a bunch of files in the following directory structure -
-
-   ```
-   .
-   ├── bin
-   │   ├── tailcall
-   │   ├── tailcall_cli_main
-   │   ├── tailcall_cli_main.bat
-   │   ├── tailcall_server_main
-   │   ├── tailcall_server_main.bat
-   │   └── tailcall.bat
-   └── lib
-       ├── cli-assembly-0.1.0-SNAPSHOT.jar
-       └── server-assembly-0.1.0-SNAPSHOT.jar
-   ```
-
-3. `bin` contains the executable files for the tailcall server and the tailcall command line interface (cli).
-4. `lib` contains all the jar files required for the shell scripts in `bin` to run.
-
-Tailcall consists of two parts, the `CLI` or Command Line Interface, and the `Server`. The CLI is used to define, validate and register a composed API definition with the server, and once registered, graphQL queries can be made to the server. The server is responsible for executing the queries and returning the results. For this demo, we won't be running the server locally but will use the server running in ephemeral mode on `https://cloud.tailcall.run/graphql`.
 
 ### Compose REST apis into a GraphQL schema
 
@@ -100,7 +77,7 @@ The above file is a standard `.graphQL` file, with a few additions such as `@ser
 Now, again in the `bin` directory, run the following command to register this schema with the server. Specify the full path to the `jsonplaceholder.graphql` file that you created above.
 
 ```shell
-./tailcall_cli_main publish jsonplaceholder.graphql
+tc publish jsonplaceholder.graphql
 ```
 
 If the command succeeds, you should see output like the following below.
