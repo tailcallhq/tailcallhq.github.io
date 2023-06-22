@@ -9,7 +9,27 @@ slug: /
 To run Tailcall, you need to have Java 11 or above installed on your machine.
 
 ### Installation
+#### Homebrew
+1. If you don't already have Homebrew installed, you can find the instructions \[here\](https://brew.sh/).
+2. Add the Tailcall repository to Homebrew by running the following command in your terminal:
+   ```bash
+   brew tap tailcallhq/tailcall
+   ```
+3. Now, install the latest version of Tailcall with the following command:
+   ```bash
+   brew install tailcall
+   ```
+4. Verify that Tailcall is installed correctly by running:
+   ```bash
+   tc --help
+   ```
+5. To start the Tailcall server, execute the following command:
+   ```bash
+   tc-server
+   ```
+   This will initiate the server at `http://localhost:8080/graphql`.
 
+#### Source
 1. Download the latest release of Tailcall from <a href="https://github.com/tailcallhq/monotail/releases/latest" target="_blank">the latest release page</a>. The release is named `tailcall-v<x.y.z>.zip` where `x.y.z` is the latest release version.
 2. Create a directory and unzip the file in the directory. The unzipped file contains a bunch of files in the following directory structure -
 
