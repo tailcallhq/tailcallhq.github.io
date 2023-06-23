@@ -114,3 +114,9 @@ BFF layers can't be deployed independently since they act as a bridge between th
 BFF layers often end up implementing some of the cross-cutting concerns of an API gateway such as rate limiting, authentication, throttling, etc. This makes its purpose quite confusing if we already have an API gateway. Moreover, it's not very clear if we use an API gateway with a BFF layer, where should we place it? Should we place it between the clients and the BFF layer or the BFF layer and the service mesh? These are subjective decisions that each company ends up making as there is no standard way of doing this. However, it's worth mentioning that legacy gateways do introduce a gap that's being attempted to be filled by a BFF layer.
 
 > 💡 BFF, Presentation Layer, Facade, Middleware, Frontend Layer, Orchestration Layer, API Adapter — Are all different nomenclatures used for the same thing.
+
+### 8. Organizational Friction
+
+The Backends for Frontend (BFF) pattern, while designed to enhance user experience, introduces undeniable organizational friction. These issues include communication delays that hinder development, incompatible skill-sets and perspective of what a BFF layer should be doing causing inefficiencies, and a diminished sense of ownership affecting the frontend teams' productivity. While one might suggest transferring BFF ownership to frontend teams as a potential solution, it's not a foolproof fix. This shift necessitates an expansion of skill-sets among frontend teams and demands enhanced coordination, presenting its own challenges.
+
+At Tailcall, we are fervently committed to resolving this issue. We perceive this intricate conundrum as a compelling fusion of organizational dynamics and technical intricacies. It presents a uniquely riveting challenge that propels us beyond the confines of conventional software development paradigms.
