@@ -19,7 +19,7 @@ To run Tailcall, you need to have Java 11 or above installed on your machine.
    ```
 3. Verify that Tailcall is installed correctly by running:
    ```shell
-   tc --version
+   tc
    ```
 4. To start the Tailcall server, execute the following command:
    ```shell
