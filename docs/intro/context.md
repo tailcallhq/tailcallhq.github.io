@@ -53,15 +53,21 @@ This denotes the context of the parent node.
 
 ```graphql showLineNumbers
 type Query {
-    posts: [Post] @http(path: "/posts")
+  posts: [Post] @http(path: "/posts")
 }
 type Post {
   id: ID!
   title: String!
   body: String!
-  comments: [Comment] @http(path: "/comments?postId={{parent.value.id}}", matchKey: "postId", matchPath: "id")
+  comments: [Comment]
+    @http(
+      path: "/comments?postId={{parent.value.id}}"
+      matchKey: "postId"
+      matchPath: "id"
+    )
 }
 ```
+
 In this case, `parent.value.id` is a way to get the `id` information from the "parent" context of the `Post` type. Essentially, it's extracting a list or "array" of `id` fields from multiple `Post` types. Think of `parent.value` as a container that holds the results of a post query, with `id` being the specific key you want to fetch from that container.
 
 ### env
@@ -86,4 +92,4 @@ type Query {
 
 Here, `headers.userId` refers to a header called `userId` that should be present in the `context`. The server can use this `userId` to fetch comments for the specified user.
 
-[Operator] /docs/advanced/operators
+[Operator]: /docs/advanced/operators
