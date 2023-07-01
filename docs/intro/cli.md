@@ -12,7 +12,7 @@ $ tc <command>
 
 ## Commands
 
-### `check`
+### check
 
 The `check` command validates a composition spec. If a remote environment is specified, it also displays the status of the spec in that environment. It has the capacity to detect potential N+1 issues as well.
 
@@ -28,7 +28,7 @@ $ tc check [options] <file>...
 - `--endpoints`: Displays endpoints of the composition spec.
 - `-s, --schema`: Displays the schema of the composition spec.
 
-### `publish`
+### publish
 
 The `publish` command publishes the configuration file to the specified remote environment.
 
@@ -40,7 +40,7 @@ $ tc publish [options] <file>...
 
 - `-r, --remote <URL>`: Specifies the remote environment URL. The default is `https://cloud.tailcall.run`.
 
-### `drop`
+### drop
 
 The `drop` command removes a composition spec from the remote environments using its SHA-256 hash.
 
@@ -52,7 +52,7 @@ $ tc drop [options] <digest>
 
 - `-r, --remote <URL>`: Specifies the remote environment URL. The default is `https://cloud.tailcall.run`.
 
-### `list`
+### list
 
 The `list` command displays all published composition specs on the remote address.
 
@@ -66,7 +66,7 @@ $ tc list [options]
 - `--offset <integer>`: Specifies the number of entries to skip for paginating output.
 - `--limit <integer>`: Specifies the limit to the number of entries in the output.
 
-### `show`
+### show
 
 The `show` command displays information for a composition spec using its SHA-256 hash on the remote server.
 
@@ -81,7 +81,7 @@ $ tc show [options] <digest>
 - `--endpoints`: Displays endpoints of the composition spec.
 - `-s, --schema`: Displays the schema of the composition spec.
 
-### `generate`
+### generate
 
 The `generate` command generates a composition spec from a source file. The generated format can be specified.
 
