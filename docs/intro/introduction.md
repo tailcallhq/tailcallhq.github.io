@@ -21,7 +21,7 @@ The clients (Mobile/Web) make requests to the microservices through an API gatew
 
 API composition refers to the process of combining multiple APIs to create a new API or a new functionality. This can be done by sending requests to multiple APIs and combining the results, or by creating a new API that acts as a façade for the underlying APIs.
 
-> 💡 API Composition is also known as API Orchestration. This is however vastly different from Microservice Orchestration.
+> API Composition is also known as API Orchestration. This is however vastly different from Microservice Orchestration.
 
 For example, consider a scenario where a client application wants to display a timeline of posts with the profile information of each user on a social media platform. In this case, the client can send two separate requests to two different APIs and combines them together as follows:
 
@@ -61,7 +61,7 @@ For example, consider a scenario where a client application wants to display a t
 
 The composition on the client side remains unstandardised. There is often a problem of over fetching where the client makes a request to get some data, but the server ends up sending more than what’s required on the screen. And under fetching where the client end up making multiple API calls to get relevant data for a particular screen. This, with a modest hardware and in conjunction with flaky network conditions makes the overall solution unreliable and non-performant.
 
-> 💡 Modest hardware and flaky network conditions on the client side results in poor user-experience.
+> Modest hardware and flaky network conditions on the client side results in poor user-experience.
 
 ### 1. Increased Complexity
 
@@ -81,7 +81,7 @@ A BFF layer can help to solve the challenges of API composition by providing a s
 
 ![BFF Diagram](/img/bff.svg)
 
-> 💡 BFFs can dramatically improve the reliability and performance of the system, there by having a direct impact on user-experience.
+> BFFs can dramatically improve the reliability and performance of the system, there by having a direct impact on user-experience.
 
 The BFF can take advantage of a powerful CPU and access to a fast network to improve the performance and reliability of the composed API. It can also provide added flexibility and control over the composition process. This can make it a useful tool for developers who want to create new APIs by combining the functionality of multiple underlying APIs. However, there are a few challenges with a BFF layer:
 
@@ -113,7 +113,7 @@ BFF layers can't be deployed independently since they act as a bridge between th
 
 BFF layers often end up implementing some of the cross-cutting concerns of an API gateway such as rate limiting, authentication, throttling, etc. This makes its purpose quite confusing if we already have an API gateway. Moreover, it's not very clear if we use an API gateway with a BFF layer, where should we place it? Should we place it between the clients and the BFF layer or the BFF layer and the service mesh? These are subjective decisions that each company ends up making as there is no standard way of doing this. However, it's worth mentioning that legacy gateways do introduce a gap that's being attempted to be filled by a BFF layer.
 
-> 💡 BFF, Presentation Layer, Facade, Middleware, Frontend Layer, Orchestration Layer, API Adapter — Are all different nomenclatures used for the same thing.
+> BFF, Presentation Layer, Facade, Middleware, Frontend Layer, Orchestration Layer, API Adapter — Are all different nomenclatures used for the same thing.
 
 ### 8. Organizational Friction
 
