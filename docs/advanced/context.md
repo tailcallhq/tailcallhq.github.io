@@ -52,20 +52,18 @@ In the example above, `value.id` is used to access the `id` field of the `Post` 
 This denotes the context of the parent node.
 
 ```graphql showLineNumbers
+type Query {
+    posts: [Post] @http(path: "/posts")
+}
 type Post {
   id: ID!
   title: String!
   body: String!
-  comments: [Comment]
-    @http(
-      path: "/comments?postId={{parent.id}}"
-      batchKey: "postId"
-      groupBy: "id"
-    )
+  comments: [Comment] @http(path: "/comments?postId={{parent.value.id}}", matchKey: "postId", matchPath: "id")
 }
 ```
 
-In this example, `parent.id` is used to access the `id` field from the parent of the `Post` type. This will provide an array of `id` fields from the `[Post]` type.
+In this scenario, `parent.value.id` is used to obtain the `id` field from the parent context of the `Post` type. This will yield an array of `id` fields from the `[Post]` type. In this case, parent retains the outcome of the posts query in its `value` within the context.
 
 ### env
 
