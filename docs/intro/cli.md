@@ -95,4 +95,4 @@ $ tc generate [options] <file>...
 - `--target config-json | config-yaml | config-graphql | json-lines`: Specifies the output format.
 - `--write <file>`: Writes the output to the specified file.
 
-All these commands are designed to handle specific tasks, providing a powerful toolkit for managing GraphQL configurations. This makes TailCall CLI an essential tool for anyone working with GraphQL compositions.
+All these commands are designed to handle specific tasks, providing a powerful toolkit for managing GraphQL configurations.
