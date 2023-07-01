@@ -1,5 +1,6 @@
 ---
 title: Server
+sidebar_position: 7
 ---
 
 The TailCall Server acts as an API Gateway for GraphQL. We can configure the server by passing cli options and we can publish various graphql configuration aka [composition specs]. To understand how the gateway works in detail refer the [architecture] document.

@@ -1,5 +1,6 @@
 ---
 title: Context
+sidebar_position: 5
 ---
 
 In any GraphQL framework, including Tailcall, `Context` is a fundamental mechanism used for data sharing amongst various parts of your application. It is an adaptable object that is made available to every resolver in GraphQL.

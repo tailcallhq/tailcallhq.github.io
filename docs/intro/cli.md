@@ -1,5 +1,6 @@
 ---
 title: CLI
+sidebar_position: 6
 ---
 
 TailCall CLI (Command Line Interface) is a powerful part of the TailCall toolkit, enabling developers to manage and optimize GraphQL configurations directly from the command line. Each command is purposefully designed to handle a particular aspect of GraphQL composition.

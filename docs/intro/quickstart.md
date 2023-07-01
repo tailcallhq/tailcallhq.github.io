@@ -1,6 +1,6 @@
 ---
-sidebar_position: 3
 title: Quick Start
+sidebar_position: 3
 ---
 
 ### Requirements
