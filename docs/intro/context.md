@@ -82,7 +82,9 @@ type Query {
 
 In the above example, `env.API_ENDPOINT` refers to an environment variable called API_ENDPOINT, which should be defined in your server settings.
 
-5. **headers** - These are the headers of the request that was received by the Tailcall server.
+### headers
+
+These are the headers of the request that was received by the Tailcall server.
 
 ```graphql showLineNumbers
 type Query {
