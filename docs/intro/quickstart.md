@@ -5,7 +5,7 @@ sidebar_position: 3
 
 ### Requirements
 
-To run Tailcall, you need to have Java 11 or above installed on your machine.
+To run Tailcall, you need to have Java 20 or above installed on your machine.
 
 ### Installation
 
