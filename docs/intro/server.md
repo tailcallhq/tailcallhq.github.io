@@ -10,7 +10,7 @@ The TailCall Server acts as an API Gateway for GraphQL. We can configure the ser
 To start the server, use the command:
 
 ```bash
-$ server [options]
+tc-server [options]
 ```
 
 By default, the server starts on port 8080.
@@ -27,7 +27,7 @@ Sets the port number for the server.
 - Default: 8080
 
 ```bash
-$ server --port 8081
+tc-server --port 8081
 ```
 
 ### --timeout
@@ -38,7 +38,7 @@ Sets the global response timeout for the server.
 - Default: 10000 (10 seconds)
 
 ```bash
-$ server --timeout 5000
+tc-server --timeout 5000
 ```
 
 ### --http-cache
@@ -50,7 +50,7 @@ Sets the HTTP cache size. This is an optional setting, by default caching is dis
 - Default: None
 
 ```bash
-$ server --http-cache 500
+tc-server --http-cache 500
 ```
 
 ### --tracing
@@ -61,7 +61,7 @@ Enables or disables tracing.
 - Default: false
 
 ```bash
-$ server --tracing
+tc-server --tracing
 ```
 
 ### --slow-query
@@ -73,7 +73,7 @@ Sets the slow query duration limit.
 - Default: None
 
 ```bash
-$ server --slow-query 2000
+tc-server --slow-query 2000
 ```
 
 ### --db
@@ -84,7 +84,7 @@ Enables or disables database connectivity. By default the server uses an in-memo
 - Default: false
 
 ```bash
-$ server --db
+tc-server --db
 ```
 
 ### --db-host
@@ -95,7 +95,7 @@ Sets the database host.
 - Default: "localhost"
 
 ```bash
-$ server --db-host "localhost"
+tc-server --db-host "localhost"
 ```
 
 ### --db-port
@@ -106,7 +106,7 @@ Sets the database port.
 - Default: 3306
 
 ```bash
-$ server --db-port 3307
+tc-server --db-port 3307
 ```
 
 ### --db-username
@@ -118,7 +118,7 @@ Sets the database username.
 - Default: "tailcall_main_user"
 
 ```bash
-$ server --db-username "new_user"
+tc-server --db-username "new_user"
 ```
 
 ### --db-password
@@ -130,7 +130,7 @@ Sets the database password.
 - Default: "tailcall"
 
 ```bash
-$ server --db-password "new_password"
+tc-server --db-password "new_password"
 ```
 
 ### --persisted-queries
@@ -141,7 +141,7 @@ Enables or disables persisted queries.
 - Default: false
 
 ```bash
-$ server --persisted-queries
+tc-server --persisted-queries
 ```
 
 These options allow developers to fine-tune the TailCall server according to their requirements, providing a versatile platform for managing GraphQL configurations.
