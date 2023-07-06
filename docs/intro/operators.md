@@ -98,6 +98,34 @@ type Mutation {
 
 In the example above, the `createUser` mutation sends a POST request to `/users`, with the input object converted to JSON and included in the request body.
 
+### headers
+
+The `headers` parameter allows you to customize the headers of the HTTP request made by the `@http` operator. It is used by specifying a key-value map of header names and their values.
+
+For instance:
+
+```graphql showLineNumbers
+type Mutation {
+  createUser(input: UserInput!): User
+    @http(path: "/users", headers: {"X-Server": "Tailcall"})
+}
+```
+
+In this example, a request to `/users` will include an additional HTTP header `X-Server` with the value `Tailcall`.
+
+You can make use of mustache templates to provide dynamic values for headers, derived from the arguments or [context] provided in the request. For example:
+
+[context]: /docs/intro/context
+
+```graphql showLineNumbers
+type Mutation {
+  users(name: String): User
+    @http(path: "/users", headers: {"X-Server": "Tailcall", "User-Name": "{{args.name}}"})
+}
+```
+
+In this scenario, the `User-Name` header's value will dynamically adjust according to the `name` argument passed in the request.
+
 ## @modify
 
 The `@modify` operator in GraphQL provides the flexibility to alter the attributes of a field or a node within your GraphQL schema. Here's how you can use this operator:
