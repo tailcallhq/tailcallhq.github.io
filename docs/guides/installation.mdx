@@ -38,10 +38,16 @@ To run Tailcall, you need to have Java 20 or above installed on your machine.
 
 ## Curl
 
-Use this to manually install and setup Tailcall on your machine.
+Follow the steps below to manually install the cli on your system:
 
-<CodeBlock language="bash">
-  curl -sSL
-  https://raw.githubusercontent.com/tailcallhq/tailcall/main/install.sh | bash
-  -s -- {versionData.tag_name}
-</CodeBlock>
+```bash
+curl -sSL https://raw.githubusercontent.com/tailcallhq/tailcall/main/install.sh | bash -s -- {versionData.tag_name}
+```
+
+This command fetches and executes the Tailcall installation script. The installed files are located in the `~/.tailcall` directory.
+
+Upon completion of the installation, extend your `PATH` environment variable to include the `~/.tailcall/bin` directory:
+
+```bash
+export PATH=$PATH:~/.tailcall/bin
+```
