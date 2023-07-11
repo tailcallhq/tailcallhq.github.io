@@ -1,6 +1,6 @@
 ---
 title: Architecture
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 What we have built is a open-source API orchestration solution that really thinks about the problem from first principles and achieves far superior results than the legacy solutions that available today. To understand how it works, here is the technical implementation of our solution.

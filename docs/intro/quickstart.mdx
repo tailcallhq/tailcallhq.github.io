@@ -1,13 +1,23 @@
 ---
 title: Quick Start
-sidebar_position: 3
+sidebar_position: 1
+label: Quick Start
 ---
+
+import versionData from "../../src/gen/tailcall-version.json"
 
 ### Requirements
 
-To run Tailcall, you need to have Java 20 or above installed on your machine.
+To install Tailcall, ensure that your system is equipped with **Java 20** or a newer version. You can refer to the setup instructions provided by [sdkman] to correctly install and configure Java on your system.
+
+[sdkman]: https://sdkman.io/jdks#tem
 
 ### Installation
+
+<>
+  You can install the latest version -<b> {versionData.tag_name}</b>, by using
+  one of the following methods:
+</>
 
 #### Homebrew
 
@@ -26,6 +36,10 @@ To run Tailcall, you need to have Java 20 or above installed on your machine.
    tc-server
    ```
    This will initiate the server at `http://localhost:8080/graphql`.
+
+If you're interested in exploring other installation methods, refer to our [installation guide] for detailed instructions.
+
+[installation guide]: /docs/guides/installation
 
 ### Compose REST apis into a GraphQL schema
 

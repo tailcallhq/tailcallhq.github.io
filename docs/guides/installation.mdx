@@ -3,6 +3,9 @@ title: Installation & Updates
 sidebar_position: 2
 ---
 
+import CodeBlock from "@theme/CodeBlock"
+import versionData from "../../src/gen/tailcall-version.json"
+
 To run Tailcall, you need to have Java 20 or above installed on your machine.
 
 ## Homebrew
@@ -32,3 +35,13 @@ To run Tailcall, you need to have Java 20 or above installed on your machine.
    brew update
    brew upgrade tailcall
    ```
+
+## Curl
+
+Use this to manually install and setup Tailcall on your machine.
+
+<CodeBlock language="bash">
+  curl -sSL
+  https://raw.githubusercontent.com/tailcallhq/tailcall/main/install.sh | bash
+  -s -- {versionData.tag_name}
+</CodeBlock>
