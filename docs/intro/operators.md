@@ -259,6 +259,8 @@ type Post {
 
 So, we've used composition of operators to take a complex object (the `User` inside the `Post`), extract a specific part of it (`name`), name that part (`userName`), and then instruct GraphQL how to fetch the data using an HTTP request.
 
-> It is important to note that the order of the operators doesn't matter. The resulting schema will always be the same.
+:::info
+It is important to note that the order of the operators doesn't matter. The resulting schema will always be the same.
+:::
 
 This is a powerful mechanism that allows you to make your GraphQL schema more precise, easier to understand, and more suitable for the specific needs of your application.

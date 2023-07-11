@@ -26,7 +26,9 @@ Once the composition specification is ready, we publish the specification on the
 1. We run all the validations and check if there are any invalid states in the composition specification provided by the developer.
 2. We also identify performance bottlenecks in the way APIs are composed for eg: the N + 1 problem.
 
-   > 💡 The N + 1 problem in API composition refers to a situation where a single request to an API results in multiple additional requests being made. This can occur when an API returns a list of objects that each require additional data from another API, resulting in a separate request for each object. This can lead to poor performance and increased load on the API. The problem can be solved by using techniques such as "eager loading" or "batching" to reduce the number of requests made.
+   :::info
+   The N + 1 problem in API composition refers to a situation where a single request to an API results in multiple additional requests being made. This can occur when an API returns a list of objects that each require additional data from another API, resulting in a separate request for each object. This can lead to poor performance and increased load on the API. The problem can be solved by using techniques such as "eager loading" or "batching" to reduce the number of requests made.
+   :::
 
 3. We recommend standard best practices for API composition so that developers can integrate it on day one.
 4. We also apply many optimizations eg: including constant folding, inlining, [data-loader], etc.
