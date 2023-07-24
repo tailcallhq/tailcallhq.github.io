@@ -47,9 +47,9 @@ To install Tailcall, ensure that your system is equipped with **Java 20** or a n
 
 Follow the steps below to manually install the cli on your system:
 
-```bash
-curl -sSL https://raw.githubusercontent.com/tailcallhq/tailcall/main/install.sh | bash -s -- {versionData.tag_name}
-```
+<CodeBlock language="bash">
+  {`curl -sSL https://raw.githubusercontent.com/tailcallhq/tailcall/main/install.sh | bash -s -- ${versionData.tag_name}`}
+</CodeBlock>
 
 This command fetches and executes the Tailcall installation script. The installed files are located in the `~/.tailcall` directory.
 
@@ -58,3 +58,28 @@ Upon completion of the installation, extend your `PATH` environment variable to 
 ```bash
 export PATH=$PATH:~/.tailcall/bin
 ```
+
+## Verification
+
+You should be now able to run the client and the server with the following commands:
+
+**Server**:
+
+```bash
+tc-server --help
+```
+
+**Client**:
+
+```bash
+tc
+```
+
+Checkout the documentation for **[tc-server]** and **[tc]** for actual usage.
+
+:::note
+Once the installation is compeleted, you should verify the if the version printed on running `tc` and the `tc-server` command match the actual installed versions.
+:::
+
+[tc]: /docs/intro/cli
+[tc-server]: /docs/intro/server
