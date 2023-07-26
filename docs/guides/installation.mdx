@@ -66,6 +66,30 @@ Upon completion of the installation, extend your `PATH` environment variable to 
 export PATH=$PATH:~/.tailcall/bin
 ```
 
+## Docker
+
+If you want to install Tailcall with Docker, follow the steps below. Before starting, ensure Docker is installed on your system. If not, you can download it from [here](https://www.docker.com/products/docker-desktop).
+
+1. Pull the latest Tailcall Docker image using the following command:
+
+   <CodeBlock language="bash">
+     docker pull tailcallhq/tailcall/tc-server:{versionData.tag_name}
+   </CodeBlock>
+
+   This command fetches the latest version of the Tailcall Docker image from the Docker registry.
+
+2. Run the Tailcall Docker container with the following command:
+
+   <CodeBlock language="bash">
+     docker run -p 8080:8080 -p 8081:8081 tailcallhq/tailcall/tc-server:
+     {versionData.tag_name}
+   </CodeBlock>
+
+   This command starts the Tailcall server in a Docker container. Similar to the homebrew installation, it exposes two ports:
+
+   - **API Server** on port `8080`: The API server is the public facing server that exposes the graphQL endpoint.
+   - **Admin Server** on port `8081`: The admin server will be used by the [CLI] to publish configurations.
+
 ## Verification
 
 You should be now able to run the client and the server with the following commands:
