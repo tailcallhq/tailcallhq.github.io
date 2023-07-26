@@ -30,6 +30,17 @@ Sets the port number for the server.
 tc-server --port 8081
 ```
 
+### --admin-port
+
+Sets the admin-port number for the server. This port is used by the CLI to publish configuration on the server, without restarting it. The default value is `1+[port]` that's provided. For eg: If the port is set to `8080` the admin port will be on `8081`.
+
+- Type: Integer
+- Default: 8081
+
+```bash
+tc-server --admin-port 8081
+```
+
 ### --timeout
 
 Sets the global response timeout for the server.
