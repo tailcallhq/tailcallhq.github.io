@@ -34,7 +34,14 @@ To install Tailcall, ensure that your system is equipped with **Java 20** or a n
    tc-server
    ```
 
-   This will initiate the server at `http://localhost:8080/graphql`.
+   This command will start the server on two ports -
+
+   1. API Server on port `8080`: The API server is the public facing server that exposes the graphQL endpoint.
+   2. Admin Server on port `8081`: The admin server will be used by the [CLI] to publish configurations.
+
+   :::info
+   The two ports are used to allow different security policies for each of them.
+   :::
 
 5. Once installation is done, **upgrades** can be performed via:
 
@@ -83,3 +90,4 @@ Once the installation is compeleted, you should verify the if the version printe
 
 [tc]: /docs/intro/cli
 [tc-server]: /docs/intro/server
+[CLI]: /docs/intro/cli
