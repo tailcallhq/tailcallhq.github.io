@@ -1,6 +1,6 @@
 ---
 title: Installation & Updates
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 import CodeBlock from "@theme/CodeBlock"
@@ -25,25 +25,12 @@ To install Tailcall, ensure that your system is equipped with **Java 20** or a n
    brew install tailcall
    ```
 3. Verify that Tailcall is installed correctly by running:
+
    ```shell
    tc
    ```
-4. To start the Tailcall server, execute the following command:
 
-   ```shell
-   tc-server
-   ```
-
-   This command will start the server on two ports -
-
-   1. API Server on port `8080`: The API server is the public facing server that exposes the graphQL endpoint.
-   2. Admin Server on port `8081`: The admin server will be used by the [CLI] to publish configurations.
-
-   :::info
-   The two ports are used to allow different security policies for each of them.
-   :::
-
-5. Once installation is done, **upgrades** can be performed via:
+4. Once installation is done, **upgrades** can be performed via:
 
    ```bash
    brew update
@@ -85,33 +72,21 @@ If you want to install Tailcall with Docker, follow the steps below. Before star
      {versionData.tag_name}
    </CodeBlock>
 
-   This command starts the Tailcall server in a Docker container. Similar to the homebrew installation, it exposes two ports:
-
-   - **API Server** on port `8080`: The API server is the public facing server that exposes the graphQL endpoint.
-   - **Admin Server** on port `8081`: The admin server will be used by the [CLI] to publish configurations.
+   This command starts the Tailcall server in a Docker container. Similar to the homebrew installation, it exposes a the graphQL endpoint on port 8080.
 
 ## Verification
 
-You should be now able to run the client and the server with the following commands:
-
-**Server**:
-
-```bash
-tc-server --help
-```
-
-**Client**:
+You should be now able to run the cli with the following commands:
 
 ```bash
 tc
 ```
 
-Checkout the documentation for **[tc-server]** and **[tc]** for actual usage.
+Checkout the documentation for **[tc]** for actual usage.
 
 :::note
-Once the installation is compeleted, you should verify the if the version printed on running `tc` and the `tc-server` command match the actual installed versions.
+Once the installation is compeleted, you should verify the if the version printed on running `tc` command match the actual installed versions.
 :::
 
 [tc]: /docs/intro/cli
-[tc-server]: /docs/intro/server
 [CLI]: /docs/intro/cli
