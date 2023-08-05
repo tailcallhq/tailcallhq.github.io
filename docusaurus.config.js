@@ -2,6 +2,9 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 const title = "Tailcall"
+const organization = "tailcallhq"
+const project = "tailcallhq.github.io"
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title,
@@ -14,8 +17,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "tailcallhq", // Usually your GitHub org/user name.
-  projectName: "tailcallhq.github.io", // Usually your repo name.
+  organizationName: organization, // Usually your GitHub org/user name.
+  projectName: project, // Usually your repo name.
   deploymentBranch: "main", // Branch that GitHub pages will deploy from.
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -40,14 +43,14 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            `https://github.com/${organization}/${project}/tree/develop`,
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          `https://github.com/${organization}/${project}/tree/develop`,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
