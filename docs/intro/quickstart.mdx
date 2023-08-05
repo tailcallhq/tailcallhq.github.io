@@ -6,22 +6,23 @@ label: Quick Start
 
 import versionData from "../../src/gen/tailcall-version.json"
 
-### Requirements
+## Requirements
 
 To install Tailcall, ensure that your system is equipped with **Java 20** or a newer version. You can refer to the setup instructions provided by [sdkman] to correctly install and configure Java on your system.
 
 [sdkman]: https://sdkman.io/jdks#tem
 
-### Installation
+## Installation
 
 <>
   You can install the latest version - <b>{versionData.tag_name}</b>, by using
-  one of the following methods:
+  <b> homebrew</b>.
 </>
 
-#### Homebrew
+If you're interested in exploring other installation methods, refer to our [installation
+guide] for detailed instructions.
 
-1. If you don't already have Homebrew installed, you can find the instructions [here](https://brew.sh/).
+1. If you don't already have **brew** installed, you can find the instructions [here](https://brew.sh/).
 2. Add the Tailcall repository to Homebrew by running the following command in your terminal:
    ```shell
    brew tap tailcallhq/tailcall
@@ -32,18 +33,12 @@ To install Tailcall, ensure that your system is equipped with **Java 20** or a n
    tc
    ```
 
-:::info
-If you're interested in exploring other installation methods, refer to our [installation guide] for detailed instructions.
-:::
-
 [installation guide]: /docs/guides/installation
 
-### Compose REST apis into a GraphQL schema
+## Startup Configuration
 
-For our first example, we are going to compose a graphQL schema from the REST apis at <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a>, a free online REST api with some fake data.
-We will use the api at `https://jsonplaceholder.typicode.com/users` to get a list of users, and `https://jsonplaceholder.typicode.com/users/:id/posts` to get the posts for each user, and compose them into a single GraphQL schema.
-
-#### Create the schema definition
+For our first example, we are going to compose a GraphQL schema from the REST APIs at <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a>, a free online REST API with some fake data.
+We will use the API at `https://jsonplaceholder.typicode.com/users` to get a list of users, and `https://jsonplaceholder.typicode.com/users/:id/posts` to get the posts for each user, and compose them into a single GraphQL schema.
 
 Create a file called `jsonplaceholder.graphql` and paste the following contents into it.
 
@@ -78,28 +73,26 @@ type Post {
 }
 ```
 
-The above file is a standard `.graphQL` file, with a few additions such as `@server` and `@http` directives. So basically we specify the graphQL schema and how to resolve that graphQL schema in the same file, without having to write any code! Here is a quick overview of what the above schema does:
+The above file is a standard `.graphQL` file, with a few additions such as `@server` and `@http` directives. So basically we specify the GraphQL schema and how to resolve that GraphQL schema in the same file, without having to write any code! Here is a quick overview of what the above schema does:
 
-#### Register the schema definition with the server
+#### Server
 
-Now, again in the `bin` directory, run the following command to register this schema with the server. Specify the full path to the `jsonplaceholder.graphql` file that you created above.
+Now, run the following command to start the server with the full path to the `jsonplaceholder.graphql` file that you created above.
 
 ```shell
-tc publish jsonplaceholder.graphql
+tc start ./jsonplaceholder.graphql
 ```
 
 If the command succeeds, you should see output like the following below.
 
 ```shell
-Deployment was completed successfully.
-Digest:     4ee03fde640e2f4c3e65c570971cc8b9ef6964926a79eed884eca6f864a43165
 Endpoints:  2
 Unsafe:     0
-Playground: http://cloud.tailcall.run/graphql/4ee03fde640e2f4c3e65c570971cc8b9ef6964926a79eed884eca6f864a43165.
+Playground: http://localhost/graphql
 N + 1:      1
 ```
 
-The server registers the schema and prints out a load of meta information. We will cover those in detail in a bit for now open the **playground URL** in a new tab in your browser and try it out for yourself!
+The server starts with the schema provided and prints out a load of meta information. We will cover those in detail in a bit. For now, open the **playground URL** in a new tab in your browser and try it out for yourself!
 
 #### Query the registered schema
 
