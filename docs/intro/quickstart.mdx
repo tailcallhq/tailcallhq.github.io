@@ -35,10 +35,10 @@ guide] for detailed instructions.
 
 [installation guide]: /docs/guides/installation
 
-## Startup Configuration
+## Configuration
 
-For our first example, we are going to compose a GraphQL schema from the REST APIs at <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a>, a free online REST API with some fake data.
-We will use the API at `https://jsonplaceholder.typicode.com/users` to get a list of users, and `https://jsonplaceholder.typicode.com/users/:id/posts` to get the posts for each user, and compose them into a single GraphQL schema.
+For our first example, we are going to compose a GraphQL schema from the REST APIs at <a href="https://jsonplaceholder.typicode.com" target="_blank">https://jsonplaceholder.typicode.com</a>, a free online REST API with some fake data.
+We will use the API at `/users` to get a list of users, and `/users/:id/posts` to get the posts for each user, and compose them into a single GraphQL schema.
 
 Create a file called `jsonplaceholder.graphql` and paste the following contents into it.
 
@@ -75,7 +75,7 @@ type Post {
 
 The above file is a standard `.graphQL` file, with a few additions such as `@server` and `@http` directives. So basically we specify the GraphQL schema and how to resolve that GraphQL schema in the same file, without having to write any code! Here is a quick overview of what the above schema does:
 
-#### Server
+## Launch
 
 Now, run the following command to start the server with the full path to the `jsonplaceholder.graphql` file that you created above.
 
@@ -94,7 +94,7 @@ N + 1:      1
 
 The server starts with the schema provided and prints out a load of meta information. We will cover those in detail in a bit. For now, open the **playground URL** in a new tab in your browser and try it out for yourself!
 
-#### Query the registered schema
+## Run
 
 Let's try the following query, to get all the users and the title of each post of each user.
 
