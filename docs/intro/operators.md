@@ -7,52 +7,257 @@ Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition 
 
 ## @server
 
-The **@server** operator is utilized to define critical server configurations for your GraphQL application. For example:
+The `@server` directive, when applied at the schema level, offers a comprehensive set of server configurations. It dictates how the server behaves, ensuring efficient, secure, and seamless GraphQL operations.
 
 ```graphql showLineNumbers
 schema @server(
-  port: 8000,
-  baseURL: "http://jsonplaceholder.typicode.com",
-  enableHttpCache: true,
-  enableCacheControlHeader: true,
-  enableGraphiql: "/graphiql",
-  proxy: {url: "http://localhost:3000"},
-  vars: {foo: "bar"},
-  enableIntrospection: true,
-  enableQueryValidation: true,
-  enableResponseValidation: true,
-  globalResponseTimeout: 5000,
-  allowedHeaders: ["Authorization", "Content-Type"]
+  ...[ServerSettings]...
 ){
     query: Query
     mutation: Mutation
 }
 ```
-In this example, the `@server` operator is added to the GraphQL `schema` definition.
 
-1. `port`: We've set the port to `8000`. This means that the Tailcall will be accessible at `http://localhost:8000`.
+In this templated structure, replace `...[ServerSettings]...` with specific configurations tailored to your project's needs. Adjust and expand these settings as necessary.
 
-2. `baseURL`: We've set `http://jsonplaceholder.typicode.com` as our `baseURL`. This means that all API calls made by Tailcall, defined by [@http](#http) will prepend this URL to the path provided.
+The various `ServerSettings` options and their details are explained below.
 
-3. `enableHttpCache`: We've set this to `true`. This means that the Tailcall will utilize HTTP caching mechanisms, aiming to enhance performance by reducing redundant data fetches.
+### port
 
-4. `enableCacheControlHeader`: We've set this to `true`. This means that the Tailcall will send Cache-Control headers in its response, providing clients with directives on how to cache the response data. This allows for more effective client-side caching strategies and can lead to improved performance for client applications.
+This refers to the `port` on which the Tailcall will be running. If not specified, the default port is `8000`.
 
-5. `enableGraphiql`: We've set this to `/graphiql`. This means that the GraphiQL interface, an interactive in-browser GraphQL IDE, will be accessible at the given path (`http://localhost:8000/graphiql`).
 
-6. `proxy`: We've configured this with a `url` set to "http://localhost:3000". This means that when the Tailcall makes requests to the `baseURL`, which is set to "http://jsonplaceholder.typicode.com" in our example, it will proxy those requests via "http://localhost:3000". So, any request directed to "http://jsonplaceholder.typicode.com" will first be routed through "http://localhost:3000" before reaching its final destination.
+```graphql showLineNumbers
+schema @server(
+  port: 8090
+){
+    query: Query
+    mutation: Mutation
+}
+```
+In this example, the `port` is set to `8090`. This means that the Tailcall will be accessible at `http://localhost:8000`.
 
-7. `vars`: We've passed in a vars object with a key of `foo` and a value of `bar`. This means that Tailcall has a local variable named `foo` which can be used during its operations, and its value will be "bar".
+:::note
+Always lean towards non-standard ports, steering clear of typical ones like 80 or 8080. Ensure your chosen port is unoccupied.
+:::
 
-8. `enableIntrospection`: We've configured this to `true`. This means the Tailcall will allow introspection queries, enabling clients and tools to explore the schema and its types.
+### baseURL
 
-9. `enableQueryValidation`: We've configured this to `true`. This means that Tailcall will validate incoming queries against the schema, rejecting any that are invalid.
+This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@server` operator, then each [@http](#http) operator must specify its own `baseURL`. If neither `@server` nor [@http](#http) provides a `baseURL`, it results in a compilation error.
 
-10. `enableResponseValidation`: We've configured this to `true`. This means that Tailcall will validate the responses it receives from upstream services. The aim is to ensure that the data is in alignment with the expected structure, preserving consistency when data is received from dependent services.
+```graphql showLineNumbers
+schema @server(
+  baseURL: "http://jsonplaceholder.typicode.com"
+){
+    query: Query
+    mutation: Mutation
+}
+```
 
-11. `globalResponseTimeout`: We've set the timeout to `5000` milliseconds. This means that any operation taking longer than this duration will be terminated by the server, preventing potential hang-ups due to long-running processes.
+In this representation, the `baseURL` is set as `http://jsonplaceholder.typicode.com`. Thus, all API calls made by `@http` will prepend this URL to their respective paths.
 
-12. `allowedHeaders`: We've set this to an array containing `Authorization` and `Content-Type`. This means that only these specified HTTP headers will be forwarded to upstream services when Tailcall requests data. All other headers will be stripped from the request, ensuring that only expected and allowed headers are passed to dependent services.
+:::note
+Ensure that your base URL remains free from specific path segments to promote smooth concatenation with API endpoints.
+:::
+
+### enableHttpCache
+
+The `enableHttpCache` configuration, when activated, directs Tailcall to utilize HTTP caching mechanisms. These mechanisms, in accordance with the [HTTP Caching RFC](https://tools.ietf.org/html/rfc7234), are designed to boost performance by reducing unnecessary data fetches. If left unspecified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+schema @server(
+  enableHttpCache: true
+){
+    query: Query
+    mutation: Mutation
+}
+```
+
+In the provided example, activating `enableHttpCache` ensures that Tailcall takes advantage of established HTTP caching protocols, minimizing data redundancy.
+
+:::note
+This feature should be enabled if your upstream services contain cacheable data, offering a pathway to maximum optimization.
+:::
+
+### enableCacheControlHeader
+
+The `enableCacheControlHeader` configuration, when activated, instructs Tailcall to transmit Cache-Control headers in its responses. This inclusion gives client applications explicit directives on how to cache the response data. Such precise control facilitates effective client-side caching strategies, resulting in a potential boost in client application performance. By default, this is set to `false`.
+
+```graphql showLineNumbers
+schema @server(
+  enableCacheControlHeader: true
+){
+    query: Query
+    mutation: Mutation
+}
+```
+
+In the displayed example, setting `enableCacheControlHeader` to `true` ensures that the Cache-Control headers are included in the responses, allowing client applications to optimize their caching strategies based on the provided directives.
+
+:::note
+To optimize client-side caching, familiarize yourself with Cache-Control directives. Correctly configuring these directives can prevent caching issues like serving stale data.
+:::
+
+### enableGraphiql
+
+This configuration dictates the path on which the GraphiQL interface is hosted within Tailcall. [GraphiQL](https://github.com/graphql/graphiql) is a built-in, interactive in-browser GraphQL IDE that simplifies query development and testing. By designating a path, such as `/graphiql`, you grant access to this IDE at that specific URL endpoint, like `http://localhost:8000/graphiql`. If not provided, GraphiQL won't be available. It's a ready-to-use feature in Tailcall, requiring no additional setup.
+
+```graphql showLineNumbers
+schema @server(
+  enableGraphiql: "/graphiql"
+){
+    query: Query
+    mutation: Mutation
+}
+```
+
+In this example, the GraphiQL interface is made accessible at the path `/graphiql`, allowing developers and users to explore and test GraphQL queries interactively within the browser.
+
+:::note
+While the GraphiQL interface is a powerful tool for development, it's recommended to disable it in production environments, especially if you're not exposing GraphQL APIs directly to users. This ensures an added layer of security and reduces unnecessary exposure.
+:::
+
+### proxy
+
+The `proxy` setting defines an intermediary server through which the upstream requests will be routed before reaching their intended endpoint. By specifying a proxy URL, you introduce an additional layer, enabling various benefits like load balancing, logging, or enhanced security.
+
+```graphql showLineNumbers
+schema @server(
+  proxy: {url: "http://localhost:3000"}
+){
+    query: Query
+    mutation: Mutation
+}
+```
+In the provided example, we've set the proxy's `url` to "http://localhost:3000". This configuration ensures that all requests aimed at the designated `baseURL` are first channeled through this proxy. To illustrate, if the `baseURL` is "http://jsonplaceholder.typicode.com", any request targeting it would be initially sent to "http://localhost:3000" before being redirected to its final destination.
+
+:::note
+Utilizing a proxy can be instrumental for load balancing, achieving enhanced security measures, or retaining detailed logs of upstream requests. It's crucial, however, to ensure that the proxy server is suitably configured and can handle the expected traffic load.
+:::
+
+### vars
+
+This configuration allows you to define local variables that can be leveraged during the server's operations. These variables are particularly handy when you need to store constant configurations, secrets, or other shared information that various operations might require.
+
+```graphql showLineNumbers
+schema @server(
+  vars: {apiKey: "YOUR_API_KEY_HERE"}
+){
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+  externalData: Data @http(
+    path: "/external-api/data",
+    headers: {"Authorization": "Bearer {{vars.apiKey}}"}
+  )
+}
+```
+
+In the provided example, a variable named `apiKey` is set with a placeholder value of "YOUR_API_KEY_HERE". This configuration implies that whenever Tailcall fetches data from the `externalData` endpoint, it includes the `apiKey` in the Authorization header of the HTTP request.
+
+:::note
+Local variables, like `apiKey`, can be instrumental in securing access to external services or providing a unified place for configurations. Ensure that sensitive information stored this way is well protected and not exposed unintentionally, especially if your Tailcall configuration is publicly accessible.
+:::
+
+### enableIntrospection
+
+This setting governs whether introspection queries are permitted on the server. Introspection is an intrinsic feature of GraphQL, allowing clients to fetch information about the schema directly. This can be instrumental for tools and client applications to understand the types, fields, and operations available. By default, this setting is enabled (`true`).
+
+```graphql showLineNumbers
+schema @server(
+  enableIntrospection: false
+){
+    query: Query
+    mutation: Mutation
+}
+```
+
+In the showcased example, `enableIntrospection` is set to `false`. This restricts clients and development tools from performing introspection queries against the server.
+
+:::note
+Although introspection is beneficial during development and debugging stages, it's wise to consider disabling it in production environments. Turning off introspection in live deployments can enhance security by preventing potential attackers from easily discerning the schema and any associated business logic or data structures.
+:::
+### enableQueryValidation
+
+The `enableQueryValidation` configuration specifies whether the server should validate incoming GraphQL queries against the defined schema. Validating each query ensures its conformity to the schema, preventing errors from invalid or malformed queries. However, there are situations where you might opt to disable it, notably when seeking to enhance server performance at the cost of such checks. This defaults to `true` if not specified.
+
+```graphql showLineNumbers
+schema @server(
+  enableQueryValidation: false
+){
+    query: Query
+    mutation: Mutation
+}
+```
+
+In the example above, `enableQueryValidation` is set to `false`, bypassing the validation phase for incoming queries.
+
+:::note
+While disabling query validation might yield some performance gains, exercise caution. Keeping it enabled provides an added layer of protection against ill-formed or potentially malicious queries. If you choose to disable it, ensure you have other safeguards in place.
+:::
+
+### enableResponseValidation
+
+The `enableResponseValidation` setting determines whether the server should validate responses it receives from upstream services against the expected GraphQL response format. This validation ensures that the returned data conforms to the GraphQL schema, providing an additional layer of consistency checks.
+
+If this is not specified, the default setting for `enableResponseValidation` is `false`.
+
+```graphql showLineNumbers
+schema @server(
+  enableResponseValidation: true
+){
+    query: Query
+    mutation: Mutation
+}
+```
+
+In the provided example, `enableResponseValidation` is set to `true`, meaning responses from upstream services will be validated against the expected GraphQL structure.
+
+:::note
+Activating response validation is beneficial when integrating with unpredictable third-party services or in intricate microservice environments. It ensures that you maintain data integrity and consistency across your system. If you opt for deactivation, always establish a robust error-handling mechanism. Disabling might offer minor performance improvements, but at the potential expense of data reliability.
+:::
+
+### globalResponseTimeout
+
+The `globalResponseTimeout` configuration determines the maximum duration a query is allowed to run before it's terminated by the server. Essentially, it acts as a safeguard against long-running queries that could strain resources or pose security concerns.
+
+If not explicitly defined, there might be a system-specific or default value that applies.
+
+```graphql showLineNumbers
+schema @server(
+  globalResponseTimeout: 5000
+){
+    query: Query
+    mutation: Mutation
+}
+```
+
+In this given example, the `globalResponseTimeout` is set to `5000` milliseconds, or 5 seconds. This means any query execution taking longer than this duration will be automatically terminated by the server.
+
+:::note
+It's crucial to set an appropriate response timeout, especially in production environments. This not only optimizes resource utilization but also acts as a security measure against potential denial-of-service attacks where adversaries might run complex queries to exhaust server resources. Adjust based on the nature and complexity of your GraphQL operations, always aiming for a balance between performance and security.
+:::
+
+### allowedHeaders
+The `allowedHeaders` configuration specifies which HTTP headers are permitted to be forwarded to upstream services when making requests. By controlling the headers that are passed along, you maintain a tighter grip over the security and consistency of your data exchange.
+If `allowedHeaders` isn't specified, no incoming headers will be forwarded to the upstream services, which can provide an added layer of security but might restrict essential data flow.
+
+```graphql showLineNumbers
+schema @server(
+  allowedHeaders: ["Authorization", "X-Api-Key"]
+){
+    query: Query
+    mutation: Mutation
+}
+```
+
+In the example above, the `allowedHeaders` is set to allow only `Authorization` and `X-Api-Key` headers. This means that requests containing these headers will forward them to upstream services, while all others will be ignored. It ensures that only expected headers are communicated to dependent services, emphasizing security and consistency.
+
+:::note
+Ensure you're striking the right balance between security and functionality. While it's a good practice to limit the headers to the bare minimum required, be wary of excluding headers that might be essential for the operation of your upstream services.
+:::
 
 ## @http
 
