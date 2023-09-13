@@ -10,18 +10,49 @@ Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition 
 The **@server** operator is utilized to define critical server configurations for your GraphQL application. For example:
 
 ```graphql showLineNumbers
-schema
-  @server(baseURL: "https://jsonplaceholder.typicode.com", vars: {foo: "bar"}) {
-  query: Query
-  mutation: Mutation
+schema @server(
+  port: 8000,
+  baseURL: "http://jsonplaceholder.typicode.com",
+  enableHttpCache: true,
+  enableCacheControlHeader: true,
+  enableGraphiql: "/graphiql",
+  proxy: {url: "http://localhost:3000"},
+  vars: {foo: "bar"},
+  enableIntrospection: true,
+  enableQueryValidation: true,
+  enableResponseValidation: true,
+  globalResponseTimeout: 5000,
+  allowedHeaders: ["Authorization", "Content-Type"]
+){
+    query: Query
+    mutation: Mutation
 }
 ```
-
 In this example, the `@server` operator is added to the GraphQL `schema` definition.
 
-1. `baseURL`: We've set "https://jsonplaceholder.typicode.com" as our `baseURL`. This means that all API calls made by our GraphQL server defined by [@http](#http) will start with this URL.
+1. `port`: We've set the port to `8000`. This means that the Tailcall will be accessible at `http://localhost:8000`.
 
-2. `vars`: We've passed in a vars object with a key of `foo` and a value of `bar`. This represents a local variable that could be used by the GraphQL server during its operations.
+2. `baseURL`: We've set `http://jsonplaceholder.typicode.com` as our `baseURL`. This means that all API calls made by Tailcall, defined by [@http](#http) will prepend this URL to the path provided.
+
+3. `enableHttpCache`: We've set this to `true`. This means that the Tailcall will utilize HTTP caching mechanisms, aiming to enhance performance by reducing redundant data fetches.
+
+4. `enableCacheControlHeader`: We've set this to `true`. This means that the Tailcall will send Cache-Control headers in its response, providing clients with directives on how to cache the response data. This allows for more effective client-side caching strategies and can lead to improved performance for client applications.
+
+5. `enableGraphiql`: We've set this to `/graphiql`. This means that the GraphiQL interface, an interactive in-browser GraphQL IDE, will be accessible at the given path (`http://localhost:8000/graphiql`).
+
+6. `proxy`: We've configured this with a `url` set to "http://localhost:3000". This means that when the Tailcall makes requests to the `baseURL`, which is set to "http://jsonplaceholder.typicode.com" in our example, it will proxy those requests via "http://localhost:3000". So, any request directed to "http://jsonplaceholder.typicode.com" will first be routed through "http://localhost:3000" before reaching its final destination.
+
+7. `vars`: We've passed in a vars object with a key of `foo` and a value of `bar`. This means that Tailcall has a local variable named `foo` which can be used during its operations, and its value will be "bar".
+
+8. `enableIntrospection`: We've configured this to `true`. This means the Tailcall will allow introspection queries, enabling clients and tools to explore the schema and its types.
+
+9. `enableQueryValidation`: We've configured this to `true`. This means that Tailcall will validate incoming queries against the schema, rejecting any that are invalid.
+
+10. `enableResponseValidation`: We've configured this to `true`. This means that Tailcall will validate the responses it receives from upstream services. The aim is to ensure that the data is in alignment with the expected structure, preserving consistency when data is received from dependent services.
+
+11. `globalResponseTimeout`: We've set the timeout to `5000` milliseconds. This means that any operation taking longer than this duration will be terminated by the server, preventing potential hang-ups due to long-running processes.
+
+12. `allowedHeaders`: We've set this to an array containing `Authorization` and `Content-Type`. This means that only these specified HTTP headers will be forwarded to upstream services when Tailcall requests data. All other headers will be stripped from the request, ensuring that only expected and allowed headers are passed to dependent services.
 
 ## @http
 
