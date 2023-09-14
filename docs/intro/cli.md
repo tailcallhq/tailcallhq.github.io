@@ -39,7 +39,7 @@ tc check --schema <file>...
 
 ## start
 
-The `start` command launches the TailCall Server, acting as an API Gateway for GraphQL with specific configurations. The server can publish various GraphQL configurations, also known as [composition specs].
+The `start` command launches the TailCall Server, acting as an GraphQL proxy with specific configurations. The server can publish various GraphQL configurations, also known as [composition specs].
 
 To start the server, use the following command:
 
