@@ -21,16 +21,16 @@ function HomepageHeader() {
         </p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
-            to="https://docs.google.com/forms/d/e/1FAIpQLSdNnaVhv1lR-EN6I9HAH6eIycN_0T-1URIch9IdXo0yZm9t3Q/viewform"
-          >
-            Get in touch!
-          </Link>
-          <Link
             className="button button--primary button--lg"
             to="/docs/intro/quickstart"
           >
-            Try it out!
+            Get Started!
+          </Link>
+          <Link
+            className="button button--secondary button--lg"
+            to="https://discord.gg/7fseDEXUNU"
+          >
+            Join Discord!
           </Link>
         </div>
       </div>
