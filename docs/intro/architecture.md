@@ -7,11 +7,11 @@ What we have built is a open-source API orchestration solution that really think
 
 ## High-Level Architecture
 
-The clients and the services remain the same with an addition of three components viz. The **Composition Spec** (also known as the “Blueprint”), Schema **Registry,** and the Tailcall **Gateway**.
+The clients and the services remain the same with an addition of three components viz. The **Composition Spec** (also known as the “Blueprint”), Schema **Registry,** and the Tailcall **Proxy**.
 
 ![Tailcall Architecture Diagram](/img/tailcall-architecture.png)
 
-The Schema Registry serves as a repository for the metadata that outlines how the APIs are structured. This metadata encompasses a range of information, including details about the service endpoint, the input schema associated with the endpoint, and any pertinent security and resilience parameters. Upon receipt of a client request via the gateway, the system dynamically retrieves the corresponding metadata from the registry. It then uses this information to shape its logic and effectively communicate with the client's microservices, ensuring efficient and secure request handling.
+The Schema Registry serves as a repository for the metadata that outlines how the APIs are structured. This metadata encompasses a range of information, including details about the service endpoint, the input schema associated with the endpoint, and any pertinent security and resilience parameters. Upon receipt of a client request via the proxy, the system dynamically retrieves the corresponding metadata from the registry. It then uses this information to shape its logic and effectively communicate with the client's microservices, ensuring efficient and secure request handling.
 
 ## Composition Specification (Blueprint)
 
@@ -53,7 +53,7 @@ The SHA-256 hash for the composition specification isn't created merely from the
 This method provides a more stable hash because changes in comment, formatting, or syntax, which do not affect the overall function or purpose of the API, do not alter the hash. The hash, therefore, remains consistent unless there are changes to the specification's semantic meaning. This approach ensures that the hash serves as an accurate and reliable identifier for each unique orchestration. This is the most important and differentiated feature of the system because it allows us to do the following:
 
 1. **Versioning:** Each change is version controlled. You can run multiple versions of the specification at the same time in production, without actually maintaining the source code of each one of them or using the additional infrastructure.
-2. **Canary Releases:** This becomes a first-class feature of the gateway. Because the spec is versioned we can control the exposure of a newly developed feature easily.
+2. **Canary Releases:** This becomes a first-class feature of the proxy. Because the spec is versioned we can control the exposure of a newly developed feature easily.
 3. **Immutability:** Every specification is immutable, ensuring that once deployed and stabilized in production, it cannot be altered at runtime. This characteristic enhances the safety of product rollbacks.
 4. **Breaking Changes:** As each specification operates independently, deploying breaking changes in production won't affect existing clients, maintaining operational stability and integrity.
 
