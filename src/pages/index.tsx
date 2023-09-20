@@ -42,7 +42,7 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext()
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title= "GraphQL Infrastructure for Microservices"
       description="Simplify your edge layer with Tailcall's developer platform."
     >
       <HomepageHeader />
