@@ -12,9 +12,9 @@ function HomepageHeader() {
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">
-          <div>GraphQL Infrastructure</div>
+          <div>GraphQL Proxy</div>
           <div>for</div>
-          <div>Microservices</div>
+          <div>Edge, Gateway & Services</div>
         </h1>
         <p className="hero__subtitle">
           Reduce Complexity . Streamline Collaboration . Improve User Experience
@@ -42,7 +42,7 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext()
   return (
     <Layout
-      title= "GraphQL Infrastructure for Microservices"
+      title="GraphQL Infrastructure for Microservices"
       description="Simplify your edge layer with Tailcall's developer platform."
     >
       <HomepageHeader />

@@ -73,6 +73,11 @@ const config = {
       items: [
         {to: "/about", label: "About", position: "right"},
         {
+          to: "https://github.com/tailcallhq/graphql-benchmarks#benchmark-results",
+          label: "Performance",
+          position: "right",
+        },
+        {
           to: "/docs",
           label: "Docs",
           position: "right",
