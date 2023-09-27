@@ -8,6 +8,7 @@ const project = "tailcallhq.github.io"
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title,
+  trailingSlash: true,
   tagline: "<tagline>",
   url: "https://tailcall.run",
   baseUrl: "/",
