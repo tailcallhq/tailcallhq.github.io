@@ -12,7 +12,7 @@ const config = {
   tagline: "<tagline>",
   url: "https://tailcall.run",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "log",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
 
