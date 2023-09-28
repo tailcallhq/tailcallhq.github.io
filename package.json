@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "npm run generate; docusaurus start",
-    "build": " npm run generate; docusaurus build",
+    "build": "npm run generate; docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "npm run generate; docusaurus deploy",
     "clear": "docusaurus clear",
