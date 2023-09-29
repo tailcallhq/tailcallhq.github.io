@@ -323,8 +323,6 @@ type Mutation {
 
 In this scenario, the `User-Name` header's value will dynamically adjust according to the `name` argument passed in the request.
 
-Absolutely, I'll keep it concise.
-
 ## @batch
 
 The `@batch` operator in Tailcall groups multiple data requests into a single call. It works together with the `@http` operator. For more details please refer out [n + 1 guide].
