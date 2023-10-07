@@ -64,7 +64,7 @@ type Post {
   user: User
     @http(
       path: "/users"
-      query: {id: "{{parent.value.userId}}"}
+      query: [{key: "id", value: "{{parent.value.userId}}"}]
       matchPath: ["id"]
       matchKey: "userId"
     )
