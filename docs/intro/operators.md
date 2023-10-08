@@ -120,7 +120,7 @@ This configuration allows you to define local variables that can be leveraged du
 
 ```graphql showLineNumbers
 schema @server(
-  vars: {apiKey: "YOUR_API_KEY_HERE"}
+  vars: {key: "apiKey", value: "YOUR_API_KEY_HERE"}
 ){
     query: Query
     mutation: Mutation
@@ -129,7 +129,7 @@ schema @server(
 type Query {
   externalData: Data @http(
     path: "/external-api/data",
-    headers: {"Authorization": "Bearer {{vars.apiKey}}"}
+    headers: [{key: "Authorization", value: "Bearer {{vars.apiKey}}"}]
   )
 }
 ```
@@ -278,7 +278,7 @@ This represents the query parameters of your API call. You can pass it as a stat
 ```graphql showLineNumbers
 type Query {
   userPosts(id: ID!): [Post]
-    @http(path: "/posts", query: {userId: "{{args.id}}"})
+    @http(path: "/posts", query: [{key: "userId", value: "{{args.id}}"}])
 }
 ```
 
@@ -304,7 +304,7 @@ For instance:
 ```graphql showLineNumbers
 type Mutation {
   createUser(input: UserInput!): User
-    @http(path: "/users", headers: {"X-Server": "Tailcall"})
+    @http(path: "/users", headers: [{key: "X-Server", value: "Tailcall"}])
 }
 ```
 
@@ -317,7 +317,7 @@ You can make use of mustache templates to provide dynamic values for headers, de
 ```graphql showLineNumbers
 type Mutation {
   users(name: String): User
-    @http(path: "/users", headers: {"X-Server": "Tailcall", "User-Name": "{{args.name}}"})
+    @http(path: "/users", headers: [{key: "X-Server", value: "Tailcall"}, {key: "User-Name", value: "{{args.name}}"}])
 }
 ```
 
@@ -334,12 +334,12 @@ type Post {
   id: Int!
   name: String!
   user: User
-    @http(path: "/users", query: {id: "{{parent.value.userId}}"})
+    @http(path: "/users", query: {key: "id", value: "{{parent.value.userId}}"}])
     @batch(key: "userId", path: ["id"])
 }
 ```
 
-- `query: { id: "{{parent.value.userId}}" }`: Here, TailCall CLI is instructed to generate a URL where the user id aligns with the `userId` from the parent `Post`. For a batch of posts, the CLI compiles a single URL, such as `/users?id=1&id=2&id=3...id=10`, consolidating multiple requests into one.
+- `query: {key: "id", value: "{{parent.value.userId}}"}]`: Here, TailCall CLI is instructed to generate a URL where the user id aligns with the `userId` from the parent `Post`. For a batch of posts, the CLI compiles a single URL, such as `/users?id=1&id=2&id=3...id=10`, consolidating multiple requests into one.
 
 ### path
 
