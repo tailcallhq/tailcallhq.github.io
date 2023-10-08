@@ -20,7 +20,7 @@ In this templated structure, replace `...[ServerSettings]...` with specific conf
 
 The various `ServerSettings` options and their details are explained below.
 
-### port
+#### port
 
 This refers to the `port` on which the Tailcall will be running. If not specified, the default port is `8000`.
 
@@ -37,7 +37,7 @@ In this example, the `port` is set to `8090`. This means that the Tailcall will 
 Always lean towards non-standard ports, steering clear of typical ones like 80 or 8080. Ensure your chosen port is unoccupied.
 :::
 
-### baseURL
+#### baseURL
 
 This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@server` operator, then each [@http](#http) operator must specify its own `baseURL`. If neither `@server` nor [@http](#http) provides a `baseURL`, it results in a compilation error.
 
@@ -58,7 +58,7 @@ Ensure that your base URL remains free from specific path segments.
 
 :::
 
-### enableHttpCache
+#### enableHttpCache
 
 The `enableHttpCache` configuration, when activated, directs Tailcall to utilize HTTP caching mechanisms. These mechanisms, in accordance with the [HTTP Caching RFC](https://tools.ietf.org/html/rfc7234), are designed to improve performance by reducing unnecessary data fetches. If left unspecified, this feature defaults to `false`.
 
@@ -69,7 +69,7 @@ schema @server(enableHttpCache: true) {
 }
 ```
 
-### enableCacheControlHeader
+#### enableCacheControlHeader
 
 The `enableCacheControlHeader` configuration, when activated, instructs Tailcall to transmit [Cache-Control] headers in its responses. The `max-age` value in the header, is the least of the values in the responses received by tailcall from the upstream services. By default, this is set to `false` meaning no header is set.
 
@@ -82,7 +82,7 @@ schema @server(enableCacheControlHeader: true) {
 }
 ```
 
-### enableGraphiql
+#### enableGraphiql
 
 This configuration dictates the path on which the GraphiQL interface is hosted within Tailcall. [GraphiQL](https://github.com/graphql/graphiql) is a built-in, interactive in-browser GraphQL IDE that simplifies query development and testing. By designating a path, such as `/graphiql`, you grant access to this IDE at that specific URL endpoint, like `http://localhost:8000/graphiql`. If not provided, GraphiQL won't be available. It's a ready-to-use feature in Tailcall, requiring no additional setup.
 
@@ -97,7 +97,7 @@ schema @server(port: 8000, enableGraphiql: "/graphiql") {
 While the GraphiQL interface is a powerful tool for development, it's recommended to disable it in production environments, especially if you're not exposing GraphQL APIs directly to users. This ensures an added layer of security and reduces unnecessary exposure.
 :::
 
-### proxy
+#### proxy
 
 The `proxy` setting defines an intermediary server through which the upstream requests will be routed before reaching their intended endpoint. By specifying a proxy URL, you introduce an additional layer, enabling custom routing and security policies.
 
@@ -114,7 +114,7 @@ schema
 
 In the provided example, we've set the proxy's `url` to "http://localhost:3000". This configuration ensures that all requests aimed at the designated `baseURL` are first channeled through this proxy. To illustrate, if the `baseURL` is "http://jsonplaceholder.typicode.com", any request targeting it would be initially sent to "http://localhost:3000" before being redirected to its final destination.
 
-### vars
+#### vars
 
 This configuration allows you to define local variables that can be leveraged during the server's operations. These variables are particularly handy when you need to store constant configurations, secrets, or other shared information that various operations might require.
 
@@ -140,7 +140,7 @@ In the provided example, a variable named `apiKey` is set with a placeholder val
 Local variables, like `apiKey`, can be instrumental in securing access to external services or providing a unified place for configurations. Ensure that sensitive information stored this way is well protected and not exposed unintentionally, especially if your Tailcall configuration is publicly accessible.
 :::
 
-### enableIntrospection
+#### enableIntrospection
 
 This setting governs whether introspection queries are permitted on the server. Introspection is an intrinsic feature of GraphQL, allowing clients to fetch information about the schema directly. This can be instrumental for tools and client applications to understand the types, fields, and operations available. By default, this setting is enabled (`true`).
 
@@ -155,7 +155,7 @@ schema @server(enableIntrospection: false) {
 Although introspection is beneficial during development and debugging stages, it's wise to consider disabling it in production environments. Turning off introspection in live deployments can enhance security by preventing potential attackers from easily discerning the schema and any associated business logic or data structures.
 :::
 
-### enableQueryValidation
+#### enableQueryValidation
 
 The `enableQueryValidation` configuration specifies whether the server should validate incoming GraphQL queries against the defined schema. Validating each query ensures its conformity to the schema, preventing errors from invalid or malformed queries. However, there are situations where you might opt to disable it, notably when seeking to **enhance server performance** at the cost of such checks. This defaults to `true` if not specified.
 
@@ -172,7 +172,7 @@ In the example above, `enableQueryValidation` is set to `false`, bypassing the v
 This should be enabled in dev environment to make sure the queries sent are correct and validated, however in production env, you could consider disabling it for improved performance.
 :::
 
-### enableResponseValidation
+#### enableResponseValidation
 
 Tailcall automatically can infer the schema of the http endpoints for you. This information can be used to validate responses that are received from the upstream services. Enabling this setting allows you to perform exactly that. If this is not specified, the default setting for `enableResponseValidation` is `false`.
 
@@ -187,7 +187,7 @@ schema @server(enableResponseValidation: true) {
 Disabling this setting will offer major performance improvements, but at the potential expense of data.
 :::
 
-### globalResponseTimeout
+#### globalResponseTimeout
 
 The `globalResponseTimeout` configuration determines the maximum duration a query is allowed to run before it's terminated by the server. Essentially, it acts as a safeguard against long-running queries that could strain resources or pose security concerns.
 
@@ -206,7 +206,7 @@ In this given example, the `globalResponseTimeout` is set to `5000` milliseconds
 It's crucial to set an appropriate response timeout, especially in production environments. This not only optimizes resource utilization but also acts as a security measure against potential denial-of-service attacks where adversaries might run complex queries to exhaust server resources.
 :::
 
-### allowedHeaders
+#### allowedHeaders
 
 The `allowedHeaders` configuration specifies which HTTP headers are permitted to be forwarded to upstream services when making requests.
 If `allowedHeaders` isn't specified, no incoming headers will be forwarded to the upstream services, which can provide an added layer of security but might restrict essential data flow.
@@ -232,7 +232,7 @@ type Query {
 
 In this example, the `@http` operator is added to the `user` field of the `Query` type. This means that the `user` field is underpinned by a REST API. The [path](#path) argument is used to specify the path of the REST API. In this case, the path is `/users`. This means that the GraphQL server will make a GET request to `https://jsonplaceholder.typicode.com/users` when the `user` field is queried.
 
-### baseURL
+#### baseURL
 
 This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [@server](#server) operator.
 
@@ -243,7 +243,7 @@ type Query {
 }
 ```
 
-### path
+#### path
 
 This refers to the API endpoint you're going to call. For instance https://jsonplaceholder.typicode.com/users`.
 
@@ -261,7 +261,7 @@ type Query {
 }
 ```
 
-### method
+#### method
 
 This refers to the HTTP method of the API call. Commonly used methods include GET, POST, PUT, DELETE, etc. If not specified, the default method is GET. For example:
 
@@ -271,7 +271,7 @@ type Mutation {
 }
 ```
 
-### query
+#### query
 
 This represents the query parameters of your API call. You can pass it as a static object or use Mustache template for dynamic parameters. These parameters will be added to the URL. For example:
 
@@ -282,7 +282,7 @@ type Query {
 }
 ```
 
-### body
+#### body
 
 The body of the API call. It's used for methods like POST or PUT that send data to the server. You can pass it as a static object or use a Mustache template to substitute variables from the GraphQL variables. For example:
 
@@ -295,7 +295,7 @@ type Mutation {
 
 In the example above, the `createUser` mutation sends a POST request to `/users`, with the input object converted to JSON and included in the request body.
 
-### headers
+#### headers
 
 The `headers` parameter allows you to customize the headers of the HTTP request made by the `@http` operator. It is used by specifying a key-value map of header names and their values.
 
@@ -341,11 +341,11 @@ type Post {
 
 - `query: {key: "id", value: "{{parent.value.userId}}"}]`: Here, TailCall CLI is instructed to generate a URL where the user id aligns with the `userId` from the parent `Post`. For a batch of posts, the CLI compiles a single URL, such as `/users?id=1&id=2&id=3...id=10`, consolidating multiple requests into one.
 
-### path
+#### path
 
 This parameter instructs the system to convert the list of responses into a map internally, using the user's `id` as the unique key. In essence, it allows the system to differentiate each user value in the response list.
 
-### key
+#### key
 
 This parameter matches the `userId` from the `Post` object to the user data in the batched request response. This correlation is crucial for associating the `Post` to its relevant `User`.
 
@@ -353,7 +353,7 @@ This parameter matches the `userId` from the `Post` object to the user data in t
 
 The `@modify` operator in GraphQL provides the flexibility to alter the attributes of a field or a node within your GraphQL schema. Here's how you can use this operator:
 
-### name
+#### name
 
 You can rename a field or a node in your GraphQL schema using the `name` argument in the `@modify` operator. This can be helpful when the field name in your underlying data source doesn't match the desired field name in your schema. For instance:
 
@@ -365,7 +365,7 @@ type User {
 
 `@modify(name: "userId")` tells GraphQL that although the field is referred to as `id`in the underlying data source, it should be presented as `userId` in your schema.
 
-### omit
+#### omit
 
 You can exclude a field or a node from your GraphQL schema using the `omit` argument in the `@modify` operator. This can be useful if you want to keep certain data hidden from the client. For instance:
 
@@ -436,6 +436,27 @@ type Post {
 ```
 
 In conclusion, the `@inline` operator helps tidy up your schema and streamline data fetching by reducing query depth, promoting better performance and simplicity.
+
+## @const
+
+The `@const` operators allows us to embed a constant response for the schema. For eg:
+
+```graphql
+schema {
+  query: Query
+}
+
+type Query {
+  user: User @const(data: {name: "John", age: 12})
+}
+
+type User {
+  name: String
+  age: Int
+}
+```
+
+The const operator will also validate the provided value at compile time to make sure that it matches the of the field. If the schema of the provided value doesn't match the type of the field, a descriptive error message is show on the console.
 
 ## Operator Composition
 
