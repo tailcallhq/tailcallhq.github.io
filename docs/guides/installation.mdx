@@ -7,8 +7,7 @@ import CodeBlock from "@theme/CodeBlock"
 import versionData from "../../src/gen/tailcall-version.json"
 
 <>
-  You can install the latest version - <b> {versionData.tag_name}</b>, by using
-  one of the following methods:
+  You can install the latest version - <b> {versionData.tag_name}</b>, by using one of the following methods:
 </>
 
 ## Homebrew
@@ -55,9 +54,7 @@ If you want to install Tailcall with Docker, follow the steps below. Before star
 
 1. Pull the latest Tailcall Docker image using the following command:
 
-   <CodeBlock language="bash">
-     docker pull tailcallhq/tailcall/tc-server:{versionData.tag_name}
-   </CodeBlock>
+   <CodeBlock language="bash">docker pull tailcallhq/tailcall/tc-server:{versionData.tag_name}</CodeBlock>
 
    This command fetches the latest version of the Tailcall Docker image from the Docker registry.
 

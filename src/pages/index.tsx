@@ -16,20 +16,12 @@ function HomepageHeader() {
           <div>for</div>
           <div>Edge, Gateway & Services</div>
         </h1>
-        <p className="hero__subtitle">
-          Reduce Complexity . Streamline Collaboration . Improve User Experience
-        </p>
+        <p className="hero__subtitle">Reduce Complexity . Streamline Collaboration . Improve User Experience</p>
         <div className={styles.buttons}>
-          <Link
-            className="button button--primary button--lg"
-            to="/docs/intro/quickstart"
-          >
+          <Link className="button button--primary button--lg" to="/docs/intro/quickstart">
             Get Started!
           </Link>
-          <Link
-            className="button button--secondary button--lg"
-            to="https://discord.gg/7fseDEXUNU"
-          >
+          <Link className="button button--secondary button--lg" to="https://discord.gg/7fseDEXUNU">
             Join Discord!
           </Link>
         </div>

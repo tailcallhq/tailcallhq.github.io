@@ -12,22 +12,14 @@ const FeatureList: FeatureItem[] = [
   {
     title: "Blazingly Fast",
     Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
-    description: (
-      <>
-        Leverage breakthrough performance optimizations to deliver the fastest
-        experience to your users.
-      </>
-    ),
+    description: <>Leverage breakthrough performance optimizations to deliver the fastest experience to your users.</>,
   },
 
   {
     title: "Battle Tested",
     Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: (
-      <>
-        Trust in Tailcall's robust and reliable system, proven in the toughest
-        tech environments at scale.
-      </>
+      <>Trust in Tailcall's robust and reliable system, proven in the toughest tech environments at scale.</>
     ),
   },
   {
@@ -35,8 +27,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
     description: (
       <>
-        Boost your team's productivity with seamless API integration, compile
-        time validations and simplified collaboration.
+        Boost your team's productivity with seamless API integration, compile time validations and simplified
+        collaboration.
       </>
     ),
   },
@@ -45,8 +37,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: (
       <>
-        It's not just using a tool, join a global community of developers
-        committed to shaping the future of API orchestration.
+        It's not just using a tool, join a global community of developers committed to shaping the future of API
+        orchestration.
       </>
     ),
   },
@@ -55,9 +47,7 @@ const FeatureList: FeatureItem[] = [
 function Feature({title, Svg, description}: FeatureItem) {
   return (
     <div className={clsx("col col--4")}>
-      <div className="text--center">
-        {/* <Svg className={styles.featureSvg} role="img" /> */}
-      </div>
+      <div className="text--center">{/* <Svg className={styles.featureSvg} role="img" /> */}</div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
         <p>{description}</p>

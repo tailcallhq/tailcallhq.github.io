@@ -46,5 +46,6 @@ To start the server, use the following command:
 ```bash
 tc start <file>...
 ```
+
 [composition specs]: /docs/intro/architecture#composition-specification-blueprint
 [architecture]: /docs/intro/architecture

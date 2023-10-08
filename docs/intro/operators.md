@@ -102,11 +102,7 @@ While the GraphiQL interface is a powerful tool for development, it's recommende
 The `proxy` setting defines an intermediary server through which the upstream requests will be routed before reaching their intended endpoint. By specifying a proxy URL, you introduce an additional layer, enabling custom routing and security policies.
 
 ```graphql showLineNumbers
-schema
-  @server(
-    proxy: {url: "http://localhost:3000"}
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @server(proxy: {url: "http://localhost:3000"}, baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
   mutation: Mutation
 }
@@ -119,18 +115,14 @@ In the provided example, we've set the proxy's `url` to "http://localhost:3000".
 This configuration allows you to define local variables that can be leveraged during the server's operations. These variables are particularly handy when you need to store constant configurations, secrets, or other shared information that various operations might require.
 
 ```graphql showLineNumbers
-schema @server(
-  vars: {key: "apiKey", value: "YOUR_API_KEY_HERE"}
-){
-    query: Query
-    mutation: Mutation
+schema @server(vars: {key: "apiKey", value: "YOUR_API_KEY_HERE"}) {
+  query: Query
+  mutation: Mutation
 }
 
 type Query {
-  externalData: Data @http(
-    path: "/external-api/data",
-    headers: [{key: "Authorization", value: "Bearer {{vars.apiKey}}"}]
-  )
+  externalData: Data
+    @http(path: "/external-api/data", headers: [{key: "Authorization", value: "Bearer {{vars.apiKey}}"}])
 }
 ```
 
@@ -238,8 +230,7 @@ This refers to the base URL of the API. If not specified, the default base URL i
 
 ```graphql showLineNumbers
 type Query {
-  user(id: ID!): User
-    @http(path: "/users", baseURL: "https://jsonplaceholder.typicode.com")
+  user(id: ID!): User @http(path: "/users", baseURL: "https://jsonplaceholder.typicode.com")
 }
 ```
 
@@ -277,8 +268,7 @@ This represents the query parameters of your API call. You can pass it as a stat
 
 ```graphql showLineNumbers
 type Query {
-  userPosts(id: ID!): [Post]
-    @http(path: "/posts", query: [{key: "userId", value: "{{args.id}}"}])
+  userPosts(id: ID!): [Post] @http(path: "/posts", query: [{key: "userId", value: "{{args.id}}"}])
 }
 ```
 
@@ -288,8 +278,7 @@ The body of the API call. It's used for methods like POST or PUT that send data 
 
 ```graphql showLineNumbers
 type Mutation {
-  createUser(input: UserInput!): User
-    @http(method: "POST", path: "/users", body: "{{args.input}}")
+  createUser(input: UserInput!): User @http(method: "POST", path: "/users", body: "{{args.input}}")
 }
 ```
 
@@ -303,8 +292,7 @@ For instance:
 
 ```graphql showLineNumbers
 type Mutation {
-  createUser(input: UserInput!): User
-    @http(path: "/users", headers: [{key: "X-Server", value: "Tailcall"}])
+  createUser(input: UserInput!): User @http(path: "/users", headers: [{key: "X-Server", value: "Tailcall"}])
 }
 ```
 
@@ -471,10 +459,7 @@ type User {
 }
 
 type Post {
-  user: User
-    @inline(path: ["name"])
-    @modify(name: "userName")
-    @http(path: "/users/{{userId}}")
+  user: User @inline(path: ["name"]) @modify(name: "userName") @http(path: "/users/{{userId}}")
   userId: Int!
 }
 ```
