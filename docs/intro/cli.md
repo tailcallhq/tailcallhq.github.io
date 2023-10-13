@@ -34,7 +34,15 @@ This option enables the display of the schema of the composition spec.
 - Default: false
 
 ```bash
-tc check --schema <file>...
+tc check --schema <file1> <file2> ... <fileN>
+```
+
+The `check` command allows for multiple files. Specify each file path, separated by a space, after the options.
+
+Example:
+
+```bash
+tc check --schema ./path/to/file1.graphql ./path/to/file2.graphql
 ```
 
 ## start
@@ -44,7 +52,14 @@ The `start` command launches the TailCall Server, acting as an GraphQL proxy wit
 To start the server, use the following command:
 
 ```bash
-tc start <file>...
+tc start <file1> <file2> ... <fileN>
+```
+The `start` command allows for multiple files. Specify each file path, separated by a space, after the options.
+
+Example:
+
+```bash
+tc start ./path/to/file1.graphql ./path/to/file2.graphql
 ```
 
 ## init
