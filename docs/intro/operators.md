@@ -224,20 +224,42 @@ schema @server(upstream: {
   keepAliveInterval: 60,
   keepAliveTimeout: 60,
   keepAliveWhileIdle: false,
+  proxy: {
+    url: "http://proxy.example.com"
+  },
   connectTimeout: 60,
   timeout: 60,
   tcpKeepAlive: 5,
   userAgent: "Tailcall/1.0",
   enableHttpCache: false,
-  allowedHeaders: ["Authorization", "X-Api-Key"]
+  allowedHeaders: ["Authorization", "X-Api-Key"],
+  base_url: "http://base.example.com",
+  batch: {
+    max_size: 100,
+    delay: 200,
+    headers: ["Batch-Header"]
+  }
 }) {
   query: Query
   mutation: Mutation
 }
 ```
 
-In the example above, the `upstream` configuration is set with various settings. For instance, `poolIdleTimeout` is set to `60` seconds. This means that the connection pool will close idle connections after this duration. Similarly, `keepAliveInterval` is set to `60` seconds, which means that keep-alive messages will be sent every `60` seconds to maintain the connection.
+Below is a concise description of each attribute within the `upstream` directive:
 
+- `poolIdleTimeout`: The time in seconds that the connection pool will wait before closing idle connections.
+- `poolMaxIdlePerHost`: The maximum number of idle connections that will be maintained per host.
+- `keepAliveInterval`: The time in seconds between each keep-alive message sent to maintain the connection.
+- `keepAliveTimeout`: The time in seconds that the connection will wait for a keep-alive message before closing.
+- `keepAliveWhileIdle`: A boolean value that determines whether keep-alive messages should be sent while the connection is idle.
+- `proxy`: An object that specifies the proxy server's URL.
+- `connectTimeout`: The time in seconds that the connection will wait for a response before timing out.
+- `timeout`: The maximum time in seconds that the connection will wait for a response.
+- `tcpKeepAlive`: The time in seconds between each TCP keep-alive message sent to maintain the connection.
+- `userAgent`: The User-Agent header value to be used in HTTP requests.
+- `allowedHeaders`: An array of HTTP headers that are allowed to be forwarded to upstream services.
+- `base_url`: The base URL of the upstream server.
+- `batch`: An object that specifies the batch settings, including `max_size` (the maximum size of the batch), `delay` (the delay in milliseconds between each batch), and `headers` (an array of HTTP headers to be included in the batch).
 
 ## @http
 
