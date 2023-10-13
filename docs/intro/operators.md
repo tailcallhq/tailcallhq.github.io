@@ -232,8 +232,8 @@ schema
       userAgent: "Tailcall/1.0"
       enableHttpCache: false
       allowedHeaders: ["Authorization", "X-Api-Key"]
-      base_url: "http://base.example.com"
-      batch: {max_size: 100, delay: 200, headers: ["Batch-Header"]}
+      baseURL: "http://base.example.com"
+      batch: {maxSize: 100, delay: 200, headers: ["Batch-Header"]}
     }
   ) {
   query: Query
@@ -254,8 +254,8 @@ Below is a concise description of each attribute within the `upstream` directive
 - `tcpKeepAlive`: The time in seconds between each TCP keep-alive message sent to maintain the connection.
 - `userAgent`: The User-Agent header value to be used in HTTP requests.
 - `allowedHeaders`: An array of HTTP headers that are allowed to be forwarded to upstream services.
-- `base_url`: The base URL of the upstream server.
-- `batch`: An object that specifies the batch settings, including `max_size` (the maximum size of the batch), `delay` (the delay in milliseconds between each batch), and `headers` (an array of HTTP headers to be included in the batch).
+- `baseURL`: The base URL of the upstream server.
+- `batch`: An object that specifies the batch settings, including `maxSize` (the maximum size of the batch), `delay` (the delay in milliseconds between each batch), and `headers` (an array of HTTP headers to be included in the batch).
 
 ## @http
 
