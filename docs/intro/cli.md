@@ -47,5 +47,15 @@ To start the server, use the following command:
 tc start <file>...
 ```
 
+## init
+
+The `init` command bootstraps a new TailCall project. It creates the necessary GraphQL schema files in the provided file path.
+
+```bash
+tc init <file_path>
+```
+
+This command prompts for additional file creation and configuration, creating a `.tailcallrc.graphql` file by default.
+
 [composition specs]: /docs/intro/architecture#composition-specification-blueprint
 [architecture]: /docs/intro/architecture
