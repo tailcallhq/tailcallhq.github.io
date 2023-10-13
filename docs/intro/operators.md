@@ -212,34 +212,30 @@ schema @server(allowedHeaders: ["Authorization", "X-Api-Key"]) {
 
 In the example above, the `allowedHeaders` is set to allow only `Authorization` and `X-Api-Key` headers. This means that requests containing these headers will forward them to upstream services, while all others will be ignored. It ensures that only expected headers are communicated to dependent services, emphasizing security and consistency.
 
-
 #### upstream
 
 The `upstream` configuration in the `@server` directive allows you to control various aspects of the upstream server connection. This includes settings like connection timeouts, keep-alive intervals, and more. If not specified, default values are used.
 
 ```graphql showLineNumbers
-schema @server(upstream: { 
-  poolIdleTimeout: 60,
-  poolMaxIdlePerHost: 60,
-  keepAliveInterval: 60,
-  keepAliveTimeout: 60,
-  keepAliveWhileIdle: false,
-  proxy: {
-    url: "http://proxy.example.com"
-  },
-  connectTimeout: 60,
-  timeout: 60,
-  tcpKeepAlive: 5,
-  userAgent: "Tailcall/1.0",
-  enableHttpCache: false,
-  allowedHeaders: ["Authorization", "X-Api-Key"],
-  base_url: "http://base.example.com",
-  batch: {
-    max_size: 100,
-    delay: 200,
-    headers: ["Batch-Header"]
-  }
-}) {
+schema
+  @server(
+    upstream: {
+      poolIdleTimeout: 60
+      poolMaxIdlePerHost: 60
+      keepAliveInterval: 60
+      keepAliveTimeout: 60
+      keepAliveWhileIdle: false
+      proxy: {url: "http://proxy.example.com"}
+      connectTimeout: 60
+      timeout: 60
+      tcpKeepAlive: 5
+      userAgent: "Tailcall/1.0"
+      enableHttpCache: false
+      allowedHeaders: ["Authorization", "X-Api-Key"]
+      base_url: "http://base.example.com"
+      batch: {max_size: 100, delay: 200, headers: ["Batch-Header"]}
+    }
+  ) {
   query: Query
   mutation: Mutation
 }
