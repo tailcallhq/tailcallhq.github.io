@@ -212,6 +212,33 @@ schema @server(allowedHeaders: ["Authorization", "X-Api-Key"]) {
 
 In the example above, the `allowedHeaders` is set to allow only `Authorization` and `X-Api-Key` headers. This means that requests containing these headers will forward them to upstream services, while all others will be ignored. It ensures that only expected headers are communicated to dependent services, emphasizing security and consistency.
 
+
+#### upstream
+
+The `upstream` configuration in the `@server` directive allows you to control various aspects of the upstream server connection. This includes settings like connection timeouts, keep-alive intervals, and more. If not specified, default values are used.
+
+```graphql showLineNumbers
+schema @server(upstream: { 
+  poolIdleTimeout: 60,
+  poolMaxIdlePerHost: 60,
+  keepAliveInterval: 60,
+  keepAliveTimeout: 60,
+  keepAliveWhileIdle: false,
+  connectTimeout: 60,
+  timeout: 60,
+  tcpKeepAlive: 5,
+  userAgent: "Tailcall/1.0",
+  enableHttpCache: false,
+  allowedHeaders: ["Authorization", "X-Api-Key"]
+}) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+In the example above, the `upstream` configuration is set with various settings. For instance, `poolIdleTimeout` is set to `60` seconds. This means that the connection pool will close idle connections after this duration. Similarly, `keepAliveInterval` is set to `60` seconds, which means that keep-alive messages will be sent every `60` seconds to maintain the connection.
+
+
 ## @http
 
 This **@http** operator serves as an indication of a field or node that is underpinned by a REST API. For Example:
