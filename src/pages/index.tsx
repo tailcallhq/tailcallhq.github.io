@@ -12,11 +12,10 @@ function HomepageHeader() {
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">
-          <div>GraphQL Proxy</div>
-          <div>for</div>
-          <div>Edge, Gateway & Services</div>
+          <div>Zero Code</div>
+          <div>GraphQL Backend</div>
         </h1>
-        <p className="hero__subtitle">Reduce Complexity . Streamline Collaboration . Improve User Experience</p>
+        <p className="hero__subtitle">Bootstrap Instantly . Iterate Effortlessly . Scale Infinitely</p>
         <div className={styles.buttons}>
           <Link className="button button--primary button--lg" to="/docs/intro/quickstart">
             Get Started!
