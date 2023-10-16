@@ -15,7 +15,7 @@ function HomepageHeader() {
           <div>Zero Code</div>
           <div>GraphQL Backend</div>
         </h1>
-        <p className="hero__subtitle">Bootstrap Instantly . Iterate Effortlessly . Scale Infinitely</p>
+        <p className="hero__subtitle">Bootstrap Instantly . Iterate Effortlessly . Scale Fearlessly</p>
         <div className={styles.buttons}>
           <Link className="button button--primary button--lg" to="/docs/intro/quickstart">
             Get Started!
