@@ -54,6 +54,7 @@ To start the server, use the following command:
 ```bash
 tc start <file1> <file2> ... <fileN>
 ```
+
 The `start` command allows for multiple files. Specify each file path, separated by a space, after the options.
 
 Example:
