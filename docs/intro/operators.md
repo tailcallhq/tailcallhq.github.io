@@ -356,9 +356,9 @@ type Mutation {
 
 In this scenario, the `User-Name` header's value will dynamically adjust according to the `name` argument passed in the request.
 
-## @batch
+## @groupBy
 
-The `@batch` operator in Tailcall groups multiple data requests into a single call. It works together with the `@http` operator. For more details please refer out [n + 1 guide].
+The `@groupBy` operator in Tailcall groups multiple data requests into a single call. It works together with the `@http` operator. For more details please refer out [n + 1 guide].
 
 [n + 1 guide]: /docs/guides/n+1#solving-using-batching
 
@@ -367,12 +367,12 @@ type Post {
   id: Int!
   name: String!
   user: User
-    @http(path: "/users", query: {key: "id", value: "{{parent.value.userId}}"}])
-    @batch(key: "userId", path: ["id"])
+    @http(path: "/users", query: {key: "id", value: "{{value.userId}}"}])
+    @groupBy(key: "userId", path: ["id"])
 }
 ```
 
-- `query: {key: "id", value: "{{parent.value.userId}}"}]`: Here, TailCall CLI is instructed to generate a URL where the user id aligns with the `userId` from the parent `Post`. For a batch of posts, the CLI compiles a single URL, such as `/users?id=1&id=2&id=3...id=10`, consolidating multiple requests into one.
+- `query: {key: "id", value: "{{value.userId}}"}]`: Here, TailCall CLI is instructed to generate a URL where the user id aligns with the `userId` from the parent `Post`. For a batch of posts, the CLI compiles a single URL, such as `/users?id=1&id=2&id=3...id=10`, consolidating multiple requests into one.
 
 #### path
 

@@ -62,11 +62,11 @@ type Post {
   title: String!
   body: String!
   user: User
-    @http(path: "/users", query: [{key: "id", value: "{{parent.value.userId}}"}], matchPath: ["id"], matchKey: "userId")
+    @http(path: "/users", query: [{key: "id", value: "{{value.userId}}"}], matchPath: ["id"], matchKey: "userId")
 }
 ```
 
-In this case, `parent.value.userId` is a way to get the `userId` information from the "parent" context of the `Post` type. Essentially, it's extracting a list or "array" of `userId` fields from multiple `Post` types. Think of `parent.value` as a container that holds the results of a post query, with `userId` being the specific key you want to fetch from that container.
+In this case, `value.userId` is a way to get the `userId` information from the "parent" context of the `Post` type. Essentially, it's extracting a list or "array" of `userId` fields from multiple `Post` types. Think of `value` as a container that holds the results of a post query, with `userId` being the specific key you want to fetch from that container.
 
 ### env
 
