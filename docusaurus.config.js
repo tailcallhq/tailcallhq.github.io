@@ -100,19 +100,52 @@ const config = {
       style: "dark",
       links: [
         {
-          title: "Contact",
+          title: "Docs",
           items: [
+            {
+              to: "/intro/quickstart",
+              label: "Introduction",
+            },
+            {
+              to: "/guides/installation",
+              label: "Installation",
+            },
+          ],
+        },
+        {
+          title: "Community",
+          items: [
+            {
+              label: "Github",
+              to: "https://discord.gg/7fseDEXUNU",
+            },
+            {
+              to: "https://blog.tailcall.run",
+              label: "Blog",
+              position: "right",
+            },
             {
               label: "Discord",
               to: "https://discord.gg/7fseDEXUNU",
             },
-            {
-              label: "hi@tailcall.run",
-              to: "mailto:hi@tailcall.run",
-            },
+          ],
+        },
+        {
+          title: "More",
+          items: [
+            {to: "/about", label: "About"},
+
             {
               label: "Linkedin",
               to: "https://www.linkedin.com/company/tailcall",
+            },
+            {
+              label: "Twitter",
+              to: "https://twitter.com/tailcallhq",
+            },
+            {
+              label: "hi@tailcall.run",
+              to: "mailto:hi@tailcall.run",
             },
           ],
         },
