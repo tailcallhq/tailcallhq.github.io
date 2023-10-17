@@ -37,26 +37,6 @@ In this example, the `port` is set to `8090`. This means that the Tailcall will 
 Always lean towards non-standard ports, steering clear of typical ones like 80 or 8080. Ensure your chosen port is unoccupied.
 :::
 
-#### baseURL
-
-This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@server` operator, then each [@http](#http) operator must specify its own `baseURL`. If neither `@server` nor [@http](#http) provides a `baseURL`, it results in a compilation error.
-
-```graphql showLineNumbers
-schema @server(baseURL: "http://jsonplaceholder.typicode.com") {
-  query: Query
-  mutation: Mutation
-}
-```
-
-In this representation, the `baseURL` is set as `http://jsonplaceholder.typicode.com`. Thus, all API calls made by `@http` will prepend this URL to their respective paths.
-
-:::tip
-Ensure that your base URL remains free from specific path segments.
-
-- **GOOD:** `@server(baseURL: http://jsonplaceholder.typicode.com)`
-- **BAD:** `@server(baseURL: http://jsonplaceholder.typicode.com/api)`
-
-:::
 
 #### enableCacheControlHeader
 
@@ -187,7 +167,6 @@ In this given example, the `globalResponseTimeout` is set to `5000` milliseconds
 It's crucial to set an appropriate response timeout, especially in production environments. This not only optimizes resource utilization but also acts as a security measure against potential denial-of-service attacks where adversaries might run complex queries to exhaust server resources.
 :::
 
-In the example above, the `allowedHeaders` is set to allow only `Authorization` and `X-Api-Key` headers. This means that requests containing these headers will forward them to upstream services, while all others will be ignored. It ensures that only expected headers are communicated to dependent services, emphasizing security and consistency.
 
 ## @upstream
 
@@ -212,10 +191,45 @@ Below is a concise description of each attribute within the `upstream` directive
 - `timeout`: The maximum time in seconds that the connection will wait for a response.
 - `tcpKeepAlive`: The time in seconds between each TCP keep-alive message sent to maintain the connection.
 - `userAgent`: The User-Agent header value to be used in HTTP requests.
-- `allowedHeaders`: An array of HTTP headers that are allowed to be forwarded to upstream services.
-- `baseURL`: The base URL of the upstream server.
+- `allowedHeaders`: An array of HTTP headers that are allowed to be forwarded to upstream services. More information about the allowed header of the upstream server is provided below.
+- `baseURL`: The base URL of the upstream server. More information about the base URL of the upstream server is provided below.
 - `enableHttpCache`: when activated, directs Tailcall to utilize HTTP caching mechanisms. These mechanisms, in accordance with the [HTTP Caching RFC](https://tools.ietf.org/html/rfc7234), are designed to improve performance by reducing unnecessary data fetches. If left unspecified, this feature defaults to `false`.
 - `batch`: An object that specifies the batch settings, including `maxSize` (the maximum size of the batch), `delay` (the delay in milliseconds between each batch), and `headers` (an array of HTTP headers to be included in the batch).
+
+#### baseURL
+
+This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` operator, then each [@http](#http) operator must specify its own `baseURL`. If neither `@server` nor [@http](#http) provides a `baseURL`, it results in a compilation error.
+
+```graphql showLineNumbers
+schema @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
+
+In this representation, the `baseURL` is set as `http://jsonplaceholder.typicode.com`. Thus, all API calls made by `@http` will prepend this URL to their respective paths.
+
+:::tip
+Ensure that your base URL remains free from specific path segments.
+
+- **GOOD:** `@upstream(baseURL: http://jsonplaceholder.typicode.com)`
+- **BAD:** `@upstream(baseURL: http://jsonplaceholder.typicode.com/api)`
+
+:::
+
+#### allowedHeaders
+
+The `allowedHeaders` configuration specifies which HTTP headers are permitted to be forwarded to upstream services when making requests.
+If `allowedHeaders` isn't specified, no incoming headers will be forwarded to the upstream services, which can provide an added layer of security but might restrict essential data flow.
+
+```graphql showLineNumbers
+schema @upstream(allowedHeaders: ["Authorization", "X-Api-Key"]) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+In the example above, the `allowedHeaders` is set to allow only `Authorization` and `X-Api-Key` headers. This means that requests containing these headers will forward them to upstream services, while all others will be ignored. It ensures that only expected headers are communicated to dependent services, emphasizing security and consistency.
 
 ## @http
 
