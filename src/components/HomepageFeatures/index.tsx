@@ -10,20 +10,20 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Blazingly Fast",
+    title: "🚀 Blazingly Fast",
     Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
     description: <>Leverage breakthrough performance optimizations to deliver the fastest experience to your users.</>,
   },
 
   {
-    title: "Battle Tested",
+    title: "🎖 Battle Tested",
     Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: (
       <>Trust in Tailcall's robust and reliable system, proven in the toughest tech environments at scale.</>
     ),
   },
   {
-    title: "Productive",
+    title: "⏰️ Productive",
     Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
     description: (
       <>
@@ -33,7 +33,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: "Open Source",
+    title: "❤️ Open Source",
     Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: (
       <>
