@@ -103,11 +103,11 @@ const config = {
           title: "Docs",
           items: [
             {
-              to: "/intro/quickstart",
+              to: "/docs/intro/quickstart",
               label: "Introduction",
             },
             {
-              to: "/guides/installation",
+              to: "/docs/guides/installation/",
               label: "Installation",
             },
           ],

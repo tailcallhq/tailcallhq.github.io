@@ -5,7 +5,7 @@ import Layout from "@theme/Layout"
 import clsx from "clsx"
 import React, {useEffect, useState} from "react"
 
-import {github} from "../gen/github.json"
+import github from "../gen/github.json"
 import styles from "./index.module.css"
 
 function HomepageHeader() {
@@ -40,7 +40,7 @@ function HomepageHeader() {
               style={{transition: "max-width 1s", opacity: "1s"}}
               className="w-full overflow-hidden whitespace-nowrap max-w-[100px] opacity-100"
             >
-              &nbsp; {github.stargazers_count}
+              &nbsp; {github.github.stargazers_count}
             </span>
           </Link>
         </div>
