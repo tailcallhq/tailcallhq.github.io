@@ -90,9 +90,9 @@ const config = {
           position: "right",
         },
         {
-          to: "https://github.com/tailcallhq/tailcall",
-          label: "GitHub",
+          label: "Discord",
           position: "right",
+          to: "https://discord.gg/7fseDEXUNU",
         },
       ],
     },

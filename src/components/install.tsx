@@ -1,6 +1,6 @@
 import React from "react"
 import CodeBlock from "@theme/CodeBlock"
-import versionData from "../gen/tailcall-version.json" // path to your JSON file
+import {release as versionData} from "../gen/github.json" // path to your JSON file
 
 const InstallCommand = () => {
   const version = versionData.version
