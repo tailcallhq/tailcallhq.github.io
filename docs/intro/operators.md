@@ -66,19 +66,6 @@ schema @server(port: 8000, enableGraphiql: "/graphiql") {
 While the GraphiQL interface is a powerful tool for development, it's recommended to disable it in production environments, especially if you're not exposing GraphQL APIs directly to users. This ensures an added layer of security and reduces unnecessary exposure.
 :::
 
-#### proxy
-
-The `proxy` setting defines an intermediary server through which the upstream requests will be routed before reaching their intended endpoint. By specifying a proxy URL, you introduce an additional layer, enabling custom routing and security policies.
-
-```graphql showLineNumbers
-schema @server(proxy: {url: "http://localhost:3000"}, baseURL: "http://jsonplaceholder.typicode.com") {
-  query: Query
-  mutation: Mutation
-}
-```
-
-In the provided example, we've set the proxy's `url` to "http://localhost:3000". This configuration ensures that all requests aimed at the designated `baseURL` are first channeled through this proxy. To illustrate, if the `baseURL` is "http://jsonplaceholder.typicode.com", any request targeting it would be initially sent to "http://localhost:3000" before being redirected to its final destination.
-
 #### vars
 
 This configuration allows you to define local variables that can be leveraged during the server's operations. These variables are particularly handy when you need to store constant configurations, secrets, or other shared information that various operations might require.
@@ -186,7 +173,7 @@ Below is a concise description of each attribute within the `upstream` directive
 - `keepAliveInterval`: The time in seconds between each keep-alive message sent to maintain the connection.
 - `keepAliveTimeout`: The time in seconds that the connection will wait for a keep-alive message before closing.
 - `keepAliveWhileIdle`: A boolean value that determines whether keep-alive messages should be sent while the connection is idle.
-- `proxy`: An object that specifies the proxy server's URL.
+- `proxy`: An object that specifies the proxy server's URL. more information about the proxy server is provided below.
 - `connectTimeout`: The time in seconds that the connection will wait for a response before timing out.
 - `timeout`: The maximum time in seconds that the connection will wait for a response.
 - `tcpKeepAlive`: The time in seconds between each TCP keep-alive message sent to maintain the connection.
@@ -196,6 +183,33 @@ Below is a concise description of each attribute within the `upstream` directive
 - `enableHttpCache`: when activated, directs Tailcall to utilize HTTP caching mechanisms. These mechanisms, in accordance with the [HTTP Caching RFC](https://tools.ietf.org/html/rfc7234), are designed to improve performance by reducing unnecessary data fetches. If left unspecified, this feature defaults to `false`.
 - `batch`: An object that specifies the batch settings, including `maxSize` (the maximum size of the batch), `delay` (the delay in milliseconds between each batch), and `headers` (an array of HTTP headers to be included in the batch).
 
+#### proxy
+
+The `proxy` setting defines an intermediary server through which the upstream requests will be routed before reaching their intended endpoint. By specifying a proxy URL, you introduce an additional layer, enabling custom routing and security policies.
+
+```graphql showLineNumbers
+schema @server(proxy: {url: "http://localhost:3000"}, baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
+
+In the provided example, we've set the proxy's `url` to "http://localhost:3000". This configuration ensures that all requests aimed at the designated `baseURL` are first channeled through this proxy. To illustrate, if the `baseURL` is "http://jsonplaceholder.typicode.com", any request targeting it would be initially sent to "http://localhost:3000" before being redirected to its final destination.
+
+
+#### allowedHeaders
+
+The `allowedHeaders` configuration specifies which HTTP headers are permitted to be forwarded to upstream services when making requests.
+If `allowedHeaders` isn't specified, no incoming headers will be forwarded to the upstream services, which can provide an added layer of security but might restrict essential data flow.
+
+```graphql showLineNumbers
+schema @upstream(allowedHeaders: ["Authorization", "X-Api-Key"]) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+In the example above, the `allowedHeaders` is set to allow only `Authorization` and `X-Api-Key` headers. This means that requests containing these headers will forward them to upstream services, while all others will be ignored. It ensures that only expected headers are communicated to dependent services, emphasizing security and consistency.
 #### baseURL
 
 This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` operator, then each [@http](#http) operator must specify its own `baseURL`. If neither `@server` nor [@http](#http) provides a `baseURL`, it results in a compilation error.
@@ -217,19 +231,6 @@ Ensure that your base URL remains free from specific path segments.
 
 :::
 
-#### allowedHeaders
-
-The `allowedHeaders` configuration specifies which HTTP headers are permitted to be forwarded to upstream services when making requests.
-If `allowedHeaders` isn't specified, no incoming headers will be forwarded to the upstream services, which can provide an added layer of security but might restrict essential data flow.
-
-```graphql showLineNumbers
-schema @upstream(allowedHeaders: ["Authorization", "X-Api-Key"]) {
-  query: Query
-  mutation: Mutation
-}
-```
-
-In the example above, the `allowedHeaders` is set to allow only `Authorization` and `X-Api-Key` headers. This means that requests containing these headers will forward them to upstream services, while all others will be ignored. It ensures that only expected headers are communicated to dependent services, emphasizing security and consistency.
 
 ## @http
 
