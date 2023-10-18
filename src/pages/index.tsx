@@ -3,9 +3,10 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import HomepageFeatures from "@site/src/components/HomepageFeatures"
 import Layout from "@theme/Layout"
 import clsx from "clsx"
-import React, {useEffect, useState} from "react"
+import React from "react"
 
 import styles from "./index.module.css"
+import Playground from "../components/Playground"
 
 function HomepageHeader() {
   return (
@@ -39,6 +40,7 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <Playground />
       </main>
     </Layout>
   )
