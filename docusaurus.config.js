@@ -117,7 +117,7 @@ const config = {
           items: [
             {
               label: "Github",
-              to: "https://discord.gg/7fseDEXUNU",
+              to: "https://github.com/tailcallhq/tailcall",
             },
             {
               to: "https://blog.tailcall.run",
