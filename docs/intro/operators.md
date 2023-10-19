@@ -166,29 +166,54 @@ schema @upstream(...[UpstreamSetting]...){
 }
 ```
 
-Below is a concise description of each attribute within the `upstream` directive:
+The various `UpstreamSetting` options and their details are explained below.
 
-- `poolIdleTimeout`: The time in seconds that the connection pool will wait before closing idle connections.
-- `poolMaxIdlePerHost`: The maximum number of idle connections that will be maintained per host.
-- `keepAliveInterval`: The time in seconds between each keep-alive message sent to maintain the connection.
-- `keepAliveTimeout`: The time in seconds that the connection will wait for a keep-alive message before closing.
-- `keepAliveWhileIdle`: A boolean value that determines whether keep-alive messages should be sent while the connection is idle.
-- `proxy`: An object that specifies the proxy server's URL. more information about the proxy server is provided below.
-- `connectTimeout`: The time in seconds that the connection will wait for a response before timing out.
-- `timeout`: The maximum time in seconds that the connection will wait for a response.
-- `tcpKeepAlive`: The time in seconds between each TCP keep-alive message sent to maintain the connection.
-- `userAgent`: The User-Agent header value to be used in HTTP requests.
-- `allowedHeaders`: An array of HTTP headers that are allowed to be forwarded to upstream services. More information about the allowed header of the upstream server is provided below.
-- `baseURL`: The base URL of the upstream server. More information about the base URL of the upstream server is provided below.
-- `enableHttpCache`: when activated, directs Tailcall to utilize HTTP caching mechanisms. These mechanisms, in accordance with the [HTTP Caching RFC](https://tools.ietf.org/html/rfc7234), are designed to improve performance by reducing unnecessary data fetches. If left unspecified, this feature defaults to `false`.
-- `batch`: An object that specifies the batch settings, including `maxSize` (the maximum size of the batch), `delay` (the delay in milliseconds between each batch), and `headers` (an array of HTTP headers to be included in the batch).
-
+#### poolIdleTimeout
+The time in seconds that the connection pool will wait before closing idle connections.
+```graphql showLineNumbers
+schema @upstream(poolIdleTimeout: 60, baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
+#### poolMaxIdlePerHost
+The maximum number of idle connections that will be maintained per host.
+```graphql showLineNumbers
+schema @upstream(poolMaxIdlePerHost: 60, baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
+#### keepAliveInterval
+The time in seconds between each keep-alive message sent to maintain the connection.
+```graphql showLineNumbers
+schema @upstream(keepAliveInterval: 60, baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
+#### keepAliveTimeout
+The time in seconds that the connection will wait for a keep-alive message before closing.
+```graphql showLineNumbers
+schema @upstream(keepAliveTimeout: 60, baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
+#### keepAliveWhileIdle
+A boolean value that determines whether keep-alive messages should be sent while the connection is idle.
+```graphql showLineNumbers
+schema @upstream(keepAliveWhileIdle: false, baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
 #### proxy
 
 The `proxy` setting defines an intermediary server through which the upstream requests will be routed before reaching their intended endpoint. By specifying a proxy URL, you introduce an additional layer, enabling custom routing and security policies.
 
 ```graphql showLineNumbers
-schema @server(proxy: {url: "http://localhost:3000"}, baseURL: "http://jsonplaceholder.typicode.com") {
+schema @upstream(proxy: {url: "http://localhost:3000"}, baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
   mutation: Mutation
 }
@@ -197,6 +222,38 @@ schema @server(proxy: {url: "http://localhost:3000"}, baseURL: "http://jsonplace
 In the provided example, we've set the proxy's `url` to "http://localhost:3000". This configuration ensures that all requests aimed at the designated `baseURL` are first channeled through this proxy. To illustrate, if the `baseURL` is "http://jsonplaceholder.typicode.com", any request targeting it would be initially sent to "http://localhost:3000" before being redirected to its final destination.
 
 
+#### connectTimeout
+The time in seconds that the connection will wait for a response before timing out.
+```graphql showLineNumbers
+schema @upstream(connectTimeout: 60, baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
+#### timeout
+The maximum time in seconds that the connection will wait for a response.
+```graphql showLineNumbers
+schema @upstream(timeout: 60, baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
+#### tcpKeepAlive
+The time in seconds between each TCP keep-alive message sent to maintain the connection.
+```graphql showLineNumbers
+schema @upstream(tcpKeepAlive: 60, baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
+#### userAgent
+The User-Agent header value to be used in HTTP requests.
+```graphql showLineNumbers
+schema @upstream(userAgent: "Tailcall/1.0", baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+  mutation: Mutation
+}
+```
 #### allowedHeaders
 
 The `allowedHeaders` configuration specifies which HTTP headers are permitted to be forwarded to upstream services when making requests.
@@ -210,6 +267,7 @@ schema @upstream(allowedHeaders: ["Authorization", "X-Api-Key"]) {
 ```
 
 In the example above, the `allowedHeaders` is set to allow only `Authorization` and `X-Api-Key` headers. This means that requests containing these headers will forward them to upstream services, while all others will be ignored. It ensures that only expected headers are communicated to dependent services, emphasizing security and consistency.
+
 #### baseURL
 
 This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` operator, then each [@http](#http) operator must specify its own `baseURL`. If neither `@server` nor [@http](#http) provides a `baseURL`, it results in a compilation error.
@@ -231,7 +289,22 @@ Ensure that your base URL remains free from specific path segments.
 
 :::
 
-
+#### enableHttpCache
+When activated, directs Tailcall to utilize HTTP caching mechanisms. These mechanisms, in accordance with the [HTTP Caching RFC](https://tools.ietf.org/html/rfc7234), are designed to improve performance by reducing unnecessary data fetches. If left unspecified, this feature defaults to `false`.
+```graphql showLineNumbers
+schema @upstream(enableHttpCache: false) {
+  query: Query
+  mutation: Mutation
+}
+```
+#### batch
+An object that specifies the batch settings, including `maxSize` (the maximum size of the batch), `delay` (the delay in milliseconds between each batch), and `headers` (an array of HTTP headers to be included in the batch).
+```graphql showLineNumbers
+schema @upstream(batch: {maxSize: 1000, delay: 10, headers: ["X-Server","Authorization"]}) {
+  query: Query
+  mutation: Mutation
+}
+```
 ## @http
 
 This **@http** operator serves as an indication of a field or node that is underpinned by a REST API. For Example:
