@@ -61,4 +61,4 @@ This method provides a more stable hash because changes in comment, formatting, 
 
 Hope the architecture makes sense. If you have any questions, please feel free to reach out to us on our [discord] channel, we would love to hear from you.
 
-[discord]: https://discord.gg/7fseDEXUNU
+[discord]: https://discord.gg/Q2ZExpFCnA

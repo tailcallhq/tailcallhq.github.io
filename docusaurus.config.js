@@ -92,7 +92,7 @@ const config = {
         {
           label: "Discord",
           position: "right",
-          to: "https://discord.gg/7fseDEXUNU",
+          to: "https://discord.gg/Q2ZExpFCnA",
         },
       ],
     },
@@ -126,7 +126,7 @@ const config = {
             },
             {
               label: "Discord",
-              to: "https://discord.gg/7fseDEXUNU",
+              to: "https://discord.gg/Q2ZExpFCnA",
             },
           ],
         },
