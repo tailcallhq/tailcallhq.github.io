@@ -5,10 +5,22 @@ import Layout from "@theme/Layout"
 import clsx from "clsx"
 import React, {useEffect, useState} from "react"
 
-import github from "../gen/github.json"
 import styles from "./index.module.css"
 
 function HomepageHeader() {
+  const [stars, setStars] = useState<string>();
+
+  const fetchStars = async () => {
+    const res = await fetch('https://api.github.com/repos/tailcallhq/tailcall');
+    const data = (await res.json()) as { stargazers_count: number };
+    if (typeof data?.stargazers_count === 'number') {
+      setStars(new Intl.NumberFormat().format(data.stargazers_count));
+    }
+  };
+
+  useEffect(() => {
+    fetchStars().catch(console.error);
+  }, []);
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
@@ -40,7 +52,7 @@ function HomepageHeader() {
               style={{transition: "max-width 1s", opacity: "1s"}}
               className="w-full overflow-hidden whitespace-nowrap max-w-[100px] opacity-100"
             >
-              &nbsp; {github.github.stargazers_count}
+              &nbsp; {stars}
             </span>
           </Link>
         </div>

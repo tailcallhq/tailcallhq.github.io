@@ -1,9 +1,21 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import CodeBlock from "@theme/CodeBlock"
-import github from "../gen/github.json" // path to your JSON file
 
 const InstallCommand = () => {
-  const version = github.release.version
+  const [version, setVersion] = useState<string>()
+
+  const fetchVersion = async () => {
+    const res = await fetch("https://api.github.com/repos/tailcallhq/tailcall/releases/latest")
+    const data = (await res.json()) as {tag_name: string}
+    if (typeof data?.tag_name === "string") {
+      setVersion(data.tag_name)
+    }
+  }
+
+  useEffect(() => {
+    fetchVersion().catch(console.error)
+  }, [])
+
   const command = `curl -sSL https://raw.githubusercontent.com/tailcallhq/tailcall/master/install.sh | bash -s -- ${version}`
 
   return (
