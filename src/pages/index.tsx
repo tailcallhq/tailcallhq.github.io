@@ -8,19 +8,19 @@ import React, {useEffect, useState} from "react"
 import styles from "./index.module.css"
 
 function HomepageHeader() {
-  const [stars, setStars] = useState<string>();
+  const [stars, setStars] = useState<string>()
 
   const fetchStars = async () => {
-    const res = await fetch('https://api.github.com/repos/tailcallhq/tailcall');
-    const data = (await res.json()) as { stargazers_count: number };
-    if (typeof data?.stargazers_count === 'number') {
-      setStars(new Intl.NumberFormat().format(data.stargazers_count));
+    const res = await fetch("https://api.github.com/repos/tailcallhq/tailcall")
+    const data = (await res.json()) as {stargazers_count: number}
+    if (typeof data?.stargazers_count === "number") {
+      setStars(new Intl.NumberFormat().format(data.stargazers_count))
     }
-  };
+  }
 
   useEffect(() => {
-    fetchStars().catch(console.error);
-  }, []);
+    fetchStars().catch(console.error)
+  }, [])
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
