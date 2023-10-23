@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - develop
-  workflow_dispatch:
-permissions:
-  contents: write
+      - "**"
+  pull_request:
+    branches: [develop]
+    types: [opened, reopened, synchronize]
 
 jobs:
   build-and-deploy:
@@ -16,13 +16,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install and Deploy 🔧
+      - name: Install and Build 🔧
         run: |
           npm install
           npx prettier --check .
           npm run build
 
       - name: Deploy 🚀
+        if: github.ref == 'refs/heads/develop'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
