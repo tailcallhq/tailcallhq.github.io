@@ -5,6 +5,7 @@ sidebar_position: 1
 
 import CodeBlock from "@theme/CodeBlock"
 import github from "../../src/gen/github.json"
+import InstallCommand from "../../src/components/install"
 
 <>
   You can install the latest version - <b> {github.release.tag_name}</b>, by using one of the following methods:
@@ -36,9 +37,7 @@ import github from "../../src/gen/github.json"
 
 Follow the steps below to manually install the cli on your system:
 
-<CodeBlock language="bash">
-  {`curl -sSL https://raw.githubusercontent.com/tailcallhq/tailcall/main/install.sh | bash -s -- ${github.release.tag_name}`}
-</CodeBlock>
+<InstallCommand />
 
 This command fetches and executes the Tailcall installation script. The installed files are located in the `~/.tailcall` directory.
 
