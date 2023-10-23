@@ -1,26 +1,16 @@
 import React, {useEffect, useState} from "react"
 import CodeBlock from "@theme/CodeBlock"
+import Version from "./Version"
 
 const InstallCommand = () => {
-  const [version, setVersion] = useState<string>()
-
-  const fetchVersion = async () => {
-    const res = await fetch("https://api.github.com/repos/tailcallhq/tailcall/releases/latest")
-    const data = (await res.json()) as {tag_name: string}
-    if (typeof data?.tag_name === "string") {
-      setVersion(data.tag_name)
-    }
-  }
-
-  useEffect(() => {
-    fetchVersion().catch(console.error)
-  }, [])
-
-  const command = `curl -sSL https://raw.githubusercontent.com/tailcallhq/tailcall/master/install.sh | bash -s -- ${version}`
+  const command = `curl -sSL https://raw.githubusercontent.com/tailcallhq/tailcall/master/install.sh | bash -s -- `
 
   return (
     <div>
-      <CodeBlock>{command}</CodeBlock>
+      <CodeBlock>
+        {command}
+        <Version />
+      </CodeBlock>
     </div>
   )
 }
