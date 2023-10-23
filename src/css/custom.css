@@ -98,7 +98,7 @@ pre code {
   border-top: 1px solid rgb(61, 61, 61);
 }
 
-.container .button {
+.button {
   box-shadow: 0px 4px 5px 0px #00000050;
   flex: 1;
   margin: 0 8px;
@@ -127,4 +127,14 @@ blockquote::before {
   margin-right: 12px;
   font-size: 1.5rem;
   margin-top: -0.3rem;
+}
+
+.star-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star-count {
+  font-weight: bold;
 }
