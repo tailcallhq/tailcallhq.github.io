@@ -163,6 +163,7 @@ const config = {
       respectPrefersColorScheme: false,
     },
   },
+  plugins: [require.resolve("docusaurus-lunr-search")],
 }
 
 module.exports = config
