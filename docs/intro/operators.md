@@ -436,7 +436,7 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 #### groupBy
 
-The `groupBy` parameter groups multiple data requests into a single call.  For more details please refer out [n + 1 guide].
+The `groupBy` parameter groups multiple data requests into a single call. For more details please refer out [n + 1 guide].
 
 [n + 1 guide]: /docs/guides/n+1#solving-using-batching
 
@@ -444,8 +444,7 @@ The `groupBy` parameter groups multiple data requests into a single call.  For m
 type Post {
   id: Int!
   name: String!
-  user: User
-    @http(path: "/users", query: [{key: "id", value: "{{value.userId}}"}], groupBy: ["id"])
+  user: User @http(path: "/users", query: [{key: "id", value: "{{value.userId}}"}], groupBy: ["id"])
 }
 ```
 
