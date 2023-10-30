@@ -434,9 +434,9 @@ type Mutation {
 
 In this scenario, the `User-Name` header's value will dynamically adjust according to the `name` argument passed in the request.
 
-## @groupBy
+#### groupBy
 
-The `@groupBy` operator in Tailcall groups multiple data requests into a single call. It works together with the `@http` operator. For more details please refer out [n + 1 guide].
+The `groupBy` parameter groups multiple data requests into a single call. For more details please refer out [n + 1 guide].
 
 [n + 1 guide]: /docs/guides/n+1#solving-using-batching
 
@@ -444,21 +444,11 @@ The `@groupBy` operator in Tailcall groups multiple data requests into a single 
 type Post {
   id: Int!
   name: String!
-  user: User
-    @http(path: "/users", query: {key: "id", value: "{{value.userId}}"}])
-    @groupBy(key: "userId", path: ["id"])
+  user: User @http(path: "/users", query: [{key: "id", value: "{{value.userId}}"}], groupBy: ["id"])
 }
 ```
 
 - `query: {key: "id", value: "{{value.userId}}"}]`: Here, TailCall CLI is instructed to generate a URL where the user id aligns with the `userId` from the parent `Post`. For a batch of posts, the CLI compiles a single URL, such as `/users?id=1&id=2&id=3...id=10`, consolidating multiple requests into one.
-
-#### path
-
-This parameter instructs the system to convert the list of responses into a map internally, using the user's `id` as the unique key. In essence, it allows the system to differentiate each user value in the response list.
-
-#### key
-
-This parameter matches the `userId` from the `Post` object to the user data in the batched request response. This correlation is crucial for associating the `Post` to its relevant `User`.
 
 ## @modify
 
