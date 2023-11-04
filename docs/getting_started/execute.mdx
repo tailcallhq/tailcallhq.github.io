@@ -1,23 +1,24 @@
 ---
-title: Test
+title: Execute
 sidebar_position: 4
 ---
 
-Let's try the following query, to get all the users and the title of each post of each user.
+1. Open a web browser and go to [http://localhost:8000](http://localhost:8000). This should load the GraphiQL interface.
+2. In the query editor of GraphiQL, enter the following query
 
-```graphql showLineNumbers
-query {
-  users {
-    id
-    name
-    posts {
-      title
-    }
-  }
-}
-```
+   ```graphql showLineNumbers
+   query {
+     users {
+       id
+       name
+       posts {
+         title
+       }
+     }
+   }
+   ```
 
-You should see output like the following:
+After running the query in GraphiQL, expect to see a JSON response structured like this:
 
 ```json showLineNumbers
 {
@@ -29,8 +30,8 @@ You should see output like the following:
         "posts": [
           {
             "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
-          },
-          ...
+          }
+          // Additional posts truncated for brevity
         ]
       },
       {
@@ -42,10 +43,11 @@ You should see output like the following:
           },
           {
             "title": "in quibusdam tempore odit est dolorem"
-          },
-          ...
+          }
+          // Additional posts truncated for brevity
         ]
       }
+      // Additional users truncated for brevity
     ]
   }
 }
