@@ -1,6 +1,6 @@
 ---
 title: Operators
-sidebar_position: 4
+sidebar_position: 1
 ---
 
 Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition of some custom operators. These operators provide powerful compile time guarantees to make sure your API composition is tight and robust. The operator information is used to automatically generates highly optimized resolver logic for your types.
