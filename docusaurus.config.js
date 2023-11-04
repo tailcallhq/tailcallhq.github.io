@@ -103,7 +103,7 @@ const config = {
           title: "Docs",
           items: [
             {
-              to: "/docs/getting_started",
+              to: "/docs/",
               label: "Introduction",
             },
             {
