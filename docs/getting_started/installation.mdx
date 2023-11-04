@@ -1,6 +1,7 @@
 ---
-title: Installation & Updates
+title: Installation
 sidebar_position: 1
+slug: /getting_started
 ---
 
 import CodeBlock from "@theme/CodeBlock"
@@ -10,11 +11,28 @@ import InstallCommand from "../../src/components/install"
 <>
   You can install the latest version -{" "}
   <b>
-    {" "}
     <Version />
   </b>
-  , by using one of the following methods:
+  , by using
+  <b> NPM</b>.
 </>
+
+## NPM
+
+1. If you don't already have **nodejs** installed, you can find the instructions [here](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs).
+2. Install Tailcall by running the following command in your terminal:
+   ```shell
+   npm i -g tailcallhq/tailcall
+   ```
+3. Verify that Tailcall is installed correctly by running:
+
+   ```shell
+   tc
+   ```
+
+   :::note
+   Avoid using the `--force` flag during npm installations, as it may skip the installation of platform-specific builds.
+   :::
 
 ## Homebrew
 
@@ -73,16 +91,6 @@ If you want to install Tailcall with Docker, follow the steps below. Before star
    </CodeBlock>
 
    This command starts the Tailcall server in a Docker container. Similar to the homebrew installation, it exposes a the graphQL endpoint on port 8080.
-
-## Verification
-
-You should be now able to run the cli with the following commands:
-
-```bash
-tc
-```
-
-Checkout the documentation for **[tc]** for actual usage.
 
 :::note
 Once the installation is compeleted, you should verify the if the version printed on running `tc` command match the actual installed versions.

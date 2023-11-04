@@ -1,0 +1,54 @@
+---
+title: Test
+sidebar_position: 4
+---
+
+Let's try the following query, to get all the users and the title of each post of each user.
+
+```graphql showLineNumbers
+query {
+  users {
+    id
+    name
+    posts {
+      title
+    }
+  }
+}
+```
+
+You should see output like the following:
+
+```json showLineNumbers
+{
+  "data": {
+    "users": [
+      {
+        "id": 1,
+        "name": "Leanne Graham",
+        "posts": [
+          {
+            "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+          },
+          ...
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Ervin Howell",
+        "posts": [
+          {
+            "title": "et ea vero quia laudantium autem"
+          },
+          {
+            "title": "in quibusdam tempore odit est dolorem"
+          },
+          ...
+        ]
+      }
+    ]
+  }
+}
+```
+
+You can now add additional fields, and compose more queries together!
