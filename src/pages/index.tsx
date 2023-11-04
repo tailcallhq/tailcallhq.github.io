@@ -30,7 +30,7 @@ function HomepageHeader() {
         </h1>
         <p className="hero__subtitle">Bootstrap Instantly . Iterate Effortlessly . Scale Fearlessly</p>
         <div className={styles.buttons}>
-          <Link className="button button--primary button--lg" to="/docs/intro/quickstart">
+          <Link className="button button--primary button--lg" to="/docs/getting_started">
             Get Started
           </Link>
           <Link
