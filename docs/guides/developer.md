@@ -5,7 +5,7 @@ sidebar_position: 7
 
 Developers often find themselves in situations where they need to run a server in watch mode to streamline the development process. This guide will introduce you to [entr], a versatile file-watcher tool, and demonstrate how to run your server in watch mode with it. We'll also touch on the installation process and suggest some best practices to optimize your workflow.
 
-[entr]:https://eradman.com/entrproject/
+[entr]: https://eradman.com/entrproject/
 
 ## Why You Need Watch Mode
 
@@ -118,7 +118,7 @@ The above command is described in detail below :
 - `r` : This flag tells entr to continue running the command even if it encounters errors (it runs the command repeatedly).
 
 - `tc start ./examples/jsonplaceholder.graphql` : This is the command to run when changes are detected. It is executing a command `tc start` with the file path
-`./examples/jsonplaceholder.graphql` as an argument
+  `./examples/jsonplaceholder.graphql` as an argument
 
 ### 3.Enjoy Auto-Reloading
 
