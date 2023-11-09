@@ -6,6 +6,7 @@ import clsx from "clsx"
 import React, {useEffect, useState} from "react"
 
 import styles from "./index.module.css"
+import Playground from "../components/Playground"
 
 function HomepageHeader() {
   const [stars, setStars] = useState<string>()
@@ -74,6 +75,7 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <Playground />
       </main>
     </Layout>
   )

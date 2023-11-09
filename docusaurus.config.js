@@ -10,6 +10,15 @@ const config = {
   title,
   trailingSlash: true,
   tagline: "<tagline>",
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://codesandbox.io',
+      },
+    }
+  ],
   url: "https://tailcall.run",
   baseUrl: "/",
   onBrokenLinks: "throw",
