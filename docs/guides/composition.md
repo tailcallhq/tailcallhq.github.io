@@ -13,17 +13,17 @@ type User {
   name: String
 }
 
-type Post {
-  user: User @inline(path: ["name"]) @modify(name: "userName") @http(path: "/users/{{userId}}")
+type Post @addField(name: "userName", path: ["user", "name"]) {
+  user: User @modify(omit: true) @http(path: "/users/{{userId}}")
   userId: Int!
 }
 ```
 
 However, it uses a series of operators to modify the `user` field.
 
-1. The `@inline(path: ["name"])` operator is used to drill down into the `User` object, specifically targeting the `name` field. This is equivalent to fetching the `User.name` property.
+1. The `@addField(name: "userName", path: ["user", "name"])` operator is used to extract the `name` field from `user` and add a field called `userName` to the `Post`
 
-2. The `@modify(name: "userName")` operator is used to name the inlined `name` field to `userName`. So, instead of a `user` field that is a `User` object, we now have a `userName` field that is a `String`.
+2. The `@modify(omit: true)` operator is used to remove the `user` field from the final Schema.
 
 3. The `@http(path: "/users/{{userId}}")` operator is used to instruct the resolver to make an HTTP request to fetch the user data from a specified path (i.e., `/users/{{userId}}`), where `{{userId}}` is a placeholder that would be replaced with the actual `userId` when making the request.
 
@@ -44,7 +44,7 @@ type Post {
 So, we've used composition of operators to take a complex object (the `User` inside the `Post`), extract a specific part of it (`name`), name that part (`userName`), and then instruct GraphQL how to fetch the data using an HTTP request.
 
 :::info
-It is important to note that the order of the operators doesn't matter. The resulting schema will always be the same.
+It is important to note that the order of the operators `@modify` and `@http` doesn't matter. The resulting schema will always be the same.
 :::
 
 This is a powerful mechanism that allows you to make your GraphQL schema more precise, easier to understand, and more suitable for the specific needs of your application.
