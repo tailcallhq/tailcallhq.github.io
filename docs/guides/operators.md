@@ -478,9 +478,9 @@ type User {
 
 `@modify(omit: true)` tells GraphQL that the `id` field should not be included in the schema, thus it won't be accessible to the client.
 
-## @inline
+## @addField
 
-The `@inline` operator simplifies data structures and fetch processes by 'inlining' or flattening a field or node within your schema. It works by modifying the schema and the data transformation process, essentially streamlining how nested data is accessed and presented.
+The `@addField` operator simplifies data structures and queries by adding a field that _inlines_ or flattens a nested field or node within your schema. It works by modifying the schema and the data transformation process, simplifiying how nested data is accessed and presented.
 
 For instance, consider a schema:
 
@@ -489,16 +489,14 @@ schema {
   query: Query
 }
 
-type Post {
-  id: Int!
-  user: User!
-}
-
-type User {
+type User @addField(name: "street", path: ["address", "street"]) {
   id: Int!
   name: String!
+  username: String!
   email: String!
-  address: Address!
+  phone: String
+  website: String
+  address: Address @modify(omit: true)
 }
 
 type Address {
@@ -508,11 +506,13 @@ type Address {
 }
 
 type Query {
-  postUserStreet(id: Int): Post! @inline(path: ["user", "address", "street"])
+  user(id: Int!): User @http(path: "/users/{{args.id}}")
 }
 ```
 
-The `@inline` operator, in this case, is applied to the `postUserStreet` field of the `Query` type. It includes a `path` argument, indicating the chain of fields to be traversed from `Post` to the field to be inlined.
+Suppose we are only interested in the `street` field in `Address`.
+
+The `@addField` operator above, applied to the `User` type in this case, creates a field called `street` in the `User` type. It includes a `path` argument, indicating the chain of fields to be traversed from a declared field (`address` in this case), to the field within Address to be added. We can also add a `@modify(omit: true)` to omit the `address` field from the schema, since we have already made its `street` field available on the `User` type.
 
 Post application, the schema becomes:
 
@@ -521,22 +521,47 @@ schema {
   query: Query
 }
 
+type User {
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
+  phone: String
+  website: String
+  street: String
+}
+
 type Query {
-  postUserStreet(id: Int): String
+  user(id: Int): Post!
 }
 ```
 
-As seen, the `Post`, `User`, and `Address` types are eliminated from the schema. The `postUserStreet` now directly returns a `String` representing the address street, thereby simplifying the client-side data fetch process. `@inline` operator also take cares of nullablity of the fields. If any of the fields in the path is nullable, the resulting type will be nullable.
+In the above example, since we added a `@modify(omit: true)` on the `address` field, the `Address` type is eliminated from the schema.
 
-Additionally, `@inline` supports indexing, meaning you can specify the array index to be inlined. If a field `users` is of type `[User]`, and you want to inline the first user, you can specify the path as [`"users"`,`"0"`,`"name"`].
+The `@addField` operator also take cares of nullablity of the fields. If any of the fields in the path is nullable, the resulting type will be nullable.
+
+Additionally, `@addField` supports indexing, meaning you can specify the array index to be inlined. If a field `posts` is of type `[Post]`, and you want to, for example, get the title of the first post, you can specify the path as [`"posts"`,`"0"`,`"title"`].
 
 ```graphql showLineNumbers
+type User @addField(name: "firstPostTitle", path: ["posts", "0", "title"]) {
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
+  phone: String
+  website: String
+  posts: Post @http(path: "/users/{{value.id}}/posts")
+}
+
 type Post {
-  firstUser: User @inline(path: ["users", "0", "name"]) @http(path: "/users")
+  id: Int!
+  userId: Int!
+  title: String!
+  body: String!
 }
 ```
 
-In conclusion, the `@inline` operator helps tidy up your schema and streamline data fetching by reducing query depth, promoting better performance and simplicity.
+In conclusion, the `@addField` operator helps tidy up your schema and streamline data fetching by reducing query depth, promoting better performance and simplicity.
 
 ## @const
 
