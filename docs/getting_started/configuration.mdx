@@ -9,8 +9,11 @@ We will use the API at `/users` to get a list of users, and `/users/:id/posts` t
 Create a file called `jsonplaceholder.graphql` and paste the following contents into it.
 
 ```graphql showLineNumbers
-# Specify a base url for all http requests
-schema @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+schema
+  # Specify server configuration: Start tailcall server at 0.0.0.0:8000 and enable GraphiQL playground
+  @server(port: 8000, enableGraphiql: true, hostname: "0.0.0.0")
+  # Specify a base url for all http requests
+  @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
 }
 
@@ -39,4 +42,4 @@ type Post {
 }
 ```
 
-The above file is a standard `.graphQL` file, with a few additions such as `@server` and `@http` directives. So basically we specify the GraphQL schema and how to resolve that GraphQL schema in the same file, without having to write any code! Here is a quick overview of what the above schema does:
+The above file is a standard `.graphQL` file, with a few additions such as `@server` and `@http` directives. So basically we specify the GraphQL schema and how to resolve that GraphQL schema in the same file, without having to write any code!
