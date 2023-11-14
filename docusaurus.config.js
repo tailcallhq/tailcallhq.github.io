@@ -12,12 +12,12 @@ const config = {
   tagline: "<tagline>",
   headTags: [
     {
-      tagName: 'link',
+      tagName: "link",
       attributes: {
-        rel: 'preconnect',
-        href: 'https://codesandbox.io',
+        rel: "preconnect",
+        href: "https://codesandbox.io",
       },
-    }
+    },
   ],
   url: "https://tailcall.run",
   baseUrl: "/",
