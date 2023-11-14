@@ -12,12 +12,12 @@ const config = {
   tagline: "<tagline>",
   headTags: [
     {
-      tagName: 'link',
+      tagName: "link",
       attributes: {
-        rel: 'preconnect',
-        href: 'https://codesandbox.io',
+        rel: "preconnect",
+        href: "https://codesandbox.io",
       },
-    }
+    },
   ],
   url: "https://tailcall.run",
   baseUrl: "/",
@@ -102,6 +102,36 @@ const config = {
           label: "Discord",
           position: "right",
           to: "https://discord.gg/Q2ZExpFCnA",
+        },
+        {
+          to: "https://github.com/tailcallhq/tailcall/",
+          position: "right",
+          html: `
+          <div style="display: flex; align-items: center; gap: 5px; font-weight: 600">
+          <svg
+            stroke="currentColor"
+            fill="none"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-line-join="round"
+            height="18"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            ></polygon>
+          </svg>
+          <span>&nbsp;Github</span>
+          <span
+            id="gh-button"
+            style="transition: 'max-width 1s', opacity: '1s'"
+            className="w-full overflow-hidden whitespace-nowrap max-w-[100px] opacity-100"
+          >
+          </span>
+        </div>        
+          `,
         },
       ],
     },

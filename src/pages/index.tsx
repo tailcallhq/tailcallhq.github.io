@@ -6,16 +6,13 @@ import clsx from "clsx"
 import React, {useEffect, useState} from "react"
 
 import styles from "./index.module.css"
-import Playground from "../components/Playground"
 
 function HomepageHeader() {
-  const [stars, setStars] = useState<string>()
-
   const fetchStars = async () => {
     const res = await fetch("https://api.github.com/repos/tailcallhq/tailcall")
     const data = (await res.json()) as {stargazers_count: number}
     if (typeof data?.stargazers_count === "number") {
-      setStars(new Intl.NumberFormat().format(data.stargazers_count))
+      document.querySelector("#gh-button").innerHTML = new Intl.NumberFormat().format(data.stargazers_count)
     }
   }
 
@@ -31,33 +28,14 @@ function HomepageHeader() {
         </h1>
         <p className="hero__subtitle">Bootstrap Instantly . Iterate Effortlessly . Scale Fearlessly</p>
         <div className={styles.buttons}>
-          <Link className="button button--primary button--lg" to="/docs/getting_started">
-            Get Started
-          </Link>
           <Link
-            className="button button--secondary button--lg star-button"
-            to="https://github.com/tailcallhq/tailcall/"
+            className="button button--primary button--lg"
+            to="https://codesandbox.io/p/github/neo773/tailcall-sandbox/main?file=%2Fapp%2Fexample.graphql"
           >
-            <svg
-              stroke="currentColor"
-              fill="none"
-              strokeWidth="3"
-              viewBox="0 0 24 24"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              height="20"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-            <span>&nbsp;Github</span>
-            <span
-              style={{transition: "max-width 1s", opacity: "1s"}}
-              className="w-full overflow-hidden whitespace-nowrap max-w-[100px] opacity-100"
-            >
-              &nbsp; {stars}
-            </span>
+            Try it out
+          </Link>
+          <Link className="button button--secondary button--lg" to="/docs/getting_started">
+            Learn More
           </Link>
         </div>
       </div>
@@ -75,7 +53,6 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
-        <Playground />
       </main>
     </Layout>
   )
