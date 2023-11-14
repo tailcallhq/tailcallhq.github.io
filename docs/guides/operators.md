@@ -294,7 +294,7 @@ In the example above, the `allowedHeaders` is set to allow only `Authorization` 
 
 ### baseURL
 
-This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` operator, then each [@http](#http) operator must specify its own `baseURL`. If neither `@server` nor [@http](#http) provides a `baseURL`, it results in a compilation error.
+This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` operator, then each [@http](#http) operator must specify its own `baseURL`. If neither `@upstream` nor [@http](#http) provides a `baseURL`, it results in a compilation error.
 
 ```graphql showLineNumbers
 schema @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
