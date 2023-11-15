@@ -8,13 +8,11 @@ import React, {useEffect, useState} from "react"
 import styles from "./index.module.css"
 
 function HomepageHeader() {
-  const [stars, setStars] = useState<string>()
-
   const fetchStars = async () => {
     const res = await fetch("https://api.github.com/repos/tailcallhq/tailcall")
     const data = (await res.json()) as {stargazers_count: number}
     if (typeof data?.stargazers_count === "number") {
-      setStars(new Intl.NumberFormat().format(data.stargazers_count))
+      document.querySelector("#gh-button").innerHTML = new Intl.NumberFormat().format(data.stargazers_count)
     }
   }
 
@@ -30,33 +28,14 @@ function HomepageHeader() {
         </h1>
         <p className="hero__subtitle">Bootstrap Instantly . Iterate Effortlessly . Scale Fearlessly</p>
         <div className={styles.buttons}>
-          <Link className="button button--primary button--lg" to="/docs/getting_started">
-            Get Started
-          </Link>
           <Link
-            className="button button--secondary button--lg star-button"
-            to="https://github.com/tailcallhq/tailcall/"
+            className="button button--primary button--lg"
+            to="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main?layout=%257B%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522rootPanelGroup%2522%253A%257B%2522direction%2522%253A%2522vertical%2522%252C%2522contentType%2522%253A%2522UNKNOWN%2522%252C%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522id%2522%253A%2522ROOT_LAYOUT%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522UNKNOWN%2522%252C%2522direction%2522%253A%2522horizontal%2522%252C%2522id%2522%253A%2522clozmri5j00za3b6k438j753x%2522%252C%2522sizes%2522%253A%255B50%252C50%255D%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522EDITOR%2522%252C%2522direction%2522%253A%2522horizontal%2522%252C%2522id%2522%253A%2522EDITOR%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522EDITOR%2522%252C%2522id%2522%253A%2522clozmri5j00z73b6khzl1dinh%2522%257D%255D%252C%2522sizes%2522%253A%255B100%255D%257D%252C%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522DEVTOOLS%2522%252C%2522direction%2522%253A%2522vertical%2522%252C%2522id%2522%253A%2522DEVTOOLS%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522DEVTOOLS%2522%252C%2522id%2522%253A%2522clozmri5j00z83b6kjp9rj494%2522%257D%255D%252C%2522sizes%2522%253A%255B100%255D%257D%255D%257D%252C%257B%2522type%2522%253A%2522PANEL_GROUP%2522%252C%2522contentType%2522%253A%2522SHELLS%2522%252C%2522direction%2522%253A%2522horizontal%2522%252C%2522id%2522%253A%2522SHELLS%2522%252C%2522panels%2522%253A%255B%257B%2522type%2522%253A%2522PANEL%2522%252C%2522contentType%2522%253A%2522SHELLS%2522%252C%2522id%2522%253A%2522clozmri5j00z93b6kzni32yac%2522%257D%255D%252C%2522sizes%2522%253A%255B100%255D%257D%255D%252C%2522sizes%2522%253A%255B70%252C30%255D%257D%252C%2522tabbedPanels%2522%253A%257B%2522clozmri5j00z73b6khzl1dinh%2522%253A%257B%2522tabs%2522%253A%255B%257B%2522id%2522%253A%2522clozm9zun00023b6ljkg77tv6%2522%252C%2522mode%2522%253A%2522permanent%2522%252C%2522type%2522%253A%2522FILE%2522%252C%2522filepath%2522%253A%2522%252FREADME.md%2522%252C%2522state%2522%253A%2522IDLE%2522%257D%252C%257B%2522type%2522%253A%2522FILE%2522%252C%2522filepath%2522%253A%2522%252Fapp%252Fexample.graphql%2522%252C%2522id%2522%253A%2522clozmkicf009c3b6k6wyhyk25%2522%252C%2522mode%2522%253A%2522permanent%2522%257D%255D%252C%2522id%2522%253A%2522clozmri5j00z73b6khzl1dinh%2522%252C%2522activeTabId%2522%253A%2522clozmkicf009c3b6k6wyhyk25%2522%257D%252C%2522clozmri5j00z83b6kjp9rj494%2522%253A%257B%2522tabs%2522%253A%255B%257B%2522id%2522%253A%2522clozm9zun00063b6lvv03tgj1%2522%252C%2522mode%2522%253A%2522permanent%2522%252C%2522type%2522%253A%2522TASK_PORT%2522%252C%2522taskId%2522%253A%2522run%2520tailcall%2522%252C%2522port%2522%253A4000%252C%2522path%2522%253A%2522%2522%257D%255D%252C%2522id%2522%253A%2522clozmri5j00z83b6kjp9rj494%2522%252C%2522activeTabId%2522%253A%2522clozm9zun00063b6lvv03tgj1%2522%257D%252C%2522clozmri5j00z93b6kzni32yac%2522%253A%257B%2522tabs%2522%253A%255B%257B%2522id%2522%253A%2522clozm9zun00043b6ltx1a2v38%2522%252C%2522mode%2522%253A%2522permanent%2522%252C%2522type%2522%253A%2522TASK_LOG%2522%252C%2522taskId%2522%253A%2522run%2520tailcall%2522%257D%255D%252C%2522id%2522%253A%2522clozmri5j00z93b6kzni32yac%2522%252C%2522activeTabId%2522%253A%2522clozm9zun00043b6ltx1a2v38%2522%257D%257D%252C%2522showDevtools%2522%253Atrue%252C%2522showShells%2522%253Atrue%252C%2522showSidebar%2522%253Afalse%252C%2522sidebarPanelSize%2522%253A15%257D"
           >
-            <svg
-              stroke="currentColor"
-              fill="none"
-              strokeWidth="3"
-              viewBox="0 0 24 24"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              height="20"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-            <span>&nbsp;Github</span>
-            <span
-              style={{transition: "max-width 1s", opacity: "1s"}}
-              className="w-full overflow-hidden whitespace-nowrap max-w-[100px] opacity-100"
-            >
-              &nbsp; {stars}
-            </span>
+            Try it out
+          </Link>
+          <Link className="button button--secondary button--lg" to="/docs/getting_started">
+            Get Started
           </Link>
         </div>
       </div>
