@@ -331,10 +331,7 @@ Batching in GraphQL combines multiple requests into one, reducing server round t
 schema @server(
   port: 8000
   enableBatchRequests: true
-) 
-@upstream(baseURL: "http://jsonplaceholder.typicode.com" {
-  query: Query
-}
+)
 ```
 
 #### Trade-offs
