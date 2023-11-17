@@ -324,6 +324,27 @@ schema @upstream(enableHttpCache: false) {
 }
 ```
 
+### enableBatchRequests
+
+Batching in GraphQL combines multiple requests into one, reducing server round trips.
+
+```graphql showLineNumbers
+schema @server(
+  port: 8000
+  enableBatchRequests: true
+)
+```
+
+#### Trade-offs
+
+Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
+
+#### Tips
+
+- Only use batching if necessary and other optimization techniques don't resolve performance issues.
+- Use batching judiciously and monitor its impact.
+- Be aware that batching can complicate debugging
+
 ### batch
 
 An object that specifies the batch settings, including `maxSize` (the maximum size of the batch), `delay` (the delay in milliseconds between each batch), and `headers` (an array of HTTP headers to be included in the batch).
