@@ -93,7 +93,7 @@ If the installation is done correctly it will shown the latest version of the `e
 To run your server in watch mode using `entr`, you'll utilize the `ls` command to list the files you want to monitor. The general syntax is as follows:
 
 ```graphql
-ls *.graphql | entr -r tc start ./jsonplaceholder.graphql
+ls *.graphql | entr -r tailcall start ./jsonplaceholder.graphql
 ```
 
 This command uses `entr` to continuously monitor the `jsonplaceholder.graphql` file and when it changes, It runs the `tc start` command with the file as an argument
