@@ -31,7 +31,7 @@ schema @server(workers: 32) {
 }
 ```
 
-In this example, the `workers` is set to `32`. This means that the Tailcall will use 32 worker threads.
+In this example, the `workers` is set to `32`. This means that the Tailcall server will use 32 worker threads.
 
 ### port
 
