@@ -22,7 +22,7 @@ The various `ServerSettings` options and their details are explained below.
 
 ### workers
 
-`workers` sets the number of worker threads the Tailcall will use. If not specified, the default value is the number of cores available to the system.
+`workers` sets the number of worker threads the server will use. If not specified, the default value is the number of cores available to the system.
 
 ```graphql showLineNumbers
 schema @server(workers: 32) {
