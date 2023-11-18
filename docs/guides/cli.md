@@ -52,15 +52,15 @@ The `start` command launches the TailCall Server, acting as an GraphQL proxy wit
 To start the server, use the following command:
 
 ```bash
-tc start <file1> <file2> ... <fileN>
+tc start <file_path> <http_path>
 ```
 
-The `start` command allows for multiple files. Specify each file path, separated by a space, after the options.
+The `start` command allows for multiple files and supports loading configurations over HTTP. You can mix file system paths with HTTP paths. Specify each path, separated by a space, after the options.
 
 Example:
 
 ```bash
-tc start ./path/to/file1.graphql ./path/to/file2.graphql
+tc start ./path/to/file1.graphql http://example.com/file2.graphql
 ```
 
 ## init
