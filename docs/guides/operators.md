@@ -20,6 +20,19 @@ In this templated structure, replace `...[ServerSettings]...` with specific conf
 
 The various `ServerSettings` options and their details are explained below.
 
+### workers
+
+`workers` sets the number of worker threads the server will use. If not specified, the default value is the number of cores available to the system.
+
+```graphql showLineNumbers
+schema @server(workers: 32) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+In this example, the `workers` is set to `32`. This means that the Tailcall server will use 32 worker threads.
+
 ### port
 
 This refers to the `port` on which the Tailcall will be running. If not specified, the default port is `8000`.
