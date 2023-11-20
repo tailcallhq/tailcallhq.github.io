@@ -11,7 +11,7 @@ Create a file called `jsonplaceholder.graphql` and paste the following contents 
 ```graphql showLineNumbers
 schema
   # Specify server configuration: Start tailcall server at 0.0.0.0:8000 and enable GraphiQL playground
-  @server(port: 8000, enableGraphiql: true)
+  @server(port: 8000, graphiql: true)
   # Specify a base url for all http requests
   @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
