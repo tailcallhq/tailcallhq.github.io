@@ -20,6 +20,19 @@ In this templated structure, replace `...[ServerSettings]...` with specific conf
 
 The various `ServerSettings` options and their details are explained below.
 
+### workers
+
+`workers` sets the number of worker threads the server will use. If not specified, the default value is the number of cores available to the system.
+
+```graphql showLineNumbers
+schema @server(workers: 32) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+In this example, the `workers` is set to `32`. This means that the Tailcall server will use 32 worker threads.
+
 ### port
 
 This refers to the `port` on which the Tailcall will be running. If not specified, the default port is `8000`.
@@ -37,25 +50,25 @@ In this example, the `port` is set to `8090`. This means that the Tailcall will 
 Always lean towards non-standard ports, steering clear of typical ones like 80 or 8080. Ensure your chosen port is unoccupied.
 :::
 
-### enableCacheControlHeader
+### cacheControlHeader
 
-The `enableCacheControlHeader` configuration, when activated, instructs Tailcall to transmit [Cache-Control] headers in its responses. The `max-age` value in the header, is the least of the values in the responses received by tailcall from the upstream services. By default, this is set to `false` meaning no header is set.
+The `cacheControlHeader` configuration, when activated, instructs Tailcall to transmit [Cache-Control] headers in its responses. The `max-age` value in the header, is the least of the values in the responses received by tailcall from the upstream services. By default, this is set to `false` meaning no header is set.
 
 [Cache-Control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 
 ```graphql showLineNumbers
-schema @server(enableCacheControlHeader: true) {
+schema @server(cacheControlHeader: true) {
   query: Query
   mutation: Mutation
 }
 ```
 
-### enableGraphiql
+### graphiql
 
-This configuration dictates the path on which the GraphiQL interface is hosted within Tailcall. [GraphiQL](https://github.com/graphql/graphiql) is a built-in, interactive in-browser GraphQL IDE that simplifies query development and testing. By designating a path, such as `/graphiql`, you grant access to this IDE at that specific URL endpoint, like `http://localhost:8000/graphiql`. If not provided, GraphiQL won't be available. It's a ready-to-use feature in Tailcall, requiring no additional setup.
+The `grahiql` configuration enables the GraphiQL IDE at the root (/) path within Tailcall. GraphiQL is a built-in, interactive in-browser GraphQL IDE, designed to streamline query development and testing. By default, this feature is turned off.
 
 ```graphql showLineNumbers
-schema @server(port: 8000, enableGraphiql: "/graphiql") {
+schema @server(port: 8000, graphiql: true) {
   query: Query
   mutation: Mutation
 }
@@ -87,12 +100,12 @@ In the provided example, a variable named `apiKey` is set with a placeholder val
 Local variables, like `apiKey`, can be instrumental in securing access to external services or providing a unified place for configurations. Ensure that sensitive information stored this way is well protected and not exposed unintentionally, especially if your Tailcall configuration is publicly accessible.
 :::
 
-### enableIntrospection
+### introspection
 
 This setting governs whether introspection queries are permitted on the server. Introspection is an intrinsic feature of GraphQL, allowing clients to fetch information about the schema directly. This can be instrumental for tools and client applications to understand the types, fields, and operations available. By default, this setting is enabled (`true`).
 
 ```graphql showLineNumbers
-schema @server(enableIntrospection: false) {
+schema @server(introspection: false) {
   query: Query
   mutation: Mutation
 }
@@ -102,29 +115,29 @@ schema @server(enableIntrospection: false) {
 Although introspection is beneficial during development and debugging stages, it's wise to consider disabling it in production environments. Turning off introspection in live deployments can enhance security by preventing potential attackers from easily discerning the schema and any associated business logic or data structures.
 :::
 
-### enableQueryValidation
+### queryValidation
 
-The `enableQueryValidation` configuration specifies whether the server should validate incoming GraphQL queries against the defined schema. Validating each query ensures its conformity to the schema, preventing errors from invalid or malformed queries. However, there are situations where you might opt to disable it, notably when seeking to **enhance server performance** at the cost of such checks. This defaults to `true` if not specified.
+The `queryValidation` configuration specifies whether the server should validate incoming GraphQL queries against the defined schema. Validating each query ensures its conformity to the schema, preventing errors from invalid or malformed queries. However, there are situations where you might opt to disable it, notably when seeking to **enhance server performance** at the cost of such checks. This defaults to `false` if not specified.
 
 ```graphql showLineNumbers
-schema @server(enableQueryValidation: false) {
+schema @server(queryValidation: true) {
   query: Query
   mutation: Mutation
 }
 ```
 
-In the example above, `enableQueryValidation` is set to `false`, bypassing the validation phase for incoming queries.
+In the example above, `queryValidation` is set to `true`, enabling the validation phase for incoming queries.
 
 :::tip
 This should be enabled in dev environment to make sure the queries sent are correct and validated, however in production env, you could consider disabling it for improved performance.
 :::
 
-### enableResponseValidation
+### responseValidation
 
-Tailcall automatically can infer the schema of the http endpoints for you. This information can be used to validate responses that are received from the upstream services. Enabling this setting allows you to perform exactly that. If this is not specified, the default setting for `enableResponseValidation` is `false`.
+Tailcall automatically can infer the schema of the http endpoints for you. This information can be used to validate responses that are received from the upstream services. Enabling this setting allows you to perform exactly that. If this is not specified, the default setting for `responseValidation` is `false`.
 
 ```graphql showLineNumbers
-schema @server(enableResponseValidation: true) {
+schema @server(responseValidation: true) {
   query: Query
   mutation: Mutation
 }
@@ -313,16 +326,37 @@ Ensure that your base URL remains free from specific path segments.
 
 :::
 
-### enableHttpCache
+### httpCache
 
 When activated, directs Tailcall to utilize HTTP caching mechanisms. These mechanisms, in accordance with the [HTTP Caching RFC](https://tools.ietf.org/html/rfc7234), are designed to improve performance by reducing unnecessary data fetches. If left unspecified, this feature defaults to `false`.
 
 ```graphql showLineNumbers
-schema @upstream(enableHttpCache: false) {
+schema @upstream(httpCache: false) {
   query: Query
   mutation: Mutation
 }
 ```
+
+### batchRequests
+
+Batching in GraphQL combines multiple requests into one, reducing server round trips.
+
+```graphql showLineNumbers
+schema @server(
+  port: 8000
+  batchRequests: true
+)
+```
+
+#### Trade-offs
+
+Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
+
+#### Tips
+
+- Only use batching if necessary and other optimization techniques don't resolve performance issues.
+- Use batching judiciously and monitor its impact.
+- Be aware that batching can complicate debugging
 
 ### batch
 
