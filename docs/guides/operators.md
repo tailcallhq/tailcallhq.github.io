@@ -189,10 +189,10 @@ schema @server(cert: "./cert.pem") {
 ```
 
 <!-- prefer to use standard extension libraries -->
+
 :::tip
 The certificate can be of any extension, but it's highly recommended to use standards (`pem`, `crt`, `key`).
 :::
-
 
 ### key
 
