@@ -4,7 +4,7 @@
  * work well for content-centric websites.
  */
 
-@import url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Space+Mono&display=swap");
 
 /* You can override the default Infima variables here. */
 :root {
@@ -17,7 +17,7 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-font-family-base: "Roboto Slab", sans-serif;
+  --ifm-font-family-base: "Space Grotesk", sans-serif;
   --ifm-container-width-xl: 1024px;
   font-weight: 400;
   --ifm-h1-font-size: 6em;
@@ -54,7 +54,7 @@
 }
 
 pre code {
-  font-family: "Fira Mono" monospace;
+  font-family: "Space Mono" monospace !important;
   font-weight: 500;
 }
 
