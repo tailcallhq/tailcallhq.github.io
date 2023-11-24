@@ -2,12 +2,34 @@
 title: Launch
 sidebar_position: 3
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Now, run the following command to start the server with the full path to the `jsonplaceholder.graphql` file that you created above.
+Now, run the following command to start the server with the full path to the file that you created earlier.
+
+<Tabs>
+<TabItem value="graphql" label="graphql">
 
 ```bash
 tailcall start ./jsonplaceholder.graphql
 ```
+
+</TabItem>
+<TabItem value="yml" label="yml">
+
+```bash
+tailcall start ./jsonplaceholder.yml
+```
+
+</TabItem>
+<TabItem value="json" label="json">
+
+```bash
+tailcall start ./jsonplaceholder.json
+```
+
+</TabItem>
+</Tabs>
 
 If the command succeeds, you should see logs like the following below.
 
