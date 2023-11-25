@@ -166,6 +166,49 @@ In this given example, the `globalResponseTimeout` is set to `5000` milliseconds
 It's crucial to set an appropriate response timeout, especially in production environments. This not only optimizes resource utilization but also acts as a security measure against potential denial-of-service attacks where adversaries might run complex queries to exhaust server resources.
 :::
 
+### http
+
+The version of HTTP to be used by the server. If not specified, the default value is `HTTP1`. The available options are `HTTP1` and `HTTP2`.
+
+```graphql showLineNumbers
+schema @server(http: HTTP2) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+### cert
+
+The path to certificate(s) to be used when running the server over HTTP2 (HTTPS). If not specified, the default value is `null`.
+
+```graphql showLineNumbers
+schema @server(cert: "./cert.pem") {
+  query: Query
+  mutation: Mutation
+}
+```
+
+<!-- prefer to use standard extension libraries -->
+
+:::tip
+The certificate can be of any extension, but it's highly recommended to use standards (`pem`, `crt`, `key`).
+:::
+
+### key
+
+The path to key to be used when running the server over HTTP2 (HTTPS). If not specified, the default value is `null`.
+
+```graphql showLineNumbers
+schema @server(key: "./key.pem") {
+  query: Query
+  mutation: Mutation
+}
+```
+
+:::tip
+The key can be of any extension, but it's highly recommended to use standards (`pem`, `crt`, `key`).
+:::
+
 ## @upstream
 
 The `upstream` directive allows you to control various aspects of the upstream server connection. This includes settings like connection timeouts, keep-alive intervals, and more. If not specified, default values are used.
