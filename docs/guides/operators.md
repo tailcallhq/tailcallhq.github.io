@@ -153,6 +153,15 @@ In this given example, the `globalResponseTimeout` is set to `5000` milliseconds
 It's crucial to set an appropriate response timeout, especially in production environments. This not only optimizes resource utilization but also acts as a security measure against potential denial-of-service attacks where adversaries might run complex queries to exhaust server resources.
 :::
 
+### responseHeaders
+
+The `responseHeaders` directive allows you to specify additional HTTP response headers that should be included when responding to GraphQL resquest.In this expample it set to include a response header with the key `"a"` and the value `"a \n b`, where `\n` denotes a newline character seperating `"a \n b"`
+
+```graphql showLineNumbers
+schema @upstream(responseHeaders: [{key: "a", value:"a \n b"}])
+  query: Query
+```
+
 ## @upstream
 
 The `upstream` directive allows you to control various aspects of the upstream server connection. This includes settings like connection timeouts, keep-alive intervals, and more. If not specified, default values are used.
