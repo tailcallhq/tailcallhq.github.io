@@ -2,11 +2,20 @@
 title: Configuration
 sidebar_position: 2
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 For our first example, we are going to compose a GraphQL schema from the REST APIs at <a href="https://jsonplaceholder.typicode.com" target="_blank">https://jsonplaceholder.typicode.com</a>, a free online REST API with some fake data.
 We will use the API at `/users` to get a list of users, and `/users/:id/posts` to get the posts for each user, and compose them into a single GraphQL schema.
 
-Create a file called `jsonplaceholder.graphql` and paste the following contents into it.
+We can use the following formats to define our GraphQL schema: `.graphql`, `.yml`, `.json`.
+
+Create one of the following files and paste the contents into it.
+
+<Tabs>
+<TabItem value="graphql" label="graphql">
+
+`jsonplaceholder.graphql`
 
 ```graphql showLineNumbers
 schema
@@ -41,5 +50,157 @@ type Post {
   body: String!
 }
 ```
+
+</TabItem>
+<TabItem value="yml" label="yml">
+
+`jsonplaceholder.yml`
+
+```yml showLineNumbers 
+server:
+  port: 8000
+  graphiql: true
+  queryValidation: false
+  hostname: "0.0.0.0"
+upstream:
+  baseURL: "http://jsonplaceholder.typicode.com"
+  httpCache: true
+schema:
+  query: Query
+types:
+  Post:
+    fields:
+      body:
+        type: String
+        required: true
+      id:
+        type: Int
+        required: true
+      title:
+        type: String
+        required: true
+      user:
+        type: User
+        http:
+          path: /users/{{value.userId}}
+      userId:
+        type: Int
+        required: true
+  Query:
+    fields:
+      posts:
+        type: Post
+        list: true
+        http:
+          path: /posts
+  User:
+    fields:
+      email:
+        type: String
+        required: true
+      id:
+        type: Int
+        required: true
+      name:
+        type: String
+        required: true
+      phone:
+        type: String
+      username:
+        type: String
+        required: true
+      website:
+        type: String
+```
+
+</TabItem>
+<TabItem value="json" label="json">
+
+`jsonplaceholder.json`
+
+```json showLineNumbers
+{
+  "server": {
+    "port": 8000,
+    "graphiql": true,
+    "queryValidation": false,
+    "hostname": "0.0.0.0"
+  },
+  "upstream": {
+    "baseURL": "http://jsonplaceholder.typicode.com",
+    "httpCache": true
+  },
+  "schema": {
+    "query": "Query"
+  },
+  "types": {
+    "Post": {
+      "fields": {
+        "body": {
+          "type": "String",
+          "required": true
+        },
+        "id": {
+          "type": "Int",
+          "required": true
+        },
+        "title": {
+          "type": "String",
+          "required": true
+        },
+        "user": {
+          "type": "User",
+          "http": {
+            "path": "/users/{{value.userId}}"
+          }
+        },
+        "userId": {
+          "type": "Int",
+          "required": true
+        }
+      }
+    },
+    "Query": {
+      "fields": {
+        "posts": {
+          "type": "Post",
+          "list": true,
+          "http": {
+            "path": "/posts"
+          }
+        }
+      }
+    },
+    "User": {
+      "fields": {
+        "email": {
+          "type": "String",
+          "required": true
+        },
+        "id": {
+          "type": "Int",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "required": true
+        },
+        "phone": {
+          "type": "String"
+        },
+        "username": {
+          "type": "String",
+          "required": true
+        },
+        "website": {
+          "type": "String"
+        }
+      }
+    }
+  }
+}
+```
+</TabItem>
+</Tabs>
 
 The above file is a standard `.graphQL` file, with a few additions such as `@upstream` and `@http` directives. So basically we specify the GraphQL schema and how to resolve that GraphQL schema in the same file, without having to write any code!
