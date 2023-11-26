@@ -149,11 +149,11 @@ Disabling this setting will offer major performance improvements, but at the pot
 
 ### responseHeaders
 
-The `responseHeader` is an array of key-value pairs. These headers are added to the response of every request made to the server. This can be useful for adding headers like `Access-Control-Allow-Origin` to allow cross-origin requests, or some 
+The `responseHeader` is an array of key-value pairs. These headers are added to the response of every request made to the server. This can be useful for adding headers like `Access-Control-Allow-Origin` to allow cross-origin requests, or some
 additional headers like `X-Allowed-Roles` to be used by the downstream services.
 
 ```graphql showLineNumbers
-schema @server(responseHeaders: [{key: "X-Allowed-Roles", value:"admin,user"}]) {
+schema @server(responseHeaders: [{key: "X-Allowed-Roles", value: "admin,user"}]) {
   query: Query
   mutation: Mutation
 }
