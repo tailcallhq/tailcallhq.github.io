@@ -52,7 +52,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: "Extendable",
+    title: "Extendability",
     description: (
       <>
         Tailcall's <span className="highlight">plugin-centric</span> extendability empowers enterprises to craft custom
