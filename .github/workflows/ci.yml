@@ -22,6 +22,12 @@ jobs:
           npx prettier --check "**/*.{graphql,yml,json,md,sh}"
           npm run build
 
+      - name: Install cSpell
+        run: npm install -g cspell
+
+      - name: Spell Check 📝
+        run: npx cspell "**/*.{graphql,yml,json,md,sh}"
+
       - name: Deploy 🚀
         if: github.ref == 'refs/heads/develop'
         uses: JamesIves/github-pages-deploy-action@v4
