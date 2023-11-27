@@ -23,8 +23,8 @@ function HomepageHeader() {
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">
-          <div>Zero Code</div>
-          <div>GraphQL Backend</div>
+          <div>API platform</div>
+          <div>engineered for scale</div>
         </h1>
         <p className="hero__subtitle">Bootstrap Instantly . Iterate Effortlessly . Scale Fearlessly</p>
         <div className={styles.buttons}>
