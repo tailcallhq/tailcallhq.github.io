@@ -11,7 +11,7 @@ Developers often find themselves in situations where they need to run a server i
 Running a server in watch mode offers several key benefits:
 
 - `Real-time Feedback` : Watch mode ensures that your server stays up-to-date with your code changes. It immediately reflects those changes, providing you with real-time feedback during development.
-- `Efficency` : Manually restarting the server each time you modify code can be tedious and time-consuming. Watch mode automates this process, making development more efficient.
+- `Efficiency` : Manually restarting the server each time you modify code can be tedious and time-consuming. Watch mode automates this process, making development more efficient.
 - `Debugging` : It helps you quickly identify and fix issues as they arise, reducing the debugging time. When your server automatically restarts upon code changes, you catch errors sooner.
 
 ## Using `entr`
