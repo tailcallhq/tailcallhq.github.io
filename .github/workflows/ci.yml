@@ -18,7 +18,7 @@ jobs:
 
       - name: Check spelling
         uses: codespell-project/actions-codespell@v2
-        with: 
+        with:
           skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,package.json,package-lock.json,*.lock
           ignore_words_list: unit
 
