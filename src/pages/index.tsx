@@ -23,10 +23,13 @@ function HomepageHeader() {
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">
-          <div>Zero Code</div>
-          <div>GraphQL Backend</div>
+          <div>API platform</div>
+          <div>engineered for scale</div>
         </h1>
-        <p className="hero__subtitle">Bootstrap Instantly . Iterate Effortlessly . Scale Fearlessly</p>
+        <p className="hero__subtitle">
+          A cloud native solution to streamline API management across <b>edge</b>, <b>middle</b>, and <b>service</b>{" "}
+          layers.
+        </p>
         <div className={styles.buttons}>
           <Link
             className="button button--primary button--lg"
@@ -46,10 +49,7 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext()
   return (
-    <Layout
-      title="GraphQL Infrastructure for Microservices"
-      description="Simplify your edge layer with Tailcall's developer platform."
-    >
+    <Layout title="API Platform" description="API Platform engineered for scale.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

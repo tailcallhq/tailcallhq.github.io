@@ -138,3 +138,12 @@ blockquote::before {
 .star-count {
   font-weight: bold;
 }
+
+.highlight {
+  background-color: rgb(225, 255, 0);
+  border-radius: 8px;
+  padding: 4px 8px;
+  box-shadow: none;
+  font-weight: bold;
+  white-space: nowrap;
+}
