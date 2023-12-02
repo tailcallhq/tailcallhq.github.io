@@ -75,11 +75,11 @@ const config = {
 
   themeConfig: {
     navbar: {
-      title: title,
+      // title: title,
       hideOnScroll: false,
       logo: {
         alt: "Tailcall Logo",
-        src: "img/logo-light.svg",
+        src: "img/logo-v1.svg",
       },
       items: [
         {to: "/about", label: "About", position: "right"},
