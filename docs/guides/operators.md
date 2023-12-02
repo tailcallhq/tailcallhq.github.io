@@ -569,7 +569,7 @@ type User {
 
 ## @addField
 
-The `@addField` operator simplifies data structures and queries by adding a field that _inlines_ or flattens a nested field or node within your schema. It works by modifying the schema and the data transformation process, simplifiying how nested data is accessed and presented.
+The `@addField` operator simplifies data structures and queries by adding a field that _inlines_ or flattens a nested field or node within your schema. It works by modifying the schema and the data transformation process, simplifying how nested data is accessed and presented.
 
 For instance, consider a schema:
 
