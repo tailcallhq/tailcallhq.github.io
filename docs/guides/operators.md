@@ -147,6 +147,18 @@ schema @server(responseValidation: true) {
 Disabling this setting will offer major performance improvements, but at the potential expense of data.
 :::
 
+### responseHeaders
+
+The `responseHeader` is an array of key-value pairs. These headers are added to the response of every request made to the server. This can be useful for adding headers like `Access-Control-Allow-Origin` to allow cross-origin requests, or some
+additional headers like `X-Allowed-Roles` to be used by the downstream services.
+
+```graphql showLineNumbers
+schema @server(responseHeaders: [{key: "X-Allowed-Roles", value: "admin,user"}]) {
+  query: Query
+  mutation: Mutation
+}
+```
+
 ### globalResponseTimeout
 
 The `globalResponseTimeout` configuration determines the maximum duration a query is allowed to run before it's terminated by the server. Essentially, it acts as a safeguard against long-running queries that could strain resources or pose security concerns.
