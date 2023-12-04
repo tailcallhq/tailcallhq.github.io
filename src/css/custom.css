@@ -147,3 +147,7 @@ blockquote::before {
   font-weight: bold;
   white-space: nowrap;
 }
+
+* {
+  letter-spacing: -0.02em;
+}
