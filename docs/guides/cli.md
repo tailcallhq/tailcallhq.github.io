@@ -47,7 +47,7 @@ tailcall check --schema ./path/to/file1.graphql ./path/to/file2.graphql
 
 ## start
 
-The `start` command launches the TailCall Server, acting as an GraphQL proxy with specific configurations. The server can publish various GraphQL configurations, also known as [composition specs].
+The `start` command launches the TailCall Server, acting as an GraphQL proxy with specific configurations. The server can publish various GraphQL configurations.
 
 To start the server, use the following command:
 
@@ -72,6 +72,3 @@ tailcall init <file_path>
 ```
 
 This command prompts for additional file creation and configuration, creating a `.tailcallrc.graphql` file by default.
-
-[composition specs]: /docs/intro/architecture#composition-specification-blueprint
-[architecture]: /docs/intro/architecture
