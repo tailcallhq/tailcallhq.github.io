@@ -23,7 +23,7 @@ const Feature = ({feature}: FeatureProps) => {
       </div>
 
       <div
-        className="flex flex-col sm:flex-row p-4 sm:p-10 justify-between shadow-xl rounded-[20px] relative ml-10 sm:ml-0"
+        className="flex flex-col sm:flex-row p-4 sm:p-10  shadow-xl rounded-[20px] relative ml-10 sm:ml-0"
         style={{
           backgroundImage: `url(${require("@site/static/images/home/grid.jpg").default})`,
           boxShadow: "0px 0px 0px 3px #F3F4F7",
@@ -37,8 +37,8 @@ const Feature = ({feature}: FeatureProps) => {
           </span>
           <span>{feature.description2}</span>
         </p>
-        <div className="sm:mt-32">
-          <img src={feature.logo} alt={feature.title} />
+        <div className="sm:mt-20">
+          <feature.logo className="w-full h-full object-contain" />
         </div>
       </div>
     </div>
