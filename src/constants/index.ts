@@ -155,3 +155,24 @@ export const socials: Social[] = [
     href: "/",
   },
 ]
+
+export const chooseTailcall: ChooseTailcall[] = [
+  {
+    id: 1,
+    title: "Top developer experience",
+    description: "Design your APIs, with syntax highlighting and lint checks within your favourite IDE.",
+    Image: require("@site/static/icons/basic/rocket.svg").default,
+  },
+  {
+    id: 2,
+    title: "Performance",
+    description: "Get performance that’s higher than your hand optimized implementation",
+    Image: require("@site/static/icons/basic/performance.svg").default,
+  },
+  {
+    id: 3,
+    title: "Scale Fearlessly",
+    description: "Leverage built-in best practices that guarantee robustness at any scale.",
+    Image: require("@site/static/icons/basic/scale.svg").default,
+  },
+]
