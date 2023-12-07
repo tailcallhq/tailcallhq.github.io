@@ -39,7 +39,7 @@ export const partnerImages: PartnerImage[] = [
 export const features: Feature[] = [
   {
     id: 1,
-    logo: require("@site/static/images/home/orchestration.jpg").default,
+    logo: require("@site/static/images/home/efficiency.svg").default,
     title: "Orchestration",
     description1:
       "Harness the power of Tailcall's advanced orchestration primitives, designed for large-scale API management. Effortlessly interface with  ",
@@ -49,7 +49,7 @@ export const features: Feature[] = [
   },
   {
     id: 2,
-    logo: require("@site/static/images/home/orchestration.jpg").default,
+    logo: require("@site/static/images/home/efficiency.svg").default,
     title: "Governance",
     description1: "Implement robust governance and security across your API landscape using our ",
     highlightedText: "code-based governance",
@@ -58,7 +58,7 @@ export const features: Feature[] = [
   },
   {
     id: 3,
-    logo: require("@site/static/images/home/efficiency.jpg").default,
+    logo: require("@site/static/images/home/efficiency.svg").default,
     title: "Efficiency",
     description1: "Tailcall brings breakthrough performance optimizations, integrating ",
     highlightedText: "enterprise-specific tuning ",
@@ -67,7 +67,7 @@ export const features: Feature[] = [
   },
   {
     id: 4,
-    logo: require("@site/static/images/home/resiliency.jpg").default,
+    logo: require("@site/static/images/home/resiliency.svg").default,
     title: "Resiliency",
     description1:
       "Engineered for enterprise resilience, Tailcall guarantees robust performance under any conditions. Our platform is designed for ",
@@ -76,7 +76,7 @@ export const features: Feature[] = [
   },
   {
     id: 5,
-    logo: require("@site/static/images/home/extendability.jpg").default,
+    logo: require("@site/static/images/home/extendability.svg").default,
     title: "Extendability",
     description1: "Tailcall's ",
     highlightedText: "plugin-centric",
@@ -89,32 +89,32 @@ export const moreFeatures: MoreFeatures[] = [
   {
     id: 1,
     title: "Powerful Batching Primitive",
-    logo: require("@site/static/icons/basic/clock.svg").default,
+    logo: require("@site/static/icons/basic/rocket-icon.svg").default,
   },
   {
     id: 2,
     title: "Extensions with plugins and JS support",
-    logo: require("@site/static/icons/basic/clock.svg").default,
+    logo: require("@site/static/icons/basic/extension.svg").default,
   },
   {
     id: 3,
     title: "Field based Authentication & Authorisation",
-    logo: require("@site/static/icons/basic/clock.svg").default,
+    logo: require("@site/static/icons/basic/shield.svg").default,
   },
   {
     id: 4,
     title: "Protocol agnostic",
-    logo: require("@site/static/icons/basic/clock.svg").default,
+    logo: require("@site/static/icons/basic/check-done.svg").default,
   },
   {
     id: 5,
     title: "Performance",
-    logo: require("@site/static/icons/basic/clock.svg").default,
+    logo: require("@site/static/icons/basic/line-chart-up.svg").default,
   },
   {
     id: 6,
     title: "Security",
-    logo: require("@site/static/icons/basic/lock.svg").default,
+    logo: require("@site/static/icons/basic/security.svg").default,
   },
   {
     id: 7,
