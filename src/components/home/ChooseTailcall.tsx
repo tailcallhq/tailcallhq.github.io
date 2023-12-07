@@ -11,6 +11,7 @@ const ChooseTailcall = () => {
         {chooseTailcall.map((item) => (
           <div
             className="sm:max-w-md rounded-3xl p-4"
+            key={item.id}
             // TODO: Tailwind border not getting applied
             style={{
               border: "1px solid #2C2C2C",
