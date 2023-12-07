@@ -1,6 +1,6 @@
 import React from "react"
 
-import GtU from "@site/static/icons/basic/gt-undescore-gray.svg"
+import GreaterThanUnderscoreIcon from "@site/static/icons/basic/gt-undescore-gray.svg"
 import ApiImage from "@site/static/images/home/work-with-api.jpg"
 import ApiImageMobile from "@site/static/images/home/work-with-api-mobile.png"
 
@@ -9,7 +9,7 @@ const LegacyGateway = () => {
     <section className="w-full my-12">
       <div className="max-w-7xl mx-7 sm:mx-auto sm:my-20">
         <div className="text-content-tiny sm:text-title-tiny text-tailCall-light-500 space-x-1">
-          <GtU className="h-3 sm:h-4 w-6" />
+          <GreaterThanUnderscoreIcon className="h-3 sm:h-4 w-6" />
           <span>The Problem</span>
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-20">
