@@ -1,9 +1,20 @@
-import React from "react"
+import React, {FunctionComponent, SVGProps} from "react"
 
 import {features} from "@site/src/constants"
 import GreaterThanUnderscoreIcon from "@site/static/icons/basic/gt-underscore.svg"
 
-const Feature = ({feature}) => {
+type FeatureProps = {
+  feature: {
+    id: number
+    logo: string | FunctionComponent<SVGProps<SVGSVGElement>>
+    title: string
+    description1: string
+    highlightedText: string
+    description2: string
+  }
+}
+
+const Feature = ({feature}: FeatureProps) => {
   return (
     <div key={feature.id} className="text-tailCall-dark-500 sm:max-w-6xl mx-7 sm:mx-auto my-0 sm:my-20">
       <div className="flex items-center sm:space-x-2 sm:-ml-10 mb-6">
@@ -27,7 +38,7 @@ const Feature = ({feature}) => {
           <span>{feature.description2}</span>
         </p>
         <div className="sm:mt-32">
-          <img src={feature.Svg} alt={feature.title} />
+          <img src={feature.logo} alt={feature.title} />
         </div>
       </div>
     </div>
