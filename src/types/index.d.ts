@@ -25,3 +25,10 @@ type Social = {
   image: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
   href: string
 }
+
+type ChooseTailcall = {
+  id: number
+  title: string
+  description: string
+  Image: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+}
