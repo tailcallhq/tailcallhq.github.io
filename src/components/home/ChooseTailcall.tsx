@@ -18,7 +18,7 @@ const ChooseTailcall = () => {
             }}
           >
             <div className="h-16 w-16 sm:w-full sm:h-full">
-              <item.Image />
+              <item.image />
             </div>
             <br className="h-10 sm:hidden" />
             <p className="text-title-small sm:text-title-large mt-10 mb-2 sm:mb-0">{item.title}</p>
