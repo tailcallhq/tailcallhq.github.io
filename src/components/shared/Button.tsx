@@ -3,7 +3,7 @@ import {SVGProps} from "react"
 
 type ButtonProps = {
   title?: string
-  icon?: React.ComponentType<SVGProps<SVGSVGElement>>
+  icon?: React.ComponentType<SVGProps<SVGSVGElement>> | string
   theme: "light" | "dark" | "gray"
   onClick: () => void
 }
