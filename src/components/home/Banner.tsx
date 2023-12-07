@@ -1,5 +1,6 @@
 import React from "react"
 import Button from "../shared/Button"
+import HeroImage from "@site/static/images/home/hero.svg"
 
 const Banner = () => {
   return (
@@ -18,6 +19,8 @@ const Banner = () => {
           <Button title="Get in touch" onClick={() => {}} theme="dark" />
           <Button title="Know More" onClick={() => {}} theme="light" />
         </div>
+
+        <HeroImage className="object-contain h-full sm:h-full w-full mt-10" />
       </div>
     </main>
   )
