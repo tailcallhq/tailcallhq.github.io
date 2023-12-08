@@ -176,3 +176,136 @@ export const chooseTailcall: ChooseTailcall[] = [
     image: require("@site/static/icons/basic/scale.svg").default,
   },
 ]
+
+export const founders: Founder[] = [
+  {
+    id: 1,
+    name: "Tushar Mathur",
+    title: "Founder & CEO",
+    image: require("@site/static/images/about/tushar.jpg").default,
+    socialLinks: [
+      {
+        id: 1,
+        name: "linkedin",
+        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
+        href: "/",
+      },
+      {
+        id: 2,
+        name: "twitter",
+        image: require("@site/static/icons/companies/twitter-gray.svg").default,
+        href: "/",
+      },
+      {
+        id: 3,
+        name: "discord",
+        image: require("@site/static/icons/companies/discord-gray.svg").default,
+        href: "/",
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "Amit Kumar Singh",
+    title: "Founding Engineer",
+    image: require("@site/static/images/about/tushar.jpg").default,
+    socialLinks: [
+      {
+        id: 1,
+        name: "linkedin",
+        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
+        href: "/",
+      },
+      {
+        id: 2,
+        name: "twitter",
+        image: require("@site/static/icons/companies/twitter-gray.svg").default,
+        href: "/",
+      },
+      {
+        id: 3,
+        name: "discord",
+        image: require("@site/static/icons/companies/discord-gray.svg").default,
+        href: "/",
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "Shashi Kant",
+    title: "Founding Engineer",
+    image: require("@site/static/images/about/tushar.jpg").default,
+    socialLinks: [
+      {
+        id: 1,
+        name: "linkedin",
+        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
+        href: "/",
+      },
+      {
+        id: 2,
+        name: "twitter",
+        image: require("@site/static/icons/companies/twitter-gray.svg").default,
+        href: "/",
+      },
+      {
+        id: 3,
+        name: "discord",
+        image: require("@site/static/icons/companies/discord-gray.svg").default,
+        href: "/",
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: "Kiryl Mialeshka",
+    title: "Founding Engineer",
+    image: require("@site/static/images/about/tushar.jpg").default,
+    socialLinks: [
+      {
+        id: 1,
+        name: "linkedin",
+        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
+        href: "/",
+      },
+      {
+        id: 2,
+        name: "twitter",
+        image: require("@site/static/icons/companies/twitter-gray.svg").default,
+        href: "/",
+      },
+      {
+        id: 3,
+        name: "discord",
+        image: require("@site/static/icons/companies/discord-gray.svg").default,
+        href: "/",
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: "Sujeet Sreenivasan",
+    title: "Founding Engineer",
+    image: require("@site/static/images/about/tushar.jpg").default,
+    socialLinks: [
+      {
+        id: 1,
+        name: "linkedin",
+        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
+        href: "/",
+      },
+      {
+        id: 2,
+        name: "twitter",
+        image: require("@site/static/icons/companies/twitter-gray.svg").default,
+        href: "/",
+      },
+      {
+        id: 3,
+        name: "discord",
+        image: require("@site/static/icons/companies/discord-gray.svg").default,
+        href: "/",
+      },
+    ],
+  },
+]
