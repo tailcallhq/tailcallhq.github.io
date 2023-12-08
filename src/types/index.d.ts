@@ -32,3 +32,11 @@ type ChooseTailcall = {
   description: string
   image: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 }
+
+type Founder = {
+  id: number
+  name: string
+  title: string
+  image: string
+  socialLinks: Social[]
+}
