@@ -309,3 +309,42 @@ export const founders: Founder[] = [
     ],
   },
 ]
+
+export const investors: Investor[] = [
+  {
+    id: 1,
+    image: require("@site/static/images/about/investor-1.jpg").default,
+    name: "Bruce Wayne",
+    title: "Investor",
+  },
+  {
+    id: 2,
+    image: require("@site/static/images/about/investor-1.jpg").default,
+    name: "Harvey Dent",
+    title: "Investor",
+  },
+  {
+    id: 3,
+    image: require("@site/static/images/about/investor-1.jpg").default,
+    name: "James Gordon",
+    title: "Investor",
+  },
+  {
+    id: 4,
+    image: require("@site/static/images/about/investor-1.jpg").default,
+    name: "Rachel Dawes",
+    title: "Investor",
+  },
+  {
+    id: 5,
+    image: require("@site/static/images/about/investor-1.jpg").default,
+    name: "Bruce Wayne",
+    title: "Investor",
+  },
+  {
+    id: 6,
+    image: require("@site/static/images/about/investor-1.jpg").default,
+    name: "Bruce Wayne",
+    title: "Investor",
+  },
+]

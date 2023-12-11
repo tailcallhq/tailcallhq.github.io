@@ -40,3 +40,10 @@ type Founder = {
   image: string
   socialLinks: Social[]
 }
+
+type Investor = {
+  id: number
+  image: string
+  name: string
+  title: string
+}
