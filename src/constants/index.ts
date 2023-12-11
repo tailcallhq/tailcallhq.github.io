@@ -209,3 +209,31 @@ export const enterpriseFeatures: EnterpriseFeature[] = [
     description: "Connect to GRPC services just like you connect to Http.",
   },
 ]
+
+export const additionalEnterpriseFeatures = [
+  {
+    id: 1,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+  {
+    id: 2,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+  {
+    id: 3,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+  {
+    id: 4,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+  {
+    id: 5,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+]
