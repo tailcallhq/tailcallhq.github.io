@@ -176,3 +176,36 @@ export const chooseTailcall: ChooseTailcall[] = [
     image: require("@site/static/icons/basic/scale.svg").default,
   },
 ]
+
+export const enterpriseFeatures: EnterpriseFeature[] = [
+  {
+    id: 1,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+    description: "Adaptive optimisation by analysing the hot queries in your Production environment",
+  },
+  {
+    id: 2,
+    logo: require("@site/static/icons/basic/rate-limit.svg").default,
+    title: "Global rate limiting",
+    description: "Ability to set global rate limits on access of each field of your data graph.",
+  },
+  {
+    id: 3,
+    logo: require("@site/static/icons/basic/reflect.svg").default,
+    title: "Managed Solution",
+    description: "The change in any Tailcall config gets seamlessly reflected on your GraphQL. ",
+  },
+  {
+    id: 4,
+    logo: require("@site/static/icons/basic/insight.svg").default,
+    title: "Telemetry",
+    description: "Low level insights of execute vs IO time for each query.",
+  },
+  {
+    id: 5,
+    logo: require("@site/static/icons/basic/connect.svg").default,
+    title: "GRPC",
+    description: "Connect to GRPC services just like you connect to Http.",
+  },
+]

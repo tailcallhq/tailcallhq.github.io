@@ -32,3 +32,10 @@ type ChooseTailcall = {
   description: string
   image: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 }
+
+type EnterpriseFeature = {
+  id: number
+  logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  title: string
+  description: string
+}
