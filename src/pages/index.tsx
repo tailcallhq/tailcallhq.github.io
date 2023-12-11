@@ -6,6 +6,7 @@ import clsx from "clsx"
 import React, {useEffect, useState} from "react"
 
 import styles from "./index.module.css"
+import CodeBlock from "@theme/CodeBlock"
 
 function HomepageHeader() {
   const fetchStars = async () => {
@@ -37,12 +38,49 @@ function HomepageHeader() {
           >
             Try it out
           </Link>
-          <Link className="button button--secondary button--lg" to="/docs/getting_started">
+          <Link className="button button--secondary button--lg" to="#get-started">
             Get Started
           </Link>
         </div>
       </div>
     </header>
+  )
+}
+
+function Configuration(): JSX.Element {
+  return (
+    <CodeBlock language="graphql">
+      {`# app.graphql
+
+schema
+  @server(port: 8000, graphiql: true)
+  @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+}
+
+type Query {
+  users: [User] @http(path: "/users")
+  posts: [Post] @http(path: "/posts")
+}
+
+type User {
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
+}
+
+
+type Post {
+  id: Int!
+  title: String!
+  body: String!
+  userId: Int!
+  # Expand a post with user information
+  user: User @http(path: "/users/{{value.userId}}")
+}
+`}
+    </CodeBlock>
   )
 }
 
@@ -52,6 +90,32 @@ export default function Home(): JSX.Element {
     <Layout title="API Platform" description="API Platform engineered for scale.">
       <HomepageHeader />
       <main>
+        <div>
+          <div className="container" id="get-started">
+            <div className="row">
+              <div className="col col--4">
+                <h3>Get Started</h3>
+                <div>
+                  <p>
+                    Setup the Tailcall instantly via npm and unlock the power of high-performance API orchestration.
+                  </p>
+                  <b>More</b>
+                  <p>
+                    Dive deeper into TailCall. Visit our <Link to="/docs/getting_started/">Documentation</Link>
+                    &nbsp;for detailed tutorials. Ideal for devs at any level, it’s packed with advanced tips and best
+                    practices.
+                  </p>
+                </div>
+              </div>
+              <div className="col col--8">
+                <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
+                <Configuration />
+                <CodeBlock language="bash">tailcall start ./app.graphql</CodeBlock>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <HomepageFeatures />
       </main>
       <img
