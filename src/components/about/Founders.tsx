@@ -1,8 +1,5 @@
 import React from "react"
 
-import LinkedIn from "@site/static/icons/companies/linkedIn-gray.svg"
-import Twitter from "@site/static/icons/companies/twitter-gray.svg"
-import Discord from "@site/static/icons/companies/discord-gray.svg"
 import {founders} from "@site/src/constants"
 import Link from "@docusaurus/Link"
 
