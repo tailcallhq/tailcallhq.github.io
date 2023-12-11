@@ -237,3 +237,82 @@ export const additionalEnterpriseFeatures = [
     title: "Adaptive performance improvements",
   },
 ]
+
+export const pricingPlans: PricingPlans[] = [
+  {
+    id: 1,
+    name: "Basic plan",
+    price: "Free",
+    for: "For individuals & small companies",
+    billing: "Billed Annually",
+    volumeDiscounts: "",
+    features: [
+      {
+        id: 1,
+        name: "Access to all basic features",
+      },
+      {
+        id: 2,
+        name: "Basic reporting and analytics",
+      },
+    ],
+    buttonText: "Start Free trial",
+    mostPopular: false,
+  },
+  {
+    id: 2,
+    name: "Standard plan",
+    price: "$20/month",
+    for: "per core",
+    billing: "Billed Annually",
+    volumeDiscounts: "(Volume discounts available)",
+    features: [
+      {
+        id: 1,
+        name: "Access to all basic features",
+      },
+      {
+        id: 2,
+        name: "Basic reporting and analytics",
+      },
+      {
+        id: 3,
+        name: "Standard feature",
+      },
+    ],
+    buttonText: "Contact Sales",
+    mostPopular: true,
+  },
+  {
+    id: 3,
+    name: "Enterprise plan",
+    price: "$40/month",
+    for: "per core",
+    billing: "Billed Annually",
+    volumeDiscounts: "(Volume discounts available)",
+    features: [
+      {
+        id: 1,
+        name: "Access to all basic features",
+      },
+      {
+        id: 2,
+        name: "Basic reporting and analytics",
+      },
+      {
+        id: 3,
+        name: "Enterprise feature 01",
+      },
+      {
+        id: 4,
+        name: "Enterprise feature 02",
+      },
+      {
+        id: 5,
+        name: "Enterprise feature 03",
+      },
+    ],
+    buttonText: "Contact Sales",
+    mostPopular: false,
+  },
+]

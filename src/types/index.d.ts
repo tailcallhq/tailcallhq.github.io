@@ -39,3 +39,18 @@ type EnterpriseFeature = {
   title: string
   description: string
 }
+
+type PricingPlans = {
+  id: number
+  name: string
+  price: string
+  for: string
+  billing: string
+  volumeDiscounts: string
+  features: {
+    id: number
+    name: string
+  }[]
+  buttonText: string
+  mostPopular: boolean
+}
