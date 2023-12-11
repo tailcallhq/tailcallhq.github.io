@@ -1,5 +1,6 @@
-import {additionalEnterpriseFeatures} from "@site/src/constants"
 import React from "react"
+
+import {additionalEnterpriseFeatures} from "@site/src/constants"
 
 const MoreEnterpriseFeatures = () => {
   return (
