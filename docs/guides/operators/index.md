@@ -1,7 +1,12 @@
 ---
-title: Operator Composition
-sidebar_position: 2
+title: "Operators"
+sidebar_position: 1
 ---
+
+Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition of some custom operators. These operators provide powerful compile time guarantees to make sure your API composition is tight and robust. The operator information is used to automatically generates highly optimized resolver logic for your types.
+
+# Composition
+Operators can be composed and used together to create new and powerful transformations.
 
 This example illustrates the concept of composition in GraphQL, which allows you to combine multiple operations (known as "operators") to build more complex transformations of data.
 
