@@ -221,6 +221,21 @@ schema @server(key: "./key.pem") {
 The key can be of any extension, but it's highly recommended to use standards (`pem`, `crt`, `key`).
 :::
 
+### batchRequests
+
+Batching in GraphQL combines multiple requests into one, reducing server round trips.
+
+```graphql showLineNumbers
+schema @server(
+  port: 8000
+  batchRequests: true
+)
+```
+
+#### Trade-offs
+
+Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
+
 ## @upstream
 
 The `upstream` directive allows you to control various aspects of the upstream server connection. This includes settings like connection timeouts, keep-alive intervals, and more. If not specified, default values are used.
@@ -391,21 +406,6 @@ schema @upstream(httpCache: false) {
   mutation: Mutation
 }
 ```
-
-### batchRequests
-
-Batching in GraphQL combines multiple requests into one, reducing server round trips.
-
-```graphql showLineNumbers
-schema @server(
-  port: 8000
-  batchRequests: true
-)
-```
-
-#### Trade-offs
-
-Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
 
 #### Tips
 
