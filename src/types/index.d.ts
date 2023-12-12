@@ -54,3 +54,18 @@ type PricingPlans = {
   buttonText: string
   mostPopular: boolean
 }
+
+type Founder = {
+  id: number
+  name: string
+  title: string
+  image: string
+  socialLinks: Social[]
+}
+
+type Investor = {
+  id: number
+  image: string
+  name: string
+  title: string
+}
