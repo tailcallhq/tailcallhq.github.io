@@ -101,9 +101,9 @@ export default function Home(): JSX.Element {
                   </p>
                   <b>More</b>
                   <p>
-                    Dive deeper into TailCall. Visit our <Link to="/docs/getting_started/">Documentation</Link>
-                    &nbsp;for detailed tutorials. Ideal for devs at any level, it’s packed with advanced tips and best
-                    practices.
+                    To dive deeper into TailCall checkout our <Link to="/docs/getting_started/">docs</Link>
+                    &nbsp;for detailed tutorials. Ideal for devs at any level, it's packed with advanced tips, powerful
+                    operators and best practices.
                   </p>
                 </div>
               </div>
