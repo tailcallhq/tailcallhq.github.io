@@ -1,37 +1,7 @@
 ---
-title: "helpers"
-sidebar_position: 5
+title: "@addField"
+sidebar_position: 6
 ---
-
-## @modify
-
-The `@modify` operator in GraphQL provides the flexibility to alter the attributes of a field or a node within your GraphQL schema. Here's how you can use this operator:
-
-### name
-
-You can rename a field or a node in your GraphQL schema using the `name` argument in the `@modify` operator. This can be helpful when the field name in your underlying data source doesn't match the desired field name in your schema. For instance:
-
-```graphql showLineNumbers
-type User {
-  id: Int! @modify(name: "userId")
-}
-```
-
-`@modify(name: "userId")` tells GraphQL that although the field is referred to as `id`in the underlying data source, it should be presented as `userId` in your schema.
-
-### omit
-
-You can exclude a field or a node from your GraphQL schema using the `omit` argument in the `@modify` operator. This can be useful if you want to keep certain data hidden from the client. For instance:
-
-```graphql showLineNumbers
-type User {
-  id: Int! @modify(omit: true)
-}
-```
-
-`@modify(omit: true)` tells GraphQL that the `id` field should not be included in the schema, thus it won't be accessible to the client.
-
-## @addField
 
 The `@addField` operator simplifies data structures and queries by adding a field that _inlines_ or flattens a nested field or node within your schema. It works by modifying the schema and the data transformation process, simplifying how nested data is accessed and presented.
 
@@ -115,24 +85,3 @@ type Post {
 ```
 
 In conclusion, the `@addField` operator helps tidy up your schema and streamline data fetching by reducing query depth, promoting better performance and simplicity.
-
-## @const
-
-The `@const` operators allows us to embed a constant response for the schema. For eg:
-
-```graphql
-schema {
-  query: Query
-}
-
-type Query {
-  user: User @const(data: {name: "John", age: 12})
-}
-
-type User {
-  name: String
-  age: Int
-}
-```
-
-The const operator will also validate the provided value at compile time to make sure that it matches the of the field. If the schema of the provided value doesn't match the type of the field, a descriptive error message is show on the console.
