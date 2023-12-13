@@ -17,8 +17,8 @@ const Discover = () => {
           </h5>
 
           <div className="flex space-x-3 sm:space-x-6">
-            <Button theme="dark" title="Get in touch" onClick={() => {}} />
-            <Button theme="light" title="Know More" onClick={() => {}} />
+            <Button theme="dark" title="Get in touch" href="/contact" />
+            <Button theme="light" title="Know More" href="/docs/intro" />
           </div>
         </div>
       </div>
