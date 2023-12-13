@@ -37,7 +37,7 @@ const Button = ({title, Icon, theme, onClick, href, width}: ButtonProps) => {
     >
       <button
         onClick={onClick}
-        className={`flex items-center justify-center space-x-3 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-title-tiny sm:text-title-small cursor-pointer px-6 py-3 sm:px-8 lg:px-10 sm:py-4 lg:py-5 ${
+        className={`flex items-center justify-center space-x-3 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-6 py-3 sm:px-8 lg:px-10 sm:py-4 lg:py-5 ${
           generateThemeClasses() ?? ""
         }`}
         style={{
