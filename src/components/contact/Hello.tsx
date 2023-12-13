@@ -28,7 +28,7 @@ const Hello = () => {
 
       <div className="p-6 sm:py-20 flex flex-col sm:flex-row sm:items-start justify-center sm:space-x-40">
         <h2 className="text-title-large text-center sm:text-left sm:text-display-large max-w-md">
-          Say <span className="bg-tailCall-yellow rounded sm:rounded-2xl px-2">hello</span> to us!
+          Say <span className="bg-tailCall-yellow rounded sm:rounded-2xl px-1 sm:px-2">hello</span> to us!
         </h2>
 
         <div className="flex flex-col justify-between space-y-7">
