@@ -1,14 +1,14 @@
 import React from "react"
 import Layout from "@theme/Layout"
 
-import EnterprisePage from "../components/enterprise"
+import ContactPage from "../components/contact"
 
-const Enterprise = () => {
+const Contact = () => {
   return (
     <Layout title="API Platform" description="API Platform engineered for scale.">
-      <EnterprisePage />
+      <ContactPage />
     </Layout>
   )
 }
 
-export default Enterprise
+export default Contact
