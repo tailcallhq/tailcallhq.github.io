@@ -9,7 +9,7 @@ import SectionTitle from "../shared/SectionTitle"
 const LegacyGateway = () => {
   return (
     <section className="w-full my-12">
-      <div className="max-w-7xl sm:m-10 lg:mx-auto lg:my-20">
+      <div className="max-w-7xl mx-4 sm:m-10 lg:mx-auto lg:my-20">
         <SectionTitle title="The Problem" />
         <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-10 lg:space-x-20">
           <h3 className="text-title-large sm:text-display-tiny lg:text-display-small text-tailCall-dark-500 min-w-fit">
