@@ -14,7 +14,7 @@ const Graph = () => {
           <div className="hidden sm:block">
             <Button
               title="View on Github"
-              href="https://github.com/tailcallhq/tailcall"
+              href="https://github.com/tailcallhq/graphql-benchmarks#benchmark-results"
               theme="gray"
               Icon={githubLogo}
             />
@@ -28,7 +28,7 @@ const Graph = () => {
           <div className="sm:hidden">
             <Button
               title="View on Github"
-              href="https://github.com/tailcallhq/tailcall"
+              href="https://github.com/tailcallhq/graphql-benchmarks#benchmark-results"
               theme="gray"
               Icon={githubLogo}
             />
