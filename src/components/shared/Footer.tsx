@@ -43,7 +43,7 @@ const Footer = () => {
         <p className="text-content-tiny sm:text-title-small text-tailCall-light-500">Copyright © 2023 Tailcall, Inc.</p>
         <div className="space-x-4">
           {socials.map((social) => (
-            <Link href={social.href} className="cursor-pointer">
+            <Link href={social.href} className="cursor-pointer" key={social.id}>
               <social.image className="h-6 w-6" />
             </Link>
           ))}

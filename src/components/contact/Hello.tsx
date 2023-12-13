@@ -50,7 +50,7 @@ const Hello = () => {
             </p>
             <div className="space-y-2">
               {radioOptions.map((option) => (
-                <div className="space-x-2">
+                <div className="space-x-2" key={option.id}>
                   <input
                     type="radio"
                     name={option.name}

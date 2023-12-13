@@ -16,6 +16,7 @@ const MoreEnterpriseFeatures = () => {
             style={{
               border: "1px solid #E5E5E5",
             }}
+            key={feature.id}
           >
             <feature.logo className="h-4 w-4 sm:h-6 sm:w-6" />
             <span className="text-title-tiny">{feature.title}</span>
