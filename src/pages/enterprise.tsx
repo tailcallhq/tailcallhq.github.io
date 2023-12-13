@@ -3,7 +3,7 @@ import Layout from "@theme/Layout"
 
 import EnterprisePage from "../components/enterprise"
 
-const enterprise = () => {
+const Enterprise = () => {
   return (
     <Layout title="API Platform" description="API Platform engineered for scale.">
       <EnterprisePage />
@@ -11,4 +11,4 @@ const enterprise = () => {
   )
 }
 
-export default enterprise
+export default Enterprise
