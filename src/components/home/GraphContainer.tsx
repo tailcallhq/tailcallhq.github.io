@@ -20,7 +20,15 @@ const GraphContainer = ({metricTitle, metricData, metricDesc}: GraphContainerPro
       <div className="flex flex-col px-12 py-8">
         <span className="text-content-small sm:text-content-medium text-tailCall-light-100">{metricTitle}</span>
         <span className="text-title-medium sm:text-title-large text-tailCall-light-100">
-          <CountUp start={2000} end={+metricData} decimals={2} duration={0.75} />
+          <CountUp
+            start={2000}
+            end={+metricData}
+            decimals={2}
+            duration={0.75}
+            enableScrollSpy
+            scrollSpyDelay={100}
+            scrollSpyOnce
+          />
         </span>
         <span className="text-content-tiny sm:text-content-small text-tailCall-light-400">{metricDesc}</span>
       </div>
