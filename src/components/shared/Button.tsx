@@ -8,9 +8,10 @@ type ButtonProps = {
   theme: "light" | "dark" | "gray"
   onClick?: () => void
   href?: string
+  width?: string
 }
 
-const Button = ({title, Icon, theme, onClick, href}: ButtonProps) => {
+const Button = ({title, Icon, theme, onClick, href, width}: ButtonProps) => {
   const generateThemeClasses = () => {
     switch (theme) {
       case "light":
@@ -28,14 +29,22 @@ const Button = ({title, Icon, theme, onClick, href}: ButtonProps) => {
   }
 
   return (
-    <Link href={href}>
+    <Link
+      href={href}
+      style={{
+        textDecorationLine: "none",
+      }}
+    >
       <button
         onClick={onClick}
-        className={`rounded-lg sm:rounded-xl h-12 sm:h-16 sm:min-w-fit text-title-tiny sm:text-title-small cursor-pointer px-6 py-3 sm:px-12 sm:py-5 ${
+        className={`flex items-center justify-center space-x-3 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-title-tiny sm:text-title-small cursor-pointer px-6 py-3 sm:px-12 sm:py-5 ${
           generateThemeClasses() ?? ""
         }`}
+        style={{
+          width: width ? width : "fit-content",
+        }}
       >
-        {Icon && <Icon />}
+        {Icon && <Icon className="w-6 h-6 sm:h-8 sm:w-8" />}
         {title && <span> {title}</span>}
       </button>
     </Link>
