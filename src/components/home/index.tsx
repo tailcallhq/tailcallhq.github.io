@@ -11,7 +11,7 @@ import Footer from "../shared/Footer"
 
 const HomePage = () => {
   return (
-    <>
+    <div className="scrollbar-thin">
       <Banner />
       <Partners />
       <LegacyGateway />
@@ -20,7 +20,7 @@ const HomePage = () => {
       <Graph />
       <Discover />
       <Footer />
-    </>
+    </div>
   )
 }
 

@@ -7,7 +7,7 @@ import {partnerImages} from "@site/src/constants"
 const Partners = () => {
   return (
     <section className="mt-8">
-      <div className="text-content-small font-bold sm:text-title-small text-tailCall-light-500 text-center space-x-1">
+      <div className="text-content-small font-bold sm:text-title-tiny lg:text-title-small text-tailCall-light-500 text-center space-x-1">
         <GreaterThanUnderscoreIcon className="h-4 w-6" />
         <span>Our Cloud Partners</span>
       </div>
