@@ -20,7 +20,7 @@ const FeatureBox = ({feature}) => {
 const MoreFeatures = () => {
   return (
     <section className="w-full mb-8 sm:mb-20">
-      <div className="max-w-7xl mx-4 sm:mx-auto text-center">
+      <div className="max-w-7xl mx-4 sm:mx-auto text-center flex flex-col items-center">
         <h5 className="text-title-semi-large sm:text-display-small text-tailCall-dark-500">There’s so much more.</h5>
         <div className="grid grid-cols-2 my-4 sm:my-16 gap-x-6 sm:gap-x-10">
           {moreFeatures.map((feature) => (
