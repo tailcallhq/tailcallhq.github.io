@@ -27,7 +27,7 @@ const MoreFeatures = () => {
             <FeatureBox feature={feature} key={feature.id} />
           ))}
         </div>
-        <Button title="View More" onClick={() => {}} theme="light" />
+        <Button title="View More" href="/" theme="light" width="500px" />
       </div>
     </section>
   )

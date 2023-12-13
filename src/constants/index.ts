@@ -39,7 +39,7 @@ export const partnerImages: PartnerImage[] = [
 export const features: Feature[] = [
   {
     id: 1,
-    logo: require("@site/static/images/home/efficiency.svg").default,
+    logo: require("@site/static/images/home/orchestration.svg").default,
     title: "Orchestration",
     description1:
       "Harness the power of Tailcall's advanced orchestration primitives, designed for large-scale API management. Effortlessly interface with  ",
@@ -49,7 +49,7 @@ export const features: Feature[] = [
   },
   {
     id: 2,
-    logo: require("@site/static/images/home/efficiency.svg").default,
+    logo: require("@site/static/images/home/orchestration.svg").default,
     title: "Governance",
     description1: "Implement robust governance and security across your API landscape using our ",
     highlightedText: "code-based governance",
