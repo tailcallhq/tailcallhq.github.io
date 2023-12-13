@@ -1,14 +1,16 @@
+import Link from "@docusaurus/Link"
 import React from "react"
 import {SVGProps} from "react"
 
 type ButtonProps = {
   title?: string
-  icon?: React.ComponentType<SVGProps<SVGSVGElement>> | string
+  Icon?: React.ComponentType<SVGProps<SVGSVGElement>>
   theme: "light" | "dark" | "gray"
-  onClick: () => void
+  onClick?: () => void
+  href?: string
 }
 
-const Button = ({title, icon, theme, onClick}: ButtonProps) => {
+const Button = ({title, Icon, theme, onClick, href}: ButtonProps) => {
   const generateThemeClasses = () => {
     switch (theme) {
       case "light":
@@ -26,15 +28,17 @@ const Button = ({title, icon, theme, onClick}: ButtonProps) => {
   }
 
   return (
-    <button
-      onClick={onClick}
-      className={`rounded-lg sm:rounded-xl h-12 sm:h-16 sm:min-w-fit text-title-tiny sm:text-title-small cursor-pointer px-6 py-3 sm:px-12 sm:py-5 ${
-        generateThemeClasses() ?? ""
-      }`}
-    >
-      {icon && <icon />}
-      {title && <span> {title}</span>}
-    </button>
+    <Link href={href}>
+      <button
+        onClick={onClick}
+        className={`rounded-lg sm:rounded-xl h-12 sm:h-16 sm:min-w-fit text-title-tiny sm:text-title-small cursor-pointer px-6 py-3 sm:px-12 sm:py-5 ${
+          generateThemeClasses() ?? ""
+        }`}
+      >
+        {Icon && <Icon />}
+        {title && <span> {title}</span>}
+      </button>
+    </Link>
   )
 }
 
