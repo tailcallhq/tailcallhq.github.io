@@ -12,7 +12,12 @@ const Graph = () => {
         <div className="flex items-center justify-between">
           <h5 className="text-title-large sm:text-display-medium max-w-xl">Platform made for performance.</h5>
           <div className="hidden sm:block">
-            <Button title="View on Github" href="/" theme="gray" Icon={githubLogo} />
+            <Button
+              title="View on Github"
+              href="https://github.com/tailcallhq/tailcall"
+              theme="gray"
+              Icon={githubLogo}
+            />
           </div>
         </div>
 
@@ -21,7 +26,12 @@ const Graph = () => {
           <GraphContainer metricData={2890.68} metricTitle="Requests/sec" metricDesc="(Higher is better)" />
           <GraphContainer metricData={34.69} metricTitle="Latency (ms)" metricDesc="(Lower is better)" />
           <div className="sm:hidden">
-            <Button title="View on Github" onClick={() => {}} theme="gray" Icon={githubLogo} />
+            <Button
+              title="View on Github"
+              href="https://github.com/tailcallhq/tailcall"
+              theme="gray"
+              Icon={githubLogo}
+            />
           </div>
         </div>
 
