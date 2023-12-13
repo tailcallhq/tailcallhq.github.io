@@ -133,26 +133,26 @@ export const socials: Social[] = [
     id: 1,
     name: "github",
     image: require("@site/static/icons/companies/github-footer.svg").default,
-    href: "/",
+    href: "https://github.com/tailcallhq/tailcall",
   },
   {
     id: 2,
     name: "discord",
     image: require("@site/static/icons/companies/discord-gray.svg").default,
-    href: "/",
+    href: "https://discord.gg/Q2ZExpFCnA",
   },
   {
     id: 3,
     name: "linkedin",
     image: require("@site/static/icons/companies/linkedin-gray.svg").default,
-    href: "/",
+    href: "https://www.linkedin.com/company/tailcall",
   },
 
   {
     id: 4,
     name: "twitter",
     image: require("@site/static/icons/companies/twitter-gray.svg").default,
-    href: "/",
+    href: "https://twitter.com/tailcallhq",
   },
 ]
 
