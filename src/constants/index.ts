@@ -132,7 +132,7 @@ export const socials: Social[] = [
   {
     id: 1,
     name: "github",
-    image: require("@site/static/icons/companies/github-gray.svg").default,
+    image: require("@site/static/icons/companies/github-footer.svg").default,
     href: "/",
   },
   {
