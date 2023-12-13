@@ -26,26 +26,28 @@ const Hello = () => {
     <section className="relative h-auto">
       <Grid className="absolute inset-0 -z-10 h-[540px] w-full" />
 
-      <div className="py-20 flex items-start justify-center space-x-40">
-        <h2 className="text-display-large max-w-md">
-          Say <span className="bg-tailCall-yellow rounded-2xl px-2">hello</span> to us!
+      <div className="p-6 sm:py-20 flex flex-col sm:flex-row sm:items-start justify-center sm:space-x-40">
+        <h2 className="text-title-large text-center sm:text-display-large max-w-md">
+          Say <span className="bg-tailCall-yellow rounded sm:rounded-2xl px-2">hello</span> to us!
         </h2>
 
         <div className="flex flex-col justify-between space-y-7">
           <div className="flex flex-col space-y-2">
-            <label id="email" htmlFor="" className="text-content-small font-medium">
+            <label id="email" htmlFor="" className="text-content-tiny sm:text-content-small font-medium">
               Email
             </label>
             <input
               name="email"
               type="email"
-              className="rounded-lg h-11 w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
+              className="rounded-lg h-11 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
               placeholder="you@company.com"
             />
           </div>
 
           <div className="flex flex-col space-y-2">
-            <p className="text-content-small font-medium mb-0">What stage of GraphQL are you in?</p>
+            <p className="text-content-tiny sm:text-content-small font-medium mb-0">
+              What stage of GraphQL are you in?
+            </p>
             <div className="space-y-2">
               {radioOptions.map((option) => (
                 <div className="space-x-2">
@@ -65,12 +67,12 @@ const Hello = () => {
           </div>
 
           <div className="flex flex-col space-y-2">
-            <label id="company" htmlFor="" className="text-content-small font-medium">
+            <label id="company" htmlFor="" className="text-content-tiny sm:text-content-small font-medium">
               Tell us about your company
             </label>
             <textarea
               name="company"
-              className="rounded-lg h-32 w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
+              className="rounded-lg h-32 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
               placeholder="Leave us a message..."
             />
           </div>
