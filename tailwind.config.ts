@@ -54,6 +54,14 @@ module.exports = {
           letterSpacing: "-4%",
         },
       ],
+      "display-tiny": [
+        "40px",
+        {
+          lineHeight: "48px",
+          fontWeight: "700",
+          letterSpacing: "-4%",
+        },
+      ],
       "title-large": [
         "32px",
         {
