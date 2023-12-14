@@ -19,7 +19,6 @@ const Configuration = () => {
       </div>
       <div>
         <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
-
         <CodeBlock language="graphql">
           {`# app.graphql
 

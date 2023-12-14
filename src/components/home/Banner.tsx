@@ -16,8 +16,12 @@ const Banner = () => {
           and <span className="font-bold sm:text-title-medium">service</span> layers.
         </p>
         <div className="flex justify-center mt-6 sm:mt-10 space-x-4 sm:space-x-6">
-          <Button title="Get Started" theme="dark" href="/docs" />
-          <Button title="Learn More" href="/contact" theme="light" />
+          <Button
+            title="Try it Out"
+            href="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
+            theme="dark"
+          />
+          <Button title="Get Started" href="/" theme="light" />
         </div>
 
         <HeroImage className="object-contain h-full sm:h-full w-full mt-10" />

@@ -30,10 +30,10 @@ const MoreFeatures = () => {
           ))}
         </div>
         <div className="hidden sm:block">
-          <Button title="View More" href="/" theme="light" width="500px" />
+          <Button title="View More" href="/enterprise" theme="light" width="500px" />
         </div>
         <div className="sm:hidden">
-          <Button title="View More" href="/" theme="light" width="200px" />
+          <Button title="View More" href="/enterprise" theme="light" width="200px" />
         </div>
       </div>
     </section>
