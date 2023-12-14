@@ -33,7 +33,7 @@ const Footer = () => {
         </Link>
       </div>
 
-      <div className="flex flex-col-reverse sm:flex-row items-center gap-y-4 sm:justify-between w-[80%]">
+      <div className="flex flex-col-reverse sm:flex-row items-center gap-y-4 sm:justify-between w-[100%] max-w-7xl">
         <p className="text-content-tiny sm:text-title-small text-tailCall-light-500">Copyright © 2023 Tailcall, Inc.</p>
         <div className="space-x-4">
           {socials.map((social) => (
