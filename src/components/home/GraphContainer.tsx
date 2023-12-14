@@ -1,23 +1,23 @@
 import React from "react"
 import CountUp from "react-countup"
 import Lottie from "lottie-react"
-import RequestVisual from "@site/static/animations/request-visual.json"
 
 type GraphContainerProps = {
   metricTitle: string
   metricData: number
   metricDesc: string
+  visual: any
 }
 
-const GraphContainer = ({metricTitle, metricData, metricDesc}: GraphContainerProps) => {
+const GraphContainer = ({metricTitle, metricData, metricDesc, visual}: GraphContainerProps) => {
   return (
     <div
       style={{
         border: "1px solid #2C2C2C",
       }}
-      className="h-[400px] w-[95%] sm:w-[680px] rounded-3xl sm:rounded-[32px] flex flex-col "
+      className="h-[368px] lg:h-[400px] w-[95%] sm:w-[680px] rounded-3xl sm:rounded-[32px] flex flex-col relative"
     >
-      <div className="flex flex-col px-12 py-8">
+      <div className="flex flex-col px-6 py-4 lg:px-12 lg:py-8 z-10">
         <span className="text-content-small sm:text-content-medium text-tailCall-light-100">{metricTitle}</span>
         <span className="text-title-medium sm:text-title-large text-tailCall-light-100">
           <CountUp
@@ -33,8 +33,8 @@ const GraphContainer = ({metricTitle, metricData, metricDesc}: GraphContainerPro
         <span className="text-content-tiny sm:text-content-small text-tailCall-light-400">{metricDesc}</span>
       </div>
 
-      <div className="ml-40 -mt-4">
-        <Lottie animationData={RequestVisual} loop={true} className="rounded-lg" />
+      <div className="absolute right-1 bottom-1">
+        <Lottie animationData={visual} loop={true} />
       </div>
     </div>
   )
