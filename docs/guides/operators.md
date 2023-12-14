@@ -430,19 +430,19 @@ This **@http** operator serves as an indication of a field or node that is under
 
 ```graphql showLineNumbers
 type Query {
-  user(id: ID!): User @http(path: "/users")
+  users: [User] @http(path: "/users")
 }
 ```
 
-In this example, the `@http` operator is added to the `user` field of the `Query` type. This means that the `user` field is underpinned by a REST API. The [path](#path) argument is used to specify the path of the REST API. In this case, the path is `/users`. This means that the GraphQL server will make a GET request to `https://jsonplaceholder.typicode.com/users` when the `user` field is queried.
+In this example, the `@http` operator is added to the `users` field of the `Query` type. This means that the `users` field is underpinned by a REST API. The [path](#path) argument is used to specify the path of the REST API. In this case, the path is `/users`. This means that the GraphQL server will make a GET request to `https://jsonplaceholder.typicode.com/users` when the `users` field is queried.
 
 ### baseURL
 
-This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [@server](#server) operator.
+This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [@upstream](#upstream) operator.
 
 ```graphql showLineNumbers
 type Query {
-  user(id: ID!): User @http(path: "/users", baseURL: "https://jsonplaceholder.typicode.com")
+  users: [User] @http(path: "/users", baseURL: "https://jsonplaceholder.typicode.com")
 }
 ```
 
@@ -452,7 +452,7 @@ This refers to the API endpoint you're going to call. For instance https://jsonp
 
 ```graphql showLineNumbers
 type Query {
-  user(id: ID!): User @http(path: "/users")
+  users: [User] @http(path: "/users")
 }
 ```
 
@@ -527,7 +527,7 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 The `groupBy` parameter groups multiple data requests into a single call. For more details please refer out [n + 1 guide].
 
-[n + 1 guide]: /docs/guides/n+1#solving-using-batching
+[n + 1 guide]: /docs
 
 ```graphql showLineNumbers
 type Post {
@@ -538,6 +538,114 @@ type Post {
 ```
 
 - `query: {key: "id", value: "{{value.userId}}"}]`: Here, TailCall CLI is instructed to generate a URL where the user id aligns with the `userId` from the parent `Post`. For a batch of posts, the CLI compiles a single URL, such as `/users?id=1&id=2&id=3...id=10`, consolidating multiple requests into one.
+
+## @graphQL
+
+The **@graphQL** operator allows to specify GraphQL API server request to fetch data from.
+
+```graphql showLineNumbers
+type Query {
+  users: [User] @graphQL(name: "userList")
+}
+```
+
+In this example, the `@graphQL` operator is used to fetch list of users from the GraphQL API upstream. The [name](#name) argument is used to specify the name of the root field on the upstream server. The inner fields from the `User` type to request are inferred from the upcoming request to the Tailcall server. The operation type of the query is inferred from the Tailcall config based on inside which operation type the `@graphQL` operator is used.
+
+For next request with the config above:
+
+```graphql showLineNumbers
+query {
+  users {
+    id
+    name
+  }
+}
+```
+
+Tailcall will request next query for the upstream:
+
+```graphql showLineNumbers
+query {
+  userList {
+    id
+    name
+  }
+}
+```
+
+### baseURL
+
+This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [@upstream](#upstream) operator.
+
+```graphql showLineNumbers
+type Query {
+  users: [User] @graphQL(name: "users", baseURL: "https://graphqlzero.almansi.me/api")
+}
+```
+
+### name
+
+Name of the root field on the upstream to request data from. For example:
+
+```graphql showLineNumbers
+type Query {
+  users: [User] @graphQL(name: "userList")
+}
+```
+
+When Tailcall receives query for `users` field it will request query for `userList` from the upstream.
+
+### args
+
+Named arguments for the requested field. For example:
+
+```graphql showLineNumbers
+type Query {
+  user: User @graphQL(name: "user", args: [{key: "id", value: "{{value.userId}}"}])
+}
+```
+
+Will request next query from the upstream for first user's name:
+
+```graphql showLineNumbers
+query {
+  user(id: 1) {
+    name
+  }
+}
+```
+
+### headers
+
+The `headers` parameter allows you to customize the headers of the GraphQL request made by the `@graphQL` operator. It is used by specifying a key-value map of header names and their values.
+
+For instance:
+
+```graphql showLineNumbers
+type Mutation {
+  users: User @graphQL(name: "users", headers: [{key: "X-Server", value: "Tailcall"}])
+}
+```
+
+In this example, a request to `/users` will include an additional HTTP header `X-Server` with the value `Tailcall`.
+
+### batch
+
+In case upstream GraphQL server supports request batching we can specify argument `batch` to batch several requests to single upstream into single batch request. For example:
+
+```graphql showLineNumbers
+schema @upstream(batch: {maxSize: 1000, delay: 10, headers: ["X-Server", "Authorization"]}) {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  users: [User] @graphQL(name: "users", batch: true)
+  posts: [Post] @graphQL(name: "posts", batch: true)
+}
+```
+
+Make sure you have also specified batch settings to the `@upstream` and to the `@graphQL` operator.
 
 ## @modify
 
