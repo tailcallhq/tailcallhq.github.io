@@ -37,7 +37,7 @@
 .theme-doc-sidebar-item-link .menu__link.menu__link--active:after {
   content: "";
   display: block;
-  background: url("../../static/icons/basic/chevron-right.svg") no-repeat;
+  background: url("@site/static/icons/basic/chevron-right.svg") no-repeat;
   width: 1rem;
   margin-right: 1rem;
   margin-left: auto;
@@ -120,7 +120,7 @@
 
 .pagination-nav__link--next .pagination-nav__label:after {
   content: "";
-  background: url("../../static/icons/basic/arrow-right.svg") no-repeat;
+  background: url("@site/static/icons/basic/arrow-right.svg") no-repeat;
   width: 0.75rem;
   height: 0.75rem;
   display: inline-block;
@@ -130,7 +130,7 @@
 
 .pagination-nav__link--prev .pagination-nav__label:before {
   content: "";
-  background: url("../../static/icons/basic/arrow-left.svg") no-repeat;
+  background: url("@site/static/icons/basic/arrow-left.svg") no-repeat;
   width: 0.75rem;
   height: 0.75rem;
   display: inline-block;
