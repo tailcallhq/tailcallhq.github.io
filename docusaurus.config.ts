@@ -9,13 +9,16 @@ const project = "tailcallhq.github.io"
 function fetchRemoteContentConfig(author = "rajatbarman", repo = "tc-docs", branch = "main") {
   return fetch(`https://api.github.com/repos/${author}/${repo}/git/trees/${branch}?recursive=1`, {
     headers: {
-      Authorization: "Bearer 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",
+      // Authorization: "Bearer <Pat token here>",
     },
   })
     .then((resp) => {
       return resp.json()
     })
     .then((resp) => {
+      if (resp.message) {
+        console.log(resp.message)
+      }
       const config = []
       const docs = resp.tree.filter((doc) => {
         if (doc.path.startsWith("docs/")) {
