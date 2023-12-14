@@ -78,7 +78,7 @@ const Hello = () => {
             />
           </div>
 
-          <Button theme="dark" onClick={() => {}} title="Send message" />
+          <Button theme="dark" onClick={() => {}} title="Send message" disabled={!email} />
         </div>
       </div>
     </section>
