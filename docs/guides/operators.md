@@ -527,7 +527,7 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 The `groupBy` parameter groups multiple data requests into a single call. For more details please refer out [n + 1 guide].
 
-[n + 1 guide]: /docs/guides/n+1#solving-using-batching
+[n + 1 guide]: /docs
 
 ```graphql showLineNumbers
 type Post {

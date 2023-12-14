@@ -3,3 +3,121 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.theme-doc-sidebar-item-link .menu__link.menu__link--active:after {
+  content: '';
+  display: block;
+  background: url('../../static/icons/basic/chevron-right.svg') no-repeat;
+  width: 1rem;
+  margin-right: 1rem;
+  margin-left: auto;
+  height: 1rem;
+}
+
+.breadcrumbs__item.breadcrumbs__item--active span {
+  background: transparent;
+  color: var(--ifm-color-gray-900);
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+.menu__list-item-collapsible:hover {
+  background: transparent;
+}
+
+.menu__list-item-collapsible a {
+  font-size: 1.5rem;
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+.menu__link {
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  color: var(--ifm-color-gray-900);
+  /* font-size: 18px; */
+  border-radius: 8px;
+}
+
+.menu__link.menu__link--active {
+  background-color: #FDEA2E;
+  color: var(--ifm-color-gray-900);
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+.menu__link:hover {
+  color: var(--ifm-color-gray-900);
+}
+
+.theme-doc-sidebar-item-category:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+.theme-doc-toc-desktop {
+  display: none;
+}
+
+.col.col {
+  max-width: 960px !important;
+  margin: 0 auto;
+}
+
+.theme-edit-this-page {
+  max-width: 190px;
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  color: var(--ifm-color-gray-900);
+  border: 2px solid var(--ifm-color-gray-900);
+  border-radius: 8px;
+  justify-content: center;
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+.theme-edit-this-page:hover {
+  color: var(--ifm-color-gray-900);
+  text-decoration: none;
+}
+
+.pagination-nav__link {
+  background: #FDEA2E;
+  border: none;
+  border-radius: 16px;
+}
+
+.pagination-nav__label {
+  color: var(--ifm-color-gray-900);
+}
+
+.pagination-nav__link--next .pagination-nav__label:after {
+  content: '';
+  background: url('../../static/icons/basic/arrow-right.svg') no-repeat;
+  width: .75rem;
+  height: .75rem;
+  display: inline-block;
+  margin-left: 0.5rem;
+  background-size: .75rem .75rem;
+}
+
+.pagination-nav__link--prev .pagination-nav__label:before {
+  content: '';
+  background: url('../../static/icons/basic/arrow-left.svg') no-repeat;
+  width: .75rem;
+  height: .75rem;
+  display: inline-block;
+  margin-right: 0.5rem;
+  background-size: .75rem .75rem;
+}
+
+.pagination-nav {
+  grid-gap: 2rem;
+}
+
+.pagination-nav__sublabel {
+  color: var(--ifm-color-gray-900);
+  margin-bottom: .5rem;
+  font-weight: var(--ifm-font-weight-normal);
+}
+
+.navbar__item.navbar__link {
+  text-align: center;
+}
