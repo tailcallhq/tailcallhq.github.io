@@ -10,13 +10,7 @@ const Footer = () => {
       <Grid className="absolute left-0 top-0 -z-10 w-full h-full" />
       <TailcallLogo className="w-[120px] h-10" />
       <div className="text-content-tiny sm:text-title-small space-x-6 text-tailCall-light-500">
-        <Link
-          href="/docs/intro"
-          className="text-tailCall-light-500 hover:text-tailCall-light-300"
-          style={{
-            textDecorationLine: "none",
-          }}
-        >
+        <Link href="/docs" className="text-tailCall-light-500 hover:text-tailCall-light-300">
           Documentation
         </Link>
         <Link
