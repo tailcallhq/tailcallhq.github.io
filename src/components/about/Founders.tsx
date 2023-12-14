@@ -35,7 +35,7 @@ const Founder = ({founder}: Founder) => {
 
 const Founders = () => {
   return (
-    <section className="my-8 sm:my-16 flex flex-wrap items-center justify-around max-w-6xl mx-auto gap-y-8 sm:gap-y-16">
+    <section className="my-8 sm:my-10 lg:my-16 flex flex-wrap items-center justify-around max-w-6xl mx-auto gap-y-8 sm:gap-y-12 lg:gap-y-16">
       {founders.map((founder) => (
         <Founder founder={founder} key={founder.id} />
       ))}
