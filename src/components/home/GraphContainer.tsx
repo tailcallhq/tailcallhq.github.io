@@ -10,6 +10,17 @@ type GraphContainerProps = {
 }
 
 const GraphContainer = ({metricTitle, metricData, metricDesc, visual}: GraphContainerProps) => {
+  const interactivity = {
+    mode: "scroll",
+    actions: [
+      {
+        visibility: [0, 1],
+        type: "loop" as "loop",
+        frames: [0],
+      },
+    ],
+  }
+
   return (
     <div
       style={{
@@ -34,7 +45,7 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual}: GraphCont
       </div>
 
       <div className="absolute right-1 bottom-1">
-        <Lottie animationData={visual} loop={true} />
+        <Lottie animationData={visual} interactivity={interactivity} loop={false} />
       </div>
     </div>
   )
