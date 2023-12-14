@@ -1,6 +1,7 @@
 import React from "react"
 
 import {additionalEnterpriseFeatures} from "@site/src/constants"
+import CheckCircle from "@site/static/icons/basic/check-circle-broken.svg"
 
 const MoreEnterpriseFeatures = () => {
   return (
@@ -18,7 +19,7 @@ const MoreEnterpriseFeatures = () => {
             }}
             key={feature.id}
           >
-            <feature.logo className="h-4 w-4 sm:h-6 sm:w-6" />
+            <CheckCircle className="h-4 w-4 sm:h-6 sm:w-6" />
             <span className="text-title-tiny">{feature.title}</span>
           </div>
         ))}
