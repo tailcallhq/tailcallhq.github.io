@@ -24,6 +24,21 @@ const radioOptions = [
 const Hello = () => {
   const [email, setEmail] = React.useState("")
   const [message, setMessage] = React.useState("")
+  const [stage, setStage] = React.useState("")
+
+  const sendData = async () => {
+    const response = await fetch("https://hooks.zapier.com/hooks/catch/17341685/3a26hg8/", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        stage,
+        message,
+      }),
+    })
+
+    const data = await response.json()
+    console.log({data})
+  }
 
   return (
     <section className="relative h-auto">
@@ -53,10 +68,18 @@ const Hello = () => {
             <p className="text-content-tiny sm:text-content-small font-medium mb-0">
               What stage of GraphQL are you in?
             </p>
-            <div className="space-y-3">
+            <div className="space-y-3 radio-group">
               {radioOptions.map((option) => (
-                <div className="space-x-2" key={option.id}>
-                  <input type="radio" name={option.name} id={option.id} value={option.value} className="radio-button" />
+                <div className="flex items-center space-x-2" key={option.id}>
+                  <input
+                    type="radio"
+                    name="graphqlStage"
+                    id={option.id}
+                    value={option.value}
+                    checked={stage === option.value}
+                    onChange={() => setStage(option.value)}
+                    className="radio-button"
+                  />
                   <label htmlFor={option.name} className="text-content-small radio-label">
                     {option.name}
                   </label>
@@ -78,7 +101,7 @@ const Hello = () => {
             />
           </div>
 
-          <Button theme="dark" onClick={() => {}} title="Send message" disabled={!email} />
+          <Button theme="dark" onClick={sendData} title="Send message" disabled={!(email && stage)} />
         </div>
       </div>
     </section>
