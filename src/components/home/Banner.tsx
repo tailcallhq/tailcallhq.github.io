@@ -15,7 +15,7 @@ const Banner = () => {
           <span className="font-bold sm:text-title-medium">middle,&nbsp;</span>
           and <span className="font-bold sm:text-title-medium">service</span> layers.
         </p>
-        <div className="flex mt-6 sm:mt-10 space-x-4 sm:space-x-6">
+        <div className="flex justify-center mt-6 sm:mt-10 space-x-4 sm:space-x-6">
           <Button title="Get Started" theme="dark" href="/docs" />
           <Button title="Learn More" href="/contact" theme="light" />
         </div>
