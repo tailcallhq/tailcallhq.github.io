@@ -4,10 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ifm-font-family-base: "Space Grotesk", sans-serif;
+}
+
 .theme-doc-sidebar-item-link .menu__link.menu__link--active:after {
-  content: '';
+  content: "";
   display: block;
-  background: url('../../static/icons/basic/chevron-right.svg') no-repeat;
+  background: url("../../static/icons/basic/chevron-right.svg") no-repeat;
   width: 1rem;
   margin-right: 1rem;
   margin-left: auto;
@@ -39,7 +43,7 @@
 }
 
 .menu__link.menu__link--active {
-  background-color: #FDEA2E;
+  background-color: #fdea2e;
   color: var(--ifm-color-gray-900);
   font-weight: var(--ifm-font-weight-bold);
 }
@@ -79,7 +83,7 @@
 }
 
 .pagination-nav__link {
-  background: #FDEA2E;
+  background: #fdea2e;
   border: none;
   border-radius: 16px;
 }
@@ -89,23 +93,23 @@
 }
 
 .pagination-nav__link--next .pagination-nav__label:after {
-  content: '';
-  background: url('../../static/icons/basic/arrow-right.svg') no-repeat;
-  width: .75rem;
-  height: .75rem;
+  content: "";
+  background: url("../../static/icons/basic/arrow-right.svg") no-repeat;
+  width: 0.75rem;
+  height: 0.75rem;
   display: inline-block;
   margin-left: 0.5rem;
-  background-size: .75rem .75rem;
+  background-size: 0.75rem 0.75rem;
 }
 
 .pagination-nav__link--prev .pagination-nav__label:before {
-  content: '';
-  background: url('../../static/icons/basic/arrow-left.svg') no-repeat;
-  width: .75rem;
-  height: .75rem;
+  content: "";
+  background: url("../../static/icons/basic/arrow-left.svg") no-repeat;
+  width: 0.75rem;
+  height: 0.75rem;
   display: inline-block;
   margin-right: 0.5rem;
-  background-size: .75rem .75rem;
+  background-size: 0.75rem 0.75rem;
 }
 
 .pagination-nav {
@@ -114,7 +118,7 @@
 
 .pagination-nav__sublabel {
   color: var(--ifm-color-gray-900);
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   font-weight: var(--ifm-font-weight-normal);
 }
 

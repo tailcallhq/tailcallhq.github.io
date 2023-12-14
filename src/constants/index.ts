@@ -132,7 +132,7 @@ export const socials: Social[] = [
   {
     id: 1,
     name: "github",
-    image: require("@site/static/icons/companies/github-gray.svg").default,
+    image: require("@site/static/icons/companies/github-footer.svg").default,
     href: "/",
   },
   {
@@ -174,6 +174,146 @@ export const chooseTailcall: ChooseTailcall[] = [
     title: "Scale Fearlessly",
     description: "Leverage built-in best practices that guarantee robustness at any scale.",
     image: require("@site/static/icons/basic/scale.svg").default,
+  },
+]
+
+export const enterpriseFeatures: EnterpriseFeature[] = [
+  {
+    id: 1,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+    description: "Adaptive optimisation by analysing the hot queries in your Production environment",
+  },
+  {
+    id: 2,
+    logo: require("@site/static/icons/basic/rate-limit.svg").default,
+    title: "Global rate limiting",
+    description: "Ability to set global rate limits on access of each field of your data graph.",
+  },
+  {
+    id: 3,
+    logo: require("@site/static/icons/basic/reflect.svg").default,
+    title: "Managed Solution",
+    description: "The change in any Tailcall config gets seamlessly reflected on your GraphQL. ",
+  },
+  {
+    id: 4,
+    logo: require("@site/static/icons/basic/insight.svg").default,
+    title: "Telemetry",
+    description: "Low level insights of execute vs IO time for each query.",
+  },
+  {
+    id: 5,
+    logo: require("@site/static/icons/basic/connect.svg").default,
+    title: "GRPC",
+    description: "Connect to GRPC services just like you connect to Http.",
+  },
+]
+
+export const additionalEnterpriseFeatures = [
+  {
+    id: 1,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+  {
+    id: 2,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+  {
+    id: 3,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+  {
+    id: 4,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+  {
+    id: 5,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+]
+
+export const pricingPlans: PricingPlans[] = [
+  {
+    id: 1,
+    name: "Basic plan",
+    price: "Free",
+    for: "For individuals & small companies",
+    billing: "Billed Annually",
+    volumeDiscounts: "",
+    features: [
+      {
+        id: 1,
+        name: "Access to all basic features",
+      },
+      {
+        id: 2,
+        name: "Basic reporting and analytics",
+      },
+    ],
+    buttonText: "Start Free trial",
+    mostPopular: false,
+  },
+  {
+    id: 2,
+    name: "Standard plan",
+    price: "$20/month",
+    for: "per core",
+    billing: "Billed Annually",
+    volumeDiscounts: "(Volume discounts available)",
+    features: [
+      {
+        id: 1,
+        name: "Access to all basic features",
+      },
+      {
+        id: 2,
+        name: "Basic reporting and analytics",
+      },
+      {
+        id: 3,
+        name: "Standard feature",
+      },
+    ],
+    buttonText: "Contact Sales",
+    mostPopular: true,
+  },
+  {
+    id: 3,
+    name: "Enterprise plan",
+    price: "$40/month",
+    for: "per core",
+    billing: "Billed Annually",
+    volumeDiscounts: "(Volume discounts available)",
+    features: [
+      {
+        id: 1,
+        name: "Access to all basic features",
+      },
+      {
+        id: 2,
+        name: "Basic reporting and analytics",
+      },
+      {
+        id: 3,
+        name: "Enterprise feature 01",
+      },
+      {
+        id: 4,
+        name: "Enterprise feature 02",
+      },
+      {
+        id: 5,
+        name: "Enterprise feature 03",
+      },
+    ],
+    buttonText: "Contact Sales",
+    mostPopular: false,
   },
 ]
 
