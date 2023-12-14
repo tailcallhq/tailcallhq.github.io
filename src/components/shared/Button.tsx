@@ -9,9 +9,10 @@ type ButtonProps = {
   onClick?: () => void
   href?: string
   width?: string
+  disabled?: boolean
 }
 
-const Button = ({title, Icon, theme, onClick, href, width}: ButtonProps) => {
+const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProps) => {
   const generateThemeClasses = () => {
     switch (theme) {
       case "light":
@@ -36,8 +37,9 @@ const Button = ({title, Icon, theme, onClick, href, width}: ButtonProps) => {
       }}
     >
       <button
+        disabled={disabled}
         onClick={onClick}
-        className={`flex items-center justify-center space-x-3 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-6 py-3 sm:px-8 lg:px-10 sm:py-4 lg:py-5 ${
+        className={`disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center space-x-3 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-6 py-3 sm:px-8 lg:px-10 sm:py-4 lg:py-5 ${
           generateThemeClasses() ?? ""
         }`}
         style={{
