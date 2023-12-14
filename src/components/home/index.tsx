@@ -8,11 +8,13 @@ import MoreFeatures from "./MoreFeatures"
 import Partners from "./Partners"
 import Discover from "../shared/Discover"
 import Footer from "../shared/Footer"
+import Configuration from "./Configuration"
 
 const HomePage = () => {
   return (
     <div className="scrollbar-thin">
       <Banner />
+      <Configuration />
       <Partners />
       <LegacyGateway />
       <Features />
