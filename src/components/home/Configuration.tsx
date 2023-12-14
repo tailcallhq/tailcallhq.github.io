@@ -3,16 +3,16 @@ import CodeBlock from "@theme/CodeBlock"
 
 const Configuration = () => {
   return (
-    <section className="flex lg:mx-24 lg:my-12 space-x-10">
+    <section className="flex flex-col m-10 lg:flex-row lg:mx-24 lg:my-12 lg:space-x-10">
       <div className="max-w-2xl">
-        <h2 className="text-display-small mb-4">
+        <h2 className="text-title-large sm:text-display-tiny lg:text-display-small mb-4">
           Get <span className="rounded-lg px-2 bg-tailCall-yellow">Started</span>
         </h2>
-        <p className="text-content-medium mb-11">
+        <p className="text-content-small sm:text-content-medium mb-11">
           Setup the Tailcall instantly via npm and unlock the power of high-performance API orchestration.
         </p>
-        <span className="text-title-medium">More</span>
-        <p className="text-content-medium mt-4">
+        <span className="text-title-small sm:text-title-medium">More</span>
+        <p className="text-content-small sm:text-content-medium mt-4">
           To dive deeper into TailCall checkout our docs for detailed tutorials. Ideal for devs at any level, it's
           packed with advanced tips, powerful operators and best practices.
         </p>
