@@ -7,3 +7,29 @@
 :root {
   --ifm-font-family-base: "Space Grotesk", sans-serif;
 }
+
+.radio-button {
+  display: none;
+}
+
+.radio-label {
+  position: relative;
+}
+
+.radio-label::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #121315;
+  margin-right: 0.5rem;
+  position: relative;
+  top: 0.25rem;
+  cursor: pointer;
+}
+
+.radio-button:checked + .radio-label:before {
+  border: 3px solid #121315;
+  background-color: #fdea2e;
+}

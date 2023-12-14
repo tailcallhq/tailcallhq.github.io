@@ -22,6 +22,9 @@ const radioOptions = [
 ]
 
 const Hello = () => {
+  const [email, setEmail] = React.useState("")
+  const [message, setMessage] = React.useState("")
+
   return (
     <section className="relative h-auto">
       <Grid className="absolute inset-0 -z-10 h-[540px] w-full" />
@@ -33,12 +36,14 @@ const Hello = () => {
 
         <div className="flex flex-col justify-between space-y-7">
           <div className="flex flex-col space-y-2">
-            <label id="email" htmlFor="" className="text-content-tiny sm:text-content-small font-medium">
+            <label id="email" className="text-content-tiny sm:text-content-small font-medium">
               Email
             </label>
             <input
               name="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="rounded-lg h-11 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
               placeholder="you@company.com"
             />
@@ -48,17 +53,11 @@ const Hello = () => {
             <p className="text-content-tiny sm:text-content-small font-medium mb-0">
               What stage of GraphQL are you in?
             </p>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {radioOptions.map((option) => (
                 <div className="space-x-2" key={option.id}>
-                  <input
-                    type="radio"
-                    name={option.name}
-                    id={option.id}
-                    value={option.value}
-                    className="cursor-pointer checked:border checked:border-tailCall-yellow"
-                  />
-                  <label htmlFor={option.name} className="text-content-small">
+                  <input type="radio" name={option.name} id={option.id} value={option.value} className="radio-button" />
+                  <label htmlFor={option.name} className="text-content-small radio-label">
                     {option.name}
                   </label>
                 </div>
@@ -72,6 +71,8 @@ const Hello = () => {
             </label>
             <textarea
               name="company"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               className="rounded-lg h-32 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
               placeholder="Leave us a message..."
             />
