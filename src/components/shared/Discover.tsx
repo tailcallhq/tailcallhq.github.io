@@ -11,7 +11,7 @@ const Discover = () => {
           <BgTailcall className="sm:w-[90%] w-full" />
         </div>
 
-        <div className="flex flex-col items-center absolute max-w-2xl space-y-4 sm:space-y-6">
+        <div className="flex flex-col items-center absolute max-w-3xl space-y-4 sm:space-y-6">
           <h5 className="text-title-semi-large sm:text-display-medium text-center mb-0">
             Discover the power of enterprise solution.
           </h5>
