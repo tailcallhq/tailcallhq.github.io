@@ -27,8 +27,10 @@ const EnterpriseFeaturesCard = ({feature}: EnterpriseFeaturesCardProps) => {
 
 const EnterpriseFeatures = () => {
   return (
-    <section className="my-16 sm:my-24">
-      <h4 className="text-title-semi-large sm:text-display-small text-center">Some of our enterprise features.</h4>
+    <section className="my-16 sm:my-20 lg:my-24">
+      <h4 className="text-title-semi-large sm:text-display-tiny lg:text-display-small text-center">
+        Some of our enterprise features.
+      </h4>
       <div className="flex items-center flex-wrap justify-center gap-6 mt-8">
         {enterpriseFeatures.map((feature) => (
           <EnterpriseFeaturesCard feature={feature} key={feature.id} />
