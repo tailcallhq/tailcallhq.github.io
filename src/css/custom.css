@@ -56,15 +56,6 @@
   margin-top: 1.5rem;
 }
 
-.theme-doc-toc-desktop {
-  display: none;
-}
-
-.col.col {
-  max-width: 960px !important;
-  margin: 0 auto;
-}
-
 .theme-edit-this-page {
   max-width: 190px;
   display: flex;
@@ -124,4 +115,89 @@
 
 .navbar__item.navbar__link {
   text-align: center;
+}
+
+.navbar__inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.navbar__items {
+  justify-content: center;
+}
+
+.header-button {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  color: var(--ifm-color-gray-900);
+  border: 2px solid var(--ifm-color-gray-900);
+  border-radius: 8px;
+  justify-content: center;
+  font-weight: var(--ifm-font-weight-bold); 
+}
+
+.header-button-github {
+   padding: 0 1.25rem;
+}
+
+.header-button-github svg {
+  margin-right: .5rem;
+}
+
+.header-button-discord {
+  padding: 0 1rem;
+}
+
+.navbar__items--right .navbar__item.navbar__link:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.navbar__items--right .navbar__item.navbar__link:not(:last-child) {
+  margin-right: 0;
+}
+
+.navbar {
+  box-shadow: none;
+  height: 7.5rem;
+}
+
+.navbar__brand {
+  position: absolute;
+  left: 0;
+}
+
+.navbar__logo {
+  height: 2.5rem;
+}
+
+.navbar__items {
+  margin-left: 12rem;
+}
+
+.navbar__items--right {
+  margin-left: 0;
+}
+
+
+.navbar__item.navbar__link {
+  font-weight: var(--ifm-font-weight-bold);
+  font-size: 1.25rem;
+}
+
+.navbar__item.navbar__link {
+  padding: 0;
+  margin-right: 3rem;
+}
+
+.navbar__item.navbar__link:hover {
+  color: var(--ifm-color-gray-900);
+}
+
+.navbar__item.navbar__link.navbar__link--active {
+  background-color: #fdea2e; 
+  color: var(--ifm-color-gray-900);
+  padding: 0 .5rem;
+  border-radius: 6px;
 }
