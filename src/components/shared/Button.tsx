@@ -19,7 +19,7 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
         return "text-tailCall-dark-500 bg-transparent !border-2 !border-tailCall-dark-500"
 
       case "dark":
-        return "text-tailCall-light-100 bg-tailCall-dark-700 border-none"
+        return "text-tailCall-light-100 bg-tailCall-dark-600 border-none"
 
       case "gray":
         return "text-tailCall-dark-100 bg-transparent !border-2 !border-tailCall-dark-100"
