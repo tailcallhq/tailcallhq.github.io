@@ -33,7 +33,7 @@ function fetchRemoteContentConfig(author = "rajatbarman", repo = "tc-docs", bran
     })
     .then((resp) => {
       if (resp.message) {
-        console.log(resp.message)
+        console.log(`\x1b[31m${resp.message}\x1b[0m`)
       }
       const config = []
       const docs = resp.tree.filter((doc) => {

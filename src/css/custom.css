@@ -201,3 +201,10 @@
   padding: 0 .5rem;
   border-radius: 6px;
 }
+
+@media (max-width: 996px) {
+  .navbar__items {
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+}
