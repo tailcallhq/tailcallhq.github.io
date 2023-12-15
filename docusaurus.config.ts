@@ -10,7 +10,7 @@ function fetchGithubStars() {
   console.log("Fetching stars on github...")
   return fetch("https://api.github.com/repos/tailcallhq/tailcall", {
     // headers: {
-    //   Authorization: "Bearer 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",
+    //   Authorization: "Bearer <pat token>",
     // },
   })
     .then((resp) => {
@@ -25,7 +25,7 @@ function fetchRemoteContentConfig(author = "rajatbarman", repo = "tc-docs", bran
   console.log(`Fetching docs content from ${author}/${repo}`)
   return fetch(`https://api.github.com/repos/${author}/${repo}/git/trees/${branch}?recursive=1`, {
     // headers: {
-    //   Authorization: "Bearer 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",
+    //   Authorization: "Bearer <pat token>",
     // },
   })
     .then((resp) => {
@@ -44,7 +44,7 @@ function fetchRemoteContentConfig(author = "rajatbarman", repo = "tc-docs", bran
       const folders = docs?.filter((doc) => {
         return doc.type === "tree"
       })
-      folders?.forEach((folder) => {
+      folders.forEach((folder) => {
         const folderName = folder.path.replace("docs/", "")
         config.push([
           "docusaurus-plugin-remote-content",
