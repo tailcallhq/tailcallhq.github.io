@@ -6,6 +6,8 @@
 
 :root {
   --ifm-font-family-base: "Space Grotesk", sans-serif;
+  --header-height: 6.5rem;
+  --ifm-navbar-height: 6.5rem;
 }
 
 input[type="radio"] {
@@ -56,6 +58,10 @@ input[type="radio"]:checked::before {
   background: transparent;
   color: var(--ifm-color-gray-900);
   font-weight: var(--ifm-font-weight-bold);
+}
+
+.menu__list {
+  padding-right: 1rem;
 }
 
 .menu__list-item-collapsible:hover {
@@ -170,7 +176,7 @@ input[type="radio"]:checked::before {
 
 .navbar {
   box-shadow: #e7e7e7 0 0 0 1px;
-  height: 6.5rem;
+  height: var(--header-height);
 }
 
 .navbar__brand {
@@ -227,6 +233,7 @@ input[type="radio"]:checked::before {
 
 .header-button.header-button-github {
   padding: 0 1.25rem;
+  margin-right: 0;
 }
 
 .header-button.header-button-github svg {
@@ -235,6 +242,55 @@ input[type="radio"]:checked::before {
 
 .header-button.header-button-discord {
   padding: 0 1rem;
+}
+
+.table-of-contents__link {
+  font-size: .875rem;
+}
+
+.table-of-contents__link--active {
+  font-weight: var(--ifm-font-weight-bold);
+  color: var(--ifm-color-gray-900);
+}
+
+.table-of-contents__link:hover {
+  color: var(--ifm-color-gray-900);
+}
+
+.breadcrumbs__link:hover {
+  color: var(--ifm-color-gray-900);
+}
+
+[class^='navbarSearchContainer'] {
+  /* display: none; */
+}
+
+.theme-doc-sidebar-container [class^='sidebarViewport'] {
+  /* top: var(--header-height); */
+}
+
+.sidebar-search-container {
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  max-height: 100vh;
+}
+
+.navbar__search {
+  padding: 1.3rem;
+  padding-bottom: 1rem;
+  z-index: 1;
+}
+
+.navbar__search input {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #B6B6B7;
+  background-color: transparent;
+  height: 44px;
+}
+
+.navbar__search > span.algolia-autocomplete {
+  width: 100%;
 }
 
 @media (max-width: 996px) {
@@ -249,16 +305,48 @@ input[type="radio"]:checked::before {
     margin-left: 1rem;
   }
 
-  .navbar__item {
+  .navbar__item.navbar__item {
     display: none;
   }
 
   .navbar-sidebar__item .menu__link {
     margin-bottom: 1rem;
     padding: 0 1rem;
+    font-weight: var(--ifm-font-weight-bold);
+  }
+
+  .navbar-sidebar__item .menu__link:not(.header-button):after {
+    content: "";
+    display: block;
+    background: url("../../static/icons/basic/chevron-right.svg") no-repeat;
+    width: 1rem;
+    margin-left: auto;
+    height: 1rem;
+  }
+
+  .navbar-sidebar__close svg {
+    width: .75rem;
+    height: .75rem;
+  }
+
+  .navbar-sidebar__close svg g {
+    stroke: var(--ifm-color-gray-900);
+    stroke-width: 2px;
   }
 
   .navbar-sidebar .navbar__brand {
     position: static;
+  }
+
+  .navbar {
+    height: 4.5rem;
+  }
+
+  .navbar__logo {
+    height: 1.75rem;
+  }
+
+  .sidebar-search-container {
+    display: none;
   }
 }

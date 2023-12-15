@@ -119,6 +119,7 @@ export default async function () {
             anonymizeIP: false,
           },
           docs: {
+            // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
             sidebarPath: require.resolve("./sidebars.js"),
             sidebarCollapsible: false,
             // Please change this to your repo.
@@ -192,7 +193,12 @@ export default async function () {
     } satisfies Preset.ThemeConfig,
     plugins: [
       ...(remoteContentPluginConfig || []),
-      // require.resolve("docusaurus-lunr-search"),
+      [
+        require.resolve("docusaurus-lunr-search"),
+        {
+          highlightResult: true,
+        },
+      ],
       async function myPlugin(context, options) {
         return {
           name: "docusaurus-tailwindcss",
