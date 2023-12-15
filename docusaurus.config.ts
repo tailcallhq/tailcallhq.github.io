@@ -9,9 +9,9 @@ const project = "tailcallhq.github.io"
 function fetchGithubStars() {
   console.log("Fetching stars on github...")
   return fetch("https://api.github.com/repos/tailcallhq/tailcall", {
-    headers: {
-      Authorization: "Bearer <pat token>",
-    },
+    // headers: {
+    //   Authorization: "Bearer <pat token>",
+    // },
   })
     .then((resp) => {
       return resp.json()
@@ -24,9 +24,9 @@ function fetchGithubStars() {
 function fetchRemoteContentConfig(author = "rajatbarman", repo = "tc-docs", branch = "main") {
   console.log(`Fetching docs content from ${author}/${repo}`)
   return fetch(`https://api.github.com/repos/${author}/${repo}/git/trees/${branch}?recursive=1`, {
-    headers: {
-      Authorization: "Bearer <pat token>",
-    },
+    // headers: {
+    //   Authorization: "Bearer <pat token>",
+    // },
   })
     .then((resp) => {
       return resp.json()
