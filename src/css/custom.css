@@ -231,8 +231,34 @@ input[type="radio"]:checked::before {
 .navbar__item.navbar__link.navbar__link--active {
   background-color: #fdea2e;
   color: var(--ifm-color-gray-900);
-  padding: 0 0.5rem;
   border-radius: 6px;
+}
+
+.navbar-sidebar__item .menu__link:hover {
+  background: transparent;
+}
+
+.header-button {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  color: var(--ifm-color-gray-900);
+  border: 2px solid var(--ifm-color-gray-900);
+  border-radius: 8px;
+  justify-content: center;
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+.header-button.header-button-github {
+  padding: 0 1.25rem;
+}
+
+.header-button.header-button-github svg {
+  margin-right: 0.5rem;
+}
+
+.header-button.header-button-discord {
+  padding: 0 1rem;
 }
 
 @media (max-width: 996px) {
