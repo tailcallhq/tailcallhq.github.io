@@ -273,6 +273,7 @@ export const pricingPlans: PricingPlans[] = [
     ],
     buttonText: "Start Free trial",
     mostPopular: false,
+    href: "/contact",
   },
   {
     id: 2,
@@ -297,6 +298,7 @@ export const pricingPlans: PricingPlans[] = [
     ],
     buttonText: "Contact Sales",
     mostPopular: true,
+    href: "/contact",
   },
   {
     id: 3,
@@ -329,6 +331,7 @@ export const pricingPlans: PricingPlans[] = [
     ],
     buttonText: "Contact Sales",
     mostPopular: false,
+    href: "/contact",
   },
 ]
 

@@ -7,7 +7,7 @@ import Button from "../shared/Button"
 const Pricing = () => {
   return (
     <section className="my-14 sm:my-24 sm:mx-4 lg:mx-0">
-      <h4 className="text-title-large sm:text-display-tiny lg:text-display-small text-center mb-6 sm:mb-10">
+      <h4 className="text-title-large sm:text-display-tiny lg:text-display-small mx-2 text-center mb-6 sm:mb-10">
         <span className="rounded sm:rounded-lg bg-tailCall-yellow px-1">Plans</span> that fit your scale.
       </h4>
 
@@ -44,7 +44,7 @@ const Pricing = () => {
             </div>
 
             <div className="text-center mx-4">
-              <Button title={plan.buttonText} onClick={() => {}} theme={plan.mostPopular ? "dark" : "light"} />
+              <Button title={plan.buttonText} href={plan.href} theme={plan.mostPopular ? "dark" : "light"} />
             </div>
           </div>
         ))}
