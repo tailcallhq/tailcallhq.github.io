@@ -9,9 +9,9 @@ const project = "tailcallhq.github.io"
 function fetchGithubStars() {
   console.log("Fetching stars on github...")
   return fetch("https://api.github.com/repos/tailcallhq/tailcall", {
-    // headers: {
-    //   Authorization: "Bearer <pat token>",
-    // },
+    headers: {
+      Authorization: "Bearer <pat token>",
+    },
   })
     .then((resp) => {
       return resp.json()
@@ -24,9 +24,9 @@ function fetchGithubStars() {
 function fetchRemoteContentConfig(author = "rajatbarman", repo = "tc-docs", branch = "main") {
   console.log(`Fetching docs content from ${author}/${repo}`)
   return fetch(`https://api.github.com/repos/${author}/${repo}/git/trees/${branch}?recursive=1`, {
-    // headers: {
-    //   Authorization: "Bearer <pat token>",
-    // },
+    headers: {
+      Authorization: "Bearer <pat token>",
+    },
   })
     .then((resp) => {
       return resp.json()
@@ -119,6 +119,7 @@ export default async function () {
             anonymizeIP: false,
           },
           docs: {
+            // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
             sidebarPath: require.resolve("./sidebars.js"),
             sidebarCollapsible: false,
             // Please change this to your repo.
@@ -192,7 +193,12 @@ export default async function () {
     } satisfies Preset.ThemeConfig,
     plugins: [
       ...(remoteContentPluginConfig || []),
-      // require.resolve("docusaurus-lunr-search"),
+      [
+        require.resolve("docusaurus-lunr-search"),
+        {
+          highlightResult: true,
+        },
+      ],
       async function myPlugin(context, options) {
         return {
           name: "docusaurus-tailwindcss",
