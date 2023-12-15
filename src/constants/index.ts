@@ -214,27 +214,42 @@ export const additionalEnterpriseFeatures = [
   {
     id: 1,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
+    title: "Adaptive",
   },
   {
     id: 2,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
+    title: "Adaptive",
   },
   {
     id: 3,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
+    title: "Adaptive performance",
   },
   {
     id: 4,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
+    title: "New Feature",
   },
   {
     id: 5,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
+    title: "Adaptive",
+  },
+  {
+    id: 6,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive",
+  },
+  {
+    id: 7,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive",
+  },
+  {
+    id: 8,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive",
   },
 ]
 
