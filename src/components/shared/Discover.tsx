@@ -11,14 +11,14 @@ const Discover = () => {
           <BgTailcall className="sm:w-[90%] w-full" />
         </div>
 
-        <div className="flex flex-col items-center absolute max-w-2xl space-y-4 sm:space-y-6">
+        <div className="flex flex-col items-center absolute max-w-3xl space-y-4 sm:space-y-6">
           <h5 className="text-title-semi-large sm:text-display-medium text-center mb-0">
             Discover the power of enterprise solution.
           </h5>
 
           <div className="flex space-x-3 sm:space-x-6">
-            <Button theme="dark" title="Get in touch" onClick={() => {}} />
-            <Button theme="light" title="Know More" onClick={() => {}} />
+            <Button theme="dark" title="Get in touch" href="/contact" />
+            <Button theme="light" title="Know More" href="/docs/intro" />
           </div>
         </div>
       </div>

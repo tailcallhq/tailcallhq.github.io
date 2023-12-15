@@ -53,6 +53,7 @@ type PricingPlans = {
   }[]
   buttonText: string
   mostPopular: boolean
+  href: string
 }
 
 type Founder = {

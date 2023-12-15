@@ -39,7 +39,7 @@ export const partnerImages: PartnerImage[] = [
 export const features: Feature[] = [
   {
     id: 1,
-    logo: require("@site/static/images/home/efficiency.svg").default,
+    logo: require("@site/static/images/home/orchestration.svg").default,
     title: "Orchestration",
     description1:
       "Harness the power of Tailcall's advanced orchestration primitives, designed for large-scale API management. Effortlessly interface with  ",
@@ -49,7 +49,7 @@ export const features: Feature[] = [
   },
   {
     id: 2,
-    logo: require("@site/static/images/home/efficiency.svg").default,
+    logo: require("@site/static/images/home/orchestration.svg").default,
     title: "Governance",
     description1: "Implement robust governance and security across your API landscape using our ",
     highlightedText: "code-based governance",
@@ -133,26 +133,26 @@ export const socials: Social[] = [
     id: 1,
     name: "github",
     image: require("@site/static/icons/companies/github-footer.svg").default,
-    href: "/",
+    href: "https://github.com/tailcallhq/tailcall",
   },
   {
     id: 2,
     name: "discord",
     image: require("@site/static/icons/companies/discord-gray.svg").default,
-    href: "/",
+    href: "https://discord.gg/Q2ZExpFCnA",
   },
   {
     id: 3,
     name: "linkedin",
     image: require("@site/static/icons/companies/linkedin-gray.svg").default,
-    href: "/",
+    href: "https://www.linkedin.com/company/tailcall",
   },
 
   {
     id: 4,
     name: "twitter",
     image: require("@site/static/icons/companies/twitter-gray.svg").default,
-    href: "/",
+    href: "https://twitter.com/tailcallhq",
   },
 ]
 
@@ -214,27 +214,37 @@ export const additionalEnterpriseFeatures = [
   {
     id: 1,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
+    title: "Adaptive",
   },
   {
     id: 2,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
+    title: "Adaptive",
   },
   {
     id: 3,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
+    title: "Adaptive performance",
   },
   {
     id: 4,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
+    title: "New Feature",
   },
   {
     id: 5,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
+    title: "Adaptive",
+  },
+  {
+    id: 6,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive",
+  },
+  {
+    id: 7,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive",
   },
 ]
 
@@ -258,6 +268,7 @@ export const pricingPlans: PricingPlans[] = [
     ],
     buttonText: "Start Free trial",
     mostPopular: false,
+    href: "/contact",
   },
   {
     id: 2,
@@ -282,6 +293,7 @@ export const pricingPlans: PricingPlans[] = [
     ],
     buttonText: "Contact Sales",
     mostPopular: true,
+    href: "/contact",
   },
   {
     id: 3,
@@ -314,6 +326,7 @@ export const pricingPlans: PricingPlans[] = [
     ],
     buttonText: "Contact Sales",
     mostPopular: false,
+    href: "/contact",
   },
 ]
 
@@ -322,7 +335,7 @@ export const founders: Founder[] = [
     id: 1,
     name: "Tushar Mathur",
     title: "Founder & CEO",
-    image: require("@site/static/images/about/tushar.jpg").default,
+    image: require("@site/static/images/about/tushar.png").default,
     socialLinks: [
       {
         id: 1,
@@ -348,7 +361,7 @@ export const founders: Founder[] = [
     id: 2,
     name: "Amit Kumar Singh",
     title: "Founding Engineer",
-    image: require("@site/static/images/about/tushar.jpg").default,
+    image: require("@site/static/images/about/amit.png").default,
     socialLinks: [
       {
         id: 1,
@@ -374,7 +387,7 @@ export const founders: Founder[] = [
     id: 3,
     name: "Shashi Kant",
     title: "Founding Engineer",
-    image: require("@site/static/images/about/tushar.jpg").default,
+    image: require("@site/static/images/about/kiryl.png").default,
     socialLinks: [
       {
         id: 1,
@@ -400,33 +413,7 @@ export const founders: Founder[] = [
     id: 4,
     name: "Kiryl Mialeshka",
     title: "Founding Engineer",
-    image: require("@site/static/images/about/tushar.jpg").default,
-    socialLinks: [
-      {
-        id: 1,
-        name: "linkedin",
-        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
-        href: "/",
-      },
-      {
-        id: 2,
-        name: "twitter",
-        image: require("@site/static/icons/companies/twitter-gray.svg").default,
-        href: "/",
-      },
-      {
-        id: 3,
-        name: "discord",
-        image: require("@site/static/icons/companies/discord-gray.svg").default,
-        href: "/",
-      },
-    ],
-  },
-  {
-    id: 5,
-    name: "Sujeet Sreenivasan",
-    title: "Founding Engineer",
-    image: require("@site/static/images/about/tushar.jpg").default,
+    image: require("@site/static/images/about/shahikant.png").default,
     socialLinks: [
       {
         id: 1,
