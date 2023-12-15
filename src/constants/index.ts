@@ -246,11 +246,6 @@ export const additionalEnterpriseFeatures = [
     logo: require("@site/static/icons/basic/adaptive.svg").default,
     title: "Adaptive",
   },
-  {
-    id: 8,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive",
-  },
 ]
 
 export const pricingPlans: PricingPlans[] = [
