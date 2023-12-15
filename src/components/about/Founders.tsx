@@ -16,7 +16,7 @@ type Founder = {
 const Founder = ({founder}: Founder) => {
   return (
     <div>
-      <img src={founder.image} alt={founder.name} />
+      <img src={founder.image} alt={founder.name} className="h-[300px] sm:h-[366px] object-contain" />
 
       <div className="flex flex-col space-y-2 items-start">
         <span className="text-content-small font-bold sm:text-title-small">{founder.name}</span>
@@ -35,7 +35,7 @@ const Founder = ({founder}: Founder) => {
 
 const Founders = () => {
   return (
-    <section className="my-8 sm:my-16 flex flex-wrap items-center justify-around max-w-6xl mx-auto gap-y-8 sm:gap-y-16">
+    <section className="my-8 mx-6 sm:my-10 lg:my-16 flex flex-wrap items-center justify-around max-w-6xl sm:mx-auto gap-y-8 sm:gap-y-12 lg:gap-y-16">
       {founders.map((founder) => (
         <Founder founder={founder} key={founder.id} />
       ))}
