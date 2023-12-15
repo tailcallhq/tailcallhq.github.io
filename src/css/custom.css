@@ -169,15 +169,15 @@ input[type="radio"]:checked::before {
   border: 2px solid var(--ifm-color-gray-900);
   border-radius: 8px;
   justify-content: center;
-  font-weight: var(--ifm-font-weight-bold); 
+  font-weight: var(--ifm-font-weight-bold);
 }
 
 .header-button-github {
-   padding: 0 1.25rem;
+  padding: 0 1.25rem;
 }
 
 .header-button-github svg {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .header-button-discord {
@@ -193,8 +193,8 @@ input[type="radio"]:checked::before {
 }
 
 .navbar {
-  box-shadow: none;
-  height: 7.5rem;
+  box-shadow: #e7e7e7 0px 0px 0px 2px;
+  height: 6.5rem;
 }
 
 .navbar__brand {
@@ -214,7 +214,6 @@ input[type="radio"]:checked::before {
   margin-left: 0;
 }
 
-
 .navbar__item.navbar__link {
   font-weight: var(--ifm-font-weight-bold);
   font-size: 1.25rem;
@@ -230,9 +229,9 @@ input[type="radio"]:checked::before {
 }
 
 .navbar__item.navbar__link.navbar__link--active {
-  background-color: #fdea2e; 
+  background-color: #fdea2e;
   color: var(--ifm-color-gray-900);
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   border-radius: 6px;
 }
 
@@ -240,5 +239,9 @@ input[type="radio"]:checked::before {
   .navbar__items {
     margin-left: auto;
     justify-content: flex-end;
+  }
+
+  .header-button-github {
+    margin-top: 30px;
   }
 }
