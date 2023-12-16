@@ -45,6 +45,28 @@ Example:
 tailcall check --schema ./path/to/file1.graphql ./path/to/file2.graphql
 ```
 
+### --out
+
+This option writes the resulting schema of the composition spec to a file. The value of the option will become the name of the file.
+
+- Type: String
+
+```bash
+tailcall check <file1> <file2> ... <fileN> --out <outfile>
+```
+
+The schema can be written either in `json`, `graphql` or `yml` formats.
+
+Example:
+
+```bash
+# Output .graphql file
+tailcall check ./path/to/file1.graphql ./path/to/file2.graphql --out ./path/to/outfile.graphql
+
+# Output .json file
+tailcall check ./path/to/file1.graphql ./path/to/file2.graphql --out ./path/to/outfile.json
+```
+
 ## start
 
 The `start` command launches the TailCall Server, acting as an GraphQL proxy with specific configurations. The server can publish various GraphQL configurations.
