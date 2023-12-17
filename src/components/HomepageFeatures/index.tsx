@@ -79,7 +79,6 @@ export default function HomepageFeatures(): JSX.Element {
   const INITIAL = 3
   return (
     <section className={styles.features}>
-      
       <div className="container">
         <div className="row">
           {FeatureList.slice(0, INITIAL).map((props, idx) => (
