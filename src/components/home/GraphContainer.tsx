@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useRef} from "react"
 import CountUp from "react-countup"
 import Lottie from "lottie-react"
 
@@ -7,9 +7,14 @@ type GraphContainerProps = {
   metricData: number
   metricDesc: string
   visual: any
+  duration?: number
+  delay?: number
 }
 
-const GraphContainer = ({metricTitle, metricData, metricDesc, visual}: GraphContainerProps) => {
+const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, duration}: GraphContainerProps) => {
+  const [playAnimation, setPlayAnimation] = React.useState(false)
+  const lottieRef = useRef()
+
   const interactivity = {
     mode: "scroll",
     actions: [
@@ -21,6 +26,11 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual}: GraphCont
     ],
   }
 
+  setTimeout(() => {
+    setPlayAnimation(true)
+    ;(lottieRef.current as any)?.pause()
+  }, delay)
+
   return (
     <div
       style={{
@@ -31,13 +41,21 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual}: GraphCont
       <div className="flex flex-col px-6 py-4 lg:px-12 lg:py-8 z-10">
         <span className="text-content-small sm:text-content-medium text-tailCall-light-100">{metricTitle}</span>
         <span className="text-title-medium sm:text-title-large text-tailCall-light-100">
-          <CountUp start={2000} end={+metricData} decimals={2} duration={1.6} enableScrollSpy scrollSpyOnce />
+          <CountUp
+            start={2000}
+            end={+metricData}
+            decimals={2}
+            duration={duration}
+            delay={delay}
+            enableScrollSpy
+            scrollSpyOnce
+          />
         </span>
         <span className="text-content-tiny sm:text-content-small text-tailCall-light-400">{metricDesc}</span>
       </div>
 
       <div className="absolute right-1 bottom-1">
-        <Lottie animationData={visual} interactivity={interactivity} loop={false} />
+        <Lottie lottieRef={lottieRef} animationData={visual} interactivity={interactivity} loop={false} />
       </div>
     </div>
   )
