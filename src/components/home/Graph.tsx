@@ -32,12 +32,16 @@ const Graph = () => {
             metricData={2890.68}
             metricTitle="Requests/sec"
             metricDesc="(Higher is better)"
+            duration={1.6}
+            delay={0}
           />
           <GraphContainer
             visual={LatencyVisual}
             metricData={34.69}
             metricTitle="Latency (ms)"
             metricDesc="(Lower is better)"
+            duration={1.6}
+            delay={3}
           />
           <div className="sm:hidden">
             <Button
