@@ -1,12 +1,14 @@
 import React from "react"
 import Layout from "@theme/Layout"
 
-import HomePage from "../components/home"
+import EnterprisePage from "../components/enterprise"
 
-export default function Home(): JSX.Element {
+const Enterprise = () => {
   return (
     <Layout title="API Platform" description="API Platform engineered for scale.">
-      <HomePage />
+      <EnterprisePage />
     </Layout>
   )
 }
+
+export default Enterprise
