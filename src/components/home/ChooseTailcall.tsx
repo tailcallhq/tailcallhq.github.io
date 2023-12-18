@@ -4,7 +4,7 @@ import {chooseTailcall} from "@site/src/constants"
 const ChooseTailcall = () => {
   return (
     <>
-      <p className="text-title-large max-w-lg sm:text-display-tiny lg:text-display-medium text-center my-14 sm:my-10">
+      <p className="text-title-large max-w-lg mx-auto sm:text-display-tiny lg:text-display-medium text-center my-14 sm:my-10">
         More reasons to chose tailcall.
       </p>
       <div className="flex flex-col lg:flex-row space-y-6 items-center justify-between lg:space-x-6 lg:space-y-0">
