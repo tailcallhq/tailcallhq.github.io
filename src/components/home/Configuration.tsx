@@ -3,7 +3,7 @@ import CodeBlock from "@theme/CodeBlock"
 
 const Configuration = () => {
   return (
-    <section className="flex flex-col m-10 lg:flex-row lg:mx-24 lg:my-12 lg:space-x-10">
+    <section className="flex flex-col m-10 lg:flex-row justify-center lg:mx-24 lg:my-12 lg:space-x-10">
       <div className="max-w-2xl">
         <h2 className="text-title-large sm:text-display-tiny lg:text-display-small mb-4">
           Get <span className="rounded-lg px-2 bg-tailCall-yellow">Started</span>
