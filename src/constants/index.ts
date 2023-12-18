@@ -2,44 +2,44 @@ export const partnerImages: PartnerImage[] = [
   {
     id: 1,
     name: "Digital Ocean",
-    logo: require("@site/static/icons/companies/digital-ocean.svg").default,
+    logo: require("@site/static/icons/companies/digital-ocean.png").default,
   },
   {
     id: 2,
     name: "Vercel",
-    logo: require("@site/static/icons/companies/vercel.svg").default,
+    logo: require("@site/static/icons/companies/vercel.png").default,
   },
   {
     id: 3,
     name: "Fastly",
-    logo: require("@site/static/icons/companies/fastly.svg").default,
+    logo: require("@site/static/icons/companies/fastly.png").default,
   },
   {
     id: 4,
     name: "Cloud Flare",
-    logo: require("@site/static/icons/companies/cloudflare.svg").default,
+    logo: require("@site/static/icons/companies/cloudflare.png").default,
   },
   {
     id: 5,
     name: "AWS",
-    logo: require("@site/static/icons/companies/aws.svg").default,
+    logo: require("@site/static/icons/companies/aws.png").default,
   },
   {
     id: 6,
     name: "Google Cloud",
-    logo: require("@site/static/icons/companies/google-cloud.svg").default,
+    logo: require("@site/static/icons/companies/google-cloud.png").default,
   },
   {
     id: 7,
     name: "Fly",
-    logo: require("@site/static/icons/companies/fly-io.svg").default,
+    logo: require("@site/static/icons/companies/fly-io.png").default,
   },
 ]
 
 export const features: Feature[] = [
   {
     id: 1,
-    logo: require("@site/static/images/home/orchestration.svg").default,
+    logo: require("@site/static/images/home/orchestration.png").default,
     title: "Orchestration",
     description1:
       "Harness the power of Tailcall's advanced orchestration primitives, designed for large-scale API management. Effortlessly interface with  ",
@@ -49,7 +49,7 @@ export const features: Feature[] = [
   },
   {
     id: 2,
-    logo: require("@site/static/images/home/orchestration.svg").default,
+    logo: require("@site/static/images/home/governance.png").default,
     title: "Governance",
     description1: "Implement robust governance and security across your API landscape using our ",
     highlightedText: "code-based governance",
@@ -58,7 +58,7 @@ export const features: Feature[] = [
   },
   {
     id: 3,
-    logo: require("@site/static/images/home/efficiency.svg").default,
+    logo: require("@site/static/images/home/efficiency.png").default,
     title: "Efficiency",
     description1: "Tailcall brings breakthrough performance optimizations, integrating ",
     highlightedText: "enterprise-specific tuning ",
@@ -67,7 +67,7 @@ export const features: Feature[] = [
   },
   {
     id: 4,
-    logo: require("@site/static/images/home/resiliency.svg").default,
+    logo: require("@site/static/images/home/resiliency.png").default,
     title: "Resiliency",
     description1:
       "Engineered for enterprise resilience, Tailcall guarantees robust performance under any conditions. Our platform is designed for ",
@@ -76,7 +76,7 @@ export const features: Feature[] = [
   },
   {
     id: 5,
-    logo: require("@site/static/images/home/extendability.svg").default,
+    logo: require("@site/static/images/home/extendability.png").default,
     title: "Extendability",
     description1: "Tailcall's ",
     highlightedText: "plugin-centric",
@@ -151,7 +151,7 @@ export const socials: Social[] = [
   {
     id: 4,
     name: "twitter",
-    image: require("@site/static/icons/companies/twitter-gray.svg").default,
+    image: require("@site/static/icons/companies/x-gray.svg").default,
     href: "https://twitter.com/tailcallhq",
   },
 ]
@@ -161,19 +161,19 @@ export const chooseTailcall: ChooseTailcall[] = [
     id: 1,
     title: "Top developer experience",
     description: "Design your APIs, with syntax highlighting and lint checks within your favourite IDE.",
-    image: require("@site/static/icons/basic/rocket.svg").default,
+    image: require("@site/static/images/home/dev-experience.png").default,
   },
   {
     id: 2,
     title: "Performance",
     description: "Get performance that’s higher than your hand optimized implementation",
-    image: require("@site/static/icons/basic/performance.svg").default,
+    image: require("@site/static/images/home/performance.png").default,
   },
   {
     id: 3,
     title: "Scale Fearlessly",
     description: "Leverage built-in best practices that guarantee robustness at any scale.",
-    image: require("@site/static/icons/basic/scale.svg").default,
+    image: require("@site/static/images/home/scale.png").default,
   },
 ]
 
@@ -341,19 +341,19 @@ export const founders: Founder[] = [
         id: 1,
         name: "linkedin",
         image: require("@site/static/icons/companies/linkedin-gray.svg").default,
-        href: "/",
+        href: "https://www.linkedin.com/in/tusharmath",
       },
       {
         id: 2,
-        name: "twitter",
-        image: require("@site/static/icons/companies/twitter-gray.svg").default,
-        href: "/",
+        name: "x",
+        image: require("@site/static/icons/companies/x-gray.svg").default,
+        href: "https://twitter.com/tusharmath",
       },
       {
         id: 3,
         name: "discord",
         image: require("@site/static/icons/companies/discord-gray.svg").default,
-        href: "/",
+        href: "https://discord.com/users/358987818825154560",
       },
     ],
   },
@@ -367,25 +367,25 @@ export const founders: Founder[] = [
         id: 1,
         name: "linkedin",
         image: require("@site/static/icons/companies/linkedin-gray.svg").default,
-        href: "/",
+        href: "https://www.linkedin.com/in/amitksingh1490",
       },
       {
         id: 2,
-        name: "twitter",
-        image: require("@site/static/icons/companies/twitter-gray.svg").default,
-        href: "/",
+        name: "x",
+        image: require("@site/static/icons/companies/x-gray.svg").default,
+        href: "https://twitter.com/amitksingh1490",
       },
       {
         id: 3,
         name: "discord",
         image: require("@site/static/icons/companies/discord-gray.svg").default,
-        href: "/",
+        href: "https://discord.com/users/784053215104467004",
       },
     ],
   },
   {
     id: 3,
-    name: "Shashi Kant",
+    name: "Kiryl Mialeshka",
     title: "Founding Engineer",
     image: require("@site/static/images/about/kiryl.png").default,
     socialLinks: [
@@ -393,25 +393,25 @@ export const founders: Founder[] = [
         id: 1,
         name: "linkedin",
         image: require("@site/static/icons/companies/linkedin-gray.svg").default,
-        href: "/",
+        href: "https://www.linkedin.com/in/meskill",
       },
       {
         id: 2,
-        name: "twitter",
-        image: require("@site/static/icons/companies/twitter-gray.svg").default,
+        name: "x",
+        image: require("@site/static/icons/companies/x-gray.svg").default,
         href: "/",
       },
       {
         id: 3,
         name: "discord",
         image: require("@site/static/icons/companies/discord-gray.svg").default,
-        href: "/",
+        href: "https://discord.com/users/294552389518884864",
       },
     ],
   },
   {
     id: 4,
-    name: "Kiryl Mialeshka",
+    name: "Shashi Kant",
     title: "Founding Engineer",
     image: require("@site/static/images/about/shahikant.png").default,
     socialLinks: [
@@ -419,19 +419,19 @@ export const founders: Founder[] = [
         id: 1,
         name: "linkedin",
         image: require("@site/static/icons/companies/linkedin-gray.svg").default,
-        href: "/",
+        href: "https://www.linkedin.com/in/shashi-kant-f07fed/",
       },
       {
         id: 2,
-        name: "twitter",
-        image: require("@site/static/icons/companies/twitter-gray.svg").default,
-        href: "/",
+        name: "x",
+        image: require("@site/static/icons/companies/x-gray.svg").default,
+        href: "https://twitter.com/notshashitnak",
       },
       {
         id: 3,
         name: "discord",
         image: require("@site/static/icons/companies/discord-gray.svg").default,
-        href: "/",
+        href: "https://discord.com/users/1177867346912759891",
       },
     ],
   },

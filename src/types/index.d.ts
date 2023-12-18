@@ -1,12 +1,12 @@
 type PartnerImage = {
   id: number
   name: string
-  logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  logo: string
 }
 
 type Feature = {
   id: number
-  logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  logo: string
   title: string
   description1: string
   highlightedText: string
@@ -30,7 +30,7 @@ type ChooseTailcall = {
   id: number
   title: string
   description: string
-  image: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  image: string
 }
 
 type EnterpriseFeature = {
