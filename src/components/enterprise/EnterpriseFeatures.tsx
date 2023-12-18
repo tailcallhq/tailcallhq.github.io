@@ -20,7 +20,7 @@ const EnterpriseFeaturesCard = ({feature}: EnterpriseFeaturesCardProps) => {
     >
       <feature.logo className="h-5 w-5 sm:h-8 sm:w-8" />
       <p className="text-title-tiny sm:text-title-medium">{feature.title}</p>
-      <p className="text-content-tiny sm:text-title-tiny font-normal">{feature.description}</p>
+      <p className="text-content-tiny sm:text-content-small font-normal">{feature.description}</p>
     </div>
   )
 }

@@ -17,7 +17,7 @@ function fetchGithubStars() {
       return resp.json()
     })
     .then((resp) => {
-      return resp.stargazers_count
+      return resp.stargazers_count ?? "200"
     })
 }
 
@@ -155,7 +155,7 @@ export default async function () {
         },
         items: [
           {to: "/about", label: "About", position: "left"},
-          {to: "/enterprise", label: "Enterprise", position: "left"},
+          // {to: "/enterprise", label: "Enterprise", position: "left"},
           {to: "/docs", label: "Docs", position: "left"},
           {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
           {

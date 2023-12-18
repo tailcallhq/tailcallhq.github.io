@@ -35,7 +35,7 @@ module.exports = {
         {
           lineHeight: "105.6px",
           fontWeight: "700",
-          letterSpacing: "-4%",
+          letterSpacing: "-3px",
         },
       ],
       "display-medium": [
@@ -43,7 +43,7 @@ module.exports = {
         {
           lineHeight: "70.4px",
           fontWeight: "700",
-          letterSpacing: "-4%",
+          letterSpacing: "-2px",
         },
       ],
       "display-small": [
@@ -51,7 +51,7 @@ module.exports = {
         {
           lineHeight: "67.2px",
           fontWeight: "700",
-          letterSpacing: "-4%",
+          letterSpacing: "-2px",
         },
       ],
       "display-tiny": [
@@ -59,7 +59,7 @@ module.exports = {
         {
           lineHeight: "48px",
           fontWeight: "700",
-          letterSpacing: "-4%",
+          letterSpacing: "-2px",
         },
       ],
       "title-large": [
@@ -67,7 +67,7 @@ module.exports = {
         {
           lineHeight: "41.6px",
           fontWeight: "700",
-          letterSpacing: "-4%",
+          letterSpacing: "-1px",
         },
       ],
       "title-semi-large": [
@@ -83,7 +83,7 @@ module.exports = {
         {
           lineHeight: "33.6px",
           fontWeight: "700",
-          letterSpacing: "-4%",
+          letterSpacing: "-1px",
         },
       ],
       "title-small": [
@@ -91,7 +91,7 @@ module.exports = {
         {
           lineHeight: "26px",
           fontWeight: "700",
-          letterSpacing: "-2%",
+          letterSpacing: "-1px",
         },
       ],
       "title-tiny": [

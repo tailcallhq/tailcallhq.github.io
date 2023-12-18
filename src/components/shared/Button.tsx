@@ -16,13 +16,22 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
   const generateThemeClasses = () => {
     switch (theme) {
       case "light":
-        return "text-tailCall-dark-500 bg-transparent !border-2 !border-tailCall-dark-500"
+        return {
+          classes: "text-tailCall-dark-500 bg-transparent",
+          styles: "2px solid #121315",
+        }
 
       case "dark":
-        return "text-tailCall-light-100 bg-tailCall-dark-600 border-none"
+        return {
+          classes: "text-tailCall-light-100 bg-tailCall-dark-600 border-none",
+          styles: "none",
+        }
 
       case "gray":
-        return "text-tailCall-dark-100 bg-transparent !border-2 !border-tailCall-dark-100"
+        return {
+          classes: "text-tailCall-dark-100 bg-transparent",
+          styles: "2px solid #545556",
+        }
 
       default:
         break
@@ -39,11 +48,12 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
       <button
         disabled={disabled}
         onClick={onClick}
-        className={`disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center space-x-3 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-6 py-3 sm:px-8 lg:px-10 sm:py-4 lg:py-5 ${
-          generateThemeClasses() ?? ""
-        }`}
+        className={`disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center space-x-3 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-6 py-3 sm:px-8 lg:px-10 sm:py-4 lg:py-5 
+        ${generateThemeClasses().classes ?? ""}
+        `}
         style={{
           width: width ? width : "fit-content",
+          border: generateThemeClasses().styles,
         }}
       >
         {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8" />}
