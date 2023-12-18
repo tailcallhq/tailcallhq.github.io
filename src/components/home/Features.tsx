@@ -6,7 +6,7 @@ import GreaterThanUnderscoreIcon from "@site/static/icons/basic/gt-underscore.sv
 type FeatureProps = {
   feature: {
     id: number
-    logo: string | FunctionComponent<SVGProps<SVGSVGElement>>
+    logo: string
     title: string
     description1: string
     highlightedText: string
@@ -38,7 +38,7 @@ const Feature = ({feature}: FeatureProps) => {
           <span>{feature.description2}</span>
         </p>
         <div className="sm:mt-20">
-          <feature.logo className="w-full h-full object-contain" />
+          <img src={feature.logo} alt="" />
         </div>
       </div>
     </div>
