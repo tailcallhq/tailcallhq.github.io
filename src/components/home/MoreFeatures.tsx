@@ -9,10 +9,10 @@ const FeatureBox = ({feature}) => {
       style={{
         borderBottom: "1px solid #E4E4E4",
       }}
-      className="flex flex-col sm:flex-row items-start justify-start sm:items-center text-start my-2 space-y-2 pb-2 sm:space-x-4 text-content-tiny font-bold sm:text-title-small lg:text-title-medium text-tailCall-dark-500  sm:h-32 w-full border border-tailCall-dark-300"
+      className="flex flex-col sm:flex-row items-start justify-start sm:items-center text-start space-y-2 sm:py-8 lg:py-12 sm:space-x-4 text-content-tiny font-bold sm:text-title-small lg:text-title-medium text-tailCall-dark-500  sm:h-32 w-full border border-tailCall-dark-300"
     >
       <feature.logo className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
-      <span>{feature.title}</span>
+      <span className="mt-0">{feature.title}</span>
     </div>
   )
 }

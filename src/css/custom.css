@@ -293,6 +293,11 @@ input[type="radio"]:checked::before {
   width: 100%;
 }
 
+pre code {
+  font-family: "Space Mono" monospace !important;
+  font-weight: 500;
+}
+
 @media (max-width: 996px) {
   .navbar__items {
     margin-left: auto;

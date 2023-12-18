@@ -1,7 +1,5 @@
 import React from "react"
 
-import GreaterThanUnderscoreIcon from "@site/static/icons/basic/gt-undescore-gray.svg"
-
 import Lottie from "lottie-react"
 import SolutionGraphic from "@site/static/animations/solution-graphic.json"
 import SectionTitle from "../shared/SectionTitle"
@@ -26,7 +24,7 @@ const LegacyGateway = () => {
         </div>
       </div>
 
-      <div className="hidden w-full sm:flex items-center justify-center rounded-[40px]">
+      <div className="hidden w-full sm:flex items-center justify-center rounded-[40px] px-6">
         <Lottie
           animationData={SolutionGraphic}
           loop={true}

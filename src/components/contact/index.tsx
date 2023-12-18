@@ -4,10 +4,10 @@ import Footer from "../shared/Footer"
 
 const ContactPage = () => {
   return (
-    <div>
+    <>
       <Hello />
       <Footer />
-    </div>
+    </>
   )
 }
 

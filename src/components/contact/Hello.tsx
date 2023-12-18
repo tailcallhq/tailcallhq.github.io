@@ -22,12 +22,12 @@ const radioOptions = [
 ]
 
 const Hello = () => {
-  const [email, setEmail] = React.useState("")
-  const [message, setMessage] = React.useState("")
-  const [stage, setStage] = React.useState("")
+  const [email, setEmail] = React.useState<string>("")
+  const [message, setMessage] = React.useState<string>("")
+  const [stage, setStage] = React.useState<string>("")
 
   const sendData = async () => {
-    const response = await fetch("https://hooks.zapier.com/hooks/catch/17341685/3a26hg8/", {
+    const response = await fetch("https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/", {
       method: "POST",
       body: JSON.stringify({
         email,

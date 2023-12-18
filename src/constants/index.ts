@@ -360,7 +360,7 @@ export const founders: Founder[] = [
   {
     id: 2,
     name: "Amit Kumar Singh",
-    title: "Founding Engineer",
+    title: "Head of Growth & Strategy",
     image: require("@site/static/images/about/amit.png").default,
     socialLinks: [
       {
@@ -399,7 +399,7 @@ export const founders: Founder[] = [
         id: 2,
         name: "x",
         image: require("@site/static/icons/companies/x-gray.svg").default,
-        href: "/",
+        href: "https://twitter.com/_meskill",
       },
       {
         id: 3,
