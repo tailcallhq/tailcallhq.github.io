@@ -21,7 +21,7 @@ const Banner = () => {
             href="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
             theme="dark"
           />
-          <Button title="Get Started" href="/" theme="light" />
+          <Button title="Get Started" href="/docs/getting_started/" theme="light" />
         </div>
 
         <HeroImage className="object-contain h-full sm:h-full w-full mt-10" />
