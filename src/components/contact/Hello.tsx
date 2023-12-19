@@ -54,7 +54,7 @@ const Hello = () => {
           Say <span className="bg-tailCall-yellow rounded sm:rounded-2xl px-1 sm:px-2">hello</span> to us!
         </h2>
 
-        <div className="flex flex-col justify-between space-y-7">
+        <div className="flex flex-col justify-between space-y-7 w-full sm:w-fit">
           <div className="flex flex-col space-y-2">
             <label id="email" className="text-content-tiny sm:text-content-small font-medium">
               Email
