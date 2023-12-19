@@ -46,14 +46,21 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, dur
         <span className="text-content-small sm:text-content-medium text-tailCall-light-100">{metricTitle}</span>
 
         <span className="text-title-medium sm:text-title-large text-tailCall-light-100">
-          <TrackVisibility partialVisibility once offset={100}>
+          <TrackVisibility
+            style={{
+              height: "36px",
+            }}
+            partialVisibility
+            once
+            offset={100}
+          >
             {({isVisible}) => {
               return (
-                <div className="h-8 sm:h-10">
+                <>
                   {isVisible ? (
                     <CountUp start={2000} end={metricData} decimals={2} duration={duration} delay={delay} />
                   ) : null}
-                </div>
+                </>
               )
             }}
           </TrackVisibility>
