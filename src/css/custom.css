@@ -166,6 +166,13 @@ input[type="radio"]:checked::before {
   justify-content: center;
 }
 
+.navbar__items.navbar__items--right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .navbar__items--right .navbar__item.navbar__link:not(:first-child) {
   margin-left: 1rem;
 }
@@ -186,10 +193,6 @@ input[type="radio"]:checked::before {
 
 .navbar__logo {
   height: 2.5rem;
-}
-
-.navbar__items {
-  margin-left: 12rem;
 }
 
 .navbar__items--right {
@@ -261,18 +264,37 @@ input[type="radio"]:checked::before {
   color: var(--ifm-color-gray-900);
 }
 
-[class^="navbarSearchContainer"] {
-  /* display: none; */
+[class*="navbarHidden"] + .main-wrapper .sidebar-search-container,
+[class*="navbarHidden"] + .main-wrapper .theme-doc-toc-desktop,
+[class*="navbarHidden"] + .main-wrapper nav.menu {
+  top: 0;
+  padding-bottom: 0;
 }
 
-.theme-doc-sidebar-container [class^="sidebarViewport"] {
-  /* top: var(--header-height); */
+a[class*="sidebarLogo"] {
+  display: none !important;
+}
+
+div.theme-doc-toc-desktop {
+  transition: all 250ms ease-in-out;
+  max-height: 100vh;
+  padding-bottom: calc(var(--ifm-navbar-height) + 1rem);
+  border-left: 1px solid var(--ifm-toc-border-color);
+}
+
+ul.table-of-contents {
+  border-left: none;
+}
+
+aside.theme-doc-sidebar-container {
+  margin-top: 0;
 }
 
 .sidebar-search-container {
   position: sticky;
   top: var(--ifm-navbar-height);
   max-height: 100vh;
+  transition: all 250ms ease-in-out;
 }
 
 .navbar__search {
@@ -287,6 +309,11 @@ input[type="radio"]:checked::before {
   border: 1px solid #b6b6b7;
   background-color: transparent;
   height: 44px;
+  outline: 0;
+}
+
+.navbar__search input:focus {
+  outline: 0;
 }
 
 .navbar__search > span.algolia-autocomplete {
@@ -299,7 +326,15 @@ pre code {
 }
 
 nav.menu {
-  padding-bottom: var(--ifm-navbar-height);
+  padding-bottom: calc(var(--ifm-navbar-height) * 2);
+}
+
+.algolia-autocomplete .ds-dropdown-menu:before {
+  left: 2rem;
+}
+
+.algolia-autocomplete .ds-dropdown-menu {
+  margin-top: .75rem !important;
 }
 
 @media (max-width: 996px) {
@@ -330,7 +365,12 @@ nav.menu {
     background: url("../../static/icons/basic/chevron-right.svg") no-repeat;
     width: 1rem;
     margin-left: auto;
+    margin-right: 0;
     height: 1rem;
+  }
+
+  .navbar-sidebar__item .menu__list-item-collapsible .menu__link:after {
+    display: none;
   }
 
   .navbar-sidebar__close svg {

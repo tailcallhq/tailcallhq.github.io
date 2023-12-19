@@ -14,8 +14,6 @@ type GraphContainerProps = {
 }
 
 const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, duration}: GraphContainerProps) => {
-  const [playAnimation, setPlayAnimation] = React.useState(false)
-
   const lottieRef = useRef()
 
   const interactivity = {

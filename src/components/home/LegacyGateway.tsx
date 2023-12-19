@@ -6,7 +6,7 @@ import SectionTitle from "../shared/SectionTitle"
 
 const LegacyGateway = () => {
   return (
-    <section className="w-full my-12">
+    <section className="w-full my-12 lg:px-16">
       <div className="max-w-7xl mx-4 sm:m-10 lg:mx-auto lg:my-20">
         <SectionTitle title="The Problem" />
         <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-10 lg:space-x-20">

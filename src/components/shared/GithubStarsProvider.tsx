@@ -17,7 +17,7 @@ const sessionStorage = {
 }
 
 export default function GithubStarsProvider({children}) {
-  const [starsCount, setStarsCount] = useState(sessionStorage.get("githubStars") || "")
+  const [starsCount, setStarsCount] = useState("")
 
   function fetchGithubStars() {
     return fetch("https://api.github.com/repos/tailcallhq/tailcall")
@@ -33,8 +33,9 @@ export default function GithubStarsProvider({children}) {
   }
 
   useEffect(() => {
-    if (sessionStorage.get("githubStars")) {
-      return
+    let starsCountInSessionStorage = sessionStorage.get("githubStars")
+    if (starsCountInSessionStorage) {
+      return setStarsCount(starsCountInSessionStorage)
     }
     fetchGithubStars()
   }, [])

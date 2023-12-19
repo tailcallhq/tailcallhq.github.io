@@ -132,12 +132,14 @@ export default async function () {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
+        hideOnScroll: true,
         logo: {
           alt: "My Site Logo",
           src: "icons/companies/taicall.svg",
           height: "2.5rem",
         },
         items: [
+          {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
           {to: "/about", label: "About", position: "left"},
           // {to: "/enterprise", label: "Enterprise", position: "left"},
           {to: "/docs", label: "Docs", position: "left"},
