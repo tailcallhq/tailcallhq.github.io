@@ -309,6 +309,11 @@ aside.theme-doc-sidebar-container {
   border: 1px solid #b6b6b7;
   background-color: transparent;
   height: 44px;
+  outline: 0;
+}
+
+.navbar__search input:focus {
+  outline: 0;
 }
 
 .navbar__search > span.algolia-autocomplete {
@@ -322,6 +327,14 @@ pre code {
 
 nav.menu {
   padding-bottom: calc(var(--ifm-navbar-height) * 2);
+}
+
+.algolia-autocomplete .ds-dropdown-menu:before {
+  left: 2rem;
+}
+
+.algolia-autocomplete .ds-dropdown-menu {
+  margin-top: .75rem !important;
 }
 
 @media (max-width: 996px) {
