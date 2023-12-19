@@ -6,11 +6,11 @@ const Banner = () => {
   return (
     <main>
       <div className="flex flex-col sm:items-center sm:text-center w-full mt-6 px-4 sm:mt-20">
-        <div className="min-h-[75vh] 2xl:min-h-0">
+        <div className="2xl:min-h-0">
           <h1 className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl">
             API platform engineered for <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-2">scale</span>
           </h1>
-          <p className="sm:max-w-2xl text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-4 mb-0">
+          <p className="sm:max-w-2xl m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-4 mb-0">
             A cloud native solution to streamline API management across{" "}
             <span className="font-bold sm:text-title-medium">edge,&nbsp;</span>
             <span className="font-bold sm:text-title-medium">middle,&nbsp;</span>
