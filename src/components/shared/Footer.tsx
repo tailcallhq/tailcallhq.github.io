@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="bg-tailCall-dark-700 pt-10 pb-5 flex flex-col items-center justify-center gap-10 w-full relative">
       <img src={Grid} alt="" className="absolute inset-0 w-full h-full" />
       <TailcallLogo className="w-[120px] h-10" />
-      <div className="text-content-tiny sm:text-title-small space-x-6 text-tailCall-light-500">
+      <div className="text-content-tiny sm:text-title-small space-x-6 text-tailCall-light-500 z-10">
         <Link
           href="/docs"
           className="text-tailCall-light-500 hover:text-tailCall-light-300"
@@ -39,7 +39,7 @@ const Footer = () => {
         </Link>
       </div>
 
-      <div className="flex flex-col-reverse sm:flex-row items-center gap-y-4 sm:justify-between w-[100%] max-w-7xl sm:mt-10">
+      <div className="flex flex-col-reverse sm:flex-row items-center gap-y-4 sm:justify-between w-[100%] max-w-7xl sm:mt-10 z-10">
         <p className="text-content-tiny text-[#B4B4B4] font-space-mono font-normal">Copyright © 2023 Tailcall, Inc.</p>
         <div className="space-x-4">
           {socials.map((social) => (
