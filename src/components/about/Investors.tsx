@@ -1,13 +1,15 @@
 import React from "react"
 import PeakXV from "@site/static/images/about/peakxv.jpg"
 import Tenacity from "@site/static/images/about/tenacity.jpg"
-import Grid from "@site/static/images/about/grid-large.svg"
+// import Grid from "@site/static/images/about/grid-large.svg"
+import Grid from "@site/static/images/about/grid-large.png"
 import {investors} from "@site/src/constants"
 
 const Investors = () => {
   return (
     <section className="h-full w-full relative">
-      <Grid className="absolute inset-0 -z-10 w-full" />
+      {/* <Grid className="absolute inset-0 -z-10 w-full h-full" /> */}
+      <img src={Grid} alt="" className="absolute inset-0 -z-10 h-[350px] w-full" />
       <p className="text-title-semi-large sm:text-title-large lg:text-display-tiny text-center mx-10 sm:mx-0 sm:mt-9">
         We are backed by <span className="bg-tailCall-yellow rounded-lg px-2">incredible investors.</span>
       </p>
@@ -31,7 +33,7 @@ const Investors = () => {
         </div>
       </div>
 
-      <div className="mt-16 sm:mt-20 lg:mt-24">
+      {/* <div className="mt-16 sm:mt-20 lg:mt-24">
         <p className="text-title-semi-large sm:text-title-large lg:text-display-tiny text-center">Angel Investors</p>
         <div className="flex flex-wrap lg:flex-nowrap items-center gap-4 sm:gap-y-6 lg:gap-y-0 justify-around sm:justify-center sm:space-x-12 mt-9">
           {investors.map((investor) => (
@@ -42,7 +44,7 @@ const Investors = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </section>
   )
 }
