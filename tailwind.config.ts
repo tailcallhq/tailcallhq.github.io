@@ -28,6 +28,7 @@ module.exports = {
     },
     fontFamily: {
       "space-grotesk": ["Space Grotesk", "sans-serif"],
+      "space-mono": ["Space Mono", "monospace"],
     },
     fontSize: {
       "display-large": [
@@ -91,7 +92,7 @@ module.exports = {
         {
           lineHeight: "26px",
           fontWeight: "700",
-          letterSpacing: "-1px",
+          letterSpacing: "0px",
         },
       ],
       "title-tiny": [
@@ -99,7 +100,7 @@ module.exports = {
         {
           lineHeight: "22.8px",
           fontWeight: "700",
-          letterSpacing: "-2%",
+          letterSpacing: "0px",
         },
       ],
       "content-large": [

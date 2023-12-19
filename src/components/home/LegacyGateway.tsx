@@ -24,7 +24,7 @@ const LegacyGateway = () => {
         </div>
       </div>
 
-      <div className="hidden w-full sm:flex items-center justify-center rounded-[40px] px-6">
+      <div className="hidden w-full sm:flex items-center justify-center rounded-[40px] px-6 lg:px-0">
         <Lottie
           animationData={SolutionGraphic}
           loop={true}
@@ -35,7 +35,7 @@ const LegacyGateway = () => {
         />
       </div>
 
-      <div className="sm:hidden w-full flex items-center justify-center">
+      <div className="sm:hidden w-full flex items-center justify-center px-4">
         <Lottie
           animationData={SolutionGraphic}
           loop={true}
