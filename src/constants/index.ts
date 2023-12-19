@@ -1,3 +1,5 @@
+export const githubRepoURL = "https://github.com/tailcallhq/tailcall"
+
 export const partnerImages: PartnerImage[] = [
   {
     id: 1,

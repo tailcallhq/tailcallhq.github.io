@@ -298,6 +298,10 @@ pre code {
   font-weight: 500;
 }
 
+nav.menu {
+  padding-bottom: var(--ifm-navbar-height);
+}
+
 @media (max-width: 996px) {
   .navbar__items {
     margin-left: auto;
