@@ -44,19 +44,19 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, dur
     >
       <div className="flex flex-col px-6 py-4 lg:px-12 lg:py-8 z-10">
         <span className="text-content-small sm:text-content-medium text-tailCall-light-100">{metricTitle}</span>
-        {metricData && (
-          <span className="text-title-medium sm:text-title-large text-tailCall-light-100">
-            <VisibilitySensor partialVisibility offset={{bottom: 200}}>
-              {({isVisible}) => (
-                <div style={{height: 100}}>
-                  {isVisible ? (
-                    <CountUp start={2000} end={metricData} decimals={2} duration={duration} delay={delay} />
-                  ) : null}
-                </div>
-              )}
-            </VisibilitySensor>
-          </span>
-        )}
+
+        <span className="text-title-medium sm:text-title-large text-tailCall-light-100">
+          <VisibilitySensor partialVisibility offset={{bottom: 200}}>
+            {({isVisible}) => (
+              <div className="h-10">
+                {isVisible ? (
+                  <CountUp start={2000} end={metricData} decimals={2} duration={duration} delay={delay} />
+                ) : null}
+              </div>
+            )}
+          </VisibilitySensor>
+        </span>
+
         <span className="text-content-tiny sm:text-content-small text-tailCall-light-400">{metricDesc}</span>
       </div>
 
