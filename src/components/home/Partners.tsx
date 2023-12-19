@@ -11,7 +11,7 @@ const Partners = () => {
         <GreaterThanUnderscoreIcon className="h-4 w-6" />
         <span>Our Cloud Partners</span>
       </div>
-      <Marquee>
+      <Marquee autoFill>
         <div className="hidden sm:flex space-x-16 mt-10 overflow-hidden">
           {partnerImages.map((partner) => (
             <div key={partner.id} className="h-20">

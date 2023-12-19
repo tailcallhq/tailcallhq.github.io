@@ -9,7 +9,7 @@ const FeatureBox = ({feature}) => {
       style={{
         borderBottom: "1px solid #E4E4E4",
       }}
-      className="flex flex-col sm:flex-row items-start justify-start sm:items-center text-start space-y-2 sm:py-8 lg:py-12 sm:space-x-4 text-content-tiny font-bold sm:text-title-small lg:text-title-medium text-tailCall-dark-500  sm:h-32 w-full border border-tailCall-dark-300"
+      className="flex flex-col sm:flex-row items-start justify-start sm:items-center text-start space-y-2 sm:space-y-0 py-4 sm:py-8 lg:py-12 sm:space-x-4 text-content-tiny font-bold sm:text-title-small lg:text-title-medium text-tailCall-dark-500  sm:h-32 w-full border border-tailCall-dark-300"
     >
       <feature.logo className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
       <span className="mt-0">{feature.title}</span>
@@ -29,12 +29,12 @@ const MoreFeatures = () => {
             <FeatureBox feature={feature} key={feature.id} />
           ))}
         </div>
-        <div className="hidden sm:block">
+        {/* <div className="hidden sm:block">
           <Button title="View More" href="/" theme="light" width="500px" />
         </div>
         <div className="sm:hidden">
           <Button title="View More" href="/" theme="light" width="200px" />
-        </div>
+        </div> */}
       </div>
     </section>
   )

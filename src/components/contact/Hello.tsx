@@ -49,12 +49,12 @@ const Hello = () => {
     <section className="relative h-auto">
       <Grid className="absolute inset-0 -z-10 h-[540px] w-full" />
 
-      <div className="p-6 sm:py-10 lg:py-20 flex flex-col lg:flex-row items-center lg:items-start justify-center lg:space-x-40">
+      <div className="p-6 sm:py-10 lg:py-20 flex flex-col lg:flex-row items-center lg:items-start justify-center lg:space-x-40 xl:h-[72vh]">
         <h2 className="text-title-large text-center sm:text-left sm:text-display-medium lg:text-display-large lg:max-w-md">
           Say <span className="bg-tailCall-yellow rounded sm:rounded-2xl px-1 sm:px-2">hello</span> to us!
         </h2>
 
-        <div className="flex flex-col justify-between space-y-7">
+        <div className="flex flex-col justify-between space-y-7 w-full sm:w-fit">
           <div className="flex flex-col space-y-2">
             <label id="email" className="text-content-tiny sm:text-content-small font-medium">
               Email

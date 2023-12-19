@@ -4,7 +4,7 @@ import AboutUs from "@site/static/animations/about-us-visual.gif"
 
 const Hero = () => {
   return (
-    <section className="flex flex-col sm:flex-row items-end sm:items-center justify-between bg-tailCall-dark-500 w-full h-full">
+    <section className="flex flex-col sm:flex-row items-end sm:items-center justify-center bg-tailCall-dark-500 w-full h-full">
       <div className="mx-4 my-6 sm:m-10 lg:m-20">
         <SectionTitle title="Our Mission" />
         <h2 className="text-title-small sm:text-title-large lg:text-display-small text-tailCall-light-100 max-w-3xl">

@@ -41,7 +41,7 @@ const Graph = () => {
             metricTitle="Latency (ms)"
             metricDesc="(Lower is better)"
             duration={1.6}
-            delay={3}
+            delay={0}
           />
           <div className="sm:hidden">
             <Button

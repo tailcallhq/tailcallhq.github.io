@@ -34,7 +34,7 @@ const Banner = () => {
           <Button title="Get Started" href="/docs/getting_started/" theme="light" />
         </div>
 
-        <HeroImage className="object-contain h-full sm:h-full w-full mt-10" />
+        <HeroImage className="object-contain h-full sm:h-full w-full mt-10 max-w-7xl" />
       </div>
     </main>
   )
