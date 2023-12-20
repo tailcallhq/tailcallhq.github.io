@@ -257,7 +257,7 @@ export const pricingPlans: PricingPlans[] = [
     price: "Free",
     for: "For individuals & small companies",
     billing: "Billed Annually",
-    volumeDiscounts: "",
+    volumeDiscounts: "Discount Applied",
     features: [
       {
         id: 1,
@@ -266,6 +266,10 @@ export const pricingPlans: PricingPlans[] = [
       {
         id: 2,
         name: "Basic reporting and analytics",
+      },
+      {
+        id: 3,
+        name: "Standard feature",
       },
     ],
     buttonText: "Start Free trial",
