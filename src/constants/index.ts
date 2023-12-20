@@ -207,8 +207,8 @@ export const enterpriseFeatures: EnterpriseFeature[] = [
   {
     id: 5,
     logo: require("@site/static/icons/basic/connect.svg").default,
-    title: "GRPC",
-    description: "Connect to GRPC services just like you connect to Http.",
+    title: "Scripting Flexibility",
+    description: "Ability to write custom resolvers in Javascript.",
   },
 ]
 
@@ -216,37 +216,32 @@ export const additionalEnterpriseFeatures = [
   {
     id: 1,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive",
+    title: "Circuit breaking",
   },
   {
     id: 2,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive",
+    title: "Breaking change detection",
   },
   {
     id: 3,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance",
+    title: "Schema redundancy detection",
   },
   {
     id: 4,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "New Feature",
+    title: "Query cost analysis",
   },
   {
     id: 5,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive",
+    title: "Expert 24x7 technical support",
   },
   {
     id: 6,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive",
-  },
-  {
-    id: 7,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive",
+    title: "Custom SLA",
   },
 ]
 
@@ -256,8 +251,6 @@ export const pricingPlans: PricingPlans[] = [
     name: "Basic plan",
     price: "Free",
     for: "For individuals & small companies",
-    billing: "Billed Annually",
-    volumeDiscounts: "",
     features: [
       {
         id: 1,
@@ -274,8 +267,8 @@ export const pricingPlans: PricingPlans[] = [
   },
   {
     id: 2,
-    name: "Standard plan",
-    price: "$20/month",
+    name: "Edge plan",
+    price: "$700/year",
     for: "per core",
     billing: "Billed Annually",
     volumeDiscounts: "(Volume discounts available)",
@@ -286,11 +279,11 @@ export const pricingPlans: PricingPlans[] = [
       },
       {
         id: 2,
-        name: "Basic reporting and analytics",
+        name: "Managed Edge deployment",
       },
       {
         id: 3,
-        name: "Standard feature",
+        name: "Enterprise features",
       },
     ],
     buttonText: "Contact Sales",
@@ -300,30 +293,26 @@ export const pricingPlans: PricingPlans[] = [
   {
     id: 3,
     name: "Enterprise plan",
-    price: "$40/month",
+    price: "$1000/year",
     for: "per core",
     billing: "Billed Annually",
     volumeDiscounts: "(Volume discounts available)",
     features: [
       {
         id: 1,
-        name: "Access to all basic features",
+        name: "Access to all Edge plan features",
       },
       {
         id: 2,
-        name: "Basic reporting and analytics",
+        name: "Custom SLA",
       },
       {
         id: 3,
-        name: "Enterprise feature 01",
+        name: "24x7 Support",
       },
       {
         id: 4,
-        name: "Enterprise feature 02",
-      },
-      {
-        id: 5,
-        name: "Enterprise feature 03",
+        name: "Advanced Security & Compliance",
       },
     ],
     buttonText: "Contact Sales",
