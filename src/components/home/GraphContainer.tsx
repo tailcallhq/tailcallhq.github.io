@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from "react"
 import CountUp from "react-countup"
 import TrackVisibility from "react-on-screen"
-
 import Lottie from "lottie-react"
 
 type GraphContainerProps = {
@@ -16,8 +15,8 @@ type GraphContainerProps = {
 const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, duration}: GraphContainerProps) => {
   const lottieRef = useRef()
 
-  const interactivity = {
-    mode: "scroll",
+  const interactivity: any = {
+    mode: "scroll" as "scroll",
     actions: [
       {
         visibility: [0, 1],

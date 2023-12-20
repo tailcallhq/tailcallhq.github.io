@@ -2,7 +2,6 @@ import React from "react"
 
 import {additionalEnterpriseFeatures} from "@site/src/constants"
 import CheckCircle from "@site/static/icons/basic/check-circle-broken.svg"
-import Grid from "@site/static/icons/basic/more-feat-grid.png"
 
 const MoreEnterpriseFeatures = () => {
   return (
@@ -13,8 +12,11 @@ const MoreEnterpriseFeatures = () => {
       }}
     >
       <div className="w-full h-full py-4 sm:py-0 sm:pr-10">
-        {/* <Grid className="absolute inset-0 sm:h-full -z-10" /> */}
-        <img src={Grid} alt="" className="absolute inset-0 sm:h-full w-[47vw]" />
+        <img
+          src={require("@site/static/icons/basic/more-feat-grid.png").default}
+          alt=""
+          className="absolute inset-0 sm:h-full w-[47vw] -z-10"
+        />
         <h4 className="text-title-semi-large sm:text-title-large text-center h-full w-full">
           Additional enterprise features
         </h4>
