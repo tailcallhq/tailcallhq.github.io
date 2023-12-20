@@ -1,6 +1,5 @@
 import React from "react"
 import SectionTitle from "../shared/SectionTitle"
-import AboutUs from "@site/static/animations/about-us-visual.gif"
 
 const Hero = () => {
   return (
@@ -13,7 +12,11 @@ const Hero = () => {
         </h2>
       </div>
 
-      <img src={AboutUs} alt="about us visual" className="h-52 w-60 sm:h-72 sm:w-80 lg:h-fit lg:w-fit" />
+      <img
+        src={require("@site/static/animations/about-us-visual.gif").default}
+        alt="about us visual"
+        className="h-52 w-60 sm:h-72 sm:w-80 lg:h-fit lg:w-fit"
+      />
     </section>
   )
 }

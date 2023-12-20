@@ -17,7 +17,7 @@ type FeatureProps = {
 const Feature = ({feature}: FeatureProps) => {
   return (
     <div key={feature.id} className="text-tailCall-dark-500 sm:max-w-6xl sm:m-10 lg:mx-auto lg:px-16 my-0 lg:my-20">
-      <div className="flex items-center sm:space-x-2 sm:-ml-5 lg:-ml-10 mb-6">
+      <div className="flex items-center -ml-2 sm:space-x-2 sm:-ml-5 lg:-ml-10 mb-6">
         <GreaterThanUnderscoreIcon className="h-5 sm:h-7" />
         <h5 className="text-title-semi-large sm:text-display-tiny lg:text-display-small mb-0">{feature.title}</h5>
       </div>
