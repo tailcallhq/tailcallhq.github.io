@@ -1,16 +1,15 @@
 import React from "react"
-import PeakXV from "@site/static/images/about/peakxv.jpg"
-import Tenacity from "@site/static/images/about/tenacity.jpg"
-// import Grid from "@site/static/images/about/grid-large.svg"
-import Grid from "@site/static/images/about/grid-large.png"
 import {investors} from "@site/src/constants"
 
 const Investors = () => {
   return (
     <section className="h-full w-full relative">
-      {/* <Grid className="absolute inset-0 -z-10 w-full h-full" /> */}
-      <img src={Grid} alt="" className="absolute inset-0 -z-10 h-[350px] w-full" />
-      <p className="text-title-semi-large sm:text-title-large lg:text-display-tiny text-center mx-10 sm:mx-0 sm:mt-9">
+      <img
+        src={require("@site/static/images/about/grid-large.png").default}
+        alt=""
+        className="absolute inset-0 -z-10 h-[350px] w-full"
+      />
+      <p className="text-title-semi-large sm:text-title-large lg:text-display-tiny text-center w-full px-4 sm:mx-0 sm:mt-9">
         We are backed by <span className="bg-tailCall-yellow rounded-lg px-2">incredible investors.</span>
       </p>
 
@@ -21,7 +20,11 @@ const Investors = () => {
             border: "1px solid #CECECF",
           }}
         >
-          <img src={PeakXV} alt="" className="h-full w-full object-contain" />
+          <img
+            src={require("@site/static/images/about/peakxv.jpg").default}
+            alt="peak xv"
+            className="h-full w-full object-contain"
+          />
         </div>
         <div
           className="flex items-center justify-center rounded-xl sm:rounded-2xl p-5 sm:p-10 shadow-lg w-52 h-28 sm:w-80 sm:h-40 bg-tailCall-light-100"
@@ -29,7 +32,7 @@ const Investors = () => {
             border: "1px solid #CECECF",
           }}
         >
-          <img src={Tenacity} alt="" />
+          <img src={require("@site/static/images/about/tenacity.jpg").default} alt="tenacity" />
         </div>
       </div>
 

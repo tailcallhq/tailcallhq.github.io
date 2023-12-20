@@ -28,7 +28,7 @@ const LegacyGateway = () => {
         <Lottie
           animationData={SolutionGraphic}
           loop={true}
-          className="rounded-[40px] max-w-7xl"
+          className="rounded-[40px] max-w-7xl "
           style={{
             borderRadius: "40px",
           }}
@@ -39,7 +39,7 @@ const LegacyGateway = () => {
         <Lottie
           animationData={SolutionGraphic}
           loop={true}
-          className="rounded-[40px] max-w-7xl"
+          className="rounded-[40px] max-w-7xl mt-10 scale-150"
           style={{
             borderRadius: "40px",
           }}

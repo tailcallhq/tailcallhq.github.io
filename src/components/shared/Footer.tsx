@@ -2,12 +2,15 @@ import React from "react"
 import Link from "@docusaurus/Link"
 import {socials} from "@site/src/constants"
 import TailcallLogo from "@site/static/icons/companies/tailcall-white.svg"
-import Grid from "@site/static/images/about/grid-dark.png"
 
 const Footer = () => {
   return (
-    <footer className="bg-tailCall-dark-700 pt-10 pb-5 flex flex-col items-center justify-center gap-10 w-full relative">
-      <img src={Grid} alt="" className="absolute inset-0 w-full h-full" />
+    <footer className="bg-tailCall-dark-700 pt-10 pb-5 flex flex-col items-center justify-center gap-10 w-full relative px-4">
+      <img
+        src={require("@site/static/images/about/grid-dark.png").default}
+        alt=""
+        className="absolute inset-0 w-full h-full"
+      />
       <TailcallLogo className="w-[120px] h-10" />
       <div className="text-content-tiny sm:text-title-small space-x-6 text-tailCall-light-500 z-10">
         <Link
