@@ -221,7 +221,7 @@ export const additionalEnterpriseFeatures = [
   {
     id: 2,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Breaking change detection",
+    title: "Custom SLA",
   },
   {
     id: 3,
@@ -236,12 +236,12 @@ export const additionalEnterpriseFeatures = [
   {
     id: 5,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Expert 24x7 technical support",
+    title: "Breaking change detection",
   },
   {
     id: 6,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Custom SLA",
+    title: "Expert 24x7 technical support",
   },
 ]
 
