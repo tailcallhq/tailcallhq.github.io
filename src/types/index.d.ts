@@ -45,12 +45,12 @@ type PricingPlans = {
   name: string
   price: string
   for: string
-  billing: string
-  volumeDiscounts: string
-  features: {
+  billing?: string
+  volumeDiscounts?: string
+  features: Array<{
     id: number
     name: string
-  }[]
+  }>
   buttonText: string
   mostPopular: boolean
   href: string
