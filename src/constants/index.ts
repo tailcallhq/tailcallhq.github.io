@@ -261,10 +261,6 @@ export const pricingPlans: PricingPlans[] = [
         id: 2,
         name: "Basic reporting and analytics",
       },
-      {
-        id: 3,
-        name: "Standard feature",
-      },
     ],
 
     buttonText: "Get Started",
