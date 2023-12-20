@@ -254,36 +254,42 @@ export const pricingPlans: PricingPlans[] = [
     features: [
       {
         id: 1,
-        name: "Access to all basic features",
+        name: "Access to all open source features",
       },
+
       {
         id: 2,
         name: "Basic reporting and analytics",
       },
     ],
-    buttonText: "Start Free trial",
+
+    buttonText: "Get Started",
     mostPopular: false,
-    href: "/contact",
+    href: "/docs/getting_started/",
   },
   {
     id: 2,
-    name: "Edge plan",
-    price: "$700/year",
-    for: "per core",
+    name: "Advanced plan",
+    price: "$600/year",
+    for: "per worker",
     billing: "Billed Annually",
     volumeDiscounts: "(Volume discounts available)",
     features: [
       {
         id: 1,
-        name: "Access to all basic features",
+        name: "Access to all open source features",
       },
       {
         id: 2,
-        name: "Managed Edge deployment",
+        name: "Access to all enterprise features",
       },
       {
         id: 3,
-        name: "Enterprise features",
+        name: "GraphQL onboarding copilot",
+      },
+      {
+        id: 4,
+        name: "Full managed edge deployment",
       },
     ],
     buttonText: "Contact Sales",
@@ -294,13 +300,13 @@ export const pricingPlans: PricingPlans[] = [
     id: 3,
     name: "Enterprise plan",
     price: "$1000/year",
-    for: "per core",
+    for: "per worker",
     billing: "Billed Annually",
     volumeDiscounts: "(Volume discounts available)",
     features: [
       {
         id: 1,
-        name: "Access to all Edge plan features",
+        name: "Access to all advanced plan features",
       },
       {
         id: 2,
@@ -308,11 +314,19 @@ export const pricingPlans: PricingPlans[] = [
       },
       {
         id: 3,
-        name: "24x7 Support",
+        name: "Priority 24x7 Support",
       },
       {
         id: 4,
         name: "Advanced Security & Compliance",
+      },
+      {
+        id: 5,
+        name: "On premise deployment",
+      },
+      {
+        id: 6,
+        name: "Custom Plugin Development",
       },
     ],
     buttonText: "Contact Sales",
