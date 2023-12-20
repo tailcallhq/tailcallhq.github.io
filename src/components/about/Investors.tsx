@@ -1,16 +1,14 @@
 import React from "react"
 import PeakXV from "@site/static/images/about/peakxv.jpg"
 import Tenacity from "@site/static/images/about/tenacity.jpg"
-// import Grid from "@site/static/images/about/grid-large.svg"
 import Grid from "@site/static/images/about/grid-large.png"
 import {investors} from "@site/src/constants"
 
 const Investors = () => {
   return (
     <section className="h-full w-full relative">
-      {/* <Grid className="absolute inset-0 -z-10 w-full h-full" /> */}
       <img src={Grid} alt="" className="absolute inset-0 -z-10 h-[350px] w-full" />
-      <p className="text-title-semi-large sm:text-title-large lg:text-display-tiny text-center mx-10 sm:mx-0 sm:mt-9">
+      <p className="text-title-semi-large sm:text-title-large lg:text-display-tiny text-center w-full px-4 sm:mx-0 sm:mt-9">
         We are backed by <span className="bg-tailCall-yellow rounded-lg px-2">incredible investors.</span>
       </p>
 

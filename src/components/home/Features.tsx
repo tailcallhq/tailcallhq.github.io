@@ -16,17 +16,14 @@ type FeatureProps = {
 
 const Feature = ({feature}: FeatureProps) => {
   return (
-    <div
-      key={feature.id}
-      className="text-tailCall-dark-500 sm:max-w-6xl mr-7 sm:m-10 lg:mx-auto lg:px-16 my-0 lg:my-20"
-    >
+    <div key={feature.id} className="text-tailCall-dark-500 sm:max-w-6xl sm:m-10 lg:mx-auto lg:px-16 my-0 lg:my-20">
       <div className="flex items-center sm:space-x-2 sm:-ml-5 lg:-ml-10 mb-6">
         <GreaterThanUnderscoreIcon className="h-5 sm:h-7" />
         <h5 className="text-title-semi-large sm:text-display-tiny lg:text-display-small mb-0">{feature.title}</h5>
       </div>
 
       <div
-        className="flex flex-col sm:flex-row p-4 sm:p-10  shadow-xl rounded-[20px] relative ml-10 sm:ml-0"
+        className="flex flex-col sm:flex-row p-4 sm:p-10  shadow-xl rounded-[20px] relative  sm:ml-0"
         style={{
           backgroundImage: `url(${require("@site/static/images/home/grid.jpg").default})`,
           boxShadow: "0px 0px 0px 3px #F3F4F7",
@@ -50,7 +47,7 @@ const Feature = ({feature}: FeatureProps) => {
 
 const Features = () => {
   return (
-    <section className="space-y-12 sm:space-y-16 lg:space-y-24 mb-24">
+    <section className="space-y-12 mx-4 sm:space-y-16 lg:space-y-24 mb-24">
       {features.map((feature) => (
         <Feature feature={feature} key={feature.id} />
       ))}
