@@ -30,8 +30,10 @@ const Pricing = () => {
               <span className="text-content-small lg:text-content-medium text-center">{plan.name}</span>
               <span className="text-title-large  lg:text-display-tiny text-center">{plan.price}</span>
               <span className="text-content-small text-center">{plan.for}</span>
-              <span className="text-content-small text-center">{plan.billing}</span>
-              <span className="text-content-small text-center">{plan.volumeDiscounts}</span>
+              <span className="text-content-small text-center">{plan.billing ? plan.billing : <br />}</span>
+              <span className="text-content-small text-center">
+                {plan.volumeDiscounts ? plan.volumeDiscounts : <br />}
+              </span>
             </div>
 
             <div className="flex-[0.8] flex flex-col items-center justify-between">
