@@ -334,7 +334,7 @@ nav.menu {
 }
 
 .algolia-autocomplete .ds-dropdown-menu {
-  margin-top: .75rem !important;
+  margin-top: 0.75rem !important;
 }
 
 @media (max-width: 996px) {
