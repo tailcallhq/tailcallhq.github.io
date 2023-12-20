@@ -3,14 +3,14 @@ import React from "react"
 import Button from "../shared/Button"
 import ChooseTailcall from "./ChooseTailcall"
 import GraphContainer from "./GraphContainer"
-import githubLogo from "@site/static/icons/companies/github-gray.svg"
+import githubLogo from "@site/static/icons/companies/github-light.svg"
 import RequestVisual from "@site/static/animations/request-visual.json"
 import LatencyVisual from "@site/static/animations/latency-visual.json"
 
 const Graph = () => {
   return (
-    <section className="bg-tailCall-dark-600 h-full w-full text-tailCall-light-100">
-      <div className="sm:max-w-7xl mx-4 sm:mx-10 lg:mx-auto py-8 sm:py-20">
+    <section className="bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 lg:px-16">
+      <div className="sm:max-w-7xl mx-4 sm:mx-10 lg:mx-auto  py-8 sm:py-20">
         <div className="flex items-center justify-between">
           <h5 className="text-title-large sm:text-display-tiny lg:text-display-medium sm:max-w-sm lg:max-w-xl">
             Platform made for performance.

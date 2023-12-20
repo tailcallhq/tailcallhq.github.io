@@ -29,8 +29,8 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
 
       case "gray":
         return {
-          classes: "text-tailCall-dark-100 bg-transparent",
-          styles: "2px solid #545556",
+          classes: "text-tailCall-dark-100 bg-transparent text-tailCall-light-100",
+          styles: "2px solid #FFFFFF",
         }
 
       default:
@@ -56,7 +56,7 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
           border: generateThemeClasses().styles,
         }}
       >
-        {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8" />}
+        {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white" />}
         {title && <span> {title}</span>}
       </button>
     </Link>
