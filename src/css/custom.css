@@ -354,6 +354,12 @@ nav.menu {
   margin-top: 0.75rem !important;
 }
 
+.grid-bg-section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
 @media (max-width: 996px) {
   .navbar__items {
     margin-left: auto;

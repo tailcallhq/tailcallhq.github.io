@@ -49,7 +49,7 @@ const Investors = () => {
             <div key={investor.id} className="flex flex-col items-center w-[172px] sm:w-[228px]">
               <img
                 src={investor.image}
-                srcSet={`${investor.image} 1x, ${investor.image2x} 2x`}
+                srcSet={`${investor.image} 1x,${investor.image2x} 2x`}
                 alt={investor.name}
                 className="rounded-2xl h-32 w-32"
               />
