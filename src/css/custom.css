@@ -358,6 +358,7 @@ nav.menu {
   background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
                     linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
+  clip-path: inset(.5rem 0 1rem 0);
 }
 
 @media (max-width: 996px) {

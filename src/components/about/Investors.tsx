@@ -4,7 +4,7 @@ import {investors} from "@site/src/constants"
 const Investors = () => {
   return (
     <section className="h-full w-full relative">
-      <p className="text-title-semi-large sm:text-title-large lg:text-display-tiny text-center w-full px-4 sm:mx-0 sm:mt-9">
+      <p className="pt-4 text-title-semi-large sm:text-title-large lg:text-display-tiny text-center w-full px-4 sm:mx-0 sm:mt-9">
         We are backed by <span className="bg-tailCall-yellow rounded-lg px-2">incredible investors.</span>
       </p>
 
