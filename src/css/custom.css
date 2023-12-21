@@ -362,6 +362,10 @@ nav.menu {
 }
 
 @media (max-width: 996px) {
+  .grid-bg-section {
+    background-size: 40px 40px;
+  }
+
   .navbar__items {
     margin-left: auto;
     justify-content: flex-end;
