@@ -13,8 +13,10 @@ const AboutPage = () => {
       <Hero />
       <WhoWeAre />
       <Founders />
-      <Investors />
-      <SocialBuzz />
+      <div className="bg-grid-pattern bg-[length:100%_25%]">
+        <Investors />
+        <SocialBuzz />
+      </div>
       <Discover />
       <Footer />
     </>

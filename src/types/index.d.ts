@@ -67,6 +67,7 @@ type Founder = {
 type Investor = {
   id: number
   image: string
+  image2x: string
   name: string
   title: string
 }

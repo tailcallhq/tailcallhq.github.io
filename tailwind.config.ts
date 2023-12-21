@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx,md,mdx}", "./docs/**/*.{md,mdx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        "grid-pattern": "url('../../static/images/about/grid-large.png')",
+      },
       colors: {
         tailCall: {
           light: {
