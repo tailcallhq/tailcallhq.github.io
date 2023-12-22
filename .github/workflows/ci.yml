@@ -19,13 +19,13 @@ jobs:
       - name: Check spelling
         uses: codespell-project/actions-codespell@v2
         with:
-          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,package.json,package-lock.json,*.lock
+          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock
           ignore_words_list: unit
 
       - name: Install and Build 🔧
         run: |
           npm install
-          npx prettier --check "**/*.{graphql,yml,json,md,sh}"
+          npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
           npm run build
 
       - name: Deploy 🚀
