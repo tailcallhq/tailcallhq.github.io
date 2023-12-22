@@ -2,6 +2,7 @@
 title: "Operator Composition"
 sidebar_position: 8
 ---
+
 # Composition
 
 Operators can be composed and used together to create new and powerful transformations.
