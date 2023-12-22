@@ -64,7 +64,7 @@ const Hello = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="rounded-lg h-11 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
+              className="rounded-lg font-space-grotesk h-11 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
               placeholder="you@company.com"
             />
           </div>
@@ -101,7 +101,7 @@ const Hello = () => {
               name="company"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="rounded-lg h-32 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
+              className="rounded-lg font-space-grotesk h-32 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
               placeholder="Leave us a message..."
             />
           </div>
