@@ -25,7 +25,11 @@ const LegacyGateway = () => {
       </div>
 
       <div className="w-full flex items-center justify-center px-6 lg:px-0 mt-7">
-        <Lottie animationData={SolutionGraphic} loop className="scale-[1.12] sm:scale-100" />
+        <Lottie
+          animationData={SolutionGraphic}
+          loop
+          className="scale-[1.12] sm:scale-100 bg-tailCall-dark-500 sm:bg-transparent"
+        />
       </div>
     </section>
   )

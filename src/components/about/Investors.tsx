@@ -44,7 +44,7 @@ const Investors = () => {
 
       <div className="mt-16 sm:mt-20 lg:mt-24">
         <p className="text-title-semi-large sm:text-title-large lg:text-display-tiny text-center">Angel Investors</p>
-        <div className="flex flex-wrap lg:flex-nowrap gap-4 sm:gap-y-6 lg:gap-y-0 items-center flex-start justify-center mt-9">
+        <div className="flex flex-wrap lg:flex-nowrap gap-12 sm:gap-y-6 lg:gap-y-0 items-center flex-start justify-center mt-9">
           {investors.map((investor) => (
             <div key={investor.id} className="flex flex-col items-center w-[172px] sm:w-[228px]">
               <img

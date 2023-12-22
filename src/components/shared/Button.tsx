@@ -72,16 +72,16 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
         {theme === "dark" && (
           <>
             <div
-              className={`lg:block rounded-md lg:rounded-lg absolute inset-0 w-full group-hover:z-0 bg-tailCall-dark-500 lg:group-hover:scale-x-[0.98] lg:group-hover:scale-y-[0.95] transform transition ease-out duration-150`}
+              className={`lg:block rounded-md lg:rounded-lg absolute inset-0 w-full group-hover:z-0 bg-tailCall-dark-500 lg:group-hover:scale-x-[0.98] lg:group-hover:scale-y-[0.95] transform transition-all ease-out duration-250`}
             />
             {!disabled && (
-              <div className="hidden lg:block button-grid-bg-section h-full w-full scale-90 opacity-0 group-hover:scale-[0.98] group-hover:opacity-100 transform transition ease-out duration-150" />
+              <div className="hidden lg:block button-grid-bg-section h-full w-full scale-90 opacity-0 group-hover:scale-[0.98] group-hover:opacity-100 transform transition-all ease-out duration-250" />
             )}
           </>
         )}
 
         {theme === "light" && !disabled && (
-          <div className="hidden lg:block button-grid-bg-section-dark h-full w-full scale-90 opacity-0 group-hover:scale-[1] group-hover:opacity-100 transform transition ease-out duration-150" />
+          <div className="hidden lg:block button-grid-bg-section-dark h-full w-full scale-90 opacity-0 group-hover:scale-[1] group-hover:opacity-100 transform transition-all ease-out duration-250" />
         )}
         {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white" />}
         {title && <span className="z-20"> {title}</span>}
