@@ -7,7 +7,7 @@ In any GraphQL framework, including Tailcall, `Context` is a fundamental mechani
 
 ## Context in Tailcall
 
-In Tailcall, as in all GraphQL implementations, Context is a variable that is accessible to every [Operator](operators.md). It is used to store and access data that needs to be shared between operators.
+In Tailcall, as in all GraphQL implementations, Context is a variable that is accessible to every [Operator](operators/index.md). It is used to store and access data that needs to be shared between operators.
 
 The Context can be described using the following Typescript interface:
 
