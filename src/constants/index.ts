@@ -345,19 +345,16 @@ export const founders: Founder[] = [
       {
         id: 1,
         name: "linkedin",
-        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
         href: "https://www.linkedin.com/in/tusharmath",
       },
       {
         id: 2,
         name: "x",
-        image: require("@site/static/icons/companies/x-gray.svg").default,
         href: "https://twitter.com/tusharmath",
       },
       {
         id: 3,
         name: "discord",
-        image: require("@site/static/icons/companies/discord-gray.svg").default,
         href: "https://discord.com/users/358987818825154560",
       },
     ],
@@ -371,19 +368,16 @@ export const founders: Founder[] = [
       {
         id: 1,
         name: "linkedin",
-        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
         href: "https://www.linkedin.com/in/amitksingh1490",
       },
       {
         id: 2,
         name: "x",
-        image: require("@site/static/icons/companies/x-gray.svg").default,
         href: "https://twitter.com/amitksingh1490",
       },
       {
         id: 3,
         name: "discord",
-        image: require("@site/static/icons/companies/discord-gray.svg").default,
         href: "https://discord.com/users/784053215104467004",
       },
     ],
@@ -397,19 +391,16 @@ export const founders: Founder[] = [
       {
         id: 1,
         name: "linkedin",
-        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
         href: "https://www.linkedin.com/in/meskill",
       },
       {
         id: 2,
         name: "x",
-        image: require("@site/static/icons/companies/x-gray.svg").default,
         href: "https://twitter.com/_meskill",
       },
       {
         id: 3,
         name: "discord",
-        image: require("@site/static/icons/companies/discord-gray.svg").default,
         href: "https://discord.com/users/294552389518884864",
       },
     ],
@@ -423,19 +414,16 @@ export const founders: Founder[] = [
       {
         id: 1,
         name: "linkedin",
-        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
         href: "https://www.linkedin.com/in/shashi-kant-f07fed/",
       },
       {
         id: 2,
         name: "x",
-        image: require("@site/static/icons/companies/x-gray.svg").default,
         href: "https://twitter.com/notshashitnak",
       },
       {
         id: 3,
         name: "discord",
-        image: require("@site/static/icons/companies/discord-gray.svg").default,
         href: "https://discord.com/users/1177867346912759891",
       },
     ],

@@ -22,7 +22,7 @@ type MoreFeatures = {
 type Social = {
   id: number
   name: string
-  image: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  image?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
   href: string
 }
 
