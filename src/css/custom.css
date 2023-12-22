@@ -137,7 +137,6 @@ input[type="radio"]:checked::before {
   display: none;
 }
 
-
 .pagination-nav__link--next .pagination-nav__sublabel:after {
   content: "";
   color: #323335;
@@ -356,9 +355,26 @@ nav.menu {
 
 .grid-bg-section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 52px 52px;
-  clip-path: inset(.5rem 0 1rem 0);
+  clip-path: inset(0.5rem 0 1rem 0);
+}
+
+.button-grid-bg-section {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 2px);
+  background-size: 20px 20px;
+  clip-path: inset(0.2rem);
+  position: absolute;
+  border-radius: 20px;
+}
+
+.button-grid-bg-section-dark {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 2px);
+  background-size: 20px 20px;
+  position: absolute;
+  border-radius: 20px;
 }
 
 @media (max-width: 996px) {
