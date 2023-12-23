@@ -221,7 +221,7 @@ export const additionalEnterpriseFeatures = [
   {
     id: 2,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Breaking change detection",
+    title: "Custom SLA",
   },
   {
     id: 3,
@@ -236,12 +236,12 @@ export const additionalEnterpriseFeatures = [
   {
     id: 5,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Expert 24x7 technical support",
+    title: "Breaking change detection",
   },
   {
     id: 6,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Custom SLA",
+    title: "Expert 24x7 technical support",
   },
 ]
 
@@ -345,19 +345,16 @@ export const founders: Founder[] = [
       {
         id: 1,
         name: "linkedin",
-        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
         href: "https://www.linkedin.com/in/tusharmath",
       },
       {
         id: 2,
         name: "x",
-        image: require("@site/static/icons/companies/x-gray.svg").default,
         href: "https://twitter.com/tusharmath",
       },
       {
         id: 3,
         name: "discord",
-        image: require("@site/static/icons/companies/discord-gray.svg").default,
         href: "https://discord.com/users/358987818825154560",
       },
     ],
@@ -371,19 +368,16 @@ export const founders: Founder[] = [
       {
         id: 1,
         name: "linkedin",
-        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
         href: "https://www.linkedin.com/in/amitksingh1490",
       },
       {
         id: 2,
         name: "x",
-        image: require("@site/static/icons/companies/x-gray.svg").default,
         href: "https://twitter.com/amitksingh1490",
       },
       {
         id: 3,
         name: "discord",
-        image: require("@site/static/icons/companies/discord-gray.svg").default,
         href: "https://discord.com/users/784053215104467004",
       },
     ],
@@ -397,19 +391,16 @@ export const founders: Founder[] = [
       {
         id: 1,
         name: "linkedin",
-        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
         href: "https://www.linkedin.com/in/meskill",
       },
       {
         id: 2,
         name: "x",
-        image: require("@site/static/icons/companies/x-gray.svg").default,
         href: "https://twitter.com/_meskill",
       },
       {
         id: 3,
         name: "discord",
-        image: require("@site/static/icons/companies/discord-gray.svg").default,
         href: "https://discord.com/users/294552389518884864",
       },
     ],
@@ -423,19 +414,16 @@ export const founders: Founder[] = [
       {
         id: 1,
         name: "linkedin",
-        image: require("@site/static/icons/companies/linkedin-gray.svg").default,
         href: "https://www.linkedin.com/in/shashi-kant-f07fed/",
       },
       {
         id: 2,
         name: "x",
-        image: require("@site/static/icons/companies/x-gray.svg").default,
         href: "https://twitter.com/notshashitnak",
       },
       {
         id: 3,
         name: "discord",
-        image: require("@site/static/icons/companies/discord-gray.svg").default,
         href: "https://discord.com/users/1177867346912759891",
       },
     ],
@@ -445,38 +433,23 @@ export const founders: Founder[] = [
 export const investors: Investor[] = [
   {
     id: 1,
-    image: require("@site/static/images/about/investor-1.jpg").default,
-    name: "Bruce Wayne",
-    title: "Investor",
+    image: require("@site/static/images/about/harsh-jain.png").default,
+    image2x: require("@site/static/images/about/harsh-jain-2x.png").default,
+    name: "Harsh Jain",
+    title: "Founder - Dream11",
   },
   {
     id: 2,
-    image: require("@site/static/images/about/investor-1.jpg").default,
-    name: "Harvey Dent",
-    title: "Investor",
+    image: require("@site/static/images/about/abhishek-ravi.png").default,
+    image2x: require("@site/static/images/about/abhishek-ravi-2x.png").default,
+    name: "Abhishek Ravi",
+    title: "CIO - Dream Sports",
   },
   {
     id: 3,
-    image: require("@site/static/images/about/investor-1.jpg").default,
-    name: "James Gordon",
-    title: "Investor",
-  },
-  {
-    id: 4,
-    image: require("@site/static/images/about/investor-1.jpg").default,
-    name: "Rachel Dawes",
-    title: "Investor",
-  },
-  {
-    id: 5,
-    image: require("@site/static/images/about/investor-1.jpg").default,
-    name: "Bruce Wayne",
-    title: "Investor",
-  },
-  {
-    id: 6,
-    image: require("@site/static/images/about/investor-1.jpg").default,
-    name: "Bruce Wayne",
-    title: "Investor",
+    image: require("@site/static/images/about/amit-garde.png").default,
+    image2x: require("@site/static/images/about/amit-garde-2x.png").default,
+    name: "Amit Garde",
+    title: "SVP - Engineering Dream11",
   },
 ]

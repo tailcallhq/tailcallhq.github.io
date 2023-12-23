@@ -24,25 +24,11 @@ const LegacyGateway = () => {
         </div>
       </div>
 
-      <div className="hidden w-full sm:flex items-center justify-center rounded-[40px] px-6 lg:px-0">
+      <div className="w-full flex items-center justify-center px-6 lg:px-0 mt-7">
         <Lottie
           animationData={SolutionGraphic}
-          loop={true}
-          className="rounded-[40px] max-w-7xl "
-          style={{
-            borderRadius: "40px",
-          }}
-        />
-      </div>
-
-      <div className="sm:hidden w-full flex items-center justify-center px-4">
-        <Lottie
-          animationData={SolutionGraphic}
-          loop={true}
-          className="rounded-[40px] max-w-7xl mt-10 scale-150"
-          style={{
-            borderRadius: "40px",
-          }}
+          loop
+          className="scale-[1.12] sm:scale-100 bg-tailCall-dark-500 sm:bg-transparent"
         />
       </div>
     </section>

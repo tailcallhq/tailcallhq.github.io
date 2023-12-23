@@ -29,7 +29,10 @@ const MoreFeatures = () => {
             <FeatureBox feature={feature} key={feature.id} />
           ))}
         </div>
-        <div>
+        <div className="sm:hidden">
+          <Button title="View More" href="/enterprise/" theme="light" width="300px" />
+        </div>
+        <div className="hidden sm:block">
           <Button title="View More" href="/enterprise/" theme="light" width="500px" />
         </div>
       </div>

@@ -22,7 +22,7 @@ type MoreFeatures = {
 type Social = {
   id: number
   name: string
-  image: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  image?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
   href: string
 }
 
@@ -67,6 +67,7 @@ type Founder = {
 type Investor = {
   id: number
   image: string
+  image2x: string
   name: string
   title: string
 }

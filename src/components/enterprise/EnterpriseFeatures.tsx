@@ -13,7 +13,7 @@ type EnterpriseFeaturesCardProps = {
 const EnterpriseFeaturesCard = ({feature}: EnterpriseFeaturesCardProps) => {
   return (
     <div
-      className="rounded-3xl w-[328px] sm:w-[450px] sm:h-60 p-8 flex flex-col items-start space-y-4"
+      className="rounded-3xl w-full sm:w-[450px] sm:h-60 p-8 flex flex-col items-start space-y-4"
       style={{
         border: "1px solid #E7E7E7",
       }}
@@ -31,7 +31,7 @@ const EnterpriseFeatures = () => {
       <h4 className="text-title-semi-large sm:text-display-tiny lg:text-display-small text-center">
         Some of our enterprise features.
       </h4>
-      <div className="flex items-center flex-wrap justify-center gap-6 mt-8">
+      <div className="flex items-center flex-wrap justify-center gap-6 mt-8 mx-4 sm:mx-0">
         {enterpriseFeatures.map((feature) => (
           <EnterpriseFeaturesCard feature={feature} key={feature.id} />
         ))}
