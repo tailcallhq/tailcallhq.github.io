@@ -9,7 +9,7 @@ Here is a list of all the custom operators supported by Tailcall:
 
 Certainly! Here's the table with hyperlinks added back to the operator names:
 
-| Operator Name             | Description                                                                                                  |
+| Operator                  | Description                                                                                                  |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | [@addField](add-field.md) | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
 | [@const](const.md)        | Allows embedding of a constant response within the schema.                                                   |
