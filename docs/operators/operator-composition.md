@@ -1,5 +1,5 @@
 ---
-title: "Operator Composition"
+title: "Composition"
 sidebar_position: 8
 ---
 
