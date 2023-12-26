@@ -19,4 +19,4 @@ Certainly! Here's the table with hyperlinks added back to the operator names:
 | [@modify](modify.md)      | Enables changes to attributes of fields or nodes in the schema.                                              |
 | [@server](server.md)      | Provides server configurations for behavior tuning and tailcall optimization in various use-cases.           |
 | [@upstream](upstream.md)  | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
-| [@cache](cache.md)        | Enables caching for the query, field or type it is applied to.             |
+| [@cache](cache.md)        | Enables caching for the query, field or type it is applied to.                                               |
