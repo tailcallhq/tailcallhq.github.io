@@ -5,7 +5,7 @@ const SocialBuzz = () => {
   return (
     <section className="py-16 sm:py-24 relative flex items-center justify-center mx-4 sm:mx-10 lg:mx-12 lg:space-x-10 max-w-8xl">
       <div className="flex flex-col gap-6 lg:gap-y-44">
-        <div className="ml-4 lg:ml-20">
+        <div className="ml-4 lg:ml-32">
           <SectionTitle title="About Us" />
           <span className="text-title-semi-large sm:text-display-small">Social & Buzz</span>
         </div>
