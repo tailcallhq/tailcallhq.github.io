@@ -16,7 +16,7 @@ export default function NavbarMobilePrimaryMenu() {
   return (
     <ul className="menu__list">
       {items.map((item, i) => (
-        <NavbarItem mobile {...item} onClick={() => mobileSidebar.toggle()} key={i} />
+        <NavbarItem mobile {...(item as any)} onClick={() => mobileSidebar.toggle()} key={i} />
       ))}
       <li className="menu__list-item">
         <GithubStarsButton className="menu__link" />
