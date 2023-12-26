@@ -1,6 +1,8 @@
 name: CI
 
 on:
+  repository_dispatch:
+    types: build-and-deploy
   push:
     branches:
       - "**"
