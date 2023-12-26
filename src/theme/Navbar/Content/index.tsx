@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react"
+import React from "react"
 import {useThemeConfig, ErrorCauseBoundary} from "@docusaurus/theme-common"
 import {splitNavbarItems, useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
 import NavbarItem from "@theme/NavbarItem"
