@@ -377,6 +377,12 @@ nav.menu {
   border-radius: 20px;
 }
 
+.button-grid-bg-github {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 2px);
+  background-size: 20px 20px;
+}
+
 @media (max-width: 996px) {
   .grid-bg-section {
     background-size: 40px 40px;
