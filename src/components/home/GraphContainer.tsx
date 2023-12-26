@@ -10,9 +10,10 @@ type GraphContainerProps = {
   visual: any
   duration?: number
   delay?: number
+  start?: number
 }
 
-const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, duration}: GraphContainerProps) => {
+const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, duration, start}: GraphContainerProps) => {
   const lottieRef = useRef()
 
   const interactivity: any = {
@@ -55,7 +56,7 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, dur
               return (
                 <>
                   {isVisible ? (
-                    <CountUp start={2000} end={metricData} decimals={2} duration={duration} delay={delay} />
+                    <CountUp start={start} end={metricData} decimals={2} duration={duration} delay={delay} />
                   ) : null}
                 </>
               )
