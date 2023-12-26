@@ -1,7 +1,11 @@
 ---
-title: Operator Composition
-sidebar_position: 2
+title: "Composition"
+sidebar_position: 8
 ---
+
+# Composition
+
+Operators can be composed and used together to create new and powerful transformations.
 
 This example illustrates the concept of composition in GraphQL, which allows you to combine multiple operations (known as "operators") to build more complex transformations of data.
 

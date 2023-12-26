@@ -29,7 +29,7 @@ const Graph = () => {
         <div className="flex flex-col sm:flex-row gap-10 items-center w-full">
           <GraphContainer
             visual={RequestVisual}
-            metricData={2890.68}
+            metricData={7442.01}
             metricTitle="Requests/sec"
             metricDesc="(Higher is better)"
             duration={1.6}
@@ -37,7 +37,7 @@ const Graph = () => {
           />
           <GraphContainer
             visual={LatencyVisual}
-            metricData={34.69}
+            metricData={13.39}
             metricTitle="Latency (ms)"
             metricDesc="(Lower is better)"
             duration={1.6}

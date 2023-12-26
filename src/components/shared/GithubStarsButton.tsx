@@ -18,7 +18,7 @@ function GithubIcon() {
 export default function GithubStarsButton({className}) {
   const starsCount = useContext(GithubStarsContext)
   return (
-    <a href={githubRepoURL} className={`${className} header-button header-button-github`}>
+    <a href={githubRepoURL} target="_blank" className={`${className} header-button header-button-github`}>
       <GithubIcon />
       <span>
         Star <span className="min-w-[3ch] inline-block">{starsCount}</span>

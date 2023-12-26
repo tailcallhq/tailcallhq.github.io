@@ -11,14 +11,14 @@ const Pricing = () => {
         <span className="rounded sm:rounded-lg bg-tailCall-yellow px-1">Plans</span> that fit your scale.
       </h4>
 
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 md:px-16">
+      <div className="flex flex-col mx-4 sm:mx-0 lg:flex-row items-center justify-center gap-6 md:px-16">
         {pricingPlans.map((plan) => (
           <div
             key={plan.id}
             style={{
               border: plan.mostPopular ? "1px solid #000" : "1px solid #E7E7E7",
             }}
-            className="rounded-2xl flex flex-col items-center justify-between gap-y-7 sm:gap-y-0 py-4 sm:py-6 relative w-[328px] h-auto sm:w-[384px] md:h-[520px] lg:h-[584px]"
+            className="rounded-2xl flex flex-col items-center justify-between gap-y-7 sm:gap-y-0 py-4 sm:py-6 relative w-full h-auto sm:w-[384px] md:h-[520px] lg:h-[584px]"
           >
             {plan.mostPopular && (
               <p className="absolute -top-3.5 left-[50%] transform -translate-x-[50%] bg-tailCall-dark-600 text-tailCall-light-100 p-1 rounded text-content-tiny font-bold">

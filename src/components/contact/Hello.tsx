@@ -49,7 +49,7 @@ const Hello = () => {
     <section className="relative h-auto">
       <Grid className="absolute inset-0 -z-10 h-[540px] w-full" />
 
-      <div className="p-6 sm:py-10 lg:py-20 flex flex-col lg:flex-row items-center lg:items-start justify-center lg:space-x-40 md:h-[72vh]">
+      <div className="p-6 sm:py-10 lg:py-20 flex flex-col lg:flex-row items-center lg:items-start justify-center lg:space-x-40 lg:h-[85vh]">
         <h2 className="text-title-large text-center sm:text-left sm:text-display-medium lg:text-display-large lg:max-w-md">
           Say <span className="bg-tailCall-yellow rounded sm:rounded-2xl px-1 sm:px-2">hello</span> to us!
         </h2>
@@ -64,7 +64,10 @@ const Hello = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="rounded-lg h-11 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
+              style={{
+                border: "1px solid #CECECF",
+              }}
+              className="rounded-lg font-space-grotesk h-11 w-[95%] sm:w-[480px] p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
               placeholder="you@company.com"
             />
           </div>
@@ -101,7 +104,7 @@ const Hello = () => {
               name="company"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="rounded-lg h-32 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
+              className="rounded-lg font-space-grotesk h-32 w-[95%] sm:w-[480px] border border-tailCall-light-400 p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
               placeholder="Leave us a message..."
             />
           </div>
