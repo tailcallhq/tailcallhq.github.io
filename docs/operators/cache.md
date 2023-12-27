@@ -1,6 +1,5 @@
 ---
 title: "@cache"
-sidebar_position: 7
 ---
 
 The **@cache** operator enables caching for the query, field or type it is applied to. For eg:
