@@ -284,7 +284,7 @@ input[type="radio"]:checked::before {
 [class*="navbarHidden"] + .main-wrapper .theme-doc-toc-desktop,
 [class*="navbarHidden"] + .main-wrapper nav.menu {
   top: 0;
-  padding-bottom: 0;
+  padding-bottom: var(--ifm-navbar-height);
 }
 
 a[class*="sidebarLogo"] {
@@ -414,7 +414,7 @@ nav.menu {
   }
 
   .navbar-sidebar__item .menu__list-item-collapsible .menu__link:after {
-    display: none;
+    display: none !important;
   }
 
   .navbar-sidebar__close svg {
