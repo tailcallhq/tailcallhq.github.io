@@ -13,6 +13,7 @@ Certainly! Here's the table with hyperlinks added back to the operator names:
 | Operator                  | Description                                                                                                  |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | [@addField](add-field.md) | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
+| [@cache](cache.md)        | Enables caching for the query, field or type it is applied to.                                               |
 | [@const](const.md)        | Allows embedding of a constant response within the schema.                                                   |
 | [@graphQL](graphql.md)    | Resolves a field or node by a GraphQL API.                                                                   |
 | [@http](http.md)          | Resolves a field or node by a REST API.                                                                      |
