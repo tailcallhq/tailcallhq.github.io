@@ -46,7 +46,7 @@ function fetchRemoteContentConfig(author = "tailcallhq", repo = "tailcall", bran
                 )
               })
               .map((doc) => {
-                return encodeURIComponent(doc.path.replace(`docs/${folderName}/`, ""))
+                return doc.path.replace(`docs/${folderName}/`, "")
               }),
           },
         ])
