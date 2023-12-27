@@ -8,11 +8,7 @@ const project = "tailcallhq.github.io"
 
 function fetchRemoteContentConfig(author = "tailcallhq", repo = "tailcall", branch = "main") {
   console.log(`Fetching docs content from ${author}/${repo}`)
-  return fetch(`https://api.github.com/repos/${author}/${repo}/git/trees/${branch}?recursive=1`, {
-    // headers: {
-    //   Authorization: "Bearer <pat token>",
-    // },
-  })
+  return fetch(`https://api.github.com/repos/${author}/${repo}/git/trees/${branch}?recursive=1`)
     .then((resp) => {
       return resp.json()
     })
