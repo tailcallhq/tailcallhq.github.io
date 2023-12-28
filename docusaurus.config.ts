@@ -6,9 +6,27 @@ const title = "Tailcall"
 const organization = "tailcallhq"
 const project = "tailcallhq.github.io"
 
-function fetchRemoteContentConfig(author = "tailcallhq", repo = "tailcall", branch = "main") {
-  console.log(`Fetching docs content from ${author}/${repo}`)
-  return fetch(`https://api.github.com/repos/${author}/${repo}/git/trees/${branch}?recursive=1`)
+function fetchLatestReleaseTagName(author = "tailcallhq", repo = "tailcall") {
+  console.log(`Fetching latest release tag name from ${author}/${repo}`)
+  return fetch(`https://api.github.com/repos/${author}/${repo}/releases/latest`)
+    .then((resp) => {
+      return resp.json()
+    })
+    .then((resp) => {
+      if (resp.message) {
+        console.log(`\x1b[31m${resp.message}\x1b[0m`)
+      }
+      return resp.tag_name
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+async function fetchRemoteContentConfig(author = "tailcallhq", repo = "tailcall") {
+  const latestTagName = await fetchLatestReleaseTagName()
+  console.log(`Fetching docs content from ${author}/${repo}/${latestTagName}`)
+  return fetch(`https://api.github.com/repos/${author}/${repo}/git/trees/${latestTagName}?recursive=1`)
     .then((resp) => {
       return resp.json()
     })
@@ -31,7 +49,7 @@ function fetchRemoteContentConfig(author = "tailcallhq", repo = "tailcall", bran
           "docusaurus-plugin-remote-content",
           {
             name: `${folderName}_docs`, // used by CLI, must be path safe
-            sourceBaseUrl: `https://raw.githubusercontent.com/${author}/${repo}/${branch}/docs/${folderName}`, // the base url for the markdown (gets prepended to all of the documents when fetching)
+            sourceBaseUrl: `https://raw.githubusercontent.com/${author}/${repo}/${latestTagName}/docs/${folderName}`, // the base url for the markdown (gets prepended to all of the documents when fetching)
             outDir: `docs/${folderName}`, // the base directory to output to.
             documents: docs
               .filter((doc) => {
