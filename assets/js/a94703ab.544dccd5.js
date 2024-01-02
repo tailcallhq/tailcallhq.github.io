@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[4368],{5147:(e,s,c)=>{c.d(s,{Z:()=>r});c(7294);var a=c(1219),i=c(2231),n=c(5893);function r(e){return(0,n.jsxs)("div",{className:"sidebar-search-container flex flex-col",children:[(0,n.jsx)(i.Z,{}),(0,n.jsx)(a.Z,{...e})]})}}}]);
