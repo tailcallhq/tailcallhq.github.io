@@ -7,8 +7,7 @@ const Hero = () => {
       <div className="mx-4 my-6 sm:m-10 lg:m-20">
         <SectionTitle title="Our Mission" />
         <h2 className="text-title-small sm:text-title-large lg:text-display-small text-tailCall-light-100 max-w-3xl">
-          Simplify complex API interactions through a tailor-made GraphQL solution, ensuring efficient data retrieval
-          and optimised query handling.
+          Demystify the complexity of API composition, with unparalleled ease and efficiency.
         </h2>
       </div>
 
