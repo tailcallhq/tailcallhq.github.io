@@ -118,7 +118,7 @@ export default async function () {
           },
           docs: {
             // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
-            sidebarPath: require.resolve("./sidebars.js"),
+            sidebarPath: require.resolve("./sidebars.ts"),
             sidebarCollapsible: false,
             // Please change this to your repo.
             // Remove this to remove the "edit this page" links.
