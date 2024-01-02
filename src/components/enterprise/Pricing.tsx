@@ -16,7 +16,7 @@ const Pricing = () => {
           <div
             key={plan.id}
             style={{
-              border: plan.mostPopular ? "1px solid #000" : "1px solid #E7E7E7",
+              border: plan.mostPopular ? "1px solid black" : "1px solid var(--ifm-color-gray-600)",
             }}
             className="rounded-2xl flex flex-col items-center justify-between gap-y-7 sm:gap-y-0 py-4 sm:py-6 relative w-full h-auto sm:w-[384px] md:h-[520px] lg:h-[584px]"
           >

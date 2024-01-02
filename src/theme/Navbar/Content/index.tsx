@@ -25,7 +25,6 @@ function NavbarItems({items}) {
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
 ${JSON.stringify(item, null, 2)}`,
-              {cause: error},
             )
           }
         >

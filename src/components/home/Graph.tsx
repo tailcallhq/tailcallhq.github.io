@@ -30,6 +30,7 @@ const Graph = () => {
           <GraphContainer
             visual={RequestVisual}
             metricData={7442.01}
+            start={5000}
             metricTitle="Requests/sec"
             metricDesc="(Higher is better)"
             duration={1.6}
@@ -38,6 +39,7 @@ const Graph = () => {
           <GraphContainer
             visual={LatencyVisual}
             metricData={13.39}
+            start={1000}
             metricTitle="Latency (ms)"
             metricDesc="(Lower is better)"
             duration={1.6}

@@ -8,7 +8,7 @@ const MoreEnterpriseFeatures = () => {
     <section
       className="flex flex-col sm:flex-row items-center justify-center sm:px-10 lg:px-40 relative overflow-hidden"
       style={{
-        border: "1px solid #E5E5E5",
+        border: "1px solid var(--ifm-color-gray-500)",
       }}
     >
       <div className="w-full h-full p-4 sm:py-0 sm:pr-10">
@@ -25,14 +25,14 @@ const MoreEnterpriseFeatures = () => {
       <div
         className="flex items-start justify-start gap-4 flex-wrap p-4 overflow-x-auto h-full max-w-screen-md sm:pl-10 sm:py-10"
         style={{
-          borderLeft: "1px solid #E5E5E5",
+          borderLeft: "1px solid var(--ifm-color-gray-500)",
         }}
       >
         {additionalEnterpriseFeatures.map((feature) => (
           <div
             className="flex items-center p-2 sm:px-4 sm:py-3 rounded w-fit space-x-2 sm:space-x-4"
             style={{
-              border: "1px solid #E5E5E5",
+              border: "1px solid var(--ifm-color-gray-500)",
               minWidth: "150px",
             }}
             key={feature.id}

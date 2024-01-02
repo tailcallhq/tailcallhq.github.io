@@ -4,7 +4,7 @@ import type * as Preset from "@docusaurus/preset-classic"
 
 const title = "Tailcall"
 const organization = "tailcallhq"
-const project = "tailcallhq.github.io"
+const project = "tailcall"
 
 function fetchLatestReleaseTagName(author = "tailcallhq", repo = "tailcall") {
   console.log(`Fetching latest release tag name from ${author}/${repo}`)
@@ -118,11 +118,11 @@ export default async function () {
           },
           docs: {
             // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
-            sidebarPath: require.resolve("./sidebars.js"),
+            sidebarPath: require.resolve("./sidebars.ts"),
             sidebarCollapsible: false,
             // Please change this to your repo.
             // Remove this to remove the "edit this page" links.
-            editUrl: `https://github.com/${organization}/${project}/tree/develop`,
+            editUrl: `https://github.com/${organization}/${project}/blob/main/`,
           },
           blog: {
             showReadingTime: true,

@@ -20,7 +20,7 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
       case "light":
         return {
           classes: "text-tailCall-dark-500 bg-transparent",
-          styles: isHovered ? "2px solid #121315" : "1px solid #121315",
+          styles: isHovered ? "2px solid var(--ifm-color-dark-800)" : "1px solid var(--ifm-color-dark-800)",
           gridClasses:
             "absolute inset-0 -z-20 w-full h-full opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-10 transform transition ease-out duration-150",
         }
@@ -28,7 +28,7 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
       case "dark":
         return {
           classes: "text-tailCall-light-100 bg-white border-none",
-          styles: "2px solid #121315",
+          styles: "2px solid var(--ifm-color-dark-800)",
           gridClasses:
             "absolute inset-0 z-10 w-full h-full opacity-0 scale-90 group-hover:scale-95 group-hover:opacity-100 transform transition ease-out duration-150",
         }
@@ -36,7 +36,7 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
       case "gray":
         return {
           classes: "text-tailCall-dark-100 bg-transparent text-tailCall-light-100",
-          styles: "2px solid #FFFFFF",
+          styles: "2px solid var(--ifm-color-white)",
           gridClasses: "hidden",
         }
 
