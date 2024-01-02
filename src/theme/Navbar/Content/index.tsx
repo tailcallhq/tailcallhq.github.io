@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect, useContext} from "react"
 import {useThemeConfig, ErrorCauseBoundary} from "@docusaurus/theme-common"
 import {splitNavbarItems, useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
 import NavbarItem from "@theme/NavbarItem"
@@ -23,8 +23,8 @@ function NavbarItems({items}) {
           onError={(error) =>
             new Error(
               `A theme navbar item failed to render.
-            Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
-            ${JSON.stringify(item, null, 2)}`,
+Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
+${JSON.stringify(item, null, 2)}`,
             )
           }
         >
