@@ -14,7 +14,7 @@ const ChooseTailcall = () => {
             key={item.id}
             // TODO: Tailwind border not getting applied
             style={{
-              border: "1px solid #2C2C2C",
+              border: "1px solid var(--ifm-color-dark-900)",
             }}
           >
             <div className="h-16 w-16 sm:w-full sm:h-full">

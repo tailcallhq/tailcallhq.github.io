@@ -18,7 +18,7 @@ const SocialBuzz = () => {
           alt="tweet 2"
           className="rounded-3xl m-2 lg:hidden"
           style={{
-            border: "1px solid #CECECF",
+            border: "1px solid var(--ifm-color-gray-700)",
           }}
         />
 
@@ -30,7 +30,7 @@ const SocialBuzz = () => {
           alt=""
           className=" rounded-3xl m-2"
           style={{
-            border: "1px solid #CECECF",
+            border: "1px solid var(--ifm-color-gray-700)",
           }}
         />
       </div>
@@ -42,7 +42,7 @@ const SocialBuzz = () => {
         alt="tweet 2"
         className="rounded-3xl m-2 lg:block hidden"
         style={{
-          border: "1px solid #CECECF",
+          border: "1px solid var(--ifm-color-gray-700)",
         }}
       />
     </section>

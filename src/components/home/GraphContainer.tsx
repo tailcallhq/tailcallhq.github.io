@@ -36,7 +36,7 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, dur
   return (
     <div
       style={{
-        border: "1px solid #2C2C2C",
+        border: "1px solid var(--ifm-color-dark-900)",
       }}
       className="h-[368px] lg:h-[400px] w-[95%] sm:w-[680px] rounded-3xl sm:rounded-[32px] flex flex-col relative"
     >

@@ -15,7 +15,7 @@ const EnterpriseFeaturesCard = ({feature}: EnterpriseFeaturesCardProps) => {
     <div
       className="rounded-3xl w-full sm:w-[450px] sm:h-60 p-8 flex flex-col items-start space-y-4"
       style={{
-        border: "1px solid #E7E7E7",
+        border: "1px solid var(--ifm-color-gray-600)",
       }}
     >
       <feature.logo className="h-5 w-5 sm:h-8 sm:w-8" />

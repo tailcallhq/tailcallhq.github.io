@@ -12,7 +12,7 @@ const Investors = () => {
         <div
           className="flex items-center justify-center rounded-xl sm:rounded-2xl p-5 sm:p-10 shadow-lg w-52 h-28 sm:w-80 sm:h-40 bg-tailCall-light-100"
           style={{
-            border: "1px solid #CECECF",
+            border: "1px solid var(--ifm-color-gray-700)",
           }}
         >
           <img
@@ -28,7 +28,7 @@ const Investors = () => {
         <div
           className="flex items-center justify-center rounded-xl sm:rounded-2xl p-5 sm:p-10 shadow-lg w-52 h-28 sm:w-80 sm:h-40 bg-tailCall-light-100"
           style={{
-            border: "1px solid #CECECF",
+            border: "1px solid var(--ifm-color-gray-700)",
           }}
         >
           <img

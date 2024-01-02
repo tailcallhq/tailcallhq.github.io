@@ -8,6 +8,22 @@
   --ifm-font-family-base: "Space Grotesk", sans-serif;
   --header-height: 6.5rem;
   --ifm-navbar-height: 6.5rem;
+  --ifm-color-yellow: #fdea2e;
+  --ifm-color-black: #000;
+  --ifm-color-dark: #323335;
+  --ifm-color-dark-800: #121315;
+  --ifm-color-dark-900: #2c2c2c;
+  --ifm-color-white: #ffffff;
+  --ifm-color-gray-300: #f3f4f7;
+  --ifm-color-gray-400: #e4e4e4;
+  --ifm-color-gray-500: #e5e5e5;
+  --ifm-color-gray-600: #e7e7e7;
+  --ifm-color-gray-700: #cececf;
+  --ifm-color-gray-800: #b6b6b7;
+  --ifm-color-linkedin: #0a66c2;
+  --ifm-color-discord: #5865f2;
+  --ifm-color-white-opacity-15: rgba(255, 255, 255, 0.15);
+  --ifm-color-black-opacity-05: rgba(0, 0, 0, 0.05);
 }
 
 input[type="radio"] {
@@ -36,7 +52,7 @@ input[type="radio"]::before {
   border-radius: 50%;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 16px 16px #fdea2e;
+  box-shadow: inset 16px 16px var(--ifm-color-yellow);
 }
 
 input[type="radio"]:checked::before {
@@ -82,7 +98,7 @@ input[type="radio"]:checked::before {
 }
 
 .menu__link.menu__link--active {
-  background-color: #fdea2e;
+  background-color: var(--ifm-color-yellow);
   color: var(--ifm-color-gray-900);
   font-weight: var(--ifm-font-weight-bold);
 }
@@ -99,7 +115,7 @@ input[type="radio"]:checked::before {
   display: flex;
   align-items: center;
   height: 3rem;
-  color: #323335;
+  color: var(--ifm-color-dark);
   font-weight: var(--ifm-font-weight-bold);
 }
 
@@ -109,7 +125,7 @@ input[type="radio"]:checked::before {
 }
 
 .pagination-nav__link {
-  background: #fdea2e;
+  background: var(--ifm-color-yellow);
   border: none;
   border-radius: 16px;
 }
@@ -120,7 +136,7 @@ input[type="radio"]:checked::before {
 
 .pagination-nav__sublabel {
   display: flex;
-  color: #323335;
+  color: var(--ifm-color-dark);
   line-height: 1;
   align-items: center;
 }
@@ -139,7 +155,7 @@ input[type="radio"]:checked::before {
 
 .pagination-nav__link--next .pagination-nav__sublabel:after {
   content: "";
-  color: #323335;
+  color: var(--ifm-color-dark);
   background: url("../../static/icons/basic/arrow-right.svg") no-repeat;
   width: 0.7rem;
   height: 0.7rem;
@@ -151,7 +167,7 @@ input[type="radio"]:checked::before {
 .pagination-nav__link--prev .pagination-nav__sublabel:before {
   content: "";
   background: url("../../static/icons/basic/arrow-left.svg") no-repeat;
-  color: #323335;
+  color: var(--ifm-color-dark);
   width: 0.7rem;
   height: 0.7rem;
   margin-right: 0.5rem;
@@ -198,7 +214,7 @@ input[type="radio"]:checked::before {
 }
 
 .navbar {
-  box-shadow: #e7e7e7 0 0 0 1px;
+  box-shadow: var(--ifm-color-gray-600) 0 0 0 1px;
   height: var(--header-height);
 }
 
@@ -230,7 +246,7 @@ input[type="radio"]:checked::before {
 }
 
 .navbar__item.navbar__link.navbar__link--active {
-  background-color: #fdea2e;
+  background-color: var(--ifm-color-yellow);
   color: var(--ifm-color-gray-900);
   border-radius: 6px;
 }
@@ -322,7 +338,7 @@ aside.theme-doc-sidebar-container {
 .navbar__search input {
   width: 100%;
   border-radius: 8px;
-  border: 1px solid #b6b6b7;
+  border: 1px solid var(--ifm-color-gray-800);
   background-color: transparent;
   height: 44px;
   outline: 0;
@@ -354,15 +370,15 @@ nav.menu {
 }
 
 .grid-bg-section {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-image: linear-gradient(var(--ifm-color-black-opacity-05) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ifm-color-black-opacity-05) 1px, transparent 1px);
   background-size: 52px 52px;
   clip-path: inset(0.5rem 0 1rem 0);
 }
 
 .button-grid-bg-section {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 2px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 2px);
+  background-image: linear-gradient(var(--ifm-color-white-opacity-15) 1px, transparent 2px),
+    linear-gradient(90deg, var(--ifm-color-white-opacity-15) 1px, transparent 2px);
   background-size: 20px 20px;
   clip-path: inset(0.2rem);
   position: absolute;
@@ -370,16 +386,16 @@ nav.menu {
 }
 
 .button-grid-bg-section-dark {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 2px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 2px);
+  background-image: linear-gradient(var(--ifm-color-black-opacity-05) 1px, transparent 2px),
+    linear-gradient(90deg, var(--ifm-color-black-opacity-05) 1px, transparent 2px);
   background-size: 20px 20px;
   position: absolute;
   border-radius: 20px;
 }
 
 .button-grid-bg-github {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 2px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 2px);
+  background-image: linear-gradient(var(--ifm-color-black-opacity-05) 1px, transparent 2px),
+    linear-gradient(90deg, var(--ifm-color-black-opacity-05) 1px, transparent 2px);
   background-size: 20px 20px;
 }
 
