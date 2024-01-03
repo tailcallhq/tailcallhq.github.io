@@ -24,7 +24,7 @@ const LegacyGateway = () => {
         </div>
       </div>
 
-      <div className="w-full flex items-center justify-center px-6 lg:px-0 mt-7">
+      <div className="w-full flex items-center justify-center px-0 mt-7">
         <Lottie
           animationData={SolutionGraphic}
           loop

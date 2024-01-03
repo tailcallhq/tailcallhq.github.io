@@ -17,8 +17,16 @@ function GithubIcon() {
 
 export default function GithubStarsButton({className}) {
   const starsCount = useContext(GithubStarsContext)
+  const [isHovered, setIsHovered] = React.useState(false)
+
   return (
-    <a href={githubRepoURL} target="_blank" className={`${className} header-button header-button-github`}>
+    <a
+      href={githubRepoURL}
+      onMouseOver={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      target="_blank"
+      className={`${className} header-button header-button-github ${isHovered && "button-grid-bg-github"}`}
+    >
       <GithubIcon />
       <span>
         Star <span className="min-w-[3ch] inline-block">{starsCount}</span>

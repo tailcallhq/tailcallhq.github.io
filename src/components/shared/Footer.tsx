@@ -43,7 +43,9 @@ const Footer = () => {
       </div>
 
       <div className="flex flex-col-reverse sm:flex-row items-center gap-y-4 sm:justify-between w-[100%] max-w-7xl sm:mt-10 z-10">
-        <p className="text-content-tiny text-[#B4B4B4] font-space-mono font-normal">Copyright © 2023 Tailcall, Inc.</p>
+        <p className="text-content-tiny text-tailCall-light-700 font-space-mono font-normal">
+          Copyright © 2023 Tailcall, Inc.
+        </p>
         <div className="space-x-4">
           {socials.map((social) => (
             <Link href={social.href} className="cursor-pointer" key={social.id}>
