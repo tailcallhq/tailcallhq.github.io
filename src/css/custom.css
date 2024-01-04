@@ -327,6 +327,7 @@ aside.theme-doc-sidebar-container {
   top: var(--ifm-navbar-height);
   max-height: 100vh;
   transition: all 250ms ease-in-out;
+  z-index: 99;
 }
 
 .navbar__search {
@@ -371,6 +372,7 @@ nav.menu {
   border-radius: 0;
   box-shadow: none;
   height: 296px;
+  max-width: none;
   background: white;
 }
 

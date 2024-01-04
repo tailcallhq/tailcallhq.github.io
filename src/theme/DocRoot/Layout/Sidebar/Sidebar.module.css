@@ -10,7 +10,8 @@
   cursor: text;
   display: inline-block;
   font-size: 0.9rem;
-  padding: 0 0.5rem 0 1rem;
+  padding: 0 0.5rem 0 2.2rem;
+  background: transparent var(--ifm-navbar-search-input-icon) no-repeat .75rem center/1rem 1rem;
 }
 
 .inputContainer {
@@ -48,7 +49,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 12rem;
+  height: calc(100% - 44px);
 }
 
 .footer {
