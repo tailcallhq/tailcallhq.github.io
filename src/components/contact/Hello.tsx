@@ -112,7 +112,7 @@ const Hello = () => {
             />
           </div>
 
-          <Button theme="dark" onClick={sendData} title="Send message" disabled={!(email && stage)}  />
+          <Button theme="dark" onClick={sendData} title="Send message" disabled={!(email && stage)} />
         </div>
       </div>
     </section>
