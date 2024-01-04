@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import Sidebar from "@theme-original/DocRoot/Layout/Sidebar"
 import Search from "docusaurus-lunr-search/src/theme/SearchBar"
-import Modal from "react-modal"
+import {useHistory} from "react-router-dom"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import EnterKeyIcon from "@site/static/icons/basic/enter-key.svg"
 import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
@@ -10,6 +10,7 @@ import styles from "./Sidebar.module.css"
 
 export default function SidebarWrapper(props) {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState(false)
+  const history = useHistory()
 
   function handleSearchClick() {
     setIsSearchModalVisible(true)
@@ -38,6 +39,16 @@ export default function SidebarWrapper(props) {
     })
   }, [])
 
+  useEffect(() => {
+    const unlisten = history.listen((location, action) => {
+      setIsSearchModalVisible(false)
+    })
+
+    return () => {
+      unlisten()
+    }
+  }, [history])
+
   return (
     <div className="sidebar-search-container flex flex-col">
       <div className={styles.inputContainer} onClick={handleSearchClick}>
@@ -48,11 +59,13 @@ export default function SidebarWrapper(props) {
         <>
           <div onClick={handleSearchModalClose} className={styles.overlay}></div>
           <div className={styles.modal}>
-            <Search />
-            <div className={styles.content}>
-              <PageSearchIcon />
-              <div className="mt-2 font-bold">Search Docs</div>
-              <div className="text-content-tiny text-tailCall-dark-100">Search anything within the docs</div>
+            <div className={styles.modalContent}>
+              <Search />
+              <div className={styles.initialCase}>
+                <PageSearchIcon />
+                <div className="mt-2 font-bold">Search Docs</div>
+                <div className="text-content-tiny text-tailCall-dark-100">Search anything within the docs</div>
+              </div>
             </div>
             <div className={styles.footer}>
               <div className={styles.navigationInfoItem}>

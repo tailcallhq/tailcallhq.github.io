@@ -363,9 +363,15 @@ nav.menu {
   display: none !important;
 }
 
-.algolia-autocomplete .ds-dropdown-menu {
+.algolia-autocomplete.algolia-autocomplete.algolia-autocomplete-right .ds-dropdown-menu {
   margin-top: 0 !important;
   left: 0 !important;
+  overflow: auto;
+  top: 44px;
+  border-radius: 0;
+  box-shadow: none;
+  height: 296px;
+  background: white;
 }
 
 .algolia-autocomplete .ds-dropdown-menu [class^=ds-dataset-] {
