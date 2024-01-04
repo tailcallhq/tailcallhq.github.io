@@ -9,10 +9,11 @@ import Partners from "./Partners"
 import Discover from "../shared/Discover"
 import Footer from "../shared/Footer"
 import Configuration from "./Configuration"
+import Playground from "./Playground"
 
 const HomePage = () => {
   return (
-    <div className="scrollbar-thin">
+    <div className="">
       <Banner />
       <Configuration />
       <Partners />
@@ -20,6 +21,7 @@ const HomePage = () => {
       <Features />
       <MoreFeatures />
       <Graph />
+      {/* <Playground /> */}
       <Discover />
       <Footer />
     </div>

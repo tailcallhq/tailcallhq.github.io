@@ -1,6 +1,8 @@
 import React from "react"
+
 import Grid from "@site/static/images/about/grid-large.svg"
 import Button from "../shared/Button"
+import {analyticsHandler} from "@site/src/utils"
 
 const radioOptions = [
   {id: "1", name: "Evaluating", value: "evaluating"},
@@ -39,6 +41,7 @@ const Hello = () => {
     const data = await response.json()
 
     if (data.status === "success") {
+      analyticsHandler("Contact Page", "Click", "Send message")
       setEmail("")
       setMessage("")
       setStage("")
