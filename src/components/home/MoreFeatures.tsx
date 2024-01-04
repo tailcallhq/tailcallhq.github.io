@@ -2,6 +2,7 @@ import React from "react"
 
 import {moreFeatures} from "@site/src/constants"
 import Button from "../shared/Button"
+import {analyticsHandler} from "@site/src/utils"
 
 const FeatureBox = ({feature}) => {
   return (
@@ -30,10 +31,22 @@ const MoreFeatures = () => {
           ))}
         </div>
         <div className="sm:hidden">
-          <Button title="View More" href="/enterprise/" theme="light" width="300px" />
+          <Button
+            title="View More"
+            onClick={() => analyticsHandler("Home Page", "Click", "View More")}
+            href="/enterprise/"
+            theme="light"
+            width="300px"
+          />
         </div>
         <div className="hidden sm:block">
-          <Button title="View More" href="/enterprise/" theme="light" width="500px" />
+          <Button
+            title="View More"
+            onClick={() => analyticsHandler("Home Page", "Click", "View More")}
+            href="/enterprise/"
+            theme="light"
+            width="500px"
+          />
         </div>
       </div>
     </section>
