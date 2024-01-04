@@ -330,15 +330,13 @@ aside.theme-doc-sidebar-container {
 }
 
 .navbar__search {
-  padding: 1.3rem;
-  padding-bottom: 1rem;
   z-index: 1;
 }
 
 .navbar__search input {
   width: 100%;
-  border-radius: 8px;
-  border: 1px solid var(--ifm-color-gray-800);
+  border-radius: 0;
+  border-bottom: 1px solid var(--ifm-color-dark-800);
   background-color: transparent;
   height: 44px;
   outline: 0;
@@ -362,11 +360,16 @@ nav.menu {
 }
 
 .algolia-autocomplete .ds-dropdown-menu:before {
-  left: 2rem;
+  display: none !important;
 }
 
 .algolia-autocomplete .ds-dropdown-menu {
-  margin-top: 0.75rem !important;
+  margin-top: 0 !important;
+  left: 0 !important;
+}
+
+.algolia-autocomplete .ds-dropdown-menu [class^=ds-dataset-] {
+  border-radius: 0 !important;
 }
 
 .grid-bg-section {
