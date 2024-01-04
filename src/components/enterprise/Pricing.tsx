@@ -3,7 +3,7 @@ import React from "react"
 import CheckCircle from "@site/static/icons/basic/check-circle.svg"
 import {pricingPlans} from "@site/src/constants"
 import Button from "../shared/Button"
-import { analyticsHandler } from "@site/src/utils"
+import {analyticsHandler} from "@site/src/utils"
 
 const Pricing = () => {
   return (

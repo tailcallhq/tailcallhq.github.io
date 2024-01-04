@@ -2,7 +2,7 @@ import React from "react"
 
 import Grid from "@site/static/images/about/grid-large.svg"
 import Button from "../shared/Button"
-import { analyticsHandler } from "@site/src/utils"
+import {analyticsHandler} from "@site/src/utils"
 
 const radioOptions = [
   {id: "1", name: "Evaluating", value: "evaluating"},

@@ -2,7 +2,7 @@ import React from "react"
 
 import {moreFeatures} from "@site/src/constants"
 import Button from "../shared/Button"
-import { analyticsHandler } from "@site/src/utils"
+import {analyticsHandler} from "@site/src/utils"
 
 const FeatureBox = ({feature}) => {
   return (
