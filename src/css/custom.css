@@ -322,6 +322,12 @@ aside.theme-doc-sidebar-container {
   margin-top: 0;
 }
 
+.algolia-docsearch-suggestion--category-header {
+  background-color: var(--ifm-color-gray-300) !important;
+  color: var(--ifm-color-dark-900) !important;
+  text-transform: none !important;
+}
+
 .sidebar-search-container {
   position: sticky;
   top: var(--ifm-navbar-height);
