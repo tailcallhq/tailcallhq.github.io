@@ -31,10 +31,10 @@ const MoreFeatures = () => {
           ))}
         </div>
         <div className="sm:hidden">
-          <Button title="View More" href="/enterprise/" theme="light" width="300px" onClick={() => analyticsHandler("Home Page", "Click", "View More")} />
+          <Button onClick={() => analyticsHandler("Home Page", "Click", "View More")} title="View More" href="/enterprise/" theme="light" width="300px"  />
         </div>
         <div className="hidden sm:block">
-          <Button title="View More" href="/enterprise/" theme="light" width="500px" onClick={() => analyticsHandler("Home Page", "Click", "View More")} />
+          <Button onClick={() => analyticsHandler("Home Page", "Click", "View More")} title="View More" href="/enterprise/" theme="light" width="500px"  />
         </div>
       </div>
     </section>

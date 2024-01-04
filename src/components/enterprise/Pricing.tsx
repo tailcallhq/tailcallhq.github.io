@@ -52,20 +52,20 @@ const Pricing = () => {
               <div className="hidden sm:block text-center mx-4">
                 <Button
                   title={plan.buttonText}
+                  onClick={() => analyticsHandler("Pricing", "Click", `${plan.buttonText}`)}
                   href={plan.href}
                   theme={plan.mostPopular ? "dark" : "light"}
                   width="320px"
-                  onClick={() => analyticsHandler("Pricing", "Click", `${plan.buttonText}`)}
                 />
               </div>
 
               <div className="sm:hidden mt-10 text-center mx-4">
                 <Button
                   title={plan.buttonText}
+                  onClick={() => analyticsHandler("Pricing", "Click", `${plan.buttonText}`)}
                   href={plan.href}
                   theme={plan.mostPopular ? "dark" : "light"}
                   width="300px"
-                  onClick={() => analyticsHandler("Pricing", "Click", `${plan.buttonText}`)}
                 />
               </div>
             </div>
