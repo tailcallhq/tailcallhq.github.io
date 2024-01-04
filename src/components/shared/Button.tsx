@@ -1,5 +1,5 @@
 import Link from "@docusaurus/Link"
-import React, {useEffect} from "react"
+import React from "react"
 import {SVGProps} from "react"
 
 type ButtonProps = {
@@ -13,24 +13,20 @@ type ButtonProps = {
 }
 
 const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProps) => {
-  const [isHovered, setIsHovered] = React.useState(false)
-
   const generateThemeClasses = () => {
     switch (theme) {
       case "light":
         return {
           classes: "text-tailCall-dark-500 bg-transparent",
-          styles: isHovered ? "2px solid var(--ifm-color-dark-800)" : "1px solid var(--ifm-color-dark-800)",
-          gridClasses:
-            "absolute inset-0 -z-20 w-full h-full opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-10 transform transition ease-out duration-150",
+          styles: "1px solid var(--ifm-color-dark-800)",
+          gridClasses: "",
         }
 
       case "dark":
         return {
           classes: "text-tailCall-light-100 bg-white border-none",
           styles: "2px solid var(--ifm-color-dark-800)",
-          gridClasses:
-            "absolute inset-0 z-10 w-full h-full opacity-0 scale-90 group-hover:scale-95 group-hover:opacity-100 transform transition ease-out duration-150",
+          gridClasses: "",
         }
 
       case "gray":
@@ -41,17 +37,17 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
         }
 
       default:
-        break
+        return {
+          classes: "",
+          styles: "",
+          gridClasses: "",
+        }
     }
   }
 
-  useEffect(() => {
-    generateThemeClasses()
-  }, [isHovered])
-
   return (
     <Link
-      href={href}
+      to={href || "#"}
       style={{
         textDecorationLine: "none",
       }}
@@ -59,8 +55,6 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
       <button
         disabled={disabled}
         onClick={onClick}
-        onMouseOver={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         className={`group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-3 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-6 py-3 sm:px-8 lg:px-10 sm:py-4 lg:py-5 
         ${generateThemeClasses().classes ?? ""}
         `}
@@ -72,7 +66,7 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
         {theme === "dark" && (
           <>
             <div
-              className={`lg:block rounded-md lg:rounded-lg absolute inset-0 w-full group-hover:z-0 bg-tailCall-dark-500 lg:group-hover:scale-x-[0.98] lg:group-hover:scale-y-[0.95] transform transition-all ease-out duration-250`}
+              className={`lg:block rounded-md lg:rounded-lg absolute inset-0 w-full bg-tailCall-dark-500 group-hover:lg:scale-x-[0.98] group-hover:lg:scale-y-[0.95] transform transition-all ease-out duration-250`}
             />
             {!disabled && (
               <div className="hidden lg:block button-grid-bg-section h-full w-full scale-90 opacity-0 group-hover:scale-[0.98] group-hover:opacity-100 transform transition-all ease-out duration-250" />

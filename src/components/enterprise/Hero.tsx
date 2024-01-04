@@ -1,5 +1,6 @@
 import React from "react"
 import Button from "../shared/Button"
+import {analyticsHandler} from "@site/src/utils"
 
 const Hero = () => {
   return (
@@ -11,7 +12,12 @@ const Hero = () => {
         </div>
         <div>to your organization.</div>
       </h2>
-      <Button title="Get in touch" theme="dark" href="/contact" />
+      <Button
+        title="Get in touch"
+        theme="dark"
+        href="/contact"
+        onClick={() => analyticsHandler("Pricing", "Click", "Get in touch")}
+      />
     </section>
   )
 }
