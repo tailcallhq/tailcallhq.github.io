@@ -1,6 +1,9 @@
 import React from "react"
+import ReactGA from "react-ga4"
+
 import Button from "../shared/Button"
 import HeroImage from "@site/static/images/home/hero.svg"
+import {analyticsHandler} from "@site/src/utils"
 
 const Banner = () => {
   return (
@@ -23,8 +26,15 @@ const Banner = () => {
               href="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
               theme="dark"
               width="228px"
+              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
             />
-            <Button title="Get Started" href="/docs/getting_started/" theme="light" width="228px" />
+            <Button
+              title="Get Started"
+              href="/docs/getting_started/"
+              theme="light"
+              width="228px"
+              onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
+            />
           </div>
 
           <div className="sm:hidden flex justify-center mt-6 sm:mt-10 space-x-4 sm:space-x-6">
@@ -32,8 +42,14 @@ const Banner = () => {
               title="Try it Out"
               href="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
               theme="dark"
+              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
             />
-            <Button title="Get Started" href="/docs/getting_started/" theme="light" />
+            <Button
+              title="Get Started"
+              href="/docs/getting_started/"
+              theme="light"
+              onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
+            />
           </div>
         </div>
 

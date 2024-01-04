@@ -2,6 +2,7 @@ import React from "react"
 
 import BgTailcall from "@site/static/icons/basic/bg-tailcall.svg"
 import Button from "./Button"
+import {analyticsHandler} from "@site/src/utils"
 
 const Discover = () => {
   return (
@@ -15,8 +16,18 @@ const Discover = () => {
           </h5>
 
           <div className="flex space-x-3 sm:space-x-6">
-            <Button theme="dark" title="Get in touch" href="/contact" />
-            <Button theme="light" title="Know More" href="/docs" />
+            <Button
+              theme="dark"
+              title="Get in touch"
+              href="/contact"
+              onClick={() => analyticsHandler("Discover", "Click", "Get in touch")}
+            />
+            <Button
+              theme="light"
+              title="Know More"
+              href="/docs"
+              onClick={() => analyticsHandler("Discover", "Click", "Know More")}
+            />
           </div>
         </div>
       </div>
