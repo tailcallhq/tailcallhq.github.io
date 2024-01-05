@@ -20,7 +20,7 @@
 }
 
 .overlay {
-  background-color: rgba(255,255,255,.3);
+  background-color: var(--ifm-color-white-opacity-15);
   position: fixed;
   top: 0;
   left: 0;
@@ -78,4 +78,13 @@
 
 .modalContent {
   height: 340px;
+}
+
+
+
+@media (max-height: 600px) {
+  .modal {
+    top: calc(var(--header-height) + 1rem);
+    transform: translate(-50%, 0);
+  }
 }
