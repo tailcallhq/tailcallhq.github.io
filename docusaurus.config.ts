@@ -4,7 +4,7 @@ import type * as Preset from "@docusaurus/preset-classic"
 
 const title = "Tailcall"
 const organization = "tailcallhq"
-const project = "tailcall"
+const project = "tailcallhq.github.io"
 
 export default {
   title,
@@ -54,7 +54,7 @@ export default {
           sidebarCollapsible: false,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: `https://github.com/${organization}/${project}/blob/main/`,
+          editUrl: `https://github.com/${organization}/${project}/tree/develop`,
         },
         blog: {
           showReadingTime: true,
