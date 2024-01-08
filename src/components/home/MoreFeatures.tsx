@@ -8,7 +8,7 @@ const FeatureBox = ({feature}) => {
   return (
     <div
       style={{
-        borderBottom: "1px solid var(--ifm-color-gray-400)",
+        borderBottom: "1px solid var(--ifm-color-brand-light-200)",
       }}
       className="flex flex-col sm:flex-row items-start justify-start sm:items-center text-start space-y-2 sm:space-y-0 py-4 sm:py-8 lg:py-12 sm:space-x-4 text-content-tiny font-bold sm:text-title-small lg:text-title-medium text-tailCall-dark-500  sm:h-32 w-full border border-tailCall-dark-300"
     >

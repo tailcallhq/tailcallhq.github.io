@@ -68,7 +68,7 @@ const Hello = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               style={{
-                border: "1px solid var(--ifm-color-gray-700)",
+                border: "1px solid var(--ifm-color-brand-light-500)",
               }}
               className="rounded-lg font-space-grotesk h-11 w-[95%] sm:w-[480px] p-3 text-content-small outline-none focus:border-x-tailCall-light-700"
               placeholder="you@company.com"

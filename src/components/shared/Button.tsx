@@ -18,14 +18,14 @@ const Button = ({title, Icon, theme, onClick, href, width, disabled}: ButtonProp
       case "light":
         return {
           classes: "text-tailCall-dark-500 bg-transparent",
-          styles: "1px solid var(--ifm-color-dark-800)",
+          styles: "1px solid var(--ifm-color-brand-dark-100)",
           gridClasses: "",
         }
 
       case "dark":
         return {
           classes: "text-tailCall-light-100 bg-white border-none",
-          styles: "2px solid var(--ifm-color-dark-800)",
+          styles: "2px solid var(--ifm-color-brand-dark-100)",
           gridClasses: "",
         }
 

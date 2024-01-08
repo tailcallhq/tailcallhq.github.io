@@ -11,7 +11,7 @@
   display: inline-block;
   font-size: 0.9rem;
   padding: 0 0.5rem 0 2.2rem;
-  background: transparent var(--ifm-navbar-search-input-icon) no-repeat .75rem center/1rem 1rem;
+  background: transparent var(--ifm-navbar-search-input-icon) no-repeat 0.75rem center/1rem 1rem;
 }
 
 .inputContainer {
@@ -40,7 +40,7 @@
   background: white;
   width: 640px;
   transform: translate(-50%, -50%);
-  border: 1px solid var(--ifm-color-dark-800);
+  border: 1px solid var(--ifm-color-brand-dark-100);
   border-radius: 8px;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .footer {
-  padding: .75rem 1rem;
+  padding: 0.75rem 1rem;
   border-top: 1px solid var(--ifm-color-gray-600);
 }
 
@@ -62,11 +62,10 @@
   align-items: center;
 }
 
-
 .navigationInfoItem span {
   color: var(--ifm-color-gray-800);
   display: block;
-  margin-left: .25rem;
+  margin-left: 0.25rem;
   font-size: 12px;
 }
 
@@ -79,8 +78,6 @@
 .modalContent {
   height: 340px;
 }
-
-
 
 @media (max-height: 600px) {
   .modal {

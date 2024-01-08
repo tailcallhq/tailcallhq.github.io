@@ -26,7 +26,7 @@ const Feature = ({feature}: FeatureProps) => {
         className="flex flex-col sm:flex-row p-4 sm:p-10  shadow-xl rounded-[20px] relative  sm:ml-0"
         style={{
           backgroundImage: `url(${require("@site/static/images/home/grid.jpg").default})`,
-          boxShadow: "0px 0px 0px 3px var(--ifm-color-gray-300)",
+          boxShadow: "0px 0px 0px 3px var(--ifm-color-brand-light-100)",
         }}
       >
         <div className="bg-gradient-to-b from-tailCall-light-100 from-3% via-[#E4E5E9] via-67% to-tailCall-light-100 absolute -left-4 sm:-left-6 w-[2px] h-full" />
