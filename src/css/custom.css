@@ -379,7 +379,7 @@ nav.menu {
   box-shadow: none;
   height: 296px;
   max-width: none;
-  background: white;
+  background: var(--ifm-color-brand-light);
 }
 
 .algolia-autocomplete .ds-dropdown-menu [class^="ds-dataset-"] {
@@ -394,8 +394,8 @@ nav.menu {
 }
 
 .button-grid-bg-section {
-  background-image: linear-gradient(var(----ifm-color-brand-light-opacity-15) 1px, transparent 2px),
-    linear-gradient(90deg, var(----ifm-color-brand-light-opacity-15) 1px, transparent 2px);
+  background-image: linear-gradient(var(--ifm-color-brand-light-opacity-15) 1px, transparent 2px),
+    linear-gradient(90deg, var(--ifm-color-brand-light-opacity-15) 1px, transparent 2px);
   background-size: 20px 20px;
   clip-path: inset(0.2rem);
   position: absolute;

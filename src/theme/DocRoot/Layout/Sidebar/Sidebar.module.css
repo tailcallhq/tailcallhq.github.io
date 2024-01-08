@@ -37,7 +37,7 @@
   left: 50%;
   margin-right: -50%;
   z-index: 9;
-  background: white;
+  background: var(--ifm-color-brand-light);
   width: 640px;
   transform: translate(-50%, -50%);
   border: 1px solid var(--ifm-color-brand-dark-100);
