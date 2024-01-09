@@ -1,4 +1,4 @@
-import React from "react"
+import React, {ReactNode} from "react"
 import {composeProviders} from "@docusaurus/theme-common"
 import {
   ColorModeProvider,
@@ -10,6 +10,12 @@ import {
 } from "@docusaurus/theme-common/internal"
 import GithubStarsProvider from "@site/src/components/shared/GithubStarsProvider"
 
+// Define the type for LayoutProvider props
+interface LayoutProviderProps {
+  children: ReactNode // ReactNode represents any React child (JSX, strings, etc.)
+}
+
+// Compose the providers to create a single Provider component
 const Provider = composeProviders([
   ColorModeProvider,
   AnnouncementBarProvider,
@@ -19,6 +25,8 @@ const Provider = composeProviders([
   NavbarProvider,
   GithubStarsProvider,
 ])
-export default function LayoutProvider({children}) {
+
+// LayoutProvider component wraps the composed providers around its children
+export default function LayoutProvider({children}: LayoutProviderProps) {
   return <Provider>{children}</Provider>
 }
