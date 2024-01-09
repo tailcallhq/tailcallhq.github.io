@@ -6,3 +6,55 @@ Hide color mode toggle in small viewports
     display: none;
   }
 }
+
+.overlay {
+  background-color: var(--ifm-color-brand-light);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 110vh;
+  height: 100%;
+  z-index: 1;
+  backdrop-filter: blur(3px);
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  margin-right: -50%;
+  z-index: 9;
+  background: var(--ifm-color-brand-light);
+  width: 100%;
+}
+
+.initialCase {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.modalContent {
+  height: 100vh;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.searchInput {
+  width: 300px;
+}
+
+@media (max-height: 600px) {
+  .modal {
+    top: calc(var(--header-height) + 1rem);
+    transform: translate(-50%, 0);
+  }
+}
