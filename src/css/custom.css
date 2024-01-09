@@ -31,7 +31,6 @@ input[type="radio"] {
   appearance: none;
   background-color: "";
   margin: 0;
-
   font: inherit;
   color: currentColor;
   width: 16px;
@@ -480,5 +479,32 @@ nav.menu {
 
   .sidebar-search-container {
     display: none;
+  }
+
+  .sidebar-search-container {
+    position: sticky;
+    top: 100px;
+    max-height: 100vh;
+    transition: all 250ms ease-in-out;
+    z-index: 99;
+  }
+}
+
+@media (max-width: 600px) {
+  .algolia-autocomplete span[role="listbox"] {
+    display: block !important;
+    max-height: 100% !important;
+    max-width: 100% !important;
+    position: fixed !important;
+    top: 90px !important;
+    left: 0px !important;
+    width: 600px !important;
+    height: 100vh !important;
+    z-index: 100;
+    background: transparent !important;
+  }
+
+  .algolia-autocomplete .ds-dropdown-menu {
+    box-shadow: none !important;
   }
 }
