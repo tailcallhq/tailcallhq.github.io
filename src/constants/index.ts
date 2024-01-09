@@ -212,7 +212,7 @@ export const enterpriseFeatures: EnterpriseFeature[] = [
   },
 ]
 
-export const additionalEnterpriseFeatures = [
+export const additionalEnterpriseFeatures: AdditionalEnterpriseFeatures[] = [
   {
     id: 1,
     logo: require("@site/static/icons/basic/adaptive.svg").default,

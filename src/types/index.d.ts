@@ -40,6 +40,12 @@ type EnterpriseFeature = {
   description: string
 }
 
+type AdditionalEnterpriseFeatures = {
+  id: number
+  logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  title: string
+}
+
 type PricingPlans = {
   id: number
   name: string
