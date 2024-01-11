@@ -1,7 +1,7 @@
 import React from "react"
 
 import BgTailcall from "@site/static/icons/basic/bg-tailcall.svg"
-import Button from "./Button"
+import LinkButton from "./LinkButton"
 import {analyticsHandler} from "@site/src/utils"
 
 const Discover = () => {
@@ -16,13 +16,13 @@ const Discover = () => {
           </h5>
 
           <div className="flex space-x-3 sm:space-x-6">
-            <Button
+            <LinkButton
               theme="dark"
               title="Get in touch"
               href="/contact"
               onClick={() => analyticsHandler("Discover", "Click", "Get in touch")}
             />
-            <Button
+            <LinkButton
               theme="light"
               title="Know More"
               href="/docs"
