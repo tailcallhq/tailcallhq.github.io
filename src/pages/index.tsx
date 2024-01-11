@@ -4,8 +4,6 @@ import ReactGA from "react-ga4"
 
 import HomePage from "../components/home"
 
-ReactGA.initialize("G-JEP3QDWT0G")
-
 export default function Home(): JSX.Element {
   const isDevelopment = process.env.NODE_ENV === "development"
 
