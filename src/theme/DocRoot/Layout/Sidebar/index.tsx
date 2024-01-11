@@ -108,8 +108,8 @@ const CustomSearch = () => {
               <Search />
               <div className={styles.initialCase}>
                 <PageSearchIcon />
-                <div className="mt-2 font-bold">Search Docs</div>
-                <div className="text-content-tiny text-tailCall-dark-100">Search anything within the docs</div>
+                <div className={styles.searchDocsTitle}>Search Docs</div>
+                <div className={styles.searchDocsDesc}>Search anything within the docs</div>
               </div>
             </div>
             <div className={styles.footer}>

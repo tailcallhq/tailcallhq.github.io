@@ -79,6 +79,19 @@
   height: 340px;
 }
 
+.searchDocsTitle {
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.searchDocsDesc {
+  font-size: 14px;
+  line-height: 20.73px;
+  letter-spacing: -4%;
+  font-weight: 400;
+  color: var(--ifm-color-brand-dark-400);
+}
+
 @media (max-height: 600px) {
   .modal {
     top: calc(var(--header-height) + 1rem);

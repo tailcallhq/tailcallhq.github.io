@@ -33,7 +33,7 @@ function NavbarItems({items}: {items: NavbarItemType[]}) {
             new Error(
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
-${JSON.stringify(item, null, 2)}`,
+${JSON.stringify(item, null, 2)}`
             )
           }
         >
@@ -85,9 +85,29 @@ const CustomSearch = () => {
     }
   }, [history])
 
+  useEffect(() => {
+    if (isSearchModalVisible) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+    }
+  }, [isSearchModalVisible])
+
+  useEffect(() => {
+    if (isSearchModalVisible) {
+      setTimeout(() => {
+        const searchInput = document.getElementById("search_input_react")
+        if (searchInput) {
+          console.log(searchInput)
+          searchInput.focus()
+        }
+      }, 50)
+    }
+  }, [isSearchModalVisible])
+
   return (
     <>
-      {showSearchIcon && <SearchIcon onClick={handleSearchClick} className="sm:hidden mr-3 h-6 w-6" />}
+      {showSearchIcon && <SearchIcon onClick={handleSearchClick} className="lg:hidden mr-SPACE_03 h-6 w-6" />}
       {isSearchModalVisible ? (
         <>
           <div onClick={handleSearchModalClose} className={styles.overlay}></div>
@@ -98,14 +118,14 @@ const CustomSearch = () => {
                 <div className={styles.searchInput}>
                   <Search />
                 </div>
-                <span className="text-content-tiny font-bold text-tailCall-dark-100" onClick={handleSearchModalClose}>
+                <span className={styles.searchDocsClose} onClick={handleSearchModalClose}>
                   Close
                 </span>
               </div>
               <div className={styles.initialCase}>
                 <PageSearchIcon />
-                <div className="mt-2 font-bold">Search Docs</div>
-                <div className="text-content-tiny text-tailCall-dark-100">Search anything within the docs</div>
+                <div className={styles.searchDocsTitle}>Search Docs</div>
+                <div className={styles.searchDocsDesc}>Search anything within the docs</div>
               </div>
             </div>
           </div>
