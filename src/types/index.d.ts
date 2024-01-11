@@ -77,3 +77,9 @@ type Investor = {
   name: string
   title: string
 }
+
+type RadioOptions = {
+  id: string
+  name: string
+  value: string
+}
