@@ -64,7 +64,7 @@ tailcall compose ./path/to/file1.graphql ./path/to/file2.graphql --format gql
 
 ## start
 
-The `start` command launches the TailCall Server, acting as an GraphQL proxy with specific configurations. The server can publish various GraphQL configurations.
+The `start` command launches the TailCall Server, acting as a GraphQL proxy with specific configurations. The server can publish various GraphQL configurations.
 
 To start the server, use the following command:
 
