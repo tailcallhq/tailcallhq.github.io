@@ -1,32 +1,14 @@
-import React from "react"
+import React, {useState} from "react"
 
 import Grid from "@site/static/images/about/grid-large.svg"
-import Button from "../shared/Button"
+import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
-
-const radioOptions = [
-  {id: "1", name: "Evaluating", value: "evaluating"},
-  {
-    id: "2",
-    name: "Monolith",
-    value: "monolith",
-  },
-  {
-    id: "3",
-    name: "Multiple Graphql with Bff",
-    value: "bff",
-  },
-  {
-    id: "4",
-    name: "Federated",
-    value: "federated",
-  },
-]
+import {radioOptions} from "@site/src/constants"
 
 const Hello = () => {
-  const [email, setEmail] = React.useState<string>("")
-  const [message, setMessage] = React.useState<string>("")
-  const [stage, setStage] = React.useState<string>("")
+  const [email, setEmail] = useState<string>("")
+  const [message, setMessage] = useState<string>("")
+  const [stage, setStage] = useState<string>("")
 
   const sendData = async () => {
     const response = await fetch("https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/", {
@@ -112,7 +94,7 @@ const Hello = () => {
             />
           </div>
 
-          <Button theme="dark" onClick={sendData} title="Send message" disabled={!(email && stage)} />
+          <LinkButton theme="dark" onClick={sendData} title="Send message" disabled={!(email && stage)} />
         </div>
       </div>
     </section>
