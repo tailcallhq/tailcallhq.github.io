@@ -13,7 +13,6 @@ import styles from "./styles.module.css"
 const CustomSearch = () => {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
   const history = useHistory()
-  const searchInputRef = useRef<HTMLInputElement>(null)
   const isBrowser = useIsBrowser()
   const placeholder = isBrowser
     ? window.navigator.userAgent.startsWith("Mac")
@@ -44,6 +43,19 @@ const CustomSearch = () => {
     }
   }, [isSearchModalVisible])
 
+  // Effect to focus on search input when modal becomes visible
+  useEffect(() => {
+    if (isSearchModalVisible) {
+      setTimeout(() => {
+        const searchInput = document.getElementById("search_input_react")
+        if (searchInput) {
+          console.log(searchInput)
+          searchInput.focus()
+        }
+      }, 50)
+    }
+  }, [isSearchModalVisible])
+
   // Function to handle key press events
   function handleKeyPress(event: KeyboardEvent) {
     if (event.key === "Escape") {
@@ -56,13 +68,6 @@ const CustomSearch = () => {
       handleSearchClick()
     }
   }
-
-  // Effect to focus on search input when modal becomes visible
-  useEffect(() => {
-    if (isSearchModalVisible && searchInputRef.current) {
-      searchInputRef.current.focus()
-    }
-  }, [isSearchModalVisible])
 
   // Effect to handle keydown events for search functionality
   useEffect(() => {
@@ -91,7 +96,7 @@ const CustomSearch = () => {
       {/* Search input container */}
       <div className={styles.inputContainer} onClick={handleSearchClick}>
         <span aria-label="expand searchbar" role="button" className="search-icon" tabIndex={0}></span>
-        <input readOnly placeholder={placeholder} className={styles.input} ref={searchInputRef} />
+        <input readOnly placeholder={placeholder} className={styles.input} />
       </div>
 
       {/* Search modal */}
@@ -100,7 +105,7 @@ const CustomSearch = () => {
           <div onClick={handleSearchModalClose} className={styles.overlay}></div>
           <div className={styles.modal}>
             <div className={styles.modalContent}>
-              <Search ref={searchInputRef} />
+              <Search />
               <div className={styles.initialCase}>
                 <PageSearchIcon />
                 <div className="mt-2 font-bold">Search Docs</div>
