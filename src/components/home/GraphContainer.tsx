@@ -40,7 +40,7 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, dur
       }}
       className="h-[368px] lg:h-[400px] w-[95%] sm:w-[680px] rounded-3xl sm:rounded-[32px] flex flex-col relative"
     >
-      <div className="flex flex-col px-6 py-4 lg:px-12 lg:py-8 z-10">
+      <div className="flex flex-col px-SPACE_06 py-SPACE_04 lg:px-SPACE_12 lg:py-SPACE_08 z-10">
         <span className="text-content-small sm:text-content-medium text-tailCall-light-100">{metricTitle}</span>
 
         <span className="text-title-medium sm:text-title-large text-tailCall-light-100">
@@ -67,7 +67,7 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, dur
         <span className="text-content-tiny sm:text-content-small text-tailCall-light-400">{metricDesc}</span>
       </div>
 
-      <div className="absolute right-1 bottom-1">
+      <div className="absolute right-SPACE_01 bottom-SPACE_01">
         <Lottie lottieRef={lottieRef} animationData={visual} interactivity={interactivity} loop={false} />
       </div>
     </div>

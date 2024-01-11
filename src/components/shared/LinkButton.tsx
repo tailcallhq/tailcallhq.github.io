@@ -47,7 +47,7 @@ const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkBu
     <Link
       to={href || "#"}
       onClick={onClick}
-      className={`group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-3 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-6 py-3 sm:px-8 lg:px-10 sm:py-4 lg:py-5 
+      className={`group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-SPACE_03 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-SPACE_06 py-SPACE_03 sm:px-SPACE_08 lg:px-SPACE_10 sm:py-SPACE_04 lg:py-SPACE_05 
       ${generateThemeClasses().classes ?? ""} ${disabled ? "cursor-not-allowed opacity-20" : ""}
       `}
       style={{

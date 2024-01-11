@@ -3,9 +3,9 @@ import SectionTitle from "../shared/SectionTitle"
 
 const SocialBuzz = () => {
   return (
-    <section className="py-16 sm:py-24 relative flex items-center justify-center mx-4 sm:mx-10 lg:mx-12 lg:space-x-10 max-w-8xl">
-      <div className="flex flex-col gap-6 lg:gap-y-44">
-        <div className="ml-4 lg:ml-32">
+    <section className="py-SPACE_16 sm:py-24 relative flex items-center justify-center mx-SPACE_04 sm:mx-SPACE_10 lg:mx-SPACE_12 lg:space-x-SPACE_10 max-w-8xl">
+      <div className="flex flex-col gap-SPACE_06 lg:gap-y-44">
+        <div className="ml-SPACE_04 lg:ml-32">
           <SectionTitle title="About Us" />
           <span className="text-title-semi-large sm:text-display-small">Social & Buzz</span>
         </div>
@@ -16,7 +16,7 @@ const SocialBuzz = () => {
           ${require("@site/static/images/about/tweet-2-2x.jpg").default} 2x
           `}
           alt="tweet 2"
-          className="rounded-3xl m-2 lg:hidden"
+          className="rounded-3xl m-SPACE_02 lg:hidden"
           style={{
             border: "1px solid var(--ifm-color-brand-light-500)",
           }}
@@ -28,7 +28,7 @@ const SocialBuzz = () => {
           ${require("@site/static/images/about/tweet-1-2x.jpg").default} 2x
           `}
           alt=""
-          className=" rounded-3xl m-2"
+          className=" rounded-3xl m-SPACE_02"
           style={{
             border: "1px solid var(--ifm-color-brand-light-500)",
           }}
@@ -40,7 +40,7 @@ const SocialBuzz = () => {
           ${require("@site/static/images/about/tweet-2-2x.jpg").default} 2x
           `}
         alt="tweet 2"
-        className="rounded-3xl m-2 lg:block hidden"
+        className="rounded-3xl m-SPACE_02 lg:block hidden"
         style={{
           border: "1px solid var(--ifm-color-brand-light-500)",
         }}

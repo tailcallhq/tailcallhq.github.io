@@ -6,13 +6,13 @@ import {partnerImages} from "@site/src/constants"
 
 const Partners = () => {
   return (
-    <section className="mt-8">
+    <section className="mt-SPACE_08">
       <div className="text-content-small font-bold sm:text-title-tiny lg:text-title-small text-tailCall-light-500 text-center space-x-1">
         <GreaterThanUnderscoreIcon className="h-4 w-6" />
         <span>Our Cloud Partners</span>
       </div>
       <Marquee autoFill>
-        <div className="hidden sm:flex space-x-16 mt-10 overflow-hidden">
+        <div className="hidden sm:flex space-x-SPACE_16 mt-SPACE_10 overflow-hidden">
           {partnerImages.map((partner) => (
             <div key={partner.id} className="h-20">
               <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
@@ -20,7 +20,7 @@ const Partners = () => {
           ))}
         </div>
       </Marquee>
-      <div className="sm:hidden flex items-center justify-around flex-wrap mt-6 space-y-2">
+      <div className="sm:hidden flex items-center justify-around flex-wrap mt-SPACE_06 space-y-SPACE_02">
         {partnerImages.map((partner) => (
           <div key={partner.id} className="h-20">
             <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />

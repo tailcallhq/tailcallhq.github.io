@@ -4,7 +4,7 @@ import SectionTitle from "../shared/SectionTitle"
 const Hero = () => {
   return (
     <section className="flex flex-col sm:flex-row items-end sm:items-center justify-center bg-tailCall-dark-500 w-full h-full">
-      <div className="mx-4 my-6 sm:m-10 lg:m-20">
+      <div className="mx-SPACE_04 my-SPACE_06 sm:m-SPACE_10 lg:m-SPACE_20">
         <SectionTitle title="Our Mission" />
         <h2 className="text-title-small sm:text-title-large lg:text-display-small text-tailCall-light-100 max-w-3xl">
           Demystify the complexity of API composition, with unparalleled ease and efficiency.

@@ -18,10 +18,10 @@ const Founder = ({founder}: Founder) => {
     <div>
       <img src={founder.image} alt={founder.name} className="h-[300px] sm:h-[366px] object-contain" />
 
-      <div className="flex flex-col space-y-2 items-start">
+      <div className="flex flex-col space-y-SPACE_02 items-start">
         <span className="text-content-small font-bold sm:text-title-small">{founder.name}</span>
         <span className="text-content-tiny sm:text-content-small text-tailCall-dark-100">{founder.title}</span>
-        <div className="flex items-center gap-x-5">
+        <div className="flex items-center gap-x-SPACE_05">
           {founder.socialLinks.map((social) => (
             <SocialIcon key={social.id} social={social} />
           ))}
@@ -96,7 +96,7 @@ const SocialIcon = ({social}) => {
 
 const Founders = () => {
   return (
-    <section className="my-8 mx-6 sm:my-10 lg:my-16 flex flex-wrap items-center justify-around max-w-6xl sm:mx-4 lg:mx-auto gap-y-8 sm:gap-y-12 lg:gap-y-16">
+    <section className="my-SPACE_08 mx-SPACE_06 sm:my-SPACE_10 lg:my-SPACE_06 flex flex-wrap items-center justify-around max-w-6xl sm:mx-SPACE_04 lg:mx-auto gap-y-SPACE_08 sm:gap-y-SPACE_12 lg:gap-y-SPACE_16">
       {founders.map((founder) => (
         <Founder founder={founder} key={founder.id} />
       ))}
