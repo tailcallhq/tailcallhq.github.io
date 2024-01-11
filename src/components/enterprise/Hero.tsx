@@ -1,5 +1,5 @@
 import React from "react"
-import Button from "../shared/Button"
+import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
 
 const Hero = () => {
@@ -12,7 +12,7 @@ const Hero = () => {
         </div>
         <div>to your organization.</div>
       </h2>
-      <Button
+      <LinkButton
         title="Get in touch"
         theme="dark"
         href="/contact"
