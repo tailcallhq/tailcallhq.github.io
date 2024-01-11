@@ -453,3 +453,22 @@ export const investors: Investor[] = [
     title: "SVP - Engineering Dream11",
   },
 ]
+
+export const radioOptions: RadioOptions[] = [
+  {id: "1", name: "Evaluating", value: "evaluating"},
+  {
+    id: "2",
+    name: "Monolith",
+    value: "monolith",
+  },
+  {
+    id: "3",
+    name: "Multiple Graphql with Bff",
+    value: "bff",
+  },
+  {
+    id: "4",
+    name: "Federated",
+    value: "federated",
+  },
+]
