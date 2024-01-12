@@ -17,7 +17,6 @@ import styles from "./styles.module.css"
 
 // Function to retrieve navbar items from the theme configuration
 function useNavbarItems(): NavbarItemType[] {
-  // TODO: temporary casting until ThemeConfig type is improved
   return useThemeConfig().navbar.items as unknown as NavbarItemType[]
 }
 
@@ -69,6 +68,35 @@ const CustomSearch = () => {
     setIsSearchModalVisible(false)
   }
 
+  // Function to handle zoom behavior based on input focus
+  const handleZoomBehavior = () => {
+    const viewportMetaTag = document.querySelector('meta[name="viewport"]') as HTMLMetaElement
+
+    if (viewportMetaTag) {
+      // Enable user zooming when no input is in focus
+      viewportMetaTag.content = "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"
+
+      // Add an event listener to detect when an input is in focus
+      document.addEventListener("focusin", handleInputFocus)
+
+      // Remove the event listener when the component unmounts or the modal closes
+      return () => {
+        document.removeEventListener("focusin", handleInputFocus)
+      }
+    }
+  }
+
+  // Function to handle input focus
+  const handleInputFocus = (event: FocusEvent) => {
+    const isInput = (event.target as HTMLElement).tagName.toLowerCase() === "input"
+
+    // Disable user zooming when an input is in focus
+    const viewportMetaTag = document.querySelector('meta[name="viewport"]') as HTMLMetaElement
+    if (viewportMetaTag && isInput) {
+      viewportMetaTag.content = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    }
+  }
+
   useEffect(() => {
     // Check pathname for showing the search icon
     window.location.pathname.includes("/docs/") ? setShowSearchIcon(true) : setShowSearchIcon(false)
@@ -77,6 +105,7 @@ const CustomSearch = () => {
     const unlisten = history.listen((location, action) => {
       if (action === "PUSH" || action === "POP") {
         setIsSearchModalVisible(false)
+        // Reset the zoom when the modal is closed
       }
     })
 
@@ -97,11 +126,13 @@ const CustomSearch = () => {
     if (isSearchModalVisible) {
       setTimeout(() => {
         const searchInput = document.getElementById("search_input_react")
+        searchInput.focus()
         if (searchInput) {
-          console.log(searchInput)
           searchInput.focus()
+          handleZoomBehavior()
+          console.log(searchInput)
         }
-      }, 50)
+      }, 200)
     }
   }, [isSearchModalVisible])
 
