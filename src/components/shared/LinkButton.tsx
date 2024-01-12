@@ -1,5 +1,5 @@
 import Link from "@docusaurus/Link"
-import React, {ReactComponentElement} from "react"
+import React from "react"
 import {SVGProps} from "react"
 
 type LinkButtonProps = {
