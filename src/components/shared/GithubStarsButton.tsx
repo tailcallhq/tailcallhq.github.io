@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react"
+import React, {useContext} from "react"
 import {GithubStarsContext} from "./GithubStarsProvider"
 import {githubRepoURL} from "@site/src/constants"
 import GithubIcon from "@site/static/icons/companies/github.svg"
