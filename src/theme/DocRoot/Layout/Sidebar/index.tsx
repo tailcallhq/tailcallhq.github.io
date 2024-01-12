@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, {useEffect, useState} from "react"
 import {useHistory} from "react-router-dom"
 import Sidebar from "@theme-original/DocRoot/Layout/Sidebar"
 import Search from "docusaurus-lunr-search/src/theme/SearchBar"
@@ -49,7 +49,6 @@ const CustomSearch = () => {
       setTimeout(() => {
         const searchInput = document.getElementById("search_input_react")
         if (searchInput) {
-          console.log(searchInput)
           searchInput.focus()
         }
       }, 50)
