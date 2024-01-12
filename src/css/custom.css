@@ -5,9 +5,21 @@
 @tailwind utilities;
 
 :root {
+  /* Font and Dimension Tokens */
   --ifm-font-family-base: "Space Grotesk", sans-serif;
   --header-height: 6.5rem;
   --ifm-navbar-height: 6.5rem;
+  --ifm-navbar-height-sm: 4.5rem;
+  --ifm-edit-this-page-height: 3rem;
+  --ifm-navbar-logo-height: 2.5rem;
+  --ifm-navbar-logo-height-sm: 1.75rem;
+  --ifm-search-input-height: 2.75rem;
+  --ifm-search-dropdown-height: 18.5rem;
+  --ifm-grid-bg-size-lg: 3.25rem;
+  --ifm-grid-bg-size-md: 2.5rem;
+  --ifm-grid-bg-size-sm: 1.25rem;
+
+  /* Color Tokens */
   --ifm-color-brand: #fdea2e;
   --ifm-color-brand-linkedin: #0a66c2;
   --ifm-color-brand-discord: #5865f2;
@@ -15,6 +27,7 @@
   --ifm-color-brand-dark-100: #121315;
   --ifm-color-brand-dark-200: #323335;
   --ifm-color-brand-dark-300: #2c2c2c;
+  --ifm-color-brand-dark-400: #545556;
   --ifm-color-brand-dark-opacity-05: rgba(0, 0, 0, 0.05);
   --ifm-color-brand-light: #ffffff;
   --ifm-color-brand-light-100: #f3f4f7;
@@ -39,7 +52,6 @@ input[type="radio"] {
   border-radius: 50%;
   transform: translateY(-0.075em);
   cursor: pointer;
-
   display: grid;
   place-content: center;
 }
@@ -113,7 +125,7 @@ input[type="radio"]:checked::before {
 .theme-edit-this-page {
   display: flex;
   align-items: center;
-  height: 3rem;
+  height: var(--ifm-edit-this-page-height);
   color: var(--ifm-color-brand-dark-200);
   font-weight: var(--ifm-font-weight-bold);
 }
@@ -223,7 +235,7 @@ input[type="radio"]:checked::before {
 }
 
 .navbar__logo {
-  height: 2.5rem;
+  height: var(--ifm-navbar-logo-height);
 }
 
 .navbar__items--right {
@@ -344,7 +356,7 @@ aside.theme-doc-sidebar-container {
   border-radius: 8px;
   border: 1px solid var(--ifm-color-brand-light-600);
   background-color: transparent;
-  height: 44px;
+  height: var(--ifm-search-input-height);
   outline: 0;
 }
 
@@ -376,7 +388,7 @@ nav.menu {
   top: 44px;
   border-radius: 0;
   box-shadow: none;
-  height: 296px;
+  height: var(--ifm-search-dropdown-height);
   max-width: none;
   background: var(--ifm-color-brand-light);
 }
@@ -388,14 +400,14 @@ nav.menu {
 .grid-bg-section {
   background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 1px),
     linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 1px);
-  background-size: 52px 52px;
+  background-size: var(--ifm-grid-bg-size-lg) var(--ifm-grid-bg-size-lg);
   clip-path: inset(0.5rem 0 1rem 0);
 }
 
 .button-grid-bg-section {
   background-image: linear-gradient(var(--ifm-color-brand-light-opacity-15) 1px, transparent 2px),
     linear-gradient(90deg, var(--ifm-color-brand-light-opacity-15) 1px, transparent 2px);
-  background-size: 20px 20px;
+  background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
   clip-path: inset(0.2rem);
   position: absolute;
   border-radius: 20px;
@@ -404,7 +416,7 @@ nav.menu {
 .button-grid-bg-section-dark {
   background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px),
     linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px);
-  background-size: 20px 20px;
+  background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
   position: absolute;
   border-radius: 20px;
 }
@@ -412,12 +424,20 @@ nav.menu {
 .button-grid-bg-github {
   background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px),
     linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px);
-  background-size: 20px 20px;
+  background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
+  scale: 0.9;
+  opacity: 0;
+}
+
+.button-grid-bg-github:hover {
+  scale: 1;
+  opacity: 1;
+  transition: all 250ms ease-out;
 }
 
 @media (max-width: 996px) {
   .grid-bg-section {
-    background-size: 40px 40px;
+    background-size: var(--ifm-grid-bg-size-md) var(--ifm-grid-bg-size-md);
   }
 
   .navbar__items {
@@ -470,11 +490,11 @@ nav.menu {
   }
 
   .navbar {
-    height: 4.5rem;
+    height: var(--ifm-navbar-height-sm);
   }
 
   .navbar__logo {
-    height: 1.75rem;
+    height: var(--ifm-navbar-logo-height-sm);
   }
 
   .sidebar-search-container {
@@ -488,12 +508,16 @@ nav.menu {
     transition: all 250ms ease-in-out;
     z-index: 99;
   }
+
+  .navbarHidden_jGov {
+    transform: none;
+  }
 }
 
 @media (max-width: 600px) {
   .algolia-autocomplete span[role="listbox"] {
     display: block !important;
-    max-height: 100% !important;
+    max-height: 90% !important;
     max-width: 100% !important;
     position: fixed !important;
     top: 90px !important;
@@ -502,6 +526,7 @@ nav.menu {
     height: 100vh !important;
     z-index: 100;
     background: transparent !important;
+    overflow-y: auto !important;
   }
 
   .algolia-autocomplete .ds-dropdown-menu {
