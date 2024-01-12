@@ -12,16 +12,10 @@ type GithubStarsButtonProps = {
 export default function GithubStarsButton({className}: GithubStarsButtonProps): JSX.Element {
   // Get stars count from context
   const starsCount: number | null = useContext(GithubStarsContext)
-  const [isHovered, setIsHovered] = useState<boolean>(false)
 
   return (
-    <a
-      href={githubRepoURL}
-      onMouseOver={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      target="_blank"
-      className={`${className} header-button header-button-github ${isHovered ? "button-grid-bg-github" : ""}`}
-    >
+    <a href={githubRepoURL} target="_blank" className={`${className} header-button header-button-github`}>
+      <div className="hidden lg:block button-grid-bg-section-dark h-full w-40 scale-90 opacity-0 hover:scale-[1] hover:opacity-100 transform transition-all ease-out duration-250 active:hidden" />
       <GithubIcon />
       <span>
         Star <span className="min-w-[3ch] inline-block">{starsCount}</span>
