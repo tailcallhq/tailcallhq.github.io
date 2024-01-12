@@ -12,7 +12,6 @@ const ChooseTailcall = () => {
           <div
             className="w-full lg:min-h-[358px] lg:max-w-md rounded-3xl p-SPACE_04 flex flex-col items-start justify-between"
             key={item.id}
-            // TODO: Tailwind border not getting applied
             style={{
               border: "1px solid var(--ifm-color-brand-dark-300)",
             }}
