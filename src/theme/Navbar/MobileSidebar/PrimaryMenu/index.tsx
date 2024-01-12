@@ -6,15 +6,12 @@ import GithubStarsButton from "@site/src/components/shared/GithubStarsButton"
 
 // Function to retrieve navbar items from the theme configuration
 function useNavbarItems() {
-  // TODO: temporary casting until ThemeConfig type is improved
   return useThemeConfig().navbar.items
 }
 
 // Component for the mobile version of the primary navigation menu
 export default function NavbarMobilePrimaryMenu() {
   const mobileSidebar = useNavbarMobileSidebar()
-  // TODO: How can the order be defined for mobile?
-  // Should we allow providing a different list of items?
 
   // Get the navbar items using the custom hook
   const items = useNavbarItems()
