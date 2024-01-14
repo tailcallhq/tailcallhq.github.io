@@ -24,19 +24,12 @@ The version of the HTTP is decided by the server. So if the server only supports
 
 TCP is the underlying protocol that makes sure the data sent and received over the internet reaches its destination correctly and in order.
 
-Before any data can be exchanged using HTTP, TCP establishes a connection between the client and server, like dialing a number before talking on the phone. We will see how to tune Tailcall's HTTP client to improve the performance of this connection.
-
-:::tip
-You can learn more about TCP in detail [here](https://www.techtarget.com/searchnetworking/definition/TCP).
-:::
+Before any data can be exchanged using HTTP, TCP establishes a connection between the client and server, like dialing a number before talking on the phone. We will see how to tune Tailcall's HTTP client to improve the performance of this connection. You can learn more about TCP in detail [here](https://www.techtarget.com/searchnetworking/definition/TCP).
 
 ### QUIC (Quick UDP Internet Connections)
 
 QUIC is a newer protocol developed by Google. It's designed to make web communications faster and more efficient compared to TCP. It reduces connection establishment time, is better at handling packet loss, and supports multiplexed streams over a single connection, which prevents one slow request from holding up others. It is the foundation for HTTP/3.
-
-:::tip
 You can learn more about QUIC in detail [here](https://blog.cloudflare.com/the-road-to-quic).
-:::
 
 ### Why Managing Connections is Important?
 
