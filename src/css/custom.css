@@ -18,6 +18,11 @@
   --ifm-grid-bg-size-lg: 3.25rem;
   --ifm-grid-bg-size-md: 2.5rem;
   --ifm-grid-bg-size-sm: 1.25rem;
+  --ifm-list-item-link: 1.5rem;
+  --ifm-navbar-font-size: 1.25rem;
+  --ifm-content-link-font-size: 0.875rem;
+  --ifm-search-input-font-size: 0.9rem;
+  --ifm-search-desc-font-size: 14px;
 
   /* Color Tokens */
   --ifm-color-brand: #fdea2e;
@@ -96,7 +101,7 @@ input[type="radio"]:checked::before {
 }
 
 .menu__list-item-collapsible a {
-  font-size: 1.5rem;
+  font-size: var(--ifm-list-item-link);
   font-weight: var(--ifm-font-weight-bold);
 }
 
@@ -244,7 +249,7 @@ input[type="radio"]:checked::before {
 
 .navbar__item.navbar__link {
   font-weight: var(--ifm-font-weight-bold);
-  font-size: 1.25rem;
+  font-size: var(--ifm-navbar-font-size);
 }
 
 .navbar__item.navbar__link {
@@ -291,7 +296,7 @@ input[type="radio"]:checked::before {
 }
 
 .table-of-contents__link {
-  font-size: 0.875rem;
+  font-size: var(--ifm-content-link-font-size);
 }
 
 .table-of-contents__link--active {
