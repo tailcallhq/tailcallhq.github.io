@@ -93,7 +93,7 @@ Setting API keys:
 ```
 Environment variables are set when starting the Tailcall server and can be accessed in GraphQL using {{env.VAR_NAME}}.
 
-###Variables
+### Variables
 Variables allow passing dynamic values into queries. They can be used to make queries more reusable and configurable.
 
 For example:
