@@ -3,6 +3,7 @@ import {useHistory} from "react-router-dom"
 import Sidebar from "@theme-original/DocRoot/Layout/Sidebar"
 import Search from "docusaurus-lunr-search/src/theme/SearchBar"
 import useIsBrowser from "@docusaurus/useIsBrowser"
+import Platform from "react-platform-js"
 
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import EnterKeyIcon from "@site/static/icons/basic/enter-key.svg"
@@ -14,11 +15,7 @@ const CustomSearch = () => {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
   const history = useHistory()
   const isBrowser = useIsBrowser()
-  const placeholder = isBrowser
-    ? window.navigator.userAgent.startsWith("Mac")
-      ? "Search ⌘+K"
-      : "Search Ctrl+K"
-    : "Search"
+  const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K") : "Search"
 
   // Function to handle opening the search modal
   function handleSearchClick() {
@@ -61,8 +58,8 @@ const CustomSearch = () => {
       handleSearchModalClose()
     }
     if (
-      (event.metaKey && event.key === "k" && navigator.userAgent.includes("Mac")) ||
-      (event.ctrlKey && event.key === "k" && navigator.userAgent.includes("Win"))
+      (event.metaKey && event.key === "k" && Platform.UA.includes("Mac")) ||
+      (event.ctrlKey && event.key === "k" && Platform.UA.includes("Win"))
     ) {
       handleSearchClick()
     }
