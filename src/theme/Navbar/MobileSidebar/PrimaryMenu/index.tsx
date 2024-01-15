@@ -22,7 +22,7 @@ export default function NavbarMobilePrimaryMenu() {
         // Render NavbarItem components based on navbar items
         <NavbarItem
           mobile
-          {...(item as any)} // Temporarily casting until the type is improved
+          {...(item as any)} // {/* TODO: Fix types, Temporarily casting until the type is improved */}
           onClick={() => mobileSidebar.toggle()}
           key={i}
         />
