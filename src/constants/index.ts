@@ -472,3 +472,10 @@ export const radioOptions: RadioOptions[] = [
     value: "federated",
   },
 ]
+
+// Define an enum for theme options
+export enum Theme {
+  Light = "light",
+  Dark = "dark",
+  Gray = "gray",
+}

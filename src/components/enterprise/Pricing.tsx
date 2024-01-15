@@ -1,7 +1,7 @@
 import React from "react"
 
 import CheckCircle from "@site/static/icons/basic/check-circle.svg"
-import {pricingPlans} from "@site/src/constants"
+import {Theme, pricingPlans} from "@site/src/constants"
 import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
 
@@ -54,7 +54,7 @@ const Pricing = () => {
                   title={plan.buttonText}
                   onClick={() => analyticsHandler("Pricing", "Click", `${plan.buttonText}`)}
                   href={plan.href}
-                  theme={plan.mostPopular ? "dark" : "light"}
+                  theme={plan.mostPopular ? Theme.Dark : Theme.Light}
                   width="320px"
                 />
               </div>
@@ -64,7 +64,7 @@ const Pricing = () => {
                   title={plan.buttonText}
                   onClick={() => analyticsHandler("Pricing", "Click", `${plan.buttonText}`)}
                   href={plan.href}
-                  theme={plan.mostPopular ? "dark" : "light"}
+                  theme={plan.mostPopular ? Theme.Dark : Theme.Light}
                   width="300px"
                 />
               </div>

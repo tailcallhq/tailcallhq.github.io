@@ -3,7 +3,7 @@ import React, {useState} from "react"
 import Grid from "@site/static/images/about/grid-large.svg"
 import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
-import {radioOptions} from "@site/src/constants"
+import {Theme, radioOptions} from "@site/src/constants"
 
 const Hello = () => {
   const [email, setEmail] = useState<string>("")
@@ -94,7 +94,7 @@ const Hello = () => {
             />
           </div>
 
-          <LinkButton theme="dark" onClick={sendData} title="Send message" disabled={!(email && stage)} />
+          <LinkButton theme={Theme.Dark} onClick={sendData} title="Send message" disabled={!(email && stage)} />
         </div>
       </div>
     </section>

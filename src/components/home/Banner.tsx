@@ -3,6 +3,7 @@ import React from "react"
 import LinkButton from "../shared/LinkButton"
 import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
+import {Theme} from "@site/src/constants"
 
 const Banner = () => {
   return (
@@ -23,14 +24,14 @@ const Banner = () => {
             <LinkButton
               title="Try it Out"
               href="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
-              theme="dark"
+              theme={Theme.Dark}
               width="228px"
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
             />
             <LinkButton
               title="Get Started"
               href="/docs/getting_started/"
-              theme="light"
+              theme={Theme.Light}
               width="228px"
               onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
             />
@@ -40,13 +41,13 @@ const Banner = () => {
             <LinkButton
               title="Try it Out"
               href="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
-              theme="dark"
+              theme={Theme.Dark}
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
             />
             <LinkButton
               title="Get Started"
               href="/docs/getting_started/"
-              theme="light"
+              theme={Theme.Light}
               onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
             />
           </div>

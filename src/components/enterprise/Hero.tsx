@@ -1,6 +1,7 @@
 import React from "react"
 import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
+import {Theme} from "@site/src/constants"
 
 const Hero = () => {
   return (
@@ -14,7 +15,7 @@ const Hero = () => {
       </h2>
       <LinkButton
         title="Get in touch"
-        theme="dark"
+        theme={Theme.Dark}
         href="/contact"
         onClick={() => analyticsHandler("Pricing", "Click", "Get in touch")}
       />

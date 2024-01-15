@@ -1,11 +1,13 @@
 import Link from "@docusaurus/Link"
+import {Theme} from "@site/src/constants"
 import React from "react"
 import {SVGProps} from "react"
+import {useHistory} from "react-router-dom"
 
 type LinkButtonProps = {
   title?: string
   Icon?: React.ComponentType<SVGProps<SVGSVGElement>> // Define the type of Icon prop
-  theme: "light" | "dark" | "gray"
+  theme: Theme
   onClick?: () => void
   href?: string
   width?: string
@@ -13,47 +15,45 @@ type LinkButtonProps = {
 }
 
 const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkButtonProps) => {
+  const history = useHistory()
   // Generate classes based on the provided theme
   const generateThemeClasses = () => {
-    switch (theme) {
-      case "light":
-        return {
-          classes: "text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
-          styles: "1px solid var(--ifm-color-brand-dark-100)",
-          gridClasses: "",
-        }
-      case "dark":
-        return {
-          classes: "text-tailCall-light-100 bg-white border-none hover:text-tailCall-light-100",
-          styles: "2px solid var(--ifm-color-brand-dark-100)",
-          gridClasses: "",
-        }
-      case "gray":
-        return {
-          classes: "text-tailCall-light-100 bg-transparent hover:text-tailCall-light-100",
-          styles: "2px solid var(--ifm-color-white)",
-          gridClasses: "hidden",
-        }
-      default:
-        return {
-          classes: "",
-          styles: "",
-          gridClasses: "",
-        }
+    const themes = {
+      [Theme.Light]: {
+        classes: "text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
+        styles: "1px solid var(--ifm-color-brand-dark-100)",
+        gridClasses: "",
+      },
+      [Theme.Dark]: {
+        classes: "text-tailCall-light-100 bg-white border-none hover:text-tailCall-light-100",
+        styles: "2px solid var(--ifm-color-brand-dark-100)",
+        gridClasses: "",
+      },
+      [Theme.Gray]: {
+        classes: "text-tailCall-light-100 bg-transparent hover:text-tailCall-light-100",
+        styles: "2px solid var(--ifm-color-white)",
+        gridClasses: "hidden",
+      },
     }
+
+    return themes[theme] || {classes: "", styles: "", gridClasses: ""}
   }
+
+  // const handleClick = () => {
+  //   onClick && onClick()
+  //   href && history.push(href, "_blank")
+  // }
 
   return (
     <Link
       to={href || "#"}
       onClick={onClick}
-      className={`group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-SPACE_03 no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-SPACE_06 py-SPACE_03 sm:px-SPACE_08 lg:px-SPACE_10 sm:py-SPACE_04 lg:py-SPACE_05 
-      ${generateThemeClasses().classes ?? ""} ${disabled ? "cursor-not-allowed opacity-20" : ""}
+      className={`group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-SPACE_03 hover:no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-SPACE_06 py-SPACE_03 sm:px-SPACE_08 lg:px-SPACE_10 sm:py-SPACE_04 lg:py-SPACE_05 
+      ${generateThemeClasses().classes ?? ""} ${disabled ? "cursor-not-allowed opacity-20" : ""} 
       `}
       style={{
         width: width ? width : "fit-content",
         border: generateThemeClasses().styles,
-        textDecoration: "none",
       }}
     >
       {/* Conditionally render background elements based on theme and disabled state */}
