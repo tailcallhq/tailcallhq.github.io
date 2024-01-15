@@ -149,14 +149,19 @@ const CustomSearch = () => {
                 <div className={styles.searchInput}>
                   <Search />
                 </div>
-                <span className={styles.searchDocsClose} onClick={handleSearchModalClose}>
+                <span
+                  className={`${styles.searchDocsClose} ${styles.searchDocsCommon}`}
+                  onClick={handleSearchModalClose}
+                >
                   Close
                 </span>
               </div>
               <div className={styles.initialCase}>
                 <PageSearchIcon />
                 <div className={styles.searchDocsTitle}>Search Docs</div>
-                <div className={styles.searchDocsDesc}>Search anything within the docs</div>
+                <div className={`${styles.searchDocsDesc} ${styles.searchDocsCommon}`}>
+                  Search anything within the docs
+                </div>
               </div>
             </div>
           </div>

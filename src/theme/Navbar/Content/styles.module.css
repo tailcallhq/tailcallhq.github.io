@@ -64,19 +64,18 @@ Hide color mode toggle in small viewports
   font-weight: bold;
 }
 
-.searchDocsDesc {
-  font-size: 14px;
+.searchDocsCommon {
+  font-size: var(--ifm-search-desc-font-size);
   line-height: 20.73px;
   letter-spacing: -4%;
-  font-weight: 400;
   color: var(--ifm-color-brand-dark-400);
 }
 
+.searchDocsDesc {
+  font-weight: 400;
+}
+
 .searchDocsClose {
-  font-size: 14px;
-  line-height: 20.73px;
-  letter-spacing: -4%;
-  color: var(--ifm-color-brand-dark-400);
   font-weight: bold;
 }
 

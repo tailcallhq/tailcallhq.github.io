@@ -9,7 +9,7 @@
   color: var(--ifm-navbar-search-input-color);
   cursor: text;
   display: inline-block;
-  font-size: 0.9rem;
+  font-size: var(--ifm-search-input-font-size);
   padding: 0 0.5rem 0 2.2rem;
   background: transparent var(--ifm-navbar-search-input-icon) no-repeat 0.75rem center/1rem 1rem;
 }
@@ -85,7 +85,7 @@
 }
 
 .searchDocsDesc {
-  font-size: 14px;
+  font-size: var(--ifm-search-desc-font-size);
   line-height: 20.73px;
   letter-spacing: -4%;
   font-weight: 400;
