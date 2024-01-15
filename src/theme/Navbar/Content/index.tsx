@@ -3,7 +3,7 @@ import {useThemeConfig, ErrorCauseBoundary} from "@docusaurus/theme-common"
 import {splitNavbarItems, useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
 import {useHistory} from "react-router-dom"
 import {useLocation} from "@docusaurus/router"
-import NavbarItem, {NavbarItemType} from "@theme/NavbarItem" // Assuming NavbarItemProps
+import NavbarItem from "@theme/NavbarItem" // Assuming NavbarItemProps
 
 import Search from "docusaurus-lunr-search/src/theme/SearchBar" // Assuming Search is a valid component
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle"
@@ -16,9 +16,21 @@ import SearchIcon from "@site/static/icons/basic/search.svg"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import styles from "./styles.module.css"
 
+type NavbarItemType =
+  | "html"
+  | "search"
+  | "default"
+  | "doc"
+  | "docsVersion"
+  | "docSidebar"
+  | "dropdown"
+  | "docsVersionDropdown"
+  | "localeDropdown"
+  | typeof NavbarItem
+
 // Function to retrieve navbar items from the theme configuration
-function useNavbarItems(): NavbarItemType[] {
-  return useThemeConfig().navbar.items as unknown as NavbarItemType[]
+function useNavbarItems() {
+  return useThemeConfig().navbar.items
 }
 
 // Component to render a list of NavbarItems
@@ -37,7 +49,7 @@ ${JSON.stringify(item, null, 2)}`
             )
           }
         >
-          <NavbarItem {...(item as any)} />
+          <NavbarItem {...(item as typeof NavbarItem)} />
         </ErrorCauseBoundary>
       ))}
     </>
@@ -178,7 +190,7 @@ interface NavbarContentProps {
 // Main NavbarContent component
 export default function NavbarContent() {
   const mobileSidebar = useNavbarMobileSidebar()
-  const items: any = useNavbarItems()
+  const items = useNavbarItems()
   const [leftItems, rightItems] = splitNavbarItems<NavbarContentProps>(items)
   const searchBarItem = items.find((item) => item.type === "search")
 
@@ -190,13 +202,13 @@ export default function NavbarContent() {
           <CustomSearch />
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
-          <NavbarItems items={leftItems as any} />
+          <NavbarItems items={leftItems as NavbarItemType[]} />
         </>
       }
       right={
         // Render right navbar items
         <>
-          <NavbarItems items={rightItems as any} />
+          <NavbarItems items={rightItems as NavbarItemType[]} />
           <GithubStarsButton className="navbar__item navbar__link" />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
           {!searchBarItem && (
