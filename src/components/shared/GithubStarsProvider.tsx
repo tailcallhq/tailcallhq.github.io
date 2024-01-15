@@ -15,7 +15,7 @@ const storage = {
     return null
   },
 
-  set(key: string, val: any) {
+  set(key: string, val: number) {
     if (typeof window !== "undefined") {
       window["__tc_data__"] = window["__tc_data__"] || {}
       window["__tc_data__"][key] = val
@@ -39,6 +39,9 @@ export default function GithubStarsProvider({children}: GithubStarsProviderProps
         setStarsCount(respStarsCount)
         storage.set("githubStars", respStarsCount)
         return respStarsCount
+      })
+      .catch(() => {
+        console.error("Failed to fetch Github stars count")
       })
   }
 
