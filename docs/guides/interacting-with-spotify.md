@@ -9,11 +9,10 @@ This guide is aimed to demonstrate how you can interact seamlessly with the Spot
 We would be building a simple server that would allow us to do the following using Spotify's REST API:
 
 - Get an album's details
+- Get tracks of an album
 - Save an album
-- Create a playlist
-- Add tracks to a playlist
-- Get a user's playlists
-- Remove tracks from a playlist
+- Get a user's saved albums
+- Remove an album from a user's saved albums
 
 ## Getting started
 
@@ -34,9 +33,8 @@ You would need to install the [Tailcall CLI](../getting_started/installation.mdx
 Once we have got our file set up, we will have to set up the types that we will be using in our schema. For this guide, we will be using the following types:
 
 ```graphql showLineNumbers
-type PlaylistInput {
-  name: String!
-  description: String
+type AlbumInput {
+  ids: [String]!
 }
 
 type DeleteTrackInput {
@@ -50,16 +48,6 @@ type AddTrackInput {
 
 type TrackUri {
   uri: String!
-}
-
-type Playlist {
-  id: String!
-  name: String!
-  description: String
-  uri: String!
-  href: String
-  images: [Image]!
-  tracks: Page
 }
 
 type Artist {
@@ -128,7 +116,7 @@ type AlbumPage implements Page {
 
 You can copy and paste the content into your `spotify.graphql` file.
 
-While some of the types such as `Album`, `Track` may be self explainatory, the other types would become clearer as we use them in our schema. **Note that, these types are a subset of what the Spotify API returns. We have only included the fields that we would be using in our schema.**
+While some of the types such as `Album`, `Track` may be self explanatory, the other types would become clearer as we use them in our schema. **Note that, these types are a subset of what the Spotify API returns. We have only included the fields that we would be using in our schema.**
 
 ### Setting up our server
 
@@ -160,12 +148,12 @@ We will use this endpoint to get the details of an album. We will be using the `
 - `accessToken`: The access token that we obtained earlier
 
 ```graphql showLineNumbers
-  getAlbum(id: String!, access_token: String!): Album
-    @http(
-      method: "GET"
-      path: "/albums/{{args.id}}"
-      headers: [{key: "Authorization", value: "Bearer {{args.accessToken}}"}]
-    )
+getAlbum(id: String!, access_token: String!): Album
+  @http(
+    method: "GET"
+    path: "/albums/{{args.id}}"
+    headers: [{key: "Authorization", value: "Bearer {{args.accessToken}}"}]
+  )
 ```
 
 As you can see, we are passing the `id` and `access_token` to the `@http` operator via our schema's arguments. `@http` internally uses **Mustache Templates** to render the values of the arguments ar runtime.
@@ -262,16 +250,16 @@ Yet another example of fetching, this time, we will shift our focus on how we ca
 As you can see, we are passing the `limit` and `offset` arguments to the `@http` operator. This allows us to control the number of items that we want to fetch and the offset from which we want to fetch the items. This is how the query looks like:
 
 ```graphql showLineNumbers
-  getTracksOfAlbum(
-    id: "1OSzM1OWqtTnmIJJQpn62Q",
-    limit: 5,
-    offset: 0,
-    accessToken: "<your token here>") {
-    total,
-    items {
-    	name
-  	}
-  }
+getTracksOfAlbum(
+  id: "1OSzM1OWqtTnmIJJQpn62Q",
+  limit: 5,
+  offset: 0,
+  accessToken: "<your token here>") {
+  total,
+  items {
+  	name
+	}
+}
 ```
 
 Here, we are fetching 5 items (`limit=5`) per page, and we are starting with the very first (`offset=0`) element in the database.
@@ -304,3 +292,109 @@ The response to this query looks like this:
   }
 }
 ```
+
+As a rule, whenever you are fetching a list of items, or any data that is large, **Caching** is a must. This is where the [`@cache` operator](../operators/cache.md) comes into play. The `@cache` operator allows us to cache the response of a query for a certain amount of time. This is how we can use the `@cache` operator in our schema:
+
+```graphql showLineNumbers
+getTracksOfAlbum(id: String!, limit: Int!, offset: Int!, accessToken: String!): TrackPage
+  @http(
+    method: "GET"
+    path: "/albums/{{args.id}}/tracks?limit={{args.limit}}&offset={{args.offset}}"
+    headers: [{ key: "Authorization", value: "Bearer {{args.accessToken}}" }]
+  )
+  @cache(maxAge: 3000)
+```
+
+This will now cache the response of the request for `3000ms`.
+
+### [Save albums for current user](https://developer.spotify.com/documentation/web-api/reference/save-albums-user)
+
+This endpoint will demonstrate you how to use the `@http` operator to make a `PUT` request. Note that this block will go inside `type Mutation`, so do make sure that you have added `mutation: Mutation` in the schema block at the very beginning. This is how the mutation schema looks like:
+
+```graphql showLineNumbers
+saveAlbum(input: AlbumInput, accessToken: String): String
+  @http(
+    method: "PUT"
+    path: "/me/albums"
+    encoding: ApplicationJson
+    headers: [{ key: "Authorization", value: "Bearer {{args.accessToken}}" }]
+    body: "{{args.input}}"
+  )
+```
+
+This mutation doesn't return anything, so we have set the return type to `String`. Notice that there are two new fields in the `@http` operator:
+
+- `encoding`: The encoding of the request body. This can be either `ApplicationJson` or `ApplicationFormUrlEncoded`. The default is `ApplicationJson`.
+- `body`: The body of the request. This is a Mustache template, and hence, we can pass in the `input` argument directly.
+
+Once done, we can go to the playground and issue the mutation like so:
+
+```graphql showLineNumbers
+mutation {
+  saveAlbum(input: {ids: ["1OSzM1OWqtTnmIJJQpn62Q"]}, accessToken: "<your token here>")
+}
+```
+
+Doing this will add the album to your saved albums.
+
+### [Get a user's saved albums](https://developer.spotify.com/documentation/web-api/reference/get-users-saved-albums)
+
+Using this, we can get a list of all the albums that a user has saved. This is how the query schema looks like:
+
+```graphql showLineNumbers
+getSavedAlbums(limit: Int!, offset: Int!, accessToken: String!): AlbumPage
+  @http(
+    method: "GET"
+    path: "/me/albums?limit={{args.limit}}&offset={{args.offset}}"
+    headers: [{ key: "Authorization", value: "Bearer {{args.accessToken}}" }]
+  )
+```
+
+And then, we can issue the query like so:
+
+```graphql showLineNumbers
+getSavedAlbums(
+  limit: 10
+  offset: 0
+  accessToken: "<your token here>"
+) {
+  total,
+  items {
+    name,
+    artists {
+      name
+    }
+  }
+}
+```
+
+Note that, this response can have varying results depending on your saved albums.
+
+### [Remove an album from a user's saved albums](https://developer.spotify.com/documentation/web-api/reference/remove-albums-user)
+
+Let's remove the album that we added earlier. This is how the mutation schema looks like:
+
+```graphql showLineNumbers
+removeAlbum(input: AlbumInput, accessToken: String): String
+  @http(
+    method: "DELETE"
+    path: "/me/albums"
+    encoding: ApplicationJson
+    headers: [{ key: "Authorization", value: "Bearer {{args.accessToken}}" }]
+    body: "{{args.input}}"
+  )
+```
+
+We call it using the following mutation:
+
+```graphql showLineNumbers
+mutation {
+  removeAlbum(input: {ids: ["1OSzM1OWqtTnmIJJQpn62Q"]}, accessToken: "<your token here>")
+}
+```
+
+That will remove the album from your saved albums.
+
+## Conclusion
+
+This guide demonstrated how you can use Tailcall's `@http` operator to interact with the Spotify API. We also saw how we can use the `@cache` operator to cache the response of a query. Along with that, we also used `@upstream` and `@server` operators to set up our server and configure our HTTP client.
