@@ -516,20 +516,20 @@ nav.menu {
 
 @media (max-width: 600px) {
   .algolia-autocomplete span[role="listbox"] {
-    display: block !important;
-    max-height: 90% !important;
-    max-width: 100% !important;
-    position: fixed !important;
+    display: block;
+    max-height: 90%;
+    max-width: 100%;
+    position: fixed;
     top: 90px !important;
     left: 0px !important;
-    width: 600px !important;
-    height: 100vh !important;
+    width: 600px;
+    height: 100vh;
     z-index: 100;
-    background: transparent !important;
-    overflow-y: auto !important;
+    background: transparent;
+    overflow-y: auto;
   }
 
   .algolia-autocomplete .ds-dropdown-menu {
-    box-shadow: none !important;
+    box-shadow: none;
   }
 }
