@@ -1,37 +1,34 @@
-import React, {useEffect, useRef} from "react"
+import React from "react"
 import CountUp from "react-countup"
 import TrackVisibility from "react-on-screen"
-import Lottie from "lottie-react"
+import {useLottie, useLottieInteractivity} from "lottie-react"
 
 type GraphContainerProps = {
   metricTitle: string
   metricData: number
   metricDesc: string
-  visual: any
+  visual: object
   duration?: number
   delay?: number
   start?: number
 }
 
 const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, duration, start}: GraphContainerProps) => {
-  const lottieRef = useRef()
-
-  const interactivity: any = {
-    mode: "scroll" as "scroll",
+  const lottieObj = useLottie<"svg">({
+    animationData: visual,
+    loop: false,
+  })
+  const Animation = useLottieInteractivity({
+    lottieObj,
+    mode: "scroll",
     actions: [
       {
         visibility: [0, 1],
-        type: "loop" as "loop",
+        type: "loop",
         frames: [0],
       },
     ],
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      ;(lottieRef.current as any)?.pause()
-    }, delay)
-  }, [])
+  })
 
   return (
     <div
@@ -67,9 +64,7 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, dur
         <span className="text-content-tiny sm:text-content-small text-tailCall-light-400">{metricDesc}</span>
       </div>
 
-      <div className="absolute right-SPACE_01 bottom-SPACE_01">
-        <Lottie lottieRef={lottieRef} animationData={visual} interactivity={interactivity} loop={false} />
-      </div>
+      <div className="absolute right-SPACE_01 bottom-SPACE_01">{Animation}</div>
     </div>
   )
 }
