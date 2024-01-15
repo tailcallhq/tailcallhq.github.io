@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import {useThemeConfig, ErrorCauseBoundary} from "@docusaurus/theme-common"
 import {splitNavbarItems, useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
 import {useHistory} from "react-router-dom"
+import {useLocation} from "@docusaurus/router"
 import NavbarItem, {NavbarItemType} from "@theme/NavbarItem" // Assuming NavbarItemProps
 
 import Search from "docusaurus-lunr-search/src/theme/SearchBar" // Assuming Search is a valid component
@@ -32,7 +33,7 @@ function NavbarItems({items}: {items: NavbarItemType[]}) {
             new Error(
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
-${JSON.stringify(item, null, 2)}`,
+${JSON.stringify(item, null, 2)}`
             )
           }
         >
@@ -58,6 +59,7 @@ const CustomSearch = () => {
   const [showSearchIcon, setShowSearchIcon] = useState<boolean>(false)
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
   const history = useHistory()
+  const location = useLocation()
 
   // Handlers to control search visibility
   function handleSearchClick() {
@@ -99,7 +101,7 @@ const CustomSearch = () => {
 
   useEffect(() => {
     // Check pathname for showing the search icon
-    window.location.pathname.includes("/docs/") ? setShowSearchIcon(true) : setShowSearchIcon(false)
+    location.pathname.includes("/docs/") ? setShowSearchIcon(true) : setShowSearchIcon(false)
 
     // Listen for history changes to close search modal
     const unlisten = history.listen((location, action) => {
