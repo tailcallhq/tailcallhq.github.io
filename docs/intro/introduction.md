@@ -6,7 +6,7 @@ slug: /
 
 ## Traditional API Gateway
 
-Traditional API Gateways form the backbone of modern web based application architectures, offering a comprehensive suite of features essential for efficient API management. These gateways handle tasks such as routing, authentication, circuit breaking, caching, logging, monitoring, protocol translation and the list doesn't end!
+Traditional API Gateways ("TAGs") form the backbone of modern web based application architectures, offering a comprehensive suite of features essential for efficient API management. These gateways handle tasks such as routing, authentication, circuit breaking, caching, logging, monitoring, protocol translation and the list doesn't end!
 
 However, API Gateways don't provide developers access to the right abstraction when it comes to configuring these capabilities. Typically a TAG would provide you with primitives that are based on the underlying protocol ie. on which the API is served. For eg: You can perform authentication, routing, rate-limiting etc. on the bases of the request headers, url or method. All of which are components of the HTTP protocol. This happens because they treat the contents of request and response bodies as mere byte sequences, without delving into their substance.
 
