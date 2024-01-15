@@ -35,7 +35,7 @@ export default function GithubStarsProvider({children}: GithubStarsProviderProps
     return fetch("https://api.github.com/repos/tailcallhq/tailcall")
       .then((resp) => resp.json())
       .then((resp) => {
-        const respStarsCount = resp.stargazers_count || "250"
+        const respStarsCount = resp.stargazers_count
         setStarsCount(respStarsCount)
         storage.set("githubStars", respStarsCount)
         return respStarsCount
