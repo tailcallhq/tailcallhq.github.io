@@ -45,7 +45,7 @@ const NavbarItems = ({items}: {items: NavbarItemType[]}) => {
             new Error(
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
-${JSON.stringify(item, null, 2)}`
+${JSON.stringify(item, null, 2)}`,
             )
           }
         >
