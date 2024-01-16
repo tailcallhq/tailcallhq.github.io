@@ -5,7 +5,7 @@ import {useLocation} from "@docusaurus/router"
 
 import EnterprisePage from "../components/enterprise"
 
-const Enterprise = () => {
+const Enterprise = (): JSX.Element => {
   const location = useLocation()
 
   useEffect(() => {

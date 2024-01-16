@@ -27,11 +27,11 @@ type GithubStarsProviderProps = {
   children: ReactNode
 }
 
-export default function GithubStarsProvider({children}: GithubStarsProviderProps) {
+const GithubStarsProvider = ({children}: GithubStarsProviderProps) => {
   const [starsCount, setStarsCount] = useState<number | null>(storage.get("githubStars"))
 
   // Fetch Github stars count
-  function fetchGithubStars() {
+  const fetchGithubStars = () => {
     return fetch("https://api.github.com/repos/tailcallhq/tailcall")
       .then((resp) => resp.json())
       .then((resp) => {
@@ -53,3 +53,5 @@ export default function GithubStarsProvider({children}: GithubStarsProviderProps
   // Provide the stars count value through context
   return <GithubStarsContext.Provider value={starsCount}>{children}</GithubStarsContext.Provider>
 }
+
+export default GithubStarsProvider

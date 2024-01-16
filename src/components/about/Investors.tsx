@@ -1,7 +1,7 @@
 import React from "react"
 import {investors} from "@site/src/constants"
 
-const Investors = () => {
+const Investors = (): JSX.Element => {
   return (
     <section className="h-full w-full relative">
       <p className="pt-SPACE_04 text-title-semi-large sm:text-title-large lg:text-display-tiny text-center w-full px-SPACE_04 sm:mx-0 sm:mt-SPACE_09">

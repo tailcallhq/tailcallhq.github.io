@@ -15,7 +15,7 @@ type FeatureProps = {
   }
 }
 
-const Feature = ({feature}: FeatureProps) => {
+const Feature = ({feature}: FeatureProps): JSX.Element => {
   return (
     <div
       key={feature.id}

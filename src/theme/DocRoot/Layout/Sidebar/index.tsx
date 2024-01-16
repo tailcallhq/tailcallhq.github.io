@@ -122,7 +122,7 @@ const CustomSearch = () => {
 }
 
 // Wrapper component combining Sidebar with CustomSearch
-export default function SidebarWrapper(props) {
+const SidebarWrapper = (props) => {
   return (
     <div className="sidebar-search-container flex flex-col">
       <CustomSearch />
@@ -130,3 +130,5 @@ export default function SidebarWrapper(props) {
     </div>
   )
 }
+
+export default SidebarWrapper

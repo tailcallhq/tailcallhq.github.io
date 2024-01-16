@@ -4,7 +4,7 @@ import Marquee from "react-fast-marquee"
 import GreaterThanUnderscoreIcon from "@site/static/icons/basic/gt-undescore-gray.svg"
 import {partnerImages} from "@site/src/constants"
 
-const Partners = () => {
+const Partners = (): JSX.Element => {
   return (
     <section className="mt-SPACE_08">
       <div className="text-content-small font-bold sm:text-title-tiny lg:text-title-small text-tailCall-light-500 text-center space-x-1">

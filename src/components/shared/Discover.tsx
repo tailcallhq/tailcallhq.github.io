@@ -6,7 +6,7 @@ import LinkButton from "./LinkButton"
 import {analyticsHandler} from "@site/src/utils"
 import {Theme, pageLinks} from "@site/src/constants"
 
-const Discover = () => {
+const Discover = (): JSX.Element => {
   return (
     <section>
       <div className="bg-tailCall-yellow relative flex items-center justify-center h-[208px] sm:h-[452px]">

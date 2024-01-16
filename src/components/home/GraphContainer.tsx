@@ -13,7 +13,15 @@ type GraphContainerProps = {
   start?: number
 }
 
-const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, duration, start}: GraphContainerProps) => {
+const GraphContainer = ({
+  metricTitle,
+  metricData,
+  metricDesc,
+  visual,
+  delay,
+  duration,
+  start,
+}: GraphContainerProps): JSX.Element => {
   const lottieObj = useLottie<"svg">({
     animationData: visual,
     loop: false,

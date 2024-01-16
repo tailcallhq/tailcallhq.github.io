@@ -1,7 +1,7 @@
 import React from "react"
 import Heading from "@theme/Heading"
 
-const Playground = () => {
+const Playground = (): JSX.Element => {
   return (
     <div className="hidden lg:flex flex-col items-center justify-center my-SPACE_16">
       <Heading as="h3" className="text-display-medium text-start">

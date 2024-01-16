@@ -5,7 +5,7 @@ import {useLocation} from "@docusaurus/router"
 
 import AboutPage from "../components/about"
 
-export default function About(): JSX.Element {
+const About = (): JSX.Element => {
   const location = useLocation()
 
   useEffect(() => {
@@ -18,3 +18,5 @@ export default function About(): JSX.Element {
     </Layout>
   )
 }
+
+export default About

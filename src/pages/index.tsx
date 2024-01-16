@@ -5,7 +5,7 @@ import {useLocation} from "@docusaurus/router"
 
 import HomePage from "../components/home"
 
-export default function Home(): JSX.Element {
+const Home = (): JSX.Element => {
   const isDevelopment = process.env.NODE_ENV === "development"
   const location = useLocation()
 
@@ -27,3 +27,5 @@ export default function Home(): JSX.Element {
     </Layout>
   )
 }
+
+export default Home

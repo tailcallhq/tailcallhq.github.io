@@ -3,7 +3,7 @@ import Link from "@docusaurus/Link"
 import {pageLinks, socials, tailCallBlogUrl} from "@site/src/constants"
 import TailcallLogo from "@site/static/icons/companies/tailcall-white.svg"
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <footer className="bg-tailCall-dark-700 pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04">
       <img

@@ -4,7 +4,7 @@ import Heading from "@theme/Heading"
 import {additionalEnterpriseFeatures} from "@site/src/constants"
 import CheckCircle from "@site/static/icons/basic/check-circle-broken.svg"
 
-const MoreEnterpriseFeatures = () => {
+const MoreEnterpriseFeatures = (): JSX.Element => {
   return (
     <section
       className="flex flex-col sm:flex-row items-center justify-center sm:px-SPACE_10 lg:px-40 relative overflow-hidden"

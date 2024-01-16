@@ -13,7 +13,7 @@ type Founder = {
   }
 }
 
-const Founder = ({founder}: Founder) => {
+const Founder = ({founder}: Founder): JSX.Element => {
   return (
     <div>
       <img src={founder.image} alt={founder.name} className="h-[300px] sm:h-[366px] object-contain" />

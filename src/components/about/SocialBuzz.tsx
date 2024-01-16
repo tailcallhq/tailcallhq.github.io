@@ -1,7 +1,7 @@
 import React from "react"
 import SectionTitle from "../shared/SectionTitle"
 
-const SocialBuzz = () => {
+const SocialBuzz = (): JSX.Element => {
   return (
     <section className="py-SPACE_16 sm:py-24 relative flex items-center justify-center mx-SPACE_04 sm:mx-SPACE_10 lg:mx-SPACE_12 lg:space-x-SPACE_10 max-w-8xl">
       <div className="flex flex-col gap-SPACE_06 lg:gap-y-44">

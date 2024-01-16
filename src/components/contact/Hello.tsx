@@ -6,7 +6,7 @@ import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
 import {Theme, radioOptions, zapierLink} from "@site/src/constants"
 
-const Hello = () => {
+const Hello = (): JSX.Element => {
   const [email, setEmail] = useState<string>("")
   const [message, setMessage] = useState<string>("")
   const [stage, setStage] = useState<string>("")

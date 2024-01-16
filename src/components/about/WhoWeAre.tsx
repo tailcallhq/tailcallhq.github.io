@@ -1,7 +1,7 @@
 import React from "react"
 import SectionTitle from "../shared/SectionTitle"
 
-const WhoWeAre = () => {
+const WhoWeAre = (): JSX.Element => {
   return (
     <section className="mt-SPACE_08 sm:mt-SPACE_10 lg:mt-SPACE_20 flex flex-col sm:flex-row items-start justify-center sm:space-x-SPACE_10 lg:space-x-SPACE_20 px-SPACE_04 sm:px-SPACE_10 lg:px-40 2xl:max-w-[90rem] mx-auto">
       <div className="min-w-fit">

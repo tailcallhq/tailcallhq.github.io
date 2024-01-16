@@ -10,7 +10,7 @@ type GithubStarsButtonProps = {
 }
 
 // Export the GithubStarsButton component
-export default function GithubStarsButton({className}: GithubStarsButtonProps): JSX.Element {
+const GithubStarsButton = ({className}: GithubStarsButtonProps): JSX.Element => {
   // Get stars count from context
   const starsCount: number | null = useContext(GithubStarsContext)
 
@@ -24,3 +24,5 @@ export default function GithubStarsButton({className}: GithubStarsButtonProps): 
     </Link>
   )
 }
+
+export default GithubStarsButton

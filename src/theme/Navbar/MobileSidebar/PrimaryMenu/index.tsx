@@ -4,13 +4,13 @@ import {useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
 import GithubStarsButton from "@site/src/components/shared/GithubStarsButton"
 import NavbarItem, {type Props as NavbarItemConfig} from "@theme/NavbarItem"
 
-function useNavbarItems() {
+const useNavbarItems = () => {
   // TODO temporary casting until ThemeConfig type is improved
   return useThemeConfig().navbar.items as NavbarItemConfig[]
 }
 
 // The primary menu displays the navbar items
-export default function NavbarMobilePrimaryMenu(): JSX.Element {
+const NavbarMobilePrimaryMenu = (): JSX.Element => {
   const mobileSidebar = useNavbarMobileSidebar()
 
   // TODO how can the order be defined for mobile?
@@ -29,3 +29,5 @@ export default function NavbarMobilePrimaryMenu(): JSX.Element {
     </ul>
   )
 }
+
+export default NavbarMobilePrimaryMenu

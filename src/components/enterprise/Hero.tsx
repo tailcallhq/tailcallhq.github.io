@@ -5,7 +5,7 @@ import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
 import {Theme, pageLinks} from "@site/src/constants"
 
-const Hero = () => {
+const Hero = (): JSX.Element => {
   return (
     <section className="h-full w-full flex flex-col items-center justify-center py-SPACE_10 sm:py-SPACE_14 lg:py-SPACE_20 relative grid-bg-section">
       <Heading

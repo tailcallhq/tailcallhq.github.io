@@ -13,7 +13,7 @@ type LinkButtonProps = {
   disabled?: boolean
 }
 
-const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkButtonProps) => {
+const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkButtonProps): JSX.Element => {
   // Generate classes based on the provided theme
   const generateThemeClasses = () => {
     const themes = {

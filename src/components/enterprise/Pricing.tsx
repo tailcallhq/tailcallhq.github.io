@@ -6,7 +6,7 @@ import {Theme, pricingPlans} from "@site/src/constants"
 import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
 
-const Pricing = () => {
+const Pricing = (): JSX.Element => {
   return (
     <section className="my-SPACE_14 sm:my-24 sm:mx-SPACE_04 lg:mx-0">
       <Heading

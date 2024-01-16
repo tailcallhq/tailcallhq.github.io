@@ -6,7 +6,7 @@ import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
 import {Theme, codeSandboxUrl, pageLinks} from "@site/src/constants"
 
-const Banner = () => {
+const Banner = (): JSX.Element => {
   return (
     <main>
       <div className="flex flex-col sm:items-center sm:text-center w-full mt-SPACE_06 px-SPACE_04 sm:mt-SPACE_20">

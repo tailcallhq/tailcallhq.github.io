@@ -12,7 +12,7 @@ type EnterpriseFeaturesCardProps = {
   }
 }
 
-const EnterpriseFeaturesCard = ({feature}: EnterpriseFeaturesCardProps) => {
+const EnterpriseFeaturesCard = ({feature}: EnterpriseFeaturesCardProps): JSX.Element => {
   return (
     <div
       className="rounded-3xl w-full sm:w-[450px] sm:h-60 p-SPACE_08 flex flex-col items-start space-y-SPACE_04"

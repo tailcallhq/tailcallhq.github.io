@@ -10,7 +10,7 @@ import LatencyVisual from "@site/static/animations/latency-visual.json"
 import {analyticsHandler} from "@site/src/utils"
 import {Theme, tailCallBenchmarkUrl} from "@site/src/constants"
 
-const Graph = () => {
+const Graph = (): JSX.Element => {
   return (
     <section className="bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 lg:px-SPACE_16">
       <div className="sm:max-w-7xl mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto  py-SPACE_08 sm:py-SPACE_20">

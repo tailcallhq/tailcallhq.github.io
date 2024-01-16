@@ -2,7 +2,7 @@ import React from "react"
 import Heading from "@theme/Heading"
 import CodeBlock from "@theme/CodeBlock"
 
-const Configuration = () => {
+const Configuration = (): JSX.Element => {
   return (
     <section className="flex flex-col mx-SPACE_04 my-SPACE_10 sm:mx-SPACE_07 lg:flex-row justify-center lg:mx-24 lg:my-SPACE_12 lg:space-x-SPACE_10">
       <div className="max-w-2xl">

@@ -19,7 +19,7 @@ const FeatureBox = ({feature}) => {
   )
 }
 
-const MoreFeatures = () => {
+const MoreFeatures = (): JSX.Element => {
   return (
     <section className="w-full mb-SPACE_08 sm:mb-SPACE_20">
       <div className="max-w-7xl mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto text-center flex flex-col items-center">

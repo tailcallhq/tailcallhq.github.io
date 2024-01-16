@@ -27,6 +27,8 @@ const Provider = composeProviders([
 ])
 
 // LayoutProvider component wraps the composed providers around its children
-export default function LayoutProvider({children}: LayoutProviderProps) {
+const LayoutProvider = ({children}: LayoutProviderProps) => {
   return <Provider>{children}</Provider>
 }
+
+export default LayoutProvider

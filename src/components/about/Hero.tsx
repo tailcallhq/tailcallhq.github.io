@@ -2,7 +2,7 @@ import React from "react"
 import Heading from "@theme/Heading"
 import SectionTitle from "../shared/SectionTitle"
 
-const Hero = () => {
+const Hero = (): JSX.Element => {
   return (
     <section className="flex flex-col sm:flex-row items-end sm:items-center justify-center bg-tailCall-dark-500 w-full h-full">
       <div className="mx-SPACE_04 my-SPACE_06 sm:m-SPACE_10 lg:m-SPACE_20">

@@ -29,12 +29,12 @@ type NavbarItemType =
   | typeof NavbarItem
 
 // Function to retrieve navbar items from the theme configuration
-function useNavbarItems() {
+const useNavbarItems = () => {
   return useThemeConfig().navbar.items as NavbarItemConfig[]
 }
 
 // Component to render a list of NavbarItems
-function NavbarItems({items}: {items: NavbarItemType[]}) {
+const NavbarItems = ({items}: {items: NavbarItemType[]}) => {
   return (
     <>
       {items.map((item: NavbarItemType, i: number) => (
@@ -191,7 +191,7 @@ type NavbarContentProps = {
 }
 
 // Main NavbarContent component
-export default function NavbarContent() {
+const NavbarContent = () => {
   const mobileSidebar = useNavbarMobileSidebar()
   const items = useNavbarItems()
   const [leftItems, rightItems] = splitNavbarItems<NavbarContentProps>(items)
@@ -224,3 +224,5 @@ export default function NavbarContent() {
     />
   )
 }
+
+export default NavbarContent

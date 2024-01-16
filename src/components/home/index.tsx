@@ -11,7 +11,7 @@ import Footer from "../shared/Footer"
 import Configuration from "./Configuration"
 import Playground from "./Playground"
 
-const HomePage = () => {
+const HomePage = (): JSX.Element => {
   return (
     <div className="">
       <Banner />

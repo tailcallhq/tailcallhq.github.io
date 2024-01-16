@@ -5,7 +5,7 @@ import Lottie from "lottie-react"
 import SolutionGraphic from "@site/static/animations/solution-graphic.json"
 import SectionTitle from "../shared/SectionTitle"
 
-const LegacyGateway = () => {
+const LegacyGateway = (): JSX.Element => {
   return (
     <section className="w-full my-SPACE_12 lg:px-SPACE_16">
       <div className="max-w-7xl mx-SPACE_04 sm:m-SPACE_10 lg:mx-auto lg:my-SPACE_20">
