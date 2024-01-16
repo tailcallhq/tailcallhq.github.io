@@ -3,7 +3,7 @@ import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme} from "@site/src/constants"
+import {Theme, pageLinks} from "@site/src/constants"
 
 const Hero = () => {
   return (
@@ -21,7 +21,7 @@ const Hero = () => {
       <LinkButton
         title="Get in touch"
         theme={Theme.Dark}
-        href="/contact"
+        href={pageLinks.contact}
         onClick={() => analyticsHandler("Pricing", "Click", "Get in touch")}
       />
     </section>

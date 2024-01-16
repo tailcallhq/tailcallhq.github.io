@@ -1,6 +1,6 @@
 import React from "react"
 import Link from "@docusaurus/Link"
-import {socials} from "@site/src/constants"
+import {pageLinks, socials, tailCallBlogUrl} from "@site/src/constants"
 import TailcallLogo from "@site/static/icons/companies/tailcall-white.svg"
 
 const Footer = () => {
@@ -14,7 +14,7 @@ const Footer = () => {
       <TailcallLogo className="w-[120px] h-10" />
       <div className="text-content-tiny sm:text-title-small space-x-SPACE_06 text-tailCall-light-500 z-10">
         <Link
-          href="/docs"
+          href={pageLinks.docs}
           className="text-tailCall-light-500 hover:text-tailCall-light-300"
           style={{
             textDecorationLine: "none",
@@ -23,7 +23,7 @@ const Footer = () => {
           Documentation
         </Link>
         <Link
-          href="/about"
+          href={pageLinks.about}
           className="text-tailCall-light-500 hover:text-tailCall-light-300"
           style={{
             textDecorationLine: "none",
@@ -32,7 +32,7 @@ const Footer = () => {
           About
         </Link>
         <Link
-          href="https://blog.tailcall.run/"
+          href={tailCallBlogUrl}
           className="text-tailCall-light-500 hover:text-tailCall-light-300"
           style={{
             textDecorationLine: "none",

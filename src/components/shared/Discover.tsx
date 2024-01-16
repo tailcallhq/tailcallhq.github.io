@@ -4,7 +4,7 @@ import Heading from "@theme/Heading"
 import BgTailcall from "@site/static/icons/basic/bg-tailcall.svg"
 import LinkButton from "./LinkButton"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme} from "@site/src/constants"
+import {Theme, pageLinks} from "@site/src/constants"
 
 const Discover = () => {
   return (
@@ -21,13 +21,13 @@ const Discover = () => {
             <LinkButton
               theme={Theme.Dark}
               title="Get in touch"
-              href="/contact"
+              href={pageLinks.contact}
               onClick={() => analyticsHandler("Discover", "Click", "Get in touch")}
             />
             <LinkButton
               theme={Theme.Light}
               title="Know More"
-              href="/docs"
+              href={pageLinks.docs}
               onClick={() => analyticsHandler("Discover", "Click", "Know More")}
             />
           </div>

@@ -1,7 +1,7 @@
 import React from "react"
 import Heading from "@theme/Heading"
 
-import {Theme, moreFeatures} from "@site/src/constants"
+import {Theme, moreFeatures, pageLinks} from "@site/src/constants"
 import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
 
@@ -38,7 +38,7 @@ const MoreFeatures = () => {
           <LinkButton
             title="View More"
             onClick={() => analyticsHandler("Home Page", "Click", "View More")}
-            href="/enterprise/"
+            href={pageLinks.enterprise}
             theme={Theme.Light}
             width="300px"
           />
@@ -47,7 +47,7 @@ const MoreFeatures = () => {
           <LinkButton
             title="View More"
             onClick={() => analyticsHandler("Home Page", "Click", "View More")}
-            href="/enterprise/"
+            href={pageLinks.enterprise}
             theme={Theme.Light}
             width="500px"
           />

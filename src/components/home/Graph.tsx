@@ -8,7 +8,7 @@ import githubLogo from "@site/static/icons/companies/github-light.svg"
 import RequestVisual from "@site/static/animations/request-visual.json"
 import LatencyVisual from "@site/static/animations/latency-visual.json"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme} from "@site/src/constants"
+import {Theme, tailCallBenchmarkUrl} from "@site/src/constants"
 
 const Graph = () => {
   return (
@@ -24,7 +24,7 @@ const Graph = () => {
           <div className="hidden sm:block">
             <LinkButton
               title="View on Github"
-              href="https://github.com/tailcallhq/graphql-benchmarks#benchmark-results"
+              href={tailCallBenchmarkUrl}
               theme={Theme.Gray}
               Icon={githubLogo}
               onClick={() => analyticsHandler("Home Page", "Click", "View on Github")}
@@ -55,7 +55,7 @@ const Graph = () => {
           <div className="sm:hidden">
             <LinkButton
               title="View on Github"
-              href="https://github.com/tailcallhq/graphql-benchmarks#benchmark-results"
+              href={tailCallBenchmarkUrl}
               theme={Theme.Gray}
               Icon={githubLogo}
               onClick={() => analyticsHandler("Home Page", "Click", "View on Github")}

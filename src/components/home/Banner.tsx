@@ -4,7 +4,7 @@ import Heading from "@theme/Heading"
 import LinkButton from "../shared/LinkButton"
 import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme} from "@site/src/constants"
+import {Theme, codeSandboxUrl, pageLinks} from "@site/src/constants"
 
 const Banner = () => {
   return (
@@ -27,14 +27,14 @@ const Banner = () => {
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
               title="Try it Out"
-              href="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
+              href={codeSandboxUrl}
               theme={Theme.Dark}
               width="228px"
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
             />
             <LinkButton
               title="Get Started"
-              href="/docs/getting_started/"
+              href={pageLinks.docs}
               theme={Theme.Light}
               width="228px"
               onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
@@ -44,13 +44,13 @@ const Banner = () => {
           <div className="sm:hidden flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
               title="Try it Out"
-              href="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
+              href={codeSandboxUrl}
               theme={Theme.Dark}
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
             />
             <LinkButton
               title="Get Started"
-              href="/docs/getting_started/"
+              href={pageLinks.docs}
               theme={Theme.Light}
               onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
             />
