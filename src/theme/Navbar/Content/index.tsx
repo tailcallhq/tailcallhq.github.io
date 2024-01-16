@@ -94,7 +94,7 @@ const CustomSearch = () => {
 
   // Function to handle zoom behavior based on input focus
   const handleZoomBehavior = () => {
-    /* TOOD: Figure out a better way to do this */
+    /* TODO: Figure out a better way to do this */
     const viewportMetaTag = document.querySelector(
       'meta[name="viewport"]'
     ) as HTMLMetaElement
