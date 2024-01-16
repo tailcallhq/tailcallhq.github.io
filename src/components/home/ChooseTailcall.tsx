@@ -1,7 +1,7 @@
 import React from "react"
 import {chooseTailcall} from "@site/src/constants"
 
-const ChooseTailcall = () => {
+const ChooseTailcall = (): JSX.Element => {
   return (
     <>
       <p className="text-title-large max-w-lg mx-auto sm:text-display-tiny lg:text-display-medium text-center my-SPACE_14 sm:mb-SPACE_16 sm:my-32">
