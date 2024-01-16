@@ -2,7 +2,6 @@ import Link from "@docusaurus/Link"
 import {Theme} from "@site/src/constants"
 import React from "react"
 import {SVGProps} from "react"
-import {useHistory} from "react-router-dom"
 
 type LinkButtonProps = {
   title?: string
@@ -15,7 +14,6 @@ type LinkButtonProps = {
 }
 
 const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkButtonProps) => {
-  const history = useHistory()
   // Generate classes based on the provided theme
   const generateThemeClasses = () => {
     const themes = {
@@ -38,11 +36,6 @@ const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkBu
 
     return themes[theme] || {classes: "", styles: "", gridClasses: ""}
   }
-
-  // const handleClick = () => {
-  //   onClick && onClick()
-  //   href && history.push(href, "_blank")
-  // }
 
   const renderBackgroundElements = () => {
     if (theme === Theme.Dark) {
