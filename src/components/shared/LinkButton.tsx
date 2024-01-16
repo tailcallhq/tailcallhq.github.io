@@ -69,22 +69,18 @@ const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkBu
       to={href || "#"}
       onClick={onClick}
       className={`group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-SPACE_03 hover:no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-SPACE_06 py-SPACE_03 sm:px-SPACE_08 lg:px-SPACE_10 sm:py-SPACE_04 lg:py-SPACE_05 
-      ${generateThemeClasses().classes ?? ""} ${
-        disabled ? "cursor-not-allowed opacity-20" : ""
-      }`}
+      ${generateThemeClasses().classes ?? ""} ${disabled ? "cursor-not-allowed opacity-20" : ""}`}
       /* TODO: Figure out how to rid inline styles here */
       style={{
         width: width ? width : "fit-content",
-        border: generateThemeClasses().styles
+        border: generateThemeClasses().styles,
       }}
     >
       {/* Conditionally render background elements based on theme and disabled state */}
       {renderBackgroundElements()}
 
       {/* Render Icon if provided */}
-      {Icon && (
-        <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white" />
-      )}
+      {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white" />}
 
       {/* Render title if provided */}
       {title && <span className="z-20"> {title}</span>}

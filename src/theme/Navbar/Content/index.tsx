@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react"
-import { useThemeConfig, ErrorCauseBoundary } from "@docusaurus/theme-common"
-import {
-  splitNavbarItems,
-  useNavbarMobileSidebar
-} from "@docusaurus/theme-common/internal"
-import { useHistory } from "react-router-dom"
-import { useLocation } from "@docusaurus/router"
+import React, {useEffect, useState} from "react"
+import {useThemeConfig, ErrorCauseBoundary} from "@docusaurus/theme-common"
+import {splitNavbarItems, useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
+import {useHistory} from "react-router-dom"
+import {useLocation} from "@docusaurus/router"
 import NavbarItem from "@theme/NavbarItem" // Assuming NavbarItemProps
 
 import Search from "docusaurus-lunr-search/src/theme/SearchBar" // Assuming Search is a valid component
@@ -37,7 +34,7 @@ function useNavbarItems() {
 }
 
 // Component to render a list of NavbarItems
-function NavbarItems({ items }: { items: NavbarItemType[] }) {
+function NavbarItems({items}: {items: NavbarItemType[]}) {
   return (
     <>
       {items.map((item: NavbarItemType, i: number) => (
@@ -48,7 +45,7 @@ function NavbarItems({ items }: { items: NavbarItemType[] }) {
             new Error(
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
-${JSON.stringify(item, null, 2)}`
+${JSON.stringify(item, null, 2)}`,
             )
           }
         >
@@ -60,13 +57,7 @@ ${JSON.stringify(item, null, 2)}`
 }
 
 // Layout for the navbar content
-const NavbarContentLayout = ({
-  left,
-  right
-}: {
-  left: JSX.Element
-  right: JSX.Element
-}) => {
+const NavbarContentLayout = ({left, right}: {left: JSX.Element; right: JSX.Element}) => {
   return (
     <div className="navbar__inner">
       <div className="navbar__items">{left}</div>
@@ -78,8 +69,7 @@ const NavbarContentLayout = ({
 // Custom search component
 const CustomSearch = () => {
   const [showSearchIcon, setShowSearchIcon] = useState<boolean>(false)
-  const [isSearchModalVisible, setIsSearchModalVisible] =
-    useState<boolean>(false)
+  const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
   const history = useHistory()
   const location = useLocation()
 
@@ -95,14 +85,11 @@ const CustomSearch = () => {
   // Function to handle zoom behavior based on input focus
   const handleZoomBehavior = () => {
     /* TODO: Figure out a better way to do this */
-    const viewportMetaTag = document.querySelector(
-      'meta[name="viewport"]'
-    ) as HTMLMetaElement
+    const viewportMetaTag = document.querySelector('meta[name="viewport"]') as HTMLMetaElement
 
     if (viewportMetaTag) {
       // Enable user zooming when no input is in focus
-      viewportMetaTag.content =
-        "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"
+      viewportMetaTag.content = "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"
 
       // Add an event listener to detect when an input is in focus
       document.addEventListener("focusin", handleInputFocus)
@@ -116,24 +103,18 @@ const CustomSearch = () => {
 
   // Function to handle input focus
   const handleInputFocus = (event: FocusEvent) => {
-    const isInput =
-      (event.target as HTMLElement).tagName.toLowerCase() === "input"
+    const isInput = (event.target as HTMLElement).tagName.toLowerCase() === "input"
 
     // Disable user zooming when an input is in focus
-    const viewportMetaTag = document.querySelector(
-      'meta[name="viewport"]'
-    ) as HTMLMetaElement
+    const viewportMetaTag = document.querySelector('meta[name="viewport"]') as HTMLMetaElement
     if (viewportMetaTag && isInput) {
-      viewportMetaTag.content =
-        "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      viewportMetaTag.content = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
     }
   }
 
   useEffect(() => {
     // Check pathname for showing the search icon
-    location.pathname.includes("/docs/")
-      ? setShowSearchIcon(true)
-      : setShowSearchIcon(false)
+    location.pathname.includes("/docs/") ? setShowSearchIcon(true) : setShowSearchIcon(false)
 
     // Listen for history changes to close search modal
     const unlisten = history.listen((location, action) => {
@@ -170,18 +151,10 @@ const CustomSearch = () => {
 
   return (
     <>
-      {showSearchIcon && (
-        <SearchIcon
-          onClick={handleSearchClick}
-          className="lg:hidden mr-SPACE_03 h-6 w-6"
-        />
-      )}
+      {showSearchIcon && <SearchIcon onClick={handleSearchClick} className="lg:hidden mr-SPACE_03 h-6 w-6" />}
       {isSearchModalVisible ? (
         <>
-          <div
-            onClick={handleSearchModalClose}
-            className={styles.overlay}
-          ></div>
+          <div onClick={handleSearchModalClose} className={styles.overlay}></div>
           <div className={styles.modal}>
             {/* Search modal content */}
             <div className={styles.modalContent}>
@@ -199,9 +172,7 @@ const CustomSearch = () => {
               <div className={styles.initialCase}>
                 <PageSearchIcon />
                 <div className={styles.searchDocsTitle}>Search Docs</div>
-                <div
-                  className={`${styles.searchDocsDesc} ${styles.searchDocsCommon}`}
-                >
+                <div className={`${styles.searchDocsDesc} ${styles.searchDocsCommon}`}>
                   Search anything within the docs
                 </div>
               </div>

@@ -1,8 +1,8 @@
 import React from "react"
-import { useThemeConfig } from "@docusaurus/theme-common"
-import { useNavbarMobileSidebar } from "@docusaurus/theme-common/internal"
+import {useThemeConfig} from "@docusaurus/theme-common"
+import {useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
 import GithubStarsButton from "@site/src/components/shared/GithubStarsButton"
-import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem"
+import NavbarItem, {type Props as NavbarItemConfig} from "@theme/NavbarItem"
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -20,12 +20,7 @@ export default function NavbarMobilePrimaryMenu(): JSX.Element {
   return (
     <ul className="menu__list">
       {items.map((item, i) => (
-        <NavbarItem
-          mobile
-          {...item}
-          onClick={() => mobileSidebar.toggle()}
-          key={i}
-        />
+        <NavbarItem mobile {...item} onClick={() => mobileSidebar.toggle()} key={i} />
       ))}
       <li className="menu__list-item">
         {/* Render the GithubStarsButton component */}
