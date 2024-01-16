@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import CodeBlock from "@theme/CodeBlock"
 import Version from "./Version"
 
