@@ -39,7 +39,7 @@ Tailcall respects caching headers like Cache-Control sent by the upstream API. T
 
 For example, if the upstream response contains:
 
-```Cache-Control: max-age=300
+``` Cache-Control: max-age=300
 ```
 Tailcall will only cache that response for 300 seconds.
 
