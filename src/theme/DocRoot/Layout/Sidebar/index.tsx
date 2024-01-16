@@ -18,42 +18,22 @@ const CustomSearch = () => {
   const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K") : "Search"
 
   // Function to handle opening the search modal
-  function handleSearchClick() {
+  const handleSearchClick = () => {
     setIsSearchModalVisible(true)
   }
 
   // Function to handle closing the search modal
-  function handleSearchModalClose() {
+  const handleSearchModalClose = () => {
     setIsSearchModalVisible(false)
   }
 
   // Function to control body scroll based on modal visibility
-  function setBodyScroll() {
+  const setBodyScroll = () => {
     document.body.style.overflow = isSearchModalVisible ? "hidden" : "auto"
   }
 
-  // Effect to handle body scroll based on modal visibility changes
-  useEffect(() => {
-    setBodyScroll()
-    return () => {
-      document.body.style.overflow = "initial"
-    }
-  }, [isSearchModalVisible])
-
-  // Effect to focus on search input when modal becomes visible
-  useEffect(() => {
-    if (isSearchModalVisible) {
-      setTimeout(() => {
-        const searchInput = document.getElementById("search_input_react")
-        if (searchInput) {
-          searchInput.focus()
-        }
-      }, 50)
-    }
-  }, [isSearchModalVisible])
-
   // Function to handle key press events
-  function handleKeyPress(event: KeyboardEvent) {
+  const handleKeyPress = (event: KeyboardEvent) => {
     if (event.key === "Escape") {
       handleSearchModalClose()
     }
@@ -65,27 +45,39 @@ const CustomSearch = () => {
     }
   }
 
-  // Effect to handle keydown events for search functionality
   useEffect(() => {
+    let timer: NodeJS.Timeout
+
+    // handle body scroll based on modal visibility changes
+    setBodyScroll()
+
+    // handle keydown events for search functionality
     document.addEventListener("keydown", handleKeyPress)
 
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress)
-    }
-  }, [])
-
-  // Effect to close the search modal when route changes
-  useEffect(() => {
+    // close the search modal when route changes
     const unlisten = history.listen((location, action) => {
       if (action === "PUSH" || action === "POP") {
         setIsSearchModalVisible(false)
       }
     })
 
+    // focus on search input when modal becomes visible
+    if (isSearchModalVisible) {
+      timer = setTimeout(() => {
+        const searchInput = document.getElementById("search_input_react")
+        if (searchInput) {
+          searchInput.focus()
+        }
+      }, 50)
+    }
+
     return () => {
+      clearTimeout(timer)
+      document.body.style.overflow = "initial"
+      document.removeEventListener("keydown", handleKeyPress)
       unlisten()
     }
-  }, [history])
+  }, [isSearchModalVisible, history])
 
   return (
     <>

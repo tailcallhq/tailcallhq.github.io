@@ -3,7 +3,7 @@ import {useThemeConfig, ErrorCauseBoundary} from "@docusaurus/theme-common"
 import {splitNavbarItems, useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
 import {useHistory} from "react-router-dom"
 import {useLocation} from "@docusaurus/router"
-import NavbarItem from "@theme/NavbarItem" // Assuming NavbarItemProps
+import NavbarItem, {type Props as NavbarItemConfig} from "@theme/NavbarItem"
 
 import Search from "docusaurus-lunr-search/src/theme/SearchBar" // Assuming Search is a valid component
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle"
@@ -30,7 +30,7 @@ type NavbarItemType =
 
 // Function to retrieve navbar items from the theme configuration
 function useNavbarItems() {
-  return useThemeConfig().navbar.items
+  return useThemeConfig().navbar.items as NavbarItemConfig[]
 }
 
 // Component to render a list of NavbarItems
@@ -45,7 +45,7 @@ function NavbarItems({items}: {items: NavbarItemType[]}) {
             new Error(
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
-${JSON.stringify(item, null, 2)}`,
+${JSON.stringify(item, null, 2)}`
             )
           }
         >
@@ -74,11 +74,11 @@ const CustomSearch = () => {
   const location = useLocation()
 
   // Handlers to control search visibility
-  function handleSearchClick() {
+  const handleSearchClick = () => {
     setIsSearchModalVisible(true)
   }
 
-  function handleSearchModalClose() {
+  const handleSearchModalClose = () => {
     setIsSearchModalVisible(false)
   }
 
@@ -113,41 +113,43 @@ const CustomSearch = () => {
   }
 
   useEffect(() => {
-    // Check pathname for showing the search icon
+    // Variable to store the timer for handling modal animation
+    let timer: NodeJS.Timeout
+
+    // Check if the current page is within the "/docs/" path to show or hide the search icon
     location.pathname.includes("/docs/") ? setShowSearchIcon(true) : setShowSearchIcon(false)
 
-    // Listen for history changes to close search modal
+    // Set up a listener to handle changes in the browser history (navigation)
     const unlisten = history.listen((location, action) => {
       if (action === "PUSH" || action === "POP") {
+        // If navigating, hide the search modal and reset the zoom when the modal is closed
         setIsSearchModalVisible(false)
-        // Reset the zoom when the modal is closed
       }
     })
 
-    return () => {
-      unlisten()
-    }
-  }, [history])
-
-  useEffect(() => {
+    // Handle modal visibility and behavior
     if (isSearchModalVisible) {
+      // If the search modal is visible, prevent body scrolling and handle modal animations
       document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "auto"
-    }
-  }, [isSearchModalVisible])
-
-  useEffect(() => {
-    if (isSearchModalVisible) {
-      setTimeout(() => {
+      timer = setTimeout(() => {
+        // After a delay, focus on the search input and apply zoom behavior
         const searchInput = document.getElementById("search_input_react")
         handleZoomBehavior()
         if (searchInput) {
           searchInput.focus()
         }
       }, 200)
+    } else {
+      // If the search modal is not visible, allow body scrolling
+      document.body.style.overflow = "auto"
     }
-  }, [isSearchModalVisible])
+
+    // Clean up timer and history listener when the component unmounts or when dependencies change
+    return () => {
+      clearTimeout(timer)
+      unlisten()
+    }
+  }, [isSearchModalVisible, history])
 
   return (
     <>
