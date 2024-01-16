@@ -514,6 +514,7 @@ nav.menu {
     z-index: 99;
   }
 
+  /* TODO: Figure out a long term class name to select this node */
   .navbarHidden_jGov {
     transform: none;
   }

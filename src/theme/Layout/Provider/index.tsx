@@ -11,7 +11,7 @@ import {
 import GithubStarsProvider from "@site/src/components/shared/GithubStarsProvider"
 
 // Define the type for LayoutProvider props
-interface LayoutProviderProps {
+type LayoutProviderProps = {
   children: ReactNode // ReactNode represents any React child (JSX, strings, etc.)
 }
 
