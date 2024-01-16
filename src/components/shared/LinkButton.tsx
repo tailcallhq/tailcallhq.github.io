@@ -7,7 +7,7 @@ type LinkButtonProps = {
   title?: string
   Icon?: React.ComponentType<SVGProps<SVGSVGElement>> // Define the type of Icon prop
   theme: Theme
-  onClick?: () => void | (() => Promise<void>)
+  onClick?: () => void | Promise<void>
   href?: string
   width?: string
   disabled?: boolean

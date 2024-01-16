@@ -1,18 +1,18 @@
-import React, {useState} from "react"
+import React, {useCallback, useState} from "react"
 import Heading from "@theme/Heading"
 
 import Grid from "@site/static/images/about/grid-large.svg"
 import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme, radioOptions} from "@site/src/constants"
+import {Theme, radioOptions, zapierLink} from "@site/src/constants"
 
 const Hello = () => {
   const [email, setEmail] = useState<string>("")
   const [message, setMessage] = useState<string>("")
   const [stage, setStage] = useState<string>("")
 
-  const sendData = async () => {
-    const response = await fetch("https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/", {
+  const sendData = useCallback(async () => {
+    const response = await fetch(zapierLink, {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -29,7 +29,7 @@ const Hello = () => {
       setMessage("")
       setStage("")
     }
-  }
+  }, [])
 
   return (
     <section className="relative h-auto">
