@@ -33,13 +33,6 @@ To enable HTTP caching globally:
   baseURL: https://api.example.com
   httpCache: true
 ```
-You can also configure the cache size and max age:
-```httpCache:
-  maxSize: 1000 
-  maxAge: 3600
-```
-maxSize is the maximum number of responses to cache. Default is 1000.
-maxAge is the maximum age in seconds to cache responses. Default is 3600 (1 hour).
 
 ### Caching Headers
 Tailcall respects caching headers like Cache-Control sent by the upstream API. This allows the upstream API to control what is cached and for how long.
@@ -52,6 +45,26 @@ Tailcall will only cache that response for 300 seconds.
 
 This allows the upstream API to control caching behavior.
 
+# Tailcall also supports expiry headers.
+The Expiry header is used to set an expiration date/time for a cached HTTP response. It allows a server to specify when a cached response is considered stale and needs to be re-validated with the origin server.
+
+```fn expires_header(expires: DateTime<Utc>) -> HeaderMap {
+  let mut headers = HeaderMap::new();
+  headers.insert("Expires", HeaderValue::from_str(&expires.to_rfc2822()).unwrap());
+  headers
+}
+```
+This allows setting an exact date-time after which the response is considered expired.
+
+## cacheControlHeader 
+The cacheControlHeader setting allows Tailcall to forward caching headers from upstream APIs to the client. This enables leveraging browser or CDN caching capabilities.
+
+# Key benefits:
+
+->Leverages client caching capabilities.
+->Reduces requests to Tailcall server.
+->Respects caching policies from upstream.
+
 ### When To Use
 
 # HTTP caching is useful for:
@@ -63,7 +76,6 @@ This allows the upstream API to control caching behavior.
 
 ### Summary
 ->Enable with httpCache: true under upstream
-->Configure cache size and max age
 ->Respects upstream caching headers
 ->Caches identical requests during cache lifetime
 ->Improves performance by reducing API calls
