@@ -45,7 +45,7 @@ Tailcall will only cache that response for 300 seconds.
 
 This allows the upstream API to control caching behavior.
 
-# Tailcall also supports expiry headers.
+## Tailcall also supports expiry headers.
 The Expiry header is used to set an expiration date/time for a cached HTTP response. It allows a server to specify when a cached response is considered stale and needs to be re-validated with the origin server.
 
 ```fn expires_header(expires: DateTime<Utc>) -> HeaderMap {
@@ -59,7 +59,7 @@ This allows setting an exact date-time after which the response is considered ex
 ## cacheControlHeader 
 The cacheControlHeader setting allows Tailcall to forward caching headers from upstream APIs to the client. This enables leveraging browser or CDN caching capabilities.
 
-# Key benefits:
+ Key benefits:
 
 ->Leverages client caching capabilities.
 ->Reduces requests to Tailcall server.
