@@ -1,4 +1,5 @@
 import React from "react"
+import Heading from "@theme/Heading"
 
 import {features} from "@site/src/constants"
 import GreaterThanUnderscoreIcon from "@site/static/icons/basic/gt-underscore.svg"
@@ -22,7 +23,9 @@ const Feature = ({feature}: FeatureProps) => {
     >
       <div className="flex items-center -ml-SPACE_02 sm:space-x-SPACE_02 sm:-ml-SPACE_05 lg:-ml-SPACE_10 mb-SPACE_06">
         <GreaterThanUnderscoreIcon className="h-5 sm:h-7" />
-        <h5 className="text-title-semi-large sm:text-display-tiny lg:text-display-small mb-0">{feature.title}</h5>
+        <Heading as="h5" className="text-title-semi-large sm:text-display-tiny lg:text-display-small mb-0">
+          {feature.title}
+        </Heading>
       </div>
 
       <div

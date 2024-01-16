@@ -1,4 +1,5 @@
 import React from "react"
+import Heading from "@theme/Heading"
 
 import CheckCircle from "@site/static/icons/basic/check-circle.svg"
 import {Theme, pricingPlans} from "@site/src/constants"
@@ -8,9 +9,12 @@ import {analyticsHandler} from "@site/src/utils"
 const Pricing = () => {
   return (
     <section className="my-SPACE_14 sm:my-24 sm:mx-SPACE_04 lg:mx-0">
-      <h4 className="text-title-large sm:text-display-tiny lg:text-display-small mx-SPACE_02 text-center mb-SPACE_06 sm:mb-SPACE_10">
+      <Heading
+        as="h4"
+        className="text-title-large sm:text-display-tiny lg:text-display-small mx-SPACE_02 text-center mb-SPACE_06 sm:mb-SPACE_10"
+      >
         <span className="rounded sm:rounded-lg bg-tailCall-yellow px-SPACE_01">Plans</span> that fit your scale.
-      </h4>
+      </Heading>
 
       <div className="flex flex-col mx-SPACE_04 sm:mx-0 lg:flex-row items-center justify-center gap-SPACE_06 md:px-SPACE_16">
         {pricingPlans.map((plan) => (

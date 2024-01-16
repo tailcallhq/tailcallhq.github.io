@@ -1,4 +1,5 @@
 import React from "react"
+import Heading from "@theme/Heading"
 
 import BgTailcall from "@site/static/icons/basic/bg-tailcall.svg"
 import LinkButton from "./LinkButton"
@@ -12,9 +13,9 @@ const Discover = () => {
         <BgTailcall className="sm:w-[90%] w-full absolute -bottom-36 sm:-bottom-28 lg:-bottom-SPA16" />
 
         <div className="flex flex-col items-center absolute max-w-3xl space-y-SPACE_04 sm:space-y-SPACE_06">
-          <h5 className="text-title-semi-large sm:text-display-medium text-center mb-0">
+          <Heading as="h5" className="text-title-semi-large sm:text-display-medium text-center mb-0">
             Discover the power of enterprise solution.
-          </h5>
+          </Heading>
 
           <div className="flex space-x-SPACE_03 sm:space-x-SPACE_06">
             <LinkButton

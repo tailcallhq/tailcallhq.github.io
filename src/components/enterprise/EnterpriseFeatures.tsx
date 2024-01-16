@@ -1,5 +1,7 @@
-import {enterpriseFeatures} from "@site/src/constants"
 import React from "react"
+import Heading from "@theme/Heading"
+
+import {enterpriseFeatures} from "@site/src/constants"
 
 type EnterpriseFeaturesCardProps = {
   feature: {
@@ -28,9 +30,9 @@ const EnterpriseFeaturesCard = ({feature}: EnterpriseFeaturesCardProps) => {
 const EnterpriseFeatures = () => {
   return (
     <section className="my-SPACE_16 sm:my-SPACE_20 lg:my-24">
-      <h4 className="text-title-semi-large sm:text-display-tiny lg:text-display-small text-center">
+      <Heading as="h4" className="text-title-semi-large sm:text-display-tiny lg:text-display-small text-center">
         Some of our enterprise features.
-      </h4>
+      </Heading>
       <div className="flex items-center flex-wrap justify-center gap-SPACE_06 mt-SPACE_08 mx-SPACE_04 sm:mx-0">
         {enterpriseFeatures.map((feature) => (
           <EnterpriseFeaturesCard feature={feature} key={feature.id} />

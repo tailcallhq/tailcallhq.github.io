@@ -1,4 +1,5 @@
 import React from "react"
+import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
 import HeroImage from "@site/static/images/home/hero.svg"
@@ -10,10 +11,13 @@ const Banner = () => {
     <main>
       <div className="flex flex-col sm:items-center sm:text-center w-full mt-SPACE_06 px-SPACE_04 sm:mt-SPACE_20">
         <div className="h-full 2xl:min-h-0">
-          <h2 className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl">
+          <Heading
+            as="h2"
+            className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl"
+          >
             GraphQL platform engineered for{" "}
             <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">scale</span>
-          </h2>
+          </Heading>
           <p className="sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-SPACE_04 mb-0">
             A cloud native solution to streamline API management across{" "}
             <span className="font-bold sm:text-title-medium">edge,&nbsp;</span>

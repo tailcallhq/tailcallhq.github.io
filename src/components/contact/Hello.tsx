@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import Heading from "@theme/Heading"
 
 import Grid from "@site/static/images/about/grid-large.svg"
 import LinkButton from "../shared/LinkButton"
@@ -35,9 +36,12 @@ const Hello = () => {
       <Grid className="absolute inset-0 -z-10 h-[540px] w-full" />
 
       <div className="p-SPACE_06 sm:py-SPACE_10 lg:py-SPACE_20 flex flex-col lg:flex-row items-center lg:items-start justify-center lg:space-x-40 lg:h-[85vh]">
-        <h2 className="text-title-large text-center sm:text-left sm:text-display-medium lg:text-display-large lg:max-w-md">
+        <Heading
+          as="h2"
+          className="text-title-large text-center sm:text-left sm:text-display-medium lg:text-display-large lg:max-w-md"
+        >
           Say <span className="bg-tailCall-yellow rounded sm:rounded-2xl px-SPACE_01 sm:px-SPACE_02">hello</span> to us!
-        </h2>
+        </Heading>
 
         <div className="flex flex-col justify-between space-y-SPACE_07 w-full sm:w-fit">
           <div className="flex flex-col space-y-SPACE_02">

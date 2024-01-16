@@ -1,4 +1,5 @@
 import React from "react"
+import Heading from "@theme/Heading"
 
 import Lottie from "lottie-react"
 import SolutionGraphic from "@site/static/animations/solution-graphic.json"
@@ -10,11 +11,14 @@ const LegacyGateway = () => {
       <div className="max-w-7xl mx-SPACE_04 sm:m-SPACE_10 lg:mx-auto lg:my-SPACE_20">
         <SectionTitle title="The Problem" />
         <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-SPACE_10 lg:space-x-SPACE_20">
-          <h3 className="text-title-large sm:text-display-tiny lg:text-display-small text-tailCall-dark-500 min-w-fit">
+          <Heading
+            as="h3"
+            className="text-title-large sm:text-display-tiny lg:text-display-small text-tailCall-dark-500 min-w-fit"
+          >
             Where legacy
             <br />
             <span className="bg-tailCall-yellow px-SPACE_02 rounded-md sm:rounded-2xl">gateways fail?</span>
-          </h3>
+          </Heading>
 
           <p className="text-content-tiny font-normal sm:text-content-small lg:text-content-medium text-tailCall-dark-500">
             A legacy gateway limits operations to the API's route, method, or headers, leaving request and response
