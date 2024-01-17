@@ -20,10 +20,9 @@ const Pricing = (): JSX.Element => {
         {pricingPlans.map((plan) => (
           <div
             key={plan.id}
-            style={{
-              border: plan.mostPopular ? "1px solid black" : "1px solid var(--ifm-color-brand-light-400)",
-            }}
-            className="rounded-2xl flex flex-col items-center justify-between gap-y-SPACE_07 sm:gap-y-0 py-SPACE_04 sm:py-SPACE_06 relative w-full h-auto sm:w-[384px] md:h-[520px] lg:h-[584px]"
+            className={`${
+              plan.mostPopular ? "border-tailCall-border-dark-700" : "border-tailCall-border-light-400"
+            } border border-solid rounded-2xl flex flex-col items-center justify-between gap-y-SPACE_07 sm:gap-y-0 py-SPACE_04 sm:py-SPACE_06 relative w-full h-auto sm:w-[384px] md:h-[520px] lg:h-[584px]`}
           >
             {plan.mostPopular && (
               <p className="absolute -top-3.5 left-[50%] transform -translate-x-[50%] bg-tailCall-dark-600 text-tailCall-light-100 p-SPACE_01 rounded text-content-tiny font-bold">

@@ -30,6 +30,7 @@
     "react-dom": "^18.0.0",
     "react-fast-marquee": "^1.6.2",
     "react-ga4": "^2.1.0",
+    "react-hot-toast": "^2.4.1",
     "react-on-screen": "^2.1.1",
     "react-platform-js": "^0.0.1",
     "tailwindcss": "^3.3.5"

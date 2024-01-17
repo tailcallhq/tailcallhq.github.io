@@ -10,11 +10,8 @@ const ChooseTailcall = (): JSX.Element => {
       <div className="flex flex-col lg:flex-row space-y-SPACE_06 items-center justify-between lg:space-x-SPACE_06 lg:space-y-0">
         {chooseTailcall.map((item) => (
           <div
-            className="w-full lg:min-h-[358px] lg:max-w-md rounded-3xl p-SPACE_04 flex flex-col items-start justify-between"
+            className="border border-solid border-tailCall-border-dark-300 w-full lg:min-h-[358px] lg:max-w-md rounded-3xl p-SPACE_04 flex flex-col items-start justify-between"
             key={item.id}
-            style={{
-              border: "1px solid var(--ifm-color-brand-dark-300)",
-            }}
           >
             <div className="h-16 w-16 sm:w-full sm:h-full">
               <img src={item.image} alt="" className="max-w-[72px] sm:max-w-[110px]" />

@@ -9,3 +9,12 @@ export const analyticsHandler = (category: string, action: string, label: string
     label: label,
   })
 }
+
+
+export const setBodyOverflow = (value: "initial" | "hidden") => {
+  document.body.style.overflow = value
+}
+
+export const getSearchInputRef = () => {
+  return document.getElementById("search_input_react")
+}

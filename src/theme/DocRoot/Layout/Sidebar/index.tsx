@@ -10,6 +10,7 @@ import EnterKeyIcon from "@site/static/icons/basic/enter-key.svg"
 import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
 import EscapeKeyIcon from "@site/static/icons/basic/escape-key.svg"
 import styles from "./styles.module.css"
+import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
 
 const CustomSearch = () => {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
@@ -29,7 +30,11 @@ const CustomSearch = () => {
 
   // Function to control body scroll based on modal visibility
   const setBodyScroll = () => {
-    document.body.style.overflow = isSearchModalVisible ? "hidden" : "auto"
+    if (isSearchModalVisible) {
+      setBodyOverflow("hidden")
+    } else {
+      setBodyOverflow("initial")
+    }
   }
 
   // Function to handle key press events
@@ -64,7 +69,7 @@ const CustomSearch = () => {
     // focus on search input when modal becomes visible
     if (isSearchModalVisible) {
       timer = setTimeout(() => {
-        const searchInput = document.getElementById("search_input_react")
+        const searchInput = getSearchInputRef()
         if (searchInput) {
           searchInput.focus()
         }
@@ -73,7 +78,7 @@ const CustomSearch = () => {
 
     return () => {
       clearTimeout(timer)
-      document.body.style.overflow = "initial"
+      setBodyOverflow("initial")
       document.removeEventListener("keydown", handleKeyPress)
       unlisten()
     }

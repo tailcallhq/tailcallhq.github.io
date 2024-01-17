@@ -14,12 +14,7 @@ type EnterpriseFeaturesCardProps = {
 
 const EnterpriseFeaturesCard = ({feature}: EnterpriseFeaturesCardProps): JSX.Element => {
   return (
-    <div
-      className="rounded-3xl w-full sm:w-[450px] sm:h-60 p-SPACE_08 flex flex-col items-start space-y-SPACE_04"
-      style={{
-        border: "1px solid var(--ifm-color-brand-light-400)",
-      }}
-    >
+    <div className="border border-solid border-tailCall-border-light-400 rounded-3xl w-full sm:w-[450px] sm:h-60 p-SPACE_08 flex flex-col items-start space-y-SPACE_04">
       <feature.logo className="h-5 w-5 sm:h-8 sm:w-8" />
       <p className="text-title-tiny sm:text-title-medium">{feature.title}</p>
       <p className="text-content-tiny sm:text-content-small font-normal">{feature.description}</p>

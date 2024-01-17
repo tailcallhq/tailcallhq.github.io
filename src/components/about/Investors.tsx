@@ -9,12 +9,7 @@ const Investors = (): JSX.Element => {
       </p>
 
       <div className="flex flex-col sm:flex-row items-center justify-center space-y-SPACE_06 sm:space-y-0 sm:space-x-SPACE_10 mt-SPACE_06 sm:mt-SPACE_09">
-        <div
-          className="flex items-center justify-center rounded-xl sm:rounded-2xl p-SPACE_05 sm:p-SPACE_10 shadow-lg w-52 h-28 sm:w-80 sm:h-40 bg-tailCall-light-100"
-          style={{
-            border: "1px solid var(--ifm-color-brand-light-500)",
-          }}
-        >
+        <div className="border border-solid border-tailCall-border-light-500 flex items-center justify-center rounded-xl sm:rounded-2xl p-SPACE_05 sm:p-SPACE_10 shadow-lg w-52 h-28 sm:w-80 sm:h-40 bg-tailCall-light-100">
           <img
             src={require("@site/static/images/about/peakxv.png").default}
             srcSet={`
@@ -25,12 +20,7 @@ const Investors = (): JSX.Element => {
             className="h-full w-full object-contain"
           />
         </div>
-        <div
-          className="flex items-center justify-center rounded-xl sm:rounded-2xl p-SPACE_05 sm:p-SPACE_10 shadow-lg w-52 h-28 sm:w-80 sm:h-40 bg-tailCall-light-100"
-          style={{
-            border: "1px solid var(--ifm-color-brand-light-500)",
-          }}
-        >
+        <div className="border border-solid border-tailCall-border-light-500 flex items-center justify-center rounded-xl sm:rounded-2xl p-SPACE_05 sm:p-SPACE_10 shadow-lg w-52 h-28 sm:w-80 sm:h-40 bg-tailCall-light-100">
           <img
             src={require("@site/static/images/about/tenacity.png").default}
             srcSet={`

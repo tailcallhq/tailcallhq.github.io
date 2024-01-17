@@ -18,18 +18,18 @@ const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkBu
   const generateThemeClasses = () => {
     const themes = {
       [Theme.Light]: {
-        classes: "text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
-        styles: "2px solid var(--ifm-color-brand-dark-100)",
+        classes:
+          "border-2 border-solid border-tailCall-border-dark-100 text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
         gridClasses: "",
       },
       [Theme.Dark]: {
-        classes: "text-tailCall-light-100 bg-white border-none hover:text-tailCall-light-100",
-        styles: "2px solid var(--ifm-color-brand-dark-100)",
+        classes:
+          "border-2 border-solid border-tailCall-border-dark-100 text-tailCall-light-100 bg-white border-none hover:text-tailCall-light-100",
         gridClasses: "",
       },
       [Theme.Gray]: {
-        classes: "text-tailCall-light-100 bg-transparent hover:text-tailCall-light-100",
-        styles: "2px solid var(--ifm-color-white)",
+        classes:
+          "border-2 border-solid border-tailCall-light-100 text-tailCall-light-100 bg-transparent hover:text-tailCall-light-100",
         gridClasses: "hidden",
       },
     }
@@ -66,7 +66,7 @@ const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkBu
 
   return (
     <Link
-      to={href || "#"}
+      to={href}
       onClick={onClick}
       className={`
       group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-SPACE_03 hover:no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-SPACE_06 py-SPACE_03 sm:px-SPACE_08 lg:px-SPACE_10 sm:py-SPACE_04 lg:py-SPACE_05
@@ -74,7 +74,6 @@ const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkBu
       ${disabled ? "cursor-not-allowed opacity-20" : ""} `}
       /* TODO: Figure out how to rid inline styles here */
       style={{
-        border: generateThemeClasses().styles,
         width: width ? width : "fit-content",
       }}
     >

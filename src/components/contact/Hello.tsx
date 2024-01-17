@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react"
 import Heading from "@theme/Heading"
-
+import toast, {Toaster} from "react-hot-toast"
 import Grid from "@site/static/images/about/grid-large.svg"
 import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
@@ -24,6 +24,9 @@ const Hello = (): JSX.Element => {
     const data = await response.json()
 
     if (data.status === "success") {
+      toast.success("Thank you for contacting us.", {
+        duration: 3000,
+      })
       analyticsHandler("Contact Page", "Click", "Send message")
       setEmail("")
       setMessage("")
@@ -33,9 +36,10 @@ const Hello = (): JSX.Element => {
 
   return (
     <section className="relative h-auto">
+      <Toaster />
       <Grid className="absolute inset-0 -z-10 h-[540px] w-full" />
 
-      <div className="p-SPACE_06 sm:py-SPACE_10 lg:py-SPACE_20 flex flex-col lg:flex-row items-center lg:items-start justify-center lg:space-x-40 lg:h-[85vh]">
+      <div className="p-SPACE_06 sm:py-SPACE_10 lg:py-SPACE_20 flex flex-col lg:flex-row items-center lg:items-start justify-center lg:space-x-40">
         <Heading
           as="h2"
           className="text-title-large text-center sm:text-left sm:text-display-medium lg:text-display-large lg:max-w-md"
@@ -53,10 +57,7 @@ const Hello = (): JSX.Element => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={{
-                border: "1px solid var(--ifm-color-brand-light-500)",
-              }}
-              className="rounded-lg font-space-grotesk h-11 w-[95%] sm:w-[480px] p-SPACE_03 text-content-small outline-none focus:border-x-tailCall-light-700"
+              className="border border-solid border-tailCall-border-light-500 rounded-lg font-space-grotesk h-11 w-[95%] sm:w-[480px] p-SPACE_03 text-content-small outline-none focus:border-x-tailCall-light-700"
               placeholder="you@company.com"
             />
           </div>
@@ -67,17 +68,17 @@ const Hello = (): JSX.Element => {
             </p>
             <div className="space-y-SPACE_03 radio-group">
               {radioOptions.map((option) => (
-                <div className="flex items-center space-x-SPACE_02" key={option.id}>
+                <div className="flex items-center space-x-SPACE_02 " key={option.id}>
                   <input
                     type="radio"
-                    name="graphqlStage"
+                    name={option.name}
                     id={option.id}
                     value={option.value}
                     checked={stage === option.value}
                     onChange={() => setStage(option.value)}
                     className="radio-button"
                   />
-                  <label htmlFor={option.name} className="text-content-small radio-label">
+                  <label htmlFor={option.id} className="text-content-small radio-label cursor-pointer">
                     {option.name}
                   </label>
                 </div>

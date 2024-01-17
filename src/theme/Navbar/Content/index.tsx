@@ -15,6 +15,7 @@ import GithubStarsButton from "@site/src/components/shared/GithubStarsButton"
 import SearchIcon from "@site/static/icons/basic/search.svg"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import styles from "./styles.module.css"
+import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
 
 type NavbarItemType =
   | "html"
@@ -45,7 +46,7 @@ const NavbarItems = ({items}: {items: NavbarItemType[]}) => {
             new Error(
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
-${JSON.stringify(item, null, 2)}`,
+${JSON.stringify(item, null, 2)}`
             )
           }
         >
@@ -86,14 +87,11 @@ const CustomSearch = () => {
   const handleZoomBehavior = () => {
     /* TODO: Figure out a better way to do this */
     const viewportMetaTag = document.querySelector('meta[name="viewport"]') as HTMLMetaElement
-
     if (viewportMetaTag) {
       // Enable user zooming when no input is in focus
       viewportMetaTag.content = "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"
-
       // Add an event listener to detect when an input is in focus
       document.addEventListener("focusin", handleInputFocus)
-
       // Remove the event listener when the component unmounts or the modal closes
       return () => {
         document.removeEventListener("focusin", handleInputFocus)
@@ -130,10 +128,10 @@ const CustomSearch = () => {
     // Handle modal visibility and behavior
     if (isSearchModalVisible) {
       // If the search modal is visible, prevent body scrolling and handle modal animations
-      document.body.style.overflow = "hidden"
+      setBodyOverflow("hidden")
       timer = setTimeout(() => {
         // After a delay, focus on the search input and apply zoom behavior
-        const searchInput = document.getElementById("search_input_react")
+        const searchInput = getSearchInputRef()
         handleZoomBehavior()
         if (searchInput) {
           searchInput.focus()
@@ -141,7 +139,7 @@ const CustomSearch = () => {
       }, 200)
     } else {
       // If the search modal is not visible, allow body scrolling
-      document.body.style.overflow = "auto"
+      setBodyOverflow("initial")
     }
 
     // Clean up timer and history listener when the component unmounts or when dependencies change
