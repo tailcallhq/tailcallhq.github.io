@@ -19,7 +19,7 @@ const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkBu
     const themes = {
       [Theme.Light]: {
         classes: "text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
-        styles: "1px solid var(--ifm-color-brand-dark-100)",
+        styles: "2px solid var(--ifm-color-brand-dark-100)",
         gridClasses: "",
       },
       [Theme.Dark]: {
@@ -68,12 +68,14 @@ const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkBu
     <Link
       to={href || "#"}
       onClick={onClick}
-      className={`group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-SPACE_03 hover:no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-SPACE_06 py-SPACE_03 sm:px-SPACE_08 lg:px-SPACE_10 sm:py-SPACE_04 lg:py-SPACE_05 
-      ${generateThemeClasses().classes ?? ""} ${disabled ? "cursor-not-allowed opacity-20" : ""}`}
+      className={`
+      group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-SPACE_03 hover:no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-SPACE_06 py-SPACE_03 sm:px-SPACE_08 lg:px-SPACE_10 sm:py-SPACE_04 lg:py-SPACE_05
+      ${generateThemeClasses().classes ?? ""} 
+      ${disabled ? "cursor-not-allowed opacity-20" : ""} `}
       /* TODO: Figure out how to rid inline styles here */
       style={{
-        width: width ? width : "fit-content",
         border: generateThemeClasses().styles,
+        width: width ? width : "fit-content",
       }}
     >
       {/* Conditionally render background elements based on theme and disabled state */}

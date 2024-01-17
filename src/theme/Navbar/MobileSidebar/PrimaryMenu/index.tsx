@@ -5,7 +5,7 @@ import GithubStarsButton from "@site/src/components/shared/GithubStarsButton"
 import NavbarItem, {type Props as NavbarItemConfig} from "@theme/NavbarItem"
 
 const useNavbarItems = () => {
-  // TODO temporary casting until ThemeConfig type is improved
+  // TODO temporary casting until ThemeConfig type is improved (added by docusaurus)
   return useThemeConfig().navbar.items as NavbarItemConfig[]
 }
 
@@ -13,7 +13,7 @@ const useNavbarItems = () => {
 const NavbarMobilePrimaryMenu = (): JSX.Element => {
   const mobileSidebar = useNavbarMobileSidebar()
 
-  // TODO how can the order be defined for mobile?
+  // TODO how can the order be defined for mobile? (added by docusaurus)
   // Should we allow providing a different list of items?
   const items = useNavbarItems()
 

@@ -496,6 +496,7 @@ nav.menu {
 
   .navbar {
     height: var(--ifm-navbar-height-sm);
+    transform: none;
   }
 
   .navbar__logo {
@@ -512,11 +513,6 @@ nav.menu {
     max-height: 100vh;
     transition: all 250ms ease-in-out;
     z-index: 99;
-  }
-
-  /* TODO: Figure out a long term class name to select this node */
-  .navbarHidden_jGov {
-    transform: none;
   }
 }
 
