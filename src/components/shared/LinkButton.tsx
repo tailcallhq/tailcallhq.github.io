@@ -20,21 +20,18 @@ const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkBu
       [Theme.Light]: {
         classes:
           "border-2 border-solid border-tailCall-border-dark-100 text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
-        gridClasses: "",
       },
       [Theme.Dark]: {
         classes:
           "border-2 border-solid border-tailCall-border-dark-100 text-tailCall-light-100 bg-white hover:text-tailCall-light-100",
-        gridClasses: "",
       },
       [Theme.Gray]: {
         classes:
           "border-2 border-solid border-tailCall-light-100 text-tailCall-light-100 bg-transparent hover:text-tailCall-light-100",
-        gridClasses: "hidden",
       },
     }
 
-    return themes[theme] || {classes: "", styles: "", gridClasses: ""}
+    return themes[theme] || {classes: ""}
   }
 
   const renderBackgroundElements = () => {
