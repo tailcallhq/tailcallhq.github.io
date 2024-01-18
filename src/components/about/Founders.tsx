@@ -13,6 +13,10 @@ type Founder = {
   }
 }
 
+type SocialIconProps = {
+  social: Social
+}
+
 const Founder = ({founder}: Founder): JSX.Element => {
   return (
     <div>
@@ -31,10 +35,10 @@ const Founder = ({founder}: Founder): JSX.Element => {
   )
 }
 
-const SocialIcon = ({social}) => {
+const SocialIcon = ({social}: SocialIconProps) => {
   const [isHovered, setIsHovered] = useState(false)
 
-  const getIcon = (name, isHovered) => {
+  const getIcon = (name: string, isHovered: boolean) => {
     switch (name) {
       case "linkedin":
         return (
