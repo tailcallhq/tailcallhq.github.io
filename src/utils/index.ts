@@ -10,11 +10,12 @@ export const analyticsHandler = (category: string, action: string, label: string
   })
 }
 
-
+// Function to set overflow on body
 export const setBodyOverflow = (value: "initial" | "hidden") => {
   document.body.style.overflow = value
 }
 
+// Function to get search element ref
 export const getSearchInputRef = () => {
   return document.getElementById("search_input_react")
 }
