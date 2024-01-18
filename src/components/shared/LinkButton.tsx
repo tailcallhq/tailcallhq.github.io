@@ -53,8 +53,8 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
     return themes[theme] || {classes: "", styles: "", gridClasses: ""}
   }
 
-  const renderBackgroundElements = () => {
-    if (theme === Theme.Dark) {
+  const renderBackgroundElements = (buttonTheme: Theme) => {
+    if (buttonTheme === Theme.Dark) {
       return (
         <>
           {/* Dark theme background */}
@@ -67,17 +67,15 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
           )}
         </>
       )
-    }
-
-    if (theme === Theme.Light && !disabled) {
+    } else if (buttonTheme === Theme.Light && !disabled) {
       // Light theme grid background (only if not disabled)
       return (
         <div className="hidden lg:block button-grid-bg-section-dark h-full w-full scale-90 opacity-0 group-hover:scale-[1] group-hover:opacity-100 transform transition-all ease-out duration-250" />
       )
+    } else {
+      // If no matching theme, return null
+      return null
     }
-
-    // If no matching theme, return null
-    return null
   }
 
   return (
@@ -91,7 +89,7 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
       ${disabled ? "cursor-not-allowed opacity-20" : ""} `}
     >
       {/* Conditionally render background elements based on theme and disabled state */}
-      {renderBackgroundElements()}
+      {renderBackgroundElements(theme)}
 
       {/* Render Icon if provided */}
       {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white" />}
