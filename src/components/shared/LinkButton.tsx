@@ -24,7 +24,7 @@ const LinkButton = ({title, Icon, theme, onClick, href, width, disabled}: LinkBu
       },
       [Theme.Dark]: {
         classes:
-          "border-2 border-solid border-tailCall-border-dark-100 text-tailCall-light-100 bg-white border-none hover:text-tailCall-light-100",
+          "border-2 border-solid border-tailCall-border-dark-100 text-tailCall-light-100 bg-white hover:text-tailCall-light-100",
         gridClasses: "",
       },
       [Theme.Gray]: {
