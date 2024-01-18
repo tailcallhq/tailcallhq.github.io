@@ -18,12 +18,7 @@ const MoreEnterpriseFeatures = (): JSX.Element => {
         </Heading>
       </div>
 
-      <div
-        className="flex items-start justify-start gap-SPACE_04 flex-wrap p-SPACE_04 overflow-x-auto h-full max-w-screen-md sm:pl-SPACE_10 sm:py-SPACE_10"
-        style={{
-          borderLeft: "1px solid var(--ifm-color-brand-light-300)",
-        }}
-      >
+      <div className="border-l border-solid border-tailCall-border-light-300 flex items-start justify-start gap-SPACE_04 flex-wrap p-SPACE_04 overflow-x-auto h-full max-w-screen-md sm:pl-SPACE_10 sm:py-SPACE_10">
         {additionalEnterpriseFeatures.map((feature) => (
           <div
             className="min-w-[150px] border border-solid border-tailCall-border-light-300 flex items-center p-SPACE_02 sm:px-SPACE_04 sm:py-SPACE_03 rounded w-fit space-x-SPACE_02 sm:space-x-SPACE_04"

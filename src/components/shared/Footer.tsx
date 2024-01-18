@@ -15,28 +15,19 @@ const Footer = (): JSX.Element => {
       <div className="text-content-tiny sm:text-title-small space-x-SPACE_06 text-tailCall-light-500 z-10">
         <Link
           href={pageLinks.docs}
-          className="text-tailCall-light-500 hover:text-tailCall-light-300"
-          style={{
-            textDecorationLine: "none",
-          }}
+          className="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline"
         >
           Documentation
         </Link>
         <Link
           href={pageLinks.about}
-          className="text-tailCall-light-500 hover:text-tailCall-light-300"
-          style={{
-            textDecorationLine: "none",
-          }}
+          className="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline"
         >
           About
         </Link>
         <Link
           href={tailCallBlogUrl}
-          className="text-tailCall-light-500 hover:text-tailCall-light-300"
-          style={{
-            textDecorationLine: "none",
-          }}
+          className="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline"
         >
           Blog
         </Link>
