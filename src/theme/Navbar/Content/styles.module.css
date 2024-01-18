@@ -1,15 +1,23 @@
 /*
 Hide color mode toggle in small viewports
  */
-@media (max-width: 996px) {
+@media (min-width: 996px) {
   .colorModeToggle {
     display: none;
   }
 }
 
-@media screen and (min-width: 760px) {
+@media screen and (min-width: 996px) {
   .searchInput {
     width: 600px;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .modal {
+    display: none;
   }
 }
 
@@ -18,7 +26,7 @@ Hide color mode toggle in small viewports
   position: fixed;
   top: 0;
   left: 0;
-  width: 110vh;
+  width: 100%;
   height: 100%;
   z-index: 1;
   backdrop-filter: blur(3px);
