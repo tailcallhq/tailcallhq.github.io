@@ -29,14 +29,14 @@ const Banner = (): JSX.Element => {
               title="Try it Out"
               href={codeSandboxUrl}
               theme={Theme.Dark}
-              width="228px"
+              width="small"
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
             />
             <LinkButton
               title="Get Started"
               href={pageLinks.docs}
               theme={Theme.Light}
-              width="228px"
+              width="small"
               onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
             />
           </div>

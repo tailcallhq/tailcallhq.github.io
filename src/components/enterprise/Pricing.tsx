@@ -58,7 +58,7 @@ const Pricing = (): JSX.Element => {
                   onClick={() => analyticsHandler("Pricing", "Click", `${plan.buttonText}`)}
                   href={plan.href}
                   theme={plan.mostPopular ? Theme.Dark : Theme.Light}
-                  width="320px"
+                  width="medium"
                 />
               </div>
 
@@ -68,7 +68,7 @@ const Pricing = (): JSX.Element => {
                   onClick={() => analyticsHandler("Pricing", "Click", `${plan.buttonText}`)}
                   href={plan.href}
                   theme={plan.mostPopular ? Theme.Dark : Theme.Light}
-                  width="300px"
+                  width="medium"
                 />
               </div>
             </div>
