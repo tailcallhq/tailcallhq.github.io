@@ -1,7 +1,8 @@
 import React from "react"
 import Link from "@docusaurus/Link"
-import {pageLinks, socials, tailCallBlogUrl} from "@site/src/constants"
+import {socials, tailCallBlogUrl} from "@site/src/constants"
 import TailcallLogo from "@site/static/icons/companies/tailcall-white.svg"
+import {pageLinks} from "@site/src/constants/routes"
 
 const Footer = (): JSX.Element => {
   return (

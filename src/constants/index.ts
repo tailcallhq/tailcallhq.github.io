@@ -4,15 +4,6 @@ export const tailCallBlogUrl = "https://blog.tailcall.run/"
 export const codeSandboxUrl = "https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
 export const zapierLink = "https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/"
 
-export const pageLinks = {
-  home: "/",
-  docs: "/docs/getting_started/",
-  pricing: "/pricing",
-  about: "/about",
-  contact: "/contact",
-  enterprise: "/enterprise",
-}
-
 export const partnerImages: PartnerImage[] = [
   {
     id: 1,

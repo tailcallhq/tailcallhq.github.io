@@ -4,7 +4,8 @@ import Heading from "@theme/Heading"
 import LinkButton from "../shared/LinkButton"
 import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme, codeSandboxUrl, pageLinks} from "@site/src/constants"
+import {Theme, codeSandboxUrl} from "@site/src/constants"
+import {pageLinks} from "@site/src/constants/routes"
 
 const Banner = (): JSX.Element => {
   return (

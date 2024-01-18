@@ -4,7 +4,8 @@ import Heading from "@theme/Heading"
 import BgTailcall from "@site/static/icons/basic/bg-tailcall.svg"
 import LinkButton from "./LinkButton"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme, pageLinks} from "@site/src/constants"
+import {Theme} from "@site/src/constants"
+import {pageLinks} from "@site/src/constants/routes"
 
 const Discover = (): JSX.Element => {
   return (

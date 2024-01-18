@@ -1,9 +1,10 @@
 import React from "react"
 import Heading from "@theme/Heading"
 
-import {Theme, moreFeatures, pageLinks} from "@site/src/constants"
+import {Theme, moreFeatures} from "@site/src/constants"
 import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
+import {pageLinks} from "@site/src/constants/routes"
 
 type MoreFeaturesProps = {
   feature: MoreFeatures
