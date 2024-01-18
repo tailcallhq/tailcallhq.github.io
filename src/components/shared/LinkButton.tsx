@@ -35,7 +35,7 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
     const themes = {
       [Theme.Light]: {
         classes:
-          "border-2 border-solid border-tailCall-border-dark-100 text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
+          "border border-solid border-tailCall-border-dark-100 text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
         gridClasses: "",
       },
       [Theme.Dark]: {
