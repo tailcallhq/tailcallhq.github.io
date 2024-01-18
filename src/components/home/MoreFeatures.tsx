@@ -7,12 +7,7 @@ import {analyticsHandler} from "@site/src/utils"
 
 const FeatureBox = ({feature}) => {
   return (
-    <div
-      style={{
-        borderBottom: "1px solid var(--ifm-color-brand-light-200)",
-      }}
-      className="flex flex-col sm:flex-row items-start justify-start sm:items-center text-start space-y-SPACE_02 sm:space-y-0 py-SPACE_04 sm:py-SPACE_08 lg:py-SPACE_12 sm:space-x-SPACE_04 text-content-tiny font-bold sm:text-title-small lg:text-title-medium text-tailCall-dark-500  sm:h-32 w-full border border-tailCall-dark-300"
-    >
+    <div className="border-b border-0  border-solid border-tailCall-border-light-200 flex flex-col sm:flex-row items-start justify-start sm:items-center text-start space-y-SPACE_02 sm:space-y-0 py-SPACE_04 sm:py-SPACE_08 lg:py-SPACE_12 sm:space-x-SPACE_04 text-content-tiny font-bold sm:text-title-small lg:text-title-medium text-tailCall-dark-500  sm:h-32 w-full">
       <feature.logo className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
       <span className="mt-0">{feature.title}</span>
     </div>
