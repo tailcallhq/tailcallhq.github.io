@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {type ReactNode, useEffect, useState} from "react"
 import {useThemeConfig, ErrorCauseBoundary} from "@docusaurus/theme-common"
 import {splitNavbarItems, useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
 import {useHistory} from "react-router-dom"
@@ -17,48 +17,33 @@ import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import styles from "./styles.module.css"
 import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
 
-type NavbarItemType =
-  | "html"
-  | "search"
-  | "default"
-  | "doc"
-  | "docsVersion"
-  | "docSidebar"
-  | "dropdown"
-  | "docsVersionDropdown"
-  | "localeDropdown"
-  | typeof NavbarItem
-
-// Function to retrieve navbar items from the theme configuration
 const useNavbarItems = () => {
+  // TODO temporary casting until ThemeConfig type is improved (added by docusaurus)
   return useThemeConfig().navbar.items as NavbarItemConfig[]
 }
 
-// Component to render a list of NavbarItems
-const NavbarItems = ({items}: {items: NavbarItemType[]}) => {
+const NavbarItems = ({items}: {items: NavbarItemConfig[]}): JSX.Element => {
   return (
     <>
-      {items.map((item: NavbarItemType, i: number) => (
-        // Render each NavbarItem wrapped in ErrorCauseBoundary
+      {items.map((item, i) => (
         <ErrorCauseBoundary
           key={i}
           onError={(error) =>
             new Error(
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
-${JSON.stringify(item, null, 2)}`,
+${JSON.stringify(item, null, 2)}`
             )
           }
         >
-          <NavbarItem {...(item as typeof NavbarItem)} />
+          <NavbarItem {...item} />
         </ErrorCauseBoundary>
       ))}
     </>
   )
 }
 
-// Layout for the navbar content
-const NavbarContentLayout = ({left, right}: {left: JSX.Element; right: JSX.Element}) => {
+const NavbarContentLayout = ({left, right}: {left: ReactNode; right: ReactNode}) => {
   return (
     <div className="navbar__inner">
       <div className="navbar__items">{left}</div>
@@ -184,32 +169,31 @@ const CustomSearch = () => {
   )
 }
 
-type NavbarContentProps = {
-  position?: "left" | "right"
-}
-
-// Main NavbarContent component
-const NavbarContent = () => {
+const NavbarContent = (): JSX.Element => {
   const mobileSidebar = useNavbarMobileSidebar()
+
   const items = useNavbarItems()
-  const [leftItems, rightItems] = splitNavbarItems<NavbarContentProps>(items)
+  const [leftItems, rightItems] = splitNavbarItems(items)
+
   const searchBarItem = items.find((item) => item.type === "search")
 
   return (
     <NavbarContentLayout
       left={
+        // TODO stop hardcoding items? (added by docusaurus)
         // Render left navbar items
         <>
           <CustomSearch />
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
-          <NavbarItems items={leftItems as NavbarItemType[]} />
+          <NavbarItems items={leftItems} />
         </>
       }
       right={
+        // TODO stop hardcoding items? (added by docusaurus)
         // Render right navbar items
         <>
-          <NavbarItems items={rightItems as NavbarItemType[]} />
+          <NavbarItems items={rightItems} />
           <GithubStarsButton className="navbar__item navbar__link" />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
           {!searchBarItem && (
