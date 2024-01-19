@@ -22,7 +22,7 @@ type MoreFeatures = {
 type Social = {
   id: number
   name: string
-  image?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  image?: FunctionComponent<SVGProps<SVGSVGElement>> | undefined
   href: string
 }
 
@@ -82,4 +82,36 @@ type RadioOptions = {
   id: string
   name: string
   value: string
+}
+
+type SidebarLink = {
+  type: "link"
+  label: string
+  href: string
+  docId: string
+  unlisted: boolean
+}
+
+type SidebarCategory = {
+  type: "category"
+  label: string
+  collapsible: boolean
+  collapsed: boolean
+  items: SidebarLink[]
+}
+
+type SidebarItem = {
+  type: "category" | "link"
+  label: string
+  collapsible?: boolean
+  collapsed?: boolean
+  items?: SidebarLink[]
+  href?: string
+  docId?: string
+  unlisted?: boolean
+}
+
+type SidebarConfig = {
+  sidebar: SidebarItem[]
+  hiddenSidebarContainer: boolean
 }
