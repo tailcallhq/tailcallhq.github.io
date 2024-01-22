@@ -19,7 +19,8 @@ Tailcall will automatically map GraphQL arguments to gRPC request parameters.
 
 You can also manually map fields:
 
-```type Query {
+```graphql
+type Query {
   getUser(id: ID!): User @grpc(
     service: "UserService" 
     method: "GetUser"
