@@ -16,7 +16,7 @@ To get a list of todos you will run the query `todo` defined below.
 
 ```graphql
 type Query {
-  todos : [Todo] @http(path: "/todos")
+  todos: [Todo] @http(path: "/todos")
 }
 type Todo {
   id: ID!
@@ -29,8 +29,7 @@ Suppose you now only want the completed todos to be shown.You can accomplish thi
 
 ```graphql
 type Query {
-  todos(completed: Boolean): [Todo]
-    @http(path: "/todos", query: [{key: "completed", value: "{{args.completed}}"}])
+  todos(completed: Boolean): [Todo] @http(path: "/todos", query: [{key: "completed", value: "{{args.completed}}"}])
 }
 ```
 
