@@ -72,13 +72,15 @@ In this case, `value.userId` is a way to get the `userId` information from the "
 Environment variables allow you to configure different aspects of your Tailcall server without needing to hardcode values. Some common uses:
 
 Setting the base URL for API requests:
-```type Query {
+```graphql
+type Query {
   users: [User]! @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users") 
 }
 ```
 
 Toggling features on/off:
-```type Query {
+```graphql
+type Query {
   recommendations @include(if: "{{env.SHOW_RECOMMENDATIONS}}") {
     products(first: 10)
   }
@@ -86,7 +88,8 @@ Toggling features on/off:
 ```
 
 Setting API keys:
-```type Query {
+```graphql
+type Query {
   weather(zip: String!): Weather
     @http(headers: {apiKey: "{{env.WEATHER_API_KEY}}"}) 
 }
@@ -98,7 +101,8 @@ Variables allow passing dynamic values into queries. They can be used to make qu
 
 For example:
 
-```query GetUser($id: ID!) {
+```graphql
+query GetUser($id: ID!) {
   user(id: $id) {
     name
   }
@@ -134,7 +138,8 @@ Mustache templates allow accessing context data in directives by using the {{var
 
 For example:
 
-```type Query {
+```graphql
+type Query {
   user(id: ID!) @http(url: "/users/{{args.id}}")  
 }
 ```
