@@ -18,9 +18,16 @@ It is a mechanism to reduce latency, network traffic and load on upstream APIs. 
 # Enabling HTTP Caching
 To enable HTTP caching in Tailcall, you need to set httpCache to true under the upstream config:
 
-```upstream:
-  baseURL: "https://api.example.com"
-  httpCache: true
+```@Schema
+@server(
+port: 4000
+)
+@upstream(
+baseURL: "https://api.example.com"
+httpCache: true
+) {
+query: Query
+}
 ```
 This will tell Tailcall to cache responses from the upstream API.
 
@@ -29,9 +36,16 @@ Tailcall uses a Least Recently Used (LRU) cache by default. You can configure th
 
 To enable HTTP caching globally:
 
-```upstream: 
-  baseURL: https://api.example.com
-  httpCache: true
+```@Schema
+@server(
+port: 4000
+)
+@upstream(
+baseURL: "https://api.example.com"
+httpCache: true
+) {
+query: Query
+}
 ```
 
 ### Caching Headers
