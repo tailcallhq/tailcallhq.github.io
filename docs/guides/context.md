@@ -124,6 +124,26 @@ Variables have the following properties:
 ->Help avoid duplication in queries
 ->Enable dynamic query construction.
 
+Some benefits of variables:
+
+Avoid hardcoded values
+Reuse queries with different parameters
+Isolate client code from server schema
+Avoid expensive string building
+Query optimization based on runtime values
+In summary, variables allow queries to be more reusable, avoid duplication, and enable dynamic execution based on runtime data.
+They are a key part of GraphQL's flexibility.
+
+Variables can be accessed in the Context object:
+```graphql
+type Query {
+  user(id: ID!) {
+    friends(first: $count) @db(query: "SELECT * FROM friends WHERE user_id = {{args.id}} LIMIT {{args.count}}")
+  }
+}
+```
+Here args.count accesses the $count variable value.
+
 ### headers
 
 These are the headers of the request that was received by the Tailcall server.
