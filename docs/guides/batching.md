@@ -18,7 +18,7 @@ One way to keep the tradition going would be a universal meal delivery applicati
 The nature of such a service could cause traffic spikes for every upstream vendor needed to fulfil each individual order, so some care has to be taken when designing the meal app's API.
 For instance, if thousands of managers across the world use the command at the same time (just before lunch break) to place team orders, the sudden traffic spike will spread to upstream vendors, leading to delayed or failed orders.
 
-*Batching* is a one technique that can be used to avoid overwhelming upstream servers with too many simulatenous requests. Batching combines multiple operations in a bulk operation that is sent in a single request. 
+*Batching* is a one technique that can be used to avoid overwhelming upstream servers with too many simultaneous requests. Batching combines multiple operations in a bulk operation that is sent in a single request. 
 
 Tailcall supports batching via two [operators](https://tailcall.run/docs/operators/): `@upstream` and `@http`. 
 Before we go over this Tailcall feature, we'll briefly review the most common implementations of batching in REST APIs.
