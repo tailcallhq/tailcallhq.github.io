@@ -5,7 +5,8 @@ Tailcall makes it easy to build GraphQL APIs that connect to gRPC services. With
 ## Adding the gRPC Directive
 To call a gRPC method, use the @grpc directive on a GraphQL field:
 
-```type Query {
+```graphql
+type Query {
   getUser(id: ID!): User @grpc(service: "UserService", method: "GetUser")
 }
 ```
