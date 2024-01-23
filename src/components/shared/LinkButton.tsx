@@ -1,7 +1,7 @@
 import Link from "@docusaurus/Link"
-import {Theme} from "@site/src/constants"
+import { Theme } from "@site/src/constants"
 import React from "react"
-import {SVGProps} from "react"
+import { SVGProps } from "react"
 
 type LinkButtonProps = {
   title?: string
@@ -13,7 +13,15 @@ type LinkButtonProps = {
   disabled?: boolean
 }
 
-const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled}: LinkButtonProps): JSX.Element => {
+const LinkButton = ({
+  title,
+  Icon,
+  theme,
+  onClick,
+  href,
+  width = "auto",
+  disabled
+}: LinkButtonProps): JSX.Element => {
   // Generate button widths as tailwind is not able to handle dynamic widths
   const setButtonWidth = () => {
     switch (width) {
@@ -36,21 +44,21 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
       [Theme.Light]: {
         classes:
           "border border-solid border-tailCall-border-dark-100 text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
-        gridClasses: "",
+        gridClasses: ""
       },
       [Theme.Dark]: {
         classes:
           "border-2 border-solid border-tailCall-border-dark-100 text-tailCall-light-100 bg-white hover:text-tailCall-light-100",
-        gridClasses: "",
+        gridClasses: ""
       },
       [Theme.Gray]: {
         classes:
           "border-2 border-solid border-tailCall-light-100 text-tailCall-light-100 bg-transparent hover:text-tailCall-light-100",
-        gridClasses: "hidden",
-      },
+        gridClasses: "hidden"
+      }
     }
 
-    return themes[theme] || {classes: "", styles: "", gridClasses: ""}
+    return themes[theme] || { classes: "", styles: "", gridClasses: "" }
   }
 
   const renderBackgroundElements = (buttonTheme: Theme) => {
@@ -92,7 +100,9 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
       {renderBackgroundElements(theme)}
 
       {/* Render Icon if provided */}
-      {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white" />}
+      {Icon && (
+        <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white" />
+      )}
 
       {/* Render title if provided */}
       {title && <span className="z-20"> {title}</span>}

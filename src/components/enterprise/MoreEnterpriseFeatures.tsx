@@ -1,7 +1,7 @@
 import React from "react"
 import Heading from "@theme/Heading"
 
-import {additionalEnterpriseFeatures} from "@site/src/constants"
+import { additionalEnterpriseFeatures } from "@site/src/constants"
 import CheckCircle from "@site/static/icons/basic/check-circle-broken.svg"
 
 const MoreEnterpriseFeatures = (): JSX.Element => {
@@ -13,7 +13,10 @@ const MoreEnterpriseFeatures = (): JSX.Element => {
           alt=""
           className="absolute inset-0 h-full w-full sm:w-[47vw] -z-10"
         />
-        <Heading as="h4" className="text-title-semi-large sm:text-title-large text-center h-full w-full mb-0">
+        <Heading
+          as="h4"
+          className="text-title-semi-large sm:text-title-large text-center h-full w-full mb-0"
+        >
           Additional enterprise features
         </Heading>
       </div>
@@ -25,7 +28,9 @@ const MoreEnterpriseFeatures = (): JSX.Element => {
             key={feature.id}
           >
             <CheckCircle className="h-4 w-4 sm:h-6 sm:w-6" />
-            <span className="text-content-small font-bold sm:text-title-tiny">{feature.title}</span>
+            <span className="text-content-small font-bold sm:text-title-tiny">
+              {feature.title}
+            </span>
           </div>
         ))}
       </div>

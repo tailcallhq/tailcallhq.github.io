@@ -11,7 +11,8 @@
   display: inline-block;
   font-size: var(--ifm-search-input-font-size);
   padding: 0 0.5rem 0 2.2rem;
-  background: transparent var(--ifm-navbar-search-input-icon) no-repeat 0.75rem center/1rem 1rem;
+  background: transparent var(--ifm-navbar-search-input-icon) no-repeat 0.75rem
+    center/1rem 1rem;
 }
 
 .inputContainer {

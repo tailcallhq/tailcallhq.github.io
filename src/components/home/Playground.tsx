@@ -17,7 +17,7 @@ const Playground = (): JSX.Element => {
           borderRadius: 8,
           marginBottom: 0,
           zIndex: 100,
-          scale: 0.95,
+          scale: 0.95
         }}
         className="max-w-7xl"
         src="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main?file=%2Fexercises%2Fexercise_1.graphql"

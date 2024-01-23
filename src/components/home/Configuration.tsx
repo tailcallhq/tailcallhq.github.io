@@ -6,16 +6,24 @@ const Configuration = (): JSX.Element => {
   return (
     <section className="flex flex-col mx-SPACE_04 my-SPACE_10 sm:mx-SPACE_07 lg:flex-row justify-center lg:mx-24 lg:my-SPACE_12 lg:space-x-SPACE_10">
       <div className="max-w-2xl">
-        <Heading as="h2" className="text-title-large sm:text-display-tiny lg:text-display-small mb-SPACE_04">
-          Get <span className="rounded-lg px-SPACE_02 bg-tailCall-yellow">Started</span>
+        <Heading
+          as="h2"
+          className="text-title-large sm:text-display-tiny lg:text-display-small mb-SPACE_04"
+        >
+          Get{" "}
+          <span className="rounded-lg px-SPACE_02 bg-tailCall-yellow">
+            Started
+          </span>
         </Heading>
         <p className="text-content-small sm:text-content-medium mb-SPACE_11">
-          Setup the Tailcall instantly via npm and unlock the power of high-performance API orchestration.
+          Setup the Tailcall instantly via npm and unlock the power of
+          high-performance API orchestration.
         </p>
         <span className="text-title-small sm:text-title-medium">More</span>
         <p className="text-content-small sm:text-content-medium mt-SPACE_04">
-          To dive deeper into TailCall checkout our docs for detailed tutorials. Ideal for devs at any level, it's
-          packed with advanced tips, powerful operators and best practices.
+          To dive deeper into TailCall checkout our docs for detailed tutorials.
+          Ideal for devs at any level, it's packed with advanced tips, powerful
+          operators and best practices.
         </p>
       </div>
       <div>

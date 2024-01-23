@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState, ReactNode} from "react"
+import React, { createContext, useEffect, useState, ReactNode } from "react"
 
 // Define the context type
 type GithubStarsContextType = number | null
@@ -20,15 +20,17 @@ const storage = {
       window["__tc_data__"] = window["__tc_data__"] || {}
       window["__tc_data__"][key] = val
     }
-  },
+  }
 }
 
 type GithubStarsProviderProps = {
   children: ReactNode
 }
 
-const GithubStarsProvider = ({children}: GithubStarsProviderProps) => {
-  const [starsCount, setStarsCount] = useState<number | null>(storage.get("githubStars"))
+const GithubStarsProvider = ({ children }: GithubStarsProviderProps) => {
+  const [starsCount, setStarsCount] = useState<number | null>(
+    storage.get("githubStars")
+  )
 
   // Fetch Github stars count
   const fetchGithubStars = () => {
@@ -51,7 +53,11 @@ const GithubStarsProvider = ({children}: GithubStarsProviderProps) => {
   }, [])
 
   // Provide the stars count value through context
-  return <GithubStarsContext.Provider value={starsCount}>{children}</GithubStarsContext.Provider>
+  return (
+    <GithubStarsContext.Provider value={starsCount}>
+      {children}
+    </GithubStarsContext.Provider>
+  )
 }
 
 export default GithubStarsProvider

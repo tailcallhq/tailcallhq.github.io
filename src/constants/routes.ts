@@ -4,5 +4,5 @@ export const pageLinks = {
   pricing: "/pricing",
   about: "/about",
   contact: "/contact",
-  enterprise: "/enterprise",
+  enterprise: "/enterprise"
 }

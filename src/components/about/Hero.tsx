@@ -11,7 +11,8 @@ const Hero = (): JSX.Element => {
           as="h2"
           className="text-title-small sm:text-title-large lg:text-display-small text-tailCall-light-100 max-w-3xl"
         >
-          Demystify the complexity of API composition, with unparalleled ease and efficiency.
+          Demystify the complexity of API composition, with unparalleled ease
+          and efficiency.
         </Heading>
       </div>
 

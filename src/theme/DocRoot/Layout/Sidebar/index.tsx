@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react"
-import {useHistory} from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
 import Sidebar from "@theme-original/DocRoot/Layout/Sidebar"
 import Search from "docusaurus-lunr-search/src/theme/SearchBar"
 import useIsBrowser from "@docusaurus/useIsBrowser"
@@ -10,13 +10,18 @@ import EnterKeyIcon from "@site/static/icons/basic/enter-key.svg"
 import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
 import EscapeKeyIcon from "@site/static/icons/basic/escape-key.svg"
 import styles from "./styles.module.css"
-import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
+import { getSearchInputRef, setBodyOverflow } from "@site/src/utils"
 
 const CustomSearch = () => {
-  const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
+  const [isSearchModalVisible, setIsSearchModalVisible] =
+    useState<boolean>(false)
   const history = useHistory()
   const isBrowser = useIsBrowser()
-  const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K") : "Search"
+  const placeholder = isBrowser
+    ? Platform.OS.startsWith("Mac")
+      ? "Search ⌘+K"
+      : "Search Ctrl+K"
+    : "Search"
 
   // Function to handle opening the search modal
   const handleSearchClick = () => {
@@ -88,21 +93,31 @@ const CustomSearch = () => {
     <>
       {/* Search input container */}
       <div className={styles.inputContainer} onClick={handleSearchClick}>
-        <span aria-label="expand searchbar" role="button" className="search-icon" tabIndex={0}></span>
+        <span
+          aria-label="expand searchbar"
+          role="button"
+          className="search-icon"
+          tabIndex={0}
+        ></span>
         <input readOnly placeholder={placeholder} className={styles.input} />
       </div>
 
       {/* Search modal */}
       {isSearchModalVisible ? (
         <>
-          <div onClick={handleSearchModalClose} className={styles.overlay}></div>
+          <div
+            onClick={handleSearchModalClose}
+            className={styles.overlay}
+          ></div>
           <div className={styles.modal}>
             <div className={styles.modalContent}>
               <Search />
               <div className={styles.initialCase}>
                 <PageSearchIcon />
                 <div className={styles.searchDocsTitle}>Search Docs</div>
-                <div className={styles.searchDocsDesc}>Search anything within the docs</div>
+                <div className={styles.searchDocsDesc}>
+                  Search anything within the docs
+                </div>
               </div>
             </div>
             <div className={styles.footer}>
