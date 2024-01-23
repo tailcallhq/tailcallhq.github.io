@@ -3,6 +3,14 @@ import React, { createContext, useEffect, useState, ReactNode } from "react"
 // Define the context type
 type GithubStarsContextType = number | null
 
+declare global {
+  interface Window {
+    __tc_data__: {
+      [key: string]: any
+    }
+  }
+}
+
 // Create the context
 export const GithubStarsContext = createContext<GithubStarsContextType>(null)
 

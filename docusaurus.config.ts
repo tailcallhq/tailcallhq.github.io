@@ -119,10 +119,10 @@ export default {
         highlightResult: true
       }
     ],
-    async function myPlugin(context, options) {
+    async function myPlugin() {
       return {
         name: "docusaurus-tailwindcss",
-        configurePostCss(postcssOptions) {
+        configurePostCss(postcssOptions: { [key: string]: any }) {
           // Appends TailwindCSS and AutoPrefixer.
           postcssOptions.plugins.push(require("tailwindcss"))
           postcssOptions.plugins.push(require("autoprefixer"))
