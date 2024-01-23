@@ -5,6 +5,23 @@ module.exports = {
     extend: {
       colors: {
         tailCall: {
+          border: {
+            light: {
+              100: "#f3f4f7",
+              200: "#e4e4e4",
+              300: "#e5e5e5",
+              400: "#e7e7e7",
+              500: "#cececf",
+              600: "#b6b6b7",
+            },
+            dark: {
+              100: "#121315",
+              200: "#323335",
+              300: "#2c2c2c",
+              400: "#545556",
+              700: "#000000",
+            },
+          },
           light: {
             100: "#FFFFFF",
             200: "#F3F3F3",
@@ -25,6 +42,28 @@ module.exports = {
           },
           yellow: "#FDEA2E",
         },
+      },
+      spacing: {
+        SPACE_01: "4px",
+        SPACE_02: "8px",
+        SPACE_03: "12px",
+        SPACE_04: "16px",
+        SPACE_05: "20px",
+        SPACE_06: "24px",
+        SPACE_07: "28px",
+        SPACE_08: "32px",
+        SPACE_09: "36px",
+        SPACE_10: "40px",
+        SPACE_11: "44px",
+        SPACE_12: "48px",
+        SPACE_13: "52px",
+        SPACE_14: "56px",
+        SPACE_15: "60px",
+        SPACE_16: "64px",
+        SPACE_17: "68px",
+        SPACE_18: "72px",
+        SPACE_19: "76px",
+        SPACE_20: "80px",
       },
     },
     fontFamily: {
