@@ -129,19 +129,9 @@ If you need to provide any input to gRPC method call you can specify it with the
 
 ```graphql
 type Query {
-  news: NewsData!
-    @grpc(
-      service: "NewsService"
-      method: "GetAllNews"
-      protoPath: "news.proto"
-    )
+  news: NewsData! @grpc(service: "NewsService", method: "GetAllNews", protoPath: "news.proto")
   newsById(news: NewsInput!): News!
-    @grpc(
-      service: "NewsService"
-      method: "GetNews"
-      body: "{{args.news}}"
-      protoPath: "news.proto"
-    )
+    @grpc(service: "NewsService", method: "GetNews", body: "{{args.news}}", protoPath: "news.proto")
 }
 ```
 
@@ -154,19 +144,9 @@ schema @server(port: 8000, graphiql: true) @upstream(baseURL: "http://localhost:
 }
 
 type Query {
-  news: NewsData!
-    @grpc(
-      service: "NewsService"
-      method: "GetAllNews"
-      protoPath: "src/grpc/tests/news.proto"
-    )
+  news: NewsData! @grpc(service: "NewsService", method: "GetAllNews", protoPath: "src/grpc/tests/news.proto")
   newsById(news: NewsInput!): News!
-    @grpc(
-      service: "NewsService"
-      method: "GetNews"
-      body: "{{args.news}}"
-      protoPath: "src/grpc/tests/news.proto"
-    )
+    @grpc(service: "NewsService", method: "GetNews", body: "{{args.news}}", protoPath: "src/grpc/tests/news.proto")
 }
 # highlight-end
 
@@ -219,7 +199,9 @@ Another important feature of `@grpc` operator is that it allows you to implement
 In out protobuf example file we have such a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`@upstream.batch` option](../operators/upstream.md#batch) first and specify `groupBy` option for the `@grpc` operator.
 
 ```graphql
-schema @server(port: 8000, graphiql: true) @upstream(baseURL: "http://localhost:50051", httpCache: true, batch: {delay: 10}) {
+schema
+  @server(port: 8000, graphiql: true)
+  @upstream(baseURL: "http://localhost:50051", httpCache: true, batch: {delay: 10}) {
   query: Query
 }
 
