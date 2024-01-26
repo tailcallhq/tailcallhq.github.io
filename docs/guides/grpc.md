@@ -145,7 +145,7 @@ type Query {
 }
 ```
 
-And it's only left to specify options of Tailcall's ingress and egress in the beginning of the config using [`@server`](../operators/server.md) and [`@upstrem`](../operators/upstream.md) operators. Wrapping up the whole result config that may look like this:
+And it's only left to specify options of Tailcall's ingress and egress in the beginning of the config using [`@server`](../operators/server.md) and [`@upstream`](../operators/upstream.md) operators. Wrapping up the whole result config that may look like this:
 
 ```graphql
 # highlight-start
