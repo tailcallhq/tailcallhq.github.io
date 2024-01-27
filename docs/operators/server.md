@@ -227,6 +227,14 @@ schema @server(
 )
 ```
 
+## showcase
+
+Enables the `/showcase/graphql` endpoint. This allows anyone to run arbitrary GraphQL schemas by passing a URL in the `config` query param.
+
+```graphql showLineNumbers
+schema @server(showcase: true)
+```
+
 ### Trade-offs
 
 Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
