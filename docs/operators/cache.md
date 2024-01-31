@@ -6,20 +6,20 @@ The **@cache** operator enables caching for any field which contains a resolver.
 
 ```graphql
 type Query {
-    posts: [Post] @http(path: "/posts")
+  posts: [Post] @http(path: "/posts")
 }
 
 type Post {
-    id: Int
-    title: String
-    userId: Int @cache(maxAge: 100)
-    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 200)
+  id: Int
+  title: String
+  userId: Int @cache(maxAge: 100)
+  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 200)
 }
 
 type User {
-    id: Int
-    name: String
-    email: String
+  id: Int
+  name: String
+  email: String
 }
 ```
 
@@ -27,20 +27,20 @@ For the above config, the result of `user` field will be cached because it conta
 
 ```graphql
 type Query {
-    posts: [Post] @http(path: "/posts")
+  posts: [Post] @http(path: "/posts")
 }
 
 type Post @cache(maxAge: 100) {
-    id: Int
-    title: String
-    userId: Int
-    user: User @http(path: "/user/{{value.userId}}")
+  id: Int
+  title: String
+  userId: Int
+  user: User @http(path: "/user/{{value.userId}}")
 }
 
 type User {
-    id: Int
-    name: String
-    email: String
+  id: Int
+  name: String
+  email: String
 }
 ```
 
@@ -48,20 +48,20 @@ When the `cache` directive is applied to a type then it is inherited by each of 
 
 ```graphql
 type Query {
-    posts: [Post] @http(path: "/posts")
+  posts: [Post] @http(path: "/posts")
 }
 
 type Post {
-    id: Int @cache(maxAge: 100)
-    title: String @cache(maxAge: 100)
-    userId: Int @cache(maxAge: 100)
-    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+  id: Int @cache(maxAge: 100)
+  title: String @cache(maxAge: 100)
+  userId: Int @cache(maxAge: 100)
+  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
 }
 
 type User {
-    id: Int
-    name: String
-    email: String
+  id: Int
+  name: String
+  email: String
 }
 ```
 
@@ -69,20 +69,20 @@ The cache directive is applied to each field in the type `Post` but since the di
 
 ```graphql
 type Query {
-    posts: [Post] @http(path: "/posts")
+  posts: [Post] @http(path: "/posts")
 }
 
 type Post {
-    id: Int
-    title: String
-    userId: Int
-    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+  id: Int
+  title: String
+  userId: Int
+  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
 }
 
 type User {
-    id: Int
-    name: String
-    email: String
+  id: Int
+  name: String
+  email: String
 }
 ```
 
@@ -90,20 +90,20 @@ In another example if the directive is applied to a type as well as the fields o
 
 ```graphql
 type Query {
-    posts: [Post] @http(path: "/posts")
+  posts: [Post] @http(path: "/posts")
 }
 
 type Post @cache(maxAge: 200) {
-    id: Int
-    title: String
-    userId: Int
-    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+  id: Int
+  title: String
+  userId: Int
+  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
 }
 
 type User {
-    id: Int
-    name: String
-    email: String
+  id: Int
+  name: String
+  email: String
 }
 ```
 
@@ -111,20 +111,20 @@ Hence, in the above config, the directive `@cache(maxAge: 200)` at type `Post` w
 
 ```graphql
 type Query {
-    posts: [Post] @http(path: "/posts")
+  posts: [Post] @http(path: "/posts")
 }
 
 type Post {
-    id: Int
-    title: String
-    userId: Int
-    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+  id: Int
+  title: String
+  userId: Int
+  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
 }
 
 type User {
-    id: Int
-    name: String
-    email: String
+  id: Int
+  name: String
+  email: String
 }
 ```
 
@@ -134,20 +134,20 @@ The way caching is implemented is that, it uses some information related to the 
 
 ```graphql
 type Query {
-    posts: [Post] @http(path: "/posts")
+  posts: [Post] @http(path: "/posts")
 }
 
 type Post {
-    id: Int
-    title: String
-    userId: Int
-    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+  id: Int
+  title: String
+  userId: Int
+  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
 }
 
 type User {
-    id: Int
-    name: String
-    email: String
+  id: Int
+  name: String
+  email: String
 }
 ```
 
