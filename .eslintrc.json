@@ -1,0 +1,17 @@
+{
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "requireConfigFile": false
+  },
+  "extends": ["plugin:@docusaurus/recommended", "plugin:@typescript-eslint/recommended"],
+  "plugins": ["@docusaurus", "@typescript-eslint"],
+  "rules": {
+    "@docusaurus/string-literal-i18n-messages": "error",
+    "@docusaurus/no-html-links": "error",
+    "@typescript-eslint/no-explicit-any": ["error", {"ignoreRestArgs": true}]
+    // Add other TypeScript rules as needed
+  },
+  "ignorePatterns": ["node_modules/", "build/"]
+}

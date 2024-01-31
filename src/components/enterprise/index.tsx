@@ -7,7 +7,7 @@ import Discover from "../shared/Discover"
 import Footer from "../shared/Footer"
 import Pricing from "./Pricing"
 
-const EnterprisePage = () => {
+const EnterprisePage = (): JSX.Element => {
   return (
     <div>
       <Hero />
