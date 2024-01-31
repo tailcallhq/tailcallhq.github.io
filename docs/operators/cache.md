@@ -2,37 +2,159 @@
 title: "@cache"
 ---
 
-The **@cache** operator enables caching for the query, field or type it is applied to. For eg:
+The **@cache** operator enables caching for any field which contains a resolver.
 
 ```graphql
-schema {
-  query: Query
-}
-
 type Query {
-  posts: [Post] @cache(maxAge: 3000)
-  user(id: Int): User
+    posts: [Post] @http(path: "/posts")
 }
 
 type Post {
-  title: String
-  body: String
-  user: User
+    id: Int
+    title: String
+    userId: Int @cache(maxAge: 100)
+    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 200)
 }
 
-type User @cache(maxAge: 4000) {
-  id: Int
-  name: String @cache(maxAge: 8000)
-  age: Int
+type User {
+    id: Int
+    name: String
+    email: String
 }
 ```
 
-## maxAge
+For the above config, the result of `user` field will be cached because it contains an http resolver. However, the output of `userId` & `title` will not be cached because it doesn't have a resolver for itself, it's value is fetched by the resolver at the `posts` field having the `@http(path: "/posts")` directive.
 
-the parameter `maxAge` takes a non-zero unsigned integer value which signifies the duration, in milliseconds, for which the value will be cached.
+```graphql
+type Query {
+    posts: [Post] @http(path: "/posts")
+}
 
-In the above example, the entire result of `posts` query will be cached for 3000ms. When the **@cache** operator is applied to a type, it is equivalent to applying it to each field individually. If for a type, one of the fields needs to be cached differently then this operator can be applied to that field separately and it will override the values provided for the type, as can be seen in the above example for `name` field in the `User` type.
+type Post @cache(maxAge: 100) {
+    id: Int
+    title: String
+    userId: Int
+    user: User @http(path: "/user/{{value.userId}}")
+}
 
-# How does the caching work?
+type User {
+    id: Int
+    name: String
+    email: String
+}
+```
 
-If **@cache** is set for a query or a field, the resolver for it will run once and the result will be stored in memory for `maxAge` milliseconds, and will expire after this duration. After the cache expires, the resolver will be run again to fetch the latest value and that value will then be cached.
+When the `cache` directive is applied to a type then it is inherited by each of the field of the type. Hence, the above config can be reduced into:
+
+```graphql
+type Query {
+    posts: [Post] @http(path: "/posts")
+}
+
+type Post {
+    id: Int @cache(maxAge: 100)
+    title: String @cache(maxAge: 100)
+    userId: Int @cache(maxAge: 100)
+    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+}
+
+type User {
+    id: Int
+    name: String
+    email: String
+}
+```
+
+The cache directive is applied to each field in the type `Post` but since the directive doesn't affect the field that do not have any resolver, hence, this is equivalent to the following
+
+```graphql
+type Query {
+    posts: [Post] @http(path: "/posts")
+}
+
+type Post {
+    id: Int
+    title: String
+    userId: Int
+    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+}
+
+type User {
+    id: Int
+    name: String
+    email: String
+}
+```
+
+In another example if the directive is applied to a type as well as the fields of the type then the one at the field will take precedence
+
+```graphql
+type Query {
+    posts: [Post] @http(path: "/posts")
+}
+
+type Post @cache(maxAge: 200) {
+    id: Int
+    title: String
+    userId: Int
+    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+}
+
+type User {
+    id: Int
+    name: String
+    email: String
+}
+```
+
+Hence, in the above config, the directive `@cache(maxAge: 200)` at type `Post` will be inherited by all the fields, however, since the field `user` already has a directive, it will not inherit the settings from the type. Hence, the config is equivalent to
+
+```graphql
+type Query {
+    posts: [Post] @http(path: "/posts")
+}
+
+type Post {
+    id: Int
+    title: String
+    userId: Int
+    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+}
+
+type User {
+    id: Int
+    name: String
+    email: String
+}
+```
+
+## Implementing Cache Key
+
+The way caching is implemented is that, it uses some information related to the query on which it is applied to, to generate a hash and then uses the hash as the key to the value that needs to be cached.
+
+```graphql
+type Query {
+    posts: [Post] @http(path: "/posts")
+}
+
+type Post {
+    id: Int
+    title: String
+    userId: Int
+    user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+}
+
+type User {
+    id: Int
+    name: String
+    email: String
+}
+```
+
+For the config above, field `user` will be cached and the key will be the result of hashing the value `"/user/{{value.userId}}"`. For e.g. if the value of `Post.userId` is `1` then the key will be the result of hashing the String `"/users/1"`
+
+## Parameter description
+
+### maxAge
+
+A non-zero unsigned integer which signifies the duration, in milliseconds, for which the value will be cached.
