@@ -32,7 +32,7 @@ const Hello = (): JSX.Element => {
       setMessage("")
       setStage("")
     }
-  }, [])
+  }, [email, message, stage])
 
   return (
     <section className="relative h-auto">
