@@ -12,6 +12,14 @@ export default {
   tagline: "<tagline>",
   headTags: [
     {
+      tagName: "script",
+      attributes: {
+        async: "true",
+        src: "https://tag.clearbitscripts.com/v1/pk_498a76355e253f5c7f4e7c7bed78748e/tags.js",
+        referrerPolicy: "strict-origin-when-cross-origin",
+      },
+    },
+    {
       tagName: "link",
       attributes: {
         rel: "preconnect",
