@@ -1,11 +1,16 @@
 import React from "react"
 import Heading from "@theme/Heading"
 
-import Lottie from "lottie-react"
+import {useLottie} from "lottie-react"
 import SolutionGraphic from "@site/static/animations/solution-graphic.json"
 import SectionTitle from "../shared/SectionTitle"
 
 const LegacyGateway = (): JSX.Element => {
+  const {View} = useLottie<"svg">({
+    animationData: SolutionGraphic,
+    loop: false,
+  })
+
   return (
     <section className="w-full my-SPACE_12 lg:px-SPACE_16">
       <div className="max-w-7xl mx-SPACE_04 sm:m-SPACE_10 lg:mx-auto lg:my-SPACE_20">
@@ -28,13 +33,7 @@ const LegacyGateway = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="w-full flex items-center justify-center px-0 mt-SPACE_07">
-        <Lottie
-          animationData={SolutionGraphic}
-          loop
-          className="scale-[1.12] sm:scale-100 bg-tailCall-dark-500 sm:bg-transparent"
-        />
-      </div>
+      <div className="w-full flex items-center justify-center px-0 mt-SPACE_07">{View}</div>
     </section>
   )
 }
