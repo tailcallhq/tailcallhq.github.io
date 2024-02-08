@@ -22,7 +22,7 @@ type MoreFeatures = {
 type Social = {
   id: number
   name: string
-  image?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  image?: FunctionComponent<SVGProps<SVGSVGElement>> | undefined
   href: string
 }
 
@@ -38,6 +38,12 @@ type EnterpriseFeature = {
   logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
   title: string
   description: string
+}
+
+type AdditionalEnterpriseFeatures = {
+  id: number
+  logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  title: string
 }
 
 type PricingPlans = {
@@ -71,3 +77,44 @@ type Investor = {
   name: string
   title: string
 }
+
+type RadioOptions = {
+  id: string
+  name: string
+  value: string
+}
+
+type SidebarLink = {
+  type: "link"
+  label: string
+  href: string
+  docId: string
+  unlisted: boolean
+}
+
+type SidebarCategory = {
+  type: "category"
+  label: string
+  collapsible: boolean
+  collapsed: boolean
+  items: SidebarLink[]
+}
+
+type SidebarItem = {
+  type: "category" | "link"
+  label: string
+  collapsible?: boolean
+  collapsed?: boolean
+  items?: SidebarLink[]
+  href?: string
+  docId?: string
+  unlisted?: boolean
+}
+
+type SidebarConfig = {
+  sidebar: SidebarItem[]
+  hiddenSidebarContainer: boolean
+}
+
+declare module "docusaurus-lunr-search/src/theme/SearchBar"
+declare module "react-platform-js"

@@ -1,4 +1,8 @@
 export const githubRepoURL = "https://github.com/tailcallhq/tailcall"
+export const tailCallBenchmarkUrl = "https://github.com/tailcallhq/graphql-benchmarks#benchmark-results"
+export const tailCallBlogUrl = "https://blog.tailcall.run/"
+export const codeSandboxUrl = "https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
+export const zapierLink = "https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/"
 
 export const partnerImages: PartnerImage[] = [
   {
@@ -212,7 +216,7 @@ export const enterpriseFeatures: EnterpriseFeature[] = [
   },
 ]
 
-export const additionalEnterpriseFeatures = [
+export const additionalEnterpriseFeatures: AdditionalEnterpriseFeatures[] = [
   {
     id: 1,
     logo: require("@site/static/icons/basic/adaptive.svg").default,
@@ -453,3 +457,29 @@ export const investors: Investor[] = [
     title: "SVP - Engineering Dream11",
   },
 ]
+
+export const radioOptions: RadioOptions[] = [
+  {id: "1", name: "Evaluating", value: "evaluating"},
+  {
+    id: "2",
+    name: "Monolith",
+    value: "monolith",
+  },
+  {
+    id: "3",
+    name: "Multiple Graphql with Bff",
+    value: "bff",
+  },
+  {
+    id: "4",
+    name: "Federated",
+    value: "federated",
+  },
+]
+
+// Define an enum for theme options
+export enum Theme {
+  Light = "light",
+  Dark = "dark",
+  Gray = "gray",
+}

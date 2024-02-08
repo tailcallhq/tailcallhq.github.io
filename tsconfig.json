@@ -3,6 +3,14 @@
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
     "jsx": "react",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "strict": true, // Enable all strict type checking options
+    "noImplicitAny": true, // Raise error on expressions and declarations with an implied 'any' type
+    "strictNullChecks": true, // When type checking, take into account 'null' and 'undefined'
+    "strictFunctionTypes": true, // Ensure function parameter and return type matching is more accurate
+    "strictBindCallApply": true, // Enable stricter checking of the 'bind', 'call', and 'apply' methods
+    "strictPropertyInitialization": true, // Ensure class properties are initialized in the constructor
+    "noImplicitThis": true, // Raise error on 'this' expressions with an implied 'any' type
+    "alwaysStrict": true // Parse in strict mode and emit "use strict" for each source file
   }
 }

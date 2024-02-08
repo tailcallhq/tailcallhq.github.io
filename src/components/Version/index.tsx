@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 
-const Version = () => {
+const Version = (): JSX.Element => {
   const [version, setVersion] = useState<string>()
 
   const fetchVersion = async () => {

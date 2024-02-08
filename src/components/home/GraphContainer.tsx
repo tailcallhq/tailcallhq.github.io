@@ -1,46 +1,46 @@
-import React, {useEffect, useRef} from "react"
+import React from "react"
 import CountUp from "react-countup"
 import TrackVisibility from "react-on-screen"
-import Lottie from "lottie-react"
+import {useLottie, useLottieInteractivity} from "lottie-react"
 
 type GraphContainerProps = {
   metricTitle: string
   metricData: number
   metricDesc: string
-  visual: any
+  visual: object
   duration?: number
   delay?: number
   start?: number
 }
 
-const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, duration, start}: GraphContainerProps) => {
-  const lottieRef = useRef()
-
-  const interactivity: any = {
-    mode: "scroll" as "scroll",
+const GraphContainer = ({
+  metricTitle,
+  metricData,
+  metricDesc,
+  visual,
+  delay,
+  duration,
+  start,
+}: GraphContainerProps): JSX.Element => {
+  const lottieObj = useLottie<"svg">({
+    animationData: visual,
+    loop: false,
+  })
+  const Animation = useLottieInteractivity({
+    lottieObj,
+    mode: "scroll",
     actions: [
       {
         visibility: [0, 1],
-        type: "loop" as "loop",
+        type: "loop",
         frames: [0],
       },
     ],
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      ;(lottieRef.current as any)?.pause()
-    }, delay)
-  }, [])
+  })
 
   return (
-    <div
-      style={{
-        border: "1px solid var(--ifm-color-dark-900)",
-      }}
-      className="h-[368px] lg:h-[400px] w-[95%] sm:w-[680px] rounded-3xl sm:rounded-[32px] flex flex-col relative"
-    >
-      <div className="flex flex-col px-6 py-4 lg:px-12 lg:py-8 z-10">
+    <div className="border border-solid border-tailCall-border-dark-300 h-[300px] lg:h-[400px] w-[95%] sm:w-[680px] rounded-3xl sm:rounded-[32px] flex flex-col relative">
+      <div className="flex flex-col px-SPACE_06 py-SPACE_04 lg:px-SPACE_12 lg:py-SPACE_08 z-10">
         <span className="text-content-small sm:text-content-medium text-tailCall-light-100">{metricTitle}</span>
 
         <span className="text-title-medium sm:text-title-large text-tailCall-light-100">
@@ -67,9 +67,7 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, dur
         <span className="text-content-tiny sm:text-content-small text-tailCall-light-400">{metricDesc}</span>
       </div>
 
-      <div className="absolute right-1 bottom-1">
-        <Lottie lottieRef={lottieRef} animationData={visual} interactivity={interactivity} loop={false} />
-      </div>
+      <div className="absolute right-SPACE_01 bottom-SPACE_01">{Animation}</div>
     </div>
   )
 }
