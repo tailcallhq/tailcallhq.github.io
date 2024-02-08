@@ -1,8 +1,8 @@
 import React from "react"
 
-import Lottie from "lottie-react"
 import SolutionGraphic from "@site/static/animations/solution-graphic.json"
 import SectionTitle from "../shared/SectionTitle"
+import LottieContainer from "./LottieContainer"
 
 const LegacyGateway = () => {
   return (
@@ -25,7 +25,7 @@ const LegacyGateway = () => {
       </div>
 
       <div className="w-full flex items-center justify-center px-0 mt-7">
-        <Lottie
+        <LottieContainer
           animationData={SolutionGraphic}
           loop
           className="scale-[1.12] sm:scale-100 bg-tailCall-dark-500 sm:bg-transparent"

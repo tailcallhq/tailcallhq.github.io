@@ -1,6 +1,6 @@
 # Website
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+[This website uses Docusaurus 2](https://docusaurus.io/) as its modern static website generator.
 
 ### Installation
 
@@ -14,7 +14,7 @@ $ npm i
 $ npm start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+This command starts a local development server and opens up a browser window. The server reflects most changes live without requiring a restart.
 
 ### Build
 
@@ -22,7 +22,7 @@ This command starts a local development server and opens up a browser window. Mo
 $ npm run build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+This command generates static content into the `build` directory, which any static contents hosting service can serve.
 
 ### Deployment
 

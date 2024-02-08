@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react"
 import CountUp from "react-countup"
 import TrackVisibility from "react-on-screen"
-import Lottie from "lottie-react"
+import LottieContainer from "./LottieContainer"
 
 type GraphContainerProps = {
   metricTitle: string
@@ -68,7 +68,7 @@ const GraphContainer = ({metricTitle, metricData, metricDesc, visual, delay, dur
       </div>
 
       <div className="absolute right-1 bottom-1">
-        <Lottie lottieRef={lottieRef} animationData={visual} interactivity={interactivity} loop={false} />
+        <LottieContainer lottieRef={lottieRef} animationData={visual} interactivity={interactivity} loop={false} />
       </div>
     </div>
   )
