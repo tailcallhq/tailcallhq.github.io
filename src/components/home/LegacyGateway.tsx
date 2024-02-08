@@ -17,13 +17,16 @@ const LegacyGateway = (): JSX.Element => {
           >
             Where legacy
             <br />
-            <span className="bg-tailCall-yellow px-SPACE_02 rounded-md sm:rounded-2xl">gateways fail?</span>
+            <span className="bg-tailCall-yellow px-SPACE_02 rounded-md sm:rounded-2xl">
+              gateways fail?
+            </span>
           </Heading>
 
           <p className="text-content-tiny font-normal sm:text-content-small lg:text-content-medium text-tailCall-dark-500">
-            A legacy gateway limits operations to the API's route, method, or headers, leaving request and response
-            bodies unaffected. Even on an enterprise plan, people are forced to write their own BFF solution or an API
-            Orchestration Layer.
+            A legacy gateway limits operations to the API's route, method, or
+            headers, leaving request and response bodies unaffected. Even on an
+            enterprise plan, people are forced to write their own BFF solution
+            or an API Orchestration Layer.
           </p>
         </div>
       </div>

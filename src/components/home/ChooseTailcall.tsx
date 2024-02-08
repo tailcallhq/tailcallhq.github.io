@@ -1,5 +1,5 @@
 import React from "react"
-import {chooseTailcall} from "@site/src/constants"
+import { chooseTailcall } from "@site/src/constants"
 
 const ChooseTailcall = (): JSX.Element => {
   return (
@@ -14,12 +14,20 @@ const ChooseTailcall = (): JSX.Element => {
             key={item.id}
           >
             <div className="h-16 w-16 sm:w-full sm:h-full">
-              <img src={item.image} alt="" className="max-w-[72px] sm:max-w-[110px]" />
+              <img
+                src={item.image}
+                alt=""
+                className="max-w-[72px] sm:max-w-[110px]"
+              />
             </div>
 
             <div>
-              <p className="text-title-small sm:text-title-large mt-SPACE_10 mb-SPACE_02 sm:mb-0">{item.title}</p>
-              <p className="text-content-tiny sm:text-content-small text-tailCall-light-600">{item.description}</p>
+              <p className="text-title-small sm:text-title-large mt-SPACE_10 mb-SPACE_02 sm:mb-0">
+                {item.title}
+              </p>
+              <p className="text-content-tiny sm:text-content-small text-tailCall-light-600">
+                {item.description}
+              </p>
             </div>
           </div>
         ))}

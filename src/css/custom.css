@@ -386,7 +386,8 @@ nav.menu {
   display: none !important;
 }
 
-.algolia-autocomplete.algolia-autocomplete.algolia-autocomplete-right .ds-dropdown-menu {
+.algolia-autocomplete.algolia-autocomplete.algolia-autocomplete-right
+  .ds-dropdown-menu {
   margin-top: 0 !important;
   left: 0 !important;
   overflow: auto;
@@ -403,15 +404,29 @@ nav.menu {
 }
 
 .grid-bg-section {
-  background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 1px),
-    linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 1px);
+  background-image: linear-gradient(
+      var(--ifm-color-brand-dark-opacity-05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      var(--ifm-color-brand-dark-opacity-05) 1px,
+      transparent 1px
+    );
   background-size: var(--ifm-grid-bg-size-lg) var(--ifm-grid-bg-size-lg);
   clip-path: inset(0.5rem 0 1rem 0);
 }
 
 .button-grid-bg-section {
-  background-image: linear-gradient(var(--ifm-color-brand-light-opacity-15) 1px, transparent 2px),
-    linear-gradient(90deg, var(--ifm-color-brand-light-opacity-15) 1px, transparent 2px);
+  background-image: linear-gradient(
+      var(--ifm-color-brand-light-opacity-15) 1px,
+      transparent 2px
+    ),
+    linear-gradient(
+      90deg,
+      var(--ifm-color-brand-light-opacity-15) 1px,
+      transparent 2px
+    );
   background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
   clip-path: inset(0.2rem);
   position: absolute;
@@ -419,16 +434,30 @@ nav.menu {
 }
 
 .button-grid-bg-section-dark {
-  background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px),
-    linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px);
+  background-image: linear-gradient(
+      var(--ifm-color-brand-dark-opacity-05) 1px,
+      transparent 2px
+    ),
+    linear-gradient(
+      90deg,
+      var(--ifm-color-brand-dark-opacity-05) 1px,
+      transparent 2px
+    );
   background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
   position: absolute;
   border-radius: 20px;
 }
 
 .button-grid-bg-github {
-  background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px),
-    linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px);
+  background-image: linear-gradient(
+      var(--ifm-color-brand-dark-opacity-05) 1px,
+      transparent 2px
+    ),
+    linear-gradient(
+      90deg,
+      var(--ifm-color-brand-dark-opacity-05) 1px,
+      transparent 2px
+    );
   background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
   scale: 0.9;
   opacity: 0;

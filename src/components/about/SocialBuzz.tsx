@@ -7,7 +7,9 @@ const SocialBuzz = (): JSX.Element => {
       <div className="flex flex-col gap-SPACE_06 lg:gap-y-44">
         <div className="ml-SPACE_04 lg:ml-32">
           <SectionTitle title="About Us" />
-          <span className="text-title-semi-large sm:text-display-small">Social & Buzz</span>
+          <span className="text-title-semi-large sm:text-display-small">
+            Social & Buzz
+          </span>
         </div>
 
         <img

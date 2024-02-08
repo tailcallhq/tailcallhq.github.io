@@ -3,9 +3,9 @@ import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
 import HeroImage from "@site/static/images/home/hero.svg"
-import {analyticsHandler} from "@site/src/utils"
-import {Theme, codeSandboxUrl} from "@site/src/constants"
-import {pageLinks} from "@site/src/constants/routes"
+import { analyticsHandler } from "@site/src/utils"
+import { Theme, codeSandboxUrl } from "@site/src/constants"
+import { pageLinks } from "@site/src/constants/routes"
 
 const Banner = (): JSX.Element => {
   return (
@@ -17,13 +17,18 @@ const Banner = (): JSX.Element => {
             className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl"
           >
             GraphQL platform engineered for{" "}
-            <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">scale</span>
+            <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">
+              scale
+            </span>
           </Heading>
           <p className="sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-SPACE_04 mb-0">
             A cloud native solution to streamline API management across{" "}
             <span className="font-bold sm:text-title-medium">edge, </span>
             <span className="font-bold sm:text-title-medium">middle, </span>
-            and <span className="font-bold sm:text-title-medium">service</span> layers.
+            and <span className="font-bold sm:text-title-medium">
+              service
+            </span>{" "}
+            layers.
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
@@ -31,14 +36,18 @@ const Banner = (): JSX.Element => {
               href={codeSandboxUrl}
               theme={Theme.Dark}
               width="small"
-              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              onClick={() =>
+                analyticsHandler("Home Page", "Click", "Playground")
+              }
             />
             <LinkButton
               title="Get Started"
               href={pageLinks.docs}
               theme={Theme.Light}
               width="small"
-              onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
+              onClick={() =>
+                analyticsHandler("Home Page", "Click", "Get Started")
+              }
             />
           </div>
 
@@ -47,13 +56,17 @@ const Banner = (): JSX.Element => {
               title="Try it Out"
               href={codeSandboxUrl}
               theme={Theme.Dark}
-              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              onClick={() =>
+                analyticsHandler("Home Page", "Click", "Playground")
+              }
             />
             <LinkButton
               title="Get Started"
               href={pageLinks.docs}
               theme={Theme.Light}
-              onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
+              onClick={() =>
+                analyticsHandler("Home Page", "Click", "Get Started")
+              }
             />
           </div>
         </div>

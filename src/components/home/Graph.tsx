@@ -7,8 +7,8 @@ import GraphContainer from "./GraphContainer"
 import githubLogo from "@site/static/icons/companies/github-light.svg"
 import RequestVisual from "@site/static/animations/request-visual.json"
 import LatencyVisual from "@site/static/animations/latency-visual.json"
-import {analyticsHandler} from "@site/src/utils"
-import {Theme, tailCallBenchmarkUrl} from "@site/src/constants"
+import { analyticsHandler } from "@site/src/utils"
+import { Theme, tailCallBenchmarkUrl } from "@site/src/constants"
 
 const Graph = (): JSX.Element => {
   return (
@@ -27,7 +27,9 @@ const Graph = (): JSX.Element => {
               href={tailCallBenchmarkUrl}
               theme={Theme.Gray}
               Icon={githubLogo}
-              onClick={() => analyticsHandler("Home Page", "Click", "View on Github")}
+              onClick={() =>
+                analyticsHandler("Home Page", "Click", "View on Github")
+              }
             />
           </div>
         </div>
@@ -58,7 +60,9 @@ const Graph = (): JSX.Element => {
               href={tailCallBenchmarkUrl}
               theme={Theme.Gray}
               Icon={githubLogo}
-              onClick={() => analyticsHandler("Home Page", "Click", "View on Github")}
+              onClick={() =>
+                analyticsHandler("Home Page", "Click", "View on Github")
+              }
             />
           </div>
         </div>

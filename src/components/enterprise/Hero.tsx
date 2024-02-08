@@ -2,9 +2,9 @@ import React from "react"
 import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
-import {analyticsHandler} from "@site/src/utils"
-import {Theme} from "@site/src/constants"
-import {pageLinks} from "@site/src/constants/routes"
+import { analyticsHandler } from "@site/src/utils"
+import { Theme } from "@site/src/constants"
+import { pageLinks } from "@site/src/constants/routes"
 
 const Hero = (): JSX.Element => {
   return (
@@ -15,7 +15,10 @@ const Hero = (): JSX.Element => {
       >
         <div>Extend the power</div>
         <div>
-          of <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">GraphQL</span>
+          of{" "}
+          <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">
+            GraphQL
+          </span>
         </div>
         <div>to your organization.</div>
       </Heading>

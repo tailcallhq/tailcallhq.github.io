@@ -1,9 +1,12 @@
-import React, {type ReactNode, useEffect, useState} from "react"
-import {useThemeConfig, ErrorCauseBoundary} from "@docusaurus/theme-common"
-import {splitNavbarItems, useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
-import {useHistory} from "react-router-dom"
-import {useLocation} from "@docusaurus/router"
-import NavbarItem, {type Props as NavbarItemConfig} from "@theme/NavbarItem"
+import React, { type ReactNode, useEffect, useState } from "react"
+import { useThemeConfig, ErrorCauseBoundary } from "@docusaurus/theme-common"
+import {
+  splitNavbarItems,
+  useNavbarMobileSidebar
+} from "@docusaurus/theme-common/internal"
+import { useHistory } from "react-router-dom"
+import { useLocation } from "@docusaurus/router"
+import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem"
 
 import Search from "docusaurus-lunr-search/src/theme/SearchBar" // Assuming Search is a valid component
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle"
@@ -15,14 +18,14 @@ import GithubStarsButton from "@site/src/components/shared/GithubStarsButton"
 import SearchIcon from "@site/static/icons/basic/search.svg"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import styles from "./styles.module.css"
-import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
+import { getSearchInputRef, setBodyOverflow } from "@site/src/utils"
 
 const useNavbarItems = () => {
   // TODO temporary casting until ThemeConfig type is improved (added by docusaurus)
   return useThemeConfig().navbar.items as NavbarItemConfig[]
 }
 
-const NavbarItems = ({items}: {items: NavbarItemConfig[]}): JSX.Element => {
+const NavbarItems = ({ items }: { items: NavbarItemConfig[] }): JSX.Element => {
   return (
     <>
       {items.map((item, i) => (
@@ -32,7 +35,7 @@ const NavbarItems = ({items}: {items: NavbarItemConfig[]}): JSX.Element => {
             new Error(
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
-${JSON.stringify(item, null, 2)}`,
+${JSON.stringify(item, null, 2)}`
             )
           }
         >
@@ -43,7 +46,13 @@ ${JSON.stringify(item, null, 2)}`,
   )
 }
 
-const NavbarContentLayout = ({left, right}: {left: ReactNode; right: ReactNode}) => {
+const NavbarContentLayout = ({
+  left,
+  right
+}: {
+  left: ReactNode
+  right: ReactNode
+}) => {
   return (
     <div className="navbar__inner">
       <div className="navbar__items">{left}</div>
@@ -55,7 +64,8 @@ const NavbarContentLayout = ({left, right}: {left: ReactNode; right: ReactNode})
 // Custom search component
 const CustomSearch = () => {
   const [showSearchIcon, setShowSearchIcon] = useState<boolean>(false)
-  const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
+  const [isSearchModalVisible, setIsSearchModalVisible] =
+    useState<boolean>(false)
   const history = useHistory()
   const location = useLocation()
 
@@ -71,10 +81,13 @@ const CustomSearch = () => {
   // Function to handle zoom behavior based on input focus
   const handleZoomBehavior = () => {
     /* TODO: Figure out a better way to do this */
-    const viewportMetaTag = document.querySelector('meta[name="viewport"]') as HTMLMetaElement
+    const viewportMetaTag = document.querySelector(
+      'meta[name="viewport"]'
+    ) as HTMLMetaElement
     if (viewportMetaTag) {
       // Enable user zooming when no input is in focus
-      viewportMetaTag.content = "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"
+      viewportMetaTag.content =
+        "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes"
       // Add an event listener to detect when an input is in focus
       document.addEventListener("focusin", handleInputFocus)
       // Remove the event listener when the component unmounts or the modal closes
@@ -86,12 +99,16 @@ const CustomSearch = () => {
 
   // Function to handle input focus
   const handleInputFocus = (event: FocusEvent) => {
-    const isInput = (event.target as HTMLElement).tagName.toLowerCase() === "input"
+    const isInput =
+      (event.target as HTMLElement).tagName.toLowerCase() === "input"
 
     // Disable user zooming when an input is in focus
-    const viewportMetaTag = document.querySelector('meta[name="viewport"]') as HTMLMetaElement
+    const viewportMetaTag = document.querySelector(
+      'meta[name="viewport"]'
+    ) as HTMLMetaElement
     if (viewportMetaTag && isInput) {
-      viewportMetaTag.content = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      viewportMetaTag.content =
+        "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
     }
   }
 
@@ -100,7 +117,9 @@ const CustomSearch = () => {
     let timer: NodeJS.Timeout
 
     // Check if the current page is within the "/docs/" path to show or hide the search icon
-    location.pathname.includes("/docs/") ? setShowSearchIcon(true) : setShowSearchIcon(false)
+    location.pathname.includes("/docs/")
+      ? setShowSearchIcon(true)
+      : setShowSearchIcon(false)
 
     // Set up a listener to handle changes in the browser history (navigation)
     const unlisten = history.listen((location, action) => {
@@ -136,10 +155,18 @@ const CustomSearch = () => {
 
   return (
     <>
-      {showSearchIcon && <SearchIcon onClick={handleSearchClick} className="lg:hidden mr-SPACE_03 h-6 w-6" />}
+      {showSearchIcon && (
+        <SearchIcon
+          onClick={handleSearchClick}
+          className="lg:hidden mr-SPACE_03 h-6 w-6"
+        />
+      )}
       {isSearchModalVisible ? (
         <>
-          <div onClick={handleSearchModalClose} className={styles.overlay}></div>
+          <div
+            onClick={handleSearchModalClose}
+            className={styles.overlay}
+          ></div>
           <div className={styles.modal}>
             {/* Search modal content */}
             <div className={styles.modalContent}>
@@ -157,7 +184,9 @@ const CustomSearch = () => {
               <div className={styles.initialCase}>
                 <PageSearchIcon />
                 <div className={styles.searchDocsTitle}>Search Docs</div>
-                <div className={`${styles.searchDocsDesc} ${styles.searchDocsCommon}`}>
+                <div
+                  className={`${styles.searchDocsDesc} ${styles.searchDocsCommon}`}
+                >
                   Search anything within the docs
                 </div>
               </div>

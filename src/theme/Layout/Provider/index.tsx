@@ -1,12 +1,12 @@
-import React, {ReactNode} from "react"
-import {composeProviders} from "@docusaurus/theme-common"
+import React, { ReactNode } from "react"
+import { composeProviders } from "@docusaurus/theme-common"
 import {
   ColorModeProvider,
   AnnouncementBarProvider,
   DocsPreferredVersionContextProvider,
   ScrollControllerProvider,
   NavbarProvider,
-  PluginHtmlClassNameProvider,
+  PluginHtmlClassNameProvider
 } from "@docusaurus/theme-common/internal"
 import GithubStarsProvider from "@site/src/components/shared/GithubStarsProvider"
 
@@ -23,11 +23,11 @@ const Provider = composeProviders([
   DocsPreferredVersionContextProvider,
   PluginHtmlClassNameProvider,
   NavbarProvider,
-  GithubStarsProvider,
+  GithubStarsProvider
 ])
 
 // LayoutProvider component wraps the composed providers around its children
-const LayoutProvider = ({children}: LayoutProviderProps) => {
+const LayoutProvider = ({ children }: LayoutProviderProps) => {
   return <Provider>{children}</Provider>
 }
 

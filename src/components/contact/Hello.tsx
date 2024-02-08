@@ -1,10 +1,10 @@
-import React, {useCallback, useState} from "react"
+import React, { useCallback, useState } from "react"
 import Heading from "@theme/Heading"
-import toast, {Toaster} from "react-hot-toast"
+import toast, { Toaster } from "react-hot-toast"
 import Grid from "@site/static/images/about/grid-large.svg"
 import LinkButton from "../shared/LinkButton"
-import {analyticsHandler} from "@site/src/utils"
-import {Theme, radioOptions, zapierLink} from "@site/src/constants"
+import { analyticsHandler } from "@site/src/utils"
+import { Theme, radioOptions, zapierLink } from "@site/src/constants"
 
 const Hello = (): JSX.Element => {
   const [email, setEmail] = useState<string>("")
@@ -17,15 +17,15 @@ const Hello = (): JSX.Element => {
       body: JSON.stringify({
         email,
         stage,
-        message,
-      }),
+        message
+      })
     })
 
     const data = await response.json()
 
     if (data.status === "success") {
       toast.success("Thank you for contacting us.", {
-        duration: 3000,
+        duration: 3000
       })
       analyticsHandler("Contact Page", "Click", "Send message")
       setEmail("")
@@ -44,12 +44,19 @@ const Hello = (): JSX.Element => {
           as="h2"
           className="text-title-large text-center sm:text-left sm:text-display-medium lg:text-display-large lg:max-w-md"
         >
-          Say <span className="bg-tailCall-yellow rounded sm:rounded-2xl px-SPACE_01 sm:px-SPACE_02">hello</span> to us!
+          Say{" "}
+          <span className="bg-tailCall-yellow rounded sm:rounded-2xl px-SPACE_01 sm:px-SPACE_02">
+            hello
+          </span>{" "}
+          to us!
         </Heading>
 
         <div className="flex flex-col justify-between space-y-SPACE_07 w-full sm:w-fit">
           <div className="flex flex-col space-y-SPACE_02">
-            <label id="email" className="text-content-tiny sm:text-content-small font-medium">
+            <label
+              id="email"
+              className="text-content-tiny sm:text-content-small font-medium"
+            >
               Email
             </label>
             <input
@@ -68,7 +75,10 @@ const Hello = (): JSX.Element => {
             </p>
             <div className="space-y-SPACE_03 radio-group">
               {radioOptions.map((option) => (
-                <div className="flex items-center space-x-SPACE_02 " key={option.id}>
+                <div
+                  className="flex items-center space-x-SPACE_02 "
+                  key={option.id}
+                >
                   <input
                     type="radio"
                     name={option.name}
@@ -78,7 +88,10 @@ const Hello = (): JSX.Element => {
                     onChange={() => setStage(option.value)}
                     className="radio-button"
                   />
-                  <label htmlFor={option.id} className="text-content-small radio-label cursor-pointer">
+                  <label
+                    htmlFor={option.id}
+                    className="text-content-small radio-label cursor-pointer"
+                  >
                     {option.name}
                   </label>
                 </div>
@@ -87,7 +100,11 @@ const Hello = (): JSX.Element => {
           </div>
 
           <div className="flex flex-col space-y-SPACE_02">
-            <label id="company" htmlFor="" className="text-content-tiny sm:text-content-small font-medium">
+            <label
+              id="company"
+              htmlFor=""
+              className="text-content-tiny sm:text-content-small font-medium"
+            >
               Tell us about your company
             </label>
             <textarea
@@ -99,7 +116,12 @@ const Hello = (): JSX.Element => {
             />
           </div>
 
-          <LinkButton theme={Theme.Dark} onClick={sendData} title="Send message" disabled={!(email && stage)} />
+          <LinkButton
+            theme={Theme.Dark}
+            onClick={sendData}
+            title="Send message"
+            disabled={!(email && stage)}
+          />
         </div>
       </div>
     </section>

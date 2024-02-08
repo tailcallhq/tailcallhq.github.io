@@ -2,7 +2,7 @@ import React from "react"
 import Marquee from "react-fast-marquee"
 
 import GreaterThanUnderscoreIcon from "@site/static/icons/basic/gt-undescore-gray.svg"
-import {partnerImages} from "@site/src/constants"
+import { partnerImages } from "@site/src/constants"
 
 const Partners = (): JSX.Element => {
   return (
@@ -15,7 +15,11 @@ const Partners = (): JSX.Element => {
         <div className="hidden sm:flex space-x-SPACE_16 mt-SPACE_10 overflow-hidden">
           {partnerImages.map((partner) => (
             <div key={partner.id} className="h-20">
-              <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                className="max-w-[152px]"
+              />
             </div>
           ))}
         </div>
@@ -23,7 +27,11 @@ const Partners = (): JSX.Element => {
       <div className="sm:hidden flex items-center justify-around flex-wrap mt-SPACE_06 space-y-SPACE_02">
         {partnerImages.map((partner) => (
           <div key={partner.id} className="h-20">
-            <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
+            <img
+              src={partner.logo}
+              alt={partner.name}
+              className="max-w-[152px]"
+            />
           </div>
         ))}
       </div>
