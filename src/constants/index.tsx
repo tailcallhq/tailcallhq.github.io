@@ -59,9 +59,9 @@ export const features: Feature[] = [
     title: "Orchestration",
     content: (
       <>
-        Harness the power of Tailcall's advanced orchestration primitives, designed for large-scale API management.
-        Effortlessly interface with <Highlight text="gRPC, REST, GraphQL," /> and more, ensuring seamless communication
-        and complex data transformations for enterprise operations.
+        Tailcall provides first-class primitives to perform API Orchestration across protocols such as{" "}
+        <Highlight text="gRPC, REST, GraphQL," />. This allow developers to enrich existing APIs with more data, perform
+        transformations or build a completely new set of aggregated APIs.
       </>
     ),
   },
