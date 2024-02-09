@@ -84,9 +84,9 @@ export const features: Feature[] = [
     title: "Efficiency",
     content: (
       <>
-        Tailcall brings breakthrough performance optimizations, integrating{" "}
-        <Highlight text="enterprise-specific tuning " /> for high-speed and low-latency. Expect unmatched response
-        times, lower resource utilization, and adaptability to your unique operational needs and workload demands.
+        Tailcall can introspect all orchestration requirements ahead of time and automatically generate a highly
+        efficient data access layer. This results in achieving much lower resource utilization and adaptability to
+        unique operational needs and workload demands.
       </>
     ),
   },
