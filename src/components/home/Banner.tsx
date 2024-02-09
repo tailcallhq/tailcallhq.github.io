@@ -21,8 +21,8 @@ const Banner = (): JSX.Element => {
             <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">scale</span>
           </Heading>
           <p className="sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-SPACE_04 mb-0">
-            Tailcall is designed to quickly and efficiently enhance existing APIs with additional functionality and
-            higher performance.
+            Tailcall is an open-source API orchestrator that allows organizations to build a high-performance data
+            access layer, atop existing APIs.
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
