@@ -5,14 +5,7 @@ import {features} from "@site/src/constants"
 import GreaterThanUnderscoreIcon from "@site/static/icons/basic/gt-underscore.svg"
 
 type FeatureProps = {
-  feature: {
-    id: number
-    logo: string
-    title: string
-    description1: string
-    highlightedText: string
-    description2: string
-  }
+  feature: Feature
 }
 
 const Feature = ({feature}: FeatureProps): JSX.Element => {
@@ -37,11 +30,7 @@ const Feature = ({feature}: FeatureProps): JSX.Element => {
       >
         <div className="bg-gradient-to-b from-tailCall-light-100 from-3% via-[#E4E5E9] via-67% to-tailCall-light-100 absolute -left-SPACE_04 sm:-left-SPACE_06 w-[2px] h-full" />
         <p className="text-content-tiny sm:text-content-small lg:text-content-medium max-w-md">
-          <span>{feature.description1}</span>
-          <span className="text-content-tiny font-bold sm:text-title-tiny lg:text-title-small bg-tailCall-yellow rounded-[4px] sm:rounded-md px-SPACE_01">
-            {feature.highlightedText}
-          </span>
-          <span>{feature.description2}</span>
+          <span>{feature.content}</span>
         </p>
         <div className="sm:mt-SPACE_20">
           <img src={feature.logo} alt="" />

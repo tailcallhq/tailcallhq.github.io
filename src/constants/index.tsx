@@ -1,3 +1,5 @@
+import React from "react"
+
 export const githubRepoURL = "https://github.com/tailcallhq/tailcall"
 export const tailCallBenchmarkUrl = "https://github.com/tailcallhq/graphql-benchmarks#benchmark-results"
 export const tailCallBlogUrl = "https://blog.tailcall.run/"
@@ -42,52 +44,75 @@ export const partnerImages: PartnerImage[] = [
   },
 ]
 
+const Highlight = ({text}: {text: string}) => (
+  <>
+    <span className="text-content-tiny font-bold sm:text-title-tiny lg:text-title-small bg-tailCall-yellow rounded-[4px] sm:rounded-md px-SPACE_01">
+      {text}
+    </span>
+  </>
+)
+
 export const features: Feature[] = [
   {
     id: 1,
     logo: require("@site/static/images/home/orchestration.png").default,
     title: "Orchestration",
-    description1:
-      "Harness the power of Tailcall's advanced orchestration primitives, designed for large-scale API management. Effortlessly interface with  ",
-    highlightedText: "gRPC, REST, GraphQL,",
-    description2:
-      " and more, ensuring seamless communication and complex data transformations for enterprise operations.",
+    content: (
+      <>
+        Harness the power of Tailcall's advanced orchestration primitives, designed for large-scale API management.
+        Effortlessly interface with <Highlight text="gRPC, REST, GraphQL," /> and more, ensuring seamless communication
+        and complex data transformations for enterprise operations.
+      </>
+    ),
   },
   {
     id: 2,
     logo: require("@site/static/images/home/governance.png").default,
     title: "Governance",
-    description1: "Implement robust governance and security across your API landscape using our ",
-    highlightedText: "code-based governance",
-    description2:
-      " and comprehensive security framework. Enjoy precise control mechanisms that ensure compliance, standardization, operational consistency, and safeguard against evolving digital threats.",
+    content: (
+      <>
+        Implement robust governance and security across your API landscape using our{" "}
+        <Highlight text="code-based governance" /> and comprehensive security framework. Enjoy precise control
+        mechanisms that ensure compliance, standardization, operational consistency, and safeguard against evolving
+        digital threats.
+      </>
+    ),
   },
   {
     id: 3,
     logo: require("@site/static/images/home/efficiency.png").default,
     title: "Efficiency",
-    description1: "Tailcall brings breakthrough performance optimizations, integrating ",
-    highlightedText: "enterprise-specific tuning ",
-    description2:
-      " for high-speed and low-latency. Expect unmatched response times, lower resource utilization, and adaptability to your unique operational needs and workload demands.",
+    content: (
+      <>
+        Tailcall brings breakthrough performance optimizations, integrating{" "}
+        <Highlight text="enterprise-specific tuning " /> for high-speed and low-latency. Expect unmatched response
+        times, lower resource utilization, and adaptability to your unique operational needs and workload demands.
+      </>
+    ),
   },
   {
     id: 4,
     logo: require("@site/static/images/home/resiliency.png").default,
     title: "Resiliency",
-    description1:
-      "Engineered for enterprise resilience, Tailcall guarantees robust performance under any conditions. Our platform is designed for ",
-    highlightedText: "high availability and fault tolerance,",
-    description2: " ensuring uninterrupted service and reliability at scale.",
+    content: (
+      <>
+        Engineered for enterprise resilience, Tailcall guarantees robust performance under any conditions. Our platform
+        is designed for <Highlight text="high availability and fault tolerance," /> ensuring uninterrupted service and
+        reliability at scale.
+      </>
+    ),
   },
   {
     id: 5,
     logo: require("@site/static/images/home/extendability.png").default,
     title: "Extendability",
-    description1: "Tailcall's ",
-    highlightedText: "plugin-centric",
-    description2:
-      " extendability empowers enterprises to craft custom solutions. Design and integrate bespoke plugins that precisely fit your unique requirements, enhancing the platform's functionality to align with your specific business objectives.",
+    content: (
+      <>
+        Tailcall's <Highlight text="plugin-centric" /> extendability empowers enterprises to craft custom solutions.
+        Design and integrate bespoke plugins that precisely fit your unique requirements, enhancing the platform's
+        functionality to align with your specific business objectives.
+      </>
+    ),
   },
 ]
 

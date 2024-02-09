@@ -8,9 +8,7 @@ type Feature = {
   id: number
   logo: string
   title: string
-  description1: string
-  highlightedText: string
-  description2: string
+  content: React.JSX.Element
 }
 
 type MoreFeatures = {
