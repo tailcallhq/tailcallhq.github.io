@@ -21,10 +21,11 @@ const LegacyGateway = (): JSX.Element => {
           </Heading>
 
           <p className="text-content-tiny font-normal sm:text-content-small lg:text-content-medium text-tailCall-dark-500">
-            A traditional API Gateway restricts operations to an API's route, method, or headers, without affecting the
-            request and response bodies. This limitation constrains the operations that can be performed on an API,
-            ultimately compelling engineering teams to either intertwine API orchestration logic with business logic or
-            to develop and maintain a separate layer of abstraction that helps solve this problem.
+            A traditional API Gateway restricts operations to an API's route, method, or headers, and doesn't allow
+            modifications to the request and response bodies. This limitation constrains the operations that can be
+            performed on an API, ultimately compelling engineering teams to either intertwine orchestration logic with
+            business logic or to develop and maintain a separate layer of abstraction such as BFF (backend for frontend)
+            that helps solve this problem .
           </p>
         </div>
       </div>

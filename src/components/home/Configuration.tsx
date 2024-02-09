@@ -11,8 +11,8 @@ const Configuration = (): JSX.Element => {
           Get <span className="rounded-lg px-SPACE_02 bg-tailCall-yellow">Started</span>
         </Heading>
         <p className="text-content-small sm:text-content-medium mb-SPACE_11">
-          Setup the Tailcall via npm to build high-performance <b>GraphQL</b> APIs on top of existing REST endpoints. To
-          dive deeper into TailCall checkout our <Link href="/docs">docs</Link> for detailed tutorials and guides.
+          Setup Tailcall via npm to build a high-performance <b>GraphQL API</b> on top of existing REST endpoints.
+          Checkout our <Link href="/docs">docs</Link> for detailed tutorials and guides.
         </p>
       </div>
       <div>
@@ -44,7 +44,7 @@ type Post {
   title: String!
   body: String!
   userId: Int!
-  
+
   # Expand a post with user information
   user: User @http(path: "/users/{{value.userId}}")
 }
