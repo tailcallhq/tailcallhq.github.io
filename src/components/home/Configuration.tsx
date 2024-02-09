@@ -1,6 +1,7 @@
 import React from "react"
 import Heading from "@theme/Heading"
 import CodeBlock from "@theme/CodeBlock"
+import Link from "@docusaurus/Link"
 
 const Configuration = (): JSX.Element => {
   return (
@@ -10,12 +11,8 @@ const Configuration = (): JSX.Element => {
           Get <span className="rounded-lg px-SPACE_02 bg-tailCall-yellow">Started</span>
         </Heading>
         <p className="text-content-small sm:text-content-medium mb-SPACE_11">
-          Setup the Tailcall instantly via npm and unlock the power of high-performance API orchestration.
-        </p>
-        <span className="text-title-small sm:text-title-medium">More</span>
-        <p className="text-content-small sm:text-content-medium mt-SPACE_04">
-          To dive deeper into TailCall checkout our docs for detailed tutorials. Ideal for devs at any level, it's
-          packed with advanced tips, powerful operators and best practices.
+          Setup the Tailcall via npm to build high-performance <b>GraphQL</b> APIs on top of existing REST endpoints. To
+          dive deeper into TailCall checkout our <Link href="/docs">docs</Link> for detailed tutorials and guides.
         </p>
       </div>
       <div>
@@ -47,6 +44,7 @@ type Post {
   title: String!
   body: String!
   userId: Int!
+  
   # Expand a post with user information
   user: User @http(path: "/users/{{value.userId}}")
 }
