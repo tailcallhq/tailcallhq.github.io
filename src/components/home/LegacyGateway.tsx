@@ -15,15 +15,16 @@ const LegacyGateway = (): JSX.Element => {
             as="h3"
             className="text-title-large sm:text-display-tiny lg:text-display-small text-tailCall-dark-500 min-w-fit"
           >
-            Where legacy
+            Where traditional
             <br />
             <span className="bg-tailCall-yellow px-SPACE_02 rounded-md sm:rounded-2xl">gateways fail?</span>
           </Heading>
 
           <p className="text-content-tiny font-normal sm:text-content-small lg:text-content-medium text-tailCall-dark-500">
-            A legacy gateway limits operations to the API's route, method, or headers, leaving request and response
-            bodies unaffected. Even on an enterprise plan, people are forced to write their own BFF solution or an API
-            Orchestration Layer.
+            A traditional API Gateway restricts operations to an API's route, method, or headers, without affecting the
+            request and response bodies. This limitation constrains the operations that can be performed on an API,
+            ultimately compelling engineering teams to either intertwine API orchestration logic with business logic or
+            to develop and maintain a separate layer of abstraction that helps solve this problem.
           </p>
         </div>
       </div>
