@@ -84,9 +84,9 @@ export const features: Feature[] = [
     title: "Efficiency",
     content: (
       <>
-        Tailcall can introspect all orchestration requirements ahead of time and automatically generate a highly
-        efficient data access layer. This results in achieving much lower resource utilization and adaptability to
-        unique operational needs and workload demands.
+        Tailcall can introspect all orchestration requirements <Highlight text="ahead of time" /> and automatically
+        generate a highly efficient data access layer. This results in achieving much lower resource utilization and
+        opens up opportunities to use in ultra-low latency workloads.
       </>
     ),
   },
