@@ -71,10 +71,10 @@ export const features: Feature[] = [
     title: "Governance",
     content: (
       <>
-        Implement robust governance and security across your API landscape using our{" "}
-        <Highlight text="code-based governance" /> and comprehensive security framework. Enjoy precise control
-        mechanisms that ensure compliance, standardization, operational consistency, and safeguard against evolving
-        digital threats.
+        Tailcall allows engineering and product teams to think in terms of <Highlight text={"business entities"} /> and
+        provide an idiomatic way to discover, query and update each entity. This empowers teams to build a common
+        understanding of all the entities in an organization, what they contain, who has access and their relationships
+        with each other.
       </>
     ),
   },
