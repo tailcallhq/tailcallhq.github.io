@@ -6,6 +6,7 @@ import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
 import {Theme, codeSandboxUrl} from "@site/src/constants"
 import {pageLinks} from "@site/src/constants/routes"
+import Link from "@docusaurus/Link"
 
 const Banner = (): JSX.Element => {
   return (
@@ -16,14 +17,12 @@ const Banner = (): JSX.Element => {
             as="h2"
             className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl"
           >
-            GraphQL platform engineered for{" "}
+            API platform engineered for{" "}
             <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">scale</span>
           </Heading>
           <p className="sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-SPACE_04 mb-0">
-            A cloud native solution to streamline API management across{" "}
-            <span className="font-bold sm:text-title-medium">edge, </span>
-            <span className="font-bold sm:text-title-medium">middle, </span>
-            and <span className="font-bold sm:text-title-medium">service</span> layers.
+            Tailcall is designed to quickly and efficiently enhance existing APIs with additional functionality and
+            higher performance.
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
