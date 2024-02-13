@@ -2,7 +2,19 @@
 title: "@cache"
 ---
 
-The **@cache** operator enables caching for any field which contains a resolver.
+The **@cache** directive provides a protocol agnostic mechanism for caching the results of fields within a GraphQL schema. Like any other cache implementation this feature is useful for optimizing performance by reducing the need to repeatedly fetch data that doesn't change frequently.
+
+## maxAge
+
+```graphql
+@cache(maxAge: Int)
+```
+
+This parameter is a non-zero unsigned integer that specifies the duration, in milliseconds, for which the cached value should be retained.
+
+## Usage
+
+Consider the following GraphQL schema example:
 
 ```graphql
 type Query {
@@ -23,7 +35,9 @@ type User {
 }
 ```
 
-For the above config, the result of `user` field will be cached because it contains an http resolver. However, the output of `userId` & `title` will not be cached because it doesn't have a resolver for itself, it's value is fetched by the resolver at the `posts` field having the `@http(path: "/posts")` directive.
+In this configuration, the result of the `user` field will be cached because it is associated with an HTTP resolver. However, the values of `userId` and `title` will not be cached as they do not have their own resolvers; their values are retrieved by the resolver at the `posts` field, which utilizes the `@http(path: "/posts")` directive.
+
+Applying the `@cache` directive at the type level affects all fields within that type. For example:
 
 ```graphql
 type Query {
@@ -44,7 +58,7 @@ type User {
 }
 ```
 
-When the `cache` directive is applied to a type then it is inherited by each of the field of the type. Hence, the above config can be reduced into:
+This configuration can be reduced as follows, demonstrating that the `@cache` directive, when applied to a type, is inherited by each field within that type:
 
 ```graphql
 type Query {
@@ -65,7 +79,7 @@ type User {
 }
 ```
 
-The cache directive is applied to each field in the type `Post` but since the directive doesn't affect the field that do not have any resolver, hence, this is equivalent to the following
+However, since the `@cache` directive does not affect fields without resolvers, the effective configuration can be further reduced to follows:
 
 ```graphql
 type Query {
@@ -86,7 +100,7 @@ type User {
 }
 ```
 
-In another example if the directive is applied to a type as well as the fields of the type then the one at the field will take precedence
+When the `@cache` directive is applied both at the type level and on individual fields within that type, the field-level directive takes precedence:
 
 ```graphql
 type Query {
@@ -107,54 +121,10 @@ type User {
 }
 ```
 
-Hence, in the above config, the directive `@cache(maxAge: 200)` at type `Post` will be inherited by all the fields, however, since the field `user` already has a directive, it will not inherit the settings from the type. Hence, the config is equivalent to
+Thus, in the configuration above, while the `@cache(maxAge: 200)` directive at the type level is inherited by all fields, the `user` field's explicit `@cache(maxAge: 100)` directive takes precedence.
 
-```graphql
-type Query {
-  posts: [Post] @http(path: "/posts")
-}
+## Cache Key
 
-type Post {
-  id: Int
-  title: String
-  userId: Int
-  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
-}
+The caching mechanism generates a hash based on information related to the applied query to serve as the cache key for the corresponding value.
 
-type User {
-  id: Int
-  name: String
-  email: String
-}
-```
-
-## Implementing Cache Key
-
-The way caching is implemented is that, it uses some information related to the query on which it is applied to, to generate a hash and then uses the hash as the key to the value that needs to be cached.
-
-```graphql
-type Query {
-  posts: [Post] @http(path: "/posts")
-}
-
-type Post {
-  id: Int
-  title: String
-  userId: Int
-  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
-}
-
-type User {
-  id: Int
-  name: String
-  email: String
-}
-```
-
-For the config above, field `user` will be cached and the key will be the result of hashing the value `"/user/{{value.userId}}"`. For e.g. if the value of `Post.userId` is `1` then the key will be the result of hashing the String `"/users/1"`
-
-## Parameter description
-
-### maxAge
-
-A non-zero unsigned integer which signifies the duration, in milliseconds, for which the value will be cached.
+For instance, the `user` field in the following configuration will be cached, with the cache key being the hash of the interpolated string `"/user/{{value.userId}}"`. For example, if `Post.userId` equals `1`, the cache key will be the hash of the string `"/users/1"`.
