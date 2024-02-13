@@ -5,7 +5,6 @@ type PartnerImage = {
 }
 
 type Feature = {
-  id: number
   logo: string
   title: string
   content: React.JSX.Element

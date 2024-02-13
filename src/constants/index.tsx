@@ -54,32 +54,30 @@ const Highlight = ({text}: {text: string}) => (
 
 export const features: Feature[] = [
   {
-    id: 1,
     logo: require("@site/static/images/home/orchestration.png").default,
     title: "Orchestration",
     content: (
       <>
         Tailcall provides first-class primitives to perform API Orchestration across protocols such as{" "}
         <Highlight text="gRPC, REST, GraphQL," />. This allow developers to enrich existing APIs with more data, perform
-        transformations or build a completely new set of aggregated APIs.
+        transformations or build a completely new set of aggregation APIs.
       </>
     ),
   },
   {
-    id: 2,
     logo: require("@site/static/images/home/governance.png").default,
     title: "Governance",
     content: (
       <>
-        Tailcall allows engineering and product teams to think in terms of <Highlight text={"business entities"} /> and
-        provide an idiomatic way to discover, query and update each entity. This empowers teams to build a common
-        understanding of all the entities in an organization, what they contain, who has access and their relationships
-        with each other.
+        With Tailcall, your focus shifts to the 'what'—such as entities, their relationships, access control, security,
+        authentication, caching, and more—rather than the 'how'. This shift is enabled by the Tailcall DSL, embodying a
+        true <Highlight text="declarative approach" /> to managing APIs. Unlike traditional API gateways that apply
+        these properties directly to APIs, Tailcall's DSL simplifies governance and clarifies semantics, providing a
+        more intuitive framework for API management.
       </>
     ),
   },
   {
-    id: 3,
     logo: require("@site/static/images/home/efficiency.png").default,
     title: "Efficiency",
     content: (
@@ -90,27 +88,29 @@ export const features: Feature[] = [
       </>
     ),
   },
+  // {
+  //   logo: require("@site/static/images/home/resiliency.png").default,
+  //   title: "Resiliency",
+  //   content: (
+  //     <>
+  //       Tailcall offers advanced resiliency primitives including automatic failover, rate limiting and circuit breakers,
+  //       ensuring high availability and stability across any distributed systems. It maintains optimal performance and
+  //       reliability under varying loads and potential threats. Engineered for enterprise resilience, Tailcall guarantees
+  //       robust performance under any conditions. Our platform is designed for{" "}
+  //       <Highlight text="high availability and fault tolerance," /> ensuring uninterrupted service and reliability at
+  //       scale.
+  //     </>
+  //   ),
+  // },
   {
-    id: 4,
-    logo: require("@site/static/images/home/resiliency.png").default,
-    title: "Resiliency",
-    content: (
-      <>
-        Engineered for enterprise resilience, Tailcall guarantees robust performance under any conditions. Our platform
-        is designed for <Highlight text="high availability and fault tolerance," /> ensuring uninterrupted service and
-        reliability at scale.
-      </>
-    ),
-  },
-  {
-    id: 5,
     logo: require("@site/static/images/home/extendability.png").default,
     title: "Extendability",
     content: (
       <>
-        Tailcall's <Highlight text="plugin-centric" /> extendability empowers enterprises to craft custom solutions.
-        Design and integrate bespoke plugins that precisely fit your unique requirements, enhancing the platform's
-        functionality to align with your specific business objectives.
+        At times, the built-in primitives may not fully satisfy specific orchestration needs. In such instances,
+        Tailcall offers a lightweight embedded <Highlight text="JavaScript" /> runtime. This feature enables you to
+        attach custom hooks for monitoring events within Tailcall, allowing you to directly issue commands for the
+        subsequent actions Tailcall should execute.
       </>
     ),
   },
@@ -119,17 +119,17 @@ export const features: Feature[] = [
 export const moreFeatures: MoreFeatures[] = [
   {
     id: 1,
-    title: "Powerful Batching Primitive",
+    title: "Ahead of Time Optimizations",
     logo: require("@site/static/icons/basic/rocket-icon.svg").default,
   },
   {
     id: 2,
-    title: "Extensions with plugins and JS support",
+    title: "Composable Orchestration Primitives",
     logo: require("@site/static/icons/basic/extension.svg").default,
   },
   {
     id: 3,
-    title: "Field based Authentication & Authorisation",
+    title: "Macro Resiliency Capabilities",
     logo: require("@site/static/icons/basic/shield.svg").default,
   },
   {
@@ -139,7 +139,7 @@ export const moreFeatures: MoreFeatures[] = [
   },
   {
     id: 5,
-    title: "Performance",
+    title: "High Performance",
     logo: require("@site/static/icons/basic/line-chart-up.svg").default,
   },
   {
@@ -154,7 +154,7 @@ export const moreFeatures: MoreFeatures[] = [
   },
   {
     id: 8,
-    title: "Compile time tracks",
+    title: "Compile time Checks",
     logo: require("@site/static/icons/basic/clock.svg").default,
   },
 ]
