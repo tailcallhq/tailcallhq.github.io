@@ -9,12 +9,16 @@ The **@grpc** operator is an essential GraphQL custom directive designed to inte
 The **@grpc** operator allows GraphQL fields to be resolved using gRPC services. Here's an example demonstrating its usage in a GraphQL schema:
 
 ```graphql showLineNumbers
+schema @link(id: "proto", src: "./users.proto", type: Protobuf) {
+  query: Query
+}
+
 type Query {
-  users: [User] @grpc(service: "UserService", method: "ListUsers", protoPath: "./proto/user_service.proto")
+  users: [User] @grpc(method: "proto.users.UserService.ListUsers")
 }
 ```
 
-In this example, when the `users` field is queried, the GraphQL server will make a gRPC request to the `ListUsers` method of the `UserService`.
+In this example, when the `users` field is queried, the GraphQL server will make a gRPC request to the `users.ListUsers` method of the `UserService`.
 
 ### Sample proto File
 
@@ -22,6 +26,8 @@ The `.proto` file defines the structure of the gRPC service and its methods. Her
 
 ```proto showLineNumbers
 syntax = "proto3";
+
+package users;
 
 service UserService {
   rpc ListUsers (UserListRequest) returns (UserListReply) {}
@@ -45,52 +51,26 @@ message UserGetReply {
 }
 ```
 
-### service
-
-Indicates the gRPC service to be called. This should match the service name as defined in the `.proto` file.
+To connect that file to Tailcall use `@link` operator:
 
 ```graphql showLineNumbers
-type Query {
-  users: [User]
-    @grpc(
-      # highlight-start
-      service: "UserService"
-      # highlight-end
-      method: "ListUsers"
-      protoPath: "./proto/user_service.proto"
-    )
+schema @link(id: "proto", src: "./users.proto", type: Protobuf) {
+  query: Query
 }
 ```
+
+Later use provided `id` as the first part of `method` option for `@grpc` operator to connect the definition to this specific proto file.
 
 ### method
 
-Indicates the specific gRPC method to be invoked within the specified service. This should match the method name as defined in the `.proto` file.
+Indicates the gRPC service and method to be called. This should match the service name as defined in the `.proto` file with package path.
 
 ```graphql showLineNumbers
 type Query {
   users: [User]
     @grpc(
-      service: "UserService"
       # highlight-start
-      method: "ListUsers"
-      # highlight-end
-      protoPath: "./proto/user_service.proto"
-    )
-}
-```
-
-### protoPath
-
-Path to the `.proto` file, containing service and method definitions for request/response encoding and decoding. The path can be relative or absolute. If the path is relative, it is resolved relative to the directory where the tailcall command is run from.
-
-```graphql showLineNumbers
-type Query {
-  users: [User]
-    @grpc(
-      service: "UserService"
-      method: "ListUsers"
-      # highlight-start
-      protoPath: "./proto/user_service.proto"
+      method: "proto.users.UserService.ListUsers"
       # highlight-end
     )
 }
@@ -104,9 +84,7 @@ Indicates the base URL for the gRPC API. If omitted, the default URL defined in 
 type Query {
   users: [User]
     @grpc(
-      service: "UserService"
-      method: "ListUsers"
-      protoPath: "./proto/user_service.proto"
+      method: "proto.users.UserService.ListUsers"
       # highlight-start
       baseURL: "https://grpc-server.example.com"
       # highlight-end
@@ -126,9 +104,8 @@ type UserInput {
 type Query {
   user(id: UserInput!): User
     @grpc(
-      service: "UserService"
-      method: "GetUser"
-      protoPath: "./proto/user_service.proto"
+
+      method: "proto.users.UserService.GetUser"
       # highlight-start
       body: "{{args.id}}"
       # highlight-end
@@ -144,9 +121,7 @@ Custom headers for the gRPC request can be specified using the `headers` argumen
 type Query {
   users: [User]
     @grpc(
-      service: "UserService"
-      method: "ListUsers"
-      protoPath: "./proto/user_service.proto"
+      method: "proto.users.UserService.ListUsers"
       baseURL: "https://grpc-server.example.com"
       # highlight-start
       headers: [{key: "X-CUSTOM-HEADER", value: "custom-value"}]
@@ -165,9 +140,7 @@ For using the groupBy capability, the response type of the gRPC method should be
 type Query {
   users(id: UserInput!): User
     @grpc(
-      service: "UserService"
-      method: "ListUsers"
-      protoPath: "./proto/user_service.proto"
+      method: "proto.users.UserService.ListUsers"
       baseURL: "https://grpc-server.example.com"
       # highlight-start
       groupBy: ["id"]

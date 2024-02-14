@@ -35,6 +35,8 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 
+package news;
+
 // Define message type for News with all its fields
 message News {
     int32 id = 1;
@@ -123,30 +125,49 @@ type Query {
 }
 ```
 
-It not working example yet because we haven't specified how to use connect to server. To do this you may want to explore more about [`@grpc` operator](../operators/grpc.md). It's usage is pretty straightforward and require you to specify some required options like path to protobuf file itself, name of the service and method that should be used to make a call.
+Also let's specify options of Tailcall's ingress and egress in the beginning of the config using [`@server`](../operators/server.md) and [`@upstream`](../operators/upstream.md) operators.
+
+```graphql
+schema
+  @server(port: 8000, graphiql: true)
+  @upstream(baseURL: "http://localhost:50051", httpCache: true)
+{
+  query: Query
+}
+```
+
+To specify protobuf file to read types from, use `@link` operator with type `Protobuf` on schema. `id` is important part of the definition that will be used by `@grpc` operator later
+
+```graphql
+schema @link(id: "news", src: "./news.proto", type: Protobuf)
+```
+
+Now you can connect graphql types to grpc types. To do this you may want to explore more about [`@grpc` operator](../operators/grpc.md). It's usage is pretty straightforward and require you to specify path to method that should be used to make a call. The method name will start with the `id` of file we were linked before, package name, service name and the method name, all separated by `.` symbol.
 
 If you need to provide any input to gRPC method call you can specify it with the `body` option that allows to specify a Mustache template and therefore it could use any input data like `args` and `value` to construct the body request. The body value is specified in the JSON format if you need to create the input manually and cannot just use `args` input.
 
 ```graphql
 type Query {
-  news: NewsData! @grpc(service: "NewsService", method: "GetAllNews", protoPath: "news.proto")
-  newsById(news: NewsInput!): News!
-    @grpc(service: "NewsService", method: "GetNews", body: "{{args.news}}", protoPath: "news.proto")
+  news: NewsData! @grpc(method: "news.news.NewsService.GetAllNews")
+  newsById(news: NewsInput!): News! @grpc(service: "news.news.NewsService.GetNews", body: "{{args.news}}")
 }
 ```
 
-And it's only left to specify options of Tailcall's ingress and egress in the beginning of the config using [`@server`](../operators/server.md) and [`@upstream`](../operators/upstream.md) operators. Wrapping up the whole result config that may look like this:
+Wrapping up the whole result config that may look like this:
 
 ```graphql
 # highlight-start
-schema @server(port: 8000, graphiql: true) @upstream(baseURL: "http://localhost:50051", httpCache: true) {
+schema
+  @server(port: 8000, graphiql: true)
+  @upstream(baseURL: "http://localhost:50051", httpCache: true)
+  @link(id: "news", src: "./news.proto", type: Protobuf)
+{
   query: Query
 }
 
 type Query {
-  news: NewsData! @grpc(service: "NewsService", method: "GetAllNews", protoPath: "src/grpc/tests/news.proto")
-  newsById(news: NewsInput!): News!
-    @grpc(service: "NewsService", method: "GetNews", body: "{{args.news}}", protoPath: "src/grpc/tests/news.proto")
+  news: NewsData! @grpc(method: "news.news.NewsService.GetAllNews")
+  newsById(news: NewsInput!): News! @grpc(method: "news.news.NewsService.GetNews", body: "{{args.news}}")
 }
 # highlight-end
 
@@ -201,17 +222,16 @@ In out protobuf example file we have such a method called `GetMultipleNews` that
 ```graphql
 schema
   @server(port: 8000, graphiql: true)
-  @upstream(baseURL: "http://localhost:50051", httpCache: true, batch: {delay: 10}) {
+  @upstream(baseURL: "http://localhost:50051", httpCache: true, batch: {delay: 10})
+  @link(id: "news", src: "./news.proto", type: Protobuf) {
   query: Query
 }
 
 type Query {
   newsById(news: NewsInput!): News!
     @grpc(
-      service: "NewsService"
-      method: "GetNews"
+      method: "news.news.NewsService.GetNews"
       body: "{{args.news}}"
-      protoPath: "src/grpc/tests/news.proto"
       # highlight-next-line
       groupBy: ["news", "id"]
     )
