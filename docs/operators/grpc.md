@@ -104,7 +104,6 @@ type UserInput {
 type Query {
   user(id: UserInput!): User
     @grpc(
-
       method: "proto.users.UserService.GetUser"
       # highlight-start
       body: "{{args.id}}"

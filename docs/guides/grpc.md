@@ -128,10 +128,7 @@ type Query {
 Also let's specify options of Tailcall's ingress and egress in the beginning of the config using [`@server`](../operators/server.md) and [`@upstream`](../operators/upstream.md) operators.
 
 ```graphql
-schema
-  @server(port: 8000, graphiql: true)
-  @upstream(baseURL: "http://localhost:50051", httpCache: true)
-{
+schema @server(port: 8000, graphiql: true) @upstream(baseURL: "http://localhost:50051", httpCache: true) {
   query: Query
 }
 ```
@@ -160,8 +157,7 @@ Wrapping up the whole result config that may look like this:
 schema
   @server(port: 8000, graphiql: true)
   @upstream(baseURL: "http://localhost:50051", httpCache: true)
-  @link(id: "news", src: "./news.proto", type: Protobuf)
-{
+  @link(id: "news", src: "./news.proto", type: Protobuf) {
   query: Query
 }
 
