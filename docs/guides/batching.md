@@ -12,7 +12,7 @@ One way to keep the tradition going would be a universal meal delivery applicati
 
 ### Multiple Vendors
 
-![image](static/images/meal-delivery-app.drawio.png)
+![image](../../static/images/meal-delivery-app.drawio.png)
 
 ### Constraints
 
