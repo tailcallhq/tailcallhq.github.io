@@ -19,4 +19,4 @@ type User {
 }
 ```
 
-The const operator will also validate the provided value at compile time to make sure that it matches the of the field. If the schema of the provided value doesn't match the type of the field, a descriptive error message is show on the console.
+The const operator also checks the provided value at compile time to ensure it matches the field's schema. If not, the console displays a descriptive error message.
