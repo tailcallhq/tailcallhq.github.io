@@ -13,6 +13,7 @@ API Gateways fail to provide developers with the appropriate abstraction for con
 Over the years, we have gotten used to consuming and managing APIs this way. Writing our own custom abstractions and sticking it around an existing over the shelf API Gateway. Our personal experience has been that nearly all companies after a certain scale require an abstraction that's specific to their business entities and feel restricted by what the API Gateway can provide.
 
 ## Tailcall API Gateway
+
 Based on our learnings of writing APIs at massive scale, we believe that the gateway should work around an enterprise's business entities and not the other way round. That is what Tailcall helps you achieve.
 Tailcall provides first-class primitives designed to interact with your business entities directly without burdening the developer with the underlying protocol. This approach grants tremendous power and flexibility, transcending protocol constraints and focusing on the nature of the API's data. Let's take the `User` entity as an example:
 
