@@ -42,6 +42,21 @@
   --ifm-color-brand-light-500: #cececf;
   --ifm-color-brand-light-600: #b6b6b7;
   --ifm-color-brand-light-opacity-15: rgba(255, 255, 255, 0.15);
+
+  /* Code Settings */
+  --ifm-font-family-monospace: "Space Mono";
+  --ifm-code-font-size: 100%;
+  --ifm-code-background: rgb(246, 247, 248);
+  --ifm-code-border-radius: var(--ifm-global-radius);
+  --ifm-code-font-size: 0.9rem;
+  --ifm-code-padding-horizontal: 0.2rem;
+  --ifm-code-padding-vertical: 0.2rem;
+  --ifm-pre-background: var(--ifm-code-background);
+}
+
+code {
+  border: none;
+  vertical-align: baseline;
 }
 
 input[type="radio"] {
