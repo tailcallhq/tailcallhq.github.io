@@ -2,11 +2,11 @@
 title: "@grpc"
 ---
 
-The **@grpc** operator is an essential GraphQL custom directive designed to interface with gRPC services. It allows GraphQL queries to directly invoke gRPC services, thereby bridging two powerful technologies. This directive is particularly useful when integrating GraphQL with microservices that expose gRPC endpoints.
+The **@grpc** operator, a crucial GraphQL custom directive, interfaces with gRPC services. It directly invokes gRPC services through GraphQL queries, bridging two powerful technologies. This directive proves useful in integrating GraphQL with microservices exposing gRPC endpoints.
 
 ### Using the `@grpc` Operator
 
-The **@grpc** operator allows GraphQL fields to be resolved using gRPC services. Here's an example demonstrating its usage in a GraphQL schema:
+The **@grpc** operator resolves GraphQL fields using gRPC services. For example, querying the `users` field triggers a gRPC request to the `ListUsers` method of the `UserService`.
 
 ```graphql showLineNumbers
 type Query {
@@ -14,11 +14,11 @@ type Query {
 }
 ```
 
-In this example, when the `users` field is queried, the GraphQL server will make a gRPC request to the `ListUsers` method of the `UserService`.
+In this example, querying the `users` field prompts the GraphQL server to make a gRPC request to the `ListUsers` method of the `UserService`.
 
 ### Sample proto File
 
-The `.proto` file defines the structure of the gRPC service and its methods. Here is a simplified example:
+The `.proto` file outlines the gRPC service structure and its methods. For instance:
 
 ```proto showLineNumbers
 syntax = "proto3";
@@ -47,7 +47,7 @@ message UserGetReply {
 
 ### service
 
-Indicates the gRPC service to be called. This should match the service name as defined in the `.proto` file.
+Indicates the gRPC service for calling. It must match the service name defined in the `.proto` file.
 
 ```graphql showLineNumbers
 type Query {
@@ -64,7 +64,7 @@ type Query {
 
 ### method
 
-Indicates the specific gRPC method to be invoked within the specified service. This should match the method name as defined in the `.proto` file.
+Specifies the gRPC method for invocation within the service. It must match the method name in the `.proto` file.
 
 ```graphql showLineNumbers
 type Query {
@@ -81,7 +81,7 @@ type Query {
 
 ### protoPath
 
-Path to the `.proto` file, containing service and method definitions for request/response encoding and decoding. The path can be relative or absolute. If the path is relative, it is resolved relative to the directory where the tailcall command is run from.
+Specifies the path to the `.proto` file, which contains definitions for service and method for encoding and decoding requests/responses. The system resolves relative paths from the directory where it runs the tailcall command.
 
 ```graphql showLineNumbers
 type Query {
@@ -98,7 +98,7 @@ type Query {
 
 ### baseURL
 
-Indicates the base URL for the gRPC API. If omitted, the default URL defined in the `@upstream` operator is used.
+Indicates the base URL for the gRPC API. If omitted, it defaults to the URL defined in the `@upstream` operator.
 
 ```graphql showLineNumbers
 type Query {
@@ -116,7 +116,7 @@ type Query {
 
 ### body
 
-Outlines the arguments for the gRPC call. The `body` field is used to specify the arguments for the gRPC call. It can be static or dynamic. Here's an example:
+Outlines the arguments for the gRPC call. The `body` field specifies the arguments for the gRPC call, either static or dynamic.
 
 ```graphql showLineNumbers
 type UserInput {
@@ -138,7 +138,7 @@ type Query {
 
 ### headers
 
-Custom headers for the gRPC request can be specified using the `headers` argument. This is particularly useful for passing authentication tokens or other contextual information.
+Custom headers for the gRPC request can specify using the `headers` argument. This proves useful for passing authentication tokens or other contextual information.
 
 ```graphql showLineNumbers
 type Query {
@@ -157,9 +157,9 @@ type Query {
 
 ### groupBy
 
-The `groupBy` argument is used to optimize batch requests by grouping them based on specified response keys. This can significantly improve performance in scenarios with multiple, similar requests.
+The `groupBy` argument optimizes batch requests by grouping them based on specified response keys, enhancing performance in scenarios with similar requests.
 
-For using the groupBy capability, the response type of the gRPC method should be a list of objects. For example, if the response type of the gRPC method is `UserListReply`, then the `groupBy` argument can be used as follows:
+By understanding and using its fields, developers can create efficient, streamlined APIs that leverage the strengths of both GraphQL and gRPC.
 
 ```graphql showLineNumbers
 type Query {
@@ -176,4 +176,4 @@ type Query {
 }
 ```
 
-The **@grpc** operator is a powerful tool for GraphQL developers, allowing for seamless integration with gRPC services. By understanding and utilizing its various fields, developers can create efficient, streamlined APIs that leverage the strengths of both GraphQL and gRPC.
+The **@grpc** operator is a powerful tool for GraphQL developers, enabling seamless integration with gRPC services. By understanding and utilizing its specific fields, developers can create efficient, streamlined APIs that leverage the strengths of both GraphQL and gRPC.
