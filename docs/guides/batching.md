@@ -2,7 +2,7 @@
 title: "Batching"
 ---
 
-Batching when configured correctly, can significantly reduce strain on high-traffic REST backends. You only need to add a handful of operators to your GraphQL schema (i.e. custom directives) for Tailcall to do most of the heavy lifting for you[^1].
+Batching when configured correctly, can significantly reduce strain on high-traffic backends. You only need to add a handful of operators to your GraphQL schema (i.e. custom directives) for Tailcall to do most of the heavy lifting for you[^1].
 
 ## Scenario
 
