@@ -2,6 +2,8 @@
 title: "Batching"
 ---
 
+One of the ways developers can handle the dreaded [N+1 problem](https://tailcall.run/docs/guides/n+1/) is to use batching.
+
 Batching when configured correctly, can significantly reduce strain on high-traffic backends. You only need to add a handful of operators to your GraphQL schema (i.e. custom directives) for Tailcall to do most of the heavy lifting for you[^1].
 
 ## Scenario
@@ -91,9 +93,6 @@ In the push model: when the operation is complete, the server pushes the results
 
 URL style #6 in the table above, uses a `Content-type` of `multipart/mixed` which makes it the most flexible way of implementing batching in REST APIs. It allows clients to submit arbitrary operations (multiple _Create_, _Read_, _Update_, and _Delete_ operations, each with its own `Content-type`) in a single request, though most services enforce a limit[^batch-size-limit] in the range of 10-1000 called the batch size. The batch size is the number of sub-requests that can be included in a single request to an endpoint that supports batching.
 
-This style of batching has been made into a standard by Microsoft under the [Open Data Protocol](https://en.wikipedia.org/wiki/Open_Data_Protocol) as the [OData batch processing system](https://www.odata.org/documentation/odata-version-3-0/batch-processing/). Sharepoint Online and Office 365 REST APIs are examples of Microsoft services that support [batching with their REST API](https://learn.microsoft.com/en-us/sharepoint/dev/sp-add-ins/make-batch-requests-with-the-rest-apis) using the OData standard.
-
-Some Google services have adopted the OData syntax, though the semantics differ. Examples include Google [Cloud Storage](https://cloud.google.com/storage/docs/batch), which supports up to 100 requests in a single batch request and Google [Workspace Admin API](https://developers.google.com/admin-sdk/directory/v1/guides/batch), which supports up to 1000 requests in a single batch request.
 
 ---
 
@@ -141,7 +140,15 @@ type Country {
 }
 ```
 
-A lot of geolocation services support batch requests to save on network round-trips. The sample `graphql` shows how batching could be used to lookup the location of multiple employees using only one batch request with the batch size set to `100` sub-requests.
+A lot of geolocation services support batch requests to save on network round-trips. The sample `graphql` shows how to lookup the location of multiple employees using only one batch request.
+
+The Tailcall [`@upstream`](https://tailcall.run/docs/operators/upstream/) operator exposes several properties that allows developers to control various aspects of the upstream server connection, including how requests are batched.
+
+In our example above, I enabled HTTP caching by setting the [`httpCache`](https://tailcall.run/docs/operators/upstream/#httpcache) property to `true` since it defaults to `false`.
+
+I also configured [`batch`](https://tailcall.run/docs/operators/upstream/#batch) object which controls batching. I set `delay: 1` indicating a delay of 1 millisecond between each batch request (to avoid getting throttled by the upstream server) and set `maxSize: 100` indicating the Tailcall can issue up to `100` sub-requests as part of a single batch request.
+
+
 
 When you run the following GraphQL query:
 
@@ -175,7 +182,10 @@ It will produce the following output in Tailcall:
 [2024-01-22T13:58:05Z INFO  tailcall::http::client] GET https://geoip-batch.fly.dev/batch?query=100.159.51.104&query=103.72.86.183&query=116.92.198.102&query=117.29.86.254&query=137.235.164.173&query=141.14.53.176&query=163.245.232.27&query=174.238.43.126&query=197.37.13.163&query=205.226.160.3&query=25.207.107.146&query=29.82.54.30&query=43.20.78.113&query=48.30.193.203&query=49.201.206.36&query=51.102.180.216&query=53.240.20.181&query=59.43.194.22&query=71.57.235.192&query=73.15.179.178&query=74.80.53.208&query=75.75.234.243&query=78.170.185.120&query=78.43.74.226&query=82.170.69.15&query=87.213.156.73&query=90.202.216.39&query=91.200.56.127&query=93.246.47.59&query=97.11.116.84 HTTP/1.1
 ```
 
-The `/users` endpoint returns a total of 30 users. As you can see in the output, Tailcall constructed a batch request using the IP addresses of all 30 users rather than make 30 individual requests to the geolocation service.
+The `/users` endpoint returns a total of 30 users. As you can see in the output, Tailcall constructed a batch request that concatenates the IP addresses of all 30 users in one request, rather than make 30 individual requests to the geolocation service.
+
+Batching is an optimization technique for mitigating the [N+1 problem](https://tailcall.run/docs/guides/n+1/) as it can significantly reduce the number of network round-trips needed to fulfil a request when one or more upstream servers are involved.
+
 
 [^1]: To take full advantage of batching, the REST backends being proxied with Tailcall must themselves have support for batching i.e. they must support the ability to combine multiple individual requests into a single request.
 [^delivery]: https://news.ycombinator.com/item?id=28392042
