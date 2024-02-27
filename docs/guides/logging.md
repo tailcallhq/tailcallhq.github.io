@@ -2,7 +2,7 @@
 title: Logging
 ---
 
-Logging serves as a crucial tool for gaining insights into code execution and troubleshooting challenges in software development. The verbosity of the logs can be configured using different log levels. The log level of the application can be configured using `TAILCALL_LOG_LEVEL` or `TC_LOG_LEVEL` environment variables. The available log levels are:
+Logging acts as an essential tool for obtaining insights into code execution and addressing software development challenges. You can configure the verbosity of logs via log levels. Use `TAILCALL_LOG_LEVEL` or `TC_LOG_LEVEL` environment variables to set the application's log level. The available log levels include:
 
 ### error
 
@@ -65,7 +65,7 @@ TC_LOG_LEVEL=off tailcall <COMMAND>
 ```
 
 :::info
-By default, the log level is set to `info`.
+The default log level is `info`.
 :::
 
 Log levels are hierarchical, meaning if you set the log level to a specific level, it includes all the levels above it. For example, setting the log level to `info` will include logs at the `info`, `warn`, and `error` levels, but exclude `debug` and `trace` logs.
@@ -73,5 +73,5 @@ Log levels are hierarchical, meaning if you set the log level to a specific leve
 ![Hierarchy of Log Levels](../../static/images/logging.png)
 
 :::info
-Log levels are flexible and can be provided in either uppercase or lowercase. For instance, setting `TAILCALL_LOG_LEVEL=DEBUG` or `TAILCALL_LOG_LEVEL=debug` will yield the same result.
+You can specify log levels in either uppercase or lowercase; both yield the same result. For example, `TAILCALL_LOG_LEVEL=DEBUG` and `TAILCALL_LOG_LEVEL=debug` are same.
 :::

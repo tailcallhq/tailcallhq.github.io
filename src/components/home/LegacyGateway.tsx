@@ -1,9 +1,10 @@
 import React from "react"
 import Heading from "@theme/Heading"
 
-import Lottie from "lottie-react"
+import {useLottie} from "lottie-react"
 import SolutionGraphic from "@site/static/animations/solution-graphic.json"
 import SectionTitle from "../shared/SectionTitle"
+import LottieContainer from "./LottieContainer.tsxsrc/components/home/LottieContainer"
 
 const LegacyGateway = (): JSX.Element => {
   return (
@@ -31,7 +32,7 @@ const LegacyGateway = (): JSX.Element => {
       </div>
 
       <div className="w-full flex items-center justify-center px-0 mt-SPACE_07">
-        <Lottie
+        <LottieContainer
           animationData={SolutionGraphic}
           loop
           className="scale-[1.12] sm:scale-100 bg-tailCall-dark-500 sm:bg-transparent"
