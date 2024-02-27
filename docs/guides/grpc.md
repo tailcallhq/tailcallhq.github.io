@@ -212,7 +212,7 @@ Or
 }
 ```
 
-### Batching
+## Batching
 
 Another important feature of the `@grpc` operator is that it allows you to implement request batching for remote data almost effortlessly as soon as you have gRPC methods that resolve multiple responses for multiple inputs in a single request.
 
