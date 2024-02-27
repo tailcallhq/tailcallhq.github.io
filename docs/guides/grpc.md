@@ -40,7 +40,7 @@ message News {
     string postImage = 4;
 }
 
-// Message with just the id of a single news
+// Message with the id of a single news
 message NewsId {
     int32 id = 1;
 }
@@ -70,7 +70,7 @@ service NewsService {
 
 ### Implement gRPC service
 
-Now having the protobuf file you can write a server that implements `NewsService` at any language you want that supports gRPC. Tailcall organization has a sample node.js service inside [this repo](https://github.com/tailcallhq/node-grpc) that you can pull to your local machine. To spin up the sample service just run inside the repo and wait for logs about the service running.
+Now having the protobuf file you can write a server that implements `NewsService` at any language you want that supports gRPC. Tailcall organization has a sample node.js service inside [this repo](https://github.com/tailcallhq/node-grpc) that you can pull to your local machine. To spin up the sample service run inside the repo and wait for logs about the service running.
 
 ```sh
 npm i
@@ -128,7 +128,7 @@ schema @link(id: "news", src: "./news.proto", type: Protobuf)
 
 Now you can connect GraphQL types to gRPC types. To do this you may want to explore more about [`@grpc` operator](../operators/grpc.md). Its usage is pretty straightforward and requires you to specify the path to a method that should be used to make a call. The method name will start with the package name, followed by the service name and the method name, all separated by the `.` symbol.
 
-If you need to provide any input to the gRPC method call you can specify it with the `body` option that allows you to specify a Mustache template and therefore it could use any input data like `args` and `value` to construct the body request. The body value is specified in the JSON format if you need to create the input manually and cannot just use `args` input.
+If you need to provide any input to the gRPC method call you can specify it with the `body` option that allows you to specify a Mustache template and therefore it could use any input data like `args` and `value` to construct the body request. The body value is specified in the JSON format if you need to create the input manually and cannot use `args` input.
 
 ```graphql
 type Query {
@@ -170,7 +170,7 @@ type NewsData {
 }
 ```
 
-Simply start the server by pointing it to the config.
+Start the server by pointing it to the config.
 
 ```
 tailcall start ./app.graphql
@@ -257,7 +257,7 @@ You can find this working example and test it by yourself by the next links:
 
 ### Key Takeaways
 
-- **Simplicity of Integration:** The integration of gRPC with Tailcall is not only seamless but also enhances the overall capability of your system to handle high-performance and efficient data composition.
+- **Simplicity of Integration:** The integration of gRPC with Tailcall seamlessly enhances the overall capability of your system to handle high-performance and efficient data composition.
 - **Scalability and Performance:** By leveraging the power of gRPC along with Tailcall, we've laid a foundation for building scalable and high-performing distributed systems.
 
 ### Next Steps
@@ -265,4 +265,4 @@ You can find this working example and test it by yourself by the next links:
 With the basics in place, we encourage you to explore further:
 
 - **Dive Deeper:** Tailcall gateway offers a lot of other features and configurations that you can utilize. Dive deeper into our documentation to explore more advanced settings and customization options.
-- **Explore Other Guides:** Our documentation is filled with various guides and tutorials that can help you leverage the full potential of Tailcall in different scenarios. Whether it's adding security layers, load balancing, or detailed logging, there's a lot more to explore.
+- **Explore Other Guides:** Our documentation includes a variety of guides and tutorials that can help you leverage the full potential of Tailcall in different scenarios. Whether it's adding security layers, load balancing, or detailed logging, there's a lot more to explore.
