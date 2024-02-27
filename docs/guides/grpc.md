@@ -1,8 +1,9 @@
 ---
-title: Integration with gRPC service
+title: GraphQL on gRPC
+description: Building a GraphQL API on top of gRPC endpoints.
 ---
 
-In this guide we will setup simple gRPC service and use it inside Tailcall's config to fetch some of the data provided by the service. This way Tailcall can provide single GraphQL interface wrapping any number of gRPC services.
+In this guide, we will set up a simple gRPC service and use it inside Tailcall's config to fetch some of the data provided by the service. This way Tailcall can provide a single GraphQL interface wrapping any number of gRPC services.
 
 ## What is gRPC?
 
@@ -12,7 +13,7 @@ This guide assumes a basic familiarity with gRPC.
 
 - **HTTP/2 Transport:** Ensures efficient and fast data transfer.
 - **Protocol Buffers (Protobuf):** Serves as a powerful interface description language.
-- **Efficiency:** Offers binary serialization, reduced latency, and supports data streaming.
+- **Efficiency:** Offers binary serialization, reduces latency, and supports data streaming.
 
 This combination of features makes gRPC ideal for microservices and distributed systems.
 
@@ -22,13 +23,13 @@ Now, let's explore how gRPC can be integrated into our proxy gateway to enhance 
 
 ## gRPC upstream
 
-We need some gRPC service available to be able to execute requests from Tailcall gateway. For the pure example purposes, we will build some simple gRPC service.
+We need some gRPC service available to be able to execute requests from the Tailcall gateway. For pure example purposes, we will build some simple gRPC services.
 
 ### Protobuf definition
 
-First, we need to create example protobuf file that will define the structure of data we want to transmit using gRPC.
+First, we need to create an example protobuf file that will define the structure of the data we want to transmit using gRPC.
 
-Here are the definition of `NewsService` that implements CRUD operations on news data that we'll put into `news.proto` file.
+Here is the definition of `NewsService` that implements CRUD operations on news data that we'll put into the `news.proto` file.
 
 ```protobuf
 syntax = "proto3";
@@ -45,12 +46,12 @@ message News {
     string postImage = 4;
 }
 
-// Message with just id of single news
+// Message with just the id of a single news
 message NewsId {
     int32 id = 1;
 }
 
-// List of ids of news to get multiple response
+// List of IDs of news to get multiple responses
 message MultipleNewsId {
     repeated NewsId ids = 1;
 }
@@ -77,22 +78,22 @@ service NewsService {
 
 Now having the protobuf file you can write a server that implements `NewsService` at any language you want that supports gRPC.
 
-Tailcall organization has sample node.js service inside [this repo](https://github.com/tailcallhq/node-grpc) that you can pull to your local machine
+Tailcall organization has a sample node.js service inside [this repo](https://github.com/tailcallhq/node-grpc) that you can pull to your local machine
 
-To spin up the sample service just run inside repo
+To spin up the sample service just run inside the repo
 
 ```sh
 npm i
 node server
 ```
 
-and wait for logs about service is running.
+and wait for logs about the service running.
 
 ## Tailcall config
 
 Now when we have a running gRPC service we're going to write Tailcall's config to make the integration.
 
-To do this we need to specify GraphQL types corresponding to gRPC types we have defined in protobuf file. Let's create new file `grpc.graphql` file with following content:
+To do this we need to specify GraphQL types corresponding to gRPC types we have defined in the protobuf file. Let's create a new file `grpc.graphql` file with the following content:
 
 ```graphql
 # The GraphQL representation for News message type
@@ -114,7 +115,7 @@ type NewsData {
 }
 ```
 
-Now when we have corresponding types in schema we want to define GraphQL Query that specifies the operation we can execute onto news. We can extend our config with next Query:
+Now when we have corresponding types in schema we want to define GraphQL Query that specifies the operation we can execute onto news. We can extend our config with the next Query:
 
 ```graphql
 type Query {
@@ -125,7 +126,7 @@ type Query {
 }
 ```
 
-Also let's specify options of Tailcall's ingress and egress in the beginning of the config using [`@server`](../operators/server.md) and [`@upstream`](../operators/upstream.md) operators.
+Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`@server`](../operators/server.md) and [`@upstream`](../operators/upstream.md) operators.
 
 ```graphql
 schema @server(port: 8000, graphiql: true) @upstream(baseURL: "http://localhost:50051", httpCache: true) {
@@ -133,15 +134,15 @@ schema @server(port: 8000, graphiql: true) @upstream(baseURL: "http://localhost:
 }
 ```
 
-To specify protobuf file to read types from, use `@link` operator with type `Protobuf` on schema. `id` is important part of the definition that will be used by `@grpc` operator later
+To specify the protobuf file to read types from, use the `@link` operator with the type `Protobuf` on the schema. `id` is an important part of the definition that will be used by the `@grpc` operator later
 
 ```graphql
 schema @link(id: "news", src: "./news.proto", type: Protobuf)
 ```
 
-Now you can connect graphql types to grpc types. To do this you may want to explore more about [`@grpc` operator](../operators/grpc.md). It's usage is pretty straightforward and require you to specify path to method that should be used to make a call. The method name will start with the `id` of file we were linked before, package name, service name and the method name, all separated by `.` symbol.
+Now you can connect GraphQL types to gRPC types. To do this you may want to explore more about [`@grpc` operator](../operators/grpc.md). Its usage is pretty straightforward and requires you to specify the path to a method that should be used to make a call. The method name will start with the package name, followed by the service name and the method name, all separated by the `.` symbol.
 
-If you need to provide any input to gRPC method call you can specify it with the `body` option that allows to specify a Mustache template and therefore it could use any input data like `args` and `value` to construct the body request. The body value is specified in the JSON format if you need to create the input manually and cannot just use `args` input.
+If you need to provide any input to the gRPC method call you can specify it with the `body` option that allows you to specify a Mustache template and therefore it could use any input data like `args` and `value` to construct the body request. The body value is specified in the JSON format if you need to create the input manually and cannot just use `args` input.
 
 ```graphql
 type Query {
@@ -211,9 +212,9 @@ Or
 
 ### Batching
 
-Another important feature of `@grpc` operator is that it allows you to implement request batching for remote data almost effortlessly as soon as you have gRPC methods that implements resolves multiple responses for multiple input in single request.
+Another important feature of the `@grpc` operator is that it allows you to implement request batching for remote data almost effortlessly as soon as you have gRPC methods that resolve multiple responses for multiple inputs in a single request.
 
-In out protobuf example file we have such a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`@upstream.batch` option](../operators/upstream.md#batch) first and specify `groupBy` option for the `@grpc` operator.
+In our protobuf example file, we have a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`@upstream.batch` option](../operators/upstream.md#batch) first and specify `groupBy` option for the `@grpc` operator.
 
 ```graphql
 schema
@@ -226,7 +227,7 @@ schema
 type Query {
   newsById(news: NewsInput!): News!
     @grpc(
-      method: "news.news.NewsService.GetNews"
+      method: "news.NewsService.GetNews"
       body: "{{args.news}}"
       # highlight-next-line
       groupBy: ["news", "id"]
@@ -251,13 +252,13 @@ Restart the Tailcall server and make the query with multiple news separately, e.
 }
 ```
 
-Those 2 requests will be executed inside single request to gRPC method `GetMultipleNews`
+Those 2 requests will be executed inside a single request to the gRPC method `GetMultipleNews`
 
 ## Conclusion
 
 Well done on integrating a gRPC service with the Tailcall gateway! This tutorial has demonstrated the straightforward and efficient process, showcasing Tailcall's compatibility with advanced communication protocols like gRPC.
 
-You can find this working example and test it by yourself by next links:
+You can find this working example and test it by yourself by the next links:
 
 - [node-grpc](https://github.com/tailcallhq/node-grpc) - example implementation for gRPC service in node.js
 - [gRPC example config](https://github.com/tailcallhq/tailcall/blob/main/examples/grpc.graphql) - Tailcall's config to integrate with gRPC service above
