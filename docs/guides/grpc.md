@@ -7,17 +7,13 @@ In this guide, we will set up a simple gRPC service and use it inside Tailcall's
 
 ## What is gRPC?
 
-This guide assumes a basic familiarity with gRPC.
-
-**gRPC** is a high-performance framework created by Google for remote procedure calls (RPCs). Its key features include:
+This guide assumes a basic familiarity with gRPC. It is a high-performance framework created by Google for remote procedure calls (RPCs). Its key features include:
 
 - **HTTP/2 Transport:** Ensures efficient and fast data transfer.
 - **Protocol Buffers (Protobuf):** Serves as a powerful interface description language.
 - **Efficiency:** Offers binary serialization, reduces latency, and supports data streaming.
 
-This combination of features makes gRPC ideal for microservices and distributed systems.
-
-If you need a more detailed understanding or are new to gRPC, we recommend visiting the [official gRPC website](https://grpc.io/) for comprehensive documentation and resources.
+This combination of features makes gRPC ideal for microservices and distributed systems. If you need a more detailed understanding or are new to gRPC, we recommend visiting the [official gRPC website](https://grpc.io/) for comprehensive documentation and resources.
 
 Now, let's explore how gRPC can be integrated into our proxy gateway to enhance communication and data exchange in distributed systems.
 
@@ -154,7 +150,8 @@ type Query {
 Wrapping up the whole result config that may look like this:
 
 ```graphql
-# highlight-start
+# file: app.graphql
+
 schema
   @server(port: 8000, graphiql: true)
   @upstream(baseURL: "http://localhost:50051", httpCache: true)
@@ -166,7 +163,6 @@ type Query {
   news: NewsData! @grpc(method: "news.news.NewsService.GetAllNews")
   newsById(news: NewsInput!): News! @grpc(method: "news.news.NewsService.GetNews", body: "{{args.news}}")
 }
-# highlight-end
 
 type News {
   id: Int
@@ -182,6 +178,12 @@ input NewsInput {
 type NewsData {
   news: [News]!
 }
+```
+
+Simply start the server by pointing it to the config.
+
+```
+tailcall start ./app.graphql
 ```
 
 And now you can go to the page `http://127.0.0.1:8000/graphql` and execute some GraphQL queries e.g.:
