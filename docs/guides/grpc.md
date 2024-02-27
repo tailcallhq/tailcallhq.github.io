@@ -23,9 +23,7 @@ We need some gRPC service available to be able to execute requests from the Tail
 
 ### Protobuf definition
 
-First, we need to create an example protobuf file that will define the structure of the data we want to transmit using gRPC.
-
-Here is the definition of `NewsService` that implements CRUD operations on news data that we'll put into the `news.proto` file.
+First, we need to create an example protobuf file that will define the structure of the data we want to transmit using gRPC. Here is the definition of `NewsService` that implements CRUD operations on news data that we'll put into the `news.proto` file.
 
 ```protobuf
 syntax = "proto3";
@@ -72,24 +70,16 @@ service NewsService {
 
 ### Implement gRPC service
 
-Now having the protobuf file you can write a server that implements `NewsService` at any language you want that supports gRPC.
-
-Tailcall organization has a sample node.js service inside [this repo](https://github.com/tailcallhq/node-grpc) that you can pull to your local machine
-
-To spin up the sample service just run inside the repo
+Now having the protobuf file you can write a server that implements `NewsService` at any language you want that supports gRPC. Tailcall organization has a sample node.js service inside [this repo](https://github.com/tailcallhq/node-grpc) that you can pull to your local machine. To spin up the sample service just run inside the repo and wait for logs about the service running.
 
 ```sh
 npm i
-node server
+npm start
 ```
-
-and wait for logs about the service running.
 
 ## Tailcall config
 
-Now when we have a running gRPC service we're going to write Tailcall's config to make the integration.
-
-To do this we need to specify GraphQL types corresponding to gRPC types we have defined in the protobuf file. Let's create a new file `grpc.graphql` file with the following content:
+Now when we have a running gRPC service we're going to write Tailcall's config to make the integration. To do this we need to specify GraphQL types corresponding to gRPC types we have defined in the protobuf file. Let's create a new file `grpc.graphql` file with the following content:
 
 ```graphql
 # The GraphQL representation for News message type
