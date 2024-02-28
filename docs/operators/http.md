@@ -2,7 +2,7 @@
 title: "@http"
 ---
 
-This **@http** operator serves as an indication of a field or node that is underpinned by a REST API. For Example:
+The **@http** operator indicates a field or node relies on a REST API. For example:
 
 ```graphql showLineNumbers
 type Query {
@@ -10,11 +10,11 @@ type Query {
 }
 ```
 
-In this example, the `@http` operator is added to the `users` field of the `Query` type. This means that the `users` field is underpinned by a REST API. The [path](#path) argument is used to specify the path of the REST API. In this case, the path is `/users`. This means that the GraphQL server will make a GET request to `https://jsonplaceholder.typicode.com/users` when the `users` field is queried.
+In this example, adding the `@http` operator to the `users` field of the `Query` type indicates reliance on a REST API for the `users` field. The [path](#path) argument specifies the REST API's path, which is `/users` in this scenario.Querying the `users` field prompts the GraphQL server to issue a GET request to `https://jsonplaceholder.typicode.com/users`.
 
 ## baseURL
 
-This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [@upstream](#upstream) operator.
+Specifies the API's base URL. If unspecified, it defaults to the URL in the [@upstream](#upstream) operator.
 
 ```graphql showLineNumbers
 type Query {
@@ -24,7 +24,7 @@ type Query {
 
 ## path
 
-This refers to the API endpoint you're going to call. For instance https://jsonplaceholder.typicode.com/users`.
+Refers to the API endpoint, for example, `https://jsonplaceholder.typicode.com/users`.
 
 ```graphql showLineNumbers
 type Query {
@@ -32,7 +32,7 @@ type Query {
 }
 ```
 
-If your API endpoint contains dynamic segments, you can use Mustache templates to substitute variables. For example, to fetch a specific user, the path can be written as `/users/{{args.id}}`.
+If your API endpoint contains dynamic segments, you can substitute variables using Mustache templates. For example, to fetch a specific user, you can write the path as `/users/{{args.id}}`.
 
 ```graphql showLineNumbers
 type Query {
@@ -42,7 +42,7 @@ type Query {
 
 ## method
 
-This refers to the HTTP method of the API call. Commonly used methods include GET, POST, PUT, DELETE, etc. If not specified, the default method is GET. For example:
+Specifies the HTTP method for the API call. The default method is GET if not specified.
 
 ```graphql showLineNumbers
 type Mutation {
@@ -52,7 +52,7 @@ type Mutation {
 
 ## query
 
-This represents the query parameters of your API call. You can pass it as a static object or use Mustache template for dynamic parameters. These parameters will be added to the URL. For example:
+Represents the API call's query parameters, either as a static object or with dynamic parameters using Mustache templates. These parameters append to the URL.
 
 ```graphql showLineNumbers
 type Query {
@@ -62,7 +62,7 @@ type Query {
 
 ## body
 
-The body of the API call. It's used for methods like POST or PUT that send data to the server. You can pass it as a static object or use a Mustache template to substitute variables from the GraphQL variables. For example:
+Defines the API call's body, necessary for methods like POST or PUT. Pass it as a static object or use Mustache templates for variable substitution from the GraphQL variables.
 
 ```graphql showLineNumbers
 type Mutation {
@@ -74,7 +74,7 @@ In the example above, the `createUser` mutation sends a POST request to `/users`
 
 ## headers
 
-The `headers` parameter allows you to customize the headers of the HTTP request made by the `@http` operator. It is used by specifying a key-value map of header names and their values.
+Customizes the HTTP request headers made by the **@http** operator. Specify a key-value map of header names and values.
 
 For instance:
 
@@ -84,7 +84,7 @@ type Mutation {
 }
 ```
 
-In this example, a request to `/users` will include an additional HTTP header `X-Server` with the value `Tailcall`.
+In this example, a request to `/users` will include a HTTP header `X-Server` with the value `Tailcall`.
 
 You can make use of mustache templates to provide dynamic values for headers, derived from the arguments or [context] provided in the request. For example:
 
@@ -101,7 +101,7 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 ## groupBy
 
-The `groupBy` parameter groups multiple data requests into a single call. For more details please refer out [n + 1 guide].
+Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide] for more details.
 
 [n + 1 guide]: /docs/guides/n+1#solving-using-batching
 
@@ -113,4 +113,4 @@ type Post {
 }
 ```
 
-- `query: {key: "id", value: "{{value.userId}}"}]`: Here, TailCall CLI is instructed to generate a URL where the user id aligns with the `userId` from the parent `Post`. For a batch of posts, the CLI compiles a single URL, such as `/users?id=1&id=2&id=3...id=10`, consolidating multiple requests into one.
+- `query: {key: "id", value: "{{value.userId}}"}]`: Instructs TailCall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?id=1&id=2&id=3...id=10`, consolidating requests into one.

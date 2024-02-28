@@ -1,3 +1,5 @@
+import React from "react"
+
 export const githubRepoURL = "https://github.com/tailcallhq/tailcall"
 export const tailCallBenchmarkUrl = "https://github.com/tailcallhq/graphql-benchmarks#benchmark-results"
 export const tailCallBlogUrl = "https://blog.tailcall.run/"
@@ -42,69 +44,92 @@ export const partnerImages: PartnerImage[] = [
   },
 ]
 
+const Highlight = ({text}: {text: string}) => (
+  <>
+    <span className="text-content-tiny font-bold sm:text-title-tiny lg:text-title-small bg-tailCall-yellow rounded-[4px] sm:rounded-md px-SPACE_01">
+      {text}
+    </span>
+  </>
+)
+
 export const features: Feature[] = [
   {
-    id: 1,
     logo: require("@site/static/images/home/orchestration.png").default,
     title: "Orchestration",
-    description1:
-      "Harness the power of Tailcall's advanced orchestration primitives, designed for large-scale API management. Effortlessly interface with  ",
-    highlightedText: "gRPC, REST, GraphQL,",
-    description2:
-      " and more, ensuring seamless communication and complex data transformations for enterprise operations.",
+    content: (
+      <>
+        Tailcall provides first-class primitives to perform API Orchestration across protocols such as{" "}
+        <Highlight text="gRPC, REST, GraphQL," />. This allow developers to enrich existing APIs with more data, perform
+        transformations or build a completely new set of aggregation APIs.
+      </>
+    ),
   },
   {
-    id: 2,
     logo: require("@site/static/images/home/governance.png").default,
     title: "Governance",
-    description1: "Implement robust governance and security across your API landscape using our ",
-    highlightedText: "code-based governance",
-    description2:
-      " and comprehensive security framework. Enjoy precise control mechanisms that ensure compliance, standardization, operational consistency, and safeguard against evolving digital threats.",
+    content: (
+      <>
+        With Tailcall, your focus shifts to the 'what'—such as entities, their relationships, access control, security,
+        authentication, caching, and more—rather than the 'how'. This shift is enabled by the Tailcall DSL, embodying a
+        true <Highlight text="declarative approach" /> to managing APIs. Unlike traditional API gateways that apply
+        these properties directly to APIs, Tailcall's DSL simplifies governance and clarifies semantics, providing a
+        more intuitive framework for API management.
+      </>
+    ),
   },
   {
-    id: 3,
     logo: require("@site/static/images/home/efficiency.png").default,
     title: "Efficiency",
-    description1: "Tailcall brings breakthrough performance optimizations, integrating ",
-    highlightedText: "enterprise-specific tuning ",
-    description2:
-      " for high-speed and low-latency. Expect unmatched response times, lower resource utilization, and adaptability to your unique operational needs and workload demands.",
+    content: (
+      <>
+        Tailcall can introspect all orchestration requirements <Highlight text="ahead of time" /> and automatically
+        generate a highly efficient data access layer. This results in achieving much lower resource utilization and
+        opens up opportunities to use in ultra-low latency workloads.
+      </>
+    ),
   },
+  // {
+  //   logo: require("@site/static/images/home/resiliency.png").default,
+  //   title: "Resiliency",
+  //   content: (
+  //     <>
+  //       Tailcall offers advanced resiliency primitives including automatic failover, rate limiting and circuit breakers,
+  //       ensuring high availability and stability across any distributed systems. It maintains optimal performance and
+  //       reliability under varying loads and potential threats. Engineered for enterprise resilience, Tailcall guarantees
+  //       robust performance under any conditions. Our platform is designed for{" "}
+  //       <Highlight text="high availability and fault tolerance," /> ensuring uninterrupted service and reliability at
+  //       scale.
+  //     </>
+  //   ),
+  // },
   {
-    id: 4,
-    logo: require("@site/static/images/home/resiliency.png").default,
-    title: "Resiliency",
-    description1:
-      "Engineered for enterprise resilience, Tailcall guarantees robust performance under any conditions. Our platform is designed for ",
-    highlightedText: "high availability and fault tolerance,",
-    description2: " ensuring uninterrupted service and reliability at scale.",
-  },
-  {
-    id: 5,
     logo: require("@site/static/images/home/extendability.png").default,
     title: "Extendability",
-    description1: "Tailcall's ",
-    highlightedText: "plugin-centric",
-    description2:
-      " extendability empowers enterprises to craft custom solutions. Design and integrate bespoke plugins that precisely fit your unique requirements, enhancing the platform's functionality to align with your specific business objectives.",
+    content: (
+      <>
+        At times, the built-in primitives may not fully satisfy specific orchestration needs. In such instances,
+        Tailcall offers a lightweight embedded <Highlight text="JavaScript" /> runtime. This feature enables you to
+        attach custom hooks for monitoring events within Tailcall, allowing you to directly issue commands for the
+        subsequent actions Tailcall should execute.
+      </>
+    ),
   },
 ]
 
 export const moreFeatures: MoreFeatures[] = [
   {
     id: 1,
-    title: "Powerful Batching Primitive",
+    title: "Ahead of Time Optimizations",
     logo: require("@site/static/icons/basic/rocket-icon.svg").default,
   },
   {
     id: 2,
-    title: "Extensions with plugins and JS support",
+    title: "Composable Orchestration Primitives",
     logo: require("@site/static/icons/basic/extension.svg").default,
   },
   {
     id: 3,
-    title: "Field based Authentication & Authorisation",
+    title: "Macro Resiliency Capabilities",
     logo: require("@site/static/icons/basic/shield.svg").default,
   },
   {
@@ -114,7 +139,7 @@ export const moreFeatures: MoreFeatures[] = [
   },
   {
     id: 5,
-    title: "Performance",
+    title: "High Performance",
     logo: require("@site/static/icons/basic/line-chart-up.svg").default,
   },
   {
@@ -129,7 +154,7 @@ export const moreFeatures: MoreFeatures[] = [
   },
   {
     id: 8,
-    title: "Compile time tracks",
+    title: "Compile time Checks",
     logo: require("@site/static/icons/basic/clock.svg").default,
   },
 ]
@@ -275,7 +300,7 @@ export const pricingPlans: PricingPlans[] = [
     id: 2,
     name: "Advanced plan",
     price: "$600/year",
-    for: "per worker",
+    for: "per core",
     billing: "Billed Annually",
     volumeDiscounts: "(Volume discounts available)",
     features: [
@@ -304,7 +329,7 @@ export const pricingPlans: PricingPlans[] = [
     id: 3,
     name: "Enterprise plan",
     price: "$1000/year",
-    for: "per worker",
+    for: "per core",
     billing: "Billed Annually",
     volumeDiscounts: "(Volume discounts available)",
     features: [

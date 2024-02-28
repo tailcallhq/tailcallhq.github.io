@@ -2,13 +2,13 @@
 title: Context
 ---
 
-In any GraphQL framework, including Tailcall, `Context` is a fundamental mechanism used for data sharing amongst various parts of your application. It is an adaptable object that is made available to every resolver in GraphQL.
+In any GraphQL framework, including Tailcall, `Context` serves as a fundamental mechanism for sharing data across different parts of your application. This adaptable object becomes available to every resolver in GraphQL.
 
 ## Context in Tailcall
 
-In Tailcall, as in all GraphQL implementations, Context is a variable that is accessible to every [Operator](operators/index.md). It is used to store and access data that needs to be shared between operators.
+In Tailcall, as in all GraphQL implementations, every [Operator](operators/index.md) can access Context. Operators use Context to store and retrieve data necessary for shared operations.
 
-The Context can be described using the following Typescript interface:
+You can describe the Context with the following Typescript interface:
 
 ```typescript
 interface Context {
@@ -22,7 +22,7 @@ interface Context {
 
 ### args
 
-These are the arguments passed to the current query. They can be used to access the arguments of the query. For example,
+These arguments pass to the current query, allowing access to the query's arguments. For example,
 
 ```graphql showLineNumbers
 type Query {
@@ -30,11 +30,11 @@ type Query {
 }
 ```
 
-In this example, `args.id` is used to access the `id` argument passed to the `user` query.
+In this example, you use `args.id` to access the `id` argument passed to the `user` query.
 
 ### value
 
-This represents the value of the current node. For instance,
+This field represents the value of the current node. For instance,
 
 ```graphql showLineNumbers
 type Post {
@@ -45,11 +45,11 @@ type Post {
 }
 ```
 
-In the example above, `value.id` is used to access the `id` field of the `Post` type.
+Here, `value.id` provides access to the `id` field of the `Post` type.
 
 ### parent
 
-This denotes the context of the parent node.
+This field indicates the context of the parent node.
 
 ```graphql showLineNumbers
 type Query {
@@ -65,11 +65,11 @@ type Post {
 }
 ```
 
-In this case, `value.userId` is a way to get the `userId` information from the "parent" context of the `Post` type. Essentially, it's extracting a list or "array" of `userId` fields from multiple `Post` types. Think of `value` as a container that holds the results of a post query, with `userId` being the specific key you want to fetch from that container.
+In this scenario, `value.userId` helps retrieve the `userId` information from the "parent" context of the `Post` type, effectively extracting a list of `userId` fields from the `Post` types. Consider `value` as a container holding the results of a post query, with `userId` as the specific key you want to extract.
 
 ### env
 
-This represents global environment variables for the server. This is set once when the server starts.
+This field represents global environment variables for the server, set once when the server starts.
 
 ```graphql showLineNumbers
 type Query {
@@ -77,11 +77,11 @@ type Query {
 }
 ```
 
-In the above example, `env.API_ENDPOINT` refers to an environment variable called API_ENDPOINT, which should be defined in your server settings.
+Here, `env.API_ENDPOINT` refers to an environment variable named API_ENDPOINT, defined in your server settings.
 
 ### headers
 
-These are the headers of the request that was received by the Tailcall server.
+These headers come from the request received by the Tailcall server.
 
 ```graphql showLineNumbers
 type Query {

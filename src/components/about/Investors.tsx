@@ -33,7 +33,7 @@ const Investors = (): JSX.Element => {
       </div>
 
       <div className="mt-SPACE_16 sm:mt-SPACE_20 lg:mt-24">
-        <p className="text-title-semi-large sm:text-title-large lg:text-display-tiny text-center">Angel Investors</p>
+        {/* <p className="text-title-semi-large sm:text-title-large lg:text-display-tiny text-center">Angel Investors</p> */}
         <div className="flex flex-wrap lg:flex-nowrap gap-SPACE_12 sm:gap-y-SPACE_06 lg:gap-y-0 items-center flex-start justify-center mt-SPACE_09">
           {investors.map((investor) => (
             <div key={investor.id} className="flex flex-col items-center w-[172px] sm:w-[228px]">
