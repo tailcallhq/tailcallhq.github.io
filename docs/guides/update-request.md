@@ -2,7 +2,7 @@
 title: Update Request
 ---
 
-Tailcall enables the modification of upstream requests through JavaScript scripting. This capability is particularly beneficial for altering requests prior to their dispatch to the destination service.
+Tailcall enables the modification of upstream requests through JavaScript scripting. This capability is beneficial for altering requests prior to their dispatch to the destination service.
 
 ### How to Implement
 
