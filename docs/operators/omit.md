@@ -26,7 +26,7 @@ type User {
 
 In this example, the `address` field will not be accessible or visible through the GraphQL API.
 
-## Comparison with @modify(omit: true)
+## Comparison with `modify`
 
 The **@omit** operator and `@modify(omit: true)` essentially serve the same purpose in excluding fields from the schema, but they differ in syntax and flexibility. In fact, one can consider **@omit** as a shorthand or alias for the more verbose `@modify(omit: true)`.
 
