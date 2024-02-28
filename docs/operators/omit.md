@@ -28,19 +28,10 @@ In this example, the `address` field will not be accessible or visible through t
 
 ## Comparison with @modify(omit: true)
 
-While both **@omit** and `@modify(omit: true)` achieve similar outcomes by excluding fields from the schema, their usage occurs in slightly different contexts:
+The **@omit** operator and `@modify(omit: true)` essentially serve the same purpose in excluding fields from the schema, but they differ in syntax and flexibility. In fact, one can consider **@omit** as a shorthand or alias for the more verbose `@modify(omit: true)`.
 
-- **@omit** is a standalone operator that directly applies to the field or node you wish to exclude.
-- `@modify(omit: true)` is part of the **@modify** operator, which offers additional functionalities such as renaming fields (`name` argument). It's more versatile but requires specifying the `omit` argument explicitly.
+- **@omit** offers a concise way to directly exclude a field or node without additional arguments.
 
-For instance, to exclude a field using **@modify**, you would write:
+- `@modify(omit: true)`, as part of the broader **@modify** operator, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
 
-```graphql showLineNumbers
-type User {
-  address: Address @modify(omit: true)
-}
-```
-
-## Links
-
-- For more details on the **@modify** operator and its capabilities, including omitting fields, see the [@modify documentation](/docs/operators/modify#omit).
+For more details on the **@modify** operator and its capabilities, including omitting fields, see the [@modify documentation](/docs/operators/modify#omit).
