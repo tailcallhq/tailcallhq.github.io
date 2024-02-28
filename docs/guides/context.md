@@ -91,4 +91,4 @@ type Query {
 
 Here, `headers.userId` refers to a header called `userId` that should be present in the `context`. The server can use this `userId` to fetch comments for the specified user.
 
-[operator]: /docs/intro/operators
+[operator]: /docs/operators
