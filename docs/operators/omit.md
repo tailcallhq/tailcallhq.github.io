@@ -12,7 +12,6 @@ When applied to a field or node, the **@omit** operator instructs the Tailcall n
 
 Consider a scenario where you have a `User` type with an embedded `Address` type. If you want to exclude the `Address` type from the schema to simplify the API, you can use the **@omit** operator:
 
-
 ```graphql showLineNumbers
 type Address {
   city: String
@@ -24,7 +23,6 @@ type User {
   address: Address @omit
 }
 ```
-
 
 In this example, the `address` field will not be accessible or visible through the GraphQL API.
 
@@ -42,7 +40,6 @@ type User {
   address: Address @modify(omit: true)
 }
 ```
-
 
 ## Links
 
