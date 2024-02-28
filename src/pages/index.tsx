@@ -1,16 +1,16 @@
 import React, {useEffect} from "react"
 import Layout from "@theme/Layout"
 import ReactGA from "react-ga4"
+import {useLocation} from "@docusaurus/router"
 
 import HomePage from "../components/home"
 
-ReactGA.initialize("G-JEP3QDWT0G")
-
-export default function Home(): JSX.Element {
+const Home = (): JSX.Element => {
   const isDevelopment = process.env.NODE_ENV === "development"
+  const location = useLocation()
 
   useEffect(() => {
-    ReactGA.send({hitType: "pageview", page: window.location.pathname, title: "Home Page"})
+    ReactGA.send({hitType: "pageview", page: location.pathname, title: "Home Page"})
   }, [])
 
   return (
@@ -27,3 +27,5 @@ export default function Home(): JSX.Element {
     </Layout>
   )
 }
+
+export default Home
