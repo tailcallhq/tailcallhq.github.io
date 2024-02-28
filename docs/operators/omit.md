@@ -46,5 +46,4 @@ type User {
 
 ## Links
 
-- For more details on the **@modify** operator and its capabilities, including omitting fields, see the [@modify documentation](/docs/operators/modify).
-- Find insights on integrating REST APIs with your GraphQL schema in the **@http** operator documentation [here](/docs/operators/http).
+- For more details on the **@modify** operator and its capabilities, including omitting fields, see the [@modify documentation](/docs/operators/modify#omit).
