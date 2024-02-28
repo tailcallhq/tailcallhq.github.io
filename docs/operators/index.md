@@ -19,5 +19,6 @@ Certainly! Here's the table with hyperlinks added back to the operator names:
 | [@grpc](grpc.md)          | Resolves a field or node by a gRPC API.                                                                      |
 | [@http](http.md)          | Resolves a field or node by a REST API.                                                                      |
 | [@modify](modify.md)      | Enables changes to attributes of fields or nodes in the schema.                                              |
+| [@omit](omit.md)          | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
 | [@server](server.md)      | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
 | [@upstream](upstream.md)  | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
