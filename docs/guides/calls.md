@@ -1,5 +1,5 @@
 ---
-title: "Seamless Sequential and Parallel Calls in Tailcall"
+title: "Sequencing & Parallelism"
 ---
 
 Building data access layers often involves meticulous orchestration of API calls, but Tailcall simplifies this process. By analyzing your defined schema, it automatically determines the optimal execution strategy, deciding when to sequence calls and when to run them in parallel. This allows you to focus on your core application logic, while Tailcall handles the optimization seamlessly. Now, let's get into some real-world examples to illustrate its functionality.
@@ -49,8 +49,7 @@ query getPostsWithUsers {
 }
 ```
 
-- This query retrieves a post with its comments and their corresponding authors.
-- Implicit Sequencing: Tailcall understands that retrieving a comment's author details depends on first knowing the comment's ID. Hence, it automatically fetches the comments first, then uses their IDs to fetch the respective users in a sequential manner.
+This query retrieves a post along with its associated comments and their corresponding authors. Tailcall recognizes that fetching a comment's author details requires knowing the comment's ID first. Therefore, it automatically fetches the comments in the initial step, then uses those IDs to retrieve the respective users in a sequential manner.
 
 ### Example 2: Searching Multiple Posts and Users by ID
 
@@ -93,7 +92,6 @@ query getUserPosts($userIds: [Int!]!) {
 }
 ```
 
-- This query retrieves details of multiple users and their recent posts based on provided user IDs.
-- Implicit Parallelization: There's no dependency between fetching user details and their individual posts. Tailcall identifies this and can potentially execute these requests concurrently for each user, optimizing data retrieval speed.
+This query retrieves details of multiple users and their most recent posts based on the provided user IDs. Tailcall intelligently recognizes that fetching user details and their individual posts are independent tasks. As a result, it can potentially execute these requests concurrently for each user.
 
 In summary, Tailcall automates the management of sequence and parallelism in API calls. It analyzes the defined schema to optimize execution, freeing developers from manual intervention.
