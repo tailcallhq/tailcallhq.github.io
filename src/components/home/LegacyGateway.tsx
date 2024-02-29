@@ -8,7 +8,7 @@ import LottieContainer from "./LottieContainer.tsxsrc/components/home/LottieCont
 
 const LegacyGateway = (): JSX.Element => {
   return (
-    <section className="w-full my-SPACE_12 lg:px-SPACE_16">
+    <section className="w-full my-SPACE_12 lg:px-SPACE_16 overflow-x-hidden">
       <div className="max-w-7xl mx-SPACE_04 sm:m-SPACE_10 lg:mx-auto lg:my-SPACE_20">
         <SectionTitle title="The Problem" />
         <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-SPACE_10 lg:space-x-SPACE_20">
