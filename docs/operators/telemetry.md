@@ -1,12 +1,16 @@
 ---
-title: "@trace"
+title: "@telemetry"
 ---
 
-The `@trace` directive enables integration with [opentelemetry](https://opentelemetry.io) that provides observability to your running tailcall services.
+The `@telemetry` directive enables integration with [opentelemetry](https://opentelemetry.io) that provides observability to your running tailcall services.
 
 ## What kind of data is available
 
 ### Traces
+
+#### handle_request
+
+Span for handling the http request on server side
 
 #### field::resolver
 
@@ -18,7 +22,7 @@ More granulated spans inside the `field::resolver` span that describes execution
 
 ### Metrics
 
-#### Cache::hit_rate
+#### cache::hit_rate
 
 Hit rate ratio for the cache that is used for the [`@cache`](./cache.md) directive
 
@@ -36,7 +40,7 @@ Example of integration with honeycomb.io:
 
 ```graphql
 schema
-  @trace(
+  @telemetry(
     export: {
       otlp: {
         url: "https://api.honeycomb.io:443"
@@ -59,6 +63,25 @@ Url of the OTLP Collector.
 
 Additional headers that will be sent with requests to the OTLP Collector. This could be used to specify authorization headers or additional labels.
 
+#### `prometheus`
+
+Exports metrics to the [Prometheus](https://prometheus.io) compatible format and serves those metrics on specific [path](#path)
+
+```graphql
+schema @telemetry(export: {prometheus: {path: "/metrics"}}) {
+  query: Query
+}
+```
+
+##### `path`
+
+Specifies the path for the prometheus metrics endpoint that will be served by tailcall server. By default, it's equal to `/metrics`
+
+##### `format`
+
+- `text` - encodes prometheus data in text format. It's used by default
+- `protobuf` - encodes prometheus data in protobuf format
+
 #### `stdout`
 
 Exporter that will output all the opentelemetry data to the stdout.
@@ -66,7 +89,7 @@ Exporter that will output all the opentelemetry data to the stdout.
 That could be useful for testing and local purposes before enabling a real exporter
 
 ```graphql
-schema @trace(export: {stdout: {pretty: true}}) {
+schema @telemetry(export: {stdout: {pretty: true}}) {
   query: Query
 }
 ```
