@@ -55,7 +55,7 @@
 }
 
 code {
-  border: none;
+  border: 1px solid #eee;
   letter-spacing: 0.00001px;
   vertical-align: baseline;
 }
