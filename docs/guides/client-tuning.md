@@ -1,5 +1,6 @@
 ---
-title: Tuning Client for Performance
+title: Client Tuning
+description: Tuning client for performance
 ---
 
 ### HTTP (Hypertext Transfer Protocol)
