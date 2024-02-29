@@ -8,7 +8,7 @@ import LottieContainer from "./LottieContainer.tsxsrc/components/home/LottieCont
 
 const LegacyGateway = (): JSX.Element => {
   return (
-    <section className="w-full my-SPACE_12 lg:px-SPACE_16 overflow-x-hidden">
+    <section className="w-full my-SPACE_12 lg:px-SPACE_16">
       <div className="max-w-7xl mx-SPACE_04 sm:m-SPACE_10 lg:mx-auto lg:my-SPACE_20">
         <SectionTitle title="The Problem" />
         <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-SPACE_10 lg:space-x-SPACE_20">
@@ -35,7 +35,7 @@ const LegacyGateway = (): JSX.Element => {
         <LottieContainer
           animationData={SolutionGraphic}
           loop
-          className="scale-[1.12] sm:scale-100 bg-tailCall-dark-500 sm:bg-transparent"
+          className="scale-100 md:scale-[1.12] bg-tailCall-dark-500 sm:bg-transparent"
         />
       </div>
     </section>
