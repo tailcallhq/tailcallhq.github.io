@@ -1,96 +1,98 @@
 import React, {useEffect, useState} from "react"
+import {useHistory} from "react-router-dom"
 import Sidebar from "@theme-original/DocRoot/Layout/Sidebar"
 import Search from "docusaurus-lunr-search/src/theme/SearchBar"
-import {useHistory} from "react-router-dom"
 import useIsBrowser from "@docusaurus/useIsBrowser"
+import Platform from "react-platform-js"
+
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import EnterKeyIcon from "@site/static/icons/basic/enter-key.svg"
 import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
 import EscapeKeyIcon from "@site/static/icons/basic/escape-key.svg"
-import styles from "./Sidebar.module.css"
+import styles from "./styles.module.css"
+import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
 
-export default function SidebarWrapper(props) {
-  const [isSearchModalVisible, setIsSearchModalVisible] = useState(false)
+const CustomSearch = () => {
+  const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
   const history = useHistory()
   const isBrowser = useIsBrowser()
-  const placeholder = isBrowser && window.navigator.platform.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K"
+  const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K") : "Search"
 
-  function handleSearchClick() {
+  // Function to handle opening the search modal
+  const handleSearchClick = () => {
     setIsSearchModalVisible(true)
   }
 
-  function handleSearchModalClose() {
+  // Function to handle closing the search modal
+  const handleSearchModalClose = () => {
     setIsSearchModalVisible(false)
   }
 
-  function setBodyScroll() {
-    document.body.style.overflow = isSearchModalVisible ? "hidden" : "auto"
+  // Function to control body scroll based on modal visibility
+  const setBodyScroll = () => {
+    if (isSearchModalVisible) {
+      setBodyOverflow("hidden")
+    } else {
+      setBodyOverflow("initial")
+    }
   }
 
-  useEffect(() => {
-    setBodyScroll()
-    return () => {
-      document.body.style.overflow = "initial"
-    }
-  }, [isSearchModalVisible])
-
-  function handleKeyPress(event) {
+  // Function to handle key press events
+  const handleKeyPress = (event: KeyboardEvent) => {
     if (event.key === "Escape") {
       handleSearchModalClose()
     }
     if (
-      (event.metaKey && event.key === "k" && navigator.platform.includes("Mac")) ||
-      (event.ctrlKey && event.key === "k" && navigator.platform.includes("Win"))
+      (event.metaKey && event.key === "k" && Platform.UA.includes("Mac")) ||
+      (event.ctrlKey && event.key === "k" && Platform.UA.includes("Win"))
     ) {
       handleSearchClick()
     }
   }
 
   useEffect(() => {
+    let timer: NodeJS.Timeout
+
+    // handle body scroll based on modal visibility changes
+    setBodyScroll()
+
+    // handle keydown events for search functionality
     document.addEventListener("keydown", handleKeyPress)
 
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress)
-    }
-  }, [])
-
-  useEffect(() => {
+    // close the search modal when route changes
     const unlisten = history.listen((location, action) => {
       if (action === "PUSH" || action === "POP") {
         setIsSearchModalVisible(false)
       }
     })
 
+    // focus on search input when modal becomes visible
+    if (isSearchModalVisible) {
+      timer = setTimeout(() => {
+        const searchInput = getSearchInputRef()
+        if (searchInput) {
+          searchInput.focus()
+        }
+      }, 50)
+    }
+
     return () => {
+      clearTimeout(timer)
+      setBodyOverflow("initial")
+      document.removeEventListener("keydown", handleKeyPress)
       unlisten()
     }
-  }, [history])
-
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (
-        (event.metaKey && event.key === "k" && navigator.platform.includes("Mac")) ||
-        (event.ctrlKey && event.key === "k" && navigator.platform.includes("Win"))
-      ) {
-        // Your action when CMD/CTRL + K is pressed
-        console.log("CMD/CTRL + K pressed")
-        // Perform your desired action here
-      }
-    }
-
-    document.addEventListener("keydown", handleKeyPress)
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress)
-    }
-  }, [])
+  }, [isSearchModalVisible, history])
 
   return (
-    <div className="sidebar-search-container flex flex-col">
+    <>
+      {/* Search input container */}
       <div className={styles.inputContainer} onClick={handleSearchClick}>
         <span aria-label="expand searchbar" role="button" className="search-icon" tabIndex={0}></span>
         <input readOnly placeholder={placeholder} className={styles.input} />
       </div>
+
+      {/* Search modal */}
       {isSearchModalVisible ? (
         <>
           <div onClick={handleSearchModalClose} className={styles.overlay}></div>
@@ -99,8 +101,8 @@ export default function SidebarWrapper(props) {
               <Search />
               <div className={styles.initialCase}>
                 <PageSearchIcon />
-                <div className="mt-2 font-bold">Search Docs</div>
-                <div className="text-content-tiny text-tailCall-dark-100">Search anything within the docs</div>
+                <div className={styles.searchDocsTitle}>Search Docs</div>
+                <div className={styles.searchDocsDesc}>Search anything within the docs</div>
               </div>
             </div>
             <div className={styles.footer}>
@@ -120,7 +122,18 @@ export default function SidebarWrapper(props) {
           </div>
         </>
       ) : null}
+    </>
+  )
+}
+
+// Wrapper component combining Sidebar with CustomSearch
+const SidebarWrapper = (props: SidebarConfig) => {
+  return (
+    <div className="sidebar-search-container flex flex-col">
+      <CustomSearch />
       <Sidebar {...props} />
     </div>
   )
 }
+
+export default SidebarWrapper

@@ -1,59 +1,63 @@
 import React from "react"
-import ReactGA from "react-ga4"
+import Heading from "@theme/Heading"
 
-import Button from "../shared/Button"
+import LinkButton from "../shared/LinkButton"
 import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
+import {Theme, codeSandboxUrl} from "@site/src/constants"
+import {pageLinks} from "@site/src/constants/routes"
+import Link from "@docusaurus/Link"
 
-const Banner = () => {
+const Banner = (): JSX.Element => {
   return (
     <main>
-      <div className="flex flex-col sm:items-center sm:text-center w-full mt-6 px-4 sm:mt-20">
+      <div className="flex flex-col sm:items-center sm:text-center w-full mt-SPACE_06 px-SPACE_04 sm:mt-SPACE_20">
         <div className="h-full 2xl:min-h-0">
-          <h2 className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl">
-            GraphQL platform engineered for{" "}
-            <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-2">scale</span>
-          </h2>
-          <p className="sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-4 mb-0">
-            A cloud native solution to streamline API management across{" "}
-            <span className="font-bold sm:text-title-medium">edge,&nbsp;</span>
-            <span className="font-bold sm:text-title-medium">middle,&nbsp;</span>
-            and <span className="font-bold sm:text-title-medium">service</span> layers.
+          <Heading
+            as="h2"
+            className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl"
+          >
+            API platform engineered for{" "}
+            <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">scale</span>
+          </Heading>
+          <p className="sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-SPACE_04 mb-0">
+            Tailcall is a high-performance open-source API orchestrator that allows organizations to build versatile
+            data access layers, atop existing APIs.
           </p>
-          <div className="hidden sm:flex justify-center mt-6 sm:mt-10 space-x-4 sm:space-x-6">
-            <Button
+          <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
+            <LinkButton
               title="Try it Out"
-              href="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
-              theme="dark"
-              width="228px"
+              href={codeSandboxUrl}
+              theme={Theme.Dark}
+              width="small"
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
             />
-            <Button
+            <LinkButton
               title="Get Started"
-              href="/docs/getting_started/"
-              theme="light"
-              width="228px"
+              href={pageLinks.docs}
+              theme={Theme.Light}
+              width="small"
               onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
             />
           </div>
 
-          <div className="sm:hidden flex justify-center mt-6 sm:mt-10 space-x-4 sm:space-x-6">
-            <Button
+          <div className="sm:hidden flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
+            <LinkButton
               title="Try it Out"
-              href="https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
-              theme="dark"
+              href={codeSandboxUrl}
+              theme={Theme.Dark}
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
             />
-            <Button
+            <LinkButton
               title="Get Started"
-              href="/docs/getting_started/"
-              theme="light"
+              href={pageLinks.docs}
+              theme={Theme.Light}
               onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
             />
           </div>
         </div>
 
-        <HeroImage className="object-contain h-full sm:h-full w-full mt-10 max-w-7xl" />
+        <HeroImage className="object-contain h-full sm:h-full w-full mt-SPACE_10 max-w-7xl" />
       </div>
     </main>
   )

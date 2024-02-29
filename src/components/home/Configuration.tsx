@@ -1,20 +1,18 @@
 import React from "react"
+import Heading from "@theme/Heading"
 import CodeBlock from "@theme/CodeBlock"
+import Link from "@docusaurus/Link"
 
-const Configuration = () => {
+const Configuration = (): JSX.Element => {
   return (
-    <section className="flex flex-col mx-4 my-10 sm:mx-7 lg:flex-row justify-center lg:mx-24 lg:my-12 lg:space-x-10">
+    <section className="flex flex-col mx-SPACE_04 my-SPACE_10 sm:mx-SPACE_07 lg:flex-row justify-center lg:mx-24 lg:my-SPACE_12 lg:space-x-SPACE_10">
       <div className="max-w-2xl">
-        <h2 className="text-title-large sm:text-display-tiny lg:text-display-small mb-4">
-          Get <span className="rounded-lg px-2 bg-tailCall-yellow">Started</span>
-        </h2>
-        <p className="text-content-small sm:text-content-medium mb-11">
-          Setup the Tailcall instantly via npm and unlock the power of high-performance API orchestration.
-        </p>
-        <span className="text-title-small sm:text-title-medium">More</span>
-        <p className="text-content-small sm:text-content-medium mt-4">
-          To dive deeper into TailCall checkout our docs for detailed tutorials. Ideal for devs at any level, it's
-          packed with advanced tips, powerful operators and best practices.
+        <Heading as="h2" className="text-title-large sm:text-display-tiny lg:text-display-small mb-SPACE_04">
+          Get <span className="rounded-lg px-SPACE_02 bg-tailCall-yellow">Started</span>
+        </Heading>
+        <p className="text-content-small sm:text-content-medium mb-SPACE_11">
+          Setup Tailcall via npm to build a high-performance <b>GraphQL API</b> on top of existing REST endpoints.
+          Checkout our <Link href="/docs">docs</Link> for detailed tutorials and guides.
         </p>
       </div>
       <div>
@@ -46,6 +44,7 @@ type Post {
   title: String!
   body: String!
   userId: Int!
+
   # Expand a post with user information
   user: User @http(path: "/users/{{value.userId}}")
 }

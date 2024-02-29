@@ -7,7 +7,7 @@ import SocialBuzz from "./SocialBuzz"
 import Discover from "../shared/Discover"
 import Footer from "../shared/Footer"
 
-const AboutPage = () => {
+const AboutPage = (): JSX.Element => {
   return (
     <>
       <Hero />
