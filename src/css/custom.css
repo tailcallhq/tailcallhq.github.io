@@ -556,3 +556,9 @@ nav.menu {
     box-shadow: none;
   }
 }
+
+@media (min-width: 1024px) {
+  .tabs-container.tabList_node_modules-\@docusaurus-theme-classic-lib-theme-Tabs-styles-module {
+    min-width: 603px;
+  }
+}

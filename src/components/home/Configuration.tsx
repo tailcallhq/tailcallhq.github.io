@@ -17,7 +17,7 @@ const Configuration = (): JSX.Element => {
           Checkout our <Link href="/docs">docs</Link> for detailed tutorials and guides.
         </p>
       </div>
-      <div>
+      <div className="w-full">
         <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
 
         <Tabs>
