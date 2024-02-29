@@ -19,3 +19,8 @@ export const setBodyOverflow = (value: "initial" | "hidden") => {
 export const getSearchInputRef = () => {
   return document.getElementById("search_input_react")
 }
+
+export const validateEmail = (email: string) => {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email);
+};
