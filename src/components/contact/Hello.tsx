@@ -10,10 +10,10 @@ const Hello = (): JSX.Element => {
   const [email, setEmail] = useState<string>("")
   const [message, setMessage] = useState<string>("")
   const [stage, setStage] = useState<string>("")
-  const [isValid, setIsValid] = useState<boolean>(true);
+  const [isValid, setIsValid] = useState<boolean>(true)
 
   const sendData = useCallback(async () => {
-    if(!validateEmail(email)){
+    if (!validateEmail(email)) {
       setIsValid(false)
       return
     }
@@ -62,9 +62,12 @@ const Hello = (): JSX.Element => {
               name="email"
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                if (!isValid) setIsValid(true)
+              }}
               className={`border border-solid border-tailCall-border-light-500 rounded-lg font-space-grotesk h-11 w-[95%] sm:w-[480px] 
-              p-SPACE_03 text-content-small outline-none focus:border-x-tailCall-light-700  ${isValid ? 'is-valid' : 'is-invalid'}`}
+              p-SPACE_03 text-content-small outline-none focus:border-x-tailCall-light-700  ${isValid ? "is-valid" : "is-invalid"}`}
               placeholder="you@company.com"
             />
             {!isValid && <div className="text-red-400">Please enter a valid email.</div>}
