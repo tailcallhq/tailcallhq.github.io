@@ -7,8 +7,8 @@ import Link from "@docusaurus/Link"
 
 const Configuration = (): JSX.Element => {
   return (
-    <section className="flex flex-col mx-SPACE_04 my-SPACE_10 sm:mx-SPACE_07 lg:flex-row justify-center lg:mx-24 lg:my-SPACE_12 lg:space-x-SPACE_10">
-      <div className="max-w-2xl">
+    <section className="flex flex-col mx-SPACE_04 my-SPACE_10 sm:mx-SPACE_07 lg:items-start md:items-center lg:flex-row justify-center lg:mx-24 lg:my-SPACE_12 lg:space-x-SPACE_10">
+      <div className="sm:max-w-2xl">
         <Heading as="h2" className="text-title-large sm:text-display-tiny lg:text-display-small mb-SPACE_04">
           Get <span className="rounded-lg px-SPACE_02 bg-tailCall-yellow">Started</span>
         </Heading>
@@ -17,7 +17,7 @@ const Configuration = (): JSX.Element => {
           Checkout our <Link href="/docs">docs</Link> for detailed tutorials and guides.
         </p>
       </div>
-      <div>
+      <div className="sm:max-w-2xl sm:min-w-96 w-full">
         <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
 
         <Tabs>
