@@ -15,7 +15,7 @@ function onEvent(event) {
     // Implement request modifications here
   }
   // Additional processing can be done here
-  return event; // Ensure the modified event is returned
+  return event // Ensure the modified event is returned
 }
 ```
 
@@ -24,25 +24,25 @@ The `event` parameter is structured as follows:
 ```typescript
 // Definition of the HTTP request structure
 type HttpRequest = {
-    method: string;
-    url: string;
-    headers: {[key: string]: string};
-};
+  method: string
+  url: string
+  headers: {[key: string]: string}
+}
 
 // Definition of the HTTP response structure
 type HttpResponse = {
-    status: number;
-    headers: {[key: string]: string};
-    body: ArrayBuffer | Uint8Array;
-};
+  status: number
+  headers: {[key: string]: string}
+  body: ArrayBuffer | Uint8Array
+}
 
 // Message structure can either be a request or a response
-type Message = {request: HttpRequest} | {response: HttpResponse};
+type Message = {request: HttpRequest} | {response: HttpResponse}
 
 // Event interface encapsulating the message, optionally including an identifier
 interface Event {
-    message: Message;
-    id?: number;
+  message: Message
+  id?: number
 }
 ```
 
@@ -53,13 +53,13 @@ function onEvent(event) {
   // Check if the event encapsulates a request
   if (event.message.request) {
     // Retrieve the current 'app-id' header value
-    let appID = event.message.request.headers['app-id'];
+    let appID = event.message.request.headers["app-id"]
     // Conditionally modify the 'app-id' header value
-    if (appID === '123') {
-      event.message.request.headers['app-id'] = '456'; // Update the header value
+    if (appID === "123") {
+      event.message.request.headers["app-id"] = "456" // Update the header value
     }
   }
-  return event; // Return the potentially modified event object
+  return event // Return the potentially modified event object
 }
 ```
 
