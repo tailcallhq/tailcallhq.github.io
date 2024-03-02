@@ -126,6 +126,6 @@ type Query {
 }
 ```
 
-Here, {{args.id}} will be replaced with the actual id argument value when making the API request.
+Here, `{{args.id}}` will be replaced with the actual id argument value when making the API request.
 
 [operator]: /docs/operators
