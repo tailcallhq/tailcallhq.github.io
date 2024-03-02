@@ -6,20 +6,20 @@ Tailcall enables the modification of upstream requests through JavaScript script
 
 ### How to Implement
 
-To leverage this functionality, a JavaScript function named `onEvent` must be crafted. This function serves as middleware, allowing for the interception and modification of the request. Below is the function's prototype:
+To leverage this functionality, a JavaScript function named `onRequest` must be created. This function serves as middleware, allowing for the interception and modification of the request. Below is the function's prototype:
 
 ```javascript
-function onEvent(event) {
-  // Check if the event contains a request
-  if (event.message.request) {
+function onRequest({request}) {
+  // Filter the request and apply modifications
+  if (request.url.startsWith("https://api.example.com")) {
     // Implement request modifications here
   }
   // Additional processing can be done here
-  return event // Ensure the modified event is returned
+  return {request} // Ensure the modified request is returned
 }
 ```
 
-The `event` parameter is structured as follows:
+The `request` parameter is structured as follows:
 
 ```typescript
 // Definition of the HTTP request structure
@@ -27,43 +27,28 @@ type HttpRequest = {
   method: string
   url: string
   headers: {[key: string]: string}
-}
-
-// Definition of the HTTP response structure
-type HttpResponse = {
-  status: number
-  headers: {[key: string]: string}
-  body: ArrayBuffer | Uint8Array
-}
-
-// Message structure can either be a request or a response
-type Message = {request: HttpRequest} | {response: HttpResponse}
-
-// Event interface encapsulating the message, optionally including an identifier
-interface Event {
-  message: Message
-  id?: number
+  body?: Uint8Array | ArrayBuffer
 }
 ```
 
-The `onEvent` function is tasked with returning the `event` object post-modification. For example:
+The `onRequest` function is tasked with returning the `HttpRequest` object post-modification. For example:
 
 ```javascript
-function onEvent(event) {
-  // Check if the event encapsulates a request
-  if (event.message.request) {
+function onRequest({request}) {
+  // select the request you want to modify
+  if (request.url.startsWith("https://api.example.com")) {
     // Retrieve the current 'app-id' header value
-    let appID = event.message.request.headers["app-id"]
+    let appID = request.headers["app-id"]
     // Conditionally modify the 'app-id' header value
     if (appID === "123") {
-      event.message.request.headers["app-id"] = "456" // Update the header value
+      request.headers["app-id"] = "456" // Update the header value
     }
   }
-  return event // Return the potentially modified event object
+  return {request} // Return the modified request 
 }
 ```
 
-To apply this script, save the code into a file named `update-request.js` and specify the file path within the Tailcall configuration file using the `Script` directive as shown below:
+To apply this script, save the code into a file named `update-request.js` and specify the file path within the Tailcall configuration file using the `@link` directive as shown below:
 
 ```graphql
 schema @link(type: Script, src: "scripts/update-request.js") {
@@ -71,8 +56,6 @@ schema @link(type: Script, src: "scripts/update-request.js") {
 }
 ```
 
-This configuration ensures that the `app-id` request header is updated from '123' to '456' for all outgoing requests managed by Tailcall.
+This configuration ensures that the `app-id` request header is updated from '123' to '456' for requests matching the filter criteria.
 
-This feature empowers developers to dynamically alter requests.
-
-:::tip The `onEvent` function is applied for every request, If you want to apply the modification for a specific request, you can use the `url` property of the `HttpRequest` object to filter the request.
+This feature empowers developers to dynamically alter requests. For instance, you can modify the request headers, body, or URL based on specific conditions or requirements.
