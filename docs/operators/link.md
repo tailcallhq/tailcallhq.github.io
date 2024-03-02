@@ -46,7 +46,7 @@ type NewsData {
 
 The `@link` directive supports several types of links, including:
 
-- `Config`: Imports a configuration file.
+- `Config`: Imports a schema configuration file.
 - `Protobuf`: Imports a .proto file for gRPC services.
 - `Script`: Imports a JavaScript file.
 - `Cert`: Imports a certificate file.
