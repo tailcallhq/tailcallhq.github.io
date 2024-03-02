@@ -54,23 +54,22 @@ The `@link` directive supports the following types of links:
 
 ```javascript showLineNumbers
 function onEvent(event) {
-    // Add a custom header for all outgoing responses
-    event.response.headers["X-Custom-Header"] = "Processed";
-    // Return health
-    if (event.request.url.endsWith("/health")) {
-        return {
-            response: {
-                status: 200,
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body:
-                {
-                    status: "OK"
-                }
-            },
-        }
+  // Add a custom header for all outgoing responses
+  event.response.headers["X-Custom-Header"] = "Processed"
+  // Return health
+  if (event.request.url.endsWith("/health")) {
+    return {
+      response: {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          status: "OK",
+        },
+      },
     }
+  }
 }
 ```
 
