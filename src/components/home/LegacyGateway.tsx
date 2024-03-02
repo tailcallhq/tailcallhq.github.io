@@ -32,11 +32,7 @@ const LegacyGateway = (): JSX.Element => {
       </div>
 
       <div className="w-full flex items-center justify-center px-0 mt-SPACE_07">
-        <LottieContainer
-          animationData={SolutionGraphic}
-          loop
-          className="scale-[1.12] sm:scale-100 bg-tailCall-dark-500 sm:bg-transparent"
-        />
+        <LottieContainer animationData={SolutionGraphic} loop className="bg-tailCall-dark-500 sm:bg-transparent" />
       </div>
     </section>
   )
