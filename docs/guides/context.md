@@ -91,7 +91,7 @@ type Query {
 }
 ```
 
-Here, {{args.id}} is a variable representing the value of the id argument provided in the GraphQL query. During query execution, this variable is replaced with the actual id value, enabling the construction of dynamic URLs within the directive.
+Here, `args.id` is a variable representing the value of the id argument provided in the GraphQL query. During query execution, this variable is replaced with the actual id value, enabling the construction of dynamic URLs within the directive.
 
 ### headers
 
