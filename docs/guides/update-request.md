@@ -44,7 +44,7 @@ function onRequest({request}) {
       request.headers["app-id"] = "456" // Update the header value
     }
   }
-  return {request} // Return the modified request 
+  return {request} // Return the modified request
 }
 ```
 
