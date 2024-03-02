@@ -44,7 +44,7 @@ type NewsData {
 
 ## Supported Types
 
-The `@link` directive supports several types of links, including:
+The `@link` directive supports the following types of links:
 
 - `Config`: Imports a schema configuration file.
 - `Protobuf`: Imports a .proto file for gRPC services.

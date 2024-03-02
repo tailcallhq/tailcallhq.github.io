@@ -18,7 +18,7 @@ Certainly! Here's the table with hyperlinks added back to the operator names:
 | [@graphQL](graphql.md)    | Resolves a field or node by a GraphQL API.                                                                   |
 | [@grpc](grpc.md)          | Resolves a field or node by a gRPC API.                                                                      |
 | [@http](http.md)          | Resolves a field or node by a REST API.                                                                      |
-| [@link](link.md)          | Imports external resources such as config files, certs, protobufs, etc in the schema.                    |
+| [@link](link.md)          | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |
 | [@modify](modify.md)      | Enables changes to attributes of fields or nodes in the schema.                                              |
 | [@omit](omit.md)          | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
 | [@server](server.md)      | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
