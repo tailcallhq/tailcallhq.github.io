@@ -229,3 +229,28 @@ schema @server(
 ### Trade-offs
 
 Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
+
+## showcase
+
+The showcase setting is a feature designed to enable users to experiment with random configurations hosted on a server. It facilitates the exploration of GraphQL schemas by providing access to the /showcase/graphql endpoint, which allows users to run arbitrary GraphQL schemas by passing a URL in the config query parameter.
+
+### Enabling Showcase Setting
+
+To enable the showcase setting, you need to update the `@server` directive in your GraphQL schema. By adding `showcase: true` within the `@server` directive, you activate the showcase feature. Here's an example of how to incorporate this directive into your schema:
+
+```graphql
+schema @server(showcase: true)
+```
+
+### Benefits:
+
+- **Experimentation:** Allows users to explore different GraphQL configurations hassle-free.
+- **Learning:** Facilitates understanding of GraphQL through interaction with diverse schemas.
+- **Testing:** Aids developers in testing GraphQL queries across varied schemas.
+- **Community Sharing:** Encourages sharing of GraphQL setups, fostering collaboration.
+
+### Considerations:
+
+- **Speed:** Performance varies based on schema complexity and server resources.
+- **Resource Usage:** Running arbitrary configurations may strain server resources.
+- **Security Risks:** Potential security vulnerabilities if inputs aren't sanitized.
