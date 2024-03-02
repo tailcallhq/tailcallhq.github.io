@@ -69,7 +69,7 @@ In this scenario, `value.userId` helps retrieve the `userId` information from th
 
 ### env
 
-Environment variables represent global configurations for the server. They are set once when the server starts. These variables can be utilized within directives to dynamically configure behavior based on server settings. This allows for flexible and adaptable API configurations that can be easily managed without hardcoding values into the schema.
+Environment variables represent global configurations for the server. They are set once when the server starts. These variables can be utilized within directives to dynamically configure behavior based on server settings. This allows for flexible and adaptable API configurations that can be managed without hardcoding values into the schema.
 
 For example:
 
@@ -109,7 +109,7 @@ Here, `headers.userId` refers to a header called `userId` that should be present
 
 Mustache templates provide a convenient way to dynamically inject context values into directives anywhere in the schema. They allow accessing context data by using the `{{var}}` syntax.
 
-Mustache templates can be used to dynamically generate values based on various parts of the GraphQL context, including arguments, field values, parent context, environment variables, and headers. This flexibility enables to construct dynamic directives that adapt to different scenarios and requirements.
+Mustache templates can be used to dynamically generate values based on different parts of the GraphQL context, including arguments, field values, parent context, environment variables, and headers. This flexibility enables to construct dynamic directives that adapt to different scenarios and requirements.
 
 For example, Mustache templates can be utilized to:
 
