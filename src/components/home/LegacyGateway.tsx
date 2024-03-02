@@ -35,7 +35,7 @@ const LegacyGateway = (): JSX.Element => {
         <LottieContainer
           animationData={SolutionGraphic}
           loop
-          className="scale-100 md:scale-[1.12] bg-tailCall-dark-500 sm:bg-transparent"
+          className="bg-tailCall-dark-500 sm:bg-transparent"
         />
       </div>
     </section>
