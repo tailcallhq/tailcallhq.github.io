@@ -79,7 +79,7 @@ type Query {
 }
 ```
 
-Here, env.API_ENDPOINT refers to an environment variable named API_ENDPOINT, which is defined in your server settings.  The value of API_ENDPOINT is used as the base URL for making HTTP requests 
+Here, env.API_ENDPOINT refers to an environment variable named API_ENDPOINT, which is defined in your server settings. The value of API_ENDPOINT is used as the base URL for making HTTP requests
 
 ### variables
 
@@ -87,7 +87,7 @@ Variables enable a simple way to add dynamic values into GraphQL directives, pro
 
 ```graphql showLineNumbers
 type Query {
-  user(id: ID!) @http(url: "/users/{{args.id}}")  
+  user(id: ID!) @http(url: "/users/{{args.id}}")
 }
 ```
 
@@ -122,8 +122,9 @@ Here's a simple example demonstrating the usage of Mustache templates within a d
 
 ```graphql
 type Query {
-  user(id: ID!) @http(url: "/users/{{args.id}}")  
+  user(id: ID!) @http(url: "/users/{{args.id}}")
 }
+```
 
 Here, {{args.id}} will be replaced with the actual id argument value when making the API request.
 
