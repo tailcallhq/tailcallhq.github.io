@@ -21,7 +21,7 @@ The following example illustrates how to utilize the `@link` directive to incorp
 ```graphql showLineNumbers
 schema
   @server(port: 8000, graphiql: true)
-  @upstream(baseURL: "http://localhost:50051", httpCache: true, batch: {delay: 10})
+  @upstream(baseURL: "http://news.local", httpCache: true, batch: {delay: 10})
   @link(id: "news", src: "../src/grpc/news.proto", type: Protobuf) {
   query: Query
 }
@@ -46,10 +46,36 @@ type NewsData {
 
 The `@link` directive supports the following types of links:
 
-- `Config`: Imports a schema configuration file.
-- `Protobuf`: Imports a .proto file for gRPC services.
-- `Script`: Imports a JavaScript file.
-- `Cert`: Imports a certificate file.
-- `Key`: Imports a key file.
+- `Config`: Imports a schema configuration file. During the merge, settings from the imported file override those in the main schema for any overlaps, facilitating a modular and scalable approach to schema configuration. For more details on merging configurations, see [compose command guide](docs/guides/cli/#compose).
+
+- `Protobuf`: Imports a .proto file for gRPC services. This type facilitates the integration of gRPC services into your GraphQL schema by allowing the inclusion of Protocol Buffers definitions. It enables the GraphQL server to communicate with gRPC services directly. For integrating gRPC services, refer to [gRPC Integration Guide](/docs/guides/grpc.md).
+
+- `Script`: A link to an external JavaScript file that listens on every HTTP request response event. This allows for the execution of custom logic or filters based on the request and response. Example usage:
+
+```javascript showLineNumbers
+function onEvent(event) {
+    // Add a custom header for all outgoing responses
+    event.response.headers["X-Custom-Header"] = "Processed";
+    // Return health
+    if (event.request.url.endsWith("/health")) {
+        return {
+            response: {
+                status: 200,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body:
+                {
+                    status: "OK"
+                }
+            },
+        }
+    }
+}
+```
+
+- `Cert`: Imports a SSL/TLS certificate for HTTPS.
+
+- `Key`: Imports a SSL/TLS private key for HTTPS.
 
 Each type serves a specific purpose, enabling the flexible integration of external resources into your GraphQL schema.
