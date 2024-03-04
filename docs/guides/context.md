@@ -4,6 +4,15 @@ title: Context
 
 In any GraphQL framework, including Tailcall, `Context` serves as a fundamental mechanism for sharing data across different parts of your application. This adaptable object becomes available to every resolver in GraphQL.
 
+Mustache templates can be used to dynamically generate values based on different parts of the GraphQL context, including arguments, field values, parent context, environment variables, and headers. This flexibility enables to construct dynamic directives that adapt to different scenarios and requirements.
+
+They enable:
+
+- Constructing URLs with dynamic path parameters based on argument values.
+- Including context data in HTTP headers for authentication or other purposes.
+- Generating query parameters based on field values or other context data.
+- Dynamically configuring directive options based on environment variables.
+
 ## Context in Tailcall
 
 In Tailcall, as in all GraphQL implementations, every [Operator](operators/index.md) can access Context. Operators use Context to store and retrieve data necessary for shared operations.
@@ -87,11 +96,11 @@ Variables enable a simple way to add dynamic values into GraphQL directives, pro
 
 ```graphql showLineNumbers
 type Query {
-  user(id: ID!) @http(url: "/users/{{args.id}}")
+  user(id: ID!) @http(url: "/users/{{var.userId}}")
 }
 ```
 
-Here, `args.id` is a variable representing the value of the id argument provided in the GraphQL query. During query execution, this variable is replaced with the actual id value, enabling the construction of dynamic URLs within the directive.
+Here, a variable named `$userId` is defined using var syntax. This variable is then used within the user field directive to dynamically construct the URL for the HTTP request.
 
 ### headers
 
@@ -104,28 +113,5 @@ type Query {
 ```
 
 Here, `headers.userId` refers to a header called `userId` that should be present in the `context`. The server can use this `userId` to fetch comments for the specified user.
-
-### Mustache Templates
-
-Mustache templates provide a convenient way to dynamically inject context values into directives anywhere in the schema. They allow accessing context data by using the `{{var}}` syntax.
-
-Mustache templates can be used to dynamically generate values based on different parts of the GraphQL context, including arguments, field values, parent context, environment variables, and headers. This flexibility enables to construct dynamic directives that adapt to different scenarios and requirements.
-
-For example, Mustache templates can be utilized to:
-
-- Construct URLs with dynamic path parameters based on argument values.
-- Include context data in HTTP headers for authentication or other purposes.
-- Generate query parameters based on field values or other context data.
-- Dynamically configure directive options based on environment variables.
-
-Here's a simple example demonstrating the usage of Mustache templates within a directive:
-
-```graphql
-type Query {
-  user(id: ID!) @http(url: "/users/{{args.id}}")
-}
-```
-
-Here, `{{args.id}}` will be replaced with the actual id argument value when making the API request.
 
 [operator]: /docs/operators
