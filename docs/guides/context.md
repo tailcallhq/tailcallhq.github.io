@@ -6,12 +6,12 @@ In any GraphQL framework, including Tailcall, `Context` serves as a fundamental 
 
 Mustache templates can be used to dynamically generate values based on different parts of the GraphQL context, including arguments, field values, parent context, environment variables, and headers. This flexibility enables to construct dynamic directives that adapt to different scenarios and requirements.
 
-They enable:
+They're useful for:
 
-- Constructing URLs with dynamic path parameters based on argument values.
-- Including context data in HTTP headers for authentication or other purposes.
-- Generating query parameters based on field values or other context data.
-- Dynamically configuring directive options based on environment variables.
+- Creating web addresses that change based on information provided in arguments.
+- Adding context information to web page headers for security or other purposes.
+- Generating search terms based on data in fields or other information.
+- Setting up rules that change depending on the surrounding context.
 
 ## Context in Tailcall
 
