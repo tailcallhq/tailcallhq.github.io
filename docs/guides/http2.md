@@ -2,7 +2,7 @@
 title: Leveraging HTTP/2
 ---
 
-HTTP/2 is a modern protocol that significantly improves web performance by introducing features like multiplexing, header compression, and more efficient connection handling.
+HTTP/2 is a modern protocol that enhances improves web performance by introducing features like multiplexing, header compression, and more efficient connection handling.
 
 Tailcall seamlessly supports HTTP/2 on both the server (ingress) and client (egress) sides. This means that Tailcall facilitates the utilization of HTTP/2 protocol for both incoming requests to your server and outgoing requests from your server to other services.
 
@@ -78,4 +78,4 @@ Tailcall autonomously determines the most suitable communication method when int
 
 ## Conclusion
 
-Leveraging HTTP/2 with Tailcall empowers applications with enhanced performance, reduced latency, and efficient handling of inbound and outbound requests. By properly configuring and utilizing @http directives, the full potential of HTTP/2 features can be harnessed for seamless communication with APIs. Additionally, Tailcall simplifies HTTP/2 adoption on both the server and client sides, providing automatic support where applicable.
+Leveraging HTTP/2 with Tailcall empowers applications with enhanced performance, reduced latency, and efficient handling of inbound and outbound requests. By properly configuring and utilizing @http directives, the full potential of HTTP/2 features can be harnessed for seamless communication with APIs. Furthermore, Tailcall simplifies HTTP/2 adoption on both the server and client sides, providing automatic support where applicable.
