@@ -32,7 +32,11 @@ const Configuration = (): JSX.Element => {
 
 const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" | "graphql"}) => (
   <TabItem value={language} label={language}>
-    <CodeBlock language={language} showLineNumbers={true} className="overflow-y-auto h-96">
+    <CodeBlock
+      language={language}
+      showLineNumbers={true}
+      className="overflow-y-auto h-96 md:min-w-[45rem] min-w-[100%]"
+    >
       {code}
     </CodeBlock>
     <CodeBlock language="bash">tailcall start ./app.{language}</CodeBlock>
