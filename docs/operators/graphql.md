@@ -2,8 +2,6 @@
 title: "@graphQL"
 ---
 
-## @graphQL
-
 The **@graphQL** operator allows to specify GraphQL API server request to fetch data from.
 
 ```graphql showLineNumbers
