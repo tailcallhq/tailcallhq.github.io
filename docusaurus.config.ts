@@ -12,6 +12,14 @@ export default {
   tagline: "<tagline>",
   headTags: [
     {
+      tagName: "script",
+      attributes: {
+        async: "true",
+        src: "https://tag.clearbitscripts.com/v1/pk_498a76355e253f5c7f4e7c7bed78748e/tags.js",
+        referrerPolicy: "strict-origin-when-cross-origin",
+      },
+    },
+    {
       tagName: "link",
       attributes: {
         rel: "preconnect",
@@ -119,10 +127,10 @@ export default {
         highlightResult: true,
       },
     ],
-    async function myPlugin(context, options) {
+    async function myPlugin() {
       return {
         name: "docusaurus-tailwindcss",
-        configurePostCss(postcssOptions) {
+        configurePostCss(postcssOptions: {[key: string]: any}) {
           // Appends TailwindCSS and AutoPrefixer.
           postcssOptions.plugins.push(require("tailwindcss"))
           postcssOptions.plugins.push(require("autoprefixer"))

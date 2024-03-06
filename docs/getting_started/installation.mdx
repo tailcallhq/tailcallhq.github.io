@@ -1,6 +1,6 @@
 ---
 title: Installation
-sidebar_position: 1
+sidebar_position: 2
 slug: /getting_started
 ---
 
@@ -18,7 +18,7 @@ import InstallCommand from "../../src/components/install"
    ```bash
    npm i -g @tailcallhq/tailcall
    ```
-3. Verify that Tailcall is installed correctly by running:
+3. To verify the correct installation of Tailcall, run:
 
    ```bash
    tailcall
@@ -34,7 +34,7 @@ import InstallCommand from "../../src/components/install"
    ```bash
    yarn global add @tailcallhq/tailcall
    ```
-2. Verify that Tailcall is installed correctly by running:
+2. To verify the correct installation of Tailcall, run:
 
    ```bash
    tailcall
@@ -49,13 +49,13 @@ import InstallCommand from "../../src/components/install"
    brew tap tailcallhq/tailcall
    brew install tailcall
    ```
-3. Verify that Tailcall is installed correctly by running:
+3. To verify the correct installation of Tailcall, run:
 
    ```bash
    tailcall
    ```
 
-4. Once installation is done, **upgrades** can be performed via:
+4. After completing the installation, perform **upgrades** with:
 
    ```bash
    brew update
@@ -68,7 +68,7 @@ Follow the steps below to manually install the cli on your system:
 
 <InstallCommand />
 
-This command fetches and executes the Tailcall installation script. The installed files are located in the `~/.tailcall` directory.
+This command fetches and executes the Tailcall installation script. The `~/.tailcall` directory contains the installed files.
 
 Upon completion of the installation, extend your `PATH` environment variable to include the `~/.tailcall/bin` directory:
 
@@ -78,7 +78,7 @@ export PATH=$PATH:~/.tailcall/bin
 
 ## Docker
 
-If you want to install Tailcall with Docker, follow the steps below. Before starting, ensure Docker is installed on your system. If not, you can download it from [here](https://www.docker.com/products/docker-desktop).
+To install Tailcall with Docker, follow the steps below. Before starting, make sure you have Docker installed on your system. If not, download it from [here](https://www.docker.com/products/docker-desktop).
 
 1. Pull the latest Tailcall Docker image using the following command:
 
@@ -96,4 +96,4 @@ If you want to install Tailcall with Docker, follow the steps below. Before star
      <Version />
    </CodeBlock>
 
-   This command starts the Tailcall server in a Docker container. Similar to the homebrew installation, it exposes a the graphQL endpoint on port 8080.
+   This command launches the Tailcall server in a Docker container, exposing the GraphQL endpoint on port 8080.

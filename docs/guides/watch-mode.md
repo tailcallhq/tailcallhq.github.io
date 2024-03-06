@@ -2,21 +2,21 @@
 title: Watch Mode
 ---
 
-Developers often find themselves in situations where they need to run a server in watch mode to streamline the development process. This guide will introduce you to [entr], a versatile file-watcher tool, and demonstrate how to run your server in watch mode with it. We'll also touch on the installation process and suggest some best practices to optimize your workflow.
+Developers often find themselves in situations where they need to run a server in watch mode to streamline the development process. This guide will introduce you to [entr], a versatile file-watcher tool, and how to run your server in watch mode with it. We'll also touch on the installation process and suggest some best practices to optimize your workflow.
 
 [entr]: https://eradman.com/entrproject/
 
 ## Use case
 
-Running a server in watch mode offers several key benefits:
+Running a server in watch mode offers a lot of key benefits:
 
-- `Real-time Feedback` : Watch mode ensures that your server stays up-to-date with your code changes. It immediately reflects those changes, providing you with real-time feedback during development.
-- `Efficiency` : Manually restarting the server each time you modify code can be tedious and time-consuming. Watch mode automates this process, making development more efficient.
-- `Debugging` : It helps you quickly identify and fix issues as they arise, reducing the debugging time. When your server automatically restarts upon code changes, you catch errors sooner.
+- `Real-time Feedback`: Watch mode ensures that your server remains up-to-date with your code changes, instantly reflecting those changes and providing you with real-time feedback during development.
+- `Efficiency`: Manually restarting the server each time you change code can be tedious and time-consuming. Watch mode automates this process, enhancing development efficiency.
+- `Debugging`: It enables you to identify and resolve issues as they occur, reducing debugging time. With your server automatically restarting upon code changes, you detect errors earlier.
 
 ## Using `entr`
 
-`entr` is a powerful file-watching utility that makes running a server in watch mode a breeze. Let's go through the steps for the installation process for different operating system :
+It's a powerful file-watching utility that makes running a server in watch mode a breeze. Let's go through the steps for the installation process for different operating system :
 
 ### Installation
 
@@ -30,7 +30,7 @@ Running a server in watch mode offers several key benefits:
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
    ```
 
-3. Once Homebrew is installed, you can install `entr` by running the following command:
+3. After installing Homebrew, proceed to install `entr` by executing the following command:
 
    ```graphql
    brew install entr
@@ -42,7 +42,7 @@ Running a server in watch mode offers several key benefits:
    entr --version
    ```
 
-If the installation is done correctly it will shown the latest version of the `entr`
+Upon successful installation, it will display the latest version of `entr`.
 
 #### Windows Subsystem
 
@@ -69,7 +69,7 @@ If the installation is done correctly it will shown the latest version of the `e
    entr --version
    ```
 
-If the installation is done correctly it will shown the latest version of the `entr`
+A successful installation will display the latest version of `entr`.
 
 #### apt-get
 
@@ -86,45 +86,45 @@ If the installation is done correctly it will shown the latest version of the `e
    entr --version
    ```
 
-If the installation is done correctly it will shown the latest version of the `entr`
+If you install it, it will show the latest version of the `entr`
 
 ### Watch Mode
 
-To run your server in watch mode using `entr`, you'll utilize the `ls` command to list the files you want to monitor. The general syntax is as follows:
+To run your server in watch mode with `entr`, use the `ls` command to list the files you want to track. The general syntax is as follows:
 
 ```graphql
 ls *.graphql | entr -r tailcall start ./jsonplaceholder.graphql
 ```
 
-This command uses `entr` to continuously monitor the `jsonplaceholder.graphql` file and when it changes, It runs the `tailcall start` command with the file as an argument
+This command uses `entr` to continuously track the `jsonplaceholder.graphql` file and when it changes, It runs the `tailcall start` command with the file as an argument
 
-The above command is described in detail below :
+Detailing the above command as follows:
 
-1. `ls *.graphql` : This part of the code lists the file or files you want to monitor for changes. In this case, it lists the file named "jsonplaceholder.graphql" within the "examples" directory.
+1. `ls *.graphql` : This part of the code lists the file or files you want to track for changes. In this case, it lists the file named "jsonplaceholder.graphql" within the "examples" directory.
 
-2. `|` : The pipe symbol ('|') is used to take the output of the preceding command (the file listing) and feed it as input to the following command (entr).
+2. `|` : The pipe symbol ('|') takes the output of the preceding command (the file listing) and feeds it as input to the following command (entr).
 
-3. `entr -r tc start ./jsonplaceholder.graphql` : This is the command that will be executed whenever the file "jsonplaceholder.graphql" changes.
+3. `entr -r tc start ./jsonplaceholder.graphql` : Whenever the file "jsonplaceholder.graphql" changes, this command executes.
 
-- `entr` is a command-line tool for running arbitrary commands whenever files change. It monitors the files specified in the previous command (`ls ./jsonplaceholder.graphql`)
+- `entr` is a command-line tool for running arbitrary commands whenever files change. It tracks the files specified in the previous command (`ls ./jsonplaceholder.graphql`)
 
-- `r` : This flag tells entr to continue running the command even if it encounters errors (it runs the command repeatedly).
+- `r` : This flag instructs entr to persist in running the command through errors, ensuring continuous operation.
 
-- `tc start ./jsonplaceholder.graphql` : This is the command to run when changes are detected. It is executing a command `tc start` with the file path
+- `tc start ./jsonplaceholder.graphql` : This command runs upon detecting changes, executing `tc start` with the file path
   `./jsonplaceholder.graphql` as an argument
 
 ## Some Best Practices
 
 To make the most of running a server in watch mode with `entr`, consider the following best practices:
 
-1. **Selective File Watching**: Be selective about which files you monitor with `entr`. Watching unnecessary files can lead to increased CPU and memory usage. Focus on the essential files related to your project.
+1. **Selective File Watching**: Be selective about which files you track with `entr`. Watching unnecessary files can lead to increased CPU and memory usage. Focus on the essential files related to your project.
 
-2. **Organize Your Project**: Maintain a well-organized project structure to make it easier to identify which files need monitoring.
+2. **Organize Your Project**: Maintain a well-organized project structure to make it easier to identify which files need tracking.
 
 3. **Clear Output**: Clear the terminal output before running entr to have a clean workspace.
 
-4. **Version Control**: Ensure that your project is under version control (e.g., Git) to track changes and easily revert if necessary.
+4. **Version Control**: Ensure that your project is under version control (e.g., Git) to track changes and revert if necessary.
 
-5. **Update `entr`**: Keep `entr` up to date with the latest version to benefit from bug fixes and improvements.
+5. **Update `entr`**: Ensure `entr` is always updated to the latest version for bug fixes and enhancements.
 
-By following these best practices and using `entr` effectively, you can significantly improve your development workflow. Experiment with `entr`, adapt it to your project's specific requirements, and enjoy a smoother and more efficient development process. Happy coding!
+By following these best practices and using `entr` effectively, you can greatly improve your development workflow. Experiment with `entr`, adapt it to your project's specific requirements, and enjoy a smoother and more efficient development process. Happy coding!
