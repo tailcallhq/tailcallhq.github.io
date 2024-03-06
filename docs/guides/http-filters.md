@@ -66,6 +66,31 @@ function onRequest({request}) {
   }
 ```
 
+## Response Redirect
+
+Sometimes you might want to redirect the request to a different URL. You can do this by returning a `response` object with a `status` of `301` or `302` and a `Location` header. The following example redirects all requests to `https://example.com` to `https://tailcall.com`.
+
+```javascript
+function onRequest({request}) {
+  if (request.url.startsWith("https://example.com")) {
+    return {
+      response: {
+        status: 301,
+        headers: {
+          Location: "https://tailcall.com",
+        },
+      },
+    }
+  } else {
+    return {request}
+  }
+}
+```
+
+:::important
+The new request that's created as a result of the redirect will not be intercepted by the worker.
+:::
+
 ## Schema
 
 The `onRequest` function takes a single argument that contains the request object. The return value of the `onRequest` function can be a `request` object, or a `response` object. It can not be null or undefined.
@@ -83,9 +108,7 @@ type Request = {
 }
 ```
 
-:::important
-The http filter doesn't have access to the request's body. However the modified request that's returned can optionally have the body.
-:::
+The http filter doesn't have access to the request's body. However the modified request that's returned can optionally provide the body.
 
 **Response**
 
