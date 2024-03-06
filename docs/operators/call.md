@@ -2,7 +2,7 @@
 title: "@call"
 ---
 
-The **@call** operator is used to reference an `@http` operator. It is useful when you have multiple fields that resolves from the same HTTP endpoint.
+The **@call** operator is used to call another field that has a resolver ([`@http`], [`@graphQL`], [`@grpc`], and [`@const`])
 
 ```graphql showLineNumbers
 schema {
@@ -26,28 +26,59 @@ type Post {
   userId: Int!
   title: String!
   body: String!
-  user: User @call(query: "user", args: [{key: "id", value: "{{value.userId}}"}])
+  user: User @call(query: "user", args: {"id": "{{value.userId}}"})
 }
 ```
 
-## query
+## Available resolvers
 
-The name of the field that has the `@http` resolver to be called. It is required.
+These are the resolvers that can be re-used with the **@call** operator:
+
+- [`@http`]
+- [`@graphQL`]
+- [`@grpc`]
+- [`@const`]
+
+## Resolvable references
+
+These are the "pointers" to the field that has the actual code. You need to use the `query` or `mutation` argument to specify the field to be called. It is required.
+
+### query
+
+The name of the field that has the [resolver] to be called.
 
 ```graphql showLineNumbers
 type Post {
   userId: Int!
-  user: User @call(query: "user", args: [{key: "id", value: "{{value.userId}}"}])
+  user: User @call(query: "user", args: {"id": "{{value.userId}}"})
+}
+```
+
+### mutation
+
+The name of the mutation that has the [resolver] to be called.
+
+```graphql showLineNumbers
+type Mutation {
+  insertPost(input: PostInput): Post @http(body: "{{args.input}}", method: "POST", path: "/posts")
+  insertPlainPost: Post
+    @call(mutation: "insertPost", args: {input: {body: "post-body", title: "post-title", userId: 1}})
 }
 ```
 
 ## args
 
-The arguments to be passed to the `@http` resolver. It is optional.
+The arguments to be passed to the [resolver]. It's a key-value pair where the key is the name of the argument and the value is the value to be passed. It is optional.
 
 ```graphql showLineNumbers
 type Post {
   userId: Int!
-  user: User @call(query: "user", args: [{key: "id", value: "{{value.userId}}"}])
+  user: User @call(query: "user", args: {"id": "{{value.userId}}"})
 }
 ```
+
+[`@http`]: https://tailcall.run/docs/operators/http/
+[`@graphQL`]: https://tailcall.run/docs/operators/graphql/
+[`@grpc`]: https://tailcall.run/docs/operators/grpc/
+[`@const`]: https://tailcall.run/docs/operators/const/
+[resolver]: #available-resolvers
