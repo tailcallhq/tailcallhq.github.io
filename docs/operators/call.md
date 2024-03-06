@@ -2,16 +2,20 @@
 title: "@call"
 ---
 
-The **@call** operator is used to call another field that has a resolver ([`@http`], [`@graphQL`], [`@grpc`], and [`@const`])
+The **@call** operator is used to call another field that has a resolver ([`@http`], [`@graphQL`], [`@grpc`], and [`@const`]). The resolver needs to exist on the root `Query` or `Mutation` type.
+
+This operator is particularly useful when we can reuse a context from a specific [resolver] without having to copy-paste this given context (like headers, path, baseURL, etc).
+
+Let's say on the example below, we want to fetch the user data for each post. But our source of posts is different from the source of users. We can use the **@call** operator to call the `user` query from the `Query` type, which has the proper `baseURL` necessary to fetch the user data.
 
 ```graphql showLineNumbers
-schema {
+schema @upstream(baseURL: "https://jsonplaceholder.typicode.com") {
   query: Query
 }
 
 type Query {
   posts: [Post] @http(path: "/posts")
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
+  user(id: Int!): User @http(baseURL: "https://dummyjson.com", path: "/users/{{args.id}}")
 }
 
 type User {
