@@ -217,7 +217,7 @@ The key can be of any extension, but it's highly recommended to use standards (`
 
 ### showcase
 
-The `@server` directive's `showcase` option allows for hands-on experimentation with server configurations in a controlled environment. This feature simplifies the process of exploring and testing various settings.
+The `@server` directive's `showcase` option allows for hands-on experimentation with server configurations in a controlled environment. This feature simplifies the process of exploring and testing different settings.
 
 ```graphql showLineNumbers
 schema @server(showcase: true) {
@@ -236,7 +236,7 @@ type Query {
 
 #### Use cases
 
-- **Quick Experimentation**: Enables quickly experimenting with random configurations hosted, without the need to restart the server or affect existing setups.
+- **Quick Experimentation**: Enables experimenting with random configurations hosted, without the need to restart the server or affect existing setups.
 
 #### Example Usage:
 
