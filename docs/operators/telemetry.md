@@ -19,9 +19,9 @@ Here are the traces that are captured by the `@telemetry` directive:
 
 The `@telemetry` directive also captures the following metrics:
 
-|              Metric | Description                                                                               |
-| ------------------: | :---------------------------------------------------------------------------------------- |
-| **cache::hit_rate** | Reflects the cache hit rate for the cache powered by the [`@cache`](./cache.md) directive |
+|          Metric | Description                                                                               |
+| --------------: | :---------------------------------------------------------------------------------------- |
+| cache::hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](./cache.md) directive |
 
 ## export
 
