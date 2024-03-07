@@ -1,5 +1,6 @@
 ---
-title: Leveraging the @call Directive in GraphQL for Enhanced Code Reusability
+title: "@call"
+description: "Using the call directive to enhance GraphQL schemas improving code reusability."
 ---
 
 The `@call` directive in GraphQL signifies a paradigm shift towards more efficient code structuring by introducing a methodology akin to function invocations in conventional programming. This directive is pivotal for developers navigating the intricacies of elaborate GraphQL schemas, where minimizing redundancy and adhering to the DRY (Don't Repeat Yourself) principle are paramount. Consider the following schema example:
