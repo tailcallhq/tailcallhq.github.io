@@ -215,6 +215,37 @@ schema @server(key: "./key.pem") {
 The key can be of any extension, but it's highly recommended to use standards (`pem`, `crt`, `key`).
 :::
 
+### showcase
+
+The `@server` directive's `showcase` option allows for hands-on experimentation with server configurations in a controlled environment. This feature simplifies the process of exploring and testing various settings.
+
+```graphql showLineNumbers
+schema @server(showcase: true) {
+  query: Query
+}
+
+type User {
+  not_id: Int
+  not_name: String
+}
+
+type Query {
+  not_user: User @http(path: "/users/1", baseURL: "http://jsonplaceholder.typicode.com")
+}
+```
+
+#### Use cases
+
+- **Quick Experimentation**: Enables quickly experimenting with random configurations hosted, without the need to restart the server or affect existing setups.
+
+#### Example Usage:
+
+![Showcase](/static/images/docs/showcase.png)
+
+#### Performance Considerations
+
+Using the `showcase` feature can impact performance, as it prioritizes flexibility and ease of testing over speed. Expect slower response times due to the overhead of dynamically applying configurations. This mode is not recommended for production environments.
+
 ## batchRequests
 
 Batching in GraphQL combines requests into one, reducing server round trips.
