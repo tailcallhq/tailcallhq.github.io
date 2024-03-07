@@ -1,42 +1,37 @@
 ---
 title: "@telemetry"
+description: "Integrate observability into your Tailcall services using @telemetry directive with OpenTelemetry."
 ---
 
-The `@telemetry` directive enables integration with [opentelemetry](https://opentelemetry.io) that provides observability to your running tailcall services.
+The `@telemetry` directive facilitates seamless integration with [OpenTelemetry](https://open-telemetry.io), enhancing the observability of your GraphQL services powered by Tailcall. By leveraging this directive, developers gain access to valuable insights into the performance and behavior of their applications.
 
-## What kind of data is available
+## Traces
 
-### Traces
+Here are the traces that are captured by the `@telemetry` directive:
 
-#### handle_request
+|      Trace Name | Description                                                                                                                                                                                        |
+| --------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  handle_request | Captures the span for processing the HTTP request on the server side, providing foundational observability.                                                                                        |
+| field::resolver | Denotes spans for fields with defined resolvers, offering insights into field names and execution times for resolver logic.                                                                        |
+|      expr::eval | Nested within the `field::resolver` spans, these granulated spans detail the execution of expressions in resolving a field, highlighting the hierarchical execution pattern of nested expressions. |
 
-Span for handling the http request on server side
+## Metrics
 
-#### field::resolver
+The `@telemetry` directive also captures the following metrics:
 
-Span for the fields with resolvers defined that provides field name and the time of execution of the whole resolving logic for this specific field.
+|              Metric | Description                                                                               |
+| ------------------: | :---------------------------------------------------------------------------------------- |
+| **cache::hit_rate** | Reflects the cache hit rate for the cache powered by the [`@cache`](./cache.md) directive |
 
-#### expr::eval
+## export
 
-More granulated spans inside the `field::resolver` span that describes execution in terms of expression. Single field could be resolved with nested expressions and this span describes that hierarchy execution pattern.
+The `export` field defines how the open-telemetry data should be exported and in which format. The following are the supported formats:
 
-### Metrics
+## otlp
 
-#### cache::hit_rate
+Utilizes the OTLP format to export telemetry data to backend systems, supported by most modern tracing and analytics platforms. Here is an example using [honeycomb.io]:
 
-Hit rate ratio for the cache that is used for the [`@cache`](./cache.md) directive
-
-## Directive Parameters
-
-### `export`
-
-Defines how the opentelemetry data should be exported and in which format
-
-#### `otlp`
-
-Exporter that sends data to the telemetry backend in [OTLP](https://opentelemetry.io/docs/specs/otlp/) format. Most of the modern vendors for tracing analyze support otlp out of the box.
-
-Example of integration with honeycomb.io:
+[honecomb.io]: https://www.honeycomb.io/
 
 ```graphql
 schema
@@ -55,17 +50,16 @@ schema
 }
 ```
 
-##### `url`
+You can configure the OTLP exporter with the following options:
 
-Url of the OTLP Collector.
+|   Field | Description                                                 |
+| ------: | ----------------------------------------------------------- |
+|     url | Defines the URL for the OTLP Collector.                     |
+| headers | Sets additional headers for requests to the OTLP Collector. |
 
-##### `headers`
+## prometheus
 
-Additional headers that will be sent with requests to the OTLP Collector. This could be used to specify authorization headers or additional labels.
-
-#### `prometheus`
-
-Exports metrics to the [Prometheus](https://prometheus.io) compatible format and serves those metrics on specific [path](#path)
+Facilitates metrics export in a Prometheus compatible format, providing a dedicated endpoint for metrics.
 
 ```graphql
 schema @telemetry(export: {prometheus: {path: "/metrics"}}) {
@@ -73,20 +67,16 @@ schema @telemetry(export: {prometheus: {path: "/metrics"}}) {
 }
 ```
 
-##### `path`
+You can configure the Prometheus exporter with the following options:
 
-Specifies the path for the prometheus metrics endpoint that will be served by tailcall server. By default, it's equal to `/metrics`
+|  Field | Description                                                                        |
+| -----: | ---------------------------------------------------------------------------------- |
+|   path | Designates the endpoint path for Prometheus metrics, defaulting to `/metrics`.     |
+| format | Controls the format viz. **text** or **protobuf**, for sending data to Prometheus. |
 
-##### `format`
+## stdout
 
-- `text` - encodes prometheus data in text format. It's used by default
-- `protobuf` - encodes prometheus data in protobuf format
-
-#### `stdout`
-
-Exporter that will output all the opentelemetry data to the stdout.
-
-That could be useful for testing and local purposes before enabling a real exporter
+Outputs all telemetry data to stdout, ideal for testing or local development environments.
 
 ```graphql
 schema @telemetry(export: {stdout: {pretty: true}}) {
@@ -94,6 +84,10 @@ schema @telemetry(export: {stdout: {pretty: true}}) {
 }
 ```
 
-##### `pretty`
+You can configure the stdout exporter with the following options:
 
-Enables pretty output of the opentelemetry data.
+|  Field | Description                                                          |
+| -----: | -------------------------------------------------------------------- |
+| pretty | Enables formatted output of telemetry data for enhanced readability. |
+
+By integrating the `@telemetry` directive into your GraphQL schema, you empower your development teams with critical insights into application performance, enabling proactive optimization and maintenance.
