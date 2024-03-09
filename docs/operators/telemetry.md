@@ -99,9 +99,9 @@ schema
   @telemetry(
     export: {
       otlp: {
-        api_key: "{{env.APOLLO_API_KEY}}",
-        graph_ref: "graph-id@current",
-        platform: "website.com",
+        api_key: "{{env.APOLLO_API_KEY}}"
+        graph_ref: "graph-id@current"
+        platform: "website.com"
         version: "1.0.0"
       }
     }
@@ -113,11 +113,10 @@ schema
 You can configure the apollo exporter with the following options:
 
 |     Field | Description                                                                                                                                                   |
-|----------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |   api_key | The API Key generated from Apollo Studio.                                                                                                                     |
 | graph_ref | The Graph Ref, which is the `graph_id` and the `variant` concatenated using `@`(i.e. \<graph_id\>@\<variant\>)                                                |
 |  platform | An arbitrary value which can contain the name of your website or some other value to identify your deployment uniqely, in case you have multiple deployments. |
 |   version | Version of Apollo which is being used.                                                                                                                        |
-
 
 By integrating the `@telemetry` directive into your GraphQL schema, you empower your development teams with critical insights into application performance, enabling proactive optimization and maintenance.
