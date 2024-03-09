@@ -90,4 +90,34 @@ You can configure the stdout exporter with the following options:
 | -----: | -------------------------------------------------------------------- |
 | pretty | Enables formatted output of telemetry data for enhanced readability. |
 
+## apollo
+
+Facilitates seamless integration with [Apollo Studio](https://studio.apollographql.com/), enhancing the observability of GraphQL services. By leveraging this field, developers gain access to valuable insights into the performance and behavior of their GraphQL APIs.
+
+```graphql
+schema
+  @telemetry(
+    export: {
+      otlp: {
+        api_key: "{{env.APOLLO_API_KEY}}",
+        graph_ref: "graph-id@current",
+        platform: "website.com",
+        version: "1.0.0"
+      }
+    }
+  ) {
+  query: Query
+}
+```
+
+You can configure the apollo exporter with the following options:
+
+|     Field | Description                                                                                                                                                   |
+|----------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|   api_key | The API Key generated from Apollo Studio.                                                                                                                     |
+| graph_ref | The Graph Ref, which is the `graph_id` and the `variant` concatenated using `@`(i.e. \<graph_id\>@\<variant\>)                                                |
+|  platform | An arbitrary value which can contain the name of your website or some other value to identify your deployment uniqely, in case you have multiple deployments. |
+|   version | Version of Apollo which is being used.                                                                                                                        |
+
+
 By integrating the `@telemetry` directive into your GraphQL schema, you empower your development teams with critical insights into application performance, enabling proactive optimization and maintenance.
