@@ -3,7 +3,7 @@ title: Custom Scalars
 ---
 
 The GraphQL specification includes default scalar types Int, Float, String, Boolean, and ID. Although these scalars cover the majority of use cases, some applications need to support other atomic data types (such as Date) or add validation to an existing type.
-Tailcall supports a set of predefined custom scalars to enhance the functionality and validation of your GraphQL APIs
+Tailcall provides these predefined scalars, eliminating the need for you to do so.
 
 Supported scalars:
 
@@ -18,6 +18,7 @@ Supported scalars:
 | `PhoneNumber` | Represents a phone number                                                                    | [E.164](https://en.wikipedia.org/wiki/E.164)                                        |
 | `Date`        | Represents a Date                                                                            | [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339)                           |
 | `Url`         | Represents a URL                                                                             | [RFC 3986](https://www.ietf.org/rfc/rfc3986.txt)                                    |
+| `JSON`        | Represents a JSON Object                                                                     | [RFC 7159](https://datatracker.ietf.org/doc/html/rfc7159)                           |
 
 ## Example Usage
 
@@ -44,5 +45,5 @@ And here is an example of an invalid query that fails the custom scalar validati
 ![Invalid Query](/images/docs/invalid.png)
 
 :::tip
-If a scalar you need is not supported, please create an issue on the Tailcall GitHub repository.
+We recommend utilizing JSON as a scalar for cases where no other scalar type fits your needs. If this workaround does not address your requirements, consider opening an issue on the Tailcall GitHub repository.
 :::
