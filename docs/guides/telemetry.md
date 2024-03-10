@@ -2,6 +2,7 @@
 title: Telemetry
 description: Use Telemetry with Tailcall
 ---
+
 Telemetry refers to the collection of data related to the performance, behavior, and usage of software systems. This data can include metrics such as response times, error rates, resource usage, and more.
 
 The `@telemetry` directive facilitates seamless integration with [OpenTelemetry](https://opentelemetry.io/), enhancing the observability of your GraphQL services powered by Tailcall.
@@ -15,6 +16,7 @@ schema @telemetry {
   query: Query
 }
 ```
+
 By adding `@telemetry` to your schema, you enable telemetry collection for all operations within your GraphQL service.
 
 ## Traces:
@@ -22,7 +24,6 @@ By adding `@telemetry` to your schema, you enable telemetry collection for all o
 Traces provide detailed information about the flow of operations within your GraphQL service. Tailcall captures traces, including handle_request, field::resolver, and expr::eval.
 
 ```graphql
-
 type Query {
   user(id: ID!): User!
 }
@@ -65,17 +66,18 @@ Once you've integrated telemetry into your schema, you need to configure how tel
 If you want to export telemetry data to a backend system using the OTLP format, configure the OTLP exporter with the desired URL and headers.
 
 ```graphql
-schema @telemetry(
-  export: {
-    otlp: {
-      url: "https://api.honeycomb.io:443"
-      headers: [
-        { key: "x-honeycomb-team", value: "{{env.HONEYCOMB_API_KEY}}" }
-        { key: "x-honeycomb-dataset", value: "tailcall" }
-      ]
+schema
+  @telemetry(
+    export: {
+      otlp: {
+        url: "https://api.honeycomb.io:443"
+        headers: [
+          {key: "x-honeycomb-team", value: "{{env.HONEYCOMB_API_KEY}}"}
+          {key: "x-honeycomb-dataset", value: "tailcall"}
+        ]
+      }
     }
-  }
-) {
+  ) {
   query: Query
 }
 ```
@@ -85,13 +87,7 @@ schema @telemetry(
 To export metrics in Prometheus-compatible format, configure the Prometheus exporter with the desired endpoint path.
 
 ```graphql
-schema @telemetry(
-  export: {
-    prometheus: {
-      path: "/metrics"
-    }
-  }
-) {
+schema @telemetry(export: {prometheus: {path: "/metrics"}}) {
   query: Query
 }
 ```
@@ -101,13 +97,7 @@ schema @telemetry(
 For testing or local development environments, you can output telemetry data to stdout. Configure the Stdout exporter with the desired formatting options.
 
 ```graphql
-schema @telemetry(
-  export: {
-    stdout: {
-      pretty: true
-    }
-  }
-) {
+schema @telemetry(export: {stdout: {pretty: true}}) {
   query: Query
 }
 ```
@@ -117,16 +107,17 @@ schema @telemetry(
 To integrate telemetry with Apollo Studio for advanced monitoring and analysis, configure the Apollo exporter with the required API key and other metadata.Here more guide for [Apollo](https://tailcall.run/docs/guides/apollo-studio/)
 
 ```graphql
-schema @telemetry(
-  export: {
-    apollo: {
-      api_key: "{{env.APOLLO_API_KEY}}"
-      graph_ref: "graph-id@current"
-      platform: "website.com"
-      version: "1.0.0"
+schema
+  @telemetry(
+    export: {
+      apollo: {
+        api_key: "{{env.APOLLO_API_KEY}}"
+        graph_ref: "graph-id@current"
+        platform: "website.com"
+        version: "1.0.0"
+      }
     }
-  }
-) {
+  ) {
   query: Query
 }
 ```
