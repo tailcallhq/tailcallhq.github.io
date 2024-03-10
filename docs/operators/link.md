@@ -46,7 +46,7 @@ type NewsData {
 
 The `@link` directive supports the following types of links:
 
-- `Config`: Imports a schema configuration file. During the merge, settings from the imported file override those in the main schema for any overlaps, facilitating a modular and scalable approach to schema configuration. The operation is morally equivalent to tailcall's [compose](/docs/guides/cli.md#compose) command.
+- `Config`: Imports a schema configuration file. During the merge, settings from the imported file override those in the main schema for any overlaps, facilitating a modular and scalable approach to schema configuration. The operation is morally equivalent to tailcall's `--format` argument in [check](/docs/guides/cli.md#check) command.
 
 - `Protobuf`: Imports a .proto file for gRPC services. This type facilitates the integration of gRPC services into your GraphQL schema by allowing the inclusion of Protocol Buffers definitions. It enables the GraphQL server to communicate with gRPC services directly. For integrating gRPC services, refer to [gRPC Integration Guide](/docs/guides/grpc.md).
 
