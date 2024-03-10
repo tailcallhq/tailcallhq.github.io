@@ -40,8 +40,8 @@ type Query {
 
 ### Valid Query Example
 Here is an example of a valid query that passes the custom scalar validations:
-![Valid Query](/static/images/docs/valid.png)
+![Valid Query](/images/docs/valid.png)
 
 ### Invalid Query Example
 And here is an example of an invalid query that fails the custom scalar validations as expected:
-![Invalid Query](/static/images/docs/invalid.png)
+![Invalid Query](/images/docs/invalid.png)
