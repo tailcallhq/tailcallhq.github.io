@@ -16,8 +16,6 @@ type Query {
 
 This schema snippet demonstrates the directive's application, where a query for `users` triggers a gRPC request to the `UserService`'s `ListUsers` method, thereby fetching the user data.
 
-## Understanding the Proto File Structure
-
 The `.proto` file delineates the structure and methods of the gRPC service. A simplified example of such a file is as follows:
 
 ```proto
@@ -61,9 +59,7 @@ schema @link(src: "./users.proto", type: Protobuf) {
 
 Tailcall automatically resolves the protobuf file for any methods referenced in the `@grpc` directive.
 
-### Directive Parameters
-
-#### `method`
+## method
 
 This parameter specifies the gRPC service and method to be invoked, formatted as `<package>.<service>.<method>`:
 
@@ -73,7 +69,7 @@ type Query {
 }
 ```
 
-#### `baseURL`
+## baseURL
 
 Defines the base URL for the gRPC API. If not specified, the URL set in the `@upstream` directive is used by default:
 
@@ -83,7 +79,7 @@ type Query {
 }
 ```
 
-#### `body`
+## body
 
 This parameter outlines the arguments for the gRPC call, allowing for both static and dynamic inputs:
 
@@ -97,7 +93,7 @@ type Query {
 }
 ```
 
-#### `headers`
+## headers
 
 Custom headers for the gRPC request can be defined, facilitating the transmission of authentication tokens or other contextual data:
 
@@ -108,19 +104,19 @@ type Query {
 }
 ```
 
-#### `groupBy`
+## batchKey
 
 This argument is employed to optimize batch requests by grouping them based on specified response keys, enhancing performance in scenarios requiring multiple, similar requests:
 
 ```graphql
 type Query {
   users(id: UserInput!): [User]
-    @grpc(groupBy: ["id"], method: "proto.users.UserService.ListUsers", baseURL: "https://grpc-server.example.com")
+    @grpc(batchKey: ["id"], method: "proto.users.UserService.ListUsers", baseURL: "https://grpc-server.example.com")
 }
 ```
 
 :::info
-Read about **[n + 1]** to learn how to use the `groupBy` setting.
+Read about **[n + 1]** to learn how to use the `batchKey` setting.
 :::
 
 [n + 1]: /docs/guides/n+1/

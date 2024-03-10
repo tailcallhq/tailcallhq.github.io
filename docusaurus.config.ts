@@ -110,7 +110,7 @@ export default {
       ],
     },
     prism: {
-      theme: prismThemes.vsDark,
+      theme: prismThemes.oneLight,
       darkTheme: prismThemes.dracula,
     },
     colorMode: {
