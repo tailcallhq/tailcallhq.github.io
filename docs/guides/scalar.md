@@ -5,7 +5,7 @@ title: Custom Scalars
 The GraphQL specification includes default scalar types Int, Float, String, Boolean, and ID. Although these scalars cover the majority of use cases, some applications need to support other atomic data types (such as Date) or add validation to an existing type.
 Tailcall supports a set of predefined custom scalars to enhance the functionality and validation of your GraphQL APIs
 
-Currently supported scalars:
+Supported scalars:
 
 | Scalar        | Description                                                                                  | Specification Link                                                                  |
 | ------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
