@@ -206,7 +206,7 @@ Or
 
 Another important feature of the `@grpc` operator is that it allows you to implement request batching for remote data almost effortlessly as soon as you have gRPC methods that resolve multiple responses for multiple inputs in a single request.
 
-In our protobuf example file, we have a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`@upstream.batch` option](../operators/upstream.md#batch) first and specify `groupBy` option for the `@grpc` operator.
+In our protobuf example file, we have a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`@upstream.batch` option](../operators/upstream.md#batch) first and specify `batchKey` option for the `@grpc` operator.
 
 ```graphql
 schema
@@ -222,7 +222,7 @@ type Query {
       method: "news.NewsService.GetNews"
       body: "{{args.news}}"
       # highlight-next-line
-      groupBy: ["news", "id"]
+      batchKey: ["news", "id"]
     )
 }
 ```
