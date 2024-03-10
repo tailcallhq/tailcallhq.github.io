@@ -25,7 +25,7 @@ _Note: Before proceeding make sure you have an Apollo Enterprise account. If not
 
 - There are two ways to let Apollo know about your GraphQL schema:
 
-  1. Navigate to `Local Introspection`. If you have a deployed instance of your GraphQL server you can put the URL pointing to that in `Endpoint URL`. If not, start a local instance of `tailcall` and put the local url here, similar to how is shown in the image below.<br/>
+  1. Navigate to `Local Introspection`. If you have a deployed instance of your GraphQL server you can put the URL pointing to that in `Endpoint URL` and click on `Introspect and Upload`. If not, start a local instance of `tailcall` and put the local url here, similar to how is shown in the image below.<br/>
      _Note: You can start a local instance of tailcall by running `tailcall start <path-to-config>`(click [here](./cli.md) to know more)._
 
   ![local-introspection.png](../../static/images/apollo-studio/local-introspection.png)
