@@ -30,4 +30,4 @@ Now to convert back to graphql
 tailcall compose examples/jsonplaceholder.json --format graphql > "examples/jsonplaceholder2.graphql"
 ```
 
-![Example Image](/static/images/docs/compose.png)
+![Example Image](/images/docs/compose.png)
