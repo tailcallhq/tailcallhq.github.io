@@ -52,24 +52,6 @@ This is optional command which specifies the format of the desired composed file
 tailcall check ./path/to/file1.graphql ./path/to/file2.graphql --format json
 ```
 
-## compose
-
-The `compose` merges configuration files into one. To use the `compose` command, follow this format:
-
-Example:
-
-```bash
-tailcall compose ./path/to/file1.graphql ./path/to/file2.graphql
-```
-
-### --format
-
-This specifies the format of the desired composed file. It accepts `gql` or `graphql`,`yml` or `yaml`, `json` . Default is `gql`.
-
-```bash
-tailcall compose ./path/to/file1.graphql ./path/to/file2.graphql --format gql
-```
-
 ## start
 
 The `start` command launches the TailCall Server, acting as a GraphQL proxy with specific configurations. The server can publish GraphQL configurations.
