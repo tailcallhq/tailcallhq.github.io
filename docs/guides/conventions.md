@@ -7,7 +7,7 @@ description: Enhance your understanding of naming and casing conventions for Gra
 
 1. **Consistency is Key:** Ensure that naming conventions are uniform across your entire schema to maintain clarity and consistency.
 2. **Descriptive Over Generic:** Opt for descriptive, specific names rather than broad, generic ones to avoid ambiguity.
-3. **Avoid Abbreviations:** Avoid the use of acronyms, initialisms, and abbreviations to keep your schema intuitive and understandable.
+3. **Avoid Abbreviations:** Avoid the use of acronyms, initialism, and abbreviations to keep your schema intuitive and understandable.
 
 ## Detailed Naming Cases
 
@@ -35,7 +35,7 @@ union SearchResult = ...
 scalar Date
 ```
 
-**Enum Values in `SCREAMING_SNAKE_CASE`:** Clearly distinguish enum values by using `SCREAMING_SNAKE_CASE`.
+**Enum Values in `SCREAMING_SNAKE_CASE`:** Distinguish enum values by using `SCREAMING_SNAKE_CASE`.
 
 ```graphql
 enum StatusEnum {
@@ -86,7 +86,7 @@ query PostQuery {
 
 ### Mutations
 
-**Verb Prefixes for Mutations:** Begin mutation field names with a verb to clearly indicate the action being performed, improving schema readability.
+**Verb Prefixes for Mutations:** Begin mutation field names with a verb to indicate the action being performed, improving schema readability.
 
 ```graphql
 type Mutation {
@@ -102,7 +102,7 @@ type Mutation {
 
 ### Input Types
 
-**`Input` Suffix:** Clearly denote input types by appending `Input` to their names, specifying their use case.
+**`Input` Suffix:** Denote input types by appending `Input` to their names, specifying their use case.
 
 ```graphql
 input AddPostInput {
