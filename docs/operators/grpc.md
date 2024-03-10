@@ -104,19 +104,19 @@ type Query {
 }
 ```
 
-## groupBy
+## batchKey
 
 This argument is employed to optimize batch requests by grouping them based on specified response keys, enhancing performance in scenarios requiring multiple, similar requests:
 
 ```graphql
 type Query {
   users(id: UserInput!): [User]
-    @grpc(groupBy: ["id"], method: "proto.users.UserService.ListUsers", baseURL: "https://grpc-server.example.com")
+    @grpc(batchKey: ["id"], method: "proto.users.UserService.ListUsers", baseURL: "https://grpc-server.example.com")
 }
 ```
 
 :::info
-Read about **[n + 1]** to learn how to use the `groupBy` setting.
+Read about **[n + 1]** to learn how to use the `batchKey` setting.
 :::
 
 [n + 1]: /docs/guides/n+1/
