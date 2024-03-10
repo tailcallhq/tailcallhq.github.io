@@ -1,5 +1,6 @@
 ---
 title: Tailcall on AWS
+description: "Deploy Tailcall on AWS effortlessly using the tailcall-on-aws template and Terraform. This guide covers everything from setting environment variables to configuring and updating your Tailcall deployment, complete with logging via AWS CloudWatch for comprehensive monitoring and management."
 ---
 
 Tailcall can be hosted on AWS using Lambda and API Gateway using the [tailcall-on-aws](https://github.com/tailcallhq/tailcall-on-aws) template.
@@ -10,7 +11,13 @@ Tailcall can be hosted on AWS using Lambda and API Gateway using the [tailcall-o
 4. Clone your new repository, run `terraform init`, and then `terraform apply`.
 5. Done! The API Gateway URL will be logged to the console when you run `terraform apply`.
 
-Once you've deployed Tailcall for the first time, you can edit `config/config.graphql` to [build your API](../../getting_started/configuration/). If you [install Tailcall locally](../../getting_started/), you can test your config by running `tailcall start ./config/config.graphql`. When you want to push your changes to the deployment, you should run `terraform apply` again. This will also update Tailcall to the latest version.
+Once you've deployed Tailcall for the first time, you can edit `config/config.graphql` to [build your API](../../getting_started/configuration/). If you [install Tailcall locally](../../getting_started/), you can test your config by running:
+
+```bash
+tailcall start ./config/config.graphql
+```
+
+When you want to push your changes to the deployment, you should run `terraform apply` again. This will also update Tailcall to the latest version.
 
 ## Logging
 
