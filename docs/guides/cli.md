@@ -46,7 +46,7 @@ tailcall check --schema ./path/to/file1.graphql ./path/to/file2.graphql
 
 ### --format
 
-This is optional command which specifies the format of the desired composed file. It accepts `gql` or `graphql`,`yml` or `yaml`, `json` .
+This is an optional command which allows changing the format of the input file. It accepts `gql` or `graphql`,`yml` or `yaml`, `json` .
 
 ```bash
 tailcall check ./path/to/file1.graphql ./path/to/file2.graphql --format json
