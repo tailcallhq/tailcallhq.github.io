@@ -45,13 +45,13 @@
 
   /* Code Settings */
   --ifm-font-family-monospace: "Space Mono";
-  --ifm-code-font-size: 100%;
   --ifm-code-background: rgb(246, 247, 248);
   --ifm-code-border-radius: var(--ifm-global-radius);
-  --ifm-code-font-size: 90%;
-  --ifm-code-padding-horizontal: 0.2rem;
-  --ifm-code-padding-vertical: 0.2rem;
+  --ifm-code-font-size: 0.9eem;
+  --ifm-code-padding-horizontal: 0.1em;
+  --ifm-code-padding-vertical: 0em;
   --ifm-pre-background: var(--ifm-code-background);
+  --docusaurus-highlighted-code-line-bg: #ffeaea;
 }
 
 code {
@@ -389,9 +389,8 @@ aside.theme-doc-sidebar-container {
   width: 100%;
 }
 
-pre code {
-  font-family: "Space Mono" monospace !important;
-  font-weight: 500;
+pre code, code {
+  font-family: var(--ifm-font-family-monospace) !important;  
 }
 
 nav.menu {
