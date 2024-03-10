@@ -7,41 +7,42 @@ Tailcall supports a set of predefined custom scalars to enhance the functionalit
 
 Currently supported scalars:
 
-- `Email`
-- `PhoneNumber`
-- `Date`
-- `Url`
-
-:::tip
-If a scalar you need is not supported, please create an issue on the Tailcall GitHub repository. 
-:::
-
+| Scalar        | Description                                                                                  | Specification Link                                                                  |
+| ------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Int`         | Represents non-fractional signed whole numeric values. Integers can be as large as 2^31 - 1. | [GraphQL Spec](https://spec.graphql.org/June2018/#sec-Int)                          |
+| `Float`       | Represents a signed double-precision floating-point value.                                   | [GraphQL Spec](https://spec.graphql.org/June2018/#sec-Float)                        |
+| `String`      | Represnrs A UTF‐8 character sequence.                                                        | [GraphQL Spec](https://graphql.org/learn/schema/#scalar-String)                     |
+| `Boolean`     | Represents `true` or `false`.                                                                | [GraphQL Spec](https://graphql.org/learn/schema/#scalar-Boolean)                    |
+| `ID`          | Represents a unique identifier, often used to refetch an object or as the key for a cache.   | [GraphQL Spec](https://graphql.org/learn/schema/#scalar-ID)                         |
+| `Email`       | Represents a an email address                                                                | [HTML Spec](https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address) |
+| `PhoneNumber` | Represents a phone number                                                                    | [E.164](https://en.wikipedia.org/wiki/E.164)                                        |
+| `Date`        | Represents a Date                                                                            | [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339)                           |
+| `Url`         | Represents a URL                                                                             | [RFC 3986](https://www.ietf.org/rfc/rfc3986.txt)                                    |
 
 ## Example Usage
+
 Let's try using these custom scalars in our GraphQL schema.
 
-```graphql 
-scalar Email
-scalar PhoneNumber
-scalar Date
-scalar Url
-
+```graphql
 schema @server(port: 8000, graphiql: true, hostname: "localhost") {
   query: Query
 }
 
 type Query {
   email(value: Email!): Email! @const(data: "{{args.value}}")
-  phone(value: PhoneNumber!): PhoneNumber! @const(data: "{{args.value}}")
-  date(value: Date!): Date! @const(data: "{{args.value}}")
-  url(value: Url!): Url! @const(data: "{{args.value}}")
 }
 ```
 
 ### Valid Query Example
+
 Here is an example of a valid query that passes the custom scalar validations:
 ![Valid Query](/images/docs/valid.png)
 
 ### Invalid Query Example
+
 And here is an example of an invalid query that fails the custom scalar validations as expected:
 ![Invalid Query](/images/docs/invalid.png)
+
+:::tip
+If a scalar you need is not supported, please create an issue on the Tailcall GitHub repository.
+:::
