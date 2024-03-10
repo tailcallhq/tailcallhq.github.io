@@ -19,7 +19,7 @@ By adding `@telemetry` to your schema, you enable telemetry collection for all o
 
 ## Traces:
 
-Traces provide detailed information about the flow of operations within your GraphQL service. Tailcall captures various traces, including handle_request, field::resolver, and expr::eval.
+Traces provide detailed information about the flow of operations within your GraphQL service. Tailcall captures traces, including handle_request, field::resolver, and expr::eval.
 
 ```graphql
 
@@ -58,7 +58,7 @@ type User {
 
 ## Configure Export Options
 
-Once you've integrated telemetry into your schema, you need to configure how telemetry data should be exported. Tailcall supports various export options, including OTLP, Prometheus, Stdout, and Apollo.
+Once you've integrated telemetry into your schema, you need to configure how telemetry data should be exported. Tailcall offers multiple export options, including OTLP, Prometheus, Stdout, and Apollo.
 
 ### OTLP Exporter
 
