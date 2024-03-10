@@ -11,6 +11,7 @@ The `@server` directive's `showcase` option allows for hands-on experimentation 
 #### Example Usage:
 
 `Base schema`
+
 ```graphql showLineNumbers
 schema @server(showcase: true) {
   query: Query
@@ -31,7 +32,6 @@ To test it out, append `/showcase/graphql?config=YOUR_CONFIG_URL` to your GraphQ
 ![Showcase](/images/docs/showcase.png)
 
 The above example shows loading a schema file from Tailcall's Github repository [examples](https://github.com/tailcallhq/tailcall/tree/main/examples) and querying it.
-
 
 #### Performance and Security Considerations
 
