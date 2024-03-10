@@ -99,7 +99,7 @@ type Mutation {
 
 In this scenario, the `User-Name` header's value will dynamically adjust according to the `name` argument passed in the request.
 
-## groupBy
+## batchKey
 
 Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide] for more details.
 
@@ -109,7 +109,7 @@ Groups data requests into a single call, enhancing efficiency. Refer to our [n +
 type Post {
   id: Int!
   name: String!
-  user: User @http(path: "/users", query: [{key: "id", value: "{{value.userId}}"}], groupBy: ["id"])
+  user: User @http(path: "/users", query: [{key: "id", value: "{{value.userId}}"}], batchKey: ["id"])
 }
 ```
 
