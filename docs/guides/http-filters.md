@@ -95,7 +95,7 @@ The new request that's created as a result of the redirect will not be intercept
 
 The `onRequest` function takes a single argument that contains the request object. The return value of the `onRequest` function can be a `request` object, or a `response` object. It can not be null or undefined.
 
-**Request**
+### Request
 
 The request object has the following shape:
 
@@ -114,7 +114,7 @@ By default the headers field will be empty in most cases, unless headers are whi
 
 The http filter doesn't have access to the request's body. However the modified request that's returned can optionally provide the body.
 
-**Response**
+### Response
 
 The response object has the following shape:
 
