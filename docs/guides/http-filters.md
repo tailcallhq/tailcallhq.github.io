@@ -108,6 +108,10 @@ type Request = {
 }
 ```
 
+:::tip
+By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](../operators/upstream.md#allowedheaders) setting in [@upstream](../operators/upstream.md).
+:::
+
 The http filter doesn't have access to the request's body. However the modified request that's returned can optionally provide the body.
 
 **Response**
