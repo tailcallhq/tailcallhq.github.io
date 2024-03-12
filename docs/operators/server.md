@@ -45,14 +45,18 @@ This example sets the `port` to `8090`, making Tailcall accessible at `http://lo
 Always choose non-standard ports, avoiding typical ones like 80 or 8080. Make sure your chosen port is free.
 :::
 
-## cacheControlHeader
+## headers
 
-Activating the `cacheControlHeader` configuration directs Tailcall to send [Cache-Control] headers in its responses. The `max-age` value in the header matches the smallest of the values in the responses Tailcall receives from upstream services. By default, this is `false`, which means Tailcall does not set any header.
+Allows intelligent configuration of the final response headers that's produced by Tailcall.
+
+### cacheControl
+
+Activating the `cacheControl` configuration directs Tailcall to send [Cache-Control] headers in its responses. The `max-age` value in the header matches the smallest of the values in the responses Tailcall receives from upstream services. By default, this is `false`, which means Tailcall does not set any header.
 
 [cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 
 ```graphql showLineNumbers
-schema @server(cacheControlHeader: true) {
+schema @server(headers: {cacheControl: true}) {
   query: Query
   mutation: Mutation
 }
@@ -78,14 +82,25 @@ While the GraphiQL interface is a powerful tool for development, consider disabl
 This configuration allows defining local variables for use during the server's operations. These variables are handy for storing constant configurations, secrets, or other shared information that operations might need.
 
 ```graphql showLineNumbers
-schema @server(vars: {key: "apiKey", value: "YOUR_API_KEY_HERE"}) {
+schema
+  @server(
+    vars: {key: "apiKey", value: "YOUR_API_KEY_HERE"}
+  ) {
   query: Query
   mutation: Mutation
 }
 
 type Query {
   externalData: Data
-    @http(path: "/external-api/data", headers: [{key: "Authorization", value: "Bearer {{vars.apiKey}}"}])
+    @http(
+      path: "/external-api/data"
+      headers: [
+        {
+          key: "Authorization"
+          value: "Bearer {{vars.apiKey}}"
+        }
+      ]
+    )
 }
 ```
 
@@ -147,7 +162,12 @@ Disabling this setting will offer major performance improvements, but at the pot
 The `responseHeader` is an array of key-value pairs. These headers get added to the response of every request made to the server. This can be useful for adding headers like `Access-Control-Allow-Origin` to allow cross-origin requests, or some headers like `X-Allowed-Roles` for use by downstream services.
 
 ```graphql showLineNumbers
-schema @server(responseHeaders: [{key: "X-Allowed-Roles", value: "admin,user"}]) {
+schema
+  @server(
+    responseHeaders: [
+      {key: "X-Allowed-Roles", value: "admin,user"}
+    ]
+  ) {
   query: Query
   mutation: Mutation
 }

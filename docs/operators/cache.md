@@ -25,7 +25,9 @@ type Post {
   id: Int
   title: String
   userId: Int @cache(maxAge: 100)
-  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 200)
+  user: User
+    @http(path: "/user/{{value.userId}}")
+    @cache(maxAge: 200)
 }
 
 type User {
@@ -69,7 +71,9 @@ type Post {
   id: Int @cache(maxAge: 100)
   title: String @cache(maxAge: 100)
   userId: Int @cache(maxAge: 100)
-  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+  user: User
+    @http(path: "/user/{{value.userId}}")
+    @cache(maxAge: 100)
 }
 
 type User {
@@ -90,7 +94,9 @@ type Post {
   id: Int
   title: String
   userId: Int
-  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+  user: User
+    @http(path: "/user/{{value.userId}}")
+    @cache(maxAge: 100)
 }
 
 type User {
@@ -111,7 +117,9 @@ type Post @cache(maxAge: 200) {
   id: Int
   title: String
   userId: Int
-  user: User @http(path: "/user/{{value.userId}}") @cache(maxAge: 100)
+  user: User
+    @http(path: "/user/{{value.userId}}")
+    @cache(maxAge: 100)
 }
 
 type User {
