@@ -15,9 +15,6 @@ Create one of the following files and paste the contents into it.
 
 <Tabs>
 <TabItem value="graphql" label="graphql">
-
-`jsonplaceholder.graphql`
-
 ```graphql showLineNumbers
 schema
   # Specify server configuration: Start tailcall server at 0.0.0.0:8000 and enable GraphiQL playground
@@ -28,35 +25,39 @@ schema
 }
 
 type Query {
-  # Specify the http path for the users query
-  users: [User] @http(path: "/users")
+
+# Specify the http path for the users query
+
+users: [User] @http(path: "/users")
 }
 
 # Create a user type with the fields returned by the users api
-type User {
-  id: Int!
-  name: String!
-  username: String!
-  email: String!
 
-  # Extend the user type with the posts field
-  # Use the current user's id to construct the path
-  posts: [Post] @http(path: "/users/{{value.id}}/posts")
+type User {
+id: Int!
+name: String!
+username: String!
+email: String!
+
+# Extend the user type with the posts field
+
+# Use the current user's id to construct the path
+
+posts: [Post] @http(path: "/users/{{value.id}}/posts")
 }
 
 # Create a post type with the fields returned by the posts api
+
 type Post {
-  id: Int!
-  title: String!
-  body: String!
+id: Int!
+title: String!
+body: String!
 }
-```
+
+````
 
 </TabItem>
 <TabItem value="yml" label="yml">
-
-`jsonplaceholder.yml`
-
 ```yml showLineNumbers
 server:
   port: 8000
@@ -112,13 +113,10 @@ types:
         required: true
       website:
         type: String
-```
+````
 
 </TabItem>
 <TabItem value="json" label="json">
-
-`jsonplaceholder.json`
-
 ```json showLineNumbers
 {
   "server": {

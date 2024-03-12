@@ -5,14 +5,16 @@ title: Configuration Format
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-The Tailcall CLI's compose command enables the conversion of configuration files between three supported formats: gql or graphql, yml or yaml, and json, with json set as the default format.
+The Tailcall CLI's check command enables the conversion of configuration files between three supported formats: gql or graphql, yml or yaml, and json, with `graphql` set as the default format.
+
+The three formats, `GraphQL`, `YAML`, and `JSON`, are supported due to their distinct advantages. `GraphQL` is chosen for its ability to clearly define types and their relationships. `YAML` and `JSON` are included for their widespread use in platform tools, with `JSON` also favored for its role as a transport format, allowing configurations to be hosted as JSON files and exposed as APIs for consumption by the Tailcall server.
 
 ## Converting Formats
 
-To convert files between different formats, use the following syntax:
+To convert files between different formats, use the following command:
 
 ```bash
-tailcall compose <input_files> <output_file> --format format_type
+tailcall check <input_files> --format format_type
 ```
 
 ## Example Usage
@@ -22,13 +24,13 @@ Let's try to convert a Tailcall graphql file to json and then back to graphql
 To convert graphql to json
 
 ```bash
-tailcall compose examples/jsonplaceholder.graphql --format json > "examples/jsonplaceholder.json"
+tailcall check examples/jsonplaceholder.graphql --format json > "examples/jsonplaceholder.json"
 ```
 
 Now to convert back to graphql
 
 ```bash
-tailcall compose examples/jsonplaceholder.json --format graphql > "examples/jsonplaceholder2.graphql"
+tailcall check examples/jsonplaceholder.json --format graphql > "examples/jsonplaceholder2.graphql"
 ```
 
 To learn more about writing configuration to leverage the full power of Tailcall, explore the [Operators](../operators/index.md) documentation.
@@ -36,9 +38,131 @@ To learn more about writing configuration to leverage the full power of Tailcall
 ### Format Conversions
 
 <Tabs>
-<TabItem value="json" label="json">
-`schema.graphql`
+<TabItem value="graphql" label="graphql">
 
+```graphql showLineNumbers
+schema
+  @server(port: 8000, graphiql: true, hostname: "0.0.0.0")
+  @upstream(baseURL: "http://jsonplaceholder.typicode.com", httpCache: true, batch: {delay: 100}) {
+  query: Query
+}
+
+type Query {
+  posts: [Post] @http(path: "/posts")
+  users: [User] @http(path: "/users")
+  user(id: Int!): User @http(path: "/users/{{args.id}}")
+}
+
+type User {
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
+  phone: String
+  website: String
+}
+
+type Post {
+  id: Int!
+  userId: Int!
+  title: String!
+  body: String!
+  user: User @call(query: "user", args: {id: "{{value.userId}}"})
+}
+```
+
+</TabItem>
+<TabItem value="yml" label="yml">
+```yml showLineNumbers
+server:
+  graphiql: true
+  hostname: 0.0.0.0
+  port: 8000
+upstream:
+  baseURL: http://jsonplaceholder.typicode.com
+  httpCache: true
+  batch:
+    maxSize: 100
+    delay: 100
+    headers: []
+schema:
+  query: Query
+types:
+  Post:
+    fields:
+      body:
+        type: String
+        required: true
+        cache: null
+      id:
+        type: Int
+        required: true
+        cache: null
+      title:
+        type: String
+        required: true
+        cache: null
+      user:
+        type: User
+        cache: null
+      userId:
+        type: Int
+        required: true
+        cache: null
+    cache: null
+  Query:
+    fields:
+      posts:
+        type: Post
+        list: true
+        http:
+          path: /posts
+        cache: null
+      user:
+        type: User
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          path: /users/{{args.id}}
+        cache: null
+      users:
+        type: User
+        list: true
+        http:
+          path: /users
+        cache: null
+    cache: null
+  User:
+    fields:
+      email:
+        type: String
+        required: true
+        cache: null
+      id:
+        type: Int
+        required: true
+        cache: null
+      name:
+        type: String
+        required: true
+        cache: null
+      phone:
+        type: String
+        cache: null
+      username:
+        type: String
+        required: true
+        cache: null
+      website:
+        type: String
+        cache: null
+    cache: null
+```
+
+</TabItem>
+<TabItem value="json" label="json">
 ```json showLineNumbers
 {
   "server": {
@@ -158,133 +282,5 @@ To learn more about writing configuration to leverage the full power of Tailcall
   }
 }
 ```
-
 </TabItem>
-
-<TabItem value="yml" label="yml">
-`schema.yml`
-
-```yml showLineNumbers
-server:
-  graphiql: true
-  hostname: 0.0.0.0
-  port: 8000
-upstream:
-  baseURL: http://jsonplaceholder.typicode.com
-  httpCache: true
-  batch:
-    maxSize: 100
-    delay: 100
-    headers: []
-schema:
-  query: Query
-types:
-  Post:
-    fields:
-      body:
-        type: String
-        required: true
-        cache: null
-      id:
-        type: Int
-        required: true
-        cache: null
-      title:
-        type: String
-        required: true
-        cache: null
-      user:
-        type: User
-        cache: null
-      userId:
-        type: Int
-        required: true
-        cache: null
-    cache: null
-  Query:
-    fields:
-      posts:
-        type: Post
-        list: true
-        http:
-          path: /posts
-        cache: null
-      user:
-        type: User
-        args:
-          id:
-            type: Int
-            required: true
-        http:
-          path: /users/{{args.id}}
-        cache: null
-      users:
-        type: User
-        list: true
-        http:
-          path: /users
-        cache: null
-    cache: null
-  User:
-    fields:
-      email:
-        type: String
-        required: true
-        cache: null
-      id:
-        type: Int
-        required: true
-        cache: null
-      name:
-        type: String
-        required: true
-        cache: null
-      phone:
-        type: String
-        cache: null
-      username:
-        type: String
-        required: true
-        cache: null
-      website:
-        type: String
-        cache: null
-    cache: null
-```
-</TabItem>
-<TabItem value="graphql" label="graphql">
-`schema.json`
-
-```graphql showLineNumbers
-schema
-  @server(port: 8000, graphiql: true, hostname: "0.0.0.0")
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com", httpCache: true, batch: {delay: 100}) {
-  query: Query
-}
-
-type Query {
-  posts: [Post] @http(path: "/posts")
-  users: [User] @http(path: "/users")
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
-}
-
-type User {
-  id: Int!
-  name: String!
-  username: String!
-  email: String!
-  phone: String
-  website: String
-}
-
-type Post {
-  id: Int!
-  userId: Int!
-  title: String!
-  body: String!
-  user: User @call(query: "user", args: {id: "{{value.userId}}"})
-}
-```
-</TabItem>
-
 </Tabs>
