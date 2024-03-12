@@ -44,22 +44,12 @@ Example:
 tailcall check --schema ./path/to/file1.graphql ./path/to/file2.graphql
 ```
 
-## compose
-
-The `compose` merges configuration files into one. To use the `compose` command, follow this format:
-
-Example:
-
-```bash
-tailcall compose ./path/to/file1.graphql ./path/to/file2.graphql
-```
-
 ### --format
 
-This specifies the format of the desired composed file. It accepts `gql` or `graphql`,`yml` or `yaml`, `json` . Default is `json`.
+This is an optional command which allows changing the format of the input file. It accepts `gql` or `graphql`,`yml` or `yaml`, `json` .
 
 ```bash
-tailcall compose ./path/to/file1.graphql ./path/to/file2.graphql --format gql
+tailcall check ./path/to/file1.graphql ./path/to/file2.graphql --format json
 ```
 
 ## start

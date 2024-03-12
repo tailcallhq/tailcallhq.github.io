@@ -11,7 +11,8 @@ schema {
   query: Query
 }
 
-type User @addField(name: "street", path: ["address", "street"]) {
+type User
+  @addField(name: "street", path: ["address", "street"]) {
   id: Int!
   name: String!
   username: String!
@@ -65,7 +66,11 @@ The `@addField` operator also take cares of nullablity of the fields. If any of 
 `@addField` also supports indexing, allowing for the specification of an array index for inline inclusion. For instance, if a field `posts` is of type `[Post]`, and the goal is to access the title of the first post, specify the path as [`"posts"`,`"0"`,`"title"`].
 
 ```graphql showLineNumbers
-type User @addField(name: "firstPostTitle", path: ["posts", "0", "title"]) {
+type User
+  @addField(
+    name: "firstPostTitle"
+    path: ["posts", "0", "title"]
+  ) {
   id: Int!
   name: String!
   username: String!

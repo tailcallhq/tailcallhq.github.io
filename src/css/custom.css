@@ -389,8 +389,9 @@ aside.theme-doc-sidebar-container {
   width: 100%;
 }
 
-pre code, code {
-  font-family: var(--ifm-font-family-monospace) !important;  
+pre code,
+code {
+  font-family: var(--ifm-font-family-monospace) !important;
 }
 
 nav.menu {
