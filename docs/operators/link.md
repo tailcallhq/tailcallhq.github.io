@@ -21,13 +21,22 @@ The following example illustrates how to utilize the `@link` directive to incorp
 ```graphql showLineNumbers
 schema
   @server(port: 8000, graphiql: true)
-  @upstream(baseURL: "http://news.local", httpCache: true, batch: {delay: 10})
-  @link(id: "news", src: "../src/grpc/news.proto", type: Protobuf) {
+  @upstream(
+    baseURL: "http://news.local"
+    httpCache: true
+    batch: {delay: 10}
+  )
+  @link(
+    id: "news"
+    src: "../src/grpc/news.proto"
+    type: Protobuf
+  ) {
   query: Query
 }
 
 type Query {
-  news: NewsData! @grpc(method: "news.NewsService.GetAllNews")
+  news: NewsData!
+    @grpc(method: "news.NewsService.GetAllNews")
 }
 
 type News {

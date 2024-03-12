@@ -41,7 +41,8 @@ type Post {
   id: ID!
   title: String!
   body: String!
-  comments: [Comment] @http(path: "/posts/{{value.id}}/comments")
+  comments: [Comment]
+    @http(path: "/posts/{{value.id}}/comments")
 }
 ```
 
@@ -61,7 +62,12 @@ type Post {
   title: String!
   body: String!
   user: User
-    @http(path: "/users", query: [{key: "id", value: "{{value.userId}}"}], matchPath: ["id"], matchKey: "userId")
+    @http(
+      path: "/users"
+      query: [{key: "id", value: "{{value.userId}}"}]
+      matchPath: ["id"]
+      matchKey: "userId"
+    )
 }
 ```
 
@@ -73,7 +79,8 @@ This field represents global environment variables for the server, set once when
 
 ```graphql showLineNumbers
 type Query {
-  users: [User]! @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users")
+  users: [User]!
+    @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users")
 }
 ```
 
@@ -85,7 +92,8 @@ These headers come from the request received by the Tailcall server.
 
 ```graphql showLineNumbers
 type Query {
-  commentsForUser: [Comment] @http(path: "/users/{{headers.userId}}/comments")
+  commentsForUser: [Comment]
+    @http(path: "/users/{{headers.userId}}/comments")
 }
 ```
 
