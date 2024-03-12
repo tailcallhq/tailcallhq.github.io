@@ -36,4 +36,7 @@ The above example shows loading a schema file from Tailcall's Github repository 
 
 - **Performance Impact**: The `showcase` feature prioritizes flexibility and ease of testing over speed, leading to slower response times due to the overhead of dynamically applied configurations.
 - **Security Risk**: There's a potential security risk as it may allow unauthorized access to files and environment variables.
-- **Not for Production**: Due to these concerns, this mode is not recommended for production environments.
+
+:::important
+Due to these concerns, this mode is **not recommended** for production environments.
+:::
