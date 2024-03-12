@@ -42,7 +42,7 @@ To generate the necessary certificates (**cert.pem and key.pem**) for Tailcall's
 
 1. **Install OpenSSL**: If you don't have OpenSSL installed on your system, you can download and install it from the official [OpenSSL](https://www.openssl.org/source/) Website.
 
-Run this command in you local machine to genrate private keyes
+Run this command on your local machine to generate the private key.
 
 2. **Generate private key**
 
