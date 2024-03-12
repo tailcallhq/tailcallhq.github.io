@@ -52,7 +52,7 @@ Always choose non-standard ports, avoiding typical ones like 80 or 8080. Make su
 The documentation for supported headers is available in [headers](headers.md) 
 
 ```graphql showLineNumbers
-schema @server(headers: { cacheControlHeader: true }) {
+schema @server(headers: { cacheControl: true }) {
   query: Query
   mutation: Mutation
 }
