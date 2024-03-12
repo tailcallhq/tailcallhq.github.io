@@ -45,14 +45,18 @@ This example sets the `port` to `8090`, making Tailcall accessible at `http://lo
 Always choose non-standard ports, avoiding typical ones like 80 or 8080. Make sure your chosen port is free.
 :::
 
-## cacheControlHeader
+## headers
 
-Activating the `cacheControlHeader` configuration directs Tailcall to send [Cache-Control] headers in its responses. The `max-age` value in the header matches the smallest of the values in the responses Tailcall receives from upstream services. By default, this is `false`, which means Tailcall does not set any header.
+Allows intelligent configuration of the final response headers that's produced by Tailcall.
+
+### cacheControl
+
+Activating the `cacheControl` configuration directs Tailcall to send [Cache-Control] headers in its responses. The `max-age` value in the header matches the smallest of the values in the responses Tailcall receives from upstream services. By default, this is `false`, which means Tailcall does not set any header.
 
 [cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 
 ```graphql showLineNumbers
-schema @server(cacheControlHeader: true) {
+schema @server(headers: {cacheControl: true}) {
   query: Query
   mutation: Mutation
 }
