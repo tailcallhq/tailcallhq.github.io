@@ -49,10 +49,10 @@ Always choose non-standard ports, avoiding typical ones like 80 or 8080. Make su
 
 `headers` contains key-value pairs that are included as default headers in server responses, allowing for consistent header management across all responses.
 
-The documentation for supported headers is available in [headers](headers.md) 
+The documentation for supported headers is available in [headers](headers.md)
 
 ```graphql showLineNumbers
-schema @server(headers: { cacheControl: true }) {
+schema @server(headers: {cacheControl: true}) {
   query: Query
   mutation: Mutation
 }

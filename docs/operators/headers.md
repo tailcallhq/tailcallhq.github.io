@@ -5,7 +5,7 @@ Activating the `cacheControl` configuration directs Tailcall to send [Cache-Cont
 [cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 
 ```graphql showLineNumbers
-schema @server(headers: { cacheControl: true }) {
+schema @server(headers: {cacheControl: true}) {
   query: Query
   mutation: Mutation
 }
