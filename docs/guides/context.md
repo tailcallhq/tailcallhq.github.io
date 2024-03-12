@@ -1,5 +1,6 @@
 ---
 title: Context Overview
+description: "Explore Tailcall's dynamic Context mechanism for schema field resolution, enabling access to arguments, values, and environment variables for efficient GraphQL queries. Tailcall, GraphQL, Context, dynamic resolution, schema fields, environment variables, query arguments."
 ---
 
 Within Tailcall, `Context` is a pivotal component that allows for dynamic retrieval of values during the resolution of fields for a given type within the schema.
@@ -39,7 +40,8 @@ type Post {
   id: ID!
   title: String!
   body: String!
-  comments: [Comment] @http(path: "/posts/{{value.id}}/comments")
+  comments: [Comment]
+    @http(path: "/posts/{{value.id}}/comments")
 }
 ```
 
@@ -53,7 +55,8 @@ Example:
 
 ```graphql showLineNumbers
 type Query {
-  users: [User]! @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users")
+  users: [User]!
+    @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users")
 }
 ```
 
@@ -93,7 +96,8 @@ Headers originate from the request made to the Tailcall server.
 
 ```graphql showLineNumbers
 type Query {
-  commentsForUser: [Comment] @http(path: "/users/{{headers.x-user-id}}/comments")
+  commentsForUser: [Comment]
+    @http(path: "/users/{{headers.x-user-id}}/comments")
 }
 ```
 
