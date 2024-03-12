@@ -235,6 +235,16 @@ schema @server(key: "./key.pem") {
 The key can be of any extension, but it's highly recommended to use standards (`pem`, `crt`, `key`).
 :::
 
+### showcase
+
+The `@server` directive's `showcase` option allows for hands-on experimentation with server configurations in a controlled environment. This feature simplifies the process of exploring and testing different settings.
+
+```graphql showLineNumbers
+schema @server(showcase: true) {
+  query: Query
+}
+```
+
 ## batchRequests
 
 Batching in GraphQL combines requests into one, reducing server round trips.
