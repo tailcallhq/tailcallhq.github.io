@@ -1,5 +1,6 @@
 ---
 title: Leveraging HTTP/2
+description: Enhance web performance and secure communication by leveraging HTTP/2 with Tailcall.
 ---
 
 HTTP/2 is a modern protocol that enhances improves web performance by introducing features like multiplexing, header compression, and more efficient connection handling.
