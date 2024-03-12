@@ -23,7 +23,11 @@ type User {
 }
 
 type Query {
-  notUser: User @http(path: "/users/1", baseURL: "http://jsonplaceholder.typicode.com")
+  notUser: User
+    @http(
+      path: "/users/1"
+      baseURL: "http://jsonplaceholder.typicode.com"
+    )
 }
 ```
 
