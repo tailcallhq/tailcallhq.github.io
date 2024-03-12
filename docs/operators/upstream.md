@@ -167,8 +167,8 @@ schema
 
 ## allowedHeaders
 
-The `allowedHeaders` configuration defines the HTTP headers that can forward to upstream services during requests.
-Without specifying `allowedHeaders`, the system will not forward any incoming headers to upstream services, offering an extra security layer but potentially limiting necessary data flow.
+The `allowedHeaders` configuration defines a set of whitelisted HTTP headers that can be forwarded to upstream services during requests.
+Without specifying `allowedHeaders`, the system will not forward any incoming headers to upstream services, offering an extra security layer but potentially limiting necessary data flow. Tailcall compares the provided whitelisted headers in a case-insensitive format.
 
 ```graphql showLineNumbers
 schema
