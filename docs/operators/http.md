@@ -18,7 +18,11 @@ Specifies the API's base URL. If unspecified, it defaults to the URL in the [@up
 
 ```graphql showLineNumbers
 type Query {
-  users: [User] @http(path: "/users", baseURL: "https://jsonplaceholder.typicode.com")
+  users: [User]
+    @http(
+      path: "/users"
+      baseURL: "https://jsonplaceholder.typicode.com"
+    )
 }
 ```
 
@@ -46,7 +50,8 @@ Specifies the HTTP method for the API call. The default method is GET if not spe
 
 ```graphql showLineNumbers
 type Mutation {
-  createUser(input: UserInput!): User @http(method: "POST", path: "/users")
+  createUser(input: UserInput!): User
+    @http(method: "POST", path: "/users")
 }
 ```
 
@@ -56,7 +61,11 @@ Represents the API call's query parameters, either as a static object or with dy
 
 ```graphql showLineNumbers
 type Query {
-  userPosts(id: ID!): [Post] @http(path: "/posts", query: [{key: "userId", value: "{{args.id}}"}])
+  userPosts(id: ID!): [Post]
+    @http(
+      path: "/posts"
+      query: [{key: "userId", value: "{{args.id}}"}]
+    )
 }
 ```
 
@@ -66,7 +75,12 @@ Defines the API call's body, necessary for methods like POST or PUT. Pass it as 
 
 ```graphql showLineNumbers
 type Mutation {
-  createUser(input: UserInput!): User @http(method: "POST", path: "/users", body: "{{args.input}}")
+  createUser(input: UserInput!): User
+    @http(
+      method: "POST"
+      path: "/users"
+      body: "{{args.input}}"
+    )
 }
 ```
 
@@ -80,7 +94,11 @@ For instance:
 
 ```graphql showLineNumbers
 type Mutation {
-  createUser(input: UserInput!): User @http(path: "/users", headers: [{key: "X-Server", value: "Tailcall"}])
+  createUser(input: UserInput!): User
+    @http(
+      path: "/users"
+      headers: [{key: "X-Server", value: "Tailcall"}]
+    )
 }
 ```
 
@@ -93,7 +111,13 @@ You can make use of mustache templates to provide dynamic values for headers, de
 ```graphql showLineNumbers
 type Mutation {
   users(name: String): User
-    @http(path: "/users", headers: [{key: "X-Server", value: "Tailcall"}, {key: "User-Name", value: "{{args.name}}"}])
+    @http(
+      path: "/users"
+      headers: [
+        {key: "X-Server", value: "Tailcall"}
+        {key: "User-Name", value: "{{args.name}}"}
+      ]
+    )
 }
 ```
 
@@ -109,7 +133,12 @@ Groups data requests into a single call, enhancing efficiency. Refer to our [n +
 type Post {
   id: Int!
   name: String!
-  user: User @http(path: "/users", query: [{key: "id", value: "{{value.userId}}"}], batchKey: ["id"])
+  user: User
+    @http(
+      path: "/users"
+      query: [{key: "id", value: "{{value.userId}}"}]
+      batchKey: ["id"]
+    )
 }
 ```
 

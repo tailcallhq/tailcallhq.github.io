@@ -35,7 +35,14 @@ schema {
 }
 
 type Query {
-  user: User @const(data: {name: "John", workEmail: "john@xyz.com", personalEmail: "john@xyz.com"})
+  user: User
+    @const(
+      data: {
+        name: "John"
+        workEmail: "john@xyz.com"
+        personalEmail: "john@xyz.com"
+      }
+    )
 }
 
 type User {
@@ -43,7 +50,15 @@ type User {
   age: Int
   personalEmail: String
   workEmail: String
-  emails: Emails @const(data: {emails: {workEmail: "{{value.workEmail}}", personalEmail: "{{value.personalEmail}}"}})
+  emails: Emails
+    @const(
+      data: {
+        emails: {
+          workEmail: "{{value.workEmail}}"
+          personalEmail: "{{value.personalEmail}}"
+        }
+      }
+    )
 }
 
 type Emails {
