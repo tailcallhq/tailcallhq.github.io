@@ -115,7 +115,12 @@ type Query {
 Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`@server`](../operators/server.md) and [`@upstream`](../operators/upstream.md) operators.
 
 ```graphql
-schema @server(port: 8000, graphiql: true) @upstream(baseURL: "http://localhost:50051", httpCache: true) {
+schema
+  @server(port: 8000, graphiql: true)
+  @upstream(
+    baseURL: "http://localhost:50051"
+    httpCache: true
+  ) {
   query: Query
 }
 ```
@@ -132,8 +137,13 @@ If you need to provide any input to the gRPC method call you can specify it with
 
 ```graphql
 type Query {
-  news: NewsData! @grpc(method: "news.news.NewsService.GetAllNews")
-  newsById(news: NewsInput!): News! @grpc(service: "news.news.NewsService.GetNews", body: "{{args.news}}")
+  news: NewsData!
+    @grpc(method: "news.news.NewsService.GetAllNews")
+  newsById(news: NewsInput!): News!
+    @grpc(
+      service: "news.news.NewsService.GetNews"
+      body: "{{args.news}}"
+    )
 }
 ```
 
@@ -144,14 +154,22 @@ Wrapping up the whole result config that may look like this:
 
 schema
   @server(port: 8000, graphiql: true)
-  @upstream(baseURL: "http://localhost:50051", httpCache: true)
+  @upstream(
+    baseURL: "http://localhost:50051"
+    httpCache: true
+  )
   @link(id: "news", src: "./news.proto", type: Protobuf) {
   query: Query
 }
 
 type Query {
-  news: NewsData! @grpc(method: "news.news.NewsService.GetAllNews")
-  newsById(news: NewsInput!): News! @grpc(method: "news.news.NewsService.GetNews", body: "{{args.news}}")
+  news: NewsData!
+    @grpc(method: "news.news.NewsService.GetAllNews")
+  newsById(news: NewsInput!): News!
+    @grpc(
+      method: "news.news.NewsService.GetNews"
+      body: "{{args.news}}"
+    )
 }
 
 type News {
@@ -211,7 +229,11 @@ In our protobuf example file, we have a method called `GetMultipleNews` that we 
 ```graphql
 schema
   @server(port: 8000, graphiql: true)
-  @upstream(baseURL: "http://localhost:50051", httpCache: true, batch: {delay: 10})
+  @upstream(
+    baseURL: "http://localhost:50051"
+    httpCache: true
+    batch: {delay: 10}
+  )
   @link(id: "news", src: "./news.proto", type: Protobuf) {
   query: Query
 }

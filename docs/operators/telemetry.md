@@ -40,7 +40,10 @@ schema
       otlp: {
         url: "https://api.honeycomb.io:443"
         headers: [
-          {key: "x-honeycomb-team", value: "{{env.HONEYCOMB_API_KEY}}"}
+          {
+            key: "x-honeycomb-team"
+            value: "{{env.HONEYCOMB_API_KEY}}"
+          }
           {key: "x-honeycomb-dataset", value: "tailcall"}
         ]
       }
@@ -62,7 +65,8 @@ You can configure the OTLP exporter with the following options:
 Facilitates metrics export in a Prometheus compatible format, providing a dedicated endpoint for metrics.
 
 ```graphql
-schema @telemetry(export: {prometheus: {path: "/metrics"}}) {
+schema
+  @telemetry(export: {prometheus: {path: "/metrics"}}) {
   query: Query
 }
 ```

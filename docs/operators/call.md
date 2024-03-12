@@ -6,7 +6,10 @@ description: "Using the call directive to enhance GraphQL schemas improving code
 The `@call` directive in GraphQL signifies a paradigm shift towards more efficient code structuring by introducing a methodology akin to function invocations in conventional programming. This directive is pivotal for developers navigating the intricacies of elaborate GraphQL schemas, where minimizing redundancy and adhering to the DRY (Don't Repeat Yourself) principle are paramount. Consider the following schema example:
 
 ```graphql showLineNumbers
-schema @upstream(baseURL: "https://jsonplaceholder.typicode.com") {
+schema
+  @upstream(
+    baseURL: "https://jsonplaceholder.typicode.com"
+  ) {
   query: Query
 }
 
@@ -43,7 +46,8 @@ type Post {
   title: String!
   body: String!
   # highlight-start
-  user: User @call(query: "user", args: {id: "{{value.userId}}"})
+  user: User
+    @call(query: "user", args: {id: "{{value.userId}}"})
   # highlight-end
 }
 ```
@@ -57,7 +61,8 @@ Specify the root **query** field to invoke, alongside the requisite arguments, u
 ```graphql showLineNumbers
 type Post {
   userId: Int!
-  user: User @call(query: "user", args: {id: "{{value.userId}}"})
+  user: User
+    @call(query: "user", args: {id: "{{value.userId}}"})
 }
 ```
 
@@ -68,9 +73,18 @@ Similarly, the `@call` directive can facilitate calling a mutation from another 
 ```graphql showLineNumbers
 type Mutation {
   insertPost(input: PostInput, overwrite: Boolean): Post
-    @http(body: "{{args.input}}", method: "POST", path: "/posts", query: {overwrite: "{{args.overwrite}}"})
+    @http(
+      body: "{{args.input}}"
+      method: "POST"
+      path: "/posts"
+      query: {overwrite: "{{args.overwrite}}"}
+    )
 
-  upsertPost(input: PostInput): Post @call(mutation: "insertPost", args: {input: "{{args.input}}", overwrite: true})
+  upsertPost(input: PostInput): Post
+    @call(
+      mutation: "insertPost"
+      args: {input: "{{args.input}}", overwrite: true}
+    )
 }
 ```
 
