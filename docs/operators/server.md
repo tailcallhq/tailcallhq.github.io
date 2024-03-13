@@ -66,7 +66,7 @@ schema @server(headers: {cacheControl: true}) {
 
 Enabling the `setCookies` option instructs Tailcall to include `set-cookie` headers in its responses, which are obtained from the headers of upstream responses.
 
-[cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
+[set-cookie]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/set-cookie
 
 ```graphql showLineNumbers
 schema @server(headers: {setCookies: true}) {
