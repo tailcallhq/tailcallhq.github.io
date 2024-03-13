@@ -32,12 +32,12 @@ This configuration instructs Tailcall to cache responses from the designated ups
 
 ### Cache-Control headers in responses
 
-Enabling the `cacheControlHeader` setting in Tailcall ensures that [Cache-Control] headers are included in the responses returned to clients. When activated, Tailcall dynamically sets the `max-age` directive in the `Cache-Control` header to the minimum `max-age` value encountered in any of the responses from upstream services. This approach guarantees that the caching duration for the composite response is conservative, aligning with the shortest cache validity period provided by the upstream services. By default, this feature is disabled (`false`), meaning Tailcall will not modify or add `Cache-Control` headers unless explicitly instructed to do so. This setting is distinct from the general HTTP cache setting, which controls whether responses are cached internally by Tailcall; `cacheControlHeader` specifically controls the caching instructions sent to clients.
+Enabling the `cacheControl` setting in Tailcall ensures that [Cache-Control] headers are included in the responses returned to clients. When activated, Tailcall dynamically sets the `max-age` directive in the `Cache-Control` header to the minimum `max-age` value encountered in any of the responses from upstream services. This approach guarantees that the caching duration for the composite response is conservative, aligning with the shortest cache validity period provided by the upstream services. By default, this feature is disabled (`false`), meaning Tailcall will not modify or add `Cache-Control` headers unless explicitly instructed to do so. This setting is distinct from the general HTTP cache setting, which controls whether responses are cached internally by Tailcall; `cacheControl` specifically controls the caching instructions sent to clients.
 
-Here is how you can enable the `cacheControlHeader` setting within your Tailcall schema to apply these caching instructions:
+Here is how you can enable the `cacheControl` setting within your Tailcall schema to apply these caching instructions:
 
 ```graphql
-schema @server(cacheControlHeader: true) {
+schema @server(headers: {cacheControl: true}) {
   query: Query
   mutation: Mutation
 }
@@ -47,7 +47,7 @@ schema @server(cacheControlHeader: true) {
 
 ### Best Practices for Enhancing REST API Performance with Tailcall
 
-The combination of `httpCache` and `cacheControlHeader` provides a comprehensive caching solution. While `httpCache` focuses on internal caching to reduce the impact of high latency and frequent requests, `cacheControlHeader` manages client-side caching policies, ensuring an optimal balance between performance, data freshness, and efficient resource use.
+The combination of `httpCache` and `cacheControl` provides a comprehensive caching solution. While `httpCache` focuses on internal caching to reduce the impact of high latency and frequent requests, `cacheControl` manages client-side caching policies, ensuring an optimal balance between performance, data freshness, and efficient resource use.
 
 These caching primitives are beneficial for REST APIs that are latency-sensitive, have a high rate of request repetition, or come with explicit caching headers indicating cacheable responses. Together, they tackle the common challenges of optimizing REST API performance by minimizing unnecessary network traffic and server load while ensuring response accuracy.
 

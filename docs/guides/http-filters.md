@@ -12,7 +12,7 @@ To leverage this functionality, a JavaScript function named `onRequest` must be 
 
 ```javascript
 function onRequest({request}) {
-  console.log(`${request.method} ${request.url}`)
+  console.log(`${request.method} ${request.uri.path}`)
 
   return {request}
 }
@@ -50,7 +50,7 @@ You can respond with custom responses by returning a `response` object from the 
 
 ```javascript
 function onRequest({request}) {
-  if (request.url.startsWith("https://api.example.com")) {
+  if (request.uri.path.startsWith("https://api.example.com")) {
     return {
       response: {
         status: 200,
@@ -72,7 +72,7 @@ Sometimes you might want to redirect the request to a different URL. You can do 
 
 ```javascript
 function onRequest({request}) {
-  if (request.url.startsWith("https://example.com")) {
+  if (request.uri.path.startsWith("https://example.com")) {
     return {
       response: {
         status: 301,
@@ -95,22 +95,32 @@ The new request that's created as a result of the redirect will not be intercept
 
 The `onRequest` function takes a single argument that contains the request object. The return value of the `onRequest` function can be a `request` object, or a `response` object. It can not be null or undefined.
 
-**Request**
+### Request
 
 The request object has the following shape:
 
 ```typescript
 type Request = {
   method: string
-  url: string
+  uri: {
+    path: string
+    query?: {[key: string]: string}
+    scheme: "Http" | "Https"
+    host?: string
+    port?: number
+  }
   headers: {[key: string]: string}
   body?: string
 }
 ```
 
+:::tip
+By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](../operators/upstream.md#allowedheaders) setting in [@upstream](../operators/upstream.md).
+:::
+
 The http filter doesn't have access to the request's body. However the modified request that's returned can optionally provide the body.
 
-**Response**
+### Response
 
 The response object has the following shape:
 

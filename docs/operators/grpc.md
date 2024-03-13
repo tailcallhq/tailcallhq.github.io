@@ -65,7 +65,8 @@ This parameter specifies the gRPC service and method to be invoked, formatted as
 
 ```graphql
 type Query {
-  users: [User] @grpc(method: "proto.users.UserService.ListUsers")
+  users: [User]
+    @grpc(method: "proto.users.UserService.ListUsers")
 }
 ```
 
@@ -75,7 +76,11 @@ Defines the base URL for the gRPC API. If not specified, the URL set in the `@up
 
 ```graphql
 type Query {
-  users: [User] @grpc(baseURL: "https://grpc-server.example.com", method: "proto.users.UserService.ListUsers")
+  users: [User]
+    @grpc(
+      baseURL: "https://grpc-server.example.com"
+      method: "proto.users.UserService.ListUsers"
+    )
 }
 ```
 
@@ -89,7 +94,11 @@ type UserInput {
 }
 
 type Query {
-  user(id: UserInput!): User @grpc(body: "{{args.id}}", method: "proto.users.UserService.GetUser")
+  user(id: UserInput!): User
+    @grpc(
+      body: "{{args.id}}"
+      method: "proto.users.UserService.GetUser"
+    )
 }
 ```
 
@@ -100,7 +109,12 @@ Custom headers for the gRPC request can be defined, facilitating the transmissio
 ```graphql
 type Query {
   users: [User]
-    @grpc(headers: [{key: "X-CUSTOM-HEADER", value: "custom-value"}], method: "proto.users.UserService.ListUsers")
+    @grpc(
+      headers: [
+        {key: "X-CUSTOM-HEADER", value: "custom-value"}
+      ]
+      method: "proto.users.UserService.ListUsers"
+    )
 }
 ```
 
@@ -111,7 +125,11 @@ This argument is employed to optimize batch requests by grouping them based on s
 ```graphql
 type Query {
   users(id: UserInput!): [User]
-    @grpc(batchKey: ["id"], method: "proto.users.UserService.ListUsers", baseURL: "https://grpc-server.example.com")
+    @grpc(
+      batchKey: ["id"]
+      method: "proto.users.UserService.ListUsers"
+      baseURL: "https://grpc-server.example.com"
+    )
 }
 ```
 

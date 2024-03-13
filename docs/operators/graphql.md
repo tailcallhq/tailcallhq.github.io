@@ -40,7 +40,11 @@ This refers to the base URL of the API. If not specified, the default base URL i
 
 ```graphql showLineNumbers
 type Query {
-  users: [User] @graphQL(name: "users", baseURL: "https://graphqlzero.almansi.me/api")
+  users: [User]
+    @graphQL(
+      name: "users"
+      baseURL: "https://graphqlzero.almansi.me/api"
+    )
 }
 ```
 
@@ -62,7 +66,11 @@ Named arguments for the requested field. For example:
 
 ```graphql showLineNumbers
 type Query {
-  user: User @graphQL(name: "user", args: [{key: "id", value: "{{value.userId}}"}])
+  user: User
+    @graphQL(
+      name: "user"
+      args: [{key: "id", value: "{{value.userId}}"}]
+    )
 }
 ```
 
@@ -84,7 +92,11 @@ For instance:
 
 ```graphql showLineNumbers
 type Mutation {
-  users: User @graphQL(name: "users", headers: [{key: "X-Server", value: "Tailcall"}])
+  users: User
+    @graphQL(
+      name: "users"
+      headers: [{key: "X-Server", value: "Tailcall"}]
+    )
 }
 ```
 
@@ -95,7 +107,14 @@ In this example, a request to `/users` will include the HTTP header `X-Server` w
 In case the upstream GraphQL server supports request batching, we can specify the `batch` argument to batch requests to a single upstream into a single batch request. For example:
 
 ```graphql showLineNumbers
-schema @upstream(batch: {maxSize: 1000, delay: 10, headers: ["X-Server", "Authorization"]}) {
+schema
+  @upstream(
+    batch: {
+      maxSize: 1000
+      delay: 10
+      headers: ["X-Server", "Authorization"]
+    }
+  ) {
   query: Query
   mutation: Mutation
 }

@@ -32,7 +32,11 @@ Example schema:
 
 ```graphql showLineNumbers
 type Query {
-  users: [User]! @http(baseUrl: "https://jsonplaceholder.typicode.com", path: "/users")
+  users: [User]!
+    @http(
+      baseUrl: "https://jsonplaceholder.typicode.com"
+      path: "/users"
+    )
 }
 ```
 
@@ -42,7 +46,8 @@ We can address this issue using environment variables. Replace the API endpoint 
 
 ```graphql showLineNumbers
 type Query {
-  users: [User]! @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users")
+  users: [User]!
+    @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users")
 }
 ```
 
@@ -62,7 +67,9 @@ type Query {
       method: "ListUsers"
       protoPath: "./proto/user_service.proto"
       baseURL: "https://grpc-server.example.com"
-      headers: [{key: "X-API-KEY", value: "{{env.API_KEY}}"}]
+      headers: [
+        {key: "X-API-KEY", value: "{{env.API_KEY}}"}
+      ]
     )
 }
 ```
