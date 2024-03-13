@@ -143,12 +143,16 @@ type Mutation {
       method: POST
       path: "/"
       baseURL: "https://echo.free.beeceptor.com"
-      query: [{ key: "user", value: "{{args.input}}" }]
+      query: [{key: "user", value: "{{args.input}}"}]
     )
 }
 
 type Query {
-  user: User @http(baseURL: "https://jsonplaceholder.typicode.com", path: "/user/1")
+  user: User
+    @http(
+      baseURL: "https://jsonplaceholder.typicode.com"
+      path: "/user/1"
+    )
 }
 
 type UserProperties {
@@ -173,27 +177,37 @@ schema
   mutation: Mutation
   query: Query
 }
-
 ```
 
 ```javascript
-function onRequest({ request }) {
-    console.log(request);
-    const baseUrl = request.url.split('?')[0];
-    const user = JSON.parse(decodeURIComponent(request.url.split('?user=')[1]));
-    const modifiedUrl = baseUrl + `?userAge=${encodeURIComponent(user.age)}&userFirstName=${encodeURIComponent(user.firstName)}&userLastName=${encodeURIComponent(user.lastName)}`;
-    request.url = modifiedUrl;
+function onRequest({request}) {
+  console.log(request)
+  const baseUrl = request.url.split("?")[0]
+  const user = JSON.parse(
+    decodeURIComponent(request.url.split("?user=")[1]),
+  )
+  const modifiedUrl =
+    baseUrl +
+    `?userAge=${encodeURIComponent(
+      user.age,
+    )}&userFirstName=${encodeURIComponent(
+      user.firstName,
+    )}&userLastName=${encodeURIComponent(user.lastName)}`
+  request.url = modifiedUrl
 
-    return { request: request }
+  return {request: request}
 }
 ```
 
 ### Transformed Data
 
 #### Request
+
 ```graphql
 mutation {
-  createUser(input: { firstName: "John", lastName: "Doe", age: 23 }) {
+  createUser(
+    input: {firstName: "John", lastName: "Doe", age: 23}
+  ) {
     parsedQueryParams {
       userAge
       userLastName
@@ -202,7 +216,9 @@ mutation {
   }
 }
 ```
+
 #### Response
+
 ```json
 {
   "data": {
