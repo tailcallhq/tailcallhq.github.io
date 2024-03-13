@@ -12,7 +12,7 @@ To leverage this functionality, a JavaScript function named `onRequest` must be 
 
 ```javascript
 function onRequest({request}) {
-  console.log(`${request.method} ${request.uri}`)
+  console.log(`${request.method} ${request.uri.path}`)
 
   return {request}
 }
@@ -50,7 +50,7 @@ You can respond with custom responses by returning a `response` object from the 
 
 ```javascript
 function onRequest({request}) {
-  if (request.uri.startsWith("https://api.example.com")) {
+  if (request.uri.path.startsWith("https://api.example.com")) {
     return {
       response: {
         status: 200,
@@ -72,7 +72,7 @@ Sometimes you might want to redirect the request to a different URL. You can do 
 
 ```javascript
 function onRequest({request}) {
-  if (request.uri.startsWith("https://example.com")) {
+  if (request.uri.path.startsWith("https://example.com")) {
     return {
       response: {
         status: 301,
