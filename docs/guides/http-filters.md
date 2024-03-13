@@ -104,7 +104,7 @@ type Request = {
   method: string
   uri: {
     path: string
-    query: {[key: string]: string}
+    query?: {[key: string]: string}
     scheme: "Http" | "Https"
     host?: string
     port?: number
