@@ -62,6 +62,19 @@ schema @server(headers: {cacheControl: true}) {
 }
 ```
 
+### setCookies
+
+Activating the `setCookies` configuration directs Tailcall to send [set-cookie] headers in its responses which were received from the graphql request.
+
+[cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
+
+```graphql showLineNumbers
+schema @server(headers: {setCookies: true}) {
+  query: Query
+  mutation: Mutation
+}
+```
+
 ## graphiql
 
 Enabling the `graphiql` configuration activates the GraphiQL IDE at the root (/) path within Tailcall. GraphiQL is a built-in, interactive in-browser GraphQL IDE, designed to streamline query development and testing. By default, this feature is off.
