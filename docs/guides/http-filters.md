@@ -103,12 +103,12 @@ The request object has the following shape:
 type Request = {
   method: string
   uri: {
-    path: string;
-    query: { [key: string]: string };
-    scheme: "Http" | "Https"; 
-    host?: string;
-    port?: number;
-  };
+    path: string
+    query: {[key: string]: string}
+    scheme: "Http" | "Https"
+    host?: string
+    port?: number
+  }
   headers: {[key: string]: string}
   body?: string
 }
