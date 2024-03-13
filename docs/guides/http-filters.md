@@ -102,7 +102,13 @@ The request object has the following shape:
 ```typescript
 type Request = {
   method: string
-  uri: {path: string}
+  uri: {
+    path: string;
+    query: { [key: string]: string };
+    scheme: "Http" | "Https"; 
+    host?: string;
+    port?: number;
+  };
   headers: {[key: string]: string}
   body?: string
 }
