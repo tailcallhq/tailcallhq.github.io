@@ -44,6 +44,47 @@ function onRequest({request}) {
 }
 ```
 
+## Modify Incoming Request Data
+
+You can modify incoming request data before processing it further. Here's an example of how to modify incoming request data for a mutation createUser, where the input data is passed as an argument.
+
+```graphql
+schema  {
+  query: Query
+  mutation: Mutation
+}
+
+type Mutation {
+  createUser(input: InputUser): UserCreated @http(
+    method: POST, 
+    path: "/users", 
+    query: [{key: "user", value: "{{args.input}}"}] # pass input as an argument
+}
+
+input InputUser {
+  name: String
+  age: Int
+}
+
+function onRequest({request}) {
+   const user = JSON.parse(decodeURIComponent(request.uri.query.user))
+
+   //Clear the existing URI query parameters
+   request.uri.query = {}
+   request.body = {
+      userName: user.name,
+      userAge: user.age
+   }
+   return {request}
+}
+```
+
+- The `onRequest` function intercepts incoming requests, specifically targeting mutation requests like createUser.
+- It retrieves encoded user data from the request URI query parameter, decodes it, and parses it as JSON to extract the name and age fields.
+- The function then clears existing URI query parameters and constructs a new request body with the extracted user data (userName and userAge).
+- This modification ensures compatibility with downstream processing logic, allowing Tailcall to process mutation requests with the expected user data format.
+- Such request modification is valuable for standardizing data formats, performing validation, or adapting requests to meet downstream service requirements
+
 ## Create Response
 
 You can respond with custom responses by returning a `response` object from the `onRequest` function. Below is an example where we are responding with a custom response for all requests that start with `https://api.example.com`.
