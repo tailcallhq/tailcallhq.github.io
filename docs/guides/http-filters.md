@@ -131,3 +131,88 @@ type Response = {
   body?: string
 }
 ```
+
+## Modify Incoming Request Data
+
+You can also modify incoming request data by parsing and transforming the request's query parameters or body. Below is an example where we modify the incoming request data by extracting user information from a query parameter and then setting the request body with the transformed user data.
+
+```graphql
+type Mutation {
+  createUser(input: InputUser): User
+    @http(
+      method: POST
+      path: "/"
+      baseURL: "https://echo.free.beeceptor.com"
+      query: [{ key: "user", value: "{{args.input}}" }]
+    )
+}
+
+type Query {
+  user: User @http(baseURL: "https://jsonplaceholder.typicode.com", path: "/user/1")
+}
+
+type UserProperties {
+  userFirstName: String
+  userLastName: String
+  userAge: Int
+}
+
+type User {
+  parsedQueryParams: UserProperties
+}
+
+input InputUser {
+  firstName: String
+  lastName: String
+  age: Int
+}
+
+schema
+  @link(type: Script, src: "./worker.js")
+  @server(graphiql: true) {
+  mutation: Mutation
+  query: Query
+}
+
+```
+
+```javascript
+function onRequest({ request }) {
+    console.log(request);
+    const baseUrl = request.url.split('?')[0];
+    const user = JSON.parse(decodeURIComponent(request.url.split('?user=')[1]));
+    const modifiedUrl = baseUrl + `?userAge=${encodeURIComponent(user.age)}&userFirstName=${encodeURIComponent(user.firstName)}&userLastName=${encodeURIComponent(user.lastName)}`;
+    request.url = modifiedUrl;
+
+    return { request: request }
+}
+```
+
+### Transformed Data
+
+#### Request
+```graphql
+mutation {
+  createUser(input: { firstName: "John", lastName: "Doe", age: 23 }) {
+    parsedQueryParams {
+      userAge
+      userLastName
+      userFirstName
+    }
+  }
+}
+```
+#### Response
+```json
+{
+  "data": {
+    "createUser": {
+      "parsedQueryParams": {
+        "userAge": "23",
+        "userLastName": "Doe",
+        "userFirstName": "John"
+      }
+    }
+  }
+}
+```
