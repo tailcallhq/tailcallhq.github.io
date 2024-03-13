@@ -17,6 +17,7 @@ To get a list of todos you will run the query `todo` defined below.
   query: Query
 }
 ```
+
 In this example, the `@upstream` directive is used to specify the baseURL as "https://jsonplaceholder.typicode.com". This baseURL will be used as the base URL for all HTTP requests defined within the schema.
 
 ```graphql
