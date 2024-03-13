@@ -64,7 +64,7 @@ schema @server(headers: {cacheControl: true}) {
 
 ### setCookies
 
-Activating the `setCookies` configuration directs Tailcall to send [set-cookie] headers in its responses which were received from the graphql request.
+Enabling the `setCookies` option instructs Tailcall to include `set-cookie` headers in its responses, which are obtained from the headers of upstream responses.
 
 [cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 
