@@ -62,6 +62,24 @@ schema @server(headers: {cacheControl: true}) {
 }
 ```
 
+### custom
+
+The `custom` is an array of key-value pairs. These headers get added to the response of every request made to the server. This can be useful for adding headers like `Access-Control-Allow-Origin` to allow cross-origin requests, or some headers like `X-Allowed-Roles` for use by downstream services.
+
+```graphql showLineNumbers
+schema
+  @server(
+    headers: {
+      custom: [
+        {key: "X-Allowed-Roles", value: "admin,user"}
+      ]
+    }
+  ) {
+  query: Query
+  mutation: Mutation
+}
+```
+
 ### experimental_headers
 
 Using the `experimental_headers` configuration enables Tailcall to send additional headers in its responses. These headers are not part of the standard HTTP specification and are experimental. By default, this is `[]`, which means Tailcall will not forward any experimental headers.
@@ -185,22 +203,6 @@ schema @server(responseValidation: true) {
 :::tip
 Disabling this setting will offer major performance improvements, but at the potential expense of data integrity.
 :::
-
-## responseHeaders
-
-The `responseHeader` is an array of key-value pairs. These headers get added to the response of every request made to the server. This can be useful for adding headers like `Access-Control-Allow-Origin` to allow cross-origin requests, or some headers like `X-Allowed-Roles` for use by downstream services.
-
-```graphql showLineNumbers
-schema
-  @server(
-    responseHeaders: [
-      {key: "X-Allowed-Roles", value: "admin,user"}
-    ]
-  ) {
-  query: Query
-  mutation: Mutation
-}
-```
 
 ## globalResponseTimeout
 
