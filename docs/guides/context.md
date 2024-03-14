@@ -1,28 +1,27 @@
 ---
-title: Context
+title: Context Overview
+description: "Explore Tailcall's dynamic Context mechanism for schema field resolution, enabling access to arguments, values, and environment variables for efficient GraphQL queries. Tailcall, GraphQL, Context, dynamic resolution, schema fields, environment variables, query arguments."
 ---
 
-In any GraphQL framework, including Tailcall, `Context` serves as a fundamental mechanism for sharing data across different parts of your application. This adaptable object becomes available to every resolver in GraphQL.
+Within Tailcall, `Context` is a pivotal component that allows for dynamic retrieval of values during the resolution of fields for a given type within the schema.
 
-## Context in Tailcall
-
-In Tailcall, as in all GraphQL implementations, every [Operator](operators/index.md) can access Context. Operators use Context to store and retrieve data necessary for shared operations.
-
-You can describe the Context with the following Typescript interface:
+## Schema Definition
 
 ```typescript
-interface Context {
-  args: Map<string, Json>
-  value: Json
-  parent: Context
+type Context = {
+  args: Map<string, JSON>
+  value: JSON
   env: Map<string, string>
+  vars: Map<string, string>
   headers: Map<string, string>
 }
 ```
 
+`Context` operates by storing values as key-value pairs, which can be accessed through mustache template syntax.
+
 ### args
 
-These arguments pass to the current query, allowing access to the query's arguments. For example,
+This property facilitates access to query arguments. Consider the example:
 
 ```graphql showLineNumbers
 type Query {
@@ -30,13 +29,13 @@ type Query {
 }
 ```
 
-In this example, you use `args.id` to access the `id` argument passed to the `user` query.
+Here, `args.id` is utilized to retrieve the `id` argument provided to the `user` query.
 
 ### value
 
-This field represents the value of the current node. For instance,
+This enables access to the fields of the specified type.
 
-```graphql showLineNumbers
+```graphql showlineNumbers
 type Post {
   id: ID!
   title: String!
@@ -46,36 +45,13 @@ type Post {
 }
 ```
 
-Here, `value.id` provides access to the `id` field of the `Post` type.
-
-### parent
-
-This field indicates the context of the parent node.
-
-```graphql showLineNumbers
-type Query {
-  posts: [Post] @http(path: "/posts")
-}
-type Post {
-  id: Int!
-  userId: Int!
-  title: String!
-  body: String!
-  user: User
-    @http(
-      path: "/users"
-      query: [{key: "id", value: "{{value.userId}}"}]
-      matchPath: ["id"]
-      matchKey: "userId"
-    )
-}
-```
-
-In this scenario, `value.userId` helps retrieve the `userId` information from the "parent" context of the `Post` type, effectively extracting a list of `userId` fields from the `Post` types. Consider `value` as a container holding the results of a post query, with `userId` as the specific key you want to extract.
+In this case, `value.id` accesses the `id` field of the `Post` type.
 
 ### env
 
-This field represents global environment variables for the server, set once when the server starts.
+Environment variables, set at server startup, allow directives to dynamically adapt behavior based on external configurations without altering the server configuration itself.
+
+Example:
 
 ```graphql showLineNumbers
 type Query {
@@ -84,19 +60,45 @@ type Query {
 }
 ```
 
-Here, `env.API_ENDPOINT` refers to an environment variable named API_ENDPOINT, defined in your server settings.
+`env.API_ENDPOINT` references an environment variable named `API_ENDPOINT`, which specifies the base URL for HTTP requests.
+
+### vars
+
+`vars` offers a mechanism for defining reusable variables within the configuration. Unlike `env`, these are embedded and can be universally applied across configurations.
+
+```graphql showLineNumbers
+schema
+  @server(
+    vars: {key: "apiKey", value: "{{env.AUTH_TOKEN}}"}
+  ) {
+  query: Query
+}
+
+type Query {
+  user(id: ID!): [User]
+    @http(
+      url: "/users"
+      headers: [
+        {
+          key: "Authorization"
+          value: "Bearer {{vars.apiKey}}"
+        }
+      ]
+    )
+}
+```
+
+Here, the variable `apiKey` is set using an environment variable and subsequently utilized in the `Authorization` header for HTTP requests.
 
 ### headers
 
-These headers come from the request received by the Tailcall server.
+Headers originate from the request made to the Tailcall server.
 
 ```graphql showLineNumbers
 type Query {
   commentsForUser: [Comment]
-    @http(path: "/users/{{headers.userId}}/comments")
+    @http(path: "/users/{{headers.x-user-id}}/comments")
 }
 ```
 
-Here, `headers.userId` refers to a header called `userId` that should be present in the `context`. The server can use this `userId` to fetch comments for the specified user.
-
-[operator]: /docs/operators
+In this example, `headers.x-user-id` extracts the value of the `x-user-id` header present in the request, dynamically constructing the request path.
