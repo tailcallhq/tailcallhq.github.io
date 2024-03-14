@@ -51,7 +51,7 @@ Allows intelligent configuration of the final response headers that's produced b
 
 ### cacheControl
 
-Activating the `cacheControl` configuration directs Tailcall to send [Cache-Control] headers in its responses. The `max-age` value in the header matches the smallest of the values in the responses Tailcall receives from upstream services. By default, this is `false`, which means Tailcall does not set any header.
+Activating the `cacheControl` configuration directs Tailcall to send [Cache-Control] headers in its responses. The `max-age` value in the header matches the lowest of the values in the responses that Tailcall receives from its upstream. By default, this is `false`, which means Tailcall does not set any header.
 
 [cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 
@@ -80,16 +80,14 @@ schema
 }
 ```
 
-### experimental_headers
+### experimental
 
-Using the `experimental_headers` configuration enables Tailcall to send additional headers in its responses. These headers are not part of the standard HTTP specification and are experimental. By default, this is `[]`, which means Tailcall will not forward any experimental headers.
+When the `experimental` configuration is enabled, Tailcall can include headers starting with `X-` in its responses, which are sourced from its upstream. By default, this feature is disabled (`[]`), meaning Tailcall does not forward any such headers unless explicitly configured to do so.
 
 ```graphql showLineNumbers
 schema
   @server(
-    headers: {
-      experimental_headers: ["X-Experimental-Header"]
-    }
+    headers: {experimental: ["X-Experimental-Header"]}
   ) {
   query: Query
   mutation: Mutation
