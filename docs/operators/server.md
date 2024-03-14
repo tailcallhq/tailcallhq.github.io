@@ -62,6 +62,22 @@ schema @server(headers: {cacheControl: true}) {
 }
 ```
 
+### experimental_headers
+
+Using the `experimental_headers` configuration enables Tailcall to send additional headers in its responses. These headers are not part of the standard HTTP specification and are experimental. By default, this is `[]`, which means Tailcall will not forward any experimental headers.
+
+```graphql showLineNumbers
+schema
+  @server(
+    headers: {
+      experimental_headers: ["X-Experimental-Header"]
+    }
+  ) {
+  query: Query
+  mutation: Mutation
+}
+```
+
 ### setCookies
 
 Enabling the `setCookies` option instructs Tailcall to include `set-cookie` headers in its responses, which are obtained from the headers of upstream responses.
