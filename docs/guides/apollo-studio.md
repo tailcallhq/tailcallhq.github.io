@@ -49,8 +49,8 @@ To see the metrics for you queries follow these instructions:
      @telemetry(
        export: {
          apollo: {
-           api_key: "<APOLLO_API_KEY from Apollo Website>"
-           graph_ref: "<APOLLO_GRAPH_REF from Apollo Website>"
+           apiKey: "<APOLLO_API_KEY from Apollo Website>"
+           graphRef: "<APOLLO_GRAPH_REF from Apollo Website>"
          }
        }
      ) {
