@@ -62,6 +62,22 @@ schema @server(headers: {cacheControl: true}) {
 }
 ```
 
+### experimental_headers
+
+Using the `experimental_headers` configuration enables Tailcall to send additional headers in its responses. These headers are not part of the standard HTTP specification and are experimental. By default, this is `[]`, which means Tailcall will not forward any experimental headers.
+
+```graphql showLineNumbers
+schema
+  @server(
+    headers: {
+      experimental_headers: ["X-Experimental-Header"]
+    }
+  ) {
+  query: Query
+  mutation: Mutation
+}
+```
+
 ## graphiql
 
 Enabling the `graphiql` configuration activates the GraphiQL IDE at the root (/) path within Tailcall. GraphiQL is a built-in, interactive in-browser GraphQL IDE, designed to streamline query development and testing. By default, this feature is off.
