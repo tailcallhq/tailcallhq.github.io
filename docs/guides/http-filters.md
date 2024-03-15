@@ -138,37 +138,28 @@ You can also modify incoming request data by parsing and transforming the reques
 
 ```graphql
 type Mutation {
-  createUser(input: InputUser): User
+  createUser(input: UserInput): User
     @http(
       method: POST
       path: "/"
-      baseURL: "https://echo.free.beeceptor.com"
+      baseURL: "http://localhost"
       query: [{key: "user", value: "{{args.input}}"}]
     )
 }
 
 type Query {
   user: User
-    @http(
-      baseURL: "https://jsonplaceholder.typicode.com"
-      path: "/user/1"
-    )
+    @http(baseURL: "http://localhost", path: "/user/1")
 }
 
-type UserProperties {
-  userFirstName: String
-  userLastName: String
-  userAge: Int
+type UserInput {
+  name: String
+  age: Int
 }
 
 type User {
-  parsedQueryParams: UserProperties
-}
-
-input InputUser {
-  firstName: String
-  lastName: String
-  age: Int
+  userName: String
+  isAdult: Boolean
 }
 
 schema
@@ -181,20 +172,12 @@ schema
 
 ```javascript
 function onRequest({request}) {
-  console.log(request)
-  const baseUrl = request.url.split("?")[0]
-  const user = JSON.parse(
-    decodeURIComponent(request.url.split("?user=")[1]),
-  )
-  const modifiedUrl =
-    baseUrl +
-    `?userAge=${encodeURIComponent(
-      user.age,
-    )}&userFirstName=${encodeURIComponent(
-      user.firstName,
-    )}&userLastName=${encodeURIComponent(user.lastName)}`
-  request.url = modifiedUrl
-
+  const query = JSON.parse(request.uri.query.user)
+  const modifiedQuery = {
+    user_name: query.name,
+    is_adult: query.age >= 18,
+  }
+  request.uri.query = {user: JSON.stringify(modifiedQuery)}
   return {request: request}
 }
 ```
@@ -205,14 +188,9 @@ function onRequest({request}) {
 
 ```graphql
 mutation {
-  createUser(
-    input: {firstName: "John", lastName: "Doe", age: 23}
-  ) {
-    parsedQueryParams {
-      userAge
-      userLastName
-      userFirstName
-    }
+  createUser(input: {name: "John", age: 18}) {
+    isAdult
+    userName
   }
 }
 ```
@@ -223,11 +201,8 @@ mutation {
 {
   "data": {
     "createUser": {
-      "parsedQueryParams": {
-        "userAge": "23",
-        "userLastName": "Doe",
-        "userFirstName": "John"
-      }
+      "isAdult": false,
+      "userName": "Jdasdasdohn"
     }
   }
 }
