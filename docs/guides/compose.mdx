@@ -287,6 +287,27 @@ types:
 
 ### Enhanced Editor Support
 
-To leverage autocomplete and validation for Tailcall configurations, utilize `.tailcallrc.graphql` for GraphQL configurations and `.tailcallrc.schema.json` for JSON and YAML configurations. These files enhance editor support by providing schema definitions, facilitating faster and error-free configuration.
+To leverage autocomplete and validation for Tailcall configurations, the [init command](/docs/guides/cli.md#init) can be used to automatically create `.tailcallrc.graphql` for GraphQL configurations and `.tailcallrc.schema.json` for JSON and YAML configurations. These files enhance editor support by providing schema definitions, facilitating faster and error-free configuration.
 
-For more detailed information on configuring TailCall for enhanced editor support, refer to tailcall's [init command](/docs/guides/cli.md#init).
+#### For GraphQL
+
+When you run `tailcall init`, it creates a `.tailcallrc.graphql` file containing your GraphQL schema definitions and a `.graphqlrc.yml` file configured to use this schema. The `.graphqlrc.yml` file is set up as follows:
+
+```yml
+schema:
+  - "./.tailcallrc.graphql"
+```
+
+This setup allows GraphQL IDE plugins and Language Server Protocols (LSP) to automatically pick up the schema for autocomplete and validation, enhancing your development experience with real-time feedback and suggestions.
+
+#### For JSON
+
+For JSON configurations, `tailcall init` also creates a `.tailcallrc.schema.json` file. To enable validation and autocomplete in your JSON files, reference the `.tailcallrc.schema.json` in the `$schema` attribute at the beginning of your JSON file:
+
+```json
+{
+  "$schema": "./.tailcallrc.schema.json"
+}
+```
+
+This reference enables your IDE to validate and autocomplete using the JSON schema, offering a streamlined configuration process with instant error and typo detection.
