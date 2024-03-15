@@ -1,6 +1,8 @@
 import React from "react"
 import Heading from "@theme/Heading"
 import CodeBlock from "@theme/CodeBlock"
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
 import Link from "@docusaurus/Link"
 
 const Configuration = (): JSX.Element => {
@@ -17,10 +19,33 @@ const Configuration = (): JSX.Element => {
       </div>
       <div>
         <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
-        <CodeBlock language="graphql">
-          {`# app.graphql
 
-schema
+        <Tabs>
+          {CodeTabItem({code: GRAPHQL_CONFIG, language: "graphql"})}
+          {CodeTabItem({code: YML_CONFIG, language: "yaml"})}
+          {CodeTabItem({code: JSON_CONFIG, language: "json"})}
+        </Tabs>
+      </div>
+    </section>
+  )
+}
+
+const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" | "graphql"}) => (
+  <TabItem value={language} label={language}>
+    <CodeBlock
+      language={language}
+      showLineNumbers={true}
+      className="overflow-y-auto h-96 md:min-w-[45rem] min-w-[100%]"
+    >
+      {code}
+    </CodeBlock>
+    <CodeBlock language="bash">tailcall start ./app.{language}</CodeBlock>
+  </TabItem>
+)
+
+export default Configuration
+
+const GRAPHQL_CONFIG = `schema
   @server(port: 8000, graphiql: true)
   @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
@@ -48,12 +73,166 @@ type Post {
   # Expand a post with user information
   user: User @http(path: "/users/{{value.userId}}")
 }
-        `}
-        </CodeBlock>
-        <CodeBlock language="bash">tailcall start ./app.graphql</CodeBlock>
-      </div>
-    </section>
-  )
-}
+`
 
-export default Configuration
+const YML_CONFIG = `server:
+  graphiql: true
+  port: 8000
+upstream:
+  baseURL: http://jsonplaceholder.typicode.com
+schema:
+  query: Query
+types:
+  Post:
+    fields:
+      body:
+        type: String
+        required: true
+        cache: null
+      id:
+        type: Int
+        required: true
+        cache: null
+      title:
+        type: String
+        required: true
+        cache: null
+      user:
+        type: User
+        http:
+          path: /users/{{value.userId}}
+        cache: null
+      userId:
+        type: Int
+        required: true
+        cache: null
+    cache: null
+  Query:
+    fields:
+      posts:
+        type: Post
+        list: true
+        http:
+          path: /posts
+        cache: null
+      users:
+        type: User
+        list: true
+        http:
+          path: /users
+        cache: null
+    cache: null
+  User:
+    fields:
+      email:
+        type: String
+        required: true
+        cache: null
+      id:
+        type: Int
+        required: true
+        cache: null
+      name:
+        type: String
+        required: true
+        cache: null
+      username:
+        type: String
+        required: true
+        cache: null
+    cache: null
+`
+
+const JSON_CONFIG = `{
+  "server": {
+    "graphiql": true,
+    "port": 8000
+  },
+  "upstream": {
+    "baseURL": "http://jsonplaceholder.typicode.com"
+  },
+  "schema": {
+    "query": "Query"
+  },
+  "types": {
+    "Post": {
+      "fields": {
+        "body": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
+        "id": {
+          "type": "Int",
+          "required": true,
+          "cache": null
+        },
+        "title": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
+        "user": {
+          "type": "User",
+          "http": {
+            "path": "/users/{{value.userId}}"
+          },
+          "cache": null
+        },
+        "userId": {
+          "type": "Int",
+          "required": true,
+          "cache": null
+        }
+      },
+      "cache": null
+    },
+    "Query": {
+      "fields": {
+        "posts": {
+          "type": "Post",
+          "list": true,
+          "http": {
+            "path": "/posts"
+          },
+          "cache": null
+        },
+        "users": {
+          "type": "User",
+          "list": true,
+          "http": {
+            "path": "/users"
+          },
+          "cache": null
+        }
+      },
+      "cache": null
+    },
+    "User": {
+      "fields": {
+        "email": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
+        "id": {
+          "type": "Int",
+          "required": true,
+          "cache": null
+        },
+        "name": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
+        "username": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        }
+      },
+      "cache": null
+    }
+  }
+}
+`

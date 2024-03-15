@@ -300,7 +300,7 @@ export const pricingPlans: PricingPlans[] = [
     id: 2,
     name: "Advanced plan",
     price: "$600/year",
-    for: "per worker",
+    for: "per core",
     billing: "Billed Annually",
     volumeDiscounts: "(Volume discounts available)",
     features: [
@@ -329,7 +329,7 @@ export const pricingPlans: PricingPlans[] = [
     id: 3,
     name: "Enterprise plan",
     price: "$1000/year",
-    for: "per worker",
+    for: "per core",
     billing: "Billed Annually",
     volumeDiscounts: "(Volume discounts available)",
     features: [

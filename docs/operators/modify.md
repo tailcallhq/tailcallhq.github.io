@@ -14,7 +14,7 @@ type User {
 }
 ```
 
-`@modify(name: "userId")` tells GraphQL that although the field is referred to as `id`in the underlying data source, it should be presented as `userId` in your schema.
+`@modify(name: "userId")` informs GraphQL to present the field known as `id` in the underlying data source as `userId` in your schema.
 
 ## omit
 
@@ -26,4 +26,8 @@ type User {
 }
 ```
 
-`@modify(omit: true)` tells GraphQL that the `id` field should not be included in the schema, thus it won't be accessible to the client.
+`@modify(omit: true)` instructs GraphQL to exclude the `id` field from the schema, making it inaccessible to the client.
+
+:::tip
+**@omit** is a standalone operator and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/operators/omit)
+:::

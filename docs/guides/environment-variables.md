@@ -2,55 +2,60 @@
 title: Environment Variables
 ---
 
-Environment variables are key-value pairs stored in our operating systems. Many come by default, and we can also create our own. They are used to store information utilized by our operating system or other programs. For example, the `PATH` variable stores a list of directories the operating system should search when we run a command in the terminal. The `HOME` variable stores the path to our home directory.
+Environment variables are key-value pairs stored in our operating systems. Most of them come by default, and we can also create our own. They store information used by our operating system or other programs. For example, the `PATH` variable stores a list of directories the operating system searches when we run a command in the terminal. The `HOME` variable stores the path to our home directory.
 
-These variables are also useful in software development. Configuration values are often stored in environment variables.
+These variables also serve in software development for storing configuration values.
 
 ## Need for Environment Variables
 
-Applications use multiple external tools, authentication methods, and numerous configurations. Therefore, for proper functioning, our code needs to access these values correctly.
+Applications rely on external tools, authentication methods, and configurations. For proper functioning, our code needs to access these values.
 
-Consider a simple scenario of [JWT authentication](https://jwt.io/). Typically, when signing tokens for our users, we need the following configuration set:
+Consider a scenario of [JWT authentication](https://jwt.io/). When signing tokens for our users, we need:
 
 - **Expiry time**: The duration after which the token expires.
-- **Secret key**: The key used to encrypt the token.
-- **Issuer**: The name of the token issuer, usually the organization's name.
+- **Secret key**: The key for encrypting the token.
+- **Issuer**: The token issuer, often the organization's name.
 
-There are broadly two ways to manage this:
+There are two ways to manage this:
 
 1. **Hardcode the values in our code**: \
-   This is the simplest but most dangerous and inefficient approach. Hardcoding values in your codebase exposes sensitive information to everyone who works on the code, posing a massive security risk. Also, changing these values requires code modification and application redeployment, which is not ideal.
+   This approach, while simple, poses a massive security risk by exposing sensitive information and requires code changes and application redeployment for updates.
 
 2. **Store the values in environment variables**: \
-   This is the preferred approach. Store sensitive values in the OS of the server running your application. During runtime, your application can access these values from the OS. All programming languages have excellent support for this. This method keeps sensitive information secure and allows value changes without code modifications.
+   Storing sensitive values in the OS of the server running your application allows runtime access without code modifications, keeping sensitive information secure and simplifying value changes.
 
-## Environment Variables in Tailcall
+## Environment Variables
 
-With Tailcall, you can seamlessly integrate environment variables into your GraphQL schema. Tailcall supports this through a `env` [Context](context.md) variable. This Context is shared across all operators, allowing you to resolve values in your schema.
+With Tailcall, you can seamlessly integrate environment variables into your GraphQL schema. Tailcall supports this through a `env` [Context](context.md) variable. All operators share this Context, allowing you to resolve values in your schema.
 
-Let's take an example. Consider the following schema:
-
-```graphql showLineNumbers
-type Query {
-  users: [User]! @http(baseUrl: "https://jsonplaceholder.typicode.com", path: "/users")
-}
-```
-
-Here, we fetch a list of users from the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API. The `users` field will contain the fetched value at runtime. This works fine, but what if we want to change the API endpoint? We would need to modify the code and redeploy the application, which is cumbersome.
-
-We can address this issue using environment variables. Simply replace the API endpoint with an environment variable, allowing us to change the variable's value without altering our codebase.
+Example schema:
 
 ```graphql showLineNumbers
 type Query {
-  users: [User]! @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users")
+  users: [User]!
+    @http(
+      baseUrl: "https://jsonplaceholder.typicode.com"
+      path: "/users"
+    )
 }
 ```
 
-Here, `API_ENDPOINT` is an environment variable that must be set on the device where your server runs. The server picks up this value at startup and makes it available in the `env` Context variable.
+Here, we fetch a list of users from the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API. The `users` field will contain the fetched value at runtime. This works fine, but what if we want to change the API endpoint? We would need to update the code and redeploy the application, which is cumbersome.
+
+We can address this issue using environment variables. Replace the API endpoint with an environment variable, allowing us to change the variable's value without altering our codebase.
+
+```graphql showLineNumbers
+type Query {
+  users: [User]!
+    @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users")
+}
+```
+
+Here, you must set `API_ENDPOINT` as an environment variable on the device running your server. Upon startup, the server retrieves this value and makes it accessible through the `env` Context variable.
 
 This approach allows us to change the API endpoint without modifying our codebase. For instance, we might use different API endpoints for development (`stage-api.example.com`) and production (`api.example.com`) environments.
 
-Note that environment variables are not limited to the `baseUrl` or `@http` operator. Since evaluation is done via a Mustache template, you can use them anywhere in your schema.
+Remember, environment variables are not limited to the `baseUrl` or `@http` operator. You can use them throughout your schema, as a Mustache template handles their evaluation.
 
 Here's another example, using an environment variable in the `headers` of `@grpc`:
 
@@ -62,21 +67,22 @@ type Query {
       method: "ListUsers"
       protoPath: "./proto/user_service.proto"
       baseURL: "https://grpc-server.example.com"
-      headers: [{key: "X-API-KEY", value: "{{env.API_KEY}}"}]
+      headers: [
+        {key: "X-API-KEY", value: "{{env.API_KEY}}"}
+      ]
     )
 }
 ```
 
 ## Security Aspects and Best Practices
 
-Environment variables help mitigate many security risks. However, it's important to note that they don't eliminate risks entirely, as the values are still in plain text. While configuration values might not be highly sensitive, secrets can still be compromised.
-
+Environment variables help reduce security risks, but it's crucial to understand that they do not remove these risks entirely because the values are in plain text. Even if configuration values are not always highly sensitive, there is still a potential for compromising secrets.
 To ensure your secrets remain secure, consider the following tips:
 
 - **Use a `.env` file**: \
-  A common practice is to create a `.env` file in your project's root directory to store all environment variables. This file should not be committed to your version control system and should be added to `.gitignore`. This approach ensures your secrets are not publicly exposed. Additionally, use a `.env.example` file to list all required environment variables for your application, informing other developers of the necessary variables.
+  It's a common practice to create a `.env` file in your project's root directory for storing all environment variables. Avoid committing this file to your version control system; instead, add it to `.gitignore` to prevent public exposure of your secrets. For clarity and collaboration, maintain a `.env.example` file that enumerates all the necessary environment variables for your application, thereby guiding other developers on what variables they need to set.
 
-  In Tailcall (or elsewhere), you can use this `.env` file by exporting its key-value pairs to your OS.
+  Within Tailcall (or in other environments), you can make use of this `.env` file by exporting its key-value pairs to your operating system.
 
   For example, if your `.env` file looks like this:
 
@@ -90,7 +96,7 @@ To ensure your secrets remain secure, consider the following tips:
   export $(cat .env | xargs)
   ```
 
-  On Windows, use:
+  On Windows:
 
   ```powershell
   Get-Content .env | Foreach-Object { [System.Environment]::SetEnvironmentVariable($_.Split("=")[0], $_.Split("=")[1], "User") }
@@ -99,9 +105,9 @@ To ensure your secrets remain secure, consider the following tips:
   After this, you can access `API_ENDPOINT` in your codebase.
 
 - **Use Kubernetes Secrets**: \
-  If deploying your application with Kubernetes, use its [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) feature to store environment variables. This ensures your secrets are not publicly exposed and are not hardcoded in your codebase. It also simplifies value changes when needed.
+  When deploying your application with Kubernetes, use its [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/) feature to manage environment variables. This approach ensures your secrets remain private and are not embedded in your codebase, while also making it easier to update values as necessary.
 
 - **Store Secrets Through Cloud Provider GUIs**: \
-  When using a cloud provider for deployment, utilize their GUI to store environment variables. These interfaces are usually intuitive and practical, especially for containerized applications that scale automatically.
+  For deployments using a cloud provider, use their GUI for environment variable management. These interfaces are intuitive and practical for containerized applications that automatically scale.
 
-By following these practices, you can effectively manage and secure your environment variables.
+Following these practices ensures effective and secure management of your environment variables.

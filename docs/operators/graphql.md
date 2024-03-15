@@ -2,8 +2,6 @@
 title: "@graphQL"
 ---
 
-## @graphQL
-
 The **@graphQL** operator allows to specify GraphQL API server request to fetch data from.
 
 ```graphql showLineNumbers
@@ -12,9 +10,9 @@ type Query {
 }
 ```
 
-In this example, the `@graphQL` operator is used to fetch list of users from the GraphQL API upstream. The [name](#name) argument is used to specify the name of the root field on the upstream server. The inner fields from the `User` type to request are inferred from the upcoming request to the Tailcall server. The operation type of the query is inferred from the Tailcall config based on inside which operation type the `@graphQL` operator is used.
+The **@graphQL** operator facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the Tailcall server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` operator, the Tailcall config determines the query's operation type.
 
-For next request with the config above:
+For the next request with the config above:
 
 ```graphql showLineNumbers
 query {
@@ -25,7 +23,7 @@ query {
 }
 ```
 
-Tailcall will request next query for the upstream:
+Tailcall will request the next query for the upstream:
 
 ```graphql showLineNumbers
 query {
@@ -42,13 +40,17 @@ This refers to the base URL of the API. If not specified, the default base URL i
 
 ```graphql showLineNumbers
 type Query {
-  users: [User] @graphQL(name: "users", baseURL: "https://graphqlzero.almansi.me/api")
+  users: [User]
+    @graphQL(
+      name: "users"
+      baseURL: "https://graphqlzero.almansi.me/api"
+    )
 }
 ```
 
 ### name
 
-Name of the root field on the upstream to request data from. For example:
+The root field's name on the upstream to request data from. For example:
 
 ```graphql showLineNumbers
 type Query {
@@ -56,7 +58,7 @@ type Query {
 }
 ```
 
-When Tailcall receives query for `users` field it will request query for `userList` from the upstream.
+When Tailcall receives a query for the `users` field, it will request a query for `userList` from the upstream.
 
 ### args
 
@@ -64,11 +66,15 @@ Named arguments for the requested field. For example:
 
 ```graphql showLineNumbers
 type Query {
-  user: User @graphQL(name: "user", args: [{key: "id", value: "{{value.userId}}"}])
+  user: User
+    @graphQL(
+      name: "user"
+      args: [{key: "id", value: "{{value.userId}}"}]
+    )
 }
 ```
 
-Will request next query from the upstream for first user's name:
+Will request the next query from the upstream for the first user's name:
 
 ```graphql showLineNumbers
 query {
@@ -80,24 +86,35 @@ query {
 
 ### headers
 
-The `headers` parameter allows you to customize the headers of the GraphQL request made by the `@graphQL` operator. It is used by specifying a key-value map of header names and their values.
+The `headers` parameter allows customizing the headers of the GraphQL request made by the `@graphQL` operator. Specifying a key-value map of header names and their values achieves this.
 
 For instance:
 
 ```graphql showLineNumbers
 type Mutation {
-  users: User @graphQL(name: "users", headers: [{key: "X-Server", value: "Tailcall"}])
+  users: User
+    @graphQL(
+      name: "users"
+      headers: [{key: "X-Server", value: "Tailcall"}]
+    )
 }
 ```
 
-In this example, a request to `/users` will include an additional HTTP header `X-Server` with the value `Tailcall`.
+In this example, a request to `/users` will include the HTTP header `X-Server` with the value `Tailcall`.
 
 ### batch
 
-In case upstream GraphQL server supports request batching we can specify argument `batch` to batch several requests to single upstream into single batch request. For example:
+In case the upstream GraphQL server supports request batching, we can specify the `batch` argument to batch requests to a single upstream into a single batch request. For example:
 
 ```graphql showLineNumbers
-schema @upstream(batch: {maxSize: 1000, delay: 10, headers: ["X-Server", "Authorization"]}) {
+schema
+  @upstream(
+    batch: {
+      maxSize: 1000
+      delay: 10
+      headers: ["X-Server", "Authorization"]
+    }
+  ) {
   query: Query
   mutation: Mutation
 }
