@@ -78,4 +78,8 @@ The `init` command bootstraps a new TailCall project. It creates the necessary G
 tailcall init <file_path>
 ```
 
-This command prompts for file creation and configuration, creating a `.tailcallrc.graphql` file by default.
+This command prompts for file creation and configuration, creating the following files:
+
+- `.tailcallrc.schema.json`: Provide autocomplete in you editor when the configuration is written in `json` or `yml` format.
+- `.graphqlrc.yml`: A [GraphQL configuration](https://the-guild.dev/graphql/config/docs) has a reference to your Tailcall config (if it's in `.graphql` format) and the following `.tailcallrc.graphql`.
+- `.tailcallrc.graphql`: Contains tailcall specific auto-completions for `.graphql` format.
