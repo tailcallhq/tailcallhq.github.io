@@ -4,48 +4,67 @@ title: "@const"
 
 The `@const` directive in GraphQL is a powerful tool for embedding data directly into your schema, offering two primary functionalities:
 
-1. **Static Response**: This feature allows for the inclusion of a constant response within the schema definition itself. It is useful for scenarios where the response is static and unchanging. e.g:
+## Static
 
-   ```graphql
-   schema {
-     query: Query
-   }
+This feature allows for the inclusion of a constant response within the schema definition itself. It is useful for scenarios where the response is unchanging. e.g:
 
-   type Query {
-     user: User @const(data: {name: "John", age: 12})
-   }
+```graphql
+schema {
+  query: Query
+}
 
-   type User {
-     name: String
-     age: Int
-   }
-   ```
+type Query {
+  user: User @const(data: {name: "John", age: 12})
+}
 
-   The const operator also checks the provided value at compile time to ensure it matches the field's schema. If not, the console displays a descriptive error message.
+type User {
+  name: String
+  age: Int
+}
+```
 
-2. **Dynamic Template**: Beyond static data embedding, the `@const` directive extends its utility to support dynamic data injection through Mustache template syntax. This feature enables the use of placeholders within the constant data, which are then dynamically replaced with actual values at runtime. It supports both scalar values and complex objects, including lists and nested objects, offering flexibility in tailoring responses to specific needs. e.g:
+The const operator also checks the provided value at compile time to ensure it matches the field's schema. If not, the console displays a descriptive error message.
 
-   ```graphql
-   schema {
-     query: Query
-   }
+## Dynamic
 
-   type Query {
-     user: User @const(data: {name: "John", workEmail: "john@xyz.com", personalEmail: "john@xyz.com"})
-   }
+Beyond static data embedding, the `@const` directive extends its utility to support dynamic data injection through Mustache template syntax. This feature enables the use of placeholders within the constant data, which are then dynamically replaced with actual values at runtime. It supports both scalar values and complex objects, including lists and nested objects, offering flexibility in tailoring responses to specific needs. e.g:
 
-   type User {
-     name: String
-     age: Int
-     personalEmail: String
-     workEmail: String
-     emails: Emails @const(data: {emails: {workEmail: "{{value.workEmail}}", personalEmail: "{{value.personalEmail}}"}})
-   }
+```graphql
+schema {
+  query: Query
+}
 
-   type Emails {
-     workEmail: String
-     personalEmail: String
-   }
-   ```
+type Query {
+  user: User
+    @const(
+      data: {
+        name: "John"
+        workEmail: "john@xyz.com"
+        personalEmail: "john@xyz.com"
+      }
+    )
+}
+
+type User {
+  name: String
+  age: Int
+  personalEmail: String
+  workEmail: String
+  emails: Emails
+    @const(
+      data: {
+        emails: {
+          workEmail: "{{value.workEmail}}"
+          personalEmail: "{{value.personalEmail}}"
+        }
+      }
+    )
+}
+
+type Emails {
+  workEmail: String
+  personalEmail: String
+}
+```
 
 In this example, the `@const` directive dynamically generate an `Emails` object based on the provided template data. The placeholders within the template (`{{value.workEmail}}` and `{{value.personalEmail}}`) gets replaced with the actual values specified in the `User` type, allowing for dynamic content generation while still adhering to the schema's structure.
