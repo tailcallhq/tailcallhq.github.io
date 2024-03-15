@@ -201,8 +201,8 @@ mutation {
 {
   "data": {
     "createUser": {
-      "isAdult": false,
-      "userName": "Jdasdasdohn"
+      "isAdult": true,
+      "userName": "John"
     }
   }
 }
