@@ -1,5 +1,6 @@
 ---
 title: Configuration Format
+description: "Explore the seamless format conversion capabilities of the Tailcall CLI, which supports GraphQL, YAML, and JSON for configuration files. Tailored for developers, this documentation unveils how to effortlessly convert and manage configurations, leveraging GraphQL for its clear type definitions, and YAML and JSON for their ubiquity in tools and API integration, enhancing development and deployment workflows."
 ---
 
 import Tabs from "@theme/Tabs"
@@ -17,8 +18,6 @@ To convert files between different formats, use the following command:
 tailcall check <input_files> --format format_type
 ```
 
-## Example Usage
-
 Let's try to convert a Tailcall graphql file to json and then back to graphql
 
 To convert graphql to json
@@ -35,7 +34,7 @@ tailcall check examples/jsonplaceholder.json --format graphql > "examples/jsonpl
 
 To learn more about writing configuration to leverage the full power of Tailcall, explore the [Operators](../operators/index.md) documentation.
 
-### Format Conversions
+## Format Conversions
 
 <Tabs>
 <TabItem value="graphql" label="graphql">
@@ -285,24 +284,25 @@ types:
 </TabItem>
 </Tabs>
 
-### Enhanced Editor Support
+## Editor Support
 
-To leverage autocomplete and validation for Tailcall configurations, the [init command](/docs/guides/cli.md#init) can be used to automatically create `.tailcallrc.graphql` for GraphQL configurations and `.tailcallrc.schema.json` for JSON and YAML configurations. These files enhance editor support by providing schema definitions, facilitating faster and error-free configuration.
+To leverage autocomplete and validation for Tailcall configurations, the [init](/docs/guides/cli.md#init) command can be used to automatically create `.tailcallrc.graphql` for GraphQL configurations and `.tailcallrc.schema.json` for JSON and YAML configurations. These files enhance editor support by providing schema definitions, facilitating faster and error-free configuration.
 
-#### For GraphQL
+### GraphQL
 
 When you run `tailcall init`, it creates a `.tailcallrc.graphql` file containing your GraphQL schema definitions and a `.graphqlrc.yml` file configured to use this schema. The `.graphqlrc.yml` file is set up as follows:
 
 ```yml
 schema:
   - "./.tailcallrc.graphql"
+  - "./app.graphql"
 ```
 
-This setup allows GraphQL IDE plugins and Language Server Protocols (LSP) to automatically pick up the schema for autocomplete and validation, enhancing your development experience with real-time feedback and suggestions.
+This file contains the path to the `.tailcallrc.graphql` file and the path to the main Tailcall configuration file which is `app.graphql`. This setup allows GraphQL IDE plugins and Language Server Protocols (LSP) to automatically pick up the schema for autocomplete and validation, enhancing your development experience with real-time feedback and suggestions.
 
-#### For JSON
+### JSON & YAML
 
-For JSON configurations, `tailcall init` also creates a `.tailcallrc.schema.json` file. To enable validation and autocomplete in your JSON files, reference the `.tailcallrc.schema.json` in the `$schema` attribute at the beginning of your JSON file:
+For JSON or YAML configurations, `tailcall init` also creates a `.tailcallrc.schema.json` file. To enable validation and autocomplete in your JSON files, reference the `.tailcallrc.schema.json` in the `$schema` attribute at the beginning of your JSON file:
 
 ```json
 {
