@@ -35,8 +35,10 @@ tailcall start ./jsonplaceholder.json
 If the command succeeds, you should see logs like the following below.
 
 ```bash
- 🚀 Tailcall launched at [0.0.0.0:8000]
- 🌍 Playground: http://0.0.0.0:8000
+INFO File read: ./jsonplaceholder.graphql ... ok
+INFO N + 1 detected: 0
+INFO 🚀 Tailcall launched at [0.0.0.0:8000] over HTTP/1.1
+INFO 🌍 Playground: http://127.0.0.1:8000
 ```
 
 The server starts with the schema provided and prints out a load of meta information. We will cover those in detail in a bit. For now, open the **playground URL** in a new tab in your browser and try it out for yourself!
