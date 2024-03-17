@@ -5,11 +5,11 @@ description: Enhance web performance and secure communication by leveraging HTTP
 
 HTTP/2 is a modern protocol that enhances improves web performance by introducing features like multiplexing, header compression, and more efficient connection handling.
 
-Tailcall seamlessly supports HTTP/2 on both the server (**ingress**) and client (**egress**) sides. This means that Tailcall facilitates the utilization of HTTP/2 protocol for both incoming requests to your server and outgoing requests from your server to other services.
+Tailcall supports HTTP/2 for both server (ingress) and client (egress) operations, enabling the protocol for incoming and outgoing server requests.
 
 ### Ingress Side Configuration
 
-Tailcall's `@http` operator facilitates integration with HTTP/2 for server-side configurations. By specifying HTTP2 in the http field of the schema definition, you enable the utilization of the HTTP/2 protocol:
+Tailcall's `@server` operator facilitates integration with HTTP/2 for server-side configurations. By specifying HTTP2 in the version field of the schema definition, you enable the utilization of the HTTP/2 protocol:
 
 ```graphql showLineNumbers
 schema
@@ -17,12 +17,12 @@ schema
     port: 8000
     graphiql: true
     version: HTTP2
-    cert: "./cert.pem"
-    key: "./key.pem"
   ) {
   query: Query
   mutation: Mutation
 }
+@link(type: "Cert", src: "./cert.pem")
+@link(type: "Key", src: "./key.pem")
 ```
 
 - **version**: Indicates the version of HTTP to be used, with HTTP2 signifying the usage of the HTTP/2 protocol.
@@ -87,7 +87,7 @@ By following these steps, you can create the necessary certificates locally for 
 
 ## Egress Side Implementation
 
-On the egress side, Tailcall's @http operator provides granular control over outgoing requests, enabling efficient utilization of HTTP/2 features:
+On the egress side, Tailcall's `@http` operator provides granular control over outgoing requests, enabling efficient utilization of HTTP/2 features:
 
 ```graphql showLineNumbers
 type Query {
@@ -100,9 +100,9 @@ type Query {
 ```
 
 - **path**: Specifies the API endpoint for the outgoing request.
-- **baseURL**: Defines the base URL of the API. If omitted, it defaults to the base URL specified by the @upstream operator.
+- **baseURL**: Defines the base URL of the API. If omitted, it defaults to the base URL specified by the `@upstream` operator.
 
-Tailcall autonomously determines the most suitable communication method when interfacing with services that support HTTP/2. Thus, HTTP/2 on the egress side is automatically adopted by Tailcall if the upstream service supports it, requiring no additional manual configuration or intervention.
+Tailcall automatically adopts HTTP/2 on the egress side when interfacing with services that support it, without requiring manual configuration.
 
 ## Conclusion
 
