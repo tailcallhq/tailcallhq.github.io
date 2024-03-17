@@ -1,5 +1,5 @@
 ---
-title: Rest API on top of GraphQL
+title: REST on GraphQL
 description: Exposing REST endpoints on top of GraphQL via @rest directive.
 ---
 
