@@ -9,22 +9,24 @@ The `@telemetry` directive facilitates seamless integration with [OpenTelemetry]
 
 Here are the traces that are captured by the `@telemetry` directive:
 
-|                   Trace Name | Description                                                                                                                                                                                     |
-| ---------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|               handle_request | Captures the span for processing the HTTP request on the server side, providing foundational observability.                                                                                     |
-|              graphql_request | _Only for GraphQL ingress_. Span for processing GraphQL call                                                                                                                                    |
-| `<http_method> <http_route>` | _Only for REST ingress_. Span for processing REST API call                                                                                                                                      |
-|               `<field_name>` | Denotes spans for fields with defined resolvers, offering insights into field names and execution times for resolver logic.                                                                     |
-|                `<expr_name>` | Nested within the `<field_name>` spans, these granulated spans detail the execution of expressions in resolving a field, highlighting the hierarchical execution pattern of nested expressions. |
+|                        Trace Name | Description                                                                                                                                                                                     |
+| --------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                           request | Captures the span for processing the HTTP request on the server side, providing foundational observability.                                                                                     |
+|                           graphQL | _Only for GraphQL ingress_. Span for processing GraphQL call                                                                                                                                    |
+| `REST <http_method> <http_route>` | _Only for REST ingress_. Span for processing REST API call                                                                                                                                      |
+|                    `<field_name>` | Denotes spans for fields with defined resolvers, offering insights into field names and execution times for resolver logic.                                                                     |
+|                     `<expr_name>` | Nested within the `<field_name>` spans, these granulated spans detail the execution of expressions in resolving a field, highlighting the hierarchical execution pattern of nested expressions. |
+|                  upstream_request | Request that were made from tailcall service to upstream                                                                                                                                        |
 
 ## Metrics
 
 The `@telemetry` directive also captures the following metrics:
 
-|         Metric | Description                                                                                                                        |
-| -------------: | :--------------------------------------------------------------------------------------------------------------------------------- |
-| cache.hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](./cache.md) directive                                          |
-|  request.count | Counts number of requests made to specific route. Optionally enriched with selected headers by [`requestHeaders`](#requestheaders) |
+|                    Metric | Description                                                                                                                                     |
+| ------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------- |
+|            cache.hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](./cache.md) directive                                                       |
+| http.server.request.count | Counts the number of incoming requests made to specific route. Optionally enriched with selected headers by [`requestHeaders`](#requestheaders) |
+| http.client.request.count | Counts the number of outgoing requests to specific upstream                                                                                     |
 
 ## export
 
