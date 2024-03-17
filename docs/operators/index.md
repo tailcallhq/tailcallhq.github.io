@@ -23,6 +23,7 @@ Certainly! Here's the table with hyperlinks added back to the operator names:
 | [@link](link.md)           | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |
 | [@modify](modify.md)       | Enables changes to attributes of fields or nodes in the schema.                                              |
 | [@omit](omit.md)           | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
+| [@rest](rest.md)           | Allows exposing REST endpoints on top of GraphQL.                                                            |
 | [@server](server.md)       | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
 | [@telemetry](telemetry.md) | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
 | [@upstream](upstream.md)   | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
