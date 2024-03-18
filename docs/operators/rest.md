@@ -1,11 +1,11 @@
 ---
-title: REST on GraphQL
+title: "@rest"
 description: Exposing REST endpoints on top of GraphQL via @rest directive.
 ---
 
-Tailcall's `@rest` directive exposes standard REST endpoints, enabling the fetching of data from REST APIs directly through GraphQL queries.
+Every one needs orchestration for APIs but everyone can't move to GraphQL and there are valid reasons for not moving to GraphQL. This feature allows people to building the Tailcall DSL, leveraging the GraphQL capabilities at compile time and generating REST endpoint for actual use instead. REST is a well-known standard so works with traditional API Infrastructure - CDNs Gateways etc.
 
-This guide will show you how to use the `@rest` directive to create a RESTful service over a GraphQL layer for retrieving product information.
+This guide will show you how to use the `@rest` directive to create a RESTful service over a GraphQL layer
 
 ## The @rest Directive Basics
 
@@ -28,29 +28,31 @@ First, define the GraphQL types and queries. Use the `@rest` directive to map Gr
 ```graphql
 schema
   @server(graphiql: true)
-  @upstream(baseURL: "https://fakestoreapi.com/")
+  @upstream(baseURL: "https://jsonplaceholder.typicode.com")
   @link(type: Operation, src: "user-operation.graphql") {
   query: Query
 }
 
 type Query {
-  product(id: Int!): Product
-    @http(path: "/products/{{args.id}}")
+  post(id: Int!): Post @http(path: "/posts/{{args.id}}")
+  user(id: Int!): User @http(path: "/users/{{args.id}}")
 }
 
-type Product {
+type Post {
+  userId: Int!
   id: Int
   title: String
-  price: Float
-  description: String
-  category: String
-  image: String
-  rating: Rating
+  body: String
+  user: User @http(path: "/users/{{value.userId}}")
 }
 
-type Rating {
-  rate: Float
-  count: Int
+type User {
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
+  phone: String
+  website: String
 }
 ```
 
@@ -59,18 +61,21 @@ type Rating {
 `user-operation.graphql`
 
 ```graphql
-query ($id: Int!) @rest(method: GET, path: "/product/$id") {
-  product(id: $id) {
+query ($id: Int!) @rest(method: GET, path: "/post/$id") {
+  post(id: $id) {
     id
     title
-    price
+    body
+    user {
+      id
+      name
+    }
   }
 }
 ```
 
-Let's try querying our newly created REST endpoint in our HTTP Client.
-We'll make a `GET` request to `http://127.0.0.1:8000/api/product/1` and see if we get the expected response.
-
 #### Response
 
 ![REST Demo](/images/docs/rest.png)
+
+In summary, by utilizing the `@rest` directive, we've seamlessly integrated RESTful services with GraphQL, enhancing the traditional posts API to offer richer functionality without additional code. This approach combines the simplicity and ubiquity of REST with the modularity and flexibility of GraphQL, allowing for easy consumption from any HTTP client while leveraging GraphQL's powerful data querying capabilities.
