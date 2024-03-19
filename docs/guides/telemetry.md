@@ -27,7 +27,7 @@ Tailcall provides observability support by integrating OpenTelemetry specificati
 
 While [Apollo studio](./apollo-studio.md) telemetry also provides analytics tools for your schema but when choosing between it and OpenTelemetry integration consider next points:
 
-- OpenTelemetry is more generalized observability framework that could be used for cross-service analytics while Apollo Studio can provide insights related to graphQL only
+- OpenTelemetry is more generalized observability framework that could be used for cross-service analytics while Apollo Studio can provide insights related purely to graphQL
 - OpenTelemetry is vendor-agnostic and therefore you could actually use different observability platforms depending on your needs and don't rely on single tool like Apollo Studio
 - OpenTelemetry integration in Tailcall can provide more analytical data that is out of scope of graphQL analytics provided by Apollo Studio
 
