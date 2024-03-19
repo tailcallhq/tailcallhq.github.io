@@ -312,11 +312,11 @@
       <tspan x="587">GraphQL response is converted into REST format.</tspan>
     </text>
   </g>
-  <text x="255" y="146" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-size: 16px; font-weight: 400;">Sends REST Request (e.g., /api/product/{id})</text>
+  <text x="255" y="146" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-size: 16px; font-weight: 400;">Sends REST Request (e.g., /api/post/{id})</text>
   <line x1="76" y1="177" x2="433" y2="177" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="fill: none;"></line>
   <text x="586" y="258" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-size: 16px; font-weight: 400;">Executes GraphQL Query/Mutation</text>
   <line x1="438" y1="289" x2="733" y2="289" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="fill: none;"></line>
-  <text x="897" y="352" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-size: 16px; font-weight: 400;">Fetches data (e.g., GET /products/{id})</text>
+  <text x="897" y="352" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-size: 16px; font-weight: 400;">Fetches data (e.g., GET /post/{id})</text>
   <line x1="738" y1="383" x2="1055" y2="383" class="messageLine0" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="fill: none;"></line>
   <text x="900" y="398" text-anchor="middle" dominant-baseline="middle" alignment-baseline="middle" class="messageText" dy="1em" style="font-size: 16px; font-weight: 400;">Returns the requested data</text>
   <line x1="1058" y1="429" x2="741" y2="429" class="messageLine1" stroke-width="2" stroke="none" marker-end="url(#arrowhead)" style="stroke-dasharray: 3, 3; fill: none;"></line>
