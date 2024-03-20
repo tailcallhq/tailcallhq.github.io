@@ -94,7 +94,7 @@ export default {
         {to: "/docs", label: "Docs", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
         {
-          href: "https://discord.gg/f8FV2nx7hf",
+          href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
           className: "header-button header-button-discord",
           html: `      
