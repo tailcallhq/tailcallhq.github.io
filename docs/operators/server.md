@@ -107,9 +107,9 @@ schema @server(headers: {setCookies: true}) {
 }
 ```
 
-### corsParams
+### cors
 
-The `corsParams` configuration allows you to set the CORS headers for the server. This is useful when you want to allow cross-origin requests to your server. It has the following fields:
+The `cors` configuration allows you to set the CORS headers for the server. This is useful when you want to allow cross-origin requests to your server. It has the following fields:
 
 - `allowCredentials`: Indicates whether the server allows credentials (e.g., cookies, authorization headers) to be sent in cross-origin requests..
 - `allowHeaders`: A list of allowed headers in cross-origin requests. This can be used to specify custom headers that are allowed to be included in cross-origin requests.
@@ -127,7 +127,7 @@ schema
     graphiql: true
     hostname: "0.0.0.0"
     headers: {
-      corsParams: {
+      cors: {
         allowCredentials: false
         allowHeaders: ["Authorization"]
         allowMethods: [POST, GET, OPTIONS]
