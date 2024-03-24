@@ -47,7 +47,11 @@ type Post {
   body: String!
   # highlight-start
   user: User
-    @call(steps: [{query: "user", args: {id: "{{value.userId}}"}}])
+    @call(
+      steps: [
+        {query: "user", args: {id: "{{value.userId}}"}}
+      ]
+    )
   # highlight-end
 }
 ```
@@ -55,6 +59,7 @@ type Post {
 Here, the `@call` directive invokes the `user` query from the `Query` type, leveraging the data-fetching process that's already defined in the root `query`. The `query` parameter specifies the target field, while the `args` parameter delineates the arguments to be passed.
 
 ## steps
+
 `@call` operator can compose together other resolvers, allowing to create a chain of resolvers that can be executed in sequence. This is done by using the `steps` parameter, which is an array of objects that define the operations to be executed.
 
 ### query
@@ -65,7 +70,11 @@ Specify the root **query** field to invoke, alongside the requisite arguments, u
 type Post {
   userId: Int!
   user: User
-    @call(steps: [{query: "user", args: {id: "{{value.userId}}"}}])
+    @call(
+      steps: [
+        {query: "user", args: {id: "{{value.userId}}"}}
+      ]
+    )
 }
 ```
 
@@ -84,10 +93,14 @@ type Mutation {
     )
 
   upsertPost(input: PostInput): Post
-    @call(steps: [{
-      mutation: "insertPost"
-      args: {input: "{{args.input}}", overwrite: true}
-    }])
+    @call(
+      steps: [
+        {
+          mutation: "insertPost"
+          args: {input: "{{args.input}}", overwrite: true}
+        }
+      ]
+    )
 }
 ```
 
@@ -107,7 +120,7 @@ The `@call` directive is predominantly advantageous in complex, large-scale conf
 :::
 
 ### Composition
-  
+
 Steps are executed sequentially, and the result of each step is passed as an argument to the next step. The `query` and `mutation` parameters are used to specify the target field, while the `args` parameter is used to pass arguments to the target field.
 
 Expanding the mutation example used above, let's consider a scenario where we need to trigger a telemetry event after the `insertPost` mutation is executed. We can achieve this by adding another step to the `upsertPost` mutation. Inside each step, we can access the result of the previous step using the `args` variable via mustache templates.
@@ -129,18 +142,18 @@ type Mutation {
     @http(
       body: {post: "{{args}}"}
       method: "POST"
-      path: "/telemetry/post-created"
+      path: "http://track.it/telemetry/post-created"
     )
-  
 
   upsertPost(input: PostInput): Post
-    @call(steps: [{
-      mutation: "insertPost"
-      args: {input: "{{args.input}}", overwrite: true}
-    },
-    {
-      mutation: "telemetry"
-    }])
+    @call(
+      steps: [
+        {
+          mutation: "insertPost"
+          args: {input: "{{args.input}}", overwrite: true}
+        }
+        {mutation: "telemetry"}
+      ]
+    )
 }
 ```
-
