@@ -123,11 +123,13 @@ The `@call` directive is predominantly advantageous in complex, large-scale conf
 
 Steps are executed sequentially, and the result of each step is passed as an argument to the next step. The `query` and `mutation` parameters are used to specify the target field, while the `args` parameter is used to pass arguments to the target field.
 
-Expanding the mutation example used above, let's consider a scenario where we need to trigger a telemetry event after the `insertPost` mutation is executed. We can achieve this by adding another step to the `upsertPost` mutation. Inside each step, we can access the result of the previous step using the `args` variable via mustache templates.
+Expanding the mutation example used above, let's consider we want to actually map the `insertPost` result being used to return the `id` of the post updated. We can achieve this by adding a new step to the `upsertPost` `@call` resolver. On this step, we use a query resolver to map the `insertPost` result, returning the `id` of the post. This allows us to have the flexibility of re-using `insertPost` resolver, while mapping the data to match specific needs.
 
 ```graphql showLineNumbers
 type Query {
-  wrap_post: Post @const(data: "{post: {{args}}}")
+  # highlight-start
+  take_id(id: Int!): Int @const(data: "{{args.id}}")
+  # highlight-end
 }
 
 type Mutation {
@@ -138,22 +140,23 @@ type Mutation {
       path: "/posts"
       query: {overwrite: "{{args.overwrite}}"}
     )
-  telemetry: Boolean
-    @http(
-      body: {post: "{{args}}"}
-      method: "POST"
-      path: "http://track.it/telemetry/post-created"
-    )
 
-  upsertPost(input: PostInput): Post
+  # highlight-start
+  upsertPost(input: PostInput): Int
     @call(
       steps: [
         {
           mutation: "insertPost"
           args: {input: "{{args.input}}", overwrite: true}
         }
-        {mutation: "telemetry"}
+        {query: "take_id"}
       ]
     )
+  # highlight-end
 }
 ```
+
+:::note
+The example above is a simple use case of how to compose resolvers using `@call`. The `@call` directive can be used in more complex scenarios, as there is no limit to the number of steps that can be added.
+This can be particularly useful when you need to compose multiple resolvers to achieve a specific result, also allowing for chaining resolvers that are not necessarily related.
+:::
