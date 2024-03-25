@@ -1,9 +1,9 @@
 ---
 title: "@link"
-description: "Discover how the @link operator can transform your GraphQL schema, enabling seamless integration of external resources like configurations, .proto files, and SSL/TLS certificates for enhanced functionality and security. Learn to streamline and secure your GraphQL configurations with our comprehensive guide."
+description: "Discover how the @link directive can transform your GraphQL schema, enabling seamless integration of external resources like configurations, .proto files, and SSL/TLS certificates for enhanced functionality and security. Learn to streamline and secure your GraphQL configurations with our comprehensive guide."
 ---
 
-The `@link` operator is used for bringing external resources into your GraphQL schema. It makes it easier to include configurations, .proto files for gRPC services, and other files into your schema. With this operator, external resources are either merged with or used effectively in the importing configuration.
+The `@link` directive is used for bringing external resources into your GraphQL schema. It makes it easier to include configurations, .proto files for gRPC services, and other files into your schema. With this directive, external resources are either merged with or used effectively in the importing configuration.
 
 ## How it Works
 

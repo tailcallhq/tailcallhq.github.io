@@ -184,7 +184,7 @@ In the example above, the configuration for `allowedHeaders` permits `Authorizat
 
 ## baseURL
 
-This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` operator, then each [@http](#http) operator must specify its own `baseURL`. If neither `@upstream` nor [@http](#http) provides a `baseURL`, it results in a compilation error.
+This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` directive, then each [@http](#http) directive must specify its own `baseURL`. If neither `@upstream` nor [@http](#http) provides a `baseURL`, it results in a compilation error.
 
 ```graphql showLineNumbers
 schema

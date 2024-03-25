@@ -1,13 +1,13 @@
 ---
 title: "Directives"
-description: "A list of all the custom operators supported by Tailcall."
+description: "A list of all the custom directives supported by Tailcall."
 ---
 
-Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition of some custom operators. These operators provide powerful compile time guarantees to ensure your API composition is tight and robust. The system automatically generates highly optimized resolver logic for your types using the operator information.
+Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition of some custom directives. These directives provide powerful compile time guarantees to ensure your API composition is tight and robust. Tailcall automatically generates highly optimized resolver logic for your types using the information in the directives.
 
-Here is a list of all the custom operators supported by Tailcall:
+Here is a list of all the custom directives supported by Tailcall:
 
-Certainly! Here's the table with hyperlinks added back to the operator names:
+Certainly! Here's the table with hyperlinks added back to the directive names:
 
 <!-- SORT OPERATOR BY NAME -->
 

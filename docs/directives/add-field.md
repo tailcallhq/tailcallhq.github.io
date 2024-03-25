@@ -2,7 +2,7 @@
 title: "@addField"
 ---
 
-The `@addField` operator simplifies data structures and queries by adding a field that _inline_ or flattens a nested field or node within your schema. It modifies the schema and the data transformation process, making nested data more accessible and straightforward to present.
+The `@addField` directive simplifies data structures and queries by adding a field that _inline_ or flattens a nested field or node within your schema. It modifies the schema and the data transformation process, making nested data more accessible and straightforward to present.
 
 For instance, consider a schema:
 
@@ -35,7 +35,7 @@ type Query {
 
 Suppose we focus on the `street` field in `Address`.
 
-In this case, applying the `@addField` operator to the `User` type creates a `street` field within the `User` type. It uses a `path` argument to specify the sequence of fields from a declared field (`address`), leading to the `Address` field to add. We also can apply `@modify(omit: true)` to remove the `address` field from the schema, as the `street` field from `Address` is now directly accessible on the `User` type.
+In this case, applying the `@addField` directive to the `User` type creates a `street` field within the `User` type. It uses a `path` argument to specify the sequence of fields from a declared field (`address`), leading to the `Address` field to add. We also can apply `@modify(omit: true)` to remove the `address` field from the schema, as the `street` field from `Address` is now directly accessible on the `User` type.
 
 Post application, the schema becomes:
 
@@ -61,7 +61,7 @@ type Query {
 
 In the above example, since we added a `@modify(omit: true)` on the `address` field, the schema no longer includes the `Address` type.
 
-The `@addField` operator also take cares of nullablity of the fields. If any of the fields in the path is nullable, the resulting type will be nullable.
+The `@addField` directive also take cares of nullablity of the fields. If any of the fields in the path is nullable, the resulting type will be nullable.
 
 `@addField` also supports indexing, allowing for the specification of an array index for inline inclusion. For instance, if a field `posts` is of type `[Post]`, and the goal is to access the title of the first post, specify the path as [`"posts"`,`"0"`,`"title"`].
 
@@ -88,4 +88,4 @@ type Post {
 }
 ```
 
-In conclusion, the `@addField` operator helps tidy up your schema and streamline data fetching by reducing query depth, promoting better performance and simplicity.
+In conclusion, the `@addField` directive helps tidy up your schema and streamline data fetching by reducing query depth, promoting better performance and simplicity.

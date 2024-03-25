@@ -2,7 +2,7 @@
 title: "@http"
 ---
 
-The `@http` operator indicates a field or node relies on a REST API. For example:
+The `@http` directive indicates a field or node relies on a REST API. For example:
 
 ```graphql showLineNumbers
 type Query {
@@ -10,11 +10,11 @@ type Query {
 }
 ```
 
-In this example, adding the `@http` operator to the `users` field of the `Query` type indicates reliance on a REST API for the `users` field. The [path](#path) argument specifies the REST API's path, which is `/users` in this scenario.Querying the `users` field prompts the GraphQL server to issue a GET request to `https://jsonplaceholder.typicode.com/users`.
+In this example, adding the `@http` directive to the `users` field of the `Query` type indicates reliance on a REST API for the `users` field. The [path](#path) argument specifies the REST API's path, which is `/users` in this scenario.Querying the `users` field prompts the GraphQL server to issue a GET request to `https://jsonplaceholder.typicode.com/users`.
 
 ## baseURL
 
-Specifies the API's base URL. If unspecified, it defaults to the URL in the [@upstream](#upstream) operator.
+Specifies the API's base URL. If unspecified, it defaults to the URL in the [@upstream](#upstream) directive.
 
 ```graphql showLineNumbers
 type Query {
@@ -88,7 +88,7 @@ In the example above, the `createUser` mutation sends a POST request to `/users`
 
 ## headers
 
-Customizes the HTTP request headers made by the `@http` operator. Specify a key-value map of header names and values.
+Customizes the HTTP request headers made by the `@http` directive. Specify a key-value map of header names and values.
 
 For instance:
 

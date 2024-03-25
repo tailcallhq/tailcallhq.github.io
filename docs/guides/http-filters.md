@@ -18,7 +18,7 @@ function onRequest({request}) {
 }
 ```
 
-Once you have a worker file ready, you link that file to the tailcall configuration using the [@link] operator.
+Once you have a worker file ready, you link that file to the tailcall configuration using the [@link] directive.
 
 [@link]: /docs/directives/link
 

@@ -2,7 +2,7 @@
 title: "@graphQL"
 ---
 
-The `@graphQL` operator allows to specify GraphQL API server request to fetch data from.
+The `@graphQL` directive allows to specify GraphQL API server request to fetch data from.
 
 ```graphql showLineNumbers
 type Query {
@@ -10,7 +10,7 @@ type Query {
 }
 ```
 
-The `@graphQL` operator facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the Tailcall server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` operator, the Tailcall config determines the query's operation type.
+The `@graphQL` directive facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the Tailcall server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` directive, the Tailcall config determines the query's operation type.
 
 For the next request with the config above:
 
@@ -36,7 +36,7 @@ query {
 
 ### baseURL
 
-This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [@upstream](#upstream) operator.
+This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [@upstream](#upstream) directive.
 
 ```graphql showLineNumbers
 type Query {
@@ -86,7 +86,7 @@ query {
 
 ### headers
 
-The `headers` parameter allows customizing the headers of the GraphQL request made by the `@graphQL` operator. Specifying a key-value map of header names and their values achieves this.
+The `headers` parameter allows customizing the headers of the GraphQL request made by the `@graphQL` directive. Specifying a key-value map of header names and their values achieves this.
 
 For instance:
 
@@ -125,4 +125,4 @@ type Query {
 }
 ```
 
-Make sure you have also specified batch settings to the `@upstream` and to the `@graphQL` operator.
+Make sure you have also specified batch settings to the `@upstream` and to the `@graphQL` directive.

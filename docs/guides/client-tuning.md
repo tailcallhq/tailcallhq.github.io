@@ -48,7 +48,7 @@ Connection pooling mitigates these issues by reusing existing connections for re
 
 ## Tuning HTTP Client
 
-Tailcall uses connection pooling by default and sets up with default tuning suitable for most use cases. You might need to further tune the HTTP client to improve your application's performance. Tailcall DSL provides an operator named [@upstream] for this purpose.
+Tailcall uses connection pooling by default and sets up with default tuning suitable for most use cases. You might need to further tune the HTTP client to improve your application's performance. Tailcall DSL provides a directive named [@upstream] for this purpose.
 
 [@upstream]: ../directives/upstream.md
 

@@ -60,7 +60,7 @@ Here, the `@call` directive invokes the `user` query from the `Query` type, leve
 
 ## steps
 
-`@call` operator can compose together other resolvers, allowing to create a chain of resolvers that can be executed in sequence. This is done by using the `steps` parameter, which is an array of objects that define the operations to be executed.
+`@call` directive can compose together other resolvers, allowing to create a chain of resolvers that can be executed in sequence. This is done by using the `steps` parameter, which is an array of objects that define the operations to be executed.
 
 ### query
 
@@ -211,7 +211,7 @@ type Query {
 }
 ```
 
-We use the `@call` operator to compose the operations together. The `args` specify how we would like to pass the arguments to the operation and the result of that operation is passed to the next step. We can test the new `abc` operation with the following query:
+We use the `@call` directive to compose the operations together. The `args` specify how we would like to pass the arguments to the operation and the result of that operation is passed to the next step. We can test the new `abc` operation with the following query:
 
 ```graphql
 query {
