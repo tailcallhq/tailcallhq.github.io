@@ -1,6 +1,8 @@
 ---
-title: "Directives"
+title: "Introduction"
 description: "A list of all the custom directives supported by Tailcall."
+sidebar_position: 1
+slug: /directives
 ---
 
 Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition of some custom directives. These directives provide powerful compile time guarantees to ensure your API composition is tight and robust. Tailcall automatically generates highly optimized resolver logic for your types using the information in the directives.

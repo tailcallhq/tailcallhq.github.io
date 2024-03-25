@@ -14,7 +14,7 @@ const Version = (): JSX.Element => {
   useEffect(() => {
     fetchVersion().catch(console.error)
   }, [])
-  return <>{version}</>
+  return <><span><b>{version}</b></span></>
 }
 
 export default Version
