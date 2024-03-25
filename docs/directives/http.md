@@ -14,7 +14,7 @@ In this example, adding the `@http` directive to the `users` field of the `Query
 
 ## baseURL
 
-Specifies the API's base URL. If unspecified, it defaults to the URL in the [@upstream](#upstream) directive.
+Specifies the API's base URL. If unspecified, it defaults to the URL in the [`@upstream`](#upstream) directive.
 
 ```graphql showLineNumbers
 type Query {

@@ -18,9 +18,7 @@ function onRequest({request}) {
 }
 ```
 
-Once you have a worker file ready, you link that file to the tailcall configuration using the [@link] directive.
-
-[@link]: /docs/directives/link
+Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/directives/link) directive.
 
 ```graphql
 schema @link(type: Script, src: "./worker.js") {
@@ -115,7 +113,7 @@ type Request = {
 ```
 
 :::tip
-By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](../directives/upstream.md#allowedheaders) setting in [@upstream](../directives/upstream.md).
+By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](../directives/upstream.md#allowedheaders) setting in [`@upstream`](../directives/upstream.md).
 :::
 
 The http filter doesn't have access to the request's body. However the modified request that's returned can optionally provide the body.
