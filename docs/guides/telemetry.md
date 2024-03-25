@@ -5,11 +5,11 @@ description: Telemetry support with integration with different observability pla
 
 This guide will walk you through observability support in Tailcall i.e. how to collect and analyze telemetry data with different observability backends. In this guide you'll learn:
 
-- How to enable generation of telemetry data in Tailcall.
-- How to update config to forward telemetry data to your chosen observability platforms.
-- See some examples of integration with existing observability tools.
+- How to enable generation of telemetry data in Tailcall?
+- How to update config to forward telemetry data to your chosen observability platforms?
+- See some examples of integration with existing observability tools?
 
-Let's get started.
+Let's get started!
 
 ## What is Observability
 
@@ -124,23 +124,15 @@ Where Tailcall is a part of whole distributed trace
 
 ### Customize generated data
 
-In some cases you may want to customize the data that were added to telemetry payload to have more control over analyzing process. Tailcall supports that customization for specific use cases described below.
-
-#### Metrics
-
-##### http.server.request.count
-
-[`requestHeaders`](../operators/telemetry.md#requestheaders) allows to add specified client headers to the metric's attributes.
+In some cases you may want to customize the data that were added to telemetry payload to have more control over analyzing process. Tailcall supports that customization for specific use cases described below. For eg. the metric [`http.server.request.count`](../operators/telemetry.md#metrics) can be customized with the [`requestHeaders`](../operators/telemetry.md#requestheaders) property to allow splitting the overall count by specific headers.
 
 :::important
-
 The value of specified headers will be sent to telemetry backend as is, so use it with care to prevent of leaking any sensitive data to third-party services you don't have control over.
-
 :::
 
-## Integration Examples
+## Examples
 
-### OpenTelemetry Collector
+Here are some examples of how you can integrate Tailcall with some common open-telemetry backends.
 
 ### Honeycomb.io
 
