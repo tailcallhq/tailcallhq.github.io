@@ -29,5 +29,5 @@ type User {
 `@modify(omit: true)` instructs GraphQL to exclude the `id` field from the schema, making it inaccessible to the client.
 
 :::tip
-**@omit** is a standalone operator and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/directives/omit)
+`@omit` is a standalone operator and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/directives/omit)
 :::

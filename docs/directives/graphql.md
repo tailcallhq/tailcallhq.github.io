@@ -2,7 +2,7 @@
 title: "@graphQL"
 ---
 
-The **@graphQL** operator allows to specify GraphQL API server request to fetch data from.
+The `@graphQL` operator allows to specify GraphQL API server request to fetch data from.
 
 ```graphql showLineNumbers
 type Query {
@@ -10,7 +10,7 @@ type Query {
 }
 ```
 
-The **@graphQL** operator facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the Tailcall server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` operator, the Tailcall config determines the query's operation type.
+The `@graphQL` operator facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the Tailcall server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` operator, the Tailcall config determines the query's operation type.
 
 For the next request with the config above:
 

@@ -2,7 +2,7 @@
 title: "@http"
 ---
 
-The **@http** operator indicates a field or node relies on a REST API. For example:
+The `@http` operator indicates a field or node relies on a REST API. For example:
 
 ```graphql showLineNumbers
 type Query {
@@ -88,7 +88,7 @@ In the example above, the `createUser` mutation sends a POST request to `/users`
 
 ## headers
 
-Customizes the HTTP request headers made by the **@http** operator. Specify a key-value map of header names and values.
+Customizes the HTTP request headers made by the `@http` operator. Specify a key-value map of header names and values.
 
 For instance:
 

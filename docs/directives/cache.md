@@ -2,7 +2,7 @@
 title: "@cache"
 ---
 
-The **@cache** directive provides a protocol agnostic mechanism for caching the results of fields within a GraphQL schema. Like any other cache implementation, this feature is useful for optimizing performance by reducing the need to fetch data that doesn't change frequently.
+The `@cache` directive provides a protocol agnostic mechanism for caching the results of fields within a GraphQL schema. Like any other cache implementation, this feature is useful for optimizing performance by reducing the need to fetch data that doesn't change frequently.
 
 ## maxAge
 
