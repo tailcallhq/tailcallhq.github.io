@@ -1,5 +1,5 @@
 ---
-title: "Operators"
+title: "Directives"
 description: "A list of all the custom operators supported by Tailcall."
 ---
 

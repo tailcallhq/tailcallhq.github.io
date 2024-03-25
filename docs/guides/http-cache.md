@@ -53,4 +53,4 @@ These caching primitives are beneficial for REST APIs that are latency-sensitive
 
 To further enhance the performance of any API with Tailcall, integrating the [@cache] directive offers protocol agnostic control over caching at the field level within a GraphQL schema.
 
-[@cache]: /docs/operators/cache.md
+[@cache]: /docs/directives/cache.md

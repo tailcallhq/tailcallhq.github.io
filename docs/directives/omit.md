@@ -34,4 +34,4 @@ The **@omit** operator and `@modify(omit: true)` essentially serve the same purp
 
 - `@modify(omit: true)`, as part of the broader **@modify** operator, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
 
-For more details on the **@modify** operator and its capabilities, including omitting fields, see the [@modify documentation](/docs/operators/modify#omit).
+For more details on the **@modify** operator and its capabilities, including omitting fields, see the [@modify documentation](/docs/directives/modify#omit).
