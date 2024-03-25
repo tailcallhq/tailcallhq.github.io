@@ -14,7 +14,7 @@ In this example, adding the `@http` directive to the `users` field of the `Query
 
 ## baseURL
 
-Specifies the API's base URL. If unspecified, it defaults to the URL in the [`@upstream`](#upstream) directive.
+Specifies the API's base URL. If unspecified, it defaults to the URL in the [`@upstream`](./upstream.md) directive.
 
 ```graphql showLineNumbers
 type Query {
@@ -125,9 +125,7 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 ## batchKey
 
-Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide] for more details.
-
-[n + 1 guide]: /docs/guides/n+1#solving-using-batching
+Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](../guides/n+1.md) for more details.
 
 ```graphql showLineNumbers
 type Post {
