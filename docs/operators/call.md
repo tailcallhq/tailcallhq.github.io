@@ -3,7 +3,7 @@ title: "@call"
 description: "Using the call directive to enhance GraphQL schemas improving code reusability."
 ---
 
-The `@call` directive in GraphQL signifies a paradigm shift towards more efficient code structuring by introducing a methodology akin to function invocations in conventional programming. This directive is pivotal for developers navigating the intricacies of elaborate GraphQL schemas, where minimizing redundancy and adhering to the DRY (Don't Repeat Yourself) principle are paramount. Consider the following schema example:
+The `@call` directive in GraphQL signifies a shift towards more efficient configuration management by introducing a methodology akin to function invocations in conventional programming. This directive is pivotal for developers navigating the intricacies of elaborate GraphQL schemas, where minimizing redundancy and adhering to the DRY (Don't Repeat Yourself) principle are paramount. Consider the following schema example:
 
 ```graphql showLineNumbers
 schema
@@ -37,7 +37,7 @@ type User {
 }
 ```
 
-In this schema, at lines `7` and `18`, a pattern of configuration duplication emerges when fetching user's data by its id, demonstrating a prime use case for the `@call` directive. Through refactoring the `Post` type to incorporate the `@call` directive, we can eliminate this redundancy.
+In this schema, at lines `9` and `18`, a pattern of configuration duplication emerges when fetching user's data by its id, demonstrating a prime use case for the `@call` directive. Through refactoring the `Post` type to incorporate the `@call` directive, we can eliminate this redundancy.
 
 ```graphql showLineNumbers
 type Post {
@@ -111,7 +111,12 @@ The `args` parameter in the `@call` directive facilitates passing arguments to t
 ```graphql showLineNumbers
 type Post {
   userId: Int!
-  user: User @call(steps: [{query: "user", args: {"id": "{{value.userId}}"}}])
+  user: User
+    @call(
+      steps: [
+        {query: "user", args: {id: "{{value.userId}}"}}
+      ]
+    )
 }
 ```
 
@@ -121,42 +126,113 @@ The `@call` directive is predominantly advantageous in complex, large-scale conf
 
 ### Composition
 
-Steps are executed sequentially, and the result of each step is passed as an argument to the next step. The `query` and `mutation` parameters are used to specify the target field, while the `args` parameter is used to pass arguments to the target field.
+`@call` directive provides the ability to express a sequence of steps that one might need to compose. These steps are executed such that the result of each step is passed as an argument to the next step. The `query` and `mutation` parameters are used to specify the target field, while the `args` parameter is used to pass arguments to the target field.
 
-Expanding the mutation example used above, let's consider we want to actually map the `insertPost` result being used to return the `id` of the post updated. We can achieve this by adding a new step to the `upsertPost` `@call` resolver. On this step, we use a query resolver to map the `insertPost` result, returning the `id` of the post. This allows us to have the flexibility of re-using `insertPost` resolver, while mapping the data to match specific needs.
+Let's explain this with an example:
 
 ```graphql showLineNumbers
-type Query {
-  # highlight-start
-  take_id(id: Int!): Int @const(data: "{{args.id}}")
-  # highlight-end
+schema @server(graphiql: true) {
+  query: Query
 }
 
-type Mutation {
-  insertPost(input: PostInput, overwrite: Boolean): Post
-    @http(
-      body: "{{args.input}}"
-      method: "POST"
-      path: "/posts"
-      query: {overwrite: "{{args.overwrite}}"}
-    )
+type Query {
+  a(input: JSON): JSON
+    @const(data: {value: "{{args.input.a}}"})
+
+  b(input: JSON): JSON
+    @const(data: {value: "{{args.input.b}}"})
+
+  c(input: JSON): JSON
+    @const(data: {value: "{{args.input.c}}"})
+}
+```
+
+Here we have defined there operations viz. `a`, `b` & `c` each of them pluck their respective keys from the given input value. Let's run this query with some test input:
+
+```graphql
+{
+  a(input: {a: 100})
+  b(input: {b: 200})
+  c(input: {c: 300})
+}
+```
+
+Here is how the response would look like:
+
+```json
+{
+  "data": {
+    "a": {
+      "value": 100
+    },
+    "b": {
+      "value": 200
+    },
+    "c": {
+      "value": 300
+    }
+  }
+}
+```
+
+As you can see the [@const](../operators/const.md) directive plucks the inner value and returns the result. How about we implement an `abc` operation that could leverage the existing operations and unwrap the following input value:
+
+```json
+{"a": {"b": {"c": {"d": 1000}}}}
+```
+
+Given the above input if we wish to extract the last inner number `1000` then we could define a new operation as follows
+
+```graphql showLineNumbers
+schema @server(graphiql: true) {
+  query: Query
+}
+
+type Query {
+  a(input: JSON): JSON
+    @const(data: {value: "{{args.input.a}}"})
+
+  b(input: JSON): JSON
+    @const(data: {value: "{{args.input.b}}"})
+
+  c(input: JSON): JSON
+    @const(data: {value: "{{args.input.c}}"})
 
   # highlight-start
-  upsertPost(input: PostInput): Int
+  abc(input: JSON): JSON
     @call(
       steps: [
-        {
-          mutation: "insertPost"
-          args: {input: "{{args.input}}", overwrite: true}
-        }
-        {query: "take_id"}
+        {query: "a", args: {input: "{{args.input}}"}}
+        {query: "b", args: {input: "{{args.value}}"}}
+        {query: "c", args: {input: "{{args.value}}"}}
       ]
     )
   # highlight-end
 }
 ```
 
+We use the `@call` operator to compose the operations together. The `args` specify how we would like to pass the arguments to the operation and the result of that operation is passed to the next step. We can test the new `abc` operation with the following query:
+
+```graphql
+query {
+  abc(input: {a: {b: {c: 1000}}})
+}
+```
+
+The server returns the response that we expected:
+
+```json
+{
+  "data": {
+    "abc": {
+      "value": 100
+    }
+  }
+}
+```
+
+This way you can compose combine multiple operations can compose them together using the `@call` directive.
+
 :::note
-The example above is a simple use case of how to compose resolvers using `@call`. The `@call` directive can be used in more complex scenarios, as there is no limit to the number of steps that can be added.
-This can be particularly useful when you need to compose multiple resolvers to achieve a specific result, also allowing for chaining resolvers that are not necessarily related.
+We use `JSON` scalar here because we don't care about the type safety of this option. In a real world example you might want to use proper input and output types.
 :::
