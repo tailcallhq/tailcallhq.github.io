@@ -26,7 +26,7 @@ There are two ways to manage this:
 
 ## Environment Variables
 
-With Tailcall, you can seamlessly integrate environment variables into your GraphQL schema. Tailcall supports this through a `env` [Context](context.md) variable. All operators share this Context, allowing you to resolve values in your schema.
+With Tailcall, you can seamlessly integrate environment variables into your GraphQL schema. Tailcall supports this through a `env` [Context](context.md) variable. All directives share this Context, allowing you to resolve values in your schema.
 
 Example schema:
 
@@ -55,7 +55,7 @@ Here, you must set `API_ENDPOINT` as an environment variable on the device runni
 
 This approach allows us to change the API endpoint without modifying our codebase. For instance, we might use different API endpoints for development (`stage-api.example.com`) and production (`api.example.com`) environments.
 
-Remember, environment variables are not limited to the `baseUrl` or `@http` operator. You can use them throughout your schema, as a Mustache template handles their evaluation.
+Remember, environment variables are not limited to the `baseUrl` or `@http` directive. You can use them throughout your schema, as a Mustache template handles their evaluation.
 
 Here's another example, using an environment variable in the `headers` of `@grpc`:
 

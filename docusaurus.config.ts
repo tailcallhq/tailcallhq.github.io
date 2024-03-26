@@ -59,7 +59,7 @@ export default {
         docs: {
           // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
           sidebarPath: require.resolve("./sidebars.ts"),
-          sidebarCollapsible: false,
+          sidebarCollapsible: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: `https://github.com/${organization}/${project}/tree/develop`,
@@ -94,7 +94,7 @@ export default {
         {to: "/docs", label: "Docs", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
         {
-          href: "https://discord.gg/Q2ZExpFCnA",
+          href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
           className: "header-button header-button-discord",
           html: `      

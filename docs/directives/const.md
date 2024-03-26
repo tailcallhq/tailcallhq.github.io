@@ -23,7 +23,7 @@ type User {
 }
 ```
 
-The const operator also checks the provided value at compile time to ensure it matches the field's schema. If not, the console displays a descriptive error message.
+The `@const` directive also checks the provided value at compile time to ensure it matches the field's schema. If not, the console displays a descriptive error message.
 
 ## Dynamic
 
