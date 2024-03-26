@@ -129,3 +129,79 @@ type Response = {
   body?: string
 }
 ```
+
+## Modify Incoming Request Data
+
+You can also modify incoming request data by parsing and transforming the request's query parameters or body. Below is an example where we modify the incoming request data by extracting user information from a query parameter and then setting the request body with the transformed user data.
+
+```graphql
+type Mutation {
+  createUser(input: UserInput): User
+    @http(
+      method: POST
+      path: "/"
+      baseURL: "http://localhost"
+      query: [{key: "user", value: "{{args.input}}"}]
+    )
+}
+
+type Query {
+  user: User
+    @http(baseURL: "http://localhost", path: "/user/1")
+}
+
+type UserInput {
+  name: String
+  age: Int
+}
+
+type User {
+  userName: String
+  isAdult: Boolean
+}
+
+schema
+  @link(type: Script, src: "./worker.js")
+  @server(graphiql: true) {
+  mutation: Mutation
+  query: Query
+}
+```
+
+```javascript
+function onRequest({request}) {
+  const query = JSON.parse(request.uri.query.user)
+  const modifiedQuery = {
+    user_name: query.name,
+    is_adult: query.age >= 18,
+  }
+  request.uri.query = {user: JSON.stringify(modifiedQuery)}
+  return {request: request}
+}
+```
+
+### Transformed Data
+
+#### Request
+
+```graphql
+mutation {
+  createUser(input: {name: "John", age: 18}) {
+    isAdult
+    userName
+  }
+}
+```
+
+#### Response
+
+```json
+{
+  "data": {
+    "createUser": {
+      "isAdult": true,
+      "userName": "John"
+    }
+  }
+}
+```
