@@ -111,3 +111,11 @@ When configuring the `Key` link type, provide the path to your private key file.
 The `Operation` link type connects your schema to a set of predefined, GraphQL spec-compliant queries and mutations. This functionality allows for the validation and optimization of these operations by the Tailcall server.
 
 Each type serves a specific purpose, enabling the flexible integration of external resources into your GraphQL schema.
+
+### Htpasswd
+
+The `Htpasswd` link type imports [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) file that could be used to provide granular access to data with [authentication](../guides/auth.md)
+
+### Jwks
+
+The `Jwks` link type imports [`JWKS`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) file that could be used to provide granular access to data with [authentication](../guides/auth.md)
