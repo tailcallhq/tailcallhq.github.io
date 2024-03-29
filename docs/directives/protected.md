@@ -2,7 +2,7 @@
 title: "@protected"
 ---
 
-Marks the type or the field and _protected_ i.e. to be able to access such data user request should contain valid authentication data. Read more about auth on fields [here](../guides/auth.md)
+The `@protected` annotation designates a type or field as protected, meaning that a user must be authenticated to access that data.
 
 ```graphql
 type Query {
@@ -17,12 +17,10 @@ type ProtectedType @protected {
 ```
 
 :::important
-
-To be able to use `@protected` directive at least one of auth provider should be linked in config with [`@link` directive](./link.md) (`Htpasswd` or `Jwks`)
-
+To utilize the `@protected` directive, you must link at least one authentication provider in the configuration using the [`@link`](./link.md) directive (`Htpasswd` or `Jwks`).
 :::
 
-## How it works
+## How It Works
 
-- If the field is marked as `@protected` then in case user requests such field additional validation check for authentication will be executed and based on the result the inner data will be resolved and sent as the response or authentication error will be generated
-- If the type is marked as `@protected` then all of the fields of that type will be `@protected` and to access it user should be authorized
+- When a field is annotated with `@protected`, an authentication check is performed upon receiving the request. Depending on the authentication result, either the requested data is provided in the response, or an authentication error is returned.
+- If a type is annotated with `@protected`, all fields within that type inherit the protection, requiring user authentication for any field that's queried.
