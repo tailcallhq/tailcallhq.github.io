@@ -1,5 +1,6 @@
 ---
 title: "@protected"
+description: "The `@protected` annotation in GraphQL secures your data by requiring user authentication for access. Learn how to use `@protected` to safeguard fields and types, ensuring that authenticated users can retrieve sensitive information. Our guide also covers the necessary configuration steps, including linking an authentication provider using the `@link` directive. Perfect for developers implementing secure access controls in their GraphQL applications."
 ---
 
 The `@protected` annotation designates a type or field as protected, meaning that a user must be authenticated to access that data.
