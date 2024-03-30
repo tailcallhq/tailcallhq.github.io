@@ -46,6 +46,7 @@ const CustomSearch = () => {
       (event.metaKey && event.key === "k" && Platform.UA.includes("Mac")) ||
       (event.ctrlKey && event.key === "k" && Platform.UA.includes("Win"))
     ) {
+      event.preventDefault()
       handleSearchClick()
     }
   }
@@ -68,12 +69,13 @@ const CustomSearch = () => {
 
     // focus on search input when modal becomes visible
     if (isSearchModalVisible) {
-      timer = setTimeout(() => {
+      timer = setInterval(() => {
         const searchInput = getSearchInputRef()
-        if (searchInput) {
+        if (searchInput && searchInput.placeholder !== "Loading...") {
           searchInput.focus()
+          clearInterval(timer)
         }
-      }, 50)
+      }, 500)
     }
 
     return () => {
