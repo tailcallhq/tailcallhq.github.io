@@ -16,7 +16,7 @@ const CustomSearch = () => {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
   const history = useHistory()
   const isBrowser = useIsBrowser()
-  const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K") : "Search"
+  const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search Shift+K" : "Search Shift+K") : "Search"
 
   // Function to handle opening the search modal
   const handleSearchClick = () => {
@@ -43,6 +43,7 @@ const CustomSearch = () => {
       handleSearchModalClose()
     }
     if (
+      (event.shiftKey && event.key === "K") ||
       (event.metaKey && event.key === "k" && Platform.UA.includes("Mac")) ||
       (event.ctrlKey && event.key === "k" && Platform.UA.includes("Win"))
     ) {
