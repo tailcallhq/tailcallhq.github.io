@@ -114,14 +114,15 @@ const CustomSearch = () => {
     if (isSearchModalVisible) {
       // If the search modal is visible, prevent body scrolling and handle modal animations
       setBodyOverflow("hidden")
-      timer = setTimeout(() => {
+      timer = setInterval(() => {
         // After a delay, focus on the search input and apply zoom behavior
         const searchInput = getSearchInputRef()
         handleZoomBehavior()
-        if (searchInput) {
+        if (searchInput && searchInput.placeholder !== "Loading...") {
           searchInput.focus()
+          clearInterval(timer)
         }
-      }, 200)
+      }, 500)
     } else {
       // If the search modal is not visible, allow body scrolling
       setBodyOverflow("initial")
@@ -129,7 +130,7 @@ const CustomSearch = () => {
 
     // Clean up timer and history listener when the component unmounts or when dependencies change
     return () => {
-      clearTimeout(timer)
+      clearInterval(timer)
       unlisten()
     }
   }, [isSearchModalVisible, history])

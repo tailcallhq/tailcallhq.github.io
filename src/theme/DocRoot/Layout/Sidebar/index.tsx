@@ -79,7 +79,7 @@ const CustomSearch = () => {
     }
 
     return () => {
-      clearTimeout(timer)
+      clearInterval(timer)
       setBodyOverflow("initial")
       document.removeEventListener("keydown", handleKeyPress)
       unlisten()
