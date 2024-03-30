@@ -11,10 +11,10 @@ import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
 import EscapeKeyIcon from "@site/static/icons/basic/escape-key.svg"
 import styles from "./styles.module.css"
 import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
+import useSearchFocus from "@site/src/hooks/useFocusOnVisible"
 
 const CustomSearch = () => {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
-  const history = useHistory()
   const isBrowser = useIsBrowser()
   const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K") : "Search"
 
@@ -28,61 +28,12 @@ const CustomSearch = () => {
     setIsSearchModalVisible(false)
   }
 
-  // Function to control body scroll based on modal visibility
-  const setBodyScroll = () => {
-    if (isSearchModalVisible) {
-      setBodyOverflow("hidden")
-    } else {
-      setBodyOverflow("initial")
-    }
-  }
-
-  // Function to handle key press events
-  const handleKeyPress = (event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      handleSearchModalClose()
-    }
-    if (
-      (event.metaKey && event.key === "k" && Platform.UA.includes("Mac")) ||
-      (event.ctrlKey && event.key === "k" && Platform.UA.includes("Win"))
-    ) {
-      handleSearchClick()
-    }
-  }
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout
-
-    // handle body scroll based on modal visibility changes
-    setBodyScroll()
-
-    // handle keydown events for search functionality
-    document.addEventListener("keydown", handleKeyPress)
-
-    // close the search modal when route changes
-    const unlisten = history.listen((location, action) => {
-      if (action === "PUSH" || action === "POP") {
-        setIsSearchModalVisible(false)
-      }
-    })
-
-    // focus on search input when modal becomes visible
-    if (isSearchModalVisible) {
-      timer = setTimeout(() => {
-        const searchInput = getSearchInputRef()
-        if (searchInput) {
-          searchInput.focus()
-        }
-      }, 50)
-    }
-
-    return () => {
-      clearTimeout(timer)
-      setBodyOverflow("initial")
-      document.removeEventListener("keydown", handleKeyPress)
-      unlisten()
-    }
-  }, [isSearchModalVisible, history])
+  useSearchFocus({
+    isSearchModalVisible,
+    setIsSearchModalVisible,
+    handleSearchClick,
+    handleSearchModalClose,
+  })
 
   return (
     <>

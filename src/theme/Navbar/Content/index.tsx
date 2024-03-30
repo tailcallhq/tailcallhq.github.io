@@ -16,6 +16,7 @@ import SearchIcon from "@site/static/icons/basic/search.svg"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import styles from "./styles.module.css"
 import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
+import useSearchFocus from "@site/src/hooks/useFocusOnVisible"
 
 const useNavbarItems = () => {
   // TODO temporary casting until ThemeConfig type is improved (added by docusaurus)
@@ -95,44 +96,12 @@ const CustomSearch = () => {
     }
   }
 
-  useEffect(() => {
-    // Variable to store the timer for handling modal animation
-    let timer: NodeJS.Timeout
-
-    // Check if the current page is within the "/docs/" path to show or hide the search icon
-    location.pathname.includes("/docs/") ? setShowSearchIcon(true) : setShowSearchIcon(false)
-
-    // Set up a listener to handle changes in the browser history (navigation)
-    const unlisten = history.listen((location, action) => {
-      if (action === "PUSH" || action === "POP") {
-        // If navigating, hide the search modal and reset the zoom when the modal is closed
-        setIsSearchModalVisible(false)
-      }
-    })
-
-    // Handle modal visibility and behavior
-    if (isSearchModalVisible) {
-      // If the search modal is visible, prevent body scrolling and handle modal animations
-      setBodyOverflow("hidden")
-      timer = setTimeout(() => {
-        // After a delay, focus on the search input and apply zoom behavior
-        const searchInput = getSearchInputRef()
-        handleZoomBehavior()
-        if (searchInput) {
-          searchInput.focus()
-        }
-      }, 200)
-    } else {
-      // If the search modal is not visible, allow body scrolling
-      setBodyOverflow("initial")
-    }
-
-    // Clean up timer and history listener when the component unmounts or when dependencies change
-    return () => {
-      clearTimeout(timer)
-      unlisten()
-    }
-  }, [isSearchModalVisible, history])
+  useSearchFocus({
+    isSearchModalVisible,
+    setIsSearchModalVisible,
+    handleSearchClick,
+    handleSearchModalClose,
+  })
 
   return (
     <>
