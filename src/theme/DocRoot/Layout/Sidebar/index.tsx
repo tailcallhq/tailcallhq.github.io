@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import {useHistory} from "react-router-dom"
 import Sidebar from "@theme-original/DocRoot/Layout/Sidebar"
-import Search from "docusaurus-lunr-search/src/theme/SearchBar"
+import Search from "@site/src/components/shared/Search"
 import useIsBrowser from "@docusaurus/useIsBrowser"
 import Platform from "react-platform-js"
 
@@ -10,10 +10,11 @@ import EnterKeyIcon from "@site/static/icons/basic/enter-key.svg"
 import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
 import EscapeKeyIcon from "@site/static/icons/basic/escape-key.svg"
 import styles from "./styles.module.css"
-import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
+import {setBodyOverflow} from "@site/src/utils"
 
 const CustomSearch = () => {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
+  const searchRef = useRef<HTMLInputElement>(null)
   const history = useHistory()
   const isBrowser = useIsBrowser()
   const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K") : "Search"
@@ -51,8 +52,6 @@ const CustomSearch = () => {
   }
 
   useEffect(() => {
-    let timer: NodeJS.Timeout
-
     // handle body scroll based on modal visibility changes
     setBodyScroll()
 
@@ -68,16 +67,10 @@ const CustomSearch = () => {
 
     // focus on search input when modal becomes visible
     if (isSearchModalVisible) {
-      timer = setTimeout(() => {
-        const searchInput = getSearchInputRef()
-        if (searchInput) {
-          searchInput.focus()
-        }
-      }, 50)
+      searchRef.current?.focus()
     }
 
     return () => {
-      clearTimeout(timer)
       setBodyOverflow("initial")
       document.removeEventListener("keydown", handleKeyPress)
       unlisten()
@@ -98,7 +91,7 @@ const CustomSearch = () => {
           <div onClick={handleSearchModalClose} className={styles.overlay}></div>
           <div className={styles.modal}>
             <div className={styles.modalContent}>
-              <Search />
+              <Search ref={searchRef} />
               <div className={styles.initialCase}>
                 <PageSearchIcon />
                 <div className={styles.searchDocsTitle}>Search Docs</div>
