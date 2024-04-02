@@ -16,7 +16,6 @@ const Search = forwardRef((props, ref) => {
         const observer = new MutationObserver((mutationsList, observer) => {
           for (const mutation of mutationsList) {
             if (mutation.type === "attributes" && mutation.attributeName === "disabled") {
-              // disabled属性发生变化时的处理逻辑
               if (!input.disabled) {
                 input.focus()
                 observer.disconnect()
