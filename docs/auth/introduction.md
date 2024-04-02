@@ -1,6 +1,8 @@
 ---
 title: Authentication
 description: "Learn how you can provide granular access to types and fields in GraphQL schema with the help of authentication providers"
+slug: /auth
+sidebar_position: 1
 ---
 
 ## What is Authentication?
@@ -13,15 +15,8 @@ Authentication in GraphQL refers to the process of verifying the identity of a u
 
 The authentication could be implemented by different credential validation mechanisms, like:
 
-- **Basic Authentication** is a straightforward authentication scheme that sends base64-encoded usernames and passwords in the HTTP Authorization header with each request. It's simple to implement but requires HTTPS to ensure security due to its lack of encryption.
-- **JWT Authentication** uses digitally signed tokens to authenticate and transmit user information in a compact JSON format, allowing stateless and secure communication between clients and servers. It offers greater flexibility and security, supporting expiration times and custom data embedding within the token itself.
-
-## Prerequisites
-
-To be able to use auth support you should already have configuration for auth provider in one of the forms:
-
-- For Basic Authentication you can use [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) file
-- For JWT Authentication you can use [`JSON Web Key Sets`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) (Jwks for short)
+- [Basic Auth](./basic-auth.md)
+- [JWT](./jwt.md)
 
 ## Tailcall config
 
@@ -68,6 +63,8 @@ type Post {
 ```
 
 In that case the whole `User` type and `Post.body` are marked as protected and therefore requiring use authentication to resolve its content.
+
+For more info about possible configuration for available providers read articles for [Basic Auth](./basic-auth.md) and [JWT](./jwt.md)
 
 ## How it works
 
