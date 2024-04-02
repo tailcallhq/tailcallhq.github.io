@@ -27,8 +27,8 @@ Entity level authentication in GraphQL refers to applying authentication logic t
 Advantages of this approach:
 
 - **Flexibility**: You can tailor security measures to fit the exact needs of your application, protecting sensitive data more effectively.
-- **Scalability**: As your schema grows, entity level authentication allows you to easily extend your security policies to new entities and fields.
-- **User Experience**: By fine-tuning access control, you can ensure that users have a seamless experience, only interacting with data they are authorized to see or modify.
+- **Scalability**: As your schema grows, entity level authentication allows you to extend your security policies to new entities and fields.
+- **User Experience**: By fine-tuning access control, you can ensure that users have a seamless experience interacting with data they are authorized to see or modify.
 
 ## Tailcall config
 
@@ -76,7 +76,7 @@ type Post {
 }
 ```
 
-In that case the whole `User` type and `Post.body` are marked as protected and therefore requiring authentication to resolve its content. That means following things:
+In that case the whole `User` type and `Post.body` are marked as protected and therefore requiring authentication to resolve its content. That means following points:
 
 - any query for `Post.body` will require authentication
 - any query for any field of `User` will require authentication
@@ -162,7 +162,7 @@ If type is marked with `@protected` then:
 
 ### Mutation
 
-For mutation entity level authentication works similar to queries. But since mutation usually involves requests that changes external state you should be careful where do you specify `@protected` directive because marking some nested field as protected doesn't prevent from executing the request to resolve the parent fields. I.e. following example is problematic:
+For mutation entity level authentication works similar to queries. But since mutation involves requests that changes external state you should be careful where do you specify `@protected` directive because marking some nested field as protected doesn't prevent from executing the request to resolve the parent fields. I.e. following example is problematic:
 
 ```graphql
 schema
@@ -185,7 +185,7 @@ type User {
 }
 ```
 
-Here you can still execute the mutation without any authentication and fail only on attempting to resolve `website` field.
+Here you can still execute the mutation without any authentication and fail on attempting to resolve `website` field.
 
 To resolve this issue, consider marking root fields as protected in case they require authentication, i.e.:
 

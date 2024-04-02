@@ -62,7 +62,7 @@ type User @protected {
 
 Now you can run the example file with Tailcall and try to make a query for data with specifying credentials.
 
-To make the request first obtain JWT token compatible with JWKS file you've linked before (if you've used the example `jwks.json` file from above then you can just use the token from the example below).
+To make the request first obtain JWT token compatible with JWKS file you've linked before (if you've used the example `jwks.json` file from above then you can use the token from the example below).
 
 An request example with curl:
 
