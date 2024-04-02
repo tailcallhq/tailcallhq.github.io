@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, forwardRef, useImperativeHandle, useCallback, useState} from "react"
+import React, {useEffect, useRef, forwardRef, useImperativeHandle} from "react"
 import {getSearchInputRef} from "@site/src/utils"
 import SearchBar from "docusaurus-lunr-search/src/theme/SearchBar"
 
@@ -24,7 +24,7 @@ const Search = forwardRef((props, ref) => {
             }
           }
         })
-        observer.observe(input, {attributes: true})
+        observer.observe(input, {attributeFilter: ["disabled"]})
       } else {
         input.focus()
       }
