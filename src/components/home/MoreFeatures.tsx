@@ -34,24 +34,24 @@ const MoreFeatures = (): JSX.Element => {
             <FeatureBox feature={feature} key={feature.id} />
           ))}
         </div>
-        <div className="sm:hidden">
-          <LinkButton
-            title="View More"
-            onClick={() => analyticsHandler("Home Page", "Click", "View More")}
-            href={pageLinks.enterprise}
-            theme={Theme.Light}
-            width="medium"
-          />
-        </div>
-        <div className="hidden sm:block">
-          <LinkButton
-            title="View More"
-            onClick={() => analyticsHandler("Home Page", "Click", "View More")}
-            href={pageLinks.enterprise}
-            theme={Theme.Light}
-            width="large"
-          />
-        </div>
+        {/*<div className="sm:hidden">*/}
+        {/*  <LinkButton*/}
+        {/*    title="View More"*/}
+        {/*    onClick={() => analyticsHandler("Home Page", "Click", "View More")}*/}
+        {/*    href={pageLinks.enterprise}*/}
+        {/*    theme={Theme.Light}*/}
+        {/*    width="medium"*/}
+        {/*  />*/}
+        {/*</div>*/}
+        {/*<div className="hidden sm:block">*/}
+        {/*  <LinkButton*/}
+        {/*    title="View More"*/}
+        {/*    onClick={() => analyticsHandler("Home Page", "Click", "View More")}*/}
+        {/*    href={pageLinks.enterprise}*/}
+        {/*    theme={Theme.Light}*/}
+        {/*    width="large"*/}
+        {/*  />*/}
+        {/*</div>*/}
       </div>
     </section>
   )
