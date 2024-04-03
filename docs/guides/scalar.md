@@ -48,8 +48,7 @@ schema
 }
 
 type Query {
-  email(value: Email!): Email!
-    @const(data: "{{args.value}}")
+  email(value: Email!): Email! @expr(body: "{{args.value}}")
 }
 ```
 
