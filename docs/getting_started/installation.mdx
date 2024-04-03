@@ -96,7 +96,7 @@ To install Tailcall with Docker, follow the steps below. Before starting, make s
 
    <CodeBlock language="bash">
      docker run -p 8080:8080 -p 8081:8081 tailcall.docker.scarf.sh/tailcallhq/tailcall/tc-server:
-     <Version />
+     <Version /> tailcall start https://raw.githubusercontent.com/tailcallhq/tailcall/main/examples/jsonplaceholder.graphql
    </CodeBlock>
 
    This command launches the Tailcall server in a Docker container, exposing the GraphQL endpoint on port 8080.
