@@ -23,6 +23,16 @@ schema
 }
 @link(type: "Cert", src: "./cert.pem")
 @link(type: "Key", src: "./key.pem")
+
+type Query {
+  posts: [Post] @http(path: "/posts")
+}
+
+type User {
+  id: Int!
+  name: String!
+}
+
 ```
 
 - **version**: Indicates the version of HTTP to be used, with HTTP2 signifying the usage of the HTTP/2 protocol.
