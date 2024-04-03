@@ -90,7 +90,7 @@ export default {
       items: [
         {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
         {to: "/about", label: "About", position: "left"},
-        {to: "/enterprise", label: "Enterprise", position: "left"},
+        // {to: "/enterprise", label: "Enterprise", position: "left"},
         {to: "/docs", label: "Docs", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
         {
