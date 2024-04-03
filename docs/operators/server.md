@@ -51,12 +51,57 @@ Allows intelligent configuration of the final response headers that's produced b
 
 ### cacheControl
 
-Activating the `cacheControl` configuration directs Tailcall to send [Cache-Control] headers in its responses. The `max-age` value in the header matches the smallest of the values in the responses Tailcall receives from upstream services. By default, this is `false`, which means Tailcall does not set any header.
+Activating the `cacheControl` configuration directs Tailcall to send [Cache-Control] headers in its responses. The `max-age` value in the header matches the lowest of the values in the responses that Tailcall receives from its upstream. By default, this is `false`, which means Tailcall does not set any header.
 
 [cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 
 ```graphql showLineNumbers
 schema @server(headers: {cacheControl: true}) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+### custom
+
+The `custom` is an array of key-value pairs. These headers get added to the response of every request made to the server. This can be useful for adding headers like `Access-Control-Allow-Origin` to allow cross-origin requests, or some headers like `X-Allowed-Roles` for use by downstream services.
+
+```graphql showLineNumbers
+schema
+  @server(
+    headers: {
+      custom: [
+        {key: "X-Allowed-Roles", value: "admin,user"}
+      ]
+    }
+  ) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+### experimental
+
+When the `experimental` configuration is enabled, Tailcall can include headers starting with `X-` in its responses, which are sourced from its upstream. By default, this feature is disabled (`[]`), meaning Tailcall does not forward any such headers unless explicitly configured to do so.
+
+```graphql showLineNumbers
+schema
+  @server(
+    headers: {experimental: ["X-Experimental-Header"]}
+  ) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+### setCookies
+
+Enabling the `setCookies` option instructs Tailcall to include `set-cookie` headers in its responses, which are obtained from the headers of upstream responses.
+
+[set-cookie]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/set-cookie
+
+```graphql showLineNumbers
+schema @server(headers: {setCookies: true}) {
   query: Query
   mutation: Mutation
 }
@@ -156,22 +201,6 @@ schema @server(responseValidation: true) {
 :::tip
 Disabling this setting will offer major performance improvements, but at the potential expense of data integrity.
 :::
-
-## responseHeaders
-
-The `responseHeader` is an array of key-value pairs. These headers get added to the response of every request made to the server. This can be useful for adding headers like `Access-Control-Allow-Origin` to allow cross-origin requests, or some headers like `X-Allowed-Roles` for use by downstream services.
-
-```graphql showLineNumbers
-schema
-  @server(
-    responseHeaders: [
-      {key: "X-Allowed-Roles", value: "admin,user"}
-    ]
-  ) {
-  query: Query
-  mutation: Mutation
-}
-```
 
 ## globalResponseTimeout
 
