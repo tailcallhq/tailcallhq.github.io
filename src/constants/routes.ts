@@ -3,7 +3,7 @@ export const pageLinks = {
   docs: "/docs/getting_started/",
   introduction: "/docs/",
   pricing: "/pricing",
-  about: "/about",
+  // about: "/about",
   contact: "/contact",
   // enterprise: "/enterprise",
 }
