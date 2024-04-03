@@ -78,6 +78,26 @@ The `init` command bootstraps a new TailCall project. It creates the necessary G
 tailcall init <file_path>
 ```
 
+## gen
+
+The Gen command in the TailCall CLI is designed for generating TailCall configurations from one or more source files.
+
+### Args
+
+#### --input
+
+Currently `protobuf` is accepted as input type
+
+#### --output
+
+Output is same as [--format](#--format), it supports `graphql`, `json` and `yaml` as output type
+
+Example:
+
+```bash
+tailcall gen <file1> <file2> ... <fileN> --input proto --output gql
+```
+
 This command prompts for file creation and configuration, creating the following files:
 
 |                 File Name | Description                                                                                                                          |
