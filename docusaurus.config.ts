@@ -114,14 +114,13 @@ export default {
       respectPrefersColorScheme: false,
     },
     tableOfContents: {},
+    algolia: {
+      appId: 'R2IYF7ETH7',
+      apiKey: '599cec31baffa4868cae4e79f180729b',
+      indexName: 'docsearch',
+    },
   } satisfies Preset.ThemeConfig,
   plugins: [
-    [
-      require.resolve("docusaurus-lunr-search"),
-      {
-        highlightResult: true,
-      },
-    ],
     async function myPlugin() {
       return {
         name: "docusaurus-tailwindcss",
