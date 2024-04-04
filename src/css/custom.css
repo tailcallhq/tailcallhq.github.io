@@ -558,39 +558,37 @@ nav.menu {
 }
 
 .DocSearch-Button {
-  border: 1px solid var(--ifm-color-gray-800)!important;
-  border-radius: 8px!important;
-  color: var(--ifm-navbar-search-input-color)!important;
-  cursor: text!important;
-  font-size: var(--ifm-search-input-font-size)!important;
-  height: 44px!important;
-  background: 0000!important;
-  
+  border: 1px solid var(--ifm-color-gray-800) !important;
+  border-radius: 8px !important;
+  color: var(--ifm-navbar-search-input-color) !important;
+  cursor: text !important;
+  font-size: var(--ifm-search-input-font-size) !important;
+  height: 44px !important;
+  background: 0000 !important;
 }
 
 @media (min-width: 997px) {
   .DocSearch-Button {
-    margin: 20px!important;
+    margin: 20px !important;
   }
 }
 
 @media (min-width: 769px) {
   .DocSearch-Button {
-    margin-right: 20px!important;
+    margin-right: 20px !important;
   }
 }
 
 @media (max-width: 768px) {
   .DocSearch-Button {
-    border: none!important;
+    border: none !important;
   }
 }
 
-
 .DocSearch-Button-Key {
-  background: 000!important;
-  box-shadow: none!important;
-  color: var(--ifm-navbar-search-input-color)!important;
-  padding: 0!important;
-  border: 1px solid var(--ifm-color-gray-800)!important;
+  background: 000 !important;
+  box-shadow: none !important;
+  color: var(--ifm-navbar-search-input-color) !important;
+  padding: 0 !important;
+  border: 1px solid var(--ifm-color-gray-800) !important;
 }

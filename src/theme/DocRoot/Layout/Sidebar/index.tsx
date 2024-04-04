@@ -1,10 +1,6 @@
-import React, {} from "react"
+import React from "react"
 import Sidebar from "@theme-original/DocRoot/Layout/Sidebar"
-import SearchBar from '@theme-original/SearchBar';
-
-
-
-
+import SearchBar from "@theme-original/SearchBar"
 
 // Wrapper component combining Sidebar with CustomSearch
 const SidebarWrapper = (props: SidebarConfig) => {

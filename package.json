@@ -65,9 +65,5 @@
   },
   "engines": {
     "node": ">=18.0"
-  },
-  "trustedDependencies": [
-    "core-js",
-    "core-js-pure"
-  ]
+  }
 }

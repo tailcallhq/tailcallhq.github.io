@@ -115,9 +115,9 @@ export default {
     },
     tableOfContents: {},
     algolia: {
-      appId: 'R2IYF7ETH7',
-      apiKey: '599cec31baffa4868cae4e79f180729b',
-      indexName: 'docsearch',
+      appId: "R2IYF7ETH7",
+      apiKey: "599cec31baffa4868cae4e79f180729b",
+      indexName: "docsearch",
     },
   } satisfies Preset.ThemeConfig,
   plugins: [
