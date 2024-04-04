@@ -137,13 +137,13 @@ schema @server(graphiql: true) {
 
 type Query {
   a(input: JSON): JSON
-    @const(data: {value: "{{args.input.a}}"})
+    @expr(body: {value: "{{args.input.a}}"})
 
   b(input: JSON): JSON
-    @const(data: {value: "{{args.input.b}}"})
+    @expr(body: {value: "{{args.input.b}}"})
 
   c(input: JSON): JSON
-    @const(data: {value: "{{args.input.c}}"})
+    @expr(body: {value: "{{args.input.c}}"})
 }
 ```
 
@@ -175,7 +175,7 @@ Here is how the response would look like:
 }
 ```
 
-As you can see the [`@const`](../directives/const.md) directive plucks the inner value and returns the result. How about we implement an `abc` operation that could leverage the existing operations and unwrap the following input value:
+As you can see the [`@expr`](../directives/expr.md) directive plucks the inner value and returns the result. How about we implement an `abc` operation that could leverage the existing operations and unwrap the following input value:
 
 ```json
 {"a": {"b": {"c": {"d": 1000}}}}
@@ -190,13 +190,13 @@ schema @server(graphiql: true) {
 
 type Query {
   a(input: JSON): JSON
-    @const(data: {value: "{{args.input.a}}"})
+    @expr(body: {value: "{{args.input.a}}"})
 
   b(input: JSON): JSON
-    @const(data: {value: "{{args.input.b}}"})
+    @expr(body: {value: "{{args.input.b}}"})
 
   c(input: JSON): JSON
-    @const(data: {value: "{{args.input.c}}"})
+    @expr(body: {value: "{{args.input.c}}"})
 
   # highlight-start
   abc(input: JSON): JSON
