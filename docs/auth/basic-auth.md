@@ -68,4 +68,22 @@ curl --request POST \
   --data '{"query":"query {\n\tuser(id: 1) { name }\n}"}'
 ```
 
+or you can use the GraphQL Playground and add the header in the HTTP Headers section:
+
+```json
+{
+  "Authorization": "Basic dGVzdHVzZXIyOm15cGFzc3dvcmQ="
+}
+```
+
+with query:
+
+```graphql
+query {
+  user(id: 1) {
+    name
+  }
+}
+```
+
 Executing such request should be resolved with the user and its name.
