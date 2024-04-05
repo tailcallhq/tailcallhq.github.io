@@ -9,7 +9,7 @@ This guide will walk you through entity level authentication in GraphQL and how 
 
 ## What is Authentication?
 
-Authentication is the process of verifying a user's identity before granting access to data. In most modern applications, some information, such as a list of products in an e-commerce application, is accessible to all users without requiring identification. However, personal data, like a user's order history, is only accessible to the user who owns that information. Verifying a user's identity to access such personal data is known as authentication.
+Authentication is the process of verifying a user's identity before granting access to data. In most modern applications, some information, such as a list of products in an e-commerce application, is accessible to all users without requiring identification. However, personal data, like a user's order history, is accessible to the user who owns that information. Verifying a user's identity to access such personal data is known as authentication.
 
 The primary reasons for implementing authentication in an application include:
 
@@ -17,7 +17,7 @@ The primary reasons for implementing authentication in an application include:
 - **Security** The ability to block users based on certain criteria necessitates identifying them.
 - **Customized User Experiences** Delivering personalized experiences based on a user's identity.
 
-Authentication can be implemented using various credential validation mechanisms, such as:
+Authentication can be implemented using credential validation mechanisms, such as:
 
 - [Basic Auth](./basic-auth.md)
 - [JWT](./jwt.md)
