@@ -114,4 +114,43 @@ type SidebarConfig = {
 }
 
 declare module "docusaurus-lunr-search/src/theme/SearchBar"
-declare module "react-platform-js"
+declare module "react-platform-js" {
+  import { Component, ReactNode, CSSProperties } from 'react';
+
+  interface PlatformProps {
+    children?: ReactNode | ((props: PlatformState) => ReactNode);
+    rules?: Partial<PlatformState>;
+    className?: string;
+    style?: CSSProperties;
+  }
+
+  interface PlatformState {
+    OS: string;
+    OSVersion: string;
+    Browser: string;
+    BrowserVersion: string;
+    DeviceType: string;
+    DeviceModel: string;
+    DeviceVendor: string;
+    Engine: string;
+    EngineVersion: string;
+    CPU: string;
+    UA: string;
+  }
+
+  export default class Platform extends Component<PlatformProps, {}> {
+    static OS: string;
+    static OSVersion: string;
+    static Browser: string;
+    static BrowserVersion: string;
+    static DeviceType: string;
+    static DeviceModel: string;
+    static DeviceVendor: string;
+    static Engine: string;
+    static EngineVersion: string;
+    static CPU: string;
+    static UA: string;
+
+    static select: (selectMap: any) => string | undefined;
+  }
+}
