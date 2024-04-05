@@ -1,5 +1,5 @@
 ---
-title: Authentication
+title: Introduction
 description: "Learn how you can provide granular access to types and fields in GraphQL schema with the help of authentication providers"
 slug: /auth
 sidebar_position: 1
@@ -9,26 +9,38 @@ This guide will walk you through entity level authentication in GraphQL and how 
 
 ## What is Authentication?
 
-Authentication in GraphQL refers to the process of verifying the identity of a user before allowing access to specific fields in GraphQL schema. Essentially, it's about controlling who can see or interact with certain pieces of data exposed by GraphQL API. This process is crucial for following reasons:
+Authentication is the process of verifying a user's identity before granting access to data. In most modern applications, some information, such as a list of products in an e-commerce application, is accessible to all users without requiring identification. However, personal data, like a user's order history, is only accessible to the user who owns that information. Verifying a user's identity to access such personal data is known as authentication.
 
-- **Protect Sensitive Information** Some fields may contain sensitive information that should not be accessible to unauthenticated users.
-- **Prevent Unauthorized Access** Ensuring that authenticated users can query certain fields helps prevent unauthorized access and potential data breaches.
-- **Customized User Experiences** Authentication allows for personalized queries based on the user's identity.
+The primary reasons for implementing authentication in an application include:
 
-The authentication could be implemented by different credential validation mechanisms, like:
+- **Protecting User-Specific Data** Ensuring that data belonging to a user is not accessible by others.
+- **Security** The ability to block users based on certain criteria necessitates identifying them.
+- **Customized User Experiences** Delivering personalized experiences based on a user's identity.
+
+Authentication can be implemented using various credential validation mechanisms, such as:
 
 - [Basic Auth](./basic-auth.md)
 - [JWT](./jwt.md)
+- OAuth
+- API Key
 
 ### Entity Level Authentication in GraphqQL
 
-Entity level authentication in GraphQL refers to applying authentication logic to specific entities or types within your GraphQL schema, rather than at the API entry point or resolver level for individual queries or mutations. This approach allows you to control access to particular data types or fields based on the user's authentication status or their permissions, enabling a more granular and flexible security model.
+Entity level authentication in GraphQL refers to applying authentication logic to specific entities or types within your GraphQL schema, rather than at the API entry point or resolver level for individual queries or mutations. This approach allows you to control access to particular data types or fields based on the user's authentication status, enabling a more granular and flexible security model.
 
 Advantages of this approach:
 
-- **Flexibility**: You can tailor security measures to fit the exact needs of your application, protecting sensitive data more effectively.
-- **Scalability**: As your schema grows, entity level authentication allows you to extend your security policies to new entities and fields.
-- **User Experience**: By fine-tuning access control, you can ensure that users have a seamless experience interacting with data they are authorized to see or modify.
+- **Flexibility**: Tailors security measures to precisely fit the needs of your application, enhancing the protection of sensitive data.
+- **Scalability**: Facilitates extending security policies to new entities and fields as your schema expands.
+- **Customization**: Enables implementing different authentication mechanisms for distinct entities based on their security requirements.
+
+## Tailcall Authentication
+
+Tailcall provides a straightforward way to implement entity level authentication in your GraphQL schema. By leveraging custom directives, you can define which entities or fields require authentication to access their data. Tailcall supports multiple authentication providers, such as Basic Auth and JWT, allowing you to choose the authentication mechanism that best suits your application's requirements.
+to know more about how to use it, read the following articles:
+
+1. [Basic Auth](./basic-auth.md)
+2. [JWT](./jwt.md)
 
 ## Tailcall config
 
@@ -43,8 +55,11 @@ Your config could look like this now:
 schema
   @server(port: 8000, graphiql: true)
   @upstream(baseURL: "http://jsonplaceholder.typicode.com")
+  #highlight-start
   @link(id: "auth-basic", type: Htpasswd, src: "htpasswd")
   @link(id: "auth-jwt", type: Jwks, src: "jwks.json") {
+  #highlight-end
+
   query: Query
   mutation: Mutation
 }
@@ -58,7 +73,9 @@ type Mutation {
   user(id: Int!): User @http(path: "/users/{{args.id}}")
 }
 
+#highlight-start
 type User @protected {
+  #highlight-end
   id: Int!
   name: String!
   username: String!
@@ -71,7 +88,9 @@ type Post {
   id: Int!
   userId: Int!
   title: String!
+  #highlight-start
   body: String! @protected
+  #highlight-end
   user: User @http(path: "/users/{{value.userId}}")
 }
 ```
@@ -98,50 +117,41 @@ If you execute the query that don't have any `@protected` fields like
 }
 ```
 
-Then the data for this will be resolved as usual without providing any additional info.
-
+Then the data for this will be resolved as usual without providing any additional info. showing the list of posts with their titles:
+![unprotected.png](../../static/images/auth/unprotected.png)
 But if you change the query to access protected data, then if you don't provide any authentication data, i.e. for query:
 
 ```graphql
-schema
-  @server(port: 8000, graphiql: true)
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com")
-  @link(id: "auth-basic", type: Htpasswd, src: "htpasswd")
-  @link(id: "auth-jwt", type: Jwks, src: "jwks.json") {
-  query: Query
-  mutation: Mutation
-}
-
-type Query {
-  posts: [Post] @http(path: "/posts")
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
-}
-
-type Mutation {
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
-}
-
-type User @protected {
-  id: Int!
-  name: String!
-  username: String!
-  email: String!
-  phone: String
-  website: String
-}
-
-type Post {
-  id: Int!
-  userId: Int!
-  title: String!
-  body: String! @protected
-  user: User @http(path: "/users/{{value.userId}}")
+{
+  posts {
+    body
+  }
 }
 ```
 
-You will get an authentication failure error stating that authentication parameters were not provided.
+You will get an authentication failure error stating that authentication parameters were not provided. e.g.:
+
+```json
+{
+  "data": null,
+  "errors": [
+    {
+      "message": "Authentication Failure: Parameters not provided in the request.",
+      "locations": [
+        {
+          "line": 3,
+          "column": 5
+        }
+      ]
+    }
+  ]
+}
+```
+
+![protected.png](../../static/images/auth/protected.png)
 
 Now update the request by providing additional Authorization header. You can do in the Playground by navigating to the tab `HTTP HEADERS` at the bottom by adding following header for Basic Auth:
+![img.png](../../static/images/auth/img.png)
 
 ```json
 {
@@ -149,7 +159,8 @@ Now update the request by providing additional Authorization header. You can do 
 }
 ```
 
-Now after executing the request again you'll get the response for all of the requested fields without any error.
+Now after executing the request again you'll get the response for all the requested fields without any error.
+![basic_auth.png](../../static/images/auth/basic_auth.png)
 
 ## How it works
 
@@ -165,7 +176,7 @@ If type is marked with `@protected` then:
 For mutation entity level authentication works similar to queries. But since mutation involves requests that changes external state you should be careful where do you specify `@protected` directive because marking some nested field as protected doesn't prevent from executing the request to resolve the parent fields. I.e. following example is problematic:
 
 ```graphql
-schema
+schema {
   query: Query
   mutation: Mutation
 }
@@ -175,7 +186,8 @@ type Query {
 }
 
 type Mutation {
-  user(id: Int!): User @http(path: "/users/{{args.id}}", method: POST)
+  user(id: Int!): User
+    @http(path: "/users/{{args.id}}", method: POST)
 }
 
 type User {
@@ -190,7 +202,7 @@ Here you can still execute the mutation without any authentication and fail on a
 To resolve this issue, consider marking root fields as protected in case they require authentication, i.e.:
 
 ```graphql
-schema
+schema {
   query: Query
   mutation: Mutation
 }
@@ -200,7 +212,9 @@ type Query {
 }
 
 type Mutation {
-  user(id: Int!): User @http(path: "/users/{{args.id}}", method: POST) @protected
+  user(id: Int!): User
+    @http(path: "/users/{{args.id}}", method: POST)
+    @protected
 }
 
 type User {

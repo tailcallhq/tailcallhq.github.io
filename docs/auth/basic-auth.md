@@ -59,7 +59,7 @@ Now you can run the example file with Tailcall and try to make a query for data 
 
 To make the request first create base64 encoded string from the `testuser:mypassword` string and then append the result to the `Authorization: Basic` header.
 
-An request example with curl:
+A request example with curl:
 
 ```sh
 curl --request POST \
