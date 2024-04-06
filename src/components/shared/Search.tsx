@@ -5,12 +5,11 @@ import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import EnterKeyIcon from "@site/static/icons/basic/enter-key.svg"
 import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
 import EscapeKeyIcon from "@site/static/icons/basic/escape-key.svg"
-
 import useIsBrowser from "@docusaurus/useIsBrowser"
 import Platform from "react-platform-js"
 import styles from "@site/src/theme/DocRoot/Layout/Sidebar/styles.module.css"
 import {useDebounce} from "use-debounce"
-import { HitsItem } from "./types"
+import {HitsItem} from "./types"
 
 const algoliaConfig = {
   appId: "R2IYF7ETH7",
@@ -51,6 +50,48 @@ const SearchRoot = () => {
     )
   }
 
+  const Results = () => {
+    const groupedHits = (hits as unknown as HitsItem[]).reduce<Record<string, HitsItem[]>>((acc, hit) => {
+      const lvl0 = hit.hierarchy.lvl0 as string
+      if (!acc[lvl0]) {
+        acc[lvl0] = []
+      }
+      acc[lvl0].push(hit)
+      return acc
+    }, {})
+
+    let globalIndex = 0
+
+    return Object.entries(groupedHits).map(([lvl0, groupedHits]) => (
+      <div key={lvl0} className="group">
+        <div className="font-bold mb-1.25 bg-[#DBDDE1] pl-4">{lvl0}</div>
+        {groupedHits.map((hit) => {
+          const isFocused = globalIndex === focusedHitIndex
+          const ref = isFocused ? focusedRef : null
+          const hitElement = (
+            <div
+              key={hit.objectID}
+              ref={ref}
+              tabIndex={0}
+              className={`hit ${isFocused ? "bg-[#F1F1F1]" : ""} p-2.5 pl-4`}
+              onMouseEnter={() => setFocusedHitIndex(globalIndex)}
+              onMouseLeave={() => setFocusedHitIndex(-1)}
+            >
+              <a href={hit.url} className="no-underline text-black">
+                <div className="mb-1.25">
+                  <p dangerouslySetInnerHTML={{__html: hit?._snippetResult?.content?.value}}></p>
+                </div>
+                {hit.hierarchy.lvl1 && <p>{hit.hierarchy.lvl1 as string}</p>}
+              </a>
+            </div>
+          )
+          globalIndex++
+          return hitElement
+        })}
+      </div>
+    ))
+  }
+
   const handleSearchClick = () => {
     setIsSearchModalVisible(true)
   }
@@ -81,54 +122,12 @@ const SearchRoot = () => {
           return newIndex
         })
         break
-      case 'Enter':
+      case "Enter":
         window.location.href = (hits as unknown as HitsItem[])[focusedHitIndex].url
         break
       default:
         break
     }
-  }
-
-  const Results = () => {
-    const groupedHits = (hits as unknown as HitsItem[]).reduce<Record<string, HitsItem[]>>((acc, hit) => {
-      const lvl0 = hit.hierarchy.lvl0 as string
-      if (!acc[lvl0]) {
-        acc[lvl0] = []
-      }
-      acc[lvl0].push(hit)
-      return acc
-    }, {})
-
-    let globalIndex = 0
-
-    return Object.entries(groupedHits).map(([lvl0, groupedHits]) => (
-      <div key={lvl0} className="group">
-        <div className="font-bold mb-1.25 bg-[#DBDDE1] pl-4">{lvl0}</div>
-        {groupedHits.map((hit) => {
-          const isFocused = globalIndex === focusedHitIndex
-          const ref = isFocused ? focusedRef : null
-          const hitElement = (
-            <div
-              key={hit.objectID}
-              ref={ref}
-              tabIndex={0}
-              className={`hit ${isFocused ? "bg-[#F1F1F1]" : ""} p-2.5 pl-4`}
-              onMouseEnter={() => setFocusedHitIndex(globalIndex)}
-              onMouseLeave={() => setFocusedHitIndex(-1)}
-            >
-              <a href={hit.url} className="no-underline text-black">
-                <div className="mb-1.25">
-                  <p dangerouslySetInnerHTML={{ __html: hit?._snippetResult?.content?.value }}></p>
-                </div>
-                {hit.hierarchy.lvl1 && <p>{hit.hierarchy.lvl1 as string}</p>}
-              </a>
-            </div>
-          )
-          globalIndex++ 
-          return hitElement
-        })}
-      </div>
-    ))
   }
 
   useEffect(() => {
