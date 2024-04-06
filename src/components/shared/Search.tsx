@@ -44,6 +44,7 @@ const SearchRoot = () => {
           type="search"
           placeholder={placeholder}
           autoFocus={true}
+          value={value}
           onChange={(event) => setValue(event.currentTarget.value)}
         />
       </div>
@@ -73,7 +74,7 @@ const SearchRoot = () => {
               key={hit.objectID}
               ref={ref}
               tabIndex={0}
-              className={`hit ${isFocused ? "bg-[#F1F1F1]" : ""} p-2.5 pl-4`}
+              className={`hit ${isFocused ? "bg-[#F1F1F1]" : ""} p-2.5 pl-4 scroll-mt-7`}
               onMouseEnter={() => setFocusedHitIndex(globalIndex)}
               onMouseLeave={() => setFocusedHitIndex(-1)}
             >
