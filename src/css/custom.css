@@ -556,3 +556,9 @@ nav.menu {
     box-shadow: none;
   }
 }
+
+
+ol.ais-Hits-list {
+  list-style: none !important;
+  padding-left: 5px;
+}
