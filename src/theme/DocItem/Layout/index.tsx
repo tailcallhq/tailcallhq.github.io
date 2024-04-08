@@ -13,9 +13,11 @@ import DocBreadcrumbs from "@theme/DocBreadcrumbs"
 import styles from "./styles.module.css"
 import Giscus from "@giscus/react"
 import {useColorMode} from "@docusaurus/theme-common"
-/**
- * Decide if the toc should be rendered, on mobile or desktop viewports
- */
+
+interface DocItemLayoutProps {
+  children: React.JSX.Element
+}
+
 function useDocTOC() {
   const {frontMatter, toc} = useDoc()
   const windowSize = useWindowSize()
@@ -29,13 +31,14 @@ function useDocTOC() {
     desktop,
   }
 }
-export default function DocItemLayout({children}) {
+
+export default function DocItemLayout({children}: DocItemLayoutProps) {
   const docTOC = useDocTOC()
   const {colorMode} = useColorMode()
   const giscus = (
     <React.Fragment>
       <hr />
-      <br></br>
+      <br />
       <Giscus
         id="comments"
         repo="tailcallhq/tailcallhq.github.io"
