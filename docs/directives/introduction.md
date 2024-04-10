@@ -18,7 +18,7 @@ Certainly! Here's the table with hyperlinks added back to the directive names:
 | [`@addField`](add-field.md)  | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
 | [`@cache`](cache.md)         | Enables caching for the query, field or type applied to.                                                     |
 | [`@call`](call.md)           | Invokes a query or mutation from another query or mutation field.                                            |
-| [`@const`](const.md)         | Allows embedding of a constant response within the schema.                                                   |
+| [`@expr`](expr.md)           | Allows embedding of a constant response within the schema.                                                   |
 | [`@graphQL`](graphql.md)     | Resolves a field or node by a GraphQL API.                                                                   |
 | [`@grpc`](grpc.md)           | Resolves a field or node by a gRPC API.                                                                      |
 | [`@http`](http.md)           | Resolves a field or node by a REST API.                                                                      |

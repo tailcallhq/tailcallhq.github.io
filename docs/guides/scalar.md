@@ -29,6 +29,7 @@ These are the current set of custom scalars supported by Tailcall:
 |        `Date` | A string that represents dates and times in the Internet protocols, following the ISO 8601 standard via the Gregorian calendar.                                                       | [RFC 3339 Date and Time Internet Formats](https://datatracker.ietf.org/doc/html/rfc3339)                                |
 |         `Url` | A standardized format for Uniform Resource Identifiers (URI) that includes both the generic URI syntax and guidelines for resolving URI references, which may be in relative form.    | [RFC 3986 Uniform Resource Identifier](https://www.ietf.org/rfc/rfc3986.txt)                                            |
 |        `JSON` | A lightweight data interchange format based on the ECMAScript Programming Language Standard, designed for human-readable data representation.                                         | [RFC 7159 The JavaScript Object Notation (JSON) Data Interchange Format](https://datatracker.ietf.org/doc/html/rfc7159) |
+|       `Empty` | A type that represents no value or is used as a placeholder in contexts where no other data is expected or returned. It's equivalent to unit or void in other programming languages.  |                                                                                                                         |
 
 If none of the scalars make sense for your use case, consider opening an issue on the Tailcall [github repository](https://github.com/tailcallhq/tailcall).
 
@@ -47,8 +48,7 @@ schema
 }
 
 type Query {
-  email(value: Email!): Email!
-    @const(data: "{{args.value}}")
+  email(value: Email!): Email! @expr(body: "{{args.value}}")
 }
 ```
 

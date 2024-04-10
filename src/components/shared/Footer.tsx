@@ -20,12 +20,12 @@ const Footer = (): JSX.Element => {
         >
           Documentation
         </Link>
-        <Link
-          href={pageLinks.about}
-          className="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline"
-        >
-          About
-        </Link>
+        {/*<Link*/}
+        {/*  href={pageLinks.about}*/}
+        {/*  className="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline"*/}
+        {/*>*/}
+        {/*  About*/}
+        {/*</Link>*/}
         <Link
           href={tailCallBlogUrl}
           className="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline"
