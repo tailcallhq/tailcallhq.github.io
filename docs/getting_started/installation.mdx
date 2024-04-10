@@ -86,8 +86,9 @@ To install Tailcall with Docker, follow the steps below. Please note that curren
 1. Pull the latest Tailcall Docker image using the following command:
 
    <CodeBlock language="bash">
-     docker pull tailcall.docker.scarf.sh/tailcallhq/tailcall/tc-server:
-     <Version />
+   <!-- prettier-ignore-start -->
+     docker pull tailcall.docker.scarf.sh/tailcallhq/tailcall/tc-server:<Version />
+   <!-- prettier-ignore-end -->
    </CodeBlock>
 
    This command fetches the latest version of the Tailcall Docker image from the Docker registry.
@@ -95,9 +96,13 @@ To install Tailcall with Docker, follow the steps below. Please note that curren
 2. Run the Tailcall Docker container with the following command:
 
    <CodeBlock language="bash">
-     docker run -d --name graphql-server -p 8000:8000 \ -v /path/to/your/configs:/etc/tailcall \ --entrypoint "/bin/sh"
-     \ ghcr.io/tailcallhq/tailcall/tc-server:
-     <Version /> \ -c "export PATH=\$PATH:~/.tailcall/bin && tailcall start /etc/tailcall/jsonplaceholder.graphql
+   <!-- prettier-ignore-start -->
+     docker run -d --name graphql-server -p 8000:8000 \
+     -v /path/to/your/configs:/etc/tailcall \
+     --entrypoint "/bin/sh" \
+     ghcr.io/tailcallhq/tailcall/tc-server:<Version /> \
+     -c "export PATH=\$PATH:~/.tailcall/bin && tailcall start /etc/tailcall/config.graphql"
+     <!-- prettier-ignore-end -->
    </CodeBlock>
 
    This command launches the Tailcall server in a Docker container, exposing the GraphQL endpoint on port 8080.
