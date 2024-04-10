@@ -3,9 +3,9 @@ title: HTTP/2
 description: Boost web performance and secure your communications by utilizing HTTP/2 with Tailcall.
 ---
 
-[HTTP/2](https://www.cloudflare.com/en-in/learning/performance/http2-vs-http1.1/) represents a significant advancement in web protocols, offering enhancements such as multiplexing, header compression, and streamlined connection handling, all designed to improve web performance significantly.
+[HTTP/2](https://www.cloudflare.com/en-in/learning/performance/http2-vs-http1.1/) represents a significant advancement in web protocols, offering enhancements such as multiplexing, header compression, and streamlined connection handling, all designed to improve web performance.
 
-Tailcall enables support for HTTP/2 for both server (ingress) and client (egress) operations, facilitating the protocol's adoption for both incoming and outgoing server requests. For egress, there is no special setting that's required, Tailcall will automatically upgrade the connection to HTTP/2 whenever possible. For ingress there are a few setting that one needs to provide.
+Tailcall enables support for HTTP/2 for both server (ingress) and client (egress) operations, facilitating the protocol's adoption for both incoming and outgoing server requests. For egress, there is no special setting that's required, Tailcall will automatically upgrade the connection to HTTP/2 whenever possible. For ingress there are a few settings that one needs to provide.
 
 ## SSL
 
