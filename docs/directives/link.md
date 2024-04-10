@@ -1,9 +1,9 @@
 ---
 title: "@link"
-description: "Discover how the @link operator can transform your GraphQL schema, enabling seamless integration of external resources like configurations, .proto files, and SSL/TLS certificates for enhanced functionality and security. Learn to streamline and secure your GraphQL configurations with our comprehensive guide."
+description: "Discover how the @link directive can transform your GraphQL schema, enabling seamless integration of external resources like configurations, .proto files, and SSL/TLS certificates for enhanced functionality and security. Learn to streamline and secure your GraphQL configurations with our comprehensive guide."
 ---
 
-The **@link** operator is used for bringing external resources into your GraphQL schema. It makes it easier to include configurations, .proto files for gRPC services, and other files into your schema. With this operator, external resources are either merged with or used effectively in the importing configuration.
+The `@link` directive is used for bringing external resources into your GraphQL schema. It makes it easier to include configurations, .proto files for gRPC services, and other files into your schema. With this directive, external resources are either merged with or used effectively in the importing configuration.
 
 ## How it Works
 
@@ -111,3 +111,11 @@ When configuring the `Key` link type, provide the path to your private key file.
 The `Operation` link type connects your schema to a set of predefined, GraphQL spec-compliant queries and mutations. This functionality allows for the validation and optimization of these operations by the Tailcall server.
 
 Each type serves a specific purpose, enabling the flexible integration of external resources into your GraphQL schema.
+
+### Htpasswd
+
+The `Htpasswd` link type allows the importation of an [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) file. This file is utilized to set up [Basic authentication](../auth/basic-auth.md).
+
+### Jwks
+
+The `Jwks` link type enables the importation of a [`JWKS`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) file. This file facilitates the provision of detailed access control through [JWT authentication](../auth/jwt.md).

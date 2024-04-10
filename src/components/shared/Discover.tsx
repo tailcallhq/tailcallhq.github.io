@@ -28,7 +28,7 @@ const Discover = (): JSX.Element => {
             <LinkButton
               theme={Theme.Light}
               title="Know More"
-              href={pageLinks.docs}
+              href={pageLinks.introduction}
               onClick={() => analyticsHandler("Discover", "Click", "Know More")}
             />
           </div>

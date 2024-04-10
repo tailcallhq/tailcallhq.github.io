@@ -157,6 +157,26 @@ export const moreFeatures: MoreFeatures[] = [
     title: "Compile time Checks",
     logo: require("@site/static/icons/basic/clock.svg").default,
   },
+  {
+    id: 9,
+    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    title: "Adaptive performance improvements",
+  },
+  {
+    id: 10,
+    logo: require("@site/static/icons/basic/rate-limit.svg").default,
+    title: "Global rate limiting",
+  },
+  {
+    id: 11,
+    logo: require("@site/static/icons/basic/insight.svg").default,
+    title: "Telemetry",
+  },
+  {
+    id: 12,
+    logo: require("@site/static/icons/basic/connect.svg").default,
+    title: "Scripting Flexibility",
+  },
 ]
 
 export const socials: Social[] = [
@@ -170,7 +190,7 @@ export const socials: Social[] = [
     id: 2,
     name: "discord",
     image: require("@site/static/icons/companies/discord-gray.svg").default,
-    href: "https://discord.gg/Q2ZExpFCnA",
+    href: "https://discord.gg/kRZBPpkgwq",
   },
   {
     id: 3,

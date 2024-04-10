@@ -9,11 +9,10 @@ import Version from "../../src/components/Version"
 import InstallCommand from "../../src/components/install"
 
 <>
-  You can install the latest version -{" "}
-  <b>
-    <Version />
-  </b>
-  , by using<b> NPM</b>.
+  <p>
+    <span>You can install the latest version - </span>
+    <Version /> <span>by using</span> <b>NPM</b>.
+  </p>
 </>
 ## NPM
 
@@ -82,13 +81,14 @@ export PATH=$PATH:~/.tailcall/bin
 
 ## Docker
 
-To install Tailcall with Docker, follow the steps below. Before starting, make sure you have Docker installed on your system. If not, download it from [here](https://www.docker.com/products/docker-desktop).
+To install Tailcall with Docker, follow the steps below. Please note that currently, this installation method only works on Linux/amd64 systems. Before starting, make sure you have Docker installed on your system. If not, download it from [here](https://www.docker.com/products/docker-desktop).
 
 1. Pull the latest Tailcall Docker image using the following command:
 
    <CodeBlock language="bash">
-     docker pull tailcall.docker.scarf.sh/tailcallhq/tailcall/tc-server:
-     <Version />
+   <!-- prettier-ignore-start -->
+     docker pull tailcall.docker.scarf.sh/tailcallhq/tailcall/tc-server:<Version />
+   <!-- prettier-ignore-end -->
    </CodeBlock>
 
    This command fetches the latest version of the Tailcall Docker image from the Docker registry.
@@ -96,8 +96,13 @@ To install Tailcall with Docker, follow the steps below. Before starting, make s
 2. Run the Tailcall Docker container with the following command:
 
    <CodeBlock language="bash">
-     docker run -p 8080:8080 -p 8081:8081 tailcall.docker.scarf.sh/tailcallhq/tailcall/tc-server:
-     <Version />
+   <!-- prettier-ignore-start -->
+     docker run -d --name graphql-server -p 8000:8000 \
+     -v /path/to/your/configs:/etc/tailcall \
+     --entrypoint "/bin/sh" \
+     ghcr.io/tailcallhq/tailcall/tc-server:<Version /> \
+     -c "export PATH=\$PATH:~/.tailcall/bin && tailcall start /etc/tailcall/config.graphql"
+     <!-- prettier-ignore-end -->
    </CodeBlock>
 
    This command launches the Tailcall server in a Docker container, exposing the GraphQL endpoint on port 8080.

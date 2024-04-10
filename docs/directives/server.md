@@ -107,6 +107,42 @@ schema @server(headers: {setCookies: true}) {
 }
 ```
 
+### cors
+
+The `cors` configuration allows you to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) on Tailcall. This is useful when you want to access Tailcall in the browser. It has the following fields:
+
+- `allowCredentials`: Indicates whether the server allows credentials (e.g., cookies, authorization headers) to be sent in cross-origin requests.
+- `allowHeaders`: A list of allowed headers in cross-origin requests. This can be used to specify custom headers that are allowed to be included in cross-origin requests.
+- `allowMethods`: A list of allowed HTTP methods in cross-origin requests. These methods specify the actions that are permitted in cross-origin requests.
+- `allowOrigins`: A list of origins that are allowed to access the server's resources in cross-origin requests. An origin can be a domain, a subdomain, or even 'null' for local file schemes.
+- `allowPrivateNetwork`: Indicates whether requests from private network addresses are allowed in cross-origin requests. Private network addresses typically include IP addresses reserved for internal networks.
+- `exposeHeaders`: A list of headers that the server exposes to the browser in cross-origin responses. Exposing certain headers allows client-side code to access them in the response.
+- `maxAge`: The maximum time (in seconds) that the client should cache preflight OPTIONS requests to avoid sending excessive requests to the server.
+- `vary`: A list of header names that indicate the values of which might cause the server's response to vary, potentially affecting caching.
+
+```graphql showLineNumbers
+schema
+  @server(
+    port: 8000
+    graphiql: true
+    hostname: "0.0.0.0"
+    headers: {
+      cors: {
+        allowCredentials: false
+        allowHeaders: ["Authorization"]
+        allowMethods: [POST, GET, OPTIONS]
+        allowOrigins: ["abc.xyz"]
+        allowPrivateNetwork: true
+        exposeHeaders: ["Content-Type"]
+        maxAge: 360
+        vary: "Origin"
+      }
+    }
+  ) {
+  query: Query
+}
+```
+
 ## graphiql
 
 Enabling the `graphiql` configuration activates the GraphiQL IDE at the root (/) path within Tailcall. GraphiQL is a built-in, interactive in-browser GraphQL IDE, designed to streamline query development and testing. By default, this feature is off.

@@ -1,8 +1,9 @@
 ---
 title: CLI
+description: "Discover the TailCall CLI, a vital tool for developers to manage and optimize GraphQL configurations directly from the command line. Learn about commands like 'check', 'start', 'init', and 'gen' to validate GraphQL specs, launch servers, bootstrap projects, and generate configurations. Explore options for detecting N+1 issues, displaying schemas, formatting inputs, and more. TailCall CLI simplifies GraphQL composition and enhances development workflows."
 ---
 
-The TailCall CLI (Command Line Interface) is an essential part of the TailCall toolkit. It allows developers to manage and optimize GraphQL configurations directly from the command line. Each command within the CLI handles a specific aspect of GraphQL composition. Below, you'll find a detailed overview of each command, along with its options and usage examples.
+The TailCall CLI (Command Line Interface) allows developers to manage and optimize GraphQL configurations directly from the command line.
 
 ## check
 
@@ -38,7 +39,7 @@ tailcall check --schema <file1> <file2> ... <fileN>
 
 The `check` command allows for files. Specify each file path, separated by a space, after the options.
 
-Example:
+**Example:**
 
 ```bash
 tailcall check --schema ./path/to/file1.graphql ./path/to/file2.graphql
@@ -64,7 +65,7 @@ tailcall start <file1> <file2> ... <fileN> <http_path1> <http_path2> .. <http_pa
 
 The `start` command allows for files and supports loading configurations over HTTP. You can mix file system paths with HTTP paths. Specify each path, separated by a space, after the options.
 
-Example:
+**Example:**
 
 ```bash
 tailcall start ./path/to/file1.graphql ./path/to/file2.graphql http://example.com/file2.graphql
@@ -89,3 +90,21 @@ This command prompts for file creation and configuration, creating the following
 [.tailcallrc.schema.json]: https://github.com/tailcallhq/tailcall/blog/main/generated/.tailcallrc.schema.json
 [.graphqlrc.yml]: https://the-guild.dev/graphql/config/docs
 [.tailcallrc.graphql]: https://github.com/tailcallhq/tailcall/blog/main/generated/.tailcallrc.graphql
+
+## gen
+
+The `gen` command in the TailCall CLI is designed for generating TailCall configurations from one or more source files.
+
+### --input
+
+Supported input formats include `PROTO`.
+
+### --output
+
+Output is same as [--format](#--format), it supports `graphql`, `json` and `yaml` as output type
+
+**Example:**
+
+```bash
+tailcall gen <file1> <file2> ... <fileN> --input proto --output gql
+```
