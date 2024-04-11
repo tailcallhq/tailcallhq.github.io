@@ -3,7 +3,7 @@ import CodeBlock from "@theme/CodeBlock"
 import Version from "./Version"
 
 const InstallCommand = (): JSX.Element => {
-  const command = `curl -sSL https://raw.githubusercontent.com/tailcallhq/tailcall/master/install.sh | bash -s -- `
+  const command = `curl -sSL https://raw.githubusercontent.com/tailcallhq/tailcall/main/install.sh | bash -s -- `
 
   return (
     <div>
