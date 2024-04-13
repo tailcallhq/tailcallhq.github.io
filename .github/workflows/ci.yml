@@ -21,8 +21,8 @@ jobs:
       - name: Check spelling
         uses: codespell-project/actions-codespell@v2
         with:
+          ignore_words_file: .github/codespell-ignore
           skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock
-          ignore_words_list: unit
 
       - name: Install and Build 🔧
         run: |
