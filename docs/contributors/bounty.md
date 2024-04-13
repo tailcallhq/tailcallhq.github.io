@@ -17,8 +17,8 @@ We’re all about meritocracy here. That means the best ideas and implementation
 
 ## Teamwork Makes the Dream Work
 
-- **Join Us on Discord:** Our Discord server is THE place to collaborate, get tips, and find your next bestie. Let’s make magic together.
-- **Share the Love:** Inspired by someone’s PR? Working together? Feel free to split that bounty – sharing is caring!
+- **Join Us on Discord:** Our [Discord](https://discord.gg/kRZBPpkgwq) server is THE place to collaborate, get tips, and find your next bestie. Let’s make magic together.
+- **Share the Love:** Inspired by someone’s PR? Working together? Feel free to [/split](https://docs.algora.io/commands) that bounty – sharing is caring!
 
 ## How to Dive In
 
