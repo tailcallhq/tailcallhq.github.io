@@ -3,9 +3,11 @@ title: "Test Guidelines"
 description: "Guidelines for writing tests in Tailcall"
 sidebar_position: 3
 ---
+
 A Markdown-based snapshot testing framework in **Tailcall**.
 
 ## Table of contents
+
 - [Why a new testing framework?](#why-a-new-testing-framework)
 - [How does it work?](#how-does-it-work)
 - [Structure](#structure)
@@ -23,12 +25,12 @@ A Markdown-based snapshot testing framework in **Tailcall**.
 - [Snapshots](#snapshots)
 - [Maintenance](#maintenance)
 
-
-
 ## Why a new testing framework?
+
 We aimed to create a snapshot testing framework that is language-agnostic, straightforward to write, maintain, and understand. For this reason, we chose a Markdown-based design. This design closely aligns with the usage patterns of Tailcall users. Since Tailcall supports building scalable GraphQL backends without being tied to a specific programming language, it was essential for our testing framework to be similarly language-agnostic.
 
 ## How does it work?
+
 [execution_spec](https://github.com/tailcallhq/tailcall/blob/main/tests/execution_spec.rs) implements a Markdown-based snapshot testing framework for Tailcall. The framework is designed to test the execution of Tailcall configs, and it is based on the following architecture:
 ![Test Architecture](../../static/images/contributors/test-arch.png)
 
@@ -70,12 +72,14 @@ Blocks are specified along with the codeblocks next to the format of the codeblo
 
 ````md
 <!-- highlight-next-line -->
+
 ```graphql @server
 schema {
   query: Query
 }
 ```
 ````
+
 #### `@server:`
 
 A `@server` block lets you specify a server SDL config. These are expected to be parseable to have a passing test, unless the [`SDL error` instruction](#instruction) is specified, which requires the config parsing to throw an error. There must be at least one `@server` block in a test.
@@ -90,6 +94,7 @@ Example:
 
 ````md
 <!-- highlight-next-line -->
+
 ```graphql @server
 schema {
   query: Query
@@ -118,6 +123,7 @@ Example:
 
 ````md
 <!-- highlight-next-line -->
+
 ```graphql @mock
 - request:
     method: GET
@@ -140,6 +146,7 @@ Example:
 
 ````md
 <!-- highlight-next-line -->
+
 ```yml @env
 TEST_ID: 1
 ```
@@ -156,6 +163,7 @@ Example:
 
 ````md
 <!-- highlight-next-line -->
+
 ```graphql @assert
 - method: POST
   url: http://localhost:8080/graphql
@@ -174,9 +182,9 @@ Example:
 
 ````md
 <!-- highlight-next-line -->
+
 ```graphql @file:enum.graphql
-schema @server(port: 8080)
-@upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+schema @server(port: 8080) @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
 }
 
