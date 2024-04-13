@@ -1,6 +1,6 @@
 ---
 title: "Bounty"
-description: "Guidelines for the Tailcall Bounty Program"
+description: "This guide outlines the Tailcall Bounty Program, emphasizing quick, high-quality contributions and collaborative engagement through challenges and rewards. It provides essential participation rules and encourages active community involvement for innovation and excellence."
 sidebar_position: 2
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Guidelines"
-description: "Contribution guidelines for Tailcall"
+description: "This guide outlines the key steps and best practices for contributing to the Tailcall project, covering setup, coding, testing, and documentation to ensure quality and consistency in contributions."
 sidebar_position: 1
 ---
 
