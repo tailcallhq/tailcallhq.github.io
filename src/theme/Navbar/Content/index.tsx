@@ -12,9 +12,10 @@ import NavbarSearch from "@theme/Navbar/Search"
 import GithubStarsButton from "@site/src/components/shared/GithubStarsButton"
 import SearchIcon from "@site/static/icons/basic/search.svg"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
-import styles from "./styles.module.css"
+import styles from "@site/src/theme/Navbar/Content/styles.module.css"
 import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
 import Search from '@site/src/components/shared/Search';
+console.log(styles, 'styles');
 
 const useNavbarItems = () => {
   // TODO temporary casting until ThemeConfig type is improved (added by docusaurus)
@@ -66,7 +67,7 @@ const NavbarContent = (): JSX.Element => {
         // TODO stop hardcoding items? (added by docusaurus)
         // Render left navbar items
         <>
-          {/* <Search /> */}
+          <Search />
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
           <NavbarItems items={leftItems} />
@@ -79,11 +80,6 @@ const NavbarContent = (): JSX.Element => {
           <NavbarItems items={rightItems} />
           <GithubStarsButton className="navbar__item navbar__link" />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
-          {!searchBarItem && (
-            <NavbarSearch>
-              {/* <Search /> */}
-            </NavbarSearch>
-          )}
         </>
       }
     />

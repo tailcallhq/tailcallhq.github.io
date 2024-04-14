@@ -7,9 +7,11 @@ import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
 import EscapeKeyIcon from "@site/static/icons/basic/escape-key.svg"
 import useIsBrowser from "@docusaurus/useIsBrowser"
 import Platform from "react-platform-js"
-import styles from "@site/src/theme/DocRoot/Layout/Sidebar/styles.module.css"
+import styles from "@site/src/theme/Navbar/Content/styles.module.css"
 import {useDebounce} from "use-debounce"
 import {HitsItem} from "./types"
+import SearchIcon from "@site/static/icons/basic/search.svg"
+import {setBodyOverflow} from "@site/src/utils"
 
 const algoliaConfig = {
   appId: "R2IYF7ETH7",
@@ -21,13 +23,14 @@ const SearchRoot = () => {
   const {query, refine} = useSearchBox()
   const {hits} = useHits()
   const [isSearchModalVisible, setIsSearchModalVisible] = useState(false)
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
   const [focusedHitIndex, setFocusedHitIndex] = useState(0)
   const focusedRef = useRef<HTMLDivElement>(null)
   const isBrowser = useIsBrowser()
 
   const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K") : "Search"
 
-  const SearchBox = () => {
+  const SearchInput = () => {
     const [value, setValue] = useState(query)
     const [debouncedValue] = useDebounce(value, 300)
 
@@ -93,6 +96,96 @@ const SearchRoot = () => {
     ))
   }
 
+  const SearchMobile = () => {
+    return (
+      <>
+        <SearchIcon onClick={handleSearchClick} className="lg:hidden mr-SPACE_03 h-6 w-6" />
+        {isSearchModalVisible && (
+          <div>
+            <div onClick={handleSearchModalClose} className={styles.overlay}></div>
+            <div className={styles.modal}>
+              {/* Search modal content */}
+              <div className={styles.modalContent}>
+                <div className={styles.search}>
+                  <div className={styles.searchInput}>
+                    <SearchInput />
+                  </div>
+                  <span
+                    className={`${styles.searchDocsClose} ${styles.searchDocsCommon}`}
+                    onClick={handleSearchModalClose}
+                  >
+                    Close
+                  </span>
+                </div>
+                {hits.length > 0 && query.length > 0 ? (
+                  <div className="overflow-y-auto max-h-full mt-6">
+                    <Results />
+                  </div>
+                ) : (
+                  <div className={styles.initialCase}>
+                    <PageSearchIcon />
+                    <div className={styles.searchDocsTitle}>Search Docs</div>
+                    <div className={`${styles.searchDocsDesc} ${styles.searchDocsCommon}`}>
+                      Search anything within the docs
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </>
+    )
+  }
+
+  const SearchDesktop = () => {
+    return (
+      <>
+        {/* Search input container */}
+        <div className={styles.inputContainer}>
+          <span aria-label="expand searchbar" role="button" className="search-icon" tabIndex={0}></span>
+          <input readOnly placeholder={placeholder} onClick={handleSearchClick} className={styles.input} />
+        </div>
+        {/* Search modal */}
+        {isSearchModalVisible ? (
+          <>
+            <div onClick={handleSearchModalClose} className={styles.overlayDesktop}></div>
+            <div className={styles.modalDesktop}>
+              <div className={styles.modalContentDesktop}>
+                <SearchInput />
+                {hits.length > 0 ? (
+                  <div className="overflow-y-auto max-h-[296px]">
+                    <Results />
+                  </div>
+                ) : (
+                  <div className={styles.initialCaseDesktop}>
+                    <PageSearchIcon />
+                    <div className={styles.searchDocsTitle}>Search Docs</div>
+                    <div className={styles.searchDocsDesc}>Search anything within the docs</div>
+                  </div>
+                )}
+              </div>
+              <div className={styles.footerDesktop}>
+                <div className={styles.navigationInfoItem}>
+                  <EnterKeyIcon />
+                  <span>to select</span>
+                </div>
+                <div className={styles.navigationInfoItem}>
+                  <UpDownKeyIcon />
+                  <span>to navigate</span>
+                </div>
+                <div className={styles.navigationInfoItem}>
+                  <EscapeKeyIcon />
+                  <span>to close</span>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : null}
+      </>
+    )
+  }
+
   const handleSearchClick = () => {
     setIsSearchModalVisible(true)
   }
@@ -131,7 +224,14 @@ const SearchRoot = () => {
     }
   }
 
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768)
+  }
+
   useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress)
+    window.addEventListener("resize", handleResize)
+
     if (focusedHitIndex >= 0 && focusedHitIndex < hits.length) {
       focusedRef.current?.scrollIntoView({
         behavior: "smooth",
@@ -139,60 +239,20 @@ const SearchRoot = () => {
         inline: "start",
       })
     }
-  }, [focusedHitIndex])
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress)
+    if (isSearchModalVisible) {
+      setBodyOverflow("hidden")
+    } else {
+      setBodyOverflow("initial")
+    }
+
     return () => {
+      window.removeEventListener("resize", handleResize)
       window.removeEventListener("keydown", handleKeyPress)
     }
-  }, [hits.length])
+  }, [focusedHitIndex, isSearchModalVisible, hits.length])
 
-  return (
-    <>
-      {/* Search input container */}
-      <div className={styles.inputContainer}>
-        <span aria-label="expand searchbar" role="button" className="search-icon" tabIndex={0}></span>
-        <input readOnly placeholder={placeholder} onClick={handleSearchClick} className={styles.input} />
-      </div>
-      {/* Search modal */}
-      {isSearchModalVisible ? (
-        <>
-          <div onClick={handleSearchModalClose} className={styles.overlay}></div>
-          <div className={styles.modal}>
-            <div className={styles.modalContent}>
-              <SearchBox />
-              {hits.length > 0 ? (
-                <div className="overflow-y-auto max-h-[296px]">
-                  <Results />
-                </div>
-              ) : (
-                <div className={styles.initialCase}>
-                  <PageSearchIcon />
-                  <div className={styles.searchDocsTitle}>Search Docs</div>
-                  <div className={styles.searchDocsDesc}>Search anything within the docs</div>
-                </div>
-              )}
-            </div>
-            <div className={styles.footer}>
-              <div className={styles.navigationInfoItem}>
-                <EnterKeyIcon />
-                <span>to select</span>
-              </div>
-              <div className={styles.navigationInfoItem}>
-                <UpDownKeyIcon />
-                <span>to navigate</span>
-              </div>
-              <div className={styles.navigationInfoItem}>
-                <EscapeKeyIcon />
-                <span>to close</span>
-              </div>
-            </div>
-          </div>
-        </>
-      ) : null}
-    </>
-  )
+  return <>{isMobile ? <SearchMobile /> : <SearchDesktop />}</>
 }
 
 const SearchBar = () => {
