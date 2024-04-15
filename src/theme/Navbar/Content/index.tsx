@@ -14,8 +14,8 @@ import SearchIcon from "@site/static/icons/basic/search.svg"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import styles from "@site/src/theme/Navbar/Content/styles.module.css"
 import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
-import Search from '@site/src/components/shared/Search';
-console.log(styles, 'styles');
+import Search from "@site/src/components/shared/Search"
+console.log(styles, "styles")
 
 const useNavbarItems = () => {
   // TODO temporary casting until ThemeConfig type is improved (added by docusaurus)
@@ -51,7 +51,6 @@ const NavbarContentLayout = ({left, right}: {left: ReactNode; right: ReactNode})
     </div>
   )
 }
-
 
 const NavbarContent = (): JSX.Element => {
   const mobileSidebar = useNavbarMobileSidebar()
