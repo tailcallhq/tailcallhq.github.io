@@ -12,16 +12,18 @@ import {useDebounce} from "use-debounce"
 import {HitsItem} from "./types"
 import SearchIcon from "@site/static/icons/basic/search.svg"
 import {setBodyOverflow} from "@site/src/utils"
+import {useHistory} from "react-router-dom"
 
 const algoliaConfig = {
-  appId: "R2IYF7ETH7",
-  apiKey: "599cec31baffa4868cae4e79f180729b",
-  indexName: "docsearch",
+  appId: "X27WDVHRQ3",
+  apiKey: "35bc100f239853cd8a7195b23ed7393b",
+  indexName: "tailcall",
 }
 
 const SearchRoot = () => {
   const {query, refine} = useSearchBox()
   const {hits} = useHits()
+  const history = useHistory()
   const [isSearchModalVisible, setIsSearchModalVisible] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
   const [focusedHitIndex, setFocusedHitIndex] = useState(0)
@@ -217,7 +219,15 @@ const SearchRoot = () => {
         })
         break
       case "Enter":
-        window.location.href = (hits as unknown as HitsItem[])[focusedHitIndex].url
+       const hitUrl = (hits as unknown as HitsItem[])[focusedHitIndex].url;
+       setIsSearchModalVisible(false)
+       if (hitUrl.startsWith('http')) {
+         const url = new URL(hitUrl);
+         const path = url.pathname + url.search + url.hash;
+         history.push(path);
+       } else {
+         history.push(hitUrl);
+       }
         break
       default:
         break
