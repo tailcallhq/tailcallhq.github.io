@@ -18,7 +18,7 @@ A Markdown-based snapshot testing framework in **Tailcall**.
     - [`@server`](#server)
     - [`@mock`](#mock)
     - [`@env`](#env)
-    - [`@assert`](#assert)
+    - [`@test`](#test)
     - [`@file:<filename>`](#filefilename)
   - [Instruction](#instruction)
 - [Test process](#test-process)
@@ -84,7 +84,7 @@ schema {
 
 A `@server` block lets you specify a server SDL config. These are expected to be parseable to have a passing test, unless the [`SDL error` instruction](#instruction) is specified, which requires the config parsing to throw an error. There must be at least one `@server` block in a test.
 
-Every test should have at least one `@server` block. Some blocks (for example, `@assert`) require precisely one `@server` block. Moreover, having precisely one `@server` block in a test ensures that the `client` check will also be performed.
+Every test should have at least one `@server` block. Some blocks (for example, `@test`) require precisely one `@server` block. Moreover, having precisely one `@server` block in a test ensures that the `client` check will also be performed.
 
 The `merge` check is always performed using every defined server block.
 
@@ -152,19 +152,19 @@ TEST_ID: 1
 ```
 ````
 
-#### `@assert:`
+#### `@test:`
 
-An `@assert` block specifies HTTP requests that the runner should perform in `YAML`.
-It solely contains requests. The response for each request is stored in an `assert_{i}` snapshot.
+An `@test` block specifies HTTP requests that the runner should perform in `YAML`.
+It solely contains requests. The response for each request is stored in an `test_{i}` snapshot.
 
-There may be at most one `@assert` block in a test.
+There may be at most one `@test` block in a test.
 
 Example:
 
 ````md
 <!-- highlight-next-line -->
 
-```graphql @assert
+```graphql @test
 - method: POST
   url: http://localhost:8080/graphql
   body:
@@ -246,14 +246,14 @@ There must be precisely zero or one instruction in a test.
       1. Generates the client schema of the `server` block.
       1. Compares it to the `client` SDL snapshot.
       1. If the snapshot doesn't match the generated schema, the runner generates a new snapshot and throws an error.
-   1. If the test has an [`@assert` block](#assert), the runner performs `assert` checks:
+   1. If the test has an [`@test` block](#test), the runner performs `test` checks:
       1. If there is a [`@mock` block](#mock), the runner sets up the mock HTTP client based on it.
       1. If there is at least one [`@file` block](#filefilename), the runner sets up the mock filesystem based on them.
       1. If there is an [`@env` block](#env), the runner uses it for the app context.
       1. Creates an app context based on the [`@server` block](#server).
-      1. For each assertion in the block (0-based index `i`), the runner does the following:
+      1. For each test in the block (0-based index `i`), the runner does the following:
          1. Runs the HTTP request on the app context.
-         1. Compares the HTTP response to the `assert_{i}` snapshot.
+         1. Compares the HTTP response to the `test_{i}` snapshot.
          1. If the snapshot doesn't match the response, the runner generates a new snapshot and throws an error.
 
 ## Snapshots
