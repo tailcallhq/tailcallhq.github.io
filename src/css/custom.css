@@ -557,6 +557,14 @@ nav.menu {
   }
 }
 
+.graphiql-main {
+  height: 80vh;
+}
+
+.graphiql-main * {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
 .graphiql-dialog {
   top: 60% !important;
 }
