@@ -556,3 +556,13 @@ nav.menu {
     box-shadow: none;
   }
 }
+
+.playground-container {
+  .graphiql-main {
+    height: 80vh;
+  }
+}
+
+.graphiql-dialog {
+  top: 60% !important;
+}
