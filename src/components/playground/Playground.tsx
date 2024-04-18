@@ -23,8 +23,9 @@ const useDebouncedValue = (inputValue: string, delay: number) => {
 };
 
 const Playground: React.FC<PlaygroundProps> = ({defaultApiEndpoint}) => {
-    const [apiEndpoint, setApiEndpoint] = useState(defaultApiEndpoint || "https://graphql-pokemon2.vercel.app/");
-    const [inputValue, setInputValue] = useState(apiEndpoint);
+    const initialApiEndpoint = new URLSearchParams(window.location.search).get('apiEndpoint') || defaultApiEndpoint || "https://graphql-pokemon2.vercel.app/";
+    const [apiEndpoint, setApiEndpoint] = useState(initialApiEndpoint);
+    const [inputValue, setInputValue] = useState(initialApiEndpoint);
 
     const debouncedApiEndpoint = useDebouncedValue(inputValue, 500);
 
@@ -34,6 +35,10 @@ const Playground: React.FC<PlaygroundProps> = ({defaultApiEndpoint}) => {
 
     useEffect(() => {
         setApiEndpoint(debouncedApiEndpoint);
+        // Update URL query parameter
+        const url = new URL(window.location.href);
+        url.searchParams.set('apiEndpoint', debouncedApiEndpoint);
+        window.history.replaceState(null, '', url.toString());
     }, [debouncedApiEndpoint]);
 
     return (
