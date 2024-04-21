@@ -562,7 +562,7 @@ nav.menu {
 }
 
 .graphiql-main * {
-  font-family: 'Space Grotesk', sans-serif !important;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .graphiql-dialog {

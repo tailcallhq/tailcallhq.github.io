@@ -3,7 +3,7 @@ import { createGraphiQLFetcher } from "@graphiql/toolkit";
 import { GraphiQL } from "graphiql";
 
 type PlaygroundProps = {
-    defaultApiEndpoint?: string;
+    defaultApiEndpoint: string;
 }
 
 const useDebouncedValue = (inputValue: string, delay: number) => {
@@ -23,11 +23,13 @@ const useDebouncedValue = (inputValue: string, delay: number) => {
 };
 
 const Playground: React.FC<PlaygroundProps> = ({defaultApiEndpoint}) => {
-    const initialApiEndpoint = new URLSearchParams(window.location.search).get('apiEndpoint') || defaultApiEndpoint || "https://graphql-pokemon2.vercel.app/";
+    const initialApiEndpoint = new URLSearchParams(window.location.search).get('apiEndpoint') || defaultApiEndpoint;
     const [apiEndpoint, setApiEndpoint] = useState(initialApiEndpoint);
     const [inputValue, setInputValue] = useState(initialApiEndpoint);
 
     const debouncedApiEndpoint = useDebouncedValue(inputValue, 500);
+    const apiEndpointInputClasses = `border border-solid border-tailCall-border-light-500 rounded-lg font-space-grotesk h-11 w-[100%]
+    p-SPACE_04 text-content-small outline-none focus:border-x-tailCall-light-700`;
 
     const fetcher = createGraphiQLFetcher({
         url: apiEndpoint,
@@ -49,8 +51,7 @@ const Playground: React.FC<PlaygroundProps> = ({defaultApiEndpoint}) => {
                 type="url"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className={`border border-solid border-tailCall-border-light-500 rounded-lg font-space-grotesk h-11 w-[100%]
-                p-SPACE_04 text-content-small outline-none focus:border-x-tailCall-light-700`}
+                className={apiEndpointInputClasses}
                 placeholder="API Endpoint"
                 />
             </div>
