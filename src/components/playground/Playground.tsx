@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import {createGraphiQLFetcher} from "@graphiql/toolkit"
 import {GraphiQL} from "graphiql"
 import {isValidURL} from "@site/src/utils"
+import "graphiql/graphiql.css"
 
 type PlaygroundProps = {
   defaultApiEndpoint: URL
@@ -63,7 +64,9 @@ const Playground: React.FC<PlaygroundProps> = ({defaultApiEndpoint}) => {
               placeholder="API Endpoint"
             />
           </div>
-          <GraphiQL fetcher={createGraphiQLFetcher({url: apiEndpoint.toString()})} />
+          <div className="flex my-SPACE_03">
+            <GraphiQL fetcher={createGraphiQLFetcher({url: apiEndpoint.toString()})} />
+          </div>
         </div>
       )}
     </>
