@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react"
 import {createGraphiQLFetcher} from "@graphiql/toolkit"
 import {GraphiQL} from "graphiql"
+import {isValidURL} from "@site/src/utils"
 
 type PlaygroundProps = {
-  defaultApiEndpoint: string
+  defaultApiEndpoint: URL
 }
 
 const useDebouncedValue = (inputValue: string, delay: number) => {
@@ -23,18 +24,22 @@ const useDebouncedValue = (inputValue: string, delay: number) => {
 }
 
 const Playground: React.FC<PlaygroundProps> = ({defaultApiEndpoint}) => {
+  const apiEndpointParam =
+    typeof window !== "undefined" && new URLSearchParams(window.location.search).get("apiEndpoint")
   const initialApiEndpoint =
-    (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("apiEndpoint")) ||
+    (typeof apiEndpointParam === "string" && isValidURL(apiEndpointParam) && new URL(apiEndpointParam)) ||
     defaultApiEndpoint
-  const [apiEndpoint, setApiEndpoint] = useState(initialApiEndpoint)
-  const [inputValue, setInputValue] = useState(initialApiEndpoint)
+  const [apiEndpoint, setApiEndpoint] = useState<URL>(new URL(initialApiEndpoint))
+  const [inputValue, setInputValue] = useState<string>(initialApiEndpoint.toString())
 
   const debouncedApiEndpoint = useDebouncedValue(inputValue, 500)
   const apiEndpointInputClasses = `border border-solid border-tailCall-border-light-500 rounded-lg font-space-grotesk h-11 w-[100%]
     p-SPACE_04 text-content-small outline-none focus:border-x-tailCall-light-700`
 
   useEffect(() => {
-    setApiEndpoint(debouncedApiEndpoint)
+    if (isValidURL(debouncedApiEndpoint)) {
+      setApiEndpoint(new URL(debouncedApiEndpoint))
+    }
 
     if (typeof window !== "undefined") {
       // Update URL query parameter
@@ -58,7 +63,7 @@ const Playground: React.FC<PlaygroundProps> = ({defaultApiEndpoint}) => {
               placeholder="API Endpoint"
             />
           </div>
-          <GraphiQL fetcher={createGraphiQLFetcher({url: apiEndpoint})} />
+          <GraphiQL fetcher={createGraphiQLFetcher({url: apiEndpoint.toString()})} />
         </div>
       )}
     </>
