@@ -6,7 +6,7 @@ import Playground from "../components/playground/Playground"
 const PlaygroundPage = () => {
   return (
     <Layout title="Tailcall Playground" description="Explore, test, and interact with your GraphQL APIs effortlessly">
-      <Playground defaultApiEndpoint="http://localhost:8000" />
+      <Playground defaultApiEndpoint="http://localhost:8000/graphql" />
     </Layout>
   )
 }
