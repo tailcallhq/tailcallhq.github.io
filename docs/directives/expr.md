@@ -54,8 +54,8 @@ type User {
     @expr(
       body: {
         emails: {
-          workEmail: "{{value.workEmail}}"
-          personalEmail: "{{value.personalEmail}}"
+          workEmail: "{{.value.workEmail}}"
+          personalEmail: "{{.value.personalEmail}}"
         }
       }
     )
@@ -67,4 +67,4 @@ type Emails {
 }
 ```
 
-In this example, the `@expr` directive dynamically generate an `Emails` object based on the provided template data. The placeholders within the template (`{{value.workEmail}}` and `{{value.personalEmail}}`) gets replaced with the actual values specified in the `User` type, allowing for dynamic content generation while still adhering to the schema's structure.
+In this example, the `@expr` directive dynamically generate an `Emails` object based on the provided template data. The placeholders within the template (`{{.value.workEmail}}` and `{{.value.personalEmail}}`) gets replaced with the actual values specified in the `User` type, allowing for dynamic content generation while still adhering to the schema's structure.

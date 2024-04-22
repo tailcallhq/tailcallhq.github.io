@@ -35,7 +35,7 @@ schema
 }
 
 type Query {
-  post(id: Int!): Post @http(path: "/posts/{{args.id}}")
+  post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
 }
 
 type Post {
@@ -43,7 +43,7 @@ type Post {
   id: Int
   title: String
   body: String
-  user: User @http(path: "/users/{{value.userId}}")
+  user: User @http(path: "/users/{{.value.userId}}")
 }
 
 type User {

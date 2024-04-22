@@ -66,11 +66,11 @@ schema
 
 type Query {
   posts: [Post] @http(path: "/posts")
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
 }
 
 type Mutation {
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
 }
 
 #highlight-start
@@ -91,7 +91,7 @@ type Post {
   #highlight-start
   body: String! @protected
   #highlight-end
-  user: User @http(path: "/users/{{value.userId}}")
+  user: User @http(path: "/users/{{.value.userId}}")
 }
 ```
 
@@ -182,12 +182,12 @@ schema {
 }
 
 type Query {
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
 }
 
 type Mutation {
   user(id: Int!): User
-    @http(path: "/users/{{args.id}}", method: POST)
+    @http(path: "/users/{{.args.id}}", method: POST)
 }
 
 type User {
@@ -208,12 +208,12 @@ schema {
 }
 
 type Query {
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
 }
 
 type Mutation {
   user(id: Int!): User
-    @http(path: "/users/{{args.id}}", method: POST)
+    @http(path: "/users/{{.args.id}}", method: POST)
     @protected
 }
 

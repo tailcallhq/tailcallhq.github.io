@@ -142,7 +142,7 @@ type Query {
   newsById(news: NewsInput!): News!
     @grpc(
       service: "news.news.NewsService.GetNews"
-      body: "{{args.news}}"
+      body: "{..args.news}}"
     )
 }
 ```
@@ -168,7 +168,7 @@ type Query {
   newsById(news: NewsInput!): News!
     @grpc(
       method: "news.news.NewsService.GetNews"
-      body: "{{args.news}}"
+      body: "{{.args.news}}"
     )
 }
 
@@ -242,7 +242,7 @@ type Query {
   newsById(news: NewsInput!): News!
     @grpc(
       method: "news.NewsService.GetNews"
-      body: "{{args.news}}"
+      body: "{{.args.news}}"
       # highlight-next-line
       batchKey: ["news", "id"]
     )

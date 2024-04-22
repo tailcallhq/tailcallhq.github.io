@@ -47,7 +47,7 @@ schema
         headers: [
           {
             key: "x-honeycomb-team"
-            value: "{{env.HONEYCOMB_API_KEY}}"
+            value: "{{.env.HONEYCOMB_API_KEY}}"
           }
           {key: "x-honeycomb-dataset", value: "tailcall"}
         ]
@@ -118,7 +118,7 @@ schema
   @telemetry(
     export: {
       otlp: {
-        api_key: "{{env.APOLLO_API_KEY}}"
+        api_key: "{{.env.APOLLO_API_KEY}}"
         graph_ref: "graph-id@current"
         platform: "website.com"
         version: "1.0.0"
