@@ -13,7 +13,7 @@ const PlaygroundPage = (): JSX.Element => {
 
   return (
     <>
-      <Playground defaultApiEndpoint={new URL("http://localhost:8000/graphql")} />
+      <Playground />
       {editorLoaded && <Footer />}
     </>
   )
