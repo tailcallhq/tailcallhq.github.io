@@ -565,8 +565,14 @@ nav.menu {
   font-family: "Space Grotesk", sans-serif;
 }
 
-.graphiql-dialog {
-  top: 60% !important;
+.graphiql-query-editor *,
+.graphiql-response * {
+  font-family: "Space Mono", sans-serif;
+}
+
+.graphiql-dialog,
+.graphiql-dialog-overlay {
+  z-index: var(--ifm-z-index-overlay) !important;
 }
 
 @media (max-width: 600px) {
@@ -586,5 +592,9 @@ nav.menu {
 
   .graphiql-editor-tool {
     height: 10vh;
+  }
+
+  button[data-value="short-keys"] {
+    display: none !important;
   }
 }
