@@ -135,7 +135,7 @@ schema
         allowPrivateNetwork: true
         exposeHeaders: ["Content-Type"]
         maxAge: 360
-        vary: "Origin"
+        vary: ["Origin"]
       }
     }
   ) {
