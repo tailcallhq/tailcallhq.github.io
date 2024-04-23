@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import {GraphiQL} from "graphiql"
 import {isValidURL} from "@site/src/utils"
 import "graphiql/graphiql.css"
+import "../../css/graphiql.css"
 
 type FetcherParams = {
   query: string
@@ -26,8 +27,7 @@ const useDebouncedValue = (inputValue: string, delay: number) => {
 }
 
 const Playground = () => {
-  const apiEndpointParam =
-    typeof window !== "undefined" && new URLSearchParams(window.location.search).get("apiEndpoint")
+  const apiEndpointParam = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("u")
   const initialApiEndpoint =
     (typeof apiEndpointParam === "string" && isValidURL(apiEndpointParam) && new URL(apiEndpointParam)) || ""
   const [apiEndpoint, setApiEndpoint] = useState<URL | string>(
@@ -42,13 +42,6 @@ const Playground = () => {
   useEffect(() => {
     if (isValidURL(debouncedApiEndpoint)) {
       setApiEndpoint(new URL(debouncedApiEndpoint))
-    }
-
-    if (typeof window !== "undefined") {
-      // Update URL query parameter
-      const url = new URL(window.location.href)
-      url.searchParams.set("apiEndpoint", debouncedApiEndpoint)
-      window.history.replaceState(null, "", url.toString())
     }
   }, [debouncedApiEndpoint])
 
