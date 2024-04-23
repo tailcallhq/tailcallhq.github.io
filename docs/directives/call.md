@@ -15,7 +15,7 @@ schema
 
 type Query {
   # highlight-start
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
   # highlight-end
   posts: [Post] @http(path: "/posts")
 }
@@ -26,7 +26,7 @@ type Post {
   title: String!
   body: String!
   # highlight-start
-  user: User @http(path: "/users/{{value.userId}}")
+  user: User @http(path: "/users/{{.value.userId}}")
   # highlight-end
 }
 
@@ -49,7 +49,7 @@ type Post {
   user: User
     @call(
       steps: [
-        {query: "user", args: {id: "{{value.userId}}"}}
+        {query: "user", args: {id: "{{.value.userId}}"}}
       ]
     )
   # highlight-end
@@ -72,7 +72,7 @@ type Post {
   user: User
     @call(
       steps: [
-        {query: "user", args: {id: "{{value.userId}}"}}
+        {query: "user", args: {id: "{{.value.userId}}"}}
       ]
     )
 }
@@ -86,10 +86,10 @@ Similarly, the `@call` directive can facilitate calling a mutation from another 
 type Mutation {
   insertPost(input: PostInput, overwrite: Boolean): Post
     @http(
-      body: "{{args.input}}"
+      body: "{{.args.input}}"
       method: "POST"
       path: "/posts"
-      query: {overwrite: "{{args.overwrite}}"}
+      query: {overwrite: "{{.args.overwrite}}"}
     )
 
   upsertPost(input: PostInput): Post
@@ -97,7 +97,7 @@ type Mutation {
       steps: [
         {
           mutation: "insertPost"
-          args: {input: "{{args.input}}", overwrite: true}
+          args: {input: "{{.args.input}}", overwrite: true}
         }
       ]
     )
@@ -114,7 +114,7 @@ type Post {
   user: User
     @call(
       steps: [
-        {query: "user", args: {id: "{{value.userId}}"}}
+        {query: "user", args: {id: "{{.value.userId}}"}}
       ]
     )
 }
@@ -137,13 +137,13 @@ schema @server(graphiql: true) {
 
 type Query {
   a(input: JSON): JSON
-    @expr(body: {value: "{{args.input.a}}"})
+    @expr(body: {value: "{{.args.input.a}}"})
 
   b(input: JSON): JSON
-    @expr(body: {value: "{{args.input.b}}"})
+    @expr(body: {value: "{{.args.input.b}}"})
 
   c(input: JSON): JSON
-    @expr(body: {value: "{{args.input.c}}"})
+    @expr(body: {value: "{{.args.input.c}}"})
 }
 ```
 
@@ -190,21 +190,21 @@ schema @server(graphiql: true) {
 
 type Query {
   a(input: JSON): JSON
-    @expr(body: {value: "{{args.input.a}}"})
+    @expr(body: {value: "{{.args.input.a}}"})
 
   b(input: JSON): JSON
-    @expr(body: {value: "{{args.input.b}}"})
+    @expr(body: {value: "{{.args.input.b}}"})
 
   c(input: JSON): JSON
-    @expr(body: {value: "{{args.input.c}}"})
+    @expr(body: {value: "{{.args.input.c}}"})
 
   # highlight-start
   abc(input: JSON): JSON
     @call(
       steps: [
-        {query: "a", args: {input: "{{args.input}}"}}
-        {query: "b", args: {input: "{{args.value}}"}}
-        {query: "c", args: {input: "{{args.value}}"}}
+        {query: "a", args: {input: "{{.args.input}}"}}
+        {query: "b", args: {input: "{{.args.value}}"}}
+        {query: "c", args: {input: "{{.args.value}}"}}
       ]
     )
   # highlight-end

@@ -16,7 +16,7 @@ Imagine you're building a blog and want to display a specific user's profile pag
 ```graphql
 type Query {
   # Retrieve a specific user by ID
-  user(id: Int!): User @http(path: "/users/{{value.id}}")
+  user(id: Int!): User @http(path: "/users/{{.value.id}}")
 }
 
 type User {
@@ -26,7 +26,7 @@ type User {
   email: String!
 
   # Access user's posts using their ID in the path
-  posts: [Post] @http(path: "/users/{{value.id}}/posts")
+  posts: [Post] @http(path: "/users/{{.value.id}}/posts")
 }
 
 type Post {
@@ -77,7 +77,7 @@ type User {
   email: String!
 
   # Access user's posts using their ID in the path
-  posts: [Post] @http(path: "/users/{{value.id}}/posts")
+  posts: [Post] @http(path: "/users/{{.value.id}}/posts")
 }
 
 type Post {
@@ -125,7 +125,7 @@ type Post {
   userId: Int!
   title: String!
   body: String!
-  user: User @http(path: "/users/{{value.userId}}")
+  user: User @http(path: "/users/{{.value.userId}}")
 }
 
 type User {
@@ -151,6 +151,6 @@ query getPostsWithUsers {
 }
 ```
 
-Tailcall analyzes the schema and recognizes that fetching user details for each post is independent. It can potentially execute these requests to `/users/{{value.userId}}` concurrently, fetching user data for multiple posts simultaneously.
+Tailcall analyzes the schema and recognizes that fetching user details for each post is independent. It can potentially execute these requests to `/users/{{.value.userId}}` concurrently, fetching user data for multiple posts simultaneously.
 
 In summary, Tailcall automates the management of sequence and parallelism in API calls. It analyzes the defined schema to optimize execution, freeing developers from manual intervention.

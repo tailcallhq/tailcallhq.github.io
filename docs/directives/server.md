@@ -178,7 +178,7 @@ type Query {
       headers: [
         {
           key: "Authorization"
-          value: "Bearer {{vars.apiKey}}"
+          value: "Bearer {{.vars.apiKey}}"
         }
       ]
     )

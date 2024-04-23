@@ -69,7 +69,7 @@ type Query {
   user: User
     @graphQL(
       name: "user"
-      args: [{key: "id", value: "{{value.userId}}"}]
+      args: [{key: "id", value: "{{.value.userId}}"}]
     )
 }
 ```

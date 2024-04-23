@@ -29,7 +29,7 @@ type Address {
 }
 
 type Query {
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
 }
 ```
 
@@ -77,7 +77,7 @@ type User
   email: String!
   phone: String
   website: String
-  posts: Post @http(path: "/users/{{value.id}}/posts")
+  posts: Post @http(path: "/users/{{.value.id}}/posts")
 }
 
 type Post {
