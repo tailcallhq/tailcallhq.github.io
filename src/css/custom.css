@@ -556,35 +556,3 @@ nav.menu {
     box-shadow: none;
   }
 }
-
-.graphiql-main {
-  height: 80vh;
-}
-
-.graphiql-main * {
-  font-family: "Space Grotesk", sans-serif;
-}
-
-.graphiql-dialog {
-  top: 60% !important;
-}
-
-@media (max-width: 600px) {
-  .graphiql-main {
-    flex-direction: column;
-    overflow: scroll;
-  }
-
-  .graphiql-session {
-    flex-direction: column;
-  }
-
-  .graphiql-response {
-    margin-top: 16px;
-    height: 30vh;
-  }
-
-  .graphiql-editor-tool {
-    height: 10vh;
-  }
-}

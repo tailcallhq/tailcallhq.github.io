@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react"
-import {createGraphiQLFetcher} from "@graphiql/toolkit"
 import {GraphiQL} from "graphiql"
 import {isValidURL} from "@site/src/utils"
 import "graphiql/graphiql.css"
+import "../../css/graphiql.css"
 
-type PlaygroundProps = {
-  defaultApiEndpoint: URL
+type FetcherParams = {
+  query: string
+  operationName?: string | null
+  variables?: any
 }
 
 const useDebouncedValue = (inputValue: string, delay: number) => {
@@ -24,13 +26,13 @@ const useDebouncedValue = (inputValue: string, delay: number) => {
   return debouncedValue
 }
 
-const Playground: React.FC<PlaygroundProps> = ({defaultApiEndpoint}) => {
-  const apiEndpointParam =
-    typeof window !== "undefined" && new URLSearchParams(window.location.search).get("apiEndpoint")
+const Playground = () => {
+  const apiEndpointParam = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("u")
   const initialApiEndpoint =
-    (typeof apiEndpointParam === "string" && isValidURL(apiEndpointParam) && new URL(apiEndpointParam)) ||
-    defaultApiEndpoint
-  const [apiEndpoint, setApiEndpoint] = useState<URL>(new URL(initialApiEndpoint))
+    (typeof apiEndpointParam === "string" && isValidURL(apiEndpointParam) && new URL(apiEndpointParam)) || ""
+  const [apiEndpoint, setApiEndpoint] = useState<URL | string>(
+    initialApiEndpoint !== "" ? new URL(initialApiEndpoint) : "",
+  )
   const [inputValue, setInputValue] = useState<string>(initialApiEndpoint.toString())
 
   const debouncedApiEndpoint = useDebouncedValue(inputValue, 500)
@@ -41,14 +43,25 @@ const Playground: React.FC<PlaygroundProps> = ({defaultApiEndpoint}) => {
     if (isValidURL(debouncedApiEndpoint)) {
       setApiEndpoint(new URL(debouncedApiEndpoint))
     }
-
-    if (typeof window !== "undefined") {
-      // Update URL query parameter
-      const url = new URL(window.location.href)
-      url.searchParams.set("apiEndpoint", debouncedApiEndpoint)
-      window.history.replaceState(null, "", url.toString())
-    }
   }, [debouncedApiEndpoint])
+
+  const graphQLFetcher = (graphQLParams: FetcherParams) => {
+    if (apiEndpoint.toString().trim() === "") {
+      return Promise.resolve({})
+    }
+
+    return fetch(apiEndpoint.toString(), {
+      method: "post",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(graphQLParams),
+    }).then((response) => {
+      if (graphQLParams.operationName === "IntrospectionQuery") {
+        return Promise.resolve({})
+      }
+
+      return response.json()
+    })
+  }
 
   return (
     <>
@@ -65,7 +78,11 @@ const Playground: React.FC<PlaygroundProps> = ({defaultApiEndpoint}) => {
             />
           </div>
           <div className="flex my-SPACE_03">
-            <GraphiQL fetcher={createGraphiQLFetcher({url: apiEndpoint.toString()})} />
+            <GraphiQL fetcher={graphQLFetcher}>
+              <GraphiQL.Logo>
+                <></>
+              </GraphiQL.Logo>
+            </GraphiQL>
           </div>
         </div>
       )}
