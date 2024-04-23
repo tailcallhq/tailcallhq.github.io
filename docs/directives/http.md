@@ -36,11 +36,11 @@ type Query {
 }
 ```
 
-If your API endpoint contains dynamic segments, you can substitute variables using Mustache templates. For example, to fetch a specific user, you can write the path as `/users/{{args.id}}`.
+If your API endpoint contains dynamic segments, you can substitute variables using Mustache templates. For example, to fetch a specific user, you can write the path as `/users/{{.args.id}}`.
 
 ```graphql showLineNumbers
 type Query {
-  user(id: ID!): User @http(path: "/users/{{args.id}}")
+  user(id: ID!): User @http(path: "/users/{{.args.id}}")
 }
 ```
 
@@ -64,7 +64,7 @@ type Query {
   userPosts(id: ID!): [Post]
     @http(
       path: "/posts"
-      query: [{key: "userId", value: "{{args.id}}"}]
+      query: [{key: "userId", value: "{{.args.id}}"}]
     )
 }
 ```
@@ -79,7 +79,7 @@ type Mutation {
     @http(
       method: "POST"
       path: "/users"
-      body: "{{args.input}}"
+      body: "{{.args.input}}"
     )
 }
 ```
@@ -115,7 +115,7 @@ type Mutation {
       path: "/users"
       headers: [
         {key: "X-Server", value: "Tailcall"}
-        {key: "User-Name", value: "{{args.name}}"}
+        {key: "User-Name", value: "{{.args.name}}"}
       ]
     )
 }
@@ -134,10 +134,10 @@ type Post {
   user: User
     @http(
       path: "/users"
-      query: [{key: "id", value: "{{value.userId}}"}]
+      query: [{key: "id", value: "{{.value.userId}}"}]
       batchKey: ["id"]
     )
 }
 ```
 
-- `query: {key: "id", value: "{{value.userId}}"}]`: Instructs TailCall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?id=1&id=2&id=3...id=10`, consolidating requests into one.
+- `query: {key: "id", value: "{{.value.userId}}"}]`: Instructs TailCall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?id=1&id=2&id=3...id=10`, consolidating requests into one.

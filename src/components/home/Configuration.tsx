@@ -71,7 +71,7 @@ type Post {
   userId: Int!
 
   # Expand a post with user information
-  user: User @http(path: "/users/{{value.userId}}")
+  user: User @http(path: "/users/{{.value.userId}}")
 }
 `
 
@@ -100,7 +100,7 @@ types:
       user:
         type: User
         http:
-          path: /users/{{value.userId}}
+          path: /users/{{.value.userId}}
         cache: null
       userId:
         type: Int
@@ -175,7 +175,7 @@ const JSON_CONFIG = `{
         "user": {
           "type": "User",
           "http": {
-            "path": "/users/{{value.userId}}"
+            "path": "/users/{{.value.userId}}"
           },
           "cache": null
         },

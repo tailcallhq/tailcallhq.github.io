@@ -26,7 +26,7 @@ schema
 
 type Query {
   user(id: Int!): User
-    @rest(method: "GET", path: "/users/{{args.id}}")
+    @rest(method: "GET", path: "/users/{{.args.id}}")
 }
 
 type User {

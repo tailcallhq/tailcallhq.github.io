@@ -96,7 +96,7 @@ type UserInput {
 type Query {
   user(id: UserInput!): User
     @grpc(
-      body: "{{args.id}}"
+      body: "{{.args.id}}"
       method: "proto.users.UserService.GetUser"
     )
 }

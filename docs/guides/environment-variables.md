@@ -68,7 +68,7 @@ type Query {
       protoPath: "./proto/user_service.proto"
       baseURL: "https://grpc-server.example.com"
       headers: [
-        {key: "X-API-KEY", value: "{{env.API_KEY}}"}
+        {key: "X-API-KEY", value: "{{.env.API_KEY}}"}
       ]
     )
 }

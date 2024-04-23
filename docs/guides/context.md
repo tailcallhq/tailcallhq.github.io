@@ -25,7 +25,7 @@ This property facilitates access to query arguments. Consider the example:
 
 ```graphql showLineNumbers
 type Query {
-  user(id: ID!): User @http(path: "/users/{{args.id}}")
+  user(id: ID!): User @http(path: "/users/{{.args.id}}")
 }
 ```
 
@@ -41,7 +41,7 @@ type Post {
   title: String!
   body: String!
   comments: [Comment]
-    @http(path: "/posts/{{value.id}}/comments")
+    @http(path: "/posts/{{.value.id}}/comments")
 }
 ```
 
@@ -56,7 +56,7 @@ Example:
 ```graphql showLineNumbers
 type Query {
   users: [User]!
-    @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users")
+    @http(baseUrl: "{{.env.API_ENDPOINT}}", path: "/users")
 }
 ```
 
@@ -69,7 +69,7 @@ type Query {
 ```graphql showLineNumbers
 schema
   @server(
-    vars: {key: "apiKey", value: "{{env.AUTH_TOKEN}}"}
+    vars: {key: "apiKey", value: "{{.env.AUTH_TOKEN}}"}
   ) {
   query: Query
 }
@@ -81,7 +81,7 @@ type Query {
       headers: [
         {
           key: "Authorization"
-          value: "Bearer {{vars.apiKey}}"
+          value: "Bearer {{.vars.apiKey}}"
         }
       ]
     )
@@ -97,7 +97,7 @@ Headers originate from the request made to the Tailcall server.
 ```graphql showLineNumbers
 type Query {
   commentsForUser: [Comment]
-    @http(path: "/users/{{headers.x-user-id}}/comments")
+    @http(path: "/users/{{.headers.x-user-id}}/comments")
 }
 ```
 

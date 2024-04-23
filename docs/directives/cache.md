@@ -26,7 +26,7 @@ type Post {
   title: String
   userId: Int @cache(maxAge: 100)
   user: User
-    @http(path: "/user/{{value.userId}}")
+    @http(path: "/user/{{.value.userId}}")
     @cache(maxAge: 200)
 }
 
@@ -50,7 +50,7 @@ type Post @cache(maxAge: 100) {
   id: Int
   title: String
   userId: Int
-  user: User @http(path: "/user/{{value.userId}}")
+  user: User @http(path: "/user/{{.value.userId}}")
 }
 
 type User {
@@ -72,7 +72,7 @@ type Post {
   title: String @cache(maxAge: 100)
   userId: Int @cache(maxAge: 100)
   user: User
-    @http(path: "/user/{{value.userId}}")
+    @http(path: "/user/{{.value.userId}}")
     @cache(maxAge: 100)
 }
 
@@ -95,7 +95,7 @@ type Post {
   title: String
   userId: Int
   user: User
-    @http(path: "/user/{{value.userId}}")
+    @http(path: "/user/{{.value.userId}}")
     @cache(maxAge: 100)
 }
 
@@ -118,7 +118,7 @@ type Post @cache(maxAge: 200) {
   title: String
   userId: Int
   user: User
-    @http(path: "/user/{{value.userId}}")
+    @http(path: "/user/{{.value.userId}}")
     @cache(maxAge: 100)
 }
 
@@ -135,4 +135,4 @@ Thus, in the configuration above, while all fields inherit the `@cache(maxAge: 2
 
 The caching mechanism generates a hash based on information related to the applied query to serve as the cache key for the corresponding value.
 
-For instance, the system caches the `user` field in the following configuration, using the hash of the interpolated string `"/user/{{value.userId}}"` as the cache key. For example, if `Post.userId` equals `1`, the system generates the cache key by hashing the string `"/users/1"`.
+For instance, the system caches the `user` field in the following configuration, using the hash of the interpolated string `"/user/{{.value.userId}}"` as the cache key. For example, if `Post.userId` equals `1`, the system generates the cache key by hashing the string `"/users/1"`.
