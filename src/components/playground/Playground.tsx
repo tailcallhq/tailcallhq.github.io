@@ -31,7 +31,7 @@ const Playground = () => {
   const initialApiEndpoint =
     (typeof apiEndpointParam === "string" && isValidURL(apiEndpointParam) && new URL(apiEndpointParam)) || ""
   const [apiEndpoint, setApiEndpoint] = useState<URL | string>(
-    initialApiEndpoint !== "" ? new URL(initialApiEndpoint) : ""
+    initialApiEndpoint !== "" ? new URL(initialApiEndpoint) : "",
   )
   const [inputValue, setInputValue] = useState<string>(initialApiEndpoint.toString())
 
