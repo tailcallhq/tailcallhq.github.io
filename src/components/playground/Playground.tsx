@@ -55,6 +55,10 @@ const Playground = () => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(graphQLParams),
     }).then((response) => {
+      if (graphQLParams.operationName === "IntrospectionQuery") {
+        return Promise.resolve({})
+      }
+
       return response.json()
     })
   }
