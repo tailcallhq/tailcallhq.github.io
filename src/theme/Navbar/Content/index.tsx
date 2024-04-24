@@ -14,7 +14,7 @@ import SearchIcon from "@site/static/icons/basic/search.svg"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import styles from "@site/src/theme/Navbar/Content/styles.module.css"
 import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
-import Search from "@site/src/components/shared/Search"
+import Search from "@site/src/components/shared/Search/Search"
 console.log(styles, "styles")
 
 const useNavbarItems = () => {

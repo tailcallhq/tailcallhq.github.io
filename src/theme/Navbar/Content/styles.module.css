@@ -177,3 +177,8 @@ Hide color mode toggle in small viewports
     transform: translate(-50%, 0);
   }
 }
+
+mark {
+  background: none;
+  font-weight: 600;
+}
