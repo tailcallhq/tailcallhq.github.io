@@ -21,7 +21,7 @@ const Feature = ({feature}: FeatureProps): JSX.Element => {
       <div
         className="flex flex-col sm:flex-row p-SPACE_04 sm:p-SPACE_16  shadow-xl rounded-[20px] relative  sm:ml-0"
         style={{
-          backgroundImage: `url(${require("@site/static/images/home/grid.jpg").default})`,
+          backgroundImage: `url(${require("@site/static/images/home/grid.webp").default})`,
           boxShadow: "0px 0px 0px 3px var(--ifm-color-brand-light-100)",
         }}
       >

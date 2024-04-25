@@ -1,6 +1,5 @@
 import React from "react"
 import Heading from "@theme/Heading"
-
 import LinkButton from "../shared/LinkButton"
 import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"

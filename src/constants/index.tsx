@@ -10,37 +10,37 @@ export const partnerImages: PartnerImage[] = [
   {
     id: 1,
     name: "Digital Ocean",
-    logo: require("@site/static/icons/companies/digital-ocean.png").default,
+    logo: require("@site/static/icons/companies/digital-ocean.webp").default,
   },
   {
     id: 2,
     name: "Vercel",
-    logo: require("@site/static/icons/companies/vercel.png").default,
+    logo: require("@site/static/icons/companies/vercel.webp").default,
   },
   {
     id: 3,
     name: "Fastly",
-    logo: require("@site/static/icons/companies/fastly.png").default,
+    logo: require("@site/static/icons/companies/fastly.webp").default,
   },
   {
     id: 4,
     name: "Cloud Flare",
-    logo: require("@site/static/icons/companies/cloudflare.png").default,
+    logo: require("@site/static/icons/companies/cloudflare.webp").default,
   },
   {
     id: 5,
     name: "AWS",
-    logo: require("@site/static/icons/companies/aws.png").default,
+    logo: require("@site/static/icons/companies/aws.webp").default,
   },
   {
     id: 6,
     name: "Google Cloud",
-    logo: require("@site/static/icons/companies/google-cloud.png").default,
+    logo: require("@site/static/icons/companies/google-cloud.webp").default,
   },
   {
     id: 7,
     name: "Fly",
-    logo: require("@site/static/icons/companies/fly-io.png").default,
+    logo: require("@site/static/icons/companies/fly-io.webp").default,
   },
 ]
 
@@ -54,7 +54,7 @@ const Highlight = ({text}: {text: string}) => (
 
 export const features: Feature[] = [
   {
-    logo: require("@site/static/images/home/orchestration.png").default,
+    logo: require("@site/static/images/home/orchestration.webp").default,
     title: "Orchestration",
     content: (
       <>
@@ -65,7 +65,7 @@ export const features: Feature[] = [
     ),
   },
   {
-    logo: require("@site/static/images/home/governance.png").default,
+    logo: require("@site/static/images/home/governance.webp").default,
     title: "Governance",
     content: (
       <>
@@ -78,7 +78,7 @@ export const features: Feature[] = [
     ),
   },
   {
-    logo: require("@site/static/images/home/efficiency.png").default,
+    logo: require("@site/static/images/home/efficiency.webp").default,
     title: "Efficiency",
     content: (
       <>
@@ -89,7 +89,7 @@ export const features: Feature[] = [
     ),
   },
   // {
-  //   logo: require("@site/static/images/home/resiliency.png").default,
+  //   logo: require("@site/static/images/home/resiliency.webp").default,
   //   title: "Resiliency",
   //   content: (
   //     <>
@@ -103,7 +103,7 @@ export const features: Feature[] = [
   //   ),
   // },
   {
-    logo: require("@site/static/images/home/extendability.png").default,
+    logo: require("@site/static/images/home/extendability.webp").default,
     title: "Extendability",
     content: (
       <>
@@ -212,19 +212,19 @@ export const chooseTailcall: ChooseTailcall[] = [
     id: 1,
     title: "Top developer experience",
     description: "Design your APIs, with syntax highlighting and lint checks within your favourite IDE.",
-    image: require("@site/static/images/home/dev-experience.png").default,
+    image: require("@site/static/images/home/dev-experience.webp").default,
   },
   {
     id: 2,
     title: "Performance",
     description: "Get performance that’s higher than your hand optimized implementation",
-    image: require("@site/static/images/home/performance.png").default,
+    image: require("@site/static/images/home/performance.webp").default,
   },
   {
     id: 3,
     title: "Scale Fearlessly",
     description: "Leverage built-in best practices that guarantee robustness at any scale.",
-    image: require("@site/static/images/home/scale.png").default,
+    image: require("@site/static/images/home/scale.webp").default,
   },
 ]
 
