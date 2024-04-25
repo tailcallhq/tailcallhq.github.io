@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
-import {GraphiQL} from "graphiql"
+import {GraphiQL} from "graphiql-tc/esm"
 import {isValidURL} from "@site/src/utils"
-import "graphiql/graphiql.css"
+import "graphiql-tc/graphiql.min.css"
 import "../../css/graphiql.css"
 
 type FetcherParams = {

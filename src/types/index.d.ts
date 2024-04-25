@@ -19,6 +19,7 @@ type MoreFeatures = {
 type Social = {
   id: number
   name: string
+  ariaLabel: string
   image?: FunctionComponent<SVGProps<SVGSVGElement>> | undefined
   href: string
 }

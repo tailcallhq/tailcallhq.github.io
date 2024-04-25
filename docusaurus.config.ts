@@ -28,7 +28,7 @@ export default {
     },
   ],
   url: "https://tailcall.run",
-  baseUrl: "/",
+  baseUrl: "/tailcallhq.github.io/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "images/favicon.ico",
@@ -95,6 +95,7 @@ export default {
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
         {
           href: "https://discord.gg/kRZBPpkgwq",
+          "aria-label": "Discord",
           position: "right",
           className: "header-button header-button-discord",
           html: `      

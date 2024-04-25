@@ -13,7 +13,7 @@ const Feature = ({feature}: FeatureProps): JSX.Element => {
     <div className="text-tailCall-dark-500 sm:max-w-6xl sm:m-SPACE_10 lg:mx-auto lg:px-SPACE_016 my-0 lg:my-SPACE_20">
       <div className="flex items-center -ml-SPACE_02 sm:space-x-SPACE_02 sm:-ml-SPACE_05 lg:-ml-SPACE_10 mb-SPACE_06">
         <GreaterThanUnderscoreIcon className="h-5 sm:h-7" />
-        <Heading as="h5" className="text-title-semi-large sm:text-display-tiny lg:text-display-small mb-0">
+        <Heading as="h2" className="text-title-semi-large sm:text-display-tiny lg:text-display-small mb-0">
           {feature.title}
         </Heading>
       </div>
