@@ -28,7 +28,7 @@ export default {
     },
   ],
   url: "https://tailcall.run",
-  baseUrl: "/tailcallhq.github.io/",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "images/favicon.ico",
