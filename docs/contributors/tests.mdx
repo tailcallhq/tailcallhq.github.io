@@ -61,10 +61,17 @@ Examples:
 
 A level 5 heading (`#####`), with the text being one of the following:
 
-- `##### only` -- If at least one test has the `only` annotation, the runner will run this/these test(s).
 - `##### skip` -- If a test has the `skip` annotation, the runner will not run that test.
 
-These are typically added to tests temporarily, so try not to commit tests with annotations. There must be either zero or one annotations in a test.
+This annotation is typically added to tests temporarily, so try not to commit tests with annotations. There must be either zero or one annotations in a test.
+
+Note: `##### only` has been removed in the favour of cargo option.
+
+To run a single test locally one can use cargo option "--test".
+Example:
+````sh
+cargo --test --test execution_spec -- --test "test_filter"
+````
 
 ### Blocks
 
