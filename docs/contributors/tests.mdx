@@ -63,15 +63,19 @@ A level 5 heading (`#####`), with the text being one of the following:
 
 - `##### skip` -- If a test has the `skip` annotation, the runner will not run that test.
 
-This annotation is typically added to tests temporarily, so try not to commit tests with annotations. There must be either zero or one annotations in a test.
+There must be either zero or one such annotation in a test.
 
-Note: `##### only` has been removed in the favour of cargo option.
+This annotation comes handy in situation where one might need to exclude some written tests temporarily due to various reasons like : 
+- Some functionality which is supposed to test might not be implemented yet, OR
+- There might be some bugs related to it.
 
-To run a single test locally one can use [cargo option](https://doc.rust-lang.org/rustc/tests/index.html#filters) "--test".
+Note: `##### only` which is used to run single test has been removed in the favour of cargo option.
 
-Example:
+To run a single test locally one can use [cargo option](https://doc.rust-lang.org/rustc/tests/index.html#--test) "--test".
+
+Example usage of cargo option:
 ````sh
-cargo --test --test execution_spec -- --test "test_filter"
+cargo test --test execution_spec -- --test "test_filter"
 ````
 
 ### Blocks
