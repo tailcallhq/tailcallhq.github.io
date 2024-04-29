@@ -10,6 +10,7 @@ const Footer = (): JSX.Element => {
       <img
         src={require("@site/static/images/about/grid-dark.png").default}
         alt=""
+        loading="lazy"
         className="absolute inset-0 w-full h-full"
       />
       <TailcallLogo className="w-[120px] h-10" />

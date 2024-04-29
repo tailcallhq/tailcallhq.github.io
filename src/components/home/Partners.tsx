@@ -15,7 +15,7 @@ const Partners = (): JSX.Element => {
         <div className="hidden sm:flex space-x-SPACE_16 mt-SPACE_10 overflow-hidden">
           {partnerImages.map((partner) => (
             <div key={partner.id} className="h-20">
-              <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
+              <img src={partner.logo} loading="lazy" alt={partner.name} className="max-w-[152px]" />
             </div>
           ))}
         </div>
@@ -23,7 +23,7 @@ const Partners = (): JSX.Element => {
       <div className="sm:hidden flex items-center justify-around flex-wrap mt-SPACE_06 space-y-SPACE_02">
         {partnerImages.map((partner) => (
           <div key={partner.id} className="h-20">
-            <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
+            <img src={partner.logo} loading="lazy" alt={partner.name} className="max-w-[152px]" />
           </div>
         ))}
       </div>
