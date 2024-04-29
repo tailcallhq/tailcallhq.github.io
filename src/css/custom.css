@@ -12,7 +12,9 @@
   --ifm-navbar-height-sm: 4.5rem;
   --ifm-edit-this-page-height: 3rem;
   --ifm-navbar-logo-height: 2.5rem;
+  --ifm-navbar-logo-width: 9.375rem;
   --ifm-navbar-logo-height-sm: 1.75rem;
+  --ifm-navbar-logo-width-sm: 6.563rem;
   --ifm-search-input-height: 2.75rem;
   --ifm-search-dropdown-height: 18.5rem;
   --ifm-grid-bg-size-lg: 3.25rem;
@@ -257,6 +259,7 @@ input[type="radio"]:checked::before {
 
 .navbar__logo {
   height: var(--ifm-navbar-logo-height);
+  width: var(--ifm-navbar-logo-width);
 }
 
 .navbar__items--right {
@@ -517,6 +520,7 @@ nav.menu {
 
   .navbar__logo {
     height: var(--ifm-navbar-logo-height-sm);
+    width: var(--ifm-navbar-logo-width-sm);
   }
 
   .sidebar-search-container {

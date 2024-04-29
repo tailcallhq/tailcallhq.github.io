@@ -86,6 +86,7 @@ export default {
         alt: "My Site Logo",
         src: "icons/companies/taicall.svg",
         height: "2.5rem",
+        width: "150px",
       },
       items: [
         {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
