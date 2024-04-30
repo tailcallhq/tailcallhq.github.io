@@ -528,3 +528,18 @@ export enum Theme {
   Dark = "dark",
   Gray = "gray",
 }
+
+export const PageTitle = {
+  ABOUT: `About`,
+  ENTERPRISE: `Enterprise`,
+  CONTACT: `Contact`,
+  PLAYGROUND: `Playground`,
+}
+
+export const PageDescription = {
+  HOME: "API Platform engineered for scale.",
+  ABOUT: "API Platform engineered for scale.",
+  ENTERPRISE: "API Platform engineered for scale.",
+  CONTACT: "API Platform engineered for scale.",
+  PLAYGROUND: "Explore, test, and interact with your GraphQL APIs effortlessly",
+}

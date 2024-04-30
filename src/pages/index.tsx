@@ -4,17 +4,21 @@ import ReactGA from "react-ga4"
 import {useLocation} from "@docusaurus/router"
 
 import HomePage from "../components/home"
+import {PageDescription} from "../constants"
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 
 const Home = (): JSX.Element => {
   const isDevelopment = process.env.NODE_ENV === "development"
   const location = useLocation()
+  const {siteConfig} = useDocusaurusContext()
+  const {tagline} = siteConfig
 
   useEffect(() => {
     ReactGA.send({hitType: "pageview", page: location.pathname, title: "Home Page"})
   }, [])
 
   return (
-    <Layout title="API Platform" description="API Platform engineered for scale.">
+    <Layout title={`${tagline}`} description={PageDescription.HOME}>
       <HomePage />
       {!isDevelopment && (
         <img
