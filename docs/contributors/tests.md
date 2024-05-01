@@ -65,7 +65,8 @@ A level 5 heading (`#####`), with the text being one of the following:
 
 There must be either zero or one such annotation in a test.
 
-This annotation comes handy in situation where one might need to skip the execution of some written tests temporarily due to various reasons like : 
+This annotation comes handy in situation where one might need to skip the execution of some written tests temporarily due to various reasons like:
+
 - Some functionalities which are supposed to be tested might not be implemented yet, OR
 - There might be some bugs related to it.
 
@@ -74,17 +75,16 @@ Note: `##### only` which is used to run single test has been removed in the favo
 To run a single test locally one can use [cargo option](https://doc.rust-lang.org/rustc/tests/index.html#--test) "--test".
 
 Example usage of cargo option:
-````sh
+
+```sh
 cargo test --test execution_spec -- --test "test_filter"
-````
+```
 
 ### Blocks
 
 Blocks are specified along with the codeblocks next to the format of the codeblock (`@`) followed by the block type, and a code block after them. Blocks supply the runner with data, and the runner determines what to do based on the available blocks. example:
 
-````md
-<!-- highlight-next-line -->
-
+````md {1}
 ```graphql @server
 schema {
   query: Query
@@ -92,7 +92,7 @@ schema {
 ```
 ````
 
-#### `@server:`
+#### `@server`
 
 A `@server` block lets you specify a server SDL config. These are expected to be parseable to have a passing test, unless the [`SDL error` instruction](#instruction) is specified, which requires the config parsing to throw an error. There must be at least one `@server` block in a test.
 
@@ -104,9 +104,7 @@ When the [`check identity` instruction](#instruction) is specified, the runner w
 
 Example:
 
-````md
-<!-- highlight-next-line -->
-
+````md {1}
 ```graphql @server
 schema {
   query: Query
@@ -118,12 +116,16 @@ type User {
 }
 
 type Query {
-  user: User @http(path: "/users/1", baseURL: "http://jsonplaceholder.typicode.com")
+  user: User
+    @http(
+      path: "/users/1"
+      baseURL: "http://jsonplaceholder.typicode.com"
+    )
 }
 ```
 ````
 
-#### `@mock:`
+#### `@mock`
 
 A `@mock` block specifies mocked HTTP endpoints in `YAML`.
 
@@ -133,9 +135,7 @@ There may be at most one `mock` block in a test.
 
 Example:
 
-````md
-<!-- highlight-next-line -->
-
+````md {1}
 ```graphql @mock
 - request:
     method: GET
@@ -148,7 +148,7 @@ Example:
 ```
 ````
 
-#### `@env:`
+#### `@env`
 
 An `@env` block specifies environment variables in `YAML` that the runner should use in the app context.
 
@@ -156,15 +156,13 @@ There may be at most one `@env` block in a test.
 
 Example:
 
-````md
-<!-- highlight-next-line -->
-
+````md {1}
 ```yml @env
 TEST_ID: 1
 ```
 ````
 
-#### `@test:`
+#### `@test`
 
 An `@test` block specifies HTTP requests that the runner should perform in `YAML`.
 It solely contains requests. The response for each request is stored in an `test_{i}` snapshot.
@@ -173,9 +171,7 @@ There may be at most one `@test` block in a test.
 
 Example:
 
-````md
-<!-- highlight-next-line -->
-
+````md {1}
 ```graphql @test
 - method: POST
   url: http://localhost:8080/graphql
@@ -192,11 +188,13 @@ Every `@file` block has the filename declared in the header. The language of the
 
 Example:
 
-````md
-<!-- highlight-next-line -->
-
+````md {1}
 ```graphql @file:enum.graphql
-schema @server(port: 8080) @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+schema
+  @server(port: 8080)
+  @upstream(
+    baseURL: "http://jsonplaceholder.typicode.com"
+  ) {
   query: Query
 }
 
