@@ -1,7 +1,7 @@
 ---
-title: "Test Guidelines"
+title: "Markdown-based tests"
 description: "This guide details Tailcall's Markdown-based snapshot testing framework, explaining its structure, syntax, and testing process. It is designed for developers implementing or optimizing tests in a language-agnostic environment, emphasizing efficient snapshot utilization and maintenance within Tailcall."
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 A Markdown-based snapshot testing framework in **Tailcall**.
@@ -10,10 +10,11 @@ A Markdown-based snapshot testing framework in **Tailcall**.
 
 - [Why a new testing framework?](#why-a-new-testing-framework)
 - [How does it work?](#how-does-it-work)
+- [Run tests](#run-tests)
+  - [Filter tests](#filter-tests)
 - [Structure](#structure)
 - [Test syntax](#test-syntax)
   - [Header](#header)
-  - [Annotation](#annotation)
   - [Blocks](#blocks)
     - [`@server`](#server)
     - [`@mock`](#mock)
@@ -33,6 +34,48 @@ We aimed to create a snapshot testing framework that is language-agnostic, strai
 
 [execution_spec](https://github.com/tailcallhq/tailcall/blob/main/tests/execution_spec.rs) implements a Markdown-based snapshot testing framework for Tailcall. The framework is designed to test the execution of Tailcall configs, and it is based on the following architecture:
 ![Test Architecture](../../static/images/contributors/test-arch.png)
+
+## Run tests
+
+The markdown-based tests are executed as usual integration test so you can use test options and filters like with usual test.
+
+To run only markdown-based tests run following command:
+
+```sh
+cargo test --test execution_spec
+```
+
+After running you will get an output of all executed markdown tests.
+
+### Filter tests
+
+If you want to run only specific set of tests you have two options.
+
+First, if you only want to filter out tests when you run it locally then you can use [testing filters](./testing.md#filter-running-tests). For example, to filter grpc related tests:
+
+```sh
+# to run only grpc tests
+cargo test --test execution_spec grpc
+# or to skip grpc tests
+cargo test --test execution_spec -- --skip grpc
+```
+
+Second, if you want to disable some tests permanently due to one of the following reasons:
+
+- Some functionalities which are supposed to be tested might not be implemented yet
+- There might be some bugs related to it.
+
+In that case you can a special annotation `##### skip` that should be placed inside the test md file. For example:
+
+```md
+# Failing test
+
+##### skip
+
+  <!-- Some test content -->
+```
+
+This test won't be executed until the annotation is removed.
 
 ## Structure
 
@@ -56,29 +99,6 @@ Examples:
 
   This is a description.
   ```
-
-### Annotation
-
-A level 5 heading (`#####`), with the text being one of the following:
-
-- `##### skip` -- If a test has the `skip` annotation, the runner will not run that test.
-
-There must be either zero or one such annotation in a test.
-
-This annotation comes handy in situation where one might need to skip the execution of some written tests temporarily due to various reasons like:
-
-- Some functionalities which are supposed to be tested might not be implemented yet, OR
-- There might be some bugs related to it.
-
-Note: `##### only` which is used to run single test has been removed in the favour of cargo option.
-
-To run a single test locally one can use [cargo option](https://doc.rust-lang.org/rustc/tests/index.html#--test) "--test".
-
-Example usage of cargo option:
-
-```sh
-cargo test --test execution_spec -- --test "test_filter"
-```
 
 ### Blocks
 
