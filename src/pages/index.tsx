@@ -4,7 +4,7 @@ import ReactGA from "react-ga4"
 import {useLocation} from "@docusaurus/router"
 
 import HomePage from "../components/home"
-import {PageDescription, PageTitle} from "../constants"
+import {PageDescription, PageTitle} from "../constants/titles"
 
 const Home = (): JSX.Element => {
   const isDevelopment = process.env.NODE_ENV === "development"

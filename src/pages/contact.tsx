@@ -4,7 +4,7 @@ import Layout from "@theme/Layout"
 import {useLocation} from "@docusaurus/router"
 
 import ContactPage from "../components/contact"
-import {PageDescription, PageTitle} from "../constants"
+import {PageDescription, PageTitle} from "../constants/titles"
 
 const Contact = (): JSX.Element => {
   const location = useLocation()
