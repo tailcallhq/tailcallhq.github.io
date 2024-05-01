@@ -5,19 +5,16 @@ import {useLocation} from "@docusaurus/router"
 
 import ContactPage from "../components/contact"
 import {PageDescription, PageTitle} from "../constants"
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 
 const Contact = (): JSX.Element => {
   const location = useLocation()
-  const {siteConfig} = useDocusaurusContext()
-  const {tagline} = siteConfig
 
   useEffect(() => {
     ReactGA.send({hitType: "pageview", page: location.pathname, title: "Contact Page"})
   }, [])
 
   return (
-    <Layout title={`${PageTitle.CONTACT} | ${tagline}`} description={PageDescription.CONTACT}>
+    <Layout title={PageTitle.CONTACT} description={PageDescription.CONTACT}>
       <ContactPage />
     </Layout>
   )

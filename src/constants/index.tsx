@@ -1,5 +1,6 @@
 import React from "react"
 
+const tagline = "API Platform"
 export const githubRepoURL = "https://github.com/tailcallhq/tailcall"
 export const tailCallBenchmarkUrl = "https://github.com/tailcallhq/graphql-benchmarks#benchmark-results"
 export const tailCallBlogUrl = "https://blog.tailcall.run/"
@@ -530,10 +531,11 @@ export enum Theme {
 }
 
 export const PageTitle = {
-  ABOUT: `About`,
-  ENTERPRISE: `Enterprise`,
-  CONTACT: `Contact`,
-  PLAYGROUND: `Playground`,
+  HOME: tagline,
+  ABOUT: `About | ${tagline}`,
+  ENTERPRISE: `Enterprise | ${tagline}`,
+  CONTACT: `Contact | ${tagline}`,
+  PLAYGROUND: `Playground | ${tagline}`,
 }
 
 export const PageDescription = {
