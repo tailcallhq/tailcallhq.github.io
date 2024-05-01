@@ -4,6 +4,7 @@ import ReactGA from "react-ga4"
 import {useLocation} from "@docusaurus/router"
 
 import HomePage from "../components/home"
+import {PageDescription, PageTitle} from "../constants/titles"
 
 const Home = (): JSX.Element => {
   const isDevelopment = process.env.NODE_ENV === "development"
@@ -14,7 +15,7 @@ const Home = (): JSX.Element => {
   }, [])
 
   return (
-    <Layout title="API Platform" description="API Platform engineered for scale.">
+    <Layout title={PageTitle.HOME} description={PageDescription.HOME}>
       <HomePage />
       {!isDevelopment && (
         <img

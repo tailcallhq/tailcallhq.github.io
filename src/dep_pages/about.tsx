@@ -4,6 +4,7 @@ import Layout from "@theme/Layout"
 import {useLocation} from "@docusaurus/router"
 
 import AboutPage from "../components/about"
+import {PageDescription, PageTitle} from "../constants/titles"
 
 const About = (): JSX.Element => {
   const location = useLocation()
@@ -13,7 +14,7 @@ const About = (): JSX.Element => {
   }, [])
 
   return (
-    <Layout title="API Platform" description="API Platform engineered for scale.">
+    <Layout title={PageTitle.ABOUT} description={PageDescription.ABOUT}>
       <AboutPage />
     </Layout>
   )
