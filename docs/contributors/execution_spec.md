@@ -28,7 +28,7 @@ A Markdown-based snapshot testing framework in **Tailcall**.
 
 ## Why a new testing framework?
 
-We aimed to create a snapshot testing framework that is language-agnostic, straightforward to write, maintain, and understand. For this reason, we chose a Markdown-based design. This design closely aligns with the usage patterns of Tailcall users. Since Tailcall supports building scalable GraphQL backends without being tied to a specific programming language, it was essential for our testing framework to be similarly language-agnostic.
+We aimed to create a snapshot testing framework that is language-agnostic, straightforward to write, maintain, and understand. For this reason, we chose a Markdown-based design. This design aligns with the usage patterns of Tailcall users. Since Tailcall supports building scalable GraphQL backends without being tied to a specific programming language, it was essential for our testing framework to be similarly language-agnostic.
 
 ## How does it work?
 
@@ -39,7 +39,7 @@ We aimed to create a snapshot testing framework that is language-agnostic, strai
 
 The markdown-based tests are executed as usual integration test so you can use test options and filters like with usual test.
 
-To run only markdown-based tests run following command:
+To run markdown-based tests skipping other tests run following command:
 
 ```sh
 cargo test --test execution_spec
@@ -49,12 +49,12 @@ After running you will get an output of all executed markdown tests.
 
 ### Filter tests
 
-If you want to run only specific set of tests you have two options.
+If you want to run specific set of tests you have two options.
 
-First, if you only want to filter out tests when you run it locally then you can use [testing filters](./testing.md#filter-running-tests). For example, to filter grpc related tests:
+First, if you just want to filter out tests when you run it locally then you can use [testing filters](./testing.md#filter-running-tests). For example, to filter grpc related tests:
 
 ```sh
-# to run only grpc tests
+# to run grpc tests
 cargo test --test execution_spec grpc
 # or to skip grpc tests
 cargo test --test execution_spec -- --skip grpc
@@ -255,36 +255,35 @@ There must be precisely zero or one instruction in a test.
 
 1. The runner reads all tests, and selects the ones to run based on the following:
    - If a path to a test was given in the first command line argument, solely that test will run.
-   - If one or more tests have an [`only` annotation](#annotation), those tests will run.
    - If one or more tests have a [`skip` annotation](#annotation), every test except those will run.
    - If none of the above is true, all tests will run.
-1. The runner evaluates every test.
+2. The runner evaluates every test.
    1. If the test has an [`SDL error` instruction](#instruction), the runner does the following:
       1. Reads and parses the config, taking note of the validation errors.
-      1. **If no validation errors occurred, the runner throws an error.** (`SDL error` is a requirement, not a try-catch.)
-      1. Compares the encountered errors to the `errors` snapshot.
-      1. If the snapshot doesn't match the encountered errors, the runner generates a new snapshot and throws an error.
-      1. Ends the test run, and starts evaluating the next test. (All other actions would require a parseable `@server` block.)
-      1. The runner parses every `@server` block.
-   1. Parses the block and checks for errors.
-   1. If the test has a [`check identity` instruction](#instruction), the runner converts the parsed block to SDL again, and checks if the two strings are the same. If they're not, the runner throws an error.
-   1. The runner performs a `merge` check:
+      2. **If no validation errors occurred, the runner throws an error.** (`SDL error` is a requirement, not a try-catch.)
+      3. Compares the encountered errors to the `errors` snapshot.
+      4. If the snapshot doesn't match the encountered errors, the runner generates a new snapshot and throws an error.
+      5. Ends the test run, and starts evaluating the next test. (All other actions would require a parseable `@server` block.)
+      6. The runner parses every `@server` block.
+   2. Parses the block and checks for errors.
+   3. If the test has a [`check identity` instruction](#instruction), the runner converts the parsed block to SDL again, and checks if the two strings are the same. If they're not, the runner throws an error.
+   4. The runner performs a `merge` check:
       1. Attempts to merge all [`@server` blocks](#server), resulting in a merged config. (If there is a single [`@server` block](#server), the runner will merge it with the default config.)
-      1. Compares the merged config to the `merged` snapshot.
-      1. If the snapshot doesn't match the merged config, the runner generates a new snapshot and throws an error.
-   1. If there is precisely one [`@server` block](#server), the runner performs a `client` check:
+      2. Compares the merged config to the `merged` snapshot.
+      3. If the snapshot doesn't match the merged config, the runner generates a new snapshot and throws an error.
+   5. If there is precisely one [`@server` block](#server), the runner performs a `client` check:
       1. Generates the client schema of the `server` block.
-      1. Compares it to the `client` SDL snapshot.
-      1. If the snapshot doesn't match the generated schema, the runner generates a new snapshot and throws an error.
-   1. If the test has an [`@test` block](#test), the runner performs `test` checks:
+      2. Compares it to the `client` SDL snapshot.
+      3. If the snapshot doesn't match the generated schema, the runner generates a new snapshot and throws an error.
+   6. If the test has an [`@test` block](#test), the runner performs `test` checks:
       1. If there is a [`@mock` block](#mock), the runner sets up the mock HTTP client based on it.
-      1. If there is at least one [`@file` block](#filefilename), the runner sets up the mock filesystem based on them.
-      1. If there is an [`@env` block](#env), the runner uses it for the app context.
-      1. Creates an app context based on the [`@server` block](#server).
-      1. For each test in the block (0-based index `i`), the runner does the following:
+      2. If there is at least one [`@file` block](#filefilename), the runner sets up the mock filesystem based on them.
+      3. If there is an [`@env` block](#env), the runner uses it for the app context.
+      4. Creates an app context based on the [`@server` block](#server).
+      5. For each test in the block (0-based index `i`), the runner does the following:
          1. Runs the HTTP request on the app context.
-         1. Compares the HTTP response to the `test_{i}` snapshot.
-         1. If the snapshot doesn't match the response, the runner generates a new snapshot and throws an error.
+         2. Compares the HTTP response to the `test_{i}` snapshot.
+         3. If the snapshot doesn't match the response, the runner generates a new snapshot and throws an error.
 
 ## Snapshots
 

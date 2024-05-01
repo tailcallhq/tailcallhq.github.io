@@ -56,11 +56,11 @@ If you want to run tests that have names according to some pattern run:
 
 ```sh
 cargo test test_pattern
-# e.g. to run only grpc related tests:
+# e.g. to run grpc related tests:
 cargo test grpc
 ```
 
-If you want to run only specific test with exact name run passing the full module path to test:
+If you want to run specific test with exact name run passing the full module path to test:
 
 ```sh
 cargo test -- --exact test_name
@@ -110,9 +110,10 @@ Integration testing is implemented by our [Markdown-based testing framework](./e
 
 - **Critical paths**: Core functionality that must always work.
 - **Edge cases**: Conditions at the extremes of input boundaries.
-- **Error handling**: Ensure the system gracefully handles invalid input and errors.
+- **Error handling**: Ensure the system handles invalid input and errors.
 
 ## Troubleshooting Common Issues
 
-- If tests fail unexpectedly, make sure your environment matches the expected configurations (e.g., versions of Rust and dependencies).
-- Ensure no external factors (like network dependencies) affect the tests.
+- make sure you have up to date branch with latest commits from main branch.
+- make sure your environment matches the expected configurations (e.g., versions of Rust and dependencies).
+- verify that test failure isn't affected by your changes (e.g. run tests on clean main branch)
