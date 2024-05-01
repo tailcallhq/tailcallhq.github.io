@@ -1,4 +1,4 @@
-const tagline = "API Platform"
+const tagline = "GraphQL Platform"
 
 export const PageTitle = {
   HOME: tagline,
@@ -9,9 +9,9 @@ export const PageTitle = {
 }
 
 export const PageDescription = {
-  HOME: "API Platform engineered for scale.",
-  ABOUT: "API Platform engineered for scale.",
-  ENTERPRISE: "API Platform engineered for scale.",
-  CONTACT: "API Platform engineered for scale.",
+  HOME: "GraphQL platform engineered for scale.",
+  ABOUT: "GraphQL platform engineered for scale.",
+  ENTERPRISE: "GraphQL platform engineered for scale.",
+  CONTACT: "GraphQL platform engineered for scale.",
   PLAYGROUND: "Explore, test, and interact with your GraphQL APIs effortlessly",
 }
