@@ -15,6 +15,13 @@ export default {
       tagName: "script",
       attributes: {
         async: "true",
+        src: "partytown.js",
+      },
+    },
+    {
+      tagName: "script",
+      attributes: {
+        async: "true",
         src: "https://tag.clearbitscripts.com/v1/pk_498a76355e253f5c7f4e7c7bed78748e/tags.js",
         referrerPolicy: "strict-origin-when-cross-origin",
       },
@@ -52,10 +59,6 @@ export default {
       "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       {
-        gtag: {
-          trackingID: "G-JEP3QDWT0G",
-          anonymizeIP: false,
-        },
         docs: {
           // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
           sidebarPath: require.resolve("./sidebars.ts"),
@@ -124,6 +127,14 @@ export default {
         highlightResult: true,
       },
     ],
+    [
+      require.resolve("./src/plugins/gtag"),
+      {
+        trackingID: "G-JEP3QDWT0G",
+        anonymizeIP: false,
+      },
+    ],
+    // @ts-ignore
     async function myPlugin() {
       return {
         name: "docusaurus-tailwindcss",
@@ -136,4 +147,4 @@ export default {
       }
     },
   ],
-}
+} satisfies Config
