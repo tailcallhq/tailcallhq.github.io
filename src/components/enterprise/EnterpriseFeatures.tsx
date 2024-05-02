@@ -8,7 +8,7 @@ type EnterpriseFeaturesCardProps = {
     id: number
     title: string
     description: string
-    logo:string
+    logo: string
   }
 }
 

@@ -8,12 +8,7 @@ import Image from "./Image"
 const Footer = (): JSX.Element => {
   return (
     <footer className="bg-tailCall-dark-700 pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04">
-      <Image
-        src={"images/about/grid-dark.png"}
-        alt=""
-        loading="lazy"
-        className="absolute inset-0 w-full h-full"
-      />
+      <Image src={"images/about/grid-dark.png"} alt="" loading="lazy" className="absolute inset-0 w-full h-full" />
       <TailcallLogo className="w-[120px] h-10" />
       <div className="text-content-tiny sm:text-title-small space-x-SPACE_06 text-tailCall-light-500 z-10">
         <Link
