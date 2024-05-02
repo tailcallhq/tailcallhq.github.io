@@ -53,7 +53,7 @@ Your config could look like this now:
 
 ```graphql
 schema
-  @server(port: 8000, graphiql: true)
+  @server(port: 8000)
   @upstream(baseURL: "http://jsonplaceholder.typicode.com")
   #highlight-start
   @link(id: "auth-basic", type: Htpasswd, src: "htpasswd")

@@ -137,7 +137,6 @@ The above setting will enable CORS on the server for all headers, origins & meth
 schema
   @server(
     port: 8000
-    graphiql: true
     hostname: "0.0.0.0"
     headers: {
       cors: {
@@ -155,21 +154,6 @@ schema
   query: Query
 }
 ```
-
-## graphiql
-
-Enabling the `graphiql` configuration activates the GraphiQL IDE at the root (/) path within Tailcall. GraphiQL is a built-in, interactive in-browser GraphQL IDE, designed to streamline query development and testing. By default, this feature is off.
-
-```graphql showLineNumbers
-schema @server(port: 8000, graphiql: true) {
-  query: Query
-  mutation: Mutation
-}
-```
-
-:::tip
-While the GraphiQL interface is a powerful tool for development, consider disabling it in production environments if you're not exposing GraphQL APIs directly to users. This ensures an added layer of security and reduces unnecessary exposure.
-:::
 
 ## vars
 

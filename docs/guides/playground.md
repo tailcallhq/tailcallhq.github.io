@@ -8,7 +8,7 @@ The `@server` directive's `showcase` option allows for hands-on experimentation 
 #### Example Usage
 
 ```graphql showLineNumbers
-schema @server(showcase: true, graphiql: true) {
+schema @server(showcase: true) {
   query: Query
 }
 
