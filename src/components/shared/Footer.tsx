@@ -3,12 +3,13 @@ import Link from "@docusaurus/Link"
 import {socials, tailCallBlogUrl} from "@site/src/constants"
 import TailcallLogo from "@site/static/icons/companies/tailcall-white.svg"
 import {pageLinks} from "@site/src/constants/routes"
+import Image from "./Image"
 
 const Footer = (): JSX.Element => {
   return (
     <footer className="bg-tailCall-dark-700 pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04">
-      <img
-        src={require("@site/static/images/about/grid-dark.png").default}
+      <Image
+        src={"images/about/grid-dark.png"}
         alt=""
         loading="lazy"
         className="absolute inset-0 w-full h-full"
@@ -37,12 +38,12 @@ const Footer = (): JSX.Element => {
 
       <div className="flex flex-col-reverse sm:flex-row items-center gap-y-SPACE_04 sm:justify-between w-[100%] max-w-7xl sm:mt-SPACE_10 z-10">
         <p className="text-content-tiny text-tailCall-light-700 font-space-mono font-normal">
-          Copyright © 2023 Tailcall, Inc.
+          Copyright © 2024 Tailcall, Inc.
         </p>
         <div className="space-x-SPACE_04">
           {socials.map((social) => (
             <Link href={social.href} className="cursor-pointer" key={social.id} aria-label={social.ariaLabel}>
-              <social.image className="h-6 w-6" />
+              <Image src={social.image} alt={social.ariaLabel} className="h-6 w-6" />
             </Link>
           ))}
         </div>

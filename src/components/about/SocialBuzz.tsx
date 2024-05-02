@@ -1,5 +1,6 @@
 import React from "react"
 import SectionTitle from "../shared/SectionTitle"
+import Image from "../shared/Image"
 
 const SocialBuzz = (): JSX.Element => {
   return (
@@ -10,29 +11,23 @@ const SocialBuzz = (): JSX.Element => {
           <span className="text-title-semi-large sm:text-display-small">Social & Buzz</span>
         </div>
 
-        <img
-          src={require("@site/static/images/about/tweet-2.jpg").default}
-          srcSet={`${require("@site/static/images/about/tweet-2.jpg").default} 1x,
-          ${require("@site/static/images/about/tweet-2-2x.jpg").default} 2x
-          `}
+        <Image
+          src="/images/about/tweet-2.jpg"
+          srcSet="/images/about/tweet-2.jpg 1x, /images/about/tweet-2-2x.jpg 2x"
           alt="tweet 2"
           className="rounded-3xl m-SPACE_02 lg:hidden border border-solid border-tailCall-border-light-500"
         />
 
-        <img
-          src={require("@site/static/images/about/tweet-1.jpg").default}
-          srcSet={`${require("@site/static/images/about/tweet-1.jpg").default} 1x,
-          ${require("@site/static/images/about/tweet-1-2x.jpg").default} 2x
-          `}
+        <Image
+          src="/images/about/tweet-1.jpg"
+          srcSet="/images/about/tweet-1.jpg 1x, /images/about/tweet-1-2x.jpg 2x"
           alt=""
           className="border border-solid border-tailCall-border-light-500 rounded-3xl m-SPACE_02"
         />
       </div>
-      <img
-        src={require("@site/static/images/about/tweet-2.jpg").default}
-        srcSet={`${require("@site/static/images/about/tweet-2.jpg").default} 1x,
-          ${require("@site/static/images/about/tweet-2-2x.jpg").default} 2x
-          `}
+      <Image
+        src="/images/about/tweet-2.jpg"
+        srcSet="/images/about/tweet-2.jpg 1x, /images/about/tweet-2-2x.jpg 2x"
         alt="tweet 2"
         className="border border-solid border-tailCall-border-light-500 rounded-3xl m-SPACE_02 lg:block hidden"
       />

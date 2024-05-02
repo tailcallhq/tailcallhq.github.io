@@ -13,7 +13,7 @@ type Feature = {
 type MoreFeatures = {
   id: number
   title: string
-  logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  logo: string
 }
 
 type Social = {
@@ -33,14 +33,14 @@ type ChooseTailcall = {
 
 type EnterpriseFeature = {
   id: number
-  logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  logo: string
   title: string
   description: string
 }
 
 type AdditionalEnterpriseFeatures = {
   id: number
-  logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  logo: string
   title: string
 }
 

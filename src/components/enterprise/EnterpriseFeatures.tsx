@@ -1,6 +1,6 @@
 import React from "react"
 import Heading from "@theme/Heading"
-
+import Image from "../shared/Image"
 import {enterpriseFeatures} from "@site/src/constants"
 
 type EnterpriseFeaturesCardProps = {
@@ -8,14 +8,14 @@ type EnterpriseFeaturesCardProps = {
     id: number
     title: string
     description: string
-    logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+    logo:string
   }
 }
 
 const EnterpriseFeaturesCard = ({feature}: EnterpriseFeaturesCardProps): JSX.Element => {
   return (
     <div className="border border-solid border-tailCall-border-light-400 rounded-3xl w-full sm:w-[450px] sm:h-60 p-SPACE_08 flex flex-col items-start space-y-SPACE_04">
-      <feature.logo className="h-5 w-5 sm:h-8 sm:w-8" />
+      <Image src={feature.logo} alt={feature.title} className="h-5 w-5 sm:h-8 sm:w-8" />
       <p className="text-title-tiny sm:text-title-medium">{feature.title}</p>
       <p className="text-content-tiny sm:text-content-small font-normal">{feature.description}</p>
     </div>

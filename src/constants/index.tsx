@@ -10,37 +10,37 @@ export const partnerImages: PartnerImage[] = [
   {
     id: 1,
     name: "Digital Ocean",
-    logo: require("@site/static/icons/companies/digital-ocean.png").default,
+    logo: "icons/companies/digital-ocean.png",
   },
   {
     id: 2,
     name: "Vercel",
-    logo: require("@site/static/icons/companies/vercel.png").default,
+    logo: "icons/companies/vercel.png",
   },
   {
     id: 3,
     name: "Fastly",
-    logo: require("@site/static/icons/companies/fastly.png").default,
+    logo: "icons/companies/fastly.png",
   },
   {
     id: 4,
     name: "Cloud Flare",
-    logo: require("@site/static/icons/companies/cloudflare.png").default,
+    logo: "icons/companies/cloudflare.png",
   },
   {
     id: 5,
     name: "AWS",
-    logo: require("@site/static/icons/companies/aws.png").default,
+    logo: "icons/companies/aws.png",
   },
   {
     id: 6,
     name: "Google Cloud",
-    logo: require("@site/static/icons/companies/google-cloud.png").default,
+    logo: "icons/companies/google-cloud.png",
   },
   {
     id: 7,
     name: "Fly",
-    logo: require("@site/static/icons/companies/fly-io.png").default,
+    logo: "icons/companies/fly-io.png",
   },
 ]
 
@@ -54,7 +54,7 @@ const Highlight = ({text}: {text: string}) => (
 
 export const features: Feature[] = [
   {
-    logo: require("@site/static/images/home/orchestration.png").default,
+    logo: "/home/orchestration.png",
     title: "Orchestration",
     content: (
       <>
@@ -65,7 +65,7 @@ export const features: Feature[] = [
     ),
   },
   {
-    logo: require("@site/static/images/home/governance.png").default,
+    logo: "/home/governance.png",
     title: "Governance",
     content: (
       <>
@@ -78,7 +78,7 @@ export const features: Feature[] = [
     ),
   },
   {
-    logo: require("@site/static/images/home/efficiency.png").default,
+    logo: "/home/efficiency.png",
     title: "Efficiency",
     content: (
       <>
@@ -89,7 +89,7 @@ export const features: Feature[] = [
     ),
   },
   // {
-  //   logo: require("@site/static/images/home/resiliency.png").default,
+  //   logo: "/home/resiliency.png",
   //   title: "Resiliency",
   //   content: (
   //     <>
@@ -103,7 +103,7 @@ export const features: Feature[] = [
   //   ),
   // },
   {
-    logo: require("@site/static/images/home/extendability.png").default,
+    logo: "/home/extendability.png",
     title: "Extendability",
     content: (
       <>
@@ -120,61 +120,61 @@ export const moreFeatures: MoreFeatures[] = [
   {
     id: 1,
     title: "Ahead of Time Optimizations",
-    logo: require("@site/static/icons/basic/rocket-icon.svg").default,
+    logo: "icons/basic/rocket-icon.svg",
   },
   {
     id: 2,
     title: "Composable Orchestration Primitives",
-    logo: require("@site/static/icons/basic/extension.svg").default,
+    logo: "icons/basic/extension.svg",
   },
   {
     id: 3,
     title: "Macro Resiliency Capabilities",
-    logo: require("@site/static/icons/basic/shield.svg").default,
+    logo: "icons/basic/shield.svg",
   },
   {
     id: 4,
     title: "Protocol agnostic",
-    logo: require("@site/static/icons/basic/check-done.svg").default,
+    logo: "icons/basic/check-done.svg",
   },
   {
     id: 5,
     title: "High Performance",
-    logo: require("@site/static/icons/basic/line-chart-up.svg").default,
+    logo: "icons/basic/line-chart-up.svg",
   },
   {
     id: 6,
     title: "Security",
-    logo: require("@site/static/icons/basic/security.svg").default,
+    logo: "icons/basic/security.svg",
   },
   {
     id: 7,
     title: "Edge Compatible",
-    logo: require("@site/static/icons/basic/puzzle.svg").default,
+    logo: "icons/basic/puzzle.svg",
   },
   {
     id: 8,
     title: "Compile time Checks",
-    logo: require("@site/static/icons/basic/clock.svg").default,
+    logo: "icons/basic/clock.svg",
   },
   {
     id: 9,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    logo: "icons/basic/adaptive.svg",
     title: "Adaptive performance improvements",
   },
   {
     id: 10,
-    logo: require("@site/static/icons/basic/rate-limit.svg").default,
+    logo: "icons/basic/rate-limit.svg",
     title: "Global rate limiting",
   },
   {
     id: 11,
-    logo: require("@site/static/icons/basic/insight.svg").default,
+    logo: "icons/basic/insight.svg",
     title: "Telemetry",
   },
   {
     id: 12,
-    logo: require("@site/static/icons/basic/connect.svg").default,
+    logo: "icons/basic/connect.svg",
     title: "Scripting Flexibility",
   },
 ]
@@ -183,28 +183,28 @@ export const socials: Social[] = [
   {
     id: 1,
     name: "github",
-    image: require("@site/static/icons/companies/github-footer.svg").default,
+    image: "icons/companies/github-footer.svg",
     href: "https://github.com/tailcallhq/tailcall",
     ariaLabel: "GitHub",
   },
   {
     id: 2,
     name: "discord",
-    image: require("@site/static/icons/companies/discord-gray.svg").default,
+    image: "icons/companies/discord-gray.svg",
     href: "https://discord.gg/kRZBPpkgwq",
     ariaLabel: "Discord",
   },
   {
     id: 3,
     name: "linkedin",
-    image: require("@site/static/icons/companies/linkedin-gray.svg").default,
+    image: "icons/companies/linkedin-gray.svg",
     href: "https://www.linkedin.com/company/tailcall",
     ariaLabel: "LinkedIn",
   },
   {
     id: 4,
     name: "twitter",
-    image: require("@site/static/icons/companies/x-gray.svg").default,
+    image: "icons/companies/x-gray.svg",
     href: "https://twitter.com/tailcallhq",
     ariaLabel: "Twitter",
   },
@@ -215,50 +215,50 @@ export const chooseTailcall: ChooseTailcall[] = [
     id: 1,
     title: "Top developer experience",
     description: "Design your APIs, with syntax highlighting and lint checks within your favourite IDE.",
-    image: require("@site/static/images/home/dev-experience.png").default,
+    image: "images/home/dev-experience.png",
   },
   {
     id: 2,
     title: "Performance",
     description: "Get performance that’s higher than your hand optimized implementation",
-    image: require("@site/static/images/home/performance.png").default,
+    image: "images/home/performance.png",
   },
   {
     id: 3,
     title: "Scale Fearlessly",
     description: "Leverage built-in best practices that guarantee robustness at any scale.",
-    image: require("@site/static/images/home/scale.png").default,
+    image: "images/home/scale.png",
   },
 ]
 
 export const enterpriseFeatures: EnterpriseFeature[] = [
   {
     id: 1,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    logo: "icons/basic/adaptive.svg",
     title: "Adaptive performance improvements",
     description: "Adaptive optimisation by analysing the hot queries in your Production environment",
   },
   {
     id: 2,
-    logo: require("@site/static/icons/basic/rate-limit.svg").default,
+    logo: "icons/basic/rate-limit.svg",
     title: "Global rate limiting",
     description: "Ability to set global rate limits on access of each field of your data graph.",
   },
   {
     id: 3,
-    logo: require("@site/static/icons/basic/reflect.svg").default,
+    logo: "icons/basic/reflect.svg",
     title: "Managed Solution",
     description: "The change in any Tailcall config gets seamlessly reflected on your GraphQL. ",
   },
   {
     id: 4,
-    logo: require("@site/static/icons/basic/insight.svg").default,
+    logo: "icons/basic/insight.svg",
     title: "Telemetry",
     description: "Low level insights of execute vs IO time for each query.",
   },
   {
     id: 5,
-    logo: require("@site/static/icons/basic/connect.svg").default,
+    logo: "icons/basic/connect.svg",
     title: "Scripting Flexibility",
     description: "Ability to write custom resolvers in Javascript.",
   },
@@ -267,32 +267,32 @@ export const enterpriseFeatures: EnterpriseFeature[] = [
 export const additionalEnterpriseFeatures: AdditionalEnterpriseFeatures[] = [
   {
     id: 1,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    logo: "icons/basic/adaptive.svg",
     title: "Circuit breaking",
   },
   {
     id: 2,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    logo: "icons/basic/adaptive.svg",
     title: "Custom SLA",
   },
   {
     id: 3,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    logo: "icons/basic/adaptive.svg",
     title: "Schema redundancy detection",
   },
   {
     id: 4,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    logo: "icons/basic/adaptive.svg",
     title: "Query cost analysis",
   },
   {
     id: 5,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    logo: "icons/basic/adaptive.svg",
     title: "Breaking change detection",
   },
   {
     id: 6,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
+    logo: "icons/basic/adaptive.svg",
     title: "Expert 24x7 technical support",
   },
 ]
@@ -392,7 +392,7 @@ export const founders: Founder[] = [
     id: 1,
     name: "Tushar Mathur",
     title: "Founder & CEO",
-    image: require("@site/static/images/about/tushar.png").default,
+    image: "images/about/tushar.png",
     socialLinks: [
       {
         id: 1,
@@ -418,7 +418,7 @@ export const founders: Founder[] = [
     id: 2,
     name: "Amit Kumar Singh",
     title: "Head of Growth & Strategy",
-    image: require("@site/static/images/about/amit.png").default,
+    image: "images/about/amit.png",
     socialLinks: [
       {
         id: 1,
@@ -444,7 +444,7 @@ export const founders: Founder[] = [
     id: 3,
     name: "Kiryl Mialeshka",
     title: "Founding Engineer",
-    image: require("@site/static/images/about/kiryl.png").default,
+    image: "images/about/kiryl.png",
     socialLinks: [
       {
         id: 1,
@@ -470,7 +470,7 @@ export const founders: Founder[] = [
     id: 4,
     name: "Shashi Kant",
     title: "Founding Engineer",
-    image: require("@site/static/images/about/shahikant.png").default,
+    image: "images/about/shahikant.png",
     socialLinks: [
       {
         id: 1,
@@ -497,22 +497,22 @@ export const founders: Founder[] = [
 export const investors: Investor[] = [
   {
     id: 1,
-    image: require("@site/static/images/about/harsh-jain.png").default,
-    image2x: require("@site/static/images/about/harsh-jain-2x.png").default,
+    image: "images/about/harsh-jain.png",
+    image2x: "/about/harsh-jain-2x.png",
     name: "Harsh Jain",
     title: "Founder - Dream11",
   },
   {
     id: 2,
-    image: require("@site/static/images/about/abhishek-ravi.png").default,
-    image2x: require("@site/static/images/about/abhishek-ravi-2x.png").default,
+    image: "images/about/abhishek-ravi.png",
+    image2x: "/about/abhishek-ravi-2x.png",
     name: "Abhishek Ravi",
     title: "CIO - Dream Sports",
   },
   {
     id: 3,
-    image: require("@site/static/images/about/amit-garde.png").default,
-    image2x: require("@site/static/images/about/amit-garde-2x.png").default,
+    image: "images/about/amit-garde.png",
+    image2x: "/about/amit-garde-2x.png",
     name: "Amit Garde",
     title: "SVP - Engineering Dream11",
   },

@@ -2,6 +2,7 @@ import React, {useState} from "react"
 
 import {founders} from "@site/src/constants"
 import Link from "@docusaurus/Link"
+import Image from "../shared/Image"
 
 type Founder = {
   founder: {
@@ -20,7 +21,7 @@ type SocialIconProps = {
 const Founder = ({founder}: Founder): JSX.Element => {
   return (
     <div>
-      <img src={founder.image} alt={founder.name} className="h-[300px] sm:h-[366px] object-contain" />
+      <Image src={founder.image} alt={founder.name} className="h-[300px] sm:h-[366px] object-contain" />
 
       <div className="flex flex-col space-y-SPACE_02 items-start">
         <span className="text-content-small font-bold sm:text-title-small">{founder.name}</span>

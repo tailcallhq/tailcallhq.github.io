@@ -3,7 +3,7 @@ import Heading from "@theme/Heading"
 
 import {features} from "@site/src/constants"
 import GreaterThanUnderscoreIcon from "@site/static/icons/basic/gt-underscore.svg"
-
+import Image from "../shared/Image"
 type FeatureProps = {
   feature: Feature
 }
@@ -21,7 +21,7 @@ const Feature = ({feature}: FeatureProps): JSX.Element => {
       <div
         className="flex flex-col sm:flex-row p-SPACE_04 sm:p-SPACE_16  shadow-xl rounded-[20px] relative  sm:ml-0"
         style={{
-          backgroundImage: `url(${require("@site/static/images/home/grid.jpg").default})`,
+          backgroundImage: `url("/home/grid.jpg")`,
           boxShadow: "0px 0px 0px 3px var(--ifm-color-brand-light-100)",
         }}
       >
@@ -30,7 +30,7 @@ const Feature = ({feature}: FeatureProps): JSX.Element => {
           <span>{feature.content}</span>
         </p>
         <div className="sm:mt-SPACE_20">
-          <img src={feature.logo} alt="" loading="lazy" />
+          <Image src={feature.logo} alt="" loading="lazy" />
         </div>
       </div>
     </div>

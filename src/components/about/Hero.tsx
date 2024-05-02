@@ -1,6 +1,7 @@
 import React from "react"
 import Heading from "@theme/Heading"
 import SectionTitle from "../shared/SectionTitle"
+import Image from "../shared/Image"
 
 const Hero = (): JSX.Element => {
   return (
@@ -15,8 +16,8 @@ const Hero = (): JSX.Element => {
         </Heading>
       </div>
 
-      <img
-        src={require("@site/static/animations/about-us-visual.gif").default}
+      <Image
+        src={"/images/animations/about-us-visual.gif"}
         alt="about us visual"
         className="h-52 w-60 sm:h-72 sm:w-80 lg:h-fit lg:w-fit"
       />

@@ -3,13 +3,14 @@ import Heading from "@theme/Heading"
 
 import {additionalEnterpriseFeatures} from "@site/src/constants"
 import CheckCircle from "@site/static/icons/basic/check-circle-broken.svg"
+import Image from "../shared/Image"
 
 const MoreEnterpriseFeatures = (): JSX.Element => {
   return (
     <section className="border border-solid border-tailCall-border-light-300 flex flex-col sm:flex-row items-center justify-center sm:px-SPACE_10 lg:px-40 relative overflow-hidden">
       <div className="w-full h-full p-SPACE_04 sm:py-0 sm:pr-SPACE_10">
-        <img
-          src={require("@site/static/icons/basic/more-feat-grid.png").default}
+        <Image
+          src="/images/icons/basic/more-feat-grid.png"
           alt=""
           className="absolute inset-0 h-full w-full sm:w-[47vw] -z-10"
         />

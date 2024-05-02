@@ -1,5 +1,6 @@
 import React from "react"
 import {investors} from "@site/src/constants"
+import Image from "../shared/Image"
 
 const Investors = (): JSX.Element => {
   return (
@@ -10,22 +11,22 @@ const Investors = (): JSX.Element => {
 
       <div className="flex flex-col sm:flex-row items-center justify-center space-y-SPACE_06 sm:space-y-0 sm:space-x-SPACE_10 mt-SPACE_06 sm:mt-SPACE_09">
         <div className="border border-solid border-tailCall-border-light-500 flex items-center justify-center rounded-xl sm:rounded-2xl p-SPACE_05 sm:p-SPACE_10 shadow-lg w-52 h-28 sm:w-80 sm:h-40 bg-tailCall-light-100">
-          <img
-            src={require("@site/static/images/about/peakxv.png").default}
+          <Image
+            src={"/images/about/peakxv.png"}
             srcSet={`
-            ${require("@site/static/images/about/peakxv.png").default} 1x,
-            ${require("@site/static/images/about/peakxv-2x.png").default} 2x
+            "/images/about/peakxv.png" 1x,
+            "/images/about/peakxv-2x.png" 2x
             `}
             alt="peak xv"
             className="h-full w-full object-contain"
           />
         </div>
         <div className="border border-solid border-tailCall-border-light-500 flex items-center justify-center rounded-xl sm:rounded-2xl p-SPACE_05 sm:p-SPACE_10 shadow-lg w-52 h-28 sm:w-80 sm:h-40 bg-tailCall-light-100">
-          <img
-            src={require("@site/static/images/about/tenacity.png").default}
+          <Image
+            src={"/images/about/tenacity.png"}
             srcSet={`
-            ${require("@site/static/images/about/tenacity.png").default} 1x,
-            ${require("@site/static/images/about/tenacity-2x.png").default} 2x
+            "/images/about/tenacity.png" 1x,
+            "/images/about/tenacity-2x.png" 2x
             `}
             alt="tenacity"
           />
@@ -37,7 +38,7 @@ const Investors = (): JSX.Element => {
         <div className="flex flex-wrap lg:flex-nowrap gap-SPACE_12 sm:gap-y-SPACE_06 lg:gap-y-0 items-center flex-start justify-center mt-SPACE_09">
           {investors.map((investor) => (
             <div key={investor.id} className="flex flex-col items-center w-[172px] sm:w-[228px]">
-              <img
+              <Image
                 src={investor.image}
                 srcSet={`${investor.image} 1x,${investor.image2x} 2x`}
                 alt={investor.name}
