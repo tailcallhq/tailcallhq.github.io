@@ -68,7 +68,7 @@ curl --request POST \
   --data '{"query":"query {\n\tuser(id: 1) { name }\n}"}'
 ```
 
-or you can use the GraphQL Playground and add the header in the HTTP Headers section:
+or you can use the GraphQL Playground and add the header in the Headers section:
 
 ```json
 {
