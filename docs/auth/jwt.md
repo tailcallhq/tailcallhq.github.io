@@ -38,7 +38,7 @@ The whole example could look like this:
 
 ```graphql
 schema
-  @server(port: 8000, graphiql: true)
+  @server(port: 8000)
   @upstream(baseURL: "http://jsonplaceholder.typicode.com")
   @link(id: "auth-jwks", type: Jwks, src: "jwks.json") {
   query: Query

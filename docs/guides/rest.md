@@ -27,7 +27,6 @@ There are three main steps to this process:
 
 ```graphql
 schema
-  @server(graphiql: true)
   @upstream(
     baseURL: "https://jsonplaceholder.typicode.com"
   ) {
@@ -85,7 +84,6 @@ checkout the `@link` directive in the config snippet below to link the operation
 
 ```graphql
 schema
-  @server(graphiql: true)
   @upstream(baseURL: "https://jsonplaceholder.typicode.com")
   #highlight-start
   @link(type: Operation, src: "user-operation.graphql") {

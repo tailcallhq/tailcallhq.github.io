@@ -39,7 +39,7 @@ Consider we have following Tailcall config that connects with jsonplaceholder.co
 
 ```graphql
 schema
-  @server(port: 8000, graphiql: true, hostname: "0.0.0.0")
+  @server(port: 8000, hostname: "0.0.0.0")
   @upstream(
     baseURL: "http://jsonplaceholder.typicode.com"
   ) {
