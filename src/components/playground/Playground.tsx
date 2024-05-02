@@ -3,12 +3,7 @@ import {GraphiQL} from "graphiql"
 import {isValidURL} from "@site/src/utils"
 import "graphiql/graphiql.css"
 import "../../css/graphiql.css"
-
-type FetcherParams = {
-  query: string
-  operationName?: string | null
-  variables?: any
-}
+import {type FetcherParams, FetcherOpts} from "@graphiql/toolkit"
 
 const useDebouncedValue = (inputValue: string, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(inputValue)
@@ -45,18 +40,17 @@ const Playground = () => {
     }
   }, [debouncedApiEndpoint])
 
-  const graphQLFetcher = (graphQLParams: FetcherParams) => {
+  const graphQLFetcher = async (graphQLParams: FetcherParams, opts?: FetcherOpts) => {
     if (apiEndpoint.toString().trim() === "") {
       return Promise.resolve({})
     }
 
-    return fetch(apiEndpoint.toString(), {
+    const response = await fetch(apiEndpoint.toString(), {
       method: "post",
-      headers: {"Content-Type": "application/json"},
+      headers: {"Content-Type": "application/json", ...opts?.headers},
       body: JSON.stringify(graphQLParams),
-    }).then((response) => {
-      return response.json()
     })
+    return await response.json()
   }
 
   return (
