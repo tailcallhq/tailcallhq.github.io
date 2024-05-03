@@ -41,7 +41,7 @@ To learn more about writing configuration to leverage the full power of Tailcall
 
 ```graphql showLineNumbers
 schema
-  @server(port: 8000, graphiql: true, hostname: "0.0.0.0")
+  @server(port: 8000, hostname: "0.0.0.0")
   @upstream(baseURL: "http://jsonplaceholder.typicode.com", httpCache: true, batch: {delay: 100}) {
   query: Query
 }
@@ -74,7 +74,6 @@ type Post {
 <TabItem value="yml" label="yml">
 ```yml showLineNumbers
 server:
-  graphiql: true
   hostname: 0.0.0.0
   port: 8000
 upstream:
@@ -165,7 +164,6 @@ types:
 ```json showLineNumbers
 {
   "server": {
-    "graphiql": true,
     "hostname": "0.0.0.0",
     "port": 8000
   },

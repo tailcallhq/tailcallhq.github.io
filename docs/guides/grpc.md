@@ -116,7 +116,7 @@ Also, let's specify options for Tailcall's ingress and egress at the beginning o
 
 ```graphql
 schema
-  @server(port: 8000, graphiql: true)
+  @server(port: 8000)
   @upstream(
     baseURL: "http://localhost:50051"
     httpCache: true
@@ -153,7 +153,7 @@ Wrapping up the whole result config that may look like this:
 # file: app.graphql
 
 schema
-  @server(port: 8000, graphiql: true)
+  @server(port: 8000)
   @upstream(
     baseURL: "http://localhost:50051"
     httpCache: true
@@ -228,7 +228,7 @@ In our protobuf example file, we have a method called `GetMultipleNews` that we 
 
 ```graphql
 schema
-  @server(port: 8000, graphiql: true)
+  @server(port: 8000)
   @upstream(
     baseURL: "http://localhost:50051"
     httpCache: true

@@ -18,7 +18,7 @@ Create one of the following files and paste the contents into it.
 ```graphql showLineNumbers
 schema
   # Specify server configuration: Start tailcall server at 0.0.0.0:8000 and enable GraphiQL playground
-  @server(port: 8000, graphiql: true)
+  @server(port: 8000)
   # Specify a base url for all http requests
   @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
@@ -61,7 +61,6 @@ body: String!
 ```yml showLineNumbers
 server:
   port: 8000
-  graphiql: true
   queryValidation: false
   hostname: "0.0.0.0"
 upstream:
@@ -121,7 +120,6 @@ types:
 {
   "server": {
     "port": 8000,
-    "graphiql": true,
     "queryValidation": false,
     "hostname": "0.0.0.0"
   },

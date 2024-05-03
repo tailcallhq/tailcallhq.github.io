@@ -9,7 +9,7 @@ const project = "tailcallhq.github.io"
 export default {
   title,
   trailingSlash: true,
-  tagline: "<tagline>",
+  tagline: "GraphQL platform engineered for scale",
   headTags: [
     {
       tagName: "script",
