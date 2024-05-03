@@ -131,7 +131,7 @@ The `@call` directive is predominantly advantageous in complex, large-scale conf
 Let's explain this with an example:
 
 ```graphql showLineNumbers
-schema @server(graphiql: true) {
+schema @server {
   query: Query
 }
 
@@ -184,7 +184,7 @@ As you can see the [`@expr`](../directives/expr.md) directive plucks the inner v
 Given the above input if we wish to extract the last inner number `1000` then we could define a new operation as follows
 
 ```graphql showLineNumbers
-schema @server(graphiql: true) {
+schema @server {
   query: Query
 }
 

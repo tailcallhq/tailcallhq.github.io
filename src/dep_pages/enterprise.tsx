@@ -4,6 +4,7 @@ import Layout from "@theme/Layout"
 import {useLocation} from "@docusaurus/router"
 
 import EnterprisePage from "../components/enterprise"
+import {PageDescription, PageTitle} from "../constants/titles"
 
 const Enterprise = (): JSX.Element => {
   const location = useLocation()
@@ -13,7 +14,7 @@ const Enterprise = (): JSX.Element => {
   }, [])
 
   return (
-    <Layout title="API Platform" description="API Platform engineered for scale.">
+    <Layout title={PageTitle.ENTERPRISE} description={PageDescription.ENTERPRISE}>
       <EnterprisePage />
     </Layout>
   )

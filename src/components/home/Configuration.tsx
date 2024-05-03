@@ -46,7 +46,7 @@ const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" 
 export default Configuration
 
 const GRAPHQL_CONFIG = `schema
-  @server(port: 8000, graphiql: true)
+  @server(port: 8000)
   @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
 }
@@ -76,7 +76,6 @@ type Post {
 `
 
 const YML_CONFIG = `server:
-  graphiql: true
   port: 8000
 upstream:
   baseURL: http://jsonplaceholder.typicode.com
@@ -145,7 +144,6 @@ types:
 
 const JSON_CONFIG = `{
   "server": {
-    "graphiql": true,
     "port": 8000
   },
   "upstream": {

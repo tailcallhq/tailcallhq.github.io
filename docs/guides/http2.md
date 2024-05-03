@@ -106,5 +106,5 @@ That's pretty much all that's required. Now you can go ahead and [launch](../get
 INFO File read: ./jsonplaceholder.graphql ... ok
 INFO N + 1 detected: 0
 INFO 🚀 Tailcall launched at [0.0.0.0:8000] over HTTP/2.0
-INFO 🌍 Playground: http://127.0.0.1:8000
+INFO 🌍 Playground: https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql
 ```

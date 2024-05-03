@@ -21,7 +21,7 @@ The following example illustrates how to utilize the `@link` directive to incorp
 
 ```graphql showLineNumbers
 schema
-  @server(port: 8000, graphiql: true)
+  @server(port: 8000)
   @upstream(
     baseURL: "http://news.local"
     httpCache: true
