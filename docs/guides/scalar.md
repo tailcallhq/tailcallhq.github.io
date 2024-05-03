@@ -33,17 +33,33 @@ These are the current set of custom scalars supported by Tailcall:
 
 If none of the scalars make sense for your use case, consider opening an issue on the Tailcall [github repository](https://github.com/tailcallhq/tailcall).
 
+## Custom Scalars
+
+Apart from the pre-defined list of scalars, you can define your own custom scalars in your GraphQL schema like in the example below.
+
+```graphql
+scalar AnyScalar
+
+schema @server(port: 8000, hostname: "localhost") {
+  query: Query
+}
+
+type Query {
+  any(value: AnyScalar!): AnyScalar!
+    @expr(body: "{{.args.value}}")
+}
+```
+
+:::important
+Be aware that custom scalars don't have any validation and can be mapped to any data structure when using it.
+:::
+
 ## Example Usage
 
 Let's try using these custom scalars in our GraphQL schema.
 
 ```graphql
-schema
-  @server(
-    port: 8000
-    graphiql: true
-    hostname: "localhost"
-  ) {
+schema @server(port: 8000, hostname: "localhost") {
   query: Query
 }
 
@@ -62,7 +78,3 @@ Here is an example of a valid query that passes the custom scalar validations:
 
 And here is an example of an invalid query that fails the custom scalar validations as expected:
 ![Invalid Query](/images/docs/invalid.png)
-
-:::tip
-We recommend utilizing **JSON** as a scalar for cases where no other scalar type fits your needs. .
-:::

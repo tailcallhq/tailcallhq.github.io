@@ -3,6 +3,7 @@ import ReactGA from "react-ga4"
 import Layout from "@theme/Layout"
 import PlaygroundPage from "../components/playground"
 import {useLocation} from "@docusaurus/router"
+import {PageDescription, PageTitle} from "../constants/titles"
 
 const Playground = () => {
   const location = useLocation()
@@ -12,7 +13,7 @@ const Playground = () => {
   }, [])
 
   return (
-    <Layout title="Tailcall Playground" description="Explore, test, and interact with your GraphQL APIs effortlessly">
+    <Layout title={PageTitle.PLAYGROUND} description={PageDescription.PLAYGROUND}>
       <PlaygroundPage />
     </Layout>
   )
