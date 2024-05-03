@@ -26,7 +26,7 @@ const Playground = () => {
   const initialApiEndpoint =
     (typeof apiEndpointParam === "string" && isValidURL(apiEndpointParam) && new URL(apiEndpointParam)) || ""
   const [apiEndpoint, setApiEndpoint] = useState<URL | string>(
-    initialApiEndpoint !== "" ? new URL(initialApiEndpoint) : ""
+    initialApiEndpoint !== "" ? new URL(initialApiEndpoint) : "",
   )
   const [inputValue, setInputValue] = useState<string>(initialApiEndpoint.toString())
   const [editorLoaded, setEditorLoaded] = useState(false)
@@ -60,8 +60,8 @@ const Playground = () => {
     return await response.json()
   }
 
-  if(!editorLoaded) {
-    return <div style={{height: '100vh'}}></div>
+  if (!editorLoaded) {
+    return <div style={{height: "100vh"}}></div>
   }
 
   return (
