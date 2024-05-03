@@ -1,6 +1,6 @@
 "use strict";
-exports.id = 98;
-exports.ids = [98,480];
+exports.id = 588;
+exports.ids = [588,480];
 exports.modules = {
 
 /***/ 97480:
@@ -6595,63 +6595,32 @@ u(cu, "requireCodemirror");
 
 /***/ }),
 
-/***/ 58009:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   i: () => (/* binding */ r)
-/* harmony export */ });
-var d = Object.defineProperty;
-var o = (e, n) => d(e, "name", { value: n, configurable: !0 });
-function r(e, n) {
-  var t, i;
-  const { levels: l, indentLevel: v } = e;
-  return ((!l || l.length === 0 ? v : l.at(-1) - (!((t = this.electricInput) === null || t === void 0) && t.test(n) ? 1 : 0)) || 0) * (((i = this.config) === null || i === void 0 ? void 0 : i.indentUnit) || 0);
-}
-o(r, "indent");
-
-//# sourceMappingURL=mode-indent.es.js.map
-
-
-/***/ }),
-
-/***/ 42098:
+/***/ 27588:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(97480);
-/* harmony import */ var graphql_language_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(33831);
-/* harmony import */ var _mode_indent_es_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(58009);
-/* harmony import */ var _codemirror_es2_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(35421);
-var a = Object.defineProperty;
-var t = (e, r) => a(e, "name", { value: r, configurable: !0 });
+/* harmony import */ var graphql_language_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(21284);
+/* harmony import */ var _codemirror_es2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(35421);
 
 
 
-
-const m = /* @__PURE__ */ t((e) => {
-  const r = (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .onlineParser */ .Xs)({
-    eatWhitespace: (o) => o.eatWhile(graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .isIgnored */ .WU),
-    lexRules: graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .LexRules */ .nW,
-    parseRules: graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .ParseRules */ .kh,
-    editorConfig: { tabSize: e.tabSize }
-  });
-  return {
-    config: e,
-    startState: r.startState,
-    token: r.token,
-    indent: _mode_indent_es_js__WEBPACK_IMPORTED_MODULE_2__.i,
-    electricInput: /^\s*[})\]]/,
-    fold: "brace",
-    lineComment: "#",
-    closeBrackets: {
-      pairs: '()[]{}""',
-      explode: "()[]{}"
-    }
-  };
-}, "graphqlModeFactory");
-_codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__.C.defineMode("graphql", m);
-//# sourceMappingURL=mode.es.js.map
+const a = ["error", "warning", "information", "hint"], l = {
+  "GraphQL: Validation": "validation",
+  "GraphQL: Deprecation": "deprecation",
+  "GraphQL: Syntax": "syntax"
+};
+_codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__.C.registerHelper("lint", "graphql", (n, s) => {
+  const { schema: i, validationRules: r, externalFragments: o } = s;
+  return (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .getDiagnostics */ .ge)(n, i, r, void 0, o).map((e) => ({
+    message: e.message,
+    severity: e.severity ? a[e.severity - 1] : a[0],
+    type: e.source ? l[e.source] : void 0,
+    from: _codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__.C.Pos(e.range.start.line, e.range.start.character),
+    to: _codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__.C.Pos(e.range.end.line, e.range.end.character)
+  }));
+});
+//# sourceMappingURL=lint.es2.js.map
 
 
 /***/ })

@@ -1,6 +1,6 @@
 "use strict";
-exports.id = 588;
-exports.ids = [588,480];
+exports.id = 178;
+exports.ids = [178,480];
 exports.modules = {
 
 /***/ 97480:
@@ -6595,32 +6595,100 @@ u(cu, "requireCodemirror");
 
 /***/ }),
 
-/***/ 27588:
+/***/ 58009:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   i: () => (/* binding */ r)
+/* harmony export */ });
+var d = Object.defineProperty;
+var o = (e, n) => d(e, "name", { value: n, configurable: !0 });
+function r(e, n) {
+  var t, i;
+  const { levels: l, indentLevel: v } = e;
+  return ((!l || l.length === 0 ? v : l.at(-1) - (!((t = this.electricInput) === null || t === void 0) && t.test(n) ? 1 : 0)) || 0) * (((i = this.config) === null || i === void 0 ? void 0 : i.indentUnit) || 0);
+}
+o(r, "indent");
+
+//# sourceMappingURL=mode-indent.es.js.map
+
+
+/***/ }),
+
+/***/ 24178:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(97480);
-/* harmony import */ var graphql_language_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(33831);
-/* harmony import */ var _codemirror_es2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(35421);
+/* harmony import */ var graphql_language_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(21284);
+/* harmony import */ var _mode_indent_es_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(58009);
+/* harmony import */ var _codemirror_es2_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(35421);
 
 
 
-const a = ["error", "warning", "information", "hint"], l = {
-  "GraphQL: Validation": "validation",
-  "GraphQL: Deprecation": "deprecation",
-  "GraphQL: Syntax": "syntax"
-};
-_codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__.C.registerHelper("lint", "graphql", (n, s) => {
-  const { schema: i, validationRules: r, externalFragments: o } = s;
-  return (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .getDiagnostics */ .ge)(n, i, r, void 0, o).map((e) => ({
-    message: e.message,
-    severity: e.severity ? a[e.severity - 1] : a[0],
-    type: e.source ? l[e.source] : void 0,
-    from: _codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__.C.Pos(e.range.start.line, e.range.start.character),
-    to: _codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__.C.Pos(e.range.end.line, e.range.end.character)
-  }));
+
+_codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__.C.defineMode("graphql-results", (r) => {
+  const u = (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .onlineParser */ .Xs)({
+    eatWhitespace: (l) => l.eatSpace(),
+    lexRules: o,
+    parseRules: c,
+    editorConfig: { tabSize: r.tabSize }
+  });
+  return {
+    config: r,
+    startState: u.startState,
+    token: u.token,
+    indent: _mode_indent_es_js__WEBPACK_IMPORTED_MODULE_2__.i,
+    electricInput: /^\s*[}\]]/,
+    fold: "brace",
+    closeBrackets: {
+      pairs: '[]{}""',
+      explode: "[]{}"
+    }
+  };
 });
-//# sourceMappingURL=lint.es2.js.map
+const o = {
+  Punctuation: /^\[|]|\{|\}|:|,/,
+  Number: /^-?(?:0|(?:[1-9][0-9]*))(?:\.[0-9]*)?(?:[eE][+-]?[0-9]+)?/,
+  String: /^"(?:[^"\\]|\\(?:"|\/|\\|b|f|n|r|t|u[0-9a-fA-F]{4}))*"?/,
+  Keyword: /^true|false|null/
+}, c = {
+  Document: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("{"), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .list */ .pb)("Entry", (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)(",")), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("}")],
+  Entry: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("String", "def"), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)(":"), "Value"],
+  Value(r) {
+    switch (r.kind) {
+      case "Number":
+        return "NumberValue";
+      case "String":
+        return "StringValue";
+      case "Punctuation":
+        switch (r.value) {
+          case "[":
+            return "ListValue";
+          case "{":
+            return "ObjectValue";
+        }
+        return null;
+      case "Keyword":
+        switch (r.value) {
+          case "true":
+          case "false":
+            return "BooleanValue";
+          case "null":
+            return "NullValue";
+        }
+        return null;
+    }
+  },
+  NumberValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("Number", "number")],
+  StringValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("String", "string")],
+  BooleanValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("Keyword", "builtin")],
+  NullValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("Keyword", "keyword")],
+  ListValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("["), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .list */ .pb)("Value", (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)(",")), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("]")],
+  ObjectValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("{"), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .list */ .pb)("ObjectField", (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)(",")), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("}")],
+  ObjectField: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("String", "property"), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)(":"), "Value"]
+};
+//# sourceMappingURL=mode.es3.js.map
 
 
 /***/ })

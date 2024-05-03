@@ -1,6 +1,6 @@
 "use strict";
-exports.id = 178;
-exports.ids = [178,480];
+exports.id = 98;
+exports.ids = [98,480];
 exports.modules = {
 
 /***/ 97480:
@@ -6615,80 +6615,43 @@ o(r, "indent");
 
 /***/ }),
 
-/***/ 24178:
+/***/ 42098:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(97480);
-/* harmony import */ var graphql_language_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(33831);
+/* harmony import */ var graphql_language_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(21284);
 /* harmony import */ var _mode_indent_es_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(58009);
 /* harmony import */ var _codemirror_es2_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(35421);
+var a = Object.defineProperty;
+var t = (e, r) => a(e, "name", { value: r, configurable: !0 });
 
 
 
 
-_codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__.C.defineMode("graphql-results", (r) => {
-  const u = (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .onlineParser */ .Xs)({
-    eatWhitespace: (l) => l.eatSpace(),
-    lexRules: o,
-    parseRules: c,
-    editorConfig: { tabSize: r.tabSize }
+const m = /* @__PURE__ */ t((e) => {
+  const r = (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .onlineParser */ .Xs)({
+    eatWhitespace: (o) => o.eatWhile(graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .isIgnored */ .WU),
+    lexRules: graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .LexRules */ .nW,
+    parseRules: graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .ParseRules */ .kh,
+    editorConfig: { tabSize: e.tabSize }
   });
   return {
-    config: r,
-    startState: u.startState,
-    token: u.token,
+    config: e,
+    startState: r.startState,
+    token: r.token,
     indent: _mode_indent_es_js__WEBPACK_IMPORTED_MODULE_2__.i,
-    electricInput: /^\s*[}\]]/,
+    electricInput: /^\s*[})\]]/,
     fold: "brace",
+    lineComment: "#",
     closeBrackets: {
-      pairs: '[]{}""',
-      explode: "[]{}"
+      pairs: '()[]{}""',
+      explode: "()[]{}"
     }
   };
-});
-const o = {
-  Punctuation: /^\[|]|\{|\}|:|,/,
-  Number: /^-?(?:0|(?:[1-9][0-9]*))(?:\.[0-9]*)?(?:[eE][+-]?[0-9]+)?/,
-  String: /^"(?:[^"\\]|\\(?:"|\/|\\|b|f|n|r|t|u[0-9a-fA-F]{4}))*"?/,
-  Keyword: /^true|false|null/
-}, c = {
-  Document: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("{"), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .list */ .pb)("Entry", (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)(",")), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("}")],
-  Entry: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("String", "def"), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)(":"), "Value"],
-  Value(r) {
-    switch (r.kind) {
-      case "Number":
-        return "NumberValue";
-      case "String":
-        return "StringValue";
-      case "Punctuation":
-        switch (r.value) {
-          case "[":
-            return "ListValue";
-          case "{":
-            return "ObjectValue";
-        }
-        return null;
-      case "Keyword":
-        switch (r.value) {
-          case "true":
-          case "false":
-            return "BooleanValue";
-          case "null":
-            return "NullValue";
-        }
-        return null;
-    }
-  },
-  NumberValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("Number", "number")],
-  StringValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("String", "string")],
-  BooleanValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("Keyword", "builtin")],
-  NullValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("Keyword", "keyword")],
-  ListValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("["), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .list */ .pb)("Value", (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)(",")), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("]")],
-  ObjectValue: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("{"), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__/* .list */ .pb)("ObjectField", (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)(",")), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)("}")],
-  ObjectField: [(0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.t)("String", "property"), (0,graphql_language_service__WEBPACK_IMPORTED_MODULE_1__.p)(":"), "Value"]
-};
-//# sourceMappingURL=mode.es3.js.map
+}, "graphqlModeFactory");
+_codemirror_es_js__WEBPACK_IMPORTED_MODULE_0__.C.defineMode("graphql", m);
+//# sourceMappingURL=mode.es.js.map
 
 
 /***/ })
