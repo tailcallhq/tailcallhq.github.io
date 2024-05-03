@@ -143,10 +143,6 @@ When implementing any functionality that requires observability consider the fol
 1. **Star the Repository:** If you find this project useful, please give it a star on GitHub. This helps increase its visibility and encourages more people to contribute.
 2. **Tweet About Your Contribution:** Share your contributions and experiences with the wider community on Twitter. Use the hashtag `#TailcallContributor` and tag `@tailcallhq` to let us know!
 
-## Community
-
-1. **Be Respectful:** Please remember that this is an open-source project and the community is welcoming and respectful to all members.
-
 ## Final Words
 
-Thank you for contributing! Your efforts help improve the application for everyone.
+Please keep in mind that this project thrives through open-source collaboration, and we pride ourselves on maintaining a community that is inclusive and respectful to all participants. Thank you for your contribution! Your dedication helps enhance the application for all users.
