@@ -6,7 +6,7 @@ import {pageLinks} from "@site/src/constants/routes"
 
 const Footer = (): JSX.Element => {
   return (
-    <footer className="bg-tailCall-dark-700 pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04">
+    <footer style={{zIndex: 101}} className="bg-tailCall-dark-700 pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04">
       <img
         src={require("@site/static/images/about/grid-dark.png").default}
         alt=""
