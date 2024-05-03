@@ -35,7 +35,7 @@ If none of the scalars make sense for your use case, consider opening an issue o
 
 ## Custom Scalars
 
-You can define custom scalars in your GraphQL schema like in the example below.
+Apart from the pre-defined list of scalars, you can define your own custom scalars in your GraphQL schema like in the example below.
 
 ```graphql
 scalar AnyScalar
@@ -50,7 +50,9 @@ type Query {
 }
 ```
 
-That can be useful to define aliases for some arbitrary types. But be aware that custom scalars won't have any validation and they could be mapped to any data structure when using it.
+:::important
+Be aware that custom scalars don't have any validation and can be mapped to any data structure when using it.
+:::
 
 ## Example Usage
 
