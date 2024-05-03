@@ -1,6 +1,6 @@
 ---
 title: GraphQL on gRPC
-description: Building a GraphQL API on top of gRPC endpoints.
+description: "Learn how to integrate gRPC services with Tailcall's GraphQL gateway in this comprehensive guide. Discover the benefits of using gRPC, a high-performance framework by Google, for efficient data transfer in microservices and distributed systems. Understand how to set up simple gRPC services, define protobuf files, and implement a gRPC server. Explore how to configure Tailcall to seamlessly connect GraphQL types to gRPC types and enable advanced features like batching and reflection for dynamic service discovery. This guide is perfect for developers looking to enhance their system's capability to handle high-performance data operations with simplicity and scalability. Ideal for those with a basic understanding of gRPC, ready to dive into practical integration with Tailcall."
 ---
 
 In this guide, we will set up a simple gRPC service and use it inside Tailcall's config to fetch some of the data provided by the service. This way Tailcall can provide a single GraphQL interface wrapping any number of gRPC services.
@@ -267,6 +267,38 @@ Restart the Tailcall server and make the query with multiple news separately, e.
 ```
 
 Those 2 requests will be executed inside a single request to the gRPC method `GetMultipleNews`
+
+## Reflection
+
+gRPC reflection is a potent feature enabling clients to dynamically discover services and their methods at runtime. Tailcall enhances this capability by obviating the need for developers to link each proto file individually. This feature proves particularly valuable in environments where proto files are continuously evolving or when services dynamically expose varying methods. Here are the steps to follow:
+
+1. Add the gRPC endpoint as a [link] with type set to `Grpc`. This enables the Tailcall server to understand that the specified source is a gRPC endpoint that supports reflection.
+
+   ```graphql
+   schema
+     @link(
+       src: "https://my-grpc-service.com:50051"
+       type: Grpc
+     ) {
+     query: Query
+   }
+   ```
+
+2. Next, as before we will just add the methods with a fully qualified name:
+
+   ```graphql
+   type Query {
+     news: [News]
+       @grpc(method: "news.NewsService.GetAllNews")
+   }
+
+   type News {
+     id: Int
+     title: String
+     body: String
+     postImage: String
+   }
+   ```
 
 ## Conclusion
 
