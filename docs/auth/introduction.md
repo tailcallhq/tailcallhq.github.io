@@ -136,7 +136,7 @@ You will get an authentication failure error stating that authentication paramet
   "data": null,
   "errors": [
     {
-      "message": "Authentication Failure: Parameters not provided in the request.",
+      "message": "Authentication Failure: Missing Authorization Header.",
       "locations": [
         {
           "line": 3,
