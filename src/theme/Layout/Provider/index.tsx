@@ -33,7 +33,8 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
     <Provider>
       {children}
       <Footer />
-    </Provider>);
+    </Provider>
+  );
 }
 
 export default LayoutProvider
