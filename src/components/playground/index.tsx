@@ -11,9 +11,7 @@ const PlaygroundPage = (): JSX.Element => {
   }, [])
 
   return (
-    <>
       <Playground />
-    </>
   )
 }
 
