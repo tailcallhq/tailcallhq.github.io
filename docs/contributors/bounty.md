@@ -1,7 +1,7 @@
 ---
 title: "Bounty"
+sidebar_position: 8
 description: "This guide outlines the Tailcall Bounty Program, emphasizing quick, high-quality contributions and collaborative engagement through challenges and rewards. It provides essential participation rules and encourages active community involvement for innovation and excellence."
-sidebar_position: 2
 ---
 
 Hey there! We're thrilled that you're considering joining our Bounty Program. This is your chance to showcase your skills and get rewarded for them. Here's everything you need to know to dive in and make a splash.
