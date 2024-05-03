@@ -268,6 +268,53 @@ Restart the Tailcall server and make the query with multiple news separately, e.
 
 Those 2 requests will be executed inside a single request to the gRPC method `GetMultipleNews`
 
+## gRPC Reflection
+Now Tailcall supports grpcReflection
+
+gRPC Reflection is a powerful feature that allows clients to discover services and their methods dynamically at runtime. This is particularly useful in environments where the proto files are evolving or when services dynamically expose different methods.
+
+The example Tailcall config demonstrates how to enable gRPC reflection for Tailcall 
+```graphql
+schema
+  @server(port: 8000)
+  @upstream(baseURL: "http://localhost:50051", httpCache: true, batch: {delay: 10})
+  @link(src: "http://localhost:50051", type: Grpc) {
+  query: Query
+}
+
+type Query {
+  news: NewsData! @grpc(method: "news.NewsService.GetAllNews")
+  newsById(news: NewsInput!): News! @grpc(method: "news.NewsService.GetNews", body: "{{args.news}}")
+  newsByIdBatch(news: NewsInput!): News!
+    @grpc(method: "news.NewsService.GetMultipleNews", body: "{{args.news}}", batchKey: ["news", "id"])
+}
+
+type News {
+  id: Int
+  title: String
+  body: String
+  postImage: String
+  status: Status
+}
+
+enum Status {
+  PUBLISHED
+  DRAFT
+  DELETED
+}
+
+input NewsInput {
+  id: Int
+}
+
+type NewsData {
+  news: [News]!
+}
+```
+
+For test upstream server check [tailcall-upstream-grpc](https://github.com/tailcallhq/tailcall/tree/main/tailcall-upstream-grpc)
+
+
 ## Conclusion
 
 Well done on integrating a gRPC service with the Tailcall gateway! This tutorial has demonstrated the straightforward and efficient process, showcasing Tailcall's compatibility with advanced communication protocols like gRPC.
