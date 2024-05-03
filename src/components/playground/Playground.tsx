@@ -61,7 +61,7 @@ const Playground = () => {
   }
 
   if (!editorLoaded) {
-    return <div style={{height: "100vh"}}></div>
+    return <div className="h-screen"></div>
   }
 
   return (
