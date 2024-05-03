@@ -18,7 +18,6 @@ Define GraphQL types and queries, using the `@rest` directive to map fields to R
 
 ```graphql
 schema
-  @server(graphiql: true)
   @upstream(baseURL: "https://jsonplaceholder.typicode.com")
   @link(type: Operation, src: "user-operation.graphql") {
   query: Query
@@ -26,7 +25,7 @@ schema
 
 type Query {
   user(id: Int!): User
-    @rest(method: "GET", path: "/users/{{args.id}}")
+    @rest(method: "GET", path: "/users/{{.args.id}}")
 }
 
 type User {

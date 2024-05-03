@@ -19,7 +19,7 @@ The guide is based on [official doc](https://docs.newrelic.com/docs/more-integra
            headers: [
              {
                key: "api-key"
-               value: "{{env.NEWRELIC_API_KEY}}"
+               value: "{{.env.NEWRELIC_API_KEY}}"
              }
            ]
          }

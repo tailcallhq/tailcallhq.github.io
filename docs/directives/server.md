@@ -109,7 +109,20 @@ schema @server(headers: {setCookies: true}) {
 
 ### cors
 
-The `cors` configuration allows you to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) on Tailcall. This is useful when you want to access Tailcall in the browser. It has the following fields:
+The `cors` configuration allows you to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) on Tailcall. This is useful when you want to access Tailcall in the browser. Here is a simple configuration to get started with cors:
+
+```graphql showLineNumbers
+schema
+  @server(
+    headers: {
+      cors: {allowHeaders: ["*"], allowOrigins: ["*"]}
+    }
+  ) {
+  query: Query
+}
+```
+
+The above setting will enable CORS on the server for all headers, origins & methods. You can further configure the cors settings to make it more secure with the following fields:
 
 - `allowCredentials`: Indicates whether the server allows credentials (e.g., cookies, authorization headers) to be sent in cross-origin requests.
 - `allowHeaders`: A list of allowed headers in cross-origin requests. This can be used to specify custom headers that are allowed to be included in cross-origin requests.
@@ -124,7 +137,6 @@ The `cors` configuration allows you to enable [CORS](https://developer.mozilla.o
 schema
   @server(
     port: 8000
-    graphiql: true
     hostname: "0.0.0.0"
     headers: {
       cors: {
@@ -135,28 +147,13 @@ schema
         allowPrivateNetwork: true
         exposeHeaders: ["Content-Type"]
         maxAge: 360
-        vary: "Origin"
+        vary: ["Origin"]
       }
     }
   ) {
   query: Query
 }
 ```
-
-## graphiql
-
-Enabling the `graphiql` configuration activates the GraphiQL IDE at the root (/) path within Tailcall. GraphiQL is a built-in, interactive in-browser GraphQL IDE, designed to streamline query development and testing. By default, this feature is off.
-
-```graphql showLineNumbers
-schema @server(port: 8000, graphiql: true) {
-  query: Query
-  mutation: Mutation
-}
-```
-
-:::tip
-While the GraphiQL interface is a powerful tool for development, consider disabling it in production environments if you're not exposing GraphQL APIs directly to users. This ensures an added layer of security and reduces unnecessary exposure.
-:::
 
 ## vars
 
@@ -178,7 +175,7 @@ type Query {
       headers: [
         {
           key: "Authorization"
-          value: "Bearer {{vars.apiKey}}"
+          value: "Bearer {{.vars.apiKey}}"
         }
       ]
     )

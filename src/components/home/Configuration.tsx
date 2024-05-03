@@ -46,7 +46,7 @@ const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" 
 export default Configuration
 
 const GRAPHQL_CONFIG = `schema
-  @server(port: 8000, graphiql: true)
+  @server(port: 8000)
   @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
 }
@@ -71,12 +71,11 @@ type Post {
   userId: Int!
 
   # Expand a post with user information
-  user: User @http(path: "/users/{{value.userId}}")
+  user: User @http(path: "/users/{{.value.userId}}")
 }
 `
 
 const YML_CONFIG = `server:
-  graphiql: true
   port: 8000
 upstream:
   baseURL: http://jsonplaceholder.typicode.com
@@ -100,7 +99,7 @@ types:
       user:
         type: User
         http:
-          path: /users/{{value.userId}}
+          path: /users/{{.value.userId}}
         cache: null
       userId:
         type: Int
@@ -145,7 +144,6 @@ types:
 
 const JSON_CONFIG = `{
   "server": {
-    "graphiql": true,
     "port": 8000
   },
   "upstream": {
@@ -175,7 +173,7 @@ const JSON_CONFIG = `{
         "user": {
           "type": "User",
           "http": {
-            "path": "/users/{{value.userId}}"
+            "path": "/users/{{.value.userId}}"
           },
           "cache": null
         },

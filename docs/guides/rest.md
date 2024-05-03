@@ -27,7 +27,6 @@ There are three main steps to this process:
 
 ```graphql
 schema
-  @server(graphiql: true)
   @upstream(
     baseURL: "https://jsonplaceholder.typicode.com"
   ) {
@@ -35,7 +34,7 @@ schema
 }
 
 type Query {
-  post(id: Int!): Post @http(path: "/posts/{{args.id}}")
+  post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
 }
 
 type Post {
@@ -43,7 +42,7 @@ type Post {
   id: Int
   title: String
   body: String
-  user: User @http(path: "/users/{{value.userId}}")
+  user: User @http(path: "/users/{{.value.userId}}")
 }
 
 type User {
@@ -85,7 +84,6 @@ checkout the `@link` directive in the config snippet below to link the operation
 
 ```graphql
 schema
-  @server(graphiql: true)
   @upstream(baseURL: "https://jsonplaceholder.typicode.com")
   #highlight-start
   @link(type: Operation, src: "user-operation.graphql") {

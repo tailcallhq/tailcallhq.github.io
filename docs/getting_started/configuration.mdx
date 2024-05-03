@@ -18,7 +18,7 @@ Create one of the following files and paste the contents into it.
 ```graphql showLineNumbers
 schema
   # Specify server configuration: Start tailcall server at 0.0.0.0:8000 and enable GraphiQL playground
-  @server(port: 8000, graphiql: true)
+  @server(port: 8000)
   # Specify a base url for all http requests
   @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
@@ -43,7 +43,7 @@ email: String!
 
 # Use the current user's id to construct the path
 
-posts: [Post] @http(path: "/users/{{value.id}}/posts")
+posts: [Post] @http(path: "/users/{{.value.id}}/posts")
 }
 
 # Create a post type with the fields returned by the posts api
@@ -61,7 +61,6 @@ body: String!
 ```yml showLineNumbers
 server:
   port: 8000
-  graphiql: true
   queryValidation: false
   hostname: "0.0.0.0"
 upstream:
@@ -84,7 +83,7 @@ types:
       user:
         type: User
         http:
-          path: /users/{{value.userId}}
+          path: /users/{{.value.userId}}
       userId:
         type: Int
         required: true
@@ -121,7 +120,6 @@ types:
 {
   "server": {
     "port": 8000,
-    "graphiql": true,
     "queryValidation": false,
     "hostname": "0.0.0.0"
   },
@@ -150,7 +148,7 @@ types:
         "user": {
           "type": "User",
           "http": {
-            "path": "/users/{{value.userId}}"
+            "path": "/users/{{.value.userId}}"
           }
         },
         "userId": {

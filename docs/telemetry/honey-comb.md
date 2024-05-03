@@ -17,7 +17,7 @@ sidebar_position: 4
            headers: [
              {
                key: "x-honeycomb-team"
-               value: "{{env.HONEYCOMB_API_KEY}}"
+               value: "{{.env.HONEYCOMB_API_KEY}}"
              }
              {
                key: "x-honeycomb-dataset"

@@ -38,17 +38,13 @@ If none of the scalars make sense for your use case, consider opening an issue o
 Let's try using these custom scalars in our GraphQL schema.
 
 ```graphql
-schema
-  @server(
-    port: 8000
-    graphiql: true
-    hostname: "localhost"
-  ) {
+schema @server(port: 8000, hostname: "localhost") {
   query: Query
 }
 
 type Query {
-  email(value: Email!): Email! @expr(body: "{{args.value}}")
+  email(value: Email!): Email!
+    @expr(body: "{{.args.value}}")
 }
 ```
 

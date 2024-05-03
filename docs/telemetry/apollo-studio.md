@@ -43,7 +43,7 @@ To see the metrics for you queries follow these instructions:
 
    ```graphql
    schema
-     @server(port: 8000, graphiql: true)
+     @server(port: 8000)
      @upstream(
        baseURL: "http://jsonplaceholder.typicode.com"
      )

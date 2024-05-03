@@ -39,7 +39,7 @@ Consider we have following Tailcall config that connects with jsonplaceholder.co
 
 ```graphql
 schema
-  @server(port: 8000, graphiql: true, hostname: "0.0.0.0")
+  @server(port: 8000, hostname: "0.0.0.0")
   @upstream(
     baseURL: "http://jsonplaceholder.typicode.com"
   ) {
@@ -48,7 +48,7 @@ schema
 
 type Query {
   posts: [Post] @http(path: "/posts") @cache(maxAge: 3000)
-  user(id: Int!): User @http(path: "/users/{{args.id}}")
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
 }
 
 type User {
@@ -65,7 +65,7 @@ type Post {
   userId: Int!
   title: String!
   body: String!
-  user: User @http(path: "/users/{{value.userId}}")
+  user: User @http(path: "/users/{{.value.userId}}")
 }
 ```
 
