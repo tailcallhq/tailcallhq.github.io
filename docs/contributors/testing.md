@@ -4,116 +4,126 @@ description: "Discover the Tailcall's Testing Guidelines designed for contributo
 sidebar_position: 3
 ---
 
-Proper testing ensures high-quality contributions and helps maintain the stability of the project. Below you will find the guidelines and procedures that you should follow when writing and running tests.
-
-## Table of Contents
-
-- [Testing Philosophy](#testing-philosophy)
-- [Running Tests](#running-tests)
-- [Writing Tests](#writing-tests)
-  - [Unit Tests](#unit-tests)
-  - [Integration Tests](#integration-tests)
-- [Test Naming Conventions](#test-naming-conventions)
-- [What to Test](#what-to-test)
-- [Troubleshooting Common Issues](#troubleshooting-common-issues)
-- [Additional Resources](#additional-resources)
-
-## Testing Philosophy
-
-**Tailcall** follows a comprehensive testing approach to ensure that functionality is verified and future changes do not break existing features. We encourage test-driven development (TDD) where practical.
+**Tailcall** employs a thorough testing methodology to verify functionality and ensure that future modifications do not compromise existing features. We promote test-driven development (TDD) where feasible.
 
 ## Running Tests
 
-To run tests locally on your machine, follow these steps:
+To execute tests locally on your machine, follow these steps:
 
-1. Make sure rust toolchain is installed on your machine.
+1. Ensure the Rust toolchain is installed on your machine.
 
-2. To run all tests using the following command in the terminal type:
+2. Execute all tests with the following command in the terminal:
 
    ```sh
    cargo test
    ```
 
-3. To run a specific test or group of tests change the command:
+3. To run a specific test or group of tests, modify the command accordingly:
 
    ```sh
    cargo test test_name
    ```
 
-4. If you want to see all output from tests (in case you've added debug logs to tests) use the command:
+4. To view all output from tests (useful if you have added debug logs to your tests), use the command:
 
    ```sh
    cargo test -- --show-output
    ```
 
-5. For more details and options how tests works please refer [Rust Book Testing Chapter](https://doc.rust-lang.org/book/ch11-00-testing.html) and [rustc tests guide](https://doc.rust-lang.org/rustc/tests/index.html)
+5. For more details and options on how tests function, please refer to the [Rust Book Testing Chapter](https://doc.rust-lang.org/book/ch11-00-testing.html) and the [rustc tests guide](https://doc.rust-lang.org/rustc/tests/index.html).
 
-### Filter running tests
+### Filtering Running Tests
 
-In case you want to run specific set of tests or exclude some tests from running you can use following commands.
+To execute a specific set of tests or exclude some tests, use the following commands:
 
-If you want to run tests that have names according to some pattern run:
+To run tests that match a certain pattern:
 
 ```sh
 cargo test test_pattern
-# e.g. to run grpc related tests:
+# e.g., to run grpc related tests:
 cargo test grpc
 ```
 
-If you want to run specific test with exact name run passing the full module path to test:
+To run a specific test by passing the full module path:
 
 ```sh
 cargo test -- --exact test_name
-# e.g. for grpc protobuf conversion:
+# e.g., for grpc protobuf conversion:
 cargo test -- --exact grpc::protobuf::tests::convert_value
 ```
 
-If you want to skip some tests:
+To skip certain tests:
 
 ```sh
 cargo test -- --skip test_pattern
-# e.g. to ignore grpc related tests
+# e.g., to ignore grpc related tests:
 cargo test -- --skip grpc
 ```
 
-For more available options please refer [rustc filter's documentation](https://doc.rust-lang.org/rustc/tests/index.html#filters)
+For more available options, please refer to [rustc filter's documentation](https://doc.rust-lang.org/rustc/tests/index.html#filters).
 
 ## Writing Tests
 
 ### Unit Tests
 
-Unit tests should focus on small functionality, ensuring that each component behaves as expected:
+Unit tests should focus on individual components, ensuring each functions as expected:
 
-- Place unit tests in the same file as your code, under a `#[cfg(test)]` module.
-- Use descriptive function names for your tests.
-- Example:
-  ```rust
-  #[cfg(test)]
-  mod tests {
-  	#[test]
-  	fn test_addition() {
-  		assert_eq!(2 + 2, 4);
-  	}
-  }
-  ```
+1. Place unit tests in the same file as your code, under a `#[cfg(test)]` module.
+2. Use descriptive function names for your tests, for eg:
+
+   ```rust
+   #[cfg(test)]
+   mod tests {
+      #[test]
+      fn test_addition() {
+         assert_eq!(2 + 2, 4);
+      }
+   }
+   ```
+
+3. For every new feature or bug fix, structure your tests as follows:
+
+   - Set up the value using helper methods in tests.
+   - Compare an actual and an expected value.
+   - Assert the two values on separate lines.
+   - Ensure there is one assertion per test.
+
+     For eg:
+
+     ```rust
+     use pretty_assertions::assert_eq;
+     fn test_something_important() {
+        // Setup
+        let value = setup_something_using_a_function();
+
+        // Compute Actual
+        let actual = perform_some_operation_on_the_value(value);
+
+        // Compute Expected
+        let expected = ExpectedValue {foo: 1, bar: 2};
+
+        // Compare Actual and Expected
+        assert_eq!(actual, expected);
+     }
+     ```
+
+4. Before submitting a pull request, verify all tests pass.
 
 ### Integration Tests
 
-Integration testing is implemented by our [Markdown-based testing framework](./execution_spec.md). Please, refer its documentation to learn more about it.
+Integration testing is conducted using our [markdown-based testing framework](./execution_spec.md). Please refer to its own documentation for detailed information.
 
-## Test Naming Conventions
+## Naming Conventions
 
-- Test functions should start with `test_` followed by a description of what they cover.
-- Use underscores to separate words in the test function name for readability.
+- Test functions should begin with `test_` followed by a description of their purpose.
+- Use underscores to separate words in the test function names for readability.
 
 ## What to Test
 
-- **Critical paths**: Core functionality that must always work.
-- **Edge cases**: Conditions at the extremes of input boundaries.
-- **Error handling**: Ensure the system handles invalid input and errors.
+In essence, test everything! Write unit tests for modules that can be tested independently and supplement them with integration tests to ensure the overall system stability.
 
 ## Troubleshooting Common Issues
 
-- make sure you have up to date branch with latest commits from main branch.
-- make sure your environment matches the expected configurations (e.g., versions of Rust and dependencies).
-- verify that test failure isn't affected by your changes (e.g. run tests on clean main branch)
+- Ensure your branch is up-to-date with the latest commits from the main branch.
+- Verify that your environment conforms to the required configurations (e.g., versions of Rust and dependencies).
+- Confirm that test failures are not caused by your changes (e.g., run tests with a clean build on the main branch).
