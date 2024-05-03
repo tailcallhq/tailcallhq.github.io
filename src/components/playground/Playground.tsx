@@ -29,10 +29,17 @@ const Playground = () => {
     initialApiEndpoint !== "" ? new URL(initialApiEndpoint) : "",
   )
   const [inputValue, setInputValue] = useState<string>(initialApiEndpoint.toString())
+  const [editorLoaded, setEditorLoaded] = useState(false)
 
   const debouncedApiEndpoint = useDebouncedValue(inputValue, 500)
   const apiEndpointInputClasses = `border border-solid border-tailCall-border-light-500 rounded-lg font-space-grotesk h-11 w-[100%]
     p-SPACE_04 text-content-small outline-none focus:border-x-tailCall-light-700`
+
+  useEffect(() => {
+    if (document.getElementsByClassName("graphiql-container")) {
+      setEditorLoaded(true)
+    }
+  }, [])
 
   useEffect(() => {
     if (isValidURL(debouncedApiEndpoint)) {
@@ -51,6 +58,10 @@ const Playground = () => {
       body: JSON.stringify(graphQLParams),
     })
     return await response.json()
+  }
+
+  if(!editorLoaded) {
+    return <div style={{height: '100vh'}}></div>
   }
 
   return (
