@@ -13,7 +13,7 @@ const Playground = () => {
   }, [])
 
   return (
-    <Layout title={PageTitle.PLAYGROUND} description={PageDescription.PLAYGROUND} >
+    <Layout title={PageTitle.PLAYGROUND} description={PageDescription.PLAYGROUND}>
       <PlaygroundPage />
     </Layout>
   )
