@@ -7,9 +7,7 @@ import LegacyGateway from "./LegacyGateway"
 import MoreFeatures from "./MoreFeatures"
 import Partners from "./Partners"
 import Discover from "../shared/Discover"
-import Footer from "../shared/Footer"
 import Configuration from "./Configuration"
-import Playground from "./Playground"
 
 const HomePage = (): JSX.Element => {
   return (
@@ -23,7 +21,6 @@ const HomePage = (): JSX.Element => {
       <Graph />
       {/* <Playground /> */}
       <Discover />
-      <Footer />
     </div>
   )
 }
