@@ -59,7 +59,7 @@ export default {
         docs: {
           // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
           sidebarPath: require.resolve("./sidebars.ts"),
-          sidebarCollapsible: true,
+          sidebarCollapsible: false,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: `https://github.com/${organization}/${project}/tree/develop`,

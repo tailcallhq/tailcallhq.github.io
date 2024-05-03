@@ -1,7 +1,8 @@
 ---
 title: "Guidelines"
-description: "This guide outlines the key steps and best practices for contributing to the Tailcall project, covering setup, coding, testing, and documentation to ensure quality and consistency in contributions."
 sidebar_position: 1
+slug: "/contributors"
+description: "This guide outlines the key steps and best practices for contributing to the Tailcall project, covering setup, coding, testing, and documentation to ensure quality and consistency in contributions."
 ---
 
 # Contribution Guidelines
@@ -31,7 +32,7 @@ Thank you for considering contributing to **Tailcall**! This document outlines t
    ```bash
    cargo run -- start ./examples/jsonplaceholder.graphql
    ```
-   Once the server is running, you can access the GraphiQL interface at [http://localhost:8000/graphiql](http://localhost:8000/graphiql).
+   Once the server is running, you can access the GraphiQL interface at [https://tailcall.run/playground](https://tailcall.run/playground).
 
 ## Making Changes
 
@@ -44,82 +45,6 @@ Thank you for considering contributing to **Tailcall**! This document outlines t
 2. **Write Clean Code:** Ensure your code is clean, readable, and well-commented.
 3. **Follow Rust Best Practices:** Adhere to the [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/about.html).
 4. **Use Title Case in Job Names:** When adding new CI jobs to `.github/workflows`, please use title case e.g. _Close Stale Issues and PR_.
-
-## Testing
-
-1. **Write Tests:** For every new feature or bugfix, ensure that you write appropriate tests.
-   Structure your tests in the following way:
-
-   ```rust
-   use pretty_assertions::assert_eq;
-   fn test_something_important() {
-      let value = setup_something_using_a_function();
-
-      let actual = perform_some_operation_on_the_value(value);
-      let expected = ExpectedValue {foo: 1, bar: 2};
-
-      assert_eq!(actual, expected);
-   }
-   ```
-
-   - Setup the value using helper methods in tests.
-   - Create an actual and an expected value.
-   - Assert the two values in a new line.
-   - Ensure there is one assertion per test.
-
-2. **Run Tests:** Before submitting a pull request, ensure all tests pass.
-   ```bash
-   cargo test
-   ```
-
-## Programming Style Guidelines
-
-- When calling functions that do not need to modify values, pass references of those values.
-- When calling functions that need to modify values, pass ownership of the values, and ensure they are returned from the function.
-
-**IMPORTANT:** This programming style may not be suitable for performance-sensitive components or hot code paths. In such cases, prioritize efficiency and optimization strategies to enhance performance.
-
-## Telemetry
-
-Tailcall implements high observability standards that by following [OpenTelemetry](https://opentelemetry.io) specification. This implementation relies on the following crates:
-
-- [rust-opentelemetry](https://docs.rs/opentelemetry/latest/opentelemetry/index.html) and related crates to implement support for collecting and exporting data
-- [tracing](https://docs.rs/tracing/latest/tracing/index.html) and [tracing-opentelemetry](https://docs.rs/tracing-opentelemetry/latest/tracing_opentelemetry/index.html) to define logs and traces and thanks to integration with opentelemetry that data is automatically transferred to opentelemetry crates. Such a wrapper for telemetry allows to use well-defined library like tracing that works well for different cases and could be used as simple telemetry system for logging without involving opentelemetry if it's not required
-
-When implementing any functionality that requires observability consider the following points:
-
-- Add traces for significant amount of work that represents single operation. This will make it easier to investigate problems and slowdowns later.
-- For naming spans refer to the [opentelemetry specs](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span) and make the name as specific as possible but without involving high cardinality for possible values.
-- Due to limitations of tracing libraries, span names must be restricted to static strings. This constraint can be addressed by specifying an additional field with the special name `otel.name` (for details, refer to the `tracing-opentelemetry` docs).
-- The naming of the attributes should follow the opentelemetry's [semantic convention](https://opentelemetry.io/docs/concepts/semantic-conventions/). Existing constants can be obtained with the [opentelemetry_semantic_conventions](https://docs.rs/opentelemetry-semantic-conventions/latest/opentelemetry_semantic_conventions/index.html) crate.
-
-## Benchmarks Comparison
-
-### Criterion Benchmarks
-
-1. **Important:** Make sure all the commits are done.
-2. **Install packages:** Install cargo-criterion rust-script.
-   ```bash
-   cargo install cargo-criterion rust-script
-   ```
-3. **Comparing Benchmarks:**
-   You need to follow the following steps to compare benchmarks between `main`(Baseline) and your branch.
-
-   ```bash
-   git checkout main
-   cargo criterion --message-format=json > main.json
-   git checkout -
-   cargo criterion --message-format=json > feature.json
-   ./scripts/criterion_compare.rs base.json main.json table
-
-   ```
-
-4. **Check the Results:** If the benchmarks show more than 10% degradation, the script will exit with an error. Please check "benches/benchmark.md" file to identify the benchmarks that failed and investigate the code changes that might have caused the degradation.
-
-## Documentation
-
-1. **Update README:** If your changes necessitate a change in the way users interact with the application, update the README accordingly.
-2. **Inline Documentation:** Add inline documentation to your code where necessary.
 
 ## Committing Your Changes
 
@@ -140,13 +65,9 @@ When implementing any functionality that requires observability consider the fol
 
 ## Spread the Word
 
-1. **Star the Repository:** If you find this project useful, please give it a star on GitHub. This helps increase its visibility and encourages more people to contribute.
-2. **Tweet About Your Contribution:** Share your contributions and experiences with the wider community on Twitter. Use the hashtag `#TailcallContributor` and tag `@tailcallhq` to let us know!
-
-## Community
-
-1. **Be Respectful:** Please remember that this is an open-source project and the community is welcoming and respectful to all members.
+1. **Star the Repository:** If you find this project useful, please give it a [star](https://github.com/tailcallhq/tailcall) on GitHub. This helps increase its visibility and encourages more people to contribute.
+2. **Tweet About Your Contribution:** Share your contributions and experiences with the wider community on Twitter. Use the hashtag `#TailcallContributor` and tag [@tailcallhq](https://twitter.com/tailcallhq) to let us know!
 
 ## Final Words
 
-Thank you for contributing! Your efforts help improve the application for everyone.
+Please keep in mind that this project thrives through open-source collaboration, and we pride ourselves on maintaining a community that is inclusive and respectful to all participants. Thank you for your contribution! Your dedication helps enhance the application for all users.
