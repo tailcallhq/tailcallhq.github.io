@@ -1,34 +1,10 @@
 ---
-title: "Markdown-based tests"
-description: "This guide details Tailcall's Markdown-based snapshot testing framework, explaining its structure, syntax, and testing process. It is designed for developers implementing or optimizing tests in a language-agnostic environment, emphasizing efficient snapshot utilization and maintenance within Tailcall."
+title: "Integration Testing"
+description: "Discover Tailcall's innovative markdown-based snapshot testing framework, designed to enhance testing across various programming languages seamlessly. This framework focuses on simplicity and maintainability, utilizing Markdown to make test cases easy to write and understand. Tailored for users of Tailcall, the framework supports extensive testing of GraphQL backends without language constraints. Features include detailed instructions on running and filtering tests, a structured test syntax guide, and comprehensive sections on test processes and snapshot maintenance. Ideal for developers seeking a straightforward, language-agnostic testing solution. Learn more about implementing and maintaining effective tests with Tailcall's unique approach."
 sidebar_position: 4
 ---
 
-A Markdown-based snapshot testing framework in **Tailcall**.
-
-## Table of contents
-
-- [Why a new testing framework?](#why-a-new-testing-framework)
-- [How does it work?](#how-does-it-work)
-- [Run tests](#run-tests)
-  - [Filter tests](#filter-tests)
-- [Structure](#structure)
-- [Test syntax](#test-syntax)
-  - [Header](#header)
-  - [Blocks](#blocks)
-    - [`@server`](#server)
-    - [`@mock`](#mock)
-    - [`@env`](#env)
-    - [`@test`](#test)
-    - [`@file:<filename>`](#filefilename)
-  - [Instruction](#instruction)
-- [Test process](#test-process)
-- [Snapshots](#snapshots)
-- [Maintenance](#maintenance)
-
-## Why a new testing framework?
-
-We aimed to create a snapshot testing framework that is language-agnostic, straightforward to write, maintain, and understand. For this reason, we chose a Markdown-based design. This design aligns with the usage patterns of Tailcall users. Since Tailcall supports building scalable GraphQL backends without being tied to a specific programming language, it was essential for our testing framework to be similarly language-agnostic.
+We created a special DSL atop markdown syntax and leveraging snapshot testing to allow developers a unified experience while writing integration tests. Markdown syntax allowed us to embed multiple file formats — JSON, GraphQL, JS etc. and make them work in tandem.
 
 ## How does it work?
 

@@ -1,5 +1,5 @@
 ---
-title: "Testing Guidelines"
+title: "Unit Testing"
 description: "Discover the Tailcall's Testing Guidelines designed for contributors. This guide covers our testing approach, how to run and write tests, and tips for troubleshooting. It's a straightforward resource for developers at any level aiming to contribute effectively and maintain high-quality code in Tailcall"
 sidebar_position: 3
 ---
