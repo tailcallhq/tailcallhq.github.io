@@ -14,7 +14,8 @@ const PlaygroundPage = (): JSX.Element => {
   return (
     <>
       <Playground />
-      {editorLoaded && <Footer />}
+      {editorLoaded &&       {/* <Footer /> */}
+}
     </>
   )
 }

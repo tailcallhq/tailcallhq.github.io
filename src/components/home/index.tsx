@@ -23,7 +23,8 @@ const HomePage = (): JSX.Element => {
       <Graph />
       {/* <Playground /> */}
       <Discover />
-      <Footer />
+            {/* <Footer /> */}
+
     </div>
   )
 }

@@ -18,7 +18,8 @@ const AboutPage = (): JSX.Element => {
         <SocialBuzz />
       </div>
       <Discover />
-      <Footer />
+            {/* <Footer /> */}
+
     </>
   )
 }

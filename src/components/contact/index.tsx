@@ -6,7 +6,8 @@ const ContactPage = (): JSX.Element => {
   return (
     <>
       <Hello />
-      <Footer />
+            {/* <Footer /> */}
+
     </>
   )
 }

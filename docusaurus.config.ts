@@ -104,6 +104,8 @@ export default {
         },
       ],
     },
+    footer: {
+    },
     prism: {
       theme: prismThemes.oneLight,
       darkTheme: prismThemes.dracula,

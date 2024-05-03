@@ -16,7 +16,8 @@ const EnterprisePage = (): JSX.Element => {
       <MoreEnterpriseFeatures />
       <Pricing />
       <Discover />
-      <Footer />
+            {/* <Footer /> */}
+
     </div>
   )
 }
