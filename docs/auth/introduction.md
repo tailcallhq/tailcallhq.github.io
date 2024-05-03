@@ -136,7 +136,7 @@ You will get an authentication failure error stating that authentication paramet
   "data": null,
   "errors": [
     {
-      "message": "Authentication Failure: Parameters not provided in the request.",
+      "message": "Authentication Failure: Missing Authorization Header.",
       "locations": [
         {
           "line": 3,
@@ -151,7 +151,6 @@ You will get an authentication failure error stating that authentication paramet
 ![protected.png](../../static/images/auth/protected.png)
 
 Now update the request by providing additional Authorization header. You can do in the Playground by navigating to the tab `HTTP HEADERS` at the bottom by adding following header for Basic Auth:
-![img.png](../../static/images/auth/img.png)
 
 ```json
 {
