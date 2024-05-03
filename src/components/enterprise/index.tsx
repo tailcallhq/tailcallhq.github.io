@@ -4,7 +4,6 @@ import Partners from "../home/Partners"
 import EnterpriseFeatures from "./EnterpriseFeatures"
 import MoreEnterpriseFeatures from "./MoreEnterpriseFeatures"
 import Discover from "../shared/Discover"
-import Footer from "../shared/Footer"
 import Pricing from "./Pricing"
 
 const EnterprisePage = (): JSX.Element => {
@@ -16,8 +15,6 @@ const EnterprisePage = (): JSX.Element => {
       <MoreEnterpriseFeatures />
       <Pricing />
       <Discover />
-            {/* <Footer /> */}
-
     </div>
   )
 }

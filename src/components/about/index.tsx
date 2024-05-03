@@ -5,7 +5,6 @@ import Founders from "./Founders"
 import Investors from "./Investors"
 import SocialBuzz from "./SocialBuzz"
 import Discover from "../shared/Discover"
-import Footer from "../shared/Footer"
 
 const AboutPage = (): JSX.Element => {
   return (
@@ -18,8 +17,6 @@ const AboutPage = (): JSX.Element => {
         <SocialBuzz />
       </div>
       <Discover />
-            {/* <Footer /> */}
-
     </>
   )
 }
