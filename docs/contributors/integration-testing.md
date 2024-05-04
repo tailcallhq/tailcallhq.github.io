@@ -76,6 +76,29 @@ Examples:
   This is a description.
   ```
 
+### Annotation
+
+A level 5 heading (`#####`), with the text being one of the following:
+
+- `##### skip` -- If a test has the `skip` annotation, the runner will not run that test.
+
+There must be either zero or one such annotation in a test.
+
+This annotation comes handy in situation where one might need to skip the execution of some written tests temporarily due to various reasons like :
+
+- Some functionalities which are supposed to be tested might not be implemented yet, OR
+- There might be some bugs related to it.
+
+Note: `##### only` which is used to run single test has been removed in the favour of cargo option.
+
+To run a single test locally one can use [cargo option](https://doc.rust-lang.org/rustc/tests/index.html#--test) "--test".
+
+Example usage of cargo option:
+
+```sh
+cargo test --test execution_spec -- --test "test_filter"
+```
+
 ### Blocks
 
 Blocks are specified along with the codeblocks next to the format of the codeblock (`@`) followed by the block type, and a code block after them. Blocks supply the runner with data, and the runner determines what to do based on the available blocks. example:
