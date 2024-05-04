@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react"
 import Playground from "./Playground"
-import Footer from "../shared/Footer"
 
 const PlaygroundPage = (): JSX.Element => {
   const [editorLoaded, setEditorLoaded] = useState(false)
@@ -14,7 +13,7 @@ const PlaygroundPage = (): JSX.Element => {
   return (
     <>
       <Playground />
-      {editorLoaded && <Footer />}
+      {editorLoaded}
     </>
   )
 }

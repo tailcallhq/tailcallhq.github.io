@@ -9,6 +9,7 @@ import {
   PluginHtmlClassNameProvider,
 } from "@docusaurus/theme-common/internal"
 import GithubStarsProvider from "@site/src/components/shared/GithubStarsProvider"
+import Footer from "@site/src/components/shared/Footer"
 
 // Define the type for LayoutProvider props
 type LayoutProviderProps = {
@@ -28,7 +29,12 @@ const Provider = composeProviders([
 
 // LayoutProvider component wraps the composed providers around its children
 const LayoutProvider = ({children}: LayoutProviderProps) => {
-  return <Provider>{children}</Provider>
+  return (
+    <Provider>
+      {children}
+      <Footer />
+    </Provider>
+  )
 }
 
 export default LayoutProvider

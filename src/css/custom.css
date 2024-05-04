@@ -396,6 +396,7 @@ code {
 
 nav.menu {
   padding-bottom: calc(var(--ifm-navbar-height) * 2);
+  max-height: 90vh;
 }
 
 .algolia-autocomplete .ds-dropdown-menu:before {
