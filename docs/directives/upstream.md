@@ -240,3 +240,14 @@ schema
   mutation: Mutation
 }
 ```
+
+## dedupe
+
+A boolean flag, if set to `true`, will ensure no HTTP, GRPC, or any other IO call is made more than once within the context of a single GraphQL request. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+schema @upstream(dedupe: true) {
+  query: Query
+  mutation: Mutation
+}
+```
