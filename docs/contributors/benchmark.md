@@ -42,7 +42,7 @@ git checkout feature
 cargo bench --message-format=json > feature.json
 
 # Perform a comparison check between the two branches
-./scripts/criterion_compare.rs base.json main.json table
+./scripts/criterion_compare.rs base.json feature.json table
 ```
 
 If the benchmarks indicate a degradation exceeding **10%**, the script will terminate with an error. You can refer to the automatically generated `benches/benchmark.md` file to identify which benchmarks underperformed and investigate the corresponding code changes before submitting a pull request.
