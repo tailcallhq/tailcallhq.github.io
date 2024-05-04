@@ -33,7 +33,7 @@ To facilitate benchmark comparison, we have developed a Rust script capable of c
 git checkout main
 
 # Run the benchmarks for the main branch and store the result in a file
-cargo bench --message-format=json > base.json
+cargo bench --message-format=json > main.json
 
 # Checkout the feature branch
 git checkout feature
@@ -42,7 +42,7 @@ git checkout feature
 cargo bench --message-format=json > feature.json
 
 # Perform a comparison check between the two branches
-./scripts/criterion_compare.rs base.json feature.json table
+./scripts/criterion_compare.rs main.json feature.json table
 ```
 
 If the benchmarks indicate a degradation exceeding **10%**, the script will terminate with an error. You can refer to the automatically generated `benches/benchmark.md` file to identify which benchmarks underperformed and investigate the corresponding code changes before submitting a pull request.
