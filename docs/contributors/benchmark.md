@@ -33,7 +33,7 @@ To facilitate benchmark comparison, we have developed a Rust script capable of c
 git checkout main
 
 # Run the benchmarks for the main branch and store the result in a file
-cargo bench --message-format=json > main.json
+cargo bench --message-format=json > base.json
 
 # Checkout the feature branch
 git checkout feature
