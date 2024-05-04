@@ -54,7 +54,7 @@ const Playground = () => {
   }
 
   return (
-    <>
+    <div className="h-screen">
       {typeof window !== "undefined" && (
         <div className="mt-SPACE_06">
           <div className="flex px-SPACE_04">
@@ -76,7 +76,7 @@ const Playground = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 
