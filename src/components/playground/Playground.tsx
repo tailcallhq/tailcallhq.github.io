@@ -54,7 +54,7 @@ const Playground = () => {
   }
 
   return (
-    <div className="h-screen">
+    <div className="min-h-[90vh]">
       {typeof window !== "undefined" && (
         <div className="mt-SPACE_06">
           <div className="flex px-SPACE_04">
