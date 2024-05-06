@@ -27,7 +27,7 @@ After running you will get an output of all executed markdown tests.
 
 If you want to run specific set of tests you have two options.
 
-First, if you want to filter out tests when you run it locally then you can use [testing filters](./testing.md#filter-running-tests). For example, to filter grpc related tests:
+First, if you want to filter out tests when you run it locally then you can use [testing filters](./testing.md#filtering-running-tests). For example, to filter grpc related tests:
 
 ```sh
 # to run grpc tests
