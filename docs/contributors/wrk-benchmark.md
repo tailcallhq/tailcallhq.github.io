@@ -1,5 +1,5 @@
 ---
-title: WRK Benchmarks
+title: Macro Benchmarks
 sidebar_position: 6
 description: "Learn how to benchmark a Tailcall server using `wrk` with this comprehensive guide. Discover the steps for building your project in release mode, starting the server with controlled log output, and using `wrk` with a custom Lua script for precise benchmarking. This tutorial also covers how to verify server responsiveness with `curl` and how to interpret benchmark results to assess server performance under load. Perfect for developers looking to optimize their Rust applications."
 ---
