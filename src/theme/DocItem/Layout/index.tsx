@@ -36,7 +36,7 @@ export default function DocItemLayout({children}: DocItemLayoutProps) {
   const docTOC = useDocTOC()
   const {colorMode} = useColorMode()
   const giscus = (
-    <React.Fragment>
+    <div className="min-h-[450px]">
       <hr />
       <br />
       <Giscus
@@ -54,7 +54,7 @@ export default function DocItemLayout({children}: DocItemLayoutProps) {
         strict="0"
         loading="lazy"
       />
-    </React.Fragment>
+    </div>
   )
   return (
     <div className="row">
