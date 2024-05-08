@@ -1,8 +1,8 @@
 ---
 title: "Guidelines"
 sidebar_position: 1
-slug: "/contributors"
 description: "This guide outlines the key steps and best practices for contributing to the Tailcall project, covering setup, coding, testing, and documentation to ensure quality and consistency in contributions."
+slug: "/"
 ---
 
 # Contribution Guidelines
