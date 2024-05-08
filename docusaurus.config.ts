@@ -93,6 +93,7 @@ export default {
         // {to: "/enterprise", label: "Enterprise", position: "left"},
         {to: "/docs", label: "Docs", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
+        {to: "/developers", label: "Developers", position: "left"},
         {
           href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
@@ -116,6 +117,15 @@ export default {
     tableOfContents: {},
   } satisfies Preset.ThemeConfig,
   plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'developers',
+        path: 'developers',
+        routeBasePath: 'developers',
+        sidebarPath: require.resolve('./sidebars.ts'),
+      },
+    ],
     [
       require.resolve("docusaurus-lunr-search"),
       {
