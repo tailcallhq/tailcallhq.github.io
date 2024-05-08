@@ -118,12 +118,12 @@ export default {
   } satisfies Preset.ThemeConfig,
   plugins: [
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/plugin-content-docs",
       {
-        id: 'developers',
-        path: 'developers',
-        routeBasePath: 'developers',
-        sidebarPath: require.resolve('./sidebars.ts'),
+        id: "developers",
+        path: "developers",
+        routeBasePath: "developers",
+        sidebarPath: require.resolve("./sidebars.ts"),
       },
     ],
     [
