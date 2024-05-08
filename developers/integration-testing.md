@@ -9,7 +9,7 @@ We created a special DSL atop markdown syntax and leveraging snapshot testing to
 ## How does it work?
 
 [execution_spec](https://github.com/tailcallhq/tailcall/blob/main/tests/execution_spec.rs) implements a Markdown-based snapshot testing framework for Tailcall. The framework is designed to test the execution of Tailcall configs, and it is based on the following architecture:
-![Test Architecture](../../static/images/contributors/test-arch.png)
+![Test Architecture](../static/images/contributors/test-arch.png)
 
 ## Run tests
 
