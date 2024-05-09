@@ -10,7 +10,7 @@ import EnterKeyIcon from "@site/static/icons/basic/enter-key.svg"
 import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
 import EscapeKeyIcon from "@site/static/icons/basic/escape-key.svg"
 import styles from "./styles.module.css"
-import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
+import {setBodyOverflow} from "@site/src/utils"
 
 const CustomSearch = () => {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
@@ -51,8 +51,6 @@ const CustomSearch = () => {
   }
 
   useEffect(() => {
-    let timer: NodeJS.Timeout
-
     // handle body scroll based on modal visibility changes
     setBodyScroll()
 
@@ -66,18 +64,7 @@ const CustomSearch = () => {
       }
     })
 
-    // focus on search input when modal becomes visible
-    if (isSearchModalVisible) {
-      timer = setTimeout(() => {
-        const searchInput = getSearchInputRef()
-        if (searchInput) {
-          searchInput.focus()
-        }
-      }, 50)
-    }
-
     return () => {
-      clearTimeout(timer)
       setBodyOverflow("initial")
       document.removeEventListener("keydown", handleKeyPress)
       unlisten()
@@ -98,7 +85,7 @@ const CustomSearch = () => {
           <div onClick={handleSearchModalClose} className={styles.overlay}></div>
           <div className={styles.modal}>
             <div className={styles.modalContent}>
-              <Search />
+              <Search autoFocus />
               <div className={styles.initialCase}>
                 <PageSearchIcon />
                 <div className={styles.searchDocsTitle}>Search Docs</div>

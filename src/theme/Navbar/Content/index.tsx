@@ -96,9 +96,6 @@ const CustomSearch = () => {
   }
 
   useEffect(() => {
-    // Variable to store the timer for handling modal animation
-    let timer: NodeJS.Timeout
-
     // Check if the current page is within the "/docs/" path to show or hide the search icon
     location.pathname.includes("/docs/") ? setShowSearchIcon(true) : setShowSearchIcon(false)
 
@@ -114,22 +111,14 @@ const CustomSearch = () => {
     if (isSearchModalVisible) {
       // If the search modal is visible, prevent body scrolling and handle modal animations
       setBodyOverflow("hidden")
-      timer = setTimeout(() => {
-        // After a delay, focus on the search input and apply zoom behavior
-        const searchInput = getSearchInputRef()
-        handleZoomBehavior()
-        if (searchInput) {
-          searchInput.focus()
-        }
-      }, 200)
+      handleZoomBehavior()
     } else {
       // If the search modal is not visible, allow body scrolling
       setBodyOverflow("initial")
     }
 
-    // Clean up timer and history listener when the component unmounts or when dependencies change
+    // Clean up history listener when the component unmounts or when dependencies change
     return () => {
-      clearTimeout(timer)
       unlisten()
     }
   }, [isSearchModalVisible, history])
@@ -145,7 +134,7 @@ const CustomSearch = () => {
             <div className={styles.modalContent}>
               <div className={styles.search}>
                 <div className={styles.searchInput}>
-                  <Search />
+                  <Search autoFocus />
                 </div>
                 <span
                   className={`${styles.searchDocsClose} ${styles.searchDocsCommon}`}
