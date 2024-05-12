@@ -4,102 +4,138 @@ description: "Discover Tailcall's innovative markdown-based snapshot testing fra
 sidebar_position: 4
 ---
 
-We created a special DSL atop markdown syntax and leveraging snapshot testing to allow developers a unified experience while writing integration tests. Markdown syntax allowed us to embed multiple file formats — JSON, GraphQL, JS etc. and make them work in tandem.
+import CodeBlock from "@theme/CodeBlock"
+
+As you may be aware, Tailcall offers a method for writing a [configuration](../docs/guides/configuration.mdx) to generate a GraphQL backend. Additionally, you can [link](../docs/directives/link.md) multiple configurations to compose them together. Extending the behavior of Tailcall is also possible by integrating custom JavaScript [scripts](../docs/guides/http-filters.md). Managing this involves handling multiple files in various formats, which complicates the experience of writing integration tests.
+
+To maintain control, we have opted to utilize markdown files, allowing us to consolidate various types of configurations and scripts into a single document.
+
+Here is an example of how the test looks:
+
+<CodeBlock language="md">
+{`
+---
+identity: true
+---
+
+\`\`\`graphql
+schema @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+query: Query
+}
+
+type Query {
+post: Post @http(path: "/post")
+}
+
+type Post {
+id: Int
+title: String
+body: String
+}
+\`\`\`
+`.trim()}
+
+</CodeBlock>
 
 ## How does it work?
 
-[execution_spec](https://github.com/tailcallhq/tailcall/blob/main/tests/execution_spec.rs) implements a Markdown-based snapshot testing framework for Tailcall. The framework is designed to test the execution of Tailcall configs, and it is based on the following architecture:
-![Test Architecture](../static/images/contributors/test-arch.png)
+[Execution Spec](https://github.com/tailcallhq/tailcall/blob/main/tests/execution_spec.rs) implements a custom markdown-based testing framework for Tailcall. The framework is designed to help write integration tests for Tailcall configs.
 
-## Run tests
+### Run all tests
 
-The markdown-based tests are executed as usual integration test so you can use test options and filters like with usual test.
+The integration tests are executed as usual integration test so you can use test options and filters like with usual test.
 
-To run markdown-based tests skipping other tests run following command:
+```sh
+cargo test
+```
+
+To run integration tests skipping other tests run following command:
 
 ```sh
 cargo test --test execution_spec
 ```
 
-After running you will get an output of all executed markdown tests.
+After running you will get an output of all executed integration tests.
 
-### Filter tests
+### Run a single test
 
-If you want to run specific set of tests you have two options.
-
-First, if you want to filter out tests when you run it locally then you can use [testing filters](./testing.md#filtering-running-tests). For example, to filter grpc related tests:
+Similar to [filtering unit tests](./testing.md#filtering-running-tests) to execute a single markdown configuration you can pass it's name to the test command:
 
 ```sh
-# to run grpc tests
 cargo test --test execution_spec grpc
-# or to skip grpc tests
+   Compiling tailcall-fixtures v0.1.0 (/Users/tushar/Documents/Projects/tailcall/tailcall-fixtures)
+   Compiling tailcall v0.1.0 (/Users/tushar/Documents/Projects/tailcall)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 15.96s
+     Running tests/execution_spec.rs (target/debug/deps/execution_spec-6779d7c5c29b9b0b)
+
+running 18 tests
+test run_execution_spec::test-grpc-invalid-method-format.md ... ok
+test run_execution_spec::test-grpc-invalid-proto-id.md      ... ok
+test run_execution_spec::test-grpc-group-by.md              ... ok
+test run_execution_spec::test-grpc-missing-fields.md        ... ok
+test run_execution_spec::test-grpc-nested-optional.md       ... ok
+test run_execution_spec::test-grpc-nested-data.md           ... ok
+test run_execution_spec::test-grpc-proto-path.md            ... ok
+test run_execution_spec::grpc-proto-with-same-package.md    ... ok
+test run_execution_spec::grpc-reflection.md                 ... ok
+test run_execution_spec::test-grpc-optional.md              ... ok
+test run_execution_spec::test-grpc-service-method.md        ... ok
+test run_execution_spec::test-grpc-service.md               ... ok
+test run_execution_spec::grpc-error.md                      ... ok
+test run_execution_spec::grpc-simple.md                     ... ok
+test run_execution_spec::grpc-batch.md                      ... ok
+test run_execution_spec::grpc-url-from-upstream.md          ... ok
+test run_execution_spec::grpc-override-url-from-upstream.md ... ok
+test run_execution_spec::test-grpc.md                       ... ok
+```
+
+In the above command all tests with the name `grpc` will be executed.
+
+### Skipping a test
+
+Skipping the test is also possible by passing the `--skip` parameter:
+
+```sh
 cargo test --test execution_spec -- --skip grpc
 ```
 
-Second, if you want to disable some tests permanently due to one of the following reasons:
-
-- Some functionalities which are supposed to be tested might not be implemented yet
-- There might be some bugs related to it.
-
-In that case you can a special annotation `##### skip` that should be placed inside the test md file. For example:
+Sometimes, you might want to skip the test per permanently for everyone and the CI. You could achieve it by setting the `skip` configuration in your markdown:
 
 ```md
-# Failing test
+---
+skip: true
+---
 
-##### skip
-
-  <!-- Some test content -->
+<!-- Rest of the configurations -->
 ```
 
-This test won't be executed until the annotation is removed.
+## Folder Structure
 
-## Structure
+All `execution_spec` tests are located in [tests/execution](https://github.com/tailcallhq/tailcall/tree/main/tests/execution). The results generated by these tests are stored as snapshots in [tests/snapshots](https://github.com/tailcallhq/tailcall/tree/main/tests/execution). An `execution_spec` test is always a markdown file with a `.md` extension.
 
-All `execution_spec` tests are located in `tests/execution/`. The results generated by these tests are stored as snapshots in `tests/snapshots/`.
+## File Structure
 
-## Test syntax
+Each `.md` file runs in its own scope, so no two tests can interfere with each other. The file structure is as follows:
 
-An `execution_spec` test is always a Markdown file with a `.md` extension. These files contain the following parts:
+### Heading
 
-### Header
+The heading of file structure is used to provide metadata about the test. It is a YAML front matter block that contains the following fields:
 
-A level 1 heading (`#`) specifying the name of the test, and an optional paragraph after it specifying a description. There must be precisely one header in a test.
+- `identity` - This instructs the runner to check if the configuration when parsed and then printed back, is the same as the original configuration. This is useful to check whenever a new feature is added in the configuration and the parsers + printer needs to be updated.
+- `error` - This instructs the runner to expect a validation error while parsing the configuration. This is useful to test validation logic written while converting config to blueprint.
+- `skip` - This is a special annotation that ensures that the test is skipped.
 
-Examples:
+<CodeBlock language="md">
+  {`
+---
+identity: true
+error: true
+skip: true
+---
+`.trim()}
+</CodeBlock>
 
-- ```md
-  # Simple test
-  ```
-- ```md
-  # Complex test
-
-  This is a description.
-  ```
-
-### Annotation
-
-A level 5 heading (`#####`), with the text being one of the following:
-
-- `##### skip` -- If a test has the `skip` annotation, the runner will not run that test.
-
-There must be either zero or one such annotation in a test.
-
-This annotation comes handy in situation where one might need to skip the execution of some written tests temporarily due to various reasons like :
-
-- Some functionalities which are supposed to be tested might not be implemented yet, OR
-- There might be some bugs related to it.
-
-Note: `##### only` which is used to run single test has been removed in the favour of cargo option.
-
-To run a single test locally one can use [cargo option](https://doc.rust-lang.org/rustc/tests/index.html#--test) "--test".
-
-Example usage of cargo option:
-
-```sh
-cargo test --test execution_spec -- --test "test_filter"
-```
-
-### Blocks
+### Code Blocks
 
 Blocks are specified along with the codeblocks next to the format of the codeblock (`@`) followed by the block type, and a code block after them. Blocks supply the runner with data, and the runner determines what to do based on the available blocks. example:
 
@@ -135,11 +171,7 @@ type User {
 }
 
 type Query {
-  user: User
-    @http(
-      path: "/users/1"
-      baseURL: "http://jsonplaceholder.typicode.com"
-    )
+  user: User @http(path: "/users/1", baseURL: "http://jsonplaceholder.typicode.com")
 }
 ```
 ````
@@ -209,11 +241,7 @@ Example:
 
 ````md {1}
 ```graphql @file:enum.graphql
-schema
-  @server(port: 8080)
-  @upstream(
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @server(port: 8080) @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
 }
 
@@ -242,7 +270,7 @@ expect_validation_error: true
 
 ```md
 ---
-check_identity: true
+identity: true
 ---
 ```
 
