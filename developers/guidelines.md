@@ -7,67 +7,49 @@ slug: "/"
 
 # Contribution Guidelines
 
-Thank you for considering contributing to **Tailcall**! This document outlines the steps and guidelines to follow when contributing to this project.
+Welcome to the **Tailcall** project! If you haven't stared us yet, make sure you do by clicking [here](https://github.com/tailcallhq/tailcall).
+This document provides an overview of the best practices for contributing effectively. Follow these guidelines to ensure a smooth collaboration process.
 
-## Getting Started
+## The Basics
 
-1. **Fork the Repository:** Start by forking the repository to your personal account on GitHub.
-2. **Clone the Forked Repository:** Once you have forked the repository, clone it to your local machine.
-   ```bash
-   git clone https://github.com/tailcallhq/tailcall.git
-   ```
-
-## Setting Up the Development Environment
-
-1. **Install Rust:** If you haven't already, install Rust using [rustup](https://rustup.rs/). Install the `nightly` toolchain as well, as it's used for linting.
-2. **Install Prettier:** Install [Prettier](https://prettier.io/) too as this is also used for linting.
-3. **Build the Application:** Navigate to the project directory and build the application.
+1. **Fork and Clone:** Fork the repository on GitHub and clone your fork locally.
 
    ```bash
-   cd tailcall
-   cargo build
+   git clone https://github.com/yourusername/tailcall.git
    ```
 
-4. **Start the Server:** To start the server, use the following command:
-   ```bash
-   cargo run -- start ./examples/jsonplaceholder.graphql
-   ```
-   Once the server is running, you can access the GraphiQL interface at [https://tailcall.run/playground](https://tailcall.run/playground).
+2. **Set Up Your Environment:**
+   - **Install Rust:** Use [rustup](https://rustup.rs/) to install Rust and the `nightly` toolchain.
+   - **Install Prettier:** Required for linting, install [Prettier](https://prettier.io/).
+   - **Build the Application:** Navigate to the project directory and execute `cargo build`.
+   - **Start the Server:** Run `cargo run -- start ./examples/jsonplaceholder.graphql` to start the server and access the GraphiQL interface at [https://tailcall.run/playground](https://tailcall.run/playground).
 
-## Making Changes
+## Making and Discussing Changes
 
-1. **Create a New Branch:** Always create a new branch for your changes.
+1. **Create a New Branch:** Always work on a new branch created from the latest main branch.
 
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
-2. **Write Clean Code:** Ensure your code is clean, readable, and well-commented.
-3. **Follow Rust Best Practices:** Adhere to the [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/about.html).
-4. **Use Title Case in Job Names:** When adding new CI jobs to `.github/workflows`, please use title case e.g. _Close Stale Issues and PR_.
+2. **Develop Incrementally:** Use small, [stacked PRs](https://benjamincongdon.me/blog/2022/07/17/In-Praise-of-Stacked-PRs/) for complex features. Break down large tasks into smaller, manageable pieces, each with its own PR. If you are working on a large bounty item add the bounty on your main PR and create stacked PRs wrt to your main PR.
 
-## Committing Your Changes
+3. **Discuss on Discord:** For real-time discussions, use the `#contributors` channel on Discord. Create a thread for each PR to facilitate focused discussions.
 
-1. **Atomic Commits:** Make sure each commit is atomic (i.e., it does one thing). This makes it easier to review and revert if necessary.
-2. **Commit Message Guidelines:** Write meaningful commit messages. Start with a short summary (50 chars max), followed by a blank line and then a detailed description if needed.
+## Pull Requests and Code Quality
 
-## Submitting a Pull Request
+1. **Keep PRs Small:** Focus each PR on a single topic to simplify review and potential reverts. Describe your changes clearly in the PR description, explaining the solution and linking to any relevant discussions or issues.
 
-1. **Push to Your Fork:** Push your changes to your fork on GitHub.
+2. **Commit Clearly:** Write concise, descriptive commit messages. Each commit should represent a self-contained change.
 
-   ```bash
-   git push origin feature/your-feature-name
-   ```
+3. **Submit PRs:** Push your branch to GitHub and open a PR against the main branch. In the PR description, detail the purpose of your changes and any additional context needed.
 
-2. **Open a Pull Request:** Navigate to the original repository on GitHub and open a pull request against the `main` or `develop` branch.
-3. **Describe Your Changes:** In the pull request description, explain the changes you made, the issues they resolve, and any other relevant information.
-4. **Wait for Review:** Maintainers will review your pull request. Address any comments or feedback they provide.
+4. **Code Review:** Engage with reviewers on GitHub and address feedback promptly. Use discussions on Discord to resolve complex issues or debates efficiently.
 
-## Spread the Word
+## Community Engagement
 
-1. **Star the Repository:** If you find this project useful, please give it a [star](https://github.com/tailcallhq/tailcall) on GitHub. This helps increase its visibility and encourages more people to contribute.
-2. **Tweet About Your Contribution:** Share your contributions and experiences with the wider community on Twitter. Use the hashtag `#TailcallContributor` and tag [@tailcallhq](https://twitter.com/tailcallhq) to let us know!
+- **Star and Share:** Star the repository if you find it helpful and share your contributions on social media using `#tailcall` and tagging [@tailcallhq](https://twitter.com/tailcallhq).
 
-## Final Words
+## Final Notes
 
-Please keep in mind that this project thrives through open-source collaboration, and we pride ourselves on maintaining a community that is inclusive and respectful to all participants. Thank you for your contribution! Your dedication helps enhance the application for all users.
+Tailcall thrives through your contributions. We aim to maintain a respectful and inclusive community. Thank you for helping to enhance Tailcall for everyone!
