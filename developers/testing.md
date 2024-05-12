@@ -111,7 +111,7 @@ Unit tests should focus on individual components, ensuring each functions as exp
 
 ### Integration Tests
 
-Integration testing is conducted using our [markdown-based DSL](./integration-testing.mdx). Please refer to its own documentation for detailed information.
+Integration testing is conducted using our [markdown-based DSL](./integration-testing.md). Please refer to its own documentation for detailed information.
 
 ## Naming Conventions
 

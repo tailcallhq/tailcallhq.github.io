@@ -4,21 +4,24 @@ description: "Discover Tailcall's innovative markdown-based snapshot testing fra
 sidebar_position: 4
 ---
 
-import CodeBlock from "@theme/CodeBlock"
-
 As you may be aware, Tailcall offers a method for writing a configuration to generate a GraphQL backend. Additionally, you can link multiple configurations to compose them together. Extending the behavior of Tailcall is also possible by integrating custom JavaScript scripts. Managing this involves handling multiple files in various formats, which complicates the experience of writing integration tests.
 
 To maintain control, we have opted to utilize markdown files, allowing us to consolidate various types of configurations and scripts into a single document.
 
 Here is an example of how the test looks:
 
-````md
-## <!-- Test Configuration -->
+````md showLineNumbers {3}
+---
+identity: true
+---
 
-## identity: true
+<!-- Test Configuration -->
 
 ```graphql @config
-schema @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+schema
+  @upstream(
+    baseURL: "http://jsonplaceholder.typicode.com"
+  ) {
   query: Query
 }
 
@@ -136,7 +139,7 @@ The rest of the file is the test's body consisting of code blocks and descriptio
 
 Codeblocks can be enhanced with additional meta information for the test parser to make sense of the code. So for example a Tailcall configuration could be written in a code block with the `graphql` language and a `@config` meta information could be attached to it.
 
-````md {1}
+````md showLineNumbers {1}
 ```graphql @config
 schema {
   query: Query
@@ -154,6 +157,7 @@ For each config a few tests are automatically executed:
 1. We check if the config written is valid. If it's not and unless `error: true` is set in the front matter, the test will fail.
 2. We check if the config when parsed and then printed back is the same as the original config. This is useful to check whenever a new feature is added in the configuration and the parsers + printer needs to be updated.
 3. We check if the config when merged with an empty configuration is the same as the original config. This is useful to check whenever a new feature is added in the configuration and the merger needs to be updated.
+4. We autogenerate the schema of the GraphQL server and snapshot it for later. This is useful to see what would the final GraphQL schema look like.
 
 ### Test
 
@@ -165,8 +169,8 @@ There may be at most one `@test` block in a test.
 
 Example:
 
-````md {1}
-```graphql @test
+````md showLineNumbers {1}
+```yml @test
 - method: POST
   url: http://localhost:8080/graphql
   body:
@@ -178,7 +182,7 @@ Example:
 
 Mock provides a way to match requests and send back a predefined response. It is used to mock HTTP & gRPC requests in the test.
 
-````md {1}
+````md showLineNumbers {1}
 ```yml @mock
 - request:
     # The method to match on (default: Any)
@@ -208,7 +212,7 @@ An `@env` block specifies environment variables in `YAML` that the runner should
 
 Example:
 
-````md {1}
+````md showLineNumbers {1}
 ```yml @env
 TEST_ID: 1
 ```
