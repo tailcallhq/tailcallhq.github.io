@@ -10,7 +10,7 @@ To maintain control, we have opted to utilize markdown files, allowing us to con
 
 Here is an example of how the test looks:
 
-````md showLineNumbers {3}
+````md showLineNumbers
 ---
 identity: true
 ---
@@ -36,6 +36,10 @@ type Post {
 }
 ```
 ````
+
+:::tip
+Try to play around with the `cargo test` command by modifying the tests written in the [tests/execution](https://github.com/tailcallhq/tailcall/tree/main/tests/execution) folder.
+:::
 
 ## How does it work?
 
