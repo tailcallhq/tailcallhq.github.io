@@ -45,7 +45,7 @@ export const hackSafariAutoFocus = () => {
   fakeInput.style.caretColor = "transparent"
   document.body.insertBefore(fakeInput, document.body.firstChild)
 
-  fakeInput.focus({ preventScroll: true })
+  fakeInput.focus({preventScroll: true})
 
   return () => {
     document.body.removeChild(fakeInput)
