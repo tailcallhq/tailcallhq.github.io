@@ -64,9 +64,9 @@ const CustomSearch = () => {
       }
     })
 
-    let cleanHackSafariAutoFocus: () => void = () => {};
+    let cleanHackSafariAutoFocus: () => void = () => {}
     if (isSafariEnvBrowser() && isSearchModalVisible) {
-      cleanHackSafariAutoFocus = hackSafariAutoFocus();
+      cleanHackSafariAutoFocus = hackSafariAutoFocus()
     }
 
     return () => {

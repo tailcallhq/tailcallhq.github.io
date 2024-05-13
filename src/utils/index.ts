@@ -39,10 +39,10 @@ export const isSafariEnvBrowser = () => {
 }
 
 export const hackSafariAutoFocus = () => {
-  const fakeInput = document.createElement('input')
-  fakeInput.style.height = '0'
-  fakeInput.style.position = 'fixed'
-  fakeInput.style.caretColor = 'transparent'
+  const fakeInput = document.createElement("input")
+  fakeInput.style.height = "0"
+  fakeInput.style.position = "fixed"
+  fakeInput.style.caretColor = "transparent"
   document.body.insertBefore(fakeInput, document.body.firstChild)
 
   fakeInput.focus({ preventScroll: true })

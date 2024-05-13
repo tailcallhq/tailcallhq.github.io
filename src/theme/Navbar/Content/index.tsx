@@ -117,9 +117,9 @@ const CustomSearch = () => {
       setBodyOverflow("initial")
     }
 
-    let unsetHackSafariAutoFocus: () => void = () => {};
+    let unsetHackSafariAutoFocus: () => void = () => {}
     if (isSafariEnvBrowser() && isSearchModalVisible) {
-      unsetHackSafariAutoFocus = hackSafariAutoFocus();
+      unsetHackSafariAutoFocus = hackSafariAutoFocus()
     }
 
     // Clean up history listener when the component unmounts or when dependencies change
