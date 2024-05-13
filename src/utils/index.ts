@@ -35,7 +35,10 @@ export const isValidURL = (url: string) => {
 }
 
 export const isSafariEnvBrowser = () => {
-  return window.navigator.platform.startsWith("Mac") || /iP(hone|ad|od)/.test(window.navigator.userAgent)
+  return (
+    /(\d+\.\d)?(?:\.\d)?\s+safari\/?(\d+\.\d+)?/i.test(window.navigator.userAgent) ||
+    /iP(hone|ad|od)/.test(window.navigator.userAgent)
+  )
 }
 
 export const hackSafariAutoFocus = () => {
