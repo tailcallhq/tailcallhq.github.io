@@ -15,7 +15,7 @@ import GithubStarsButton from "@site/src/components/shared/GithubStarsButton"
 import SearchIcon from "@site/static/icons/basic/search.svg"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import styles from "./styles.module.css"
-import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
+import {hackSafariAutoFocus, isSafariEnvBrowser, setBodyOverflow} from "@site/src/utils"
 
 const useNavbarItems = () => {
   // TODO temporary casting until ThemeConfig type is improved (added by docusaurus)
@@ -117,9 +117,15 @@ const CustomSearch = () => {
       setBodyOverflow("initial")
     }
 
+    let unsetHackSafariAutoFocus: () => void = () => {};
+    if (isSafariEnvBrowser() && isSearchModalVisible) {
+      unsetHackSafariAutoFocus = hackSafariAutoFocus();
+    }
+
     // Clean up history listener when the component unmounts or when dependencies change
     return () => {
       unlisten()
+      unsetHackSafariAutoFocus()
     }
   }, [isSearchModalVisible, history])
 

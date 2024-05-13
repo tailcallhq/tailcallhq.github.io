@@ -10,7 +10,7 @@ import EnterKeyIcon from "@site/static/icons/basic/enter-key.svg"
 import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
 import EscapeKeyIcon from "@site/static/icons/basic/escape-key.svg"
 import styles from "./styles.module.css"
-import {setBodyOverflow} from "@site/src/utils"
+import {hackSafariAutoFocus, isSafariEnvBrowser, setBodyOverflow} from "@site/src/utils"
 
 const CustomSearch = () => {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
@@ -64,10 +64,16 @@ const CustomSearch = () => {
       }
     })
 
+    let cleanHackSafariAutoFocus: () => void = () => {};
+    if (isSafariEnvBrowser() && isSearchModalVisible) {
+      cleanHackSafariAutoFocus = hackSafariAutoFocus();
+    }
+
     return () => {
       setBodyOverflow("initial")
       document.removeEventListener("keydown", handleKeyPress)
       unlisten()
+      cleanHackSafariAutoFocus()
     }
   }, [isSearchModalVisible, history])
 

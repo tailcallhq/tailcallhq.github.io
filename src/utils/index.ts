@@ -33,3 +33,21 @@ export const isValidURL = (url: string) => {
     return false
   }
 }
+
+export const isSafariEnvBrowser = () => {
+  return window.navigator.platform.startsWith("Mac") || /iP(hone|ad|od)/.test(window.navigator.userAgent)
+}
+
+export const hackSafariAutoFocus = () => {
+  const fakeInput = document.createElement('input')
+  fakeInput.style.height = '0'
+  fakeInput.style.position = 'fixed'
+  fakeInput.style.caretColor = 'transparent'
+  document.body.insertBefore(fakeInput, document.body.firstChild)
+
+  fakeInput.focus({ preventScroll: true })
+
+  return () => {
+    document.body.removeChild(fakeInput)
+  }
+}
