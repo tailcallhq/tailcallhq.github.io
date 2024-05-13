@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type {ClientModule} from '@docusaurus/types';
+import type {ClientModule} from "@docusaurus/types"
 
 const clientModule: ClientModule = {
   onRouteDidUpdate({location, previousLocation}) {
@@ -23,15 +23,11 @@ const clientModule: ClientModule = {
       setTimeout(() => {
         // Always refer to the variable on window in case it gets overridden
         // elsewhere.
-        window.gtag(
-          'set',
-          'page_path',
-          location.pathname + location.search + location.hash,
-        );
-        window.gtag('event', 'page_view');
-      });
+        window.gtag("set", "page_path", location.pathname + location.search + location.hash)
+        window.gtag("event", "page_view")
+      })
     }
   },
-};
+}
 
-export default clientModule;
+export default clientModule

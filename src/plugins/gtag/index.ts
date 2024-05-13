@@ -5,52 +5,36 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type {LoadContext, Plugin} from '@docusaurus/types';
-import type {PluginOptions, Options} from './options';
+import type {LoadContext, Plugin} from "@docusaurus/types"
+import type {PluginOptions, Options} from "./options"
 
-function createConfigSnippet({
-  trackingID,
-  anonymizeIP,
-}: {
-  trackingID: string;
-  anonymizeIP: boolean;
-}): string {
-  return `gtag('config', '${trackingID}', { ${
-    anonymizeIP ? "'anonymize_ip': true" : ''
-  } });`;
+function createConfigSnippet({trackingID, anonymizeIP}: {trackingID: string; anonymizeIP: boolean}): string {
+  return `gtag('config', '${trackingID}', { ${anonymizeIP ? "'anonymize_ip': true" : ""} });`
 }
 
-function createConfigSnippets({
-  trackingID: trackingIDArray,
-  anonymizeIP,
-}: PluginOptions): string {
-  return trackingIDArray
-    .map((trackingID) => createConfigSnippet({trackingID, anonymizeIP}))
-    .join('\n');
+function createConfigSnippets({trackingID: trackingIDArray, anonymizeIP}: PluginOptions): string {
+  return trackingIDArray.map((trackingID) => createConfigSnippet({trackingID, anonymizeIP})).join("\n")
 }
 
-export default function pluginGoogleGtag(
-  context: LoadContext,
-  options: PluginOptions,
-): Plugin {
-  const isProd = process.env.NODE_ENV === 'production';
+export default function pluginGoogleGtag(context: LoadContext, options: PluginOptions): Plugin {
+  const isProd = process.env.NODE_ENV === "production"
 
-  const firstTrackingId = options.trackingID[0];
+  const firstTrackingId = options.trackingID[0]
 
   return {
-    name: 'docusaurus-plugin-google-gtag',
+    name: "docusaurus-plugin-google-gtag",
 
     contentLoaded({actions}) {
-      actions.setGlobalData(options);
+      actions.setGlobalData(options)
     },
 
     getClientModules() {
-      return isProd ? ['./gtag'] : [];
+      return isProd ? ["./gtag"] : []
     },
 
     injectHtmlTags() {
       if (!isProd) {
-        return {};
+        return {}
       }
       return {
         // Gtag includes GA by default, so we also preconnect to
@@ -58,7 +42,7 @@ export default function pluginGoogleGtag(
         headTags: [
           // https://developers.google.com/analytics/devguides/collection/gtagjs/#install_the_global_site_tag
           {
-            tagName: 'script',
+            tagName: "script",
             attributes: {
               type: "text/partytown",
               // We only include the first tracking id here because google says
@@ -69,23 +53,23 @@ export default function pluginGoogleGtag(
             },
           },
           {
-            tagName: 'script',
+            tagName: "script",
             innerHTML: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               ${createConfigSnippets(options)};
               `,
-              attributes: {
-                type: "text/partytown",
-              }
+            attributes: {
+              type: "text/partytown",
+            },
           },
         ],
-      };
+      }
     },
-  };
+  }
 }
 
-export {validateThemeConfig, validateOptions} from './options';
+export {validateThemeConfig, validateOptions} from "./options"
 
-export type {PluginOptions, Options};
+export type {PluginOptions, Options}
