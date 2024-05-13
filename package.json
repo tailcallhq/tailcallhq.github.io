@@ -25,6 +25,7 @@
     "clsx": "^2.1.0",
     "docusaurus-lunr-search": "^3.3.2",
     "graphiql-tc": "^3.2.3",
+    "lottie-light-react": "^2.4.0",
     "lottie-react": "^2.4.0",
     "postcss": "^8.4.33",
     "prism-react-renderer": "^2.3.1",
