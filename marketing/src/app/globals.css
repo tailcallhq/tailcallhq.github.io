@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
 :root {
   /* Font and Dimension Tokens */
   --ifm-font-family-base: "Space Grotesk", sans-serif;
@@ -95,7 +99,7 @@ input[type="radio"]:checked::before {
 .theme-doc-sidebar-item-link .menu__link.menu__link--active:after {
   content: "";
   display: block;
-  background: url("../../static/icons/basic/chevron-right.svg") no-repeat;
+  background: url("/icons/basic/chevron-right.svg") no-repeat;
   width: 1rem;
   margin-right: 1rem;
   margin-left: auto;
@@ -188,7 +192,7 @@ input[type="radio"]:checked::before {
 .pagination-nav__link--next .pagination-nav__sublabel:after {
   content: "";
   color: var(--ifm-color-brand-dark-200);
-  background: url("../../static/icons/basic/arrow-right.svg") no-repeat;
+  background: url("/icons/basic/arrow-right.svg") no-repeat;
   width: 0.7rem;
   height: 0.7rem;
   margin-left: 0.5rem;
@@ -198,7 +202,7 @@ input[type="radio"]:checked::before {
 
 .pagination-nav__link--prev .pagination-nav__sublabel:before {
   content: "";
-  background: url("../../static/icons/basic/arrow-left.svg") no-repeat;
+  background: url("/icons/basic/arrow-left.svg") no-repeat;
   color: var(--ifm-color-brand-dark-200);
   width: 0.7rem;
   height: 0.7rem;
@@ -398,6 +402,26 @@ nav.menu {
   padding-bottom: calc(var(--ifm-navbar-height) * 2);
 }
 
+.algolia-autocomplete .ds-dropdown-menu:before {
+  display: none !important;
+}
+
+.algolia-autocomplete.algolia-autocomplete.algolia-autocomplete-right .ds-dropdown-menu {
+  margin-top: 0 !important;
+  left: 0 !important;
+  overflow: auto;
+  top: 44px;
+  border-radius: 0;
+  box-shadow: none;
+  height: var(--ifm-search-dropdown-height);
+  max-width: none;
+  background: var(--ifm-color-brand-light);
+}
+
+.algolia-autocomplete .ds-dropdown-menu [class^="ds-dataset-"] {
+  border-radius: 0 !important;
+}
+
 .grid-bg-section {
   background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 1px),
     linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 1px);
@@ -465,7 +489,7 @@ nav.menu {
   .navbar-sidebar__item .menu__link:not(.header-button):after {
     content: "";
     display: block;
-    background: url("../../static/icons/basic/chevron-right.svg") no-repeat;
+    background: url("/icons/basic/chevron-right.svg") no-repeat;
     width: 1rem;
     margin-left: auto;
     margin-right: 0;
@@ -517,3 +541,22 @@ nav.menu {
   }
 }
 
+@media (max-width: 600px) {
+  .algolia-autocomplete span[role="listbox"] {
+    display: block;
+    max-height: 90%;
+    max-width: 100%;
+    position: fixed;
+    top: 90px !important;
+    left: 0px !important;
+    width: 600px;
+    height: 100vh;
+    z-index: 100;
+    background: transparent;
+    overflow-y: auto;
+  }
+
+  .algolia-autocomplete .ds-dropdown-menu {
+    box-shadow: none;
+  }
+}

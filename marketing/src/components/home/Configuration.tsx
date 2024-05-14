@@ -1,0 +1,237 @@
+import Link from "next/link";
+import React from "react"
+// import Heading from "@theme/Heading"
+// import CodeBlock from "@theme/CodeBlock"
+// import Tabs from "@theme/Tabs"
+// import TabItem from "@theme/TabItem"
+// import Link from "@docusaurus/Link"
+
+const Configuration = (): JSX.Element => {
+  return (
+    <section className="flex flex-col mx-SPACE_04 my-SPACE_10 sm:mx-SPACE_07 lg:flex-row justify-center lg:mx-24 lg:my-SPACE_12 lg:space-x-SPACE_10">
+      <div className="max-w-2xl">
+        <h2 className="text-title-large sm:text-display-tiny lg:text-display-small mb-SPACE_04">
+          Get <span className="rounded-lg px-SPACE_02 bg-tailCall-yellow">Started</span>
+        </h2>
+        <p className="text-content-small sm:text-content-medium mb-SPACE_11">
+          Setup Tailcall via npm to build a high-performance <b>GraphQL API</b> on top of existing REST endpoints.
+          Checkout our <Link href="/docs">docs</Link> for detailed tutorials and guides.
+        </p>
+      </div>
+      <div>
+        {/* <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
+
+        <Tabs>
+          {CodeTabItem({code: GRAPHQL_CONFIG, language: "graphql"})}
+          {CodeTabItem({code: YML_CONFIG, language: "yaml"})}
+          {CodeTabItem({code: JSON_CONFIG, language: "json"})}
+        </Tabs> */}
+      </div>
+    </section>
+  )
+}
+
+// const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" | "graphql"}) => (
+//   <TabItem value={language} label={language}>
+//     <CodeBlock
+//       language={language}
+//       showLineNumbers={true}
+//       className="overflow-y-auto h-96 md:min-w-[45rem] min-w-[100%]"
+//     >
+//       {code}
+//     </CodeBlock>
+//     <CodeBlock language="bash">tailcall start ./app.{language}</CodeBlock>
+//   </TabItem>
+// )
+
+export default Configuration
+
+const GRAPHQL_CONFIG = `schema
+  @server(port: 8000)
+  @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
+}
+
+type Query {
+  users: [User] @http(path: "/users")
+  posts: [Post] @http(path: "/posts")
+}
+
+type User {
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
+}
+
+
+type Post {
+  id: Int!
+  title: String!
+  body: String!
+  userId: Int!
+
+  # Expand a post with user information
+  user: User @http(path: "/users/{{.value.userId}}")
+}
+`
+
+const YML_CONFIG = `server:
+  port: 8000
+upstream:
+  baseURL: http://jsonplaceholder.typicode.com
+schema:
+  query: Query
+types:
+  Post:
+    fields:
+      body:
+        type: String
+        required: true
+        cache: null
+      id:
+        type: Int
+        required: true
+        cache: null
+      title:
+        type: String
+        required: true
+        cache: null
+      user:
+        type: User
+        http:
+          path: /users/{{.value.userId}}
+        cache: null
+      userId:
+        type: Int
+        required: true
+        cache: null
+    cache: null
+  Query:
+    fields:
+      posts:
+        type: Post
+        list: true
+        http:
+          path: /posts
+        cache: null
+      users:
+        type: User
+        list: true
+        http:
+          path: /users
+        cache: null
+    cache: null
+  User:
+    fields:
+      email:
+        type: String
+        required: true
+        cache: null
+      id:
+        type: Int
+        required: true
+        cache: null
+      name:
+        type: String
+        required: true
+        cache: null
+      username:
+        type: String
+        required: true
+        cache: null
+    cache: null
+`
+
+const JSON_CONFIG = `{
+  "server": {
+    "port": 8000
+  },
+  "upstream": {
+    "baseURL": "http://jsonplaceholder.typicode.com"
+  },
+  "schema": {
+    "query": "Query"
+  },
+  "types": {
+    "Post": {
+      "fields": {
+        "body": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
+        "id": {
+          "type": "Int",
+          "required": true,
+          "cache": null
+        },
+        "title": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
+        "user": {
+          "type": "User",
+          "http": {
+            "path": "/users/{{.value.userId}}"
+          },
+          "cache": null
+        },
+        "userId": {
+          "type": "Int",
+          "required": true,
+          "cache": null
+        }
+      },
+      "cache": null
+    },
+    "Query": {
+      "fields": {
+        "posts": {
+          "type": "Post",
+          "list": true,
+          "http": {
+            "path": "/posts"
+          },
+          "cache": null
+        },
+        "users": {
+          "type": "User",
+          "list": true,
+          "http": {
+            "path": "/users"
+          },
+          "cache": null
+        }
+      },
+      "cache": null
+    },
+    "User": {
+      "fields": {
+        "email": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
+        "id": {
+          "type": "Int",
+          "required": true,
+          "cache": null
+        },
+        "name": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
+        "username": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        }
+      },
+      "cache": null
+    }
+  }
+}
+`
