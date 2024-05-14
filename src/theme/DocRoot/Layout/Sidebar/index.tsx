@@ -14,7 +14,7 @@ import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
 
 const CustomSearch = () => {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
-  const focusRef = useRef({lastPlaceHolder: "Loading..."})
+  const focusRef = useRef()
   const history = useHistory()
   const isBrowser = useIsBrowser()
   const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K") : "Search"
@@ -65,19 +65,9 @@ const CustomSearch = () => {
       }
     })
 
-    return () => {
-      setBodyOverflow("initial")
-      document.removeEventListener("keydown", handleKeyPress)
-      unlisten()
-    }
-  }, [history])
-
-  useEffect(() => {
     const focusSearchBar = () => {
       const searchInput = getSearchInputRef()
-      const currPlaceholder = searchInput?.getAttribute("placeholder")
-      if (searchInput && focusRef.current.lastPlaceHolder != currPlaceholder) {
-        focusRef.current.lastPlaceHolder = String(currPlaceholder)
+      if (searchInput && focusRef.current !== "Loading...") {
         setTimeout(() => {
           searchInput.focus()
         }, 20)
@@ -85,12 +75,21 @@ const CustomSearch = () => {
     }
 
     const searchContainer = document.getElementById("search-container")
-    if (searchContainer) searchContainer.addEventListener("DOMSubtreeModified", focusSearchBar)
-
-    return () => {
-      if (searchContainer) searchContainer.removeEventListener("DOMSubtreeModified", focusSearchBar)
+    if (searchContainer) {
+      searchContainer.addEventListener("DOMSubtreeModified", focusSearchBar)
     }
-  }, [isSearchModalVisible])
+
+    // Cleanup (when component unmounts or dependencies change)
+    return () => {
+      setBodyOverflow("initial")
+      document.removeEventListener("keydown", handleKeyPress)
+      unlisten()
+
+      if (searchContainer) {
+        searchContainer.removeEventListener("DOMSubtreeModified", focusSearchBar)
+      }
+    }
+  }, [history, isSearchModalVisible])
 
   return (
     <>

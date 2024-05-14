@@ -56,7 +56,7 @@ const NavbarContentLayout = ({left, right}: {left: ReactNode; right: ReactNode})
 const CustomSearch = () => {
   const [showSearchIcon, setShowSearchIcon] = useState<boolean>(false)
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
-  const focusRef = useRef({lastPlaceHolder: "Loading..."})
+  const focusRef = useRef()
   const history = useHistory()
   const location = useLocation()
 
@@ -117,18 +117,9 @@ const CustomSearch = () => {
       setBodyOverflow("initial")
     }
 
-    // Clean up history listener when the component unmounts or when dependencies change
-    return () => {
-      unlisten()
-    }
-  }, [isSearchModalVisible, history])
-
-  useEffect(() => {
     const focusSearchBar = () => {
       const searchInput = getSearchInputRef()
-      const currPlaceholder = searchInput?.getAttribute("placeholder")
-      if (searchInput && focusRef.current.lastPlaceHolder != currPlaceholder) {
-        focusRef.current.lastPlaceHolder = String(currPlaceholder)
+      if (searchInput && focusRef.current != "Loading...") {
         setTimeout(() => {
           searchInput.focus()
           handleZoomBehavior()
@@ -139,10 +130,12 @@ const CustomSearch = () => {
     const searchContainer = document.getElementById("search-container-mobile")
     if (searchContainer) searchContainer.addEventListener("DOMSubtreeModified", focusSearchBar)
 
+    // Clean up history listener when the component unmounts or when dependencies change
     return () => {
+      unlisten()
       if (searchContainer) searchContainer.removeEventListener("DOMSubtreeModified", focusSearchBar)
     }
-  }, [isSearchModalVisible])
+  }, [isSearchModalVisible, history])
 
   return (
     <>
