@@ -17,7 +17,7 @@ const Banner = (): JSX.Element => {
             as="h2"
             className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl"
           >
-            GraphQL platform engineered for{" "}
+            API platform engineered for{" "}
             <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">scale</span>
           </Heading>
           <p className="sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-SPACE_04 mb-0">
@@ -26,8 +26,8 @@ const Banner = (): JSX.Element => {
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Try it Out"
-              href={codeSandboxUrl}
+              title="Learn More"
+              href={pageLinks.introduction}
               theme={Theme.Dark}
               width="small"
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
@@ -43,8 +43,8 @@ const Banner = (): JSX.Element => {
 
           <div className="sm:hidden flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Try it Out"
-              href={codeSandboxUrl}
+              title="Learn More"
+              href={pageLinks.introduction}
               theme={Theme.Dark}
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
             />
