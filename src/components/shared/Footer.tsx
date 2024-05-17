@@ -5,6 +5,7 @@ import TailcallLogo from "@site/static/icons/companies/tailcall-white.svg"
 import {pageLinks} from "@site/src/constants/routes"
 
 const Footer = (): JSX.Element => {
+  const year = new Date().getFullYear()
   return (
     <footer className="bg-tailCall-dark-700 pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04">
       <img
@@ -36,7 +37,7 @@ const Footer = (): JSX.Element => {
 
       <div className="flex flex-col-reverse sm:flex-row items-center gap-y-SPACE_04 sm:justify-between w-[100%] max-w-7xl sm:mt-SPACE_10 z-10">
         <p className="text-content-tiny text-tailCall-light-700 font-space-mono font-normal">
-          Copyright © 2023 Tailcall, Inc.
+          Copyright © {year} Tailcall, Inc.
         </p>
         <div className="space-x-SPACE_04">
           {socials.map((social) => (
