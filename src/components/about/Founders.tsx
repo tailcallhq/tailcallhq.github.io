@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 
-import {founders} from "@site/src/constants"
+// import {founders} from "@site/src/constants"
 import Link from "@docusaurus/Link"
 
 type Founder = {
@@ -25,11 +25,11 @@ const Founder = ({founder}: Founder): JSX.Element => {
       <div className="flex flex-col space-y-SPACE_02 items-start">
         <span className="text-content-small font-bold sm:text-title-small">{founder.name}</span>
         <span className="text-content-tiny sm:text-content-small text-tailCall-dark-100">{founder.title}</span>
-        <div className="flex items-center gap-x-SPACE_05">
+        {/* <div className="flex items-center gap-x-SPACE_05">
           {founder.socialLinks.map((social) => (
             <SocialIcon key={social.id} social={social} />
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   )
@@ -101,9 +101,9 @@ const SocialIcon = ({social}: SocialIconProps) => {
 const Founders = () => {
   return (
     <section className="my-SPACE_08 mx-SPACE_06 sm:my-SPACE_10 lg:my-SPACE_06 flex flex-wrap items-center justify-around max-w-6xl sm:mx-SPACE_04 lg:mx-auto gap-y-SPACE_08 sm:gap-y-SPACE_12 lg:gap-y-SPACE_16">
-      {founders.map((founder) => (
+      {/* {founders.map((founder) => (
         <Founder founder={founder} key={founder.id} />
-      ))}
+      ))} */}
     </section>
   )
 }

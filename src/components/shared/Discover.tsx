@@ -15,7 +15,7 @@ const Discover = (): JSX.Element => {
 
         <div className="flex flex-col items-center absolute max-w-3xl space-y-SPACE_04 sm:space-y-SPACE_06">
           <Heading as="h5" className="text-title-semi-large sm:text-display-medium text-center mb-0">
-            Discover the power of enterprise solution.
+            Has this sparked your interest?
           </Heading>
 
           <div className="flex space-x-SPACE_03 sm:space-x-SPACE_06">
