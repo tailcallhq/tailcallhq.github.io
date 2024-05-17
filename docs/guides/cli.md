@@ -9,8 +9,8 @@ The TailCall CLI (Command Line Interface) allows developers to manage and optimi
 
 The `check` command validates a composition spec. Notably, this command can detect potential N+1 issues. To use the `check` command, follow this format:
 
-```bash
-tailcall check [options] <file>...
+```
+tailcall check [OPTIONS] <FILE_PATHS>...
 ```
 
 The `check` command offers options that control settings such as the display of the generated schema, n + 1 issues etc.
@@ -22,8 +22,8 @@ This flag triggers the detection of N+1 issues.
 - Type: Boolean
 - Default: false
 
-```bash
-tailcall check --n-plus-one-queries <file>...
+```
+tailcall check --n-plus-one-queries <FILE_PATHS> ...
 ```
 
 ### --schema
