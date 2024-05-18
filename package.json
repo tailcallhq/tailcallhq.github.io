@@ -51,6 +51,8 @@
     "@typescript-eslint/parser": "^6.20.0",
     "docusaurus-plugin-remote-content": "^4.0.0",
     "eslint": "^8.56.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-sh": "^0.14.0",
     "typescript": "~5.2.2"
   },
   "browserslist": {

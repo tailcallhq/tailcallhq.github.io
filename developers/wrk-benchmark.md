@@ -36,8 +36,8 @@ Before running `wrk`, verify that the server is responsive. Use `curl` to send a
 
 ```bash
 curl -X POST -H "Content-Type: application/json" \
-    -d '{"operationName":null,"variables":{},"query":"{posts{title}}"}' \
-    http://127.0.0.1:8000/graphql
+  -d '{"operationName":null,"variables":{},"query":"{posts{title}}"}' \
+  http://127.0.0.1:8000/graphql
 ```
 
 Repeat this a couple of times to ensure the server is handling requests correctly.
