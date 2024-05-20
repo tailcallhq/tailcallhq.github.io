@@ -119,7 +119,7 @@ schema
   @server(port: 8000)
   @upstream(
     baseURL: "http://localhost:50051"
-    httpCache: true
+    httpCache: 42
   ) {
   query: Query
 }
@@ -156,7 +156,7 @@ schema
   @server(port: 8000)
   @upstream(
     baseURL: "http://localhost:50051"
-    httpCache: true
+    httpCache: 42
   )
   @link(id: "news", src: "./news.proto", type: Protobuf) {
   query: Query
@@ -231,7 +231,7 @@ schema
   @server(port: 8000)
   @upstream(
     baseURL: "http://localhost:50051"
-    httpCache: true
+    httpCache: 42
     batch: {delay: 10}
   )
   @link(id: "news", src: "./news.proto", type: Protobuf) {
