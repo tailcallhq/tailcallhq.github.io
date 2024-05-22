@@ -42,7 +42,7 @@ To learn more about writing configuration to leverage the full power of Tailcall
 ```graphql showLineNumbers
 schema
   @server(port: 8000, hostname: "0.0.0.0")
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com", httpCache: true, batch: {delay: 100}) {
+  @upstream(baseURL: "http://jsonplaceholder.typicode.com", httpCache: 42, batch: {delay: 100}) {
   query: Query
 }
 
@@ -78,7 +78,7 @@ server:
   port: 8000
 upstream:
   baseURL: http://jsonplaceholder.typicode.com
-  httpCache: true
+  httpCache: 42
   batch:
     maxSize: 100
     delay: 100
@@ -169,7 +169,7 @@ types:
   },
   "upstream": {
     "baseURL": "http://jsonplaceholder.typicode.com",
-    "httpCache": true,
+    "httpCache": 42,
     "batch": {
       "maxSize": 100,
       "delay": 100,
