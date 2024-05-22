@@ -208,10 +208,10 @@ Ensure that your base URL remains free from specific path segments.
 
 ## httpCache
 
-When activated, directs Tailcall to use HTTP caching mechanisms, following the [HTTP Caching RFC](https://tools.ietf.org/html/rfc7234) to enhance performance by minimizing unnecessary data fetches. If left unspecified, this feature defaults to `false`.
+When httpCache passed with value greater than 0 it directs Tailcall to use HTTP caching mechanisms, following the [HTTP Caching RFC](https://tools.ietf.org/html/rfc7234) to enhance performance by minimizing unnecessary data fetches. If left unspecified, this feature defaults to `0` disabling the caching mechanism.
 
 ```graphql showLineNumbers
-schema @upstream(httpCache: false) {
+schema @upstream(httpCache: 42) {
   query: Query
   mutation: Mutation
 }

@@ -9,11 +9,11 @@ HTTP Caching in Tailcall is designed to enhance performance and minimize the fre
 
 HTTP Caching involves saving copies of HTTP responses to serve identical future requests directly from the cache, bypassing the need for new API calls. This reduces latency, conserves bandwidth, and alleviates the load on upstream services by utilizing a cache keyed by request URLs and headers.
 
-By default, HTTP caching is turned off in Tailcall. Enabling it requires setting the `httpCache` parameter to `true` in the `@upstream` configuration. Tailcall employs a in-memory _Least_Recently_Used_ (LRU) cache mechanism to manage stored responses, adhering to upstream-provided caching directives like `Cache-Control` to optimize the caching process and minimize redundant upstream API requests.
+By default, HTTP caching is turned off in Tailcall. Enabling it requires setting the `httpCache` parameter to integer value which is greater than 0 in the `@upstream` configuration. Tailcall employs a in-memory _Least_Recently_Used_ (LRU) cache mechanism to manage stored responses, adhering to upstream-provided caching directives like `Cache-Control` to optimize the caching process and minimize redundant upstream API requests.
 
 ### Enabling HTTP Caching
 
-To activate HTTP caching, adjust the upstream configuration in Tailcall by setting `httpCache` to `true`, as shown in the following example:
+To activate HTTP caching, adjust the upstream configuration in Tailcall by setting `httpCache` to appropriate cache size, as shown in the following example:
 
 ```graphql
 schema
@@ -21,7 +21,7 @@ schema
   @upstream(
     baseURL: "https://api.example.com"
     # highlight-start
-    httpCache: true
+    httpCache: 42
     # highlight-end
   ) {
   query: Query
