@@ -24,7 +24,7 @@ schema
   @server(port: 8000)
   @upstream(
     baseURL: "http://news.local"
-    httpCache: true
+    httpCache: 42
     batch: {delay: 10}
   )
   @link(
