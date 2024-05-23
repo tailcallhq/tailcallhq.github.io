@@ -22,8 +22,8 @@ Let's consider a `foo.js` file which contains a `resolve` function:
 
 ```js
 function resolve(val) {
-  let json = JSON.parse(val);
-  return JSON.stringify(json.id);
+  let json = JSON.parse(val)
+  return JSON.stringify(json.id)
 }
 ```
 
@@ -33,7 +33,10 @@ Here is an example of how the `@js` directive is used within a GraphQL schema:
 schema
   @link(type: Script, src: "./scripts/foo.js")
   @server(port: 8000)
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com", httpCache: true) {
+  @upstream(
+    baseURL: "http://jsonplaceholder.typicode.com"
+    httpCache: true
+  ) {
   query: Query
 }
 
@@ -57,11 +60,11 @@ When using the `@js` directive, it is important to handle errors within your Jav
 ```javascript
 function resolve(val) {
   try {
-    let json = JSON.parse(val);
-    return JSON.stringify(json.id);
+    let json = JSON.parse(val)
+    return JSON.stringify(json.id)
   } catch (error) {
-    console.error("Error resolving value:", error);
-    throw new Error("Failed to resolve value");
+    console.error("Error resolving value:", error)
+    throw new Error("Failed to resolve value")
   }
 }
 ```
@@ -69,4 +72,3 @@ function resolve(val) {
 ## Performance Considerations
 
 When using the `@js` directive, keep in mind that JavaScript functions can introduce performance overhead, especially if they perform complex operations or are called frequently. To minimize performance impact, ensure that your functions are optimized and avoid unnecessary computations.
-
