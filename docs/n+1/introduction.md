@@ -6,4 +6,4 @@ description: Discover the power of Tailcall's introspection capabilities in tack
 
 ![N + 1 Problem](/images/docs/n+1-issue.png)
 
-The **N+1 problem** significantly impacts systems performance by triggering numerous upstream requests in response to a single downstream request. However, with Tailcall's powerful introspection capabilities, you can identify all instances of N+1 issues even before you start your server. Before we delve deeper into how Tailcall accomplishes this, let's understand the N+1 issue in detail.
+The **N+1 problem** significantly impacts systems performance by triggering numerous upstream requests in response to a single downstream request. However, with Tailcall's powerful introspection capabilities, you can identify all instances of N+1 issues even before you start your server! Amazing, right? but before we delve deeper into how Tailcall accomplishes this, let's understand the N+1 issue in detail.
