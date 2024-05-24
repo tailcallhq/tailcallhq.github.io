@@ -1,7 +1,9 @@
+'use client';
 import Link from "next/link";
 import React from "react"
+import CodeBlock from "./CodeBlock/";
 // import Heading from "@theme/Heading"
-// import CodeBlock from "@theme/CodeBlock"
+
 // import Tabs from "@theme/Tabs"
 // import TabItem from "@theme/TabItem"
 // import Link from "@docusaurus/Link"
@@ -19,7 +21,10 @@ const Configuration = (): JSX.Element => {
         </p>
       </div>
       <div>
-        {/* <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
+         <CodeBlock language="bash"  showLineNumbers={false}>npm i -g @tailcallhq/tailcall</CodeBlock>
+         <CodeBlock language="graphql" >{GRAPHQL_CONFIG}</CodeBlock>
+        {/*
+
 
         <Tabs>
           {CodeTabItem({code: GRAPHQL_CONFIG, language: "graphql"})}

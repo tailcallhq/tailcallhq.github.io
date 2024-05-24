@@ -1,5 +1,5 @@
 import React from "react"
-import CodeBlock from "@theme/CodeBlock"
+// import CodeBlock from "@theme/CodeBlock"
 import Version from "./Version"
 
 const InstallCommand = (): JSX.Element => {
@@ -7,10 +7,10 @@ const InstallCommand = (): JSX.Element => {
 
   return (
     <div>
-      <CodeBlock>
+      <div>
         {command}
         <Version />
-      </CodeBlock>
+      </div>
     </div>
   )
 }

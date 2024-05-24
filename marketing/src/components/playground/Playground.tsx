@@ -1,8 +1,10 @@
+'use client';
 import React, {useEffect, useState} from "react"
-import {GraphiQL} from "graphiql"
-import {isValidURL} from "@site/src/utils"
-import "graphiql/graphiql.css"
-import "../../css/graphiql.css"
+import {GraphiQL} from "graphiql-tc/esm"
+import {isValidURL} from "../../utils"
+import "../../app/graphiql.css"
+import "graphiql-tc/graphiql.min.css"
+
 import {type FetcherParams, FetcherOpts} from "@graphiql/toolkit"
 
 const useDebouncedValue = (inputValue: string, delay: number) => {

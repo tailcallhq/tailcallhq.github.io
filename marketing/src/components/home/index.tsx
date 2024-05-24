@@ -10,7 +10,6 @@ import MoreFeatures from "./MoreFeatures"
 import Partners from "./Partners"
 import Discover from "../shared/Discover"
 import Configuration from "./Configuration"
-import Playground from "./Playground"
 
 const HomePage = (): JSX.Element => {
   return (
@@ -22,7 +21,6 @@ const HomePage = (): JSX.Element => {
       <Features />
       <MoreFeatures />
       <Graph />
-      {/* <Playground /> */}
       <Discover />
     </div>
   )
