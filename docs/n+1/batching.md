@@ -4,6 +4,8 @@ sidebar_position: 6
 description: Discover how to Tailcall leverages batch APIs to optimize performance and reduce upstream requests in GraphQL applications.
 ---
 
+![Batched API](../../static/images/docs/n+1-batch.png)
+
 An effective technique to mitigate the N+1 problem is deduplicating similar requests, significantly reducing the number of server calls. We achieved it previously using the [dedupe](../directives/upstream.md#dedupe) setting. With Tailcall we can go one step further by giving hints about "batch APIs".
 
 **Batch APIs:** Are special APIs that allow us to query multiple things at once. In our case we can pass multiple user Ids as query params, to the `/users` API to resolve many users at once:

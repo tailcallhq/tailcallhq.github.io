@@ -4,7 +4,11 @@ sidebar_position: 4
 description: Learn how deduplication can help you optimize performance and reduce server requests using Tailcall. Discover how to eliminate duplicate requests and improve response times using practical solutions and step-by-step examples with the TailCall CLI for GraphQL applications.
 ---
 
-If you run the query, at first you will observe a lot of duplicate requests are being made for getting the same author details. This happens because of the 100 posts, a lot them are authored by the same user and by default Tailcall will make a request for every user when requested. You can fix this by setting [dedupe](../directives/upstream.md#dedupe) to `true` in [upstream](../directives/upstream.md).
+If you run the query, at first you will observe a lot of duplicate requests are being made for getting the same author details.
+
+![Duplicate Upstream Calls](../../static/images/docs/n+1-duplicate.png)
+
+This happens because of the 100 posts, a lot them are authored by the same user and by default Tailcall will make a request for every user when requested. You can fix this by setting [dedupe](../directives/upstream.md#dedupe) to `true` in [upstream](../directives/upstream.md).
 
 ```graphql {4}
 schema
@@ -50,6 +54,8 @@ When you enable `dedupe`, for each downstream request, Tailcall will automatical
 ```
 
 This is a massive 10x improvement over the previous implementation. However, it might not always be the case. For eg: If all the posts are created by different users you might still end up making 100 requests upstream.
+
+![Unique Upstream Calls](../../static/images/docs/n+1-unique.png)
 
 :::tip
 Dedupe has a slight performance overhead so if your use case doesn't have any N + 1 issues, it might be worth keeping this setting disabled.
