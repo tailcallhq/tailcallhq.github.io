@@ -1,7 +1,7 @@
 ---
 title: Introduction
 sidebar_position: 1
-description: Discover how to efficiently address the N+1 problem in using Tailcall with our comprehensive guide. Learn to reduce server requests and optimize performance using practical solutions and step-by-step examples with the TailCall CLI for GraphQL applications. Enhance your coding practices and ensure scalable, high-performance web applications by mastering techniques to mitigate the N+1 problem, reduce server load, and improve response times.
+description: Discover the power of Tailcall's introspection capabilities in tackling the N+1 problem, a common performance issue in systems where a single downstream request triggers numerous upstream requests. Tailcall allows you to identify all instances of N+1 issues before starting your server, ensuring optimal performance and efficiency. Learn more about how Tailcall addresses this challenge and enhances your system's functionality.
 ---
 
 ![N + 1 Problem](/images/docs/n+1-issue.png)

@@ -1,7 +1,7 @@
 ---
 title: Batch APIs
 sidebar_position: 6
-description: Discover how to efficiently address the N+1 problem in using Tailcall with our comprehensive guide. Learn to reduce server requests and optimize performance using practical solutions and step-by-step examples with the TailCall CLI for GraphQL applications. Enhance your coding practices and ensure scalable, high-performance web applications by mastering techniques to mitigate the N+1 problem, reduce server load, and improve response times.
+description: Discover how to Tailcall leverages batch APIs to optimize performance and reduce upstream requests in GraphQL applications.
 ---
 
 An effective technique to mitigate the N+1 problem is deduplicating similar requests, significantly reducing the number of server calls. We achieved it previously using the [dedupe](../directives/upstream.md#dedupe) setting. With Tailcall we can go one step further by giving hints about "batch APIs".

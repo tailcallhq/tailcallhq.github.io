@@ -1,7 +1,7 @@
 ---
 title: N + 1 Checks
 sidebar_position: 5
-description: Discover how to efficiently address the N+1 problem in using Tailcall with our comprehensive guide. Learn to reduce server requests and optimize performance using practical solutions and step-by-step examples with the TailCall CLI for GraphQL applications. Enhance your coding practices and ensure scalable, high-performance web applications by mastering techniques to mitigate the N+1 problem, reduce server load, and improve response times.
+description: Learn how to perform compile-time validations to detect N + 1 problems even before the GraphQL server starts.
 ---
 
 Before we get into the actual solution, if you observe closely the above logs Tailcall identified that there was one N + 1 issue, even before the requests were made:

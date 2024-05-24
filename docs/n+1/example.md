@@ -1,7 +1,7 @@
 ---
 title: Example
 sidebar_position: 2
-description: Discover how to efficiently address the N+1 problem in using Tailcall with our comprehensive guide. Learn to reduce server requests and optimize performance using practical solutions and step-by-step examples with the TailCall CLI for GraphQL applications. Enhance your coding practices and ensure scalable, high-performance web applications by mastering techniques to mitigate the N+1 problem, reduce server load, and improve response times.
+description: Learn the fundamentals of the N + 1 issue. Understand the N + 1 problem in the context of APIs and how it affects server performance. Explore practical examples and real-world scenarios to grasp the implications of the N + 1 problem in GraphQL development.
 ---
 
 Imagine we need to fetch data from the [jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com/), requiring both posts and their authors' details.

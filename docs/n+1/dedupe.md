@@ -1,7 +1,7 @@
 ---
 title: Deduplication
 sidebar_position: 4
-description: Discover how to efficiently address the N+1 problem in using Tailcall with our comprehensive guide. Learn to reduce server requests and optimize performance using practical solutions and step-by-step examples with the TailCall CLI for GraphQL applications. Enhance your coding practices and ensure scalable, high-performance web applications by mastering techniques to mitigate the N+1 problem, reduce server load, and improve response times.
+description: Learn how deduplication can help you optimize performance and reduce server requests using Tailcall. Discover how to eliminate duplicate requests and improve response times using practical solutions and step-by-step examples with the TailCall CLI for GraphQL applications.
 ---
 
 If you run the query, at first you will observe a lot of duplicate requests are being made for getting the same author details. This happens because of the 100 posts, a lot them are authored by the same user and by default Tailcall will make a request for every user when requested. You can fix this by setting [dedupe](../directives/upstream.md#dedupe) to `true` in [upstream](../directives/upstream.md).
