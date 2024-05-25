@@ -14,10 +14,15 @@
   --ifm-pre-padding: 1rem;
   --ifm-transition-fast: 200ms;
   --ifm-transition-slow: 400ms;
+  --ifm-heading-margin-top: 0;
+  --ifm-global-spacing: 1rem;
+  --ifm-heading-margin-bottom: var(--ifm-spacing-vertical);
+  --ifm-spacing-vertical: var(--ifm-global-spacing);
   /* Color Tokens */
   --ifm-color-brand: #fdea2e;
   --ifm-color-primary: #3578e5;
   --ifm-color-brand-dark: #000;
+  --ifm-color-brand-light-100: #f3f4f7;
   --ifm-color-gray-300: #dadde1;
   --ifm-color-brand-dark-opacity-05: rgba(0, 0, 0, 0.05);
   --ifm-color-brand-light: #ffffff;
@@ -200,4 +205,13 @@
   background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
   border-radius: 20px;
   position: absolute;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: var(--ifm-heading-margin-top) 0 var(--ifm-heading-margin-bottom) 0;
 }

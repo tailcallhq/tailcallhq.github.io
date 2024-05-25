@@ -9,7 +9,7 @@ import Image from "../shared/Image"
 const Partners = (): JSX.Element => {
   return (
     <section className="mt-SPACE_08">
-      <div className="text-content-small font-bold sm:text-title-tiny lg:text-title-small text-tailCall-light-500 text-center space-x-1">
+      <div className="text-content-small flex items-center justify-center font-bold sm:text-title-tiny lg:text-title-small text-tailCall-light-500 text-center space-x-1">
         <Image alt="decorative" className="h-4 w-6" src="icons/basic/gt-undescore-gray.svg" />
         <span>Our Cloud Partners</span>
       </div>
