@@ -7,11 +7,13 @@ import Header from "@/components/shared/Header"
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "700"],
+  variable: '--font-space-grotesk',
   display: "swap",
 })
 const spaceMono = Space_Mono({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "700"],
+  variable: '--font-space-mono',
   display: "swap",
 })
 
@@ -26,15 +28,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <style>{`
-        html {
-          font-family: ${spaceGrotesk.style.fontFamily};
-        }
-        code, pre {
-          font-family: ${spaceMono.style.fontFamily}!important;
-        }
-      `}</style>
+    <html lang="en" className={`${spaceGrotesk.variable} ${spaceMono.variable}`}>
       <body className={spaceGrotesk.className}>
         <Header />
         {children}

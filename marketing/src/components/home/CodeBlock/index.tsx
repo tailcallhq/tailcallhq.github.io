@@ -1,107 +1,119 @@
 import React from "react"
-import ReactDOM from "react-dom/client"
-import {Highlight, PrismTheme, themes} from "prism-react-renderer"
+import CopyButton from "./CopyButton"
+import { Highlight, PrismTheme, themes } from "prism-react-renderer"
+import { twMerge } from "tailwind-merge"
 
-import CopyButton from "./CopyButton";
-
-const baseTheme = themes.github;
+const baseTheme = themes.github
 const prismTheme = {
   ...baseTheme,
   styles: [
     ...baseTheme.styles,
     {
-      types: ['title'],
+      types: ["title"],
       style: {
-        color: '#0550AE',
-        fontWeight: 'bold',
+        color: "#0550AE",
+        fontWeight: "bold",
       },
     },
     {
-      types: ['parameter'],
+      types: ["parameter"],
       style: {
-        color: '#953800',
+        color: "#953800",
       },
     },
     {
-      types: ['boolean', 'rule', 'color', 'number', 'constant', 'property'],
+      types: ["boolean", "rule", "color", "number", "constant", "property"],
       style: {
-        color: '#b76b01',
+        color: "#b76b01",
       },
     },
     {
-      types: ['atrule', 'tag'],
+      types: ["atrule", "tag"],
       style: {
-        color: '#22863A',
+        color: "#b76b01",
       },
     },
     {
-      types: ['script'],
+      types: ["script"],
       style: {
-        color: '#24292E',
+        color: "#24292E",
       },
     },
     {
-      types: ['operator', 'unit', 'rule'],
+      types: ["operator", "unit", "rule"],
       style: {
-        color: '#D73A49',
+        color: "#D73A49",
       },
     },
     {
-      types: ['font-matter', 'string', 'attr-value'],
+      types: ["font-matter", "string", "attr-value"],
       style: {
-        color: '#50a14f',
+        color: "#50a14f",
       },
     },
     {
-      types: ['class-name'],
+      types: ["class-name"],
       style: {
-        color: '#b76b01',
+        color: "#b76b01",
       },
     },
     {
-      types: ['attr-name'],
+      types: ["attr-name"],
       style: {
-        color: '#b76b01',
+        color: "#b76b01",
       },
     },
     {
-      types: ['keyword'],
+      types: ["keyword"],
       style: {
-        color: '#a626a4',
+        color: "#a626a4",
       },
     },
     {
-      types: ['function'],
+      types: ["function"],
       style: {
-        color: '#4078f2',
+        color: "#4078f2",
       },
     },
     {
-      types: ['selector'],
+      types: ["selector"],
       style: {
-        color: '#6F42C1',
+        color: "#6F42C1",
       },
     },
     {
-      types: ['variable'],
+      types: ["variable"],
       style: {
-        color: '#E36209',
+        color: "#E36209",
       },
     },
     {
-      types: ['comment'],
+      types: ["comment"],
       style: {
-        color: '#a0a1a7',
+        color: "#a0a1a7",
       },
     },
   ],
-} satisfies PrismTheme;
+} satisfies PrismTheme
 
-const CodeBlock = ({ language, children, showLineNumbers = true }: { language: string, children: string, showLineNumbers?: boolean }) => (
+const CodeBlock = ({
+  language,
+  children,
+  className,
+  showLineNumbers = true,
+}: {
+  language: string
+  children: string
+  className?: string
+  showLineNumbers?: boolean
+}) => (
   <Highlight theme={prismTheme} code={children} language={language}>
     {({ tokens, getLineProps, getTokenProps }) => (
-      <pre className={`relative font-mono bg-gray-50 p-4 rounded-lg my-4 ${tokens.length > 14 ? 'overflow-y-auto max-h-96' : ''}`} style={{ boxShadow: '0 1px 2px 0 #0000001a'}}>
-        <CopyButton code={children} className={'absolute top-5 right-5'} />
+      <pre
+        className={twMerge("relative font-mono bg-gray-50 p-4 rounded-lg my-4", className)}
+        style={{ boxShadow: "0 1px 2px 0 #0000001a" }}
+      >
+        <CopyButton code={children} className={"absolute top-5 right-5"} />
         {tokens.map((line, i) => (
           <div key={i} {...getLineProps({ line })}>
             {showLineNumbers && <span className="text-gray-400 ml-3 mr-6">{i + 1}</span>}
@@ -113,5 +125,5 @@ const CodeBlock = ({ language, children, showLineNumbers = true }: { language: s
       </pre>
     )}
   </Highlight>
-);
+)
 export default CodeBlock

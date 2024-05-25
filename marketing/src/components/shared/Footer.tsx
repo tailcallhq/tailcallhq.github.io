@@ -30,10 +30,10 @@ const Footer = (): JSX.Element => {
       </div>
 
       <div className="flex flex-col-reverse sm:flex-row items-center gap-y-SPACE_04 sm:justify-between w-[100%] max-w-7xl sm:mt-SPACE_10 z-10">
-        <p className="text-content-tiny text-tailCall-light-700 font-space-mono font-normal">
-          Copyright © 2023 Tailcall, Inc.
+        <p className="text-content-tiny text-tailCall-light-700 font-mono pb-4 md:pb-0">
+          Copyright © 2024 Tailcall, Inc.
         </p>
-        <div className="space-x-SPACE_04">
+        <div className="flex space-x-SPACE_04 pb-4">
           {socials.map((social) => (
             <Link href={social.href} className="cursor-pointer" key={social.id}>
               <img src={social.image} className="h-6 w-6" />

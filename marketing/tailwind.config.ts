@@ -72,8 +72,8 @@ const config: Config = {
       },
     },
     fontFamily: {
-      "space-grotesk": ["Space Grotesk", "sans-serif"],
-      "space-mono": ["Space Mono", "monospace"],
+      sans: ["var(--font-space-grotesk)"],
+      mono: ["var(--font-space-mono)"],
     },
     fontSize: {
       "display-large": [

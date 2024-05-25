@@ -1,12 +1,8 @@
-'use client';
-import Link from "next/link";
+"use client"
+import Link from "next/link"
 import React from "react"
-import CodeBlock from "./CodeBlock/";
-// import Heading from "@theme/Heading"
-
-// import Tabs from "@theme/Tabs"
-// import TabItem from "@theme/TabItem"
-// import Link from "@docusaurus/Link"
+import CodeBlock from "./CodeBlock/"
+import {Tabs, TabItem} from "./Tabs"
 
 const Configuration = (): JSX.Element => {
   return (
@@ -21,33 +17,31 @@ const Configuration = (): JSX.Element => {
         </p>
       </div>
       <div>
-         <CodeBlock language="bash"  showLineNumbers={false}>npm i -g @tailcallhq/tailcall</CodeBlock>
-         <CodeBlock language="graphql" >{GRAPHQL_CONFIG}</CodeBlock>
-        {/*
-
-
+        <CodeBlock language="bash" showLineNumbers={false}>
+          npm i -g @tailcallhq/tailcall
+        </CodeBlock>
         <Tabs>
           {CodeTabItem({code: GRAPHQL_CONFIG, language: "graphql"})}
           {CodeTabItem({code: YML_CONFIG, language: "yaml"})}
           {CodeTabItem({code: JSON_CONFIG, language: "json"})}
-        </Tabs> */}
+        </Tabs>
       </div>
     </section>
   )
 }
 
-// const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" | "graphql"}) => (
-//   <TabItem value={language} label={language}>
-//     <CodeBlock
-//       language={language}
-//       showLineNumbers={true}
-//       className="overflow-y-auto h-96 md:min-w-[45rem] min-w-[100%]"
-//     >
-//       {code}
-//     </CodeBlock>
-//     <CodeBlock language="bash">tailcall start ./app.{language}</CodeBlock>
-//   </TabItem>
-// )
+const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" | "graphql"}) => (
+  <TabItem value={language} label={language}>
+    <CodeBlock
+      language={language}
+      showLineNumbers={true}
+      className="overflow-y-auto h-96 md:min-w-[45rem] min-w-[100%]"
+    >
+      {code}
+    </CodeBlock>
+    <CodeBlock language="bash" showLineNumbers={false}>{`tailcall start ./app.${language}`}</CodeBlock>
+  </TabItem>
+)
 
 export default Configuration
 
