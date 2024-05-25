@@ -5,73 +5,23 @@
 :root {
   /* Font and Dimension Tokens */
   --ifm-font-family-base: "Space Grotesk", sans-serif;
-  --header-height: 6.5rem;
-  --ifm-navbar-height: 6.5rem;
-  --ifm-navbar-height-sm: 4.5rem;
-  --ifm-edit-this-page-height: 3rem;
-  --ifm-navbar-logo-height: 2.5rem;
-  --ifm-navbar-logo-height-sm: 1.75rem;
-  --ifm-search-input-height: 2.75rem;
-  --ifm-search-dropdown-height: 18.5rem;
   --ifm-grid-bg-size-lg: 3.25rem;
   --ifm-grid-bg-size-md: 2.5rem;
   --ifm-grid-bg-size-sm: 1.25rem;
-  --ifm-list-item-link: 1.5rem;
-  --ifm-navbar-font-size: 1.25rem;
-  --ifm-content-link-font-size: 0.875rem;
-  --ifm-search-input-font-size: 0.9rem;
-  --ifm-search-desc-font-size: 14px;
-  --ifm-color-gray-900: #1c1e21;
-  --ifm-leading-desktop: 1.25;
   --ifm-global-radius: 0.4rem;
-  --ifm-leading: calc(var(--ifm-leading-desktop) * 1rem);
-  --ifm-paragraph-margin-bottom: var(--ifm-leading);
   --ifm-tabs-padding-horizontal: 1rem;
   --ifm-tabs-padding-vertical: 1rem;
   /* Color Tokens */
   --ifm-color-brand: #fdea2e;
-  --ifm-color-brand-linkedin: #0a66c2;
-  --ifm-color-brand-discord: #5865f2;
   --ifm-color-primary: #3578e5;
   --ifm-color-brand-dark: #000;
-  --ifm-color-brand-dark-100: #121315;
-  --ifm-color-brand-dark-200: #323335;
-  --ifm-color-brand-dark-300: #2c2c2c;
-  --ifm-color-brand-dark-400: #545556;
   --ifm-color-brand-dark-opacity-05: rgba(0, 0, 0, 0.05);
   --ifm-color-brand-light: #ffffff;
-  --ifm-color-brand-light-100: #f3f4f7;
-  --ifm-color-brand-light-200: #e4e4e4;
-  --ifm-color-brand-light-300: #e5e5e5;
-  --ifm-color-brand-light-400: #e7e7e7;
-  --ifm-color-brand-light-500: #cececf;
-  --ifm-color-brand-light-600: #b6b6b7;
-  --ifm-color-content-secondary: #525860;
+  --ifm-color-gray-900: #1c1e21;
   --ifm-color-brand-light-opacity-15: rgba(255, 255, 255, 0.15);
   --ifm-tabs-color-active: var(--ifm-color-primary);
   --ifm-tabs-color-active-border: var(--ifm-tabs-color-active);
   --ifm-hover-overlay: #0000000d;
-  /* Code Settings */
-  --ifm-font-family-monospace: "Space Mono";
-  --ifm-code-background: rgb(246, 247, 248);
-  --ifm-code-border-radius: var(--ifm-global-radius);
-  --ifm-code-font-size: 0.9eem;
-  --ifm-code-padding-horizontal: 0.1em;
-  --ifm-code-padding-vertical: 0em;
-  --ifm-pre-background: var(--ifm-code-background);
-  --docusaurus-highlighted-code-line-bg: #ffeaea;
-  --ifm-global-spacing: 1rem;
-  --ifm-spacing-vertical: var(--ifm-global-spacing);
-  --ifm-spacing-horizontal: var(--ifm-global-spacing);
-  --ifm-footer-background-color: var(--ifm-color-emphasis-100);
-  --ifm-footer-color: inherit;
-  --ifm-footer-link-color: var(--ifm-color-emphasis-700);
-  --ifm-footer-link-hover-color: var(--ifm-color-primary);
-  --ifm-footer-link-horizontal-spacing: 0.5rem;
-  --ifm-footer-padding-horizontal: calc(var(--ifm-spacing-horizontal) * 2);
-  --ifm-footer-padding-vertical: calc(var(--ifm-spacing-vertical) * 2);
-  --ifm-footer-title-color: inherit;
-  --ifm-footer-logo-max-width: min(30rem, 90vw);
 }
 
 .header-button {
@@ -96,11 +46,6 @@
 
 .header-button.header-button-discord {
   padding: 0 1rem;
-}
-
-pre code,
-code {
-  font-family: var(--ifm-font-family-monospace) !important;
 }
 
 .grid-bg-section {
@@ -153,58 +98,6 @@ code {
   }
 }
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-/* Intentionally has zero specificity, so that to be able to override
-the background in custom CSS file due bug https://github.com/facebook/docusaurus/issues/3678 */
-:where(:root) {
-  --docusaurus-highlighted-code-line-bg: rgb(72 77 91);
-}
-
-:where([data-theme="dark"]) {
-  --docusaurus-highlighted-code-line-bg: rgb(100 100 100);
-}
-
-:global(.theme-code-block-highlighted-line) {
-  background-color: var(--docusaurus-highlighted-code-line-bg);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
-}
-
-.codeLine {
-  display: table-row;
-  counter-increment: line-count;
-}
-
-.codeLineNumber {
-  display: table-cell;
-  text-align: right;
-  width: 1%;
-  position: sticky;
-  left: 0;
-  padding: 0 var(--ifm-pre-padding);
-  background: var(--ifm-pre-background);
-  overflow-wrap: normal;
-}
-
-.codeLineNumber::before {
-  content: counter(line-count);
-  opacity: 0.4;
-}
-
-:global(.theme-code-block-highlighted-line) .codeLineNumber::before {
-  opacity: 0.8;
-}
-
-.codeLineContent {
-  padding-right: var(--ifm-pre-padding);
-}
 .clean-btn {
   background: none;
   border: none;
@@ -261,6 +154,7 @@ the background in custom CSS file due bug https://github.com/facebook/docusaurus
   padding: var(--ifm-tabs-padding-vertical) var(--ifm-tabs-padding-horizontal);
   transition: background-color var(--ifm-transition-fast) var(--ifm-transition-timing-default);
 }
+
 .tabs-item:hover {
   background-color: var(--ifm-hover-overlay);
 }
