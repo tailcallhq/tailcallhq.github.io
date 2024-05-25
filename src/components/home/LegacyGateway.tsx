@@ -1,7 +1,6 @@
 import React from "react"
 import Heading from "@theme/Heading"
 
-import {useLottie} from "lottie-react"
 import SolutionGraphic from "@site/static/animations/solution-graphic.json"
 import SectionTitle from "../shared/SectionTitle"
 import LottieContainer from "./LottieContainer.tsxsrc/components/home/LottieContainer"
