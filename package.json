@@ -10,6 +10,7 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
+    "analyze": "docusaurus build --bundle-analyzer",
     "format:fix": "prettier --write '**/*.{graphql,yml,json,md,sh,ts,tsx,js}'",
     "format:check": "prettier --check '**/*.{graphql,yml,json,md,sh,ts,tsx,js}'",
     "write-translations": "docusaurus write-translations",
