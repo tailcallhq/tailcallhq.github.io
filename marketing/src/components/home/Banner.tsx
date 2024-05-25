@@ -5,6 +5,7 @@ import {analyticsHandler} from "../../utils"
 import {Theme, codeSandboxUrl} from "../../constants"
 import {pageLinks} from "../../constants/routes"
 import Image from "../shared/Image"
+import HeroImage from "./HeroImage"
 
 const Banner = (): JSX.Element => {
   return (
@@ -52,11 +53,12 @@ const Banner = (): JSX.Element => {
           </div>
         </div>
 
-        <Image
+        {/* <Image
           alt="Hero Image"
           className="object-contain h-full sm:h-full w-full mt-SPACE_10 max-w-7xl"
           src="images/home/hero.svg"
-        />
+        /> */}
+        <HeroImage />
       </div>
     </main>
   )

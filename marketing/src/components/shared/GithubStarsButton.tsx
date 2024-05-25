@@ -4,20 +4,25 @@ import Link from "next/link"
 import {githubRepoURL} from "../../constants"
 
 const GithubStarsButton = (): JSX.Element => {
-  const [starsCount, setStarsCount] = useState(0)
+  const [starsCount, setStarsCount] = useState<number>(() => {
+    const savedStars = window.localStorage.getItem("githubStars")
+    return savedStars ? parseInt(savedStars) : 0
+  })
 
   const fetchGithubStars = async () => {
     try {
       const response = await fetch("https://api.github.com/repos/tailcallhq/tailcall")
       const data = await response.json()
-      const respStarsCount: number = data.stargazers_count
-      setStarsCount(respStarsCount)
-      return respStarsCount
+      if (response.ok) {
+        const respStarsCount: number = data.stargazers_count
+        setStarsCount(respStarsCount)
+        window.localStorage.setItem("githubStars", respStarsCount.toString())
+        return respStarsCount
+      }
     } catch {
       console.error("Failed to fetch Github stars count")
     }
   }
-
   useEffect(() => {
     fetchGithubStars()
   }, [])
