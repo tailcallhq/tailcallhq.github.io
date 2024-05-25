@@ -185,18 +185,21 @@ export const socials: Social[] = [
     name: "github",
     image: "/icons/companies/github-footer.svg",
     href: "https://github.com/tailcallhq/tailcall",
+    alt: "github link",
   },
   {
     id: 2,
     name: "discord",
     image: "/icons/companies/discord-gray.svg",
     href: "https://discord.gg/kRZBPpkgwq",
+    alt: "discord link",
   },
   {
     id: 3,
     name: "linkedin",
     image: "/icons/companies/linkedin-gray.svg",
     href: "https://www.linkedin.com/company/tailcall",
+    alt: "linkedin link",
   },
 
   {
@@ -204,6 +207,7 @@ export const socials: Social[] = [
     name: "twitter",
     image: "/icons/companies/x-gray.svg",
     href: "https://twitter.com/tailcallhq",
+    alt: "twitter link",
   },
 ]
 

@@ -4,12 +4,13 @@ import React from "react"
 import Marquee from "react-fast-marquee"
 
 import {partnerImages} from "../../constants"
+import Image from "../shared/Image"
 
 const Partners = (): JSX.Element => {
   return (
     <section className="mt-SPACE_08">
       <div className="text-content-small font-bold sm:text-title-tiny lg:text-title-small text-tailCall-light-500 text-center space-x-1">
-        <img className="h-4 w-6" src="icons/basic/gt-undescore-gray.svg" />
+        <Image alt="decorative" className="h-4 w-6" src="icons/basic/gt-undescore-gray.svg" />
         <span>Our Cloud Partners</span>
       </div>
       <Marquee autoFill>

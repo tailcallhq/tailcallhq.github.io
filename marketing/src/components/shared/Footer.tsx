@@ -2,12 +2,13 @@ import React from "react"
 import {socials, tailCallBlogUrl} from "../../constants"
 import {pageLinks} from "../../constants/routes"
 import Link from "next/link"
+import Image from "./Image"
 
 const Footer = (): JSX.Element => {
   return (
     <footer className="bg-tailCall-dark-700 pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04">
-      <img src={"/images/about/grid-dark.png"} alt="" className="absolute inset-0 w-full h-full" />
-      <img className="w-[120px] h-10" src="/icons/companies/tailcall-white.svg" />
+      <Image src={"/images/about/grid-dark.png"} alt="footer background" className="absolute inset-0 w-full h-full" />
+      <Image alt="tailcall logo" className="w-[120px] h-10" src="/icons/companies/tailcall-white.svg" />
       <div className="text-content-tiny sm:text-title-small space-x-SPACE_06 text-tailCall-light-500 z-10">
         <Link
           href={pageLinks.docs}
@@ -36,7 +37,7 @@ const Footer = (): JSX.Element => {
         <div className="flex space-x-SPACE_04 pb-4">
           {socials.map((social) => (
             <Link href={social.href} className="cursor-pointer" key={social.id}>
-              <img src={social.image} className="h-6 w-6" />
+              <Image alt={social.alt} src={social.image} className="h-6 w-6" />
             </Link>
           ))}
         </div>

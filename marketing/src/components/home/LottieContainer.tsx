@@ -17,14 +17,19 @@ const LottieContainer: React.FC<LottieContainerProps> = ({animationData, loop = 
   const [lottie, setLottie] = useState<LottiePlayer | null>(null)
 
   useEffect(() => {
-    const script = document.createElement("script")
-    script.src = "https://unpkg.com/lottie-web@5.12.2/build/player/lottie_light.min.js"
-    script.onload = () => {
-      setLottie(window.lottie)
-    }
-    document.body.appendChild(script)
+    document.addEventListener("DOMContentLoaded", () => {
+      const script = document.createElement("script")
+      script.src = "https://unpkg.com/lottie-web@5.12.2/build/player/lottie_light.min.js"
+      script.onload = () => {
+        setLottie(window.lottie)
+      }
+      document.body.appendChild(script)
+      return () => {
+        document.body.removeChild(script)
+      }
+    })
     return () => {
-      document.body.removeChild(script)
+      document.removeEventListener("DOMContentLoaded", () => {})
     }
   }, [])
   return lottie ? (

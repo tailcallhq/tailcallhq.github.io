@@ -1,5 +1,5 @@
 import React from "react"
-
+import Image from "../shared/Image"
 import {features} from "../../constants"
 
 type FeatureProps = {
@@ -10,8 +10,8 @@ const Feature = ({feature}: FeatureProps): JSX.Element => {
   return (
     <div className="text-tailCall-dark-500 sm:max-w-6xl sm:m-SPACE_10 lg:mx-auto lg:px-SPACE_016 my-0 lg:my-SPACE_20">
       <div className="flex items-center -ml-SPACE_02 sm:space-x-SPACE_02 sm:-ml-SPACE_05 lg:-ml-SPACE_10 mb-SPACE_06">
-        <img className="h-5 sm:h-7" src="icons/basic/gt-underscore.svg" />
-        <h5 className="text-title-semi-large sm:text-display-tiny lg:text-display-small mb-0">{feature.title}</h5>
+        <Image alt="feature icon" className="h-5 sm:h-7" src="icons/basic/gt-underscore.svg" />
+        <h1 className="text-title-semi-large sm:text-display-tiny lg:text-display-small mb-0">{feature.title}</h1>
       </div>
 
       <div
@@ -26,7 +26,7 @@ const Feature = ({feature}: FeatureProps): JSX.Element => {
           <span>{feature.content}</span>
         </p>
         <div className="sm:mt-SPACE_20">
-          <img src={feature.logo} alt="" />
+          <Image src={feature.logo} alt="" />
         </div>
       </div>
     </div>

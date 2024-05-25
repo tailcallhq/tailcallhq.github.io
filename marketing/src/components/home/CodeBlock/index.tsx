@@ -113,7 +113,7 @@ const CodeBlock = ({
         className={twMerge("theme-code-block relative font-mono bg-gray-50 p-4 rounded-lg my-4", className)}
         style={{boxShadow: "0 1px 2px 0 #0000001a"}}
       >
-        <CopyButton code={children}  />
+        <CopyButton code={children} />
         {tokens.map((line, i) => (
           <div key={i} {...getLineProps({line})}>
             {showLineNumbers && <span className="text-gray-400 ml-3 mr-6">{i + 1}</span>}

@@ -195,7 +195,8 @@
   opacity: 0.4;
 }
 
-.button-grid-bg-section,.button-grid-bg-section-dark {
+.button-grid-bg-section,
+.button-grid-bg-section-dark {
   background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
   border-radius: 20px;
   position: absolute;

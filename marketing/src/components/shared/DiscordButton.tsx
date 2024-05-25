@@ -7,6 +7,7 @@ const DiscordButton = () => {
       href="https://discord.gg/kRZBPpkgwq"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="discord link"
       className="navbar__item navbar__link header-button header-button-discord"
     >
       <svg width="28" height="22" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,5 +1,6 @@
 import React from "react"
 import {chooseTailcall} from "../../constants"
+import Image from "../shared/Image"
 
 const ChooseTailcall = (): JSX.Element => {
   return (
@@ -14,7 +15,7 @@ const ChooseTailcall = (): JSX.Element => {
             key={item.id}
           >
             <div className="h-16 w-16 sm:w-full sm:h-full">
-              <img src={item.image} alt="" className="max-w-[72px] sm:max-w-[110px]" />
+              <Image src={item.image} alt="feature icon" className="max-w-[72px] sm:max-w-[110px]" />
             </div>
 
             <div>

@@ -25,16 +25,17 @@ export default function CopyButton({code, className}: Props): JSX.Element {
 
   return (
     <div className="buttonGroup__atx">
-    <button
-      type="button"
-      className={clsx("clean-btn", className, styles.copyButton, isCopied && styles.copyButtonCopied)}
-      onClick={handleCopyCode}
-    >
-      <span className={styles.copyButtonIcons} aria-hidden="true">
-        <IconCopy className={styles.copyButtonIcon} />
-        <IconSuccess className={styles.copyButtonSuccessIcon} />
-      </span>
-    </button>
+      <button
+        type="button"
+        aria-label="Copy code"
+        className={clsx("clean-btn", className, styles.copyButton, isCopied && styles.copyButtonCopied)}
+        onClick={handleCopyCode}
+      >
+        <span className={styles.copyButtonIcons} aria-hidden="true">
+          <IconCopy className={styles.copyButtonIcon} />
+          <IconSuccess className={styles.copyButtonSuccessIcon} />
+        </span>
+      </button>
     </div>
   )
 }
