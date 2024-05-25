@@ -1,16 +1,9 @@
 "use client"
-import React, {useContext, useEffect, useState} from "react"
-import {GithubStarsContext} from "./GithubStarsProvider"
-import {githubRepoURL} from "../../constants"
+import React, {useEffect, useState} from "react"
 import Link from "next/link"
+import {githubRepoURL} from "../../constants"
 
-// Define props types for the GithubStarsButton component
-type GithubStarsButtonProps = {
-  className: string
-}
-
-// Export the GithubStarsButton component
-const GithubStarsButton = ({className}: GithubStarsButtonProps): JSX.Element => {
+const GithubStarsButton = (): JSX.Element => {
   const [starsCount, setStarsCount] = useState(0)
 
   const fetchGithubStars = async () => {
@@ -25,16 +18,20 @@ const GithubStarsButton = ({className}: GithubStarsButtonProps): JSX.Element => 
     }
   }
 
-  // Fetch stars count on component mount
   useEffect(() => {
     fetchGithubStars()
   }, [])
 
   return (
-    <Link href={githubRepoURL} target="_blank" className={`${className} header-button header-button-github`}>
+    <Link
+      href={githubRepoURL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`relative navbar__item navbar__link header-button header-button-github`}
+    >
       <div className="hidden lg:block button-grid-bg-section-dark h-full w-40 scale-90 opacity-0 hover:scale-[1] hover:opacity-100 transform transition-all ease-out duration-250 active:hidden" />
-      <img src="/icons/companies/github.svg" alt="GitHub" className="h-6 w-6" />
-      <span>
+      <img src="/icons/companies/github.svg" alt="GitHub" className="h-6 w-6 mr-2" />
+      <span className="font-semibold text-[1.25rem]">
         Star <span className="min-w-[3ch] inline-block">{starsCount}</span>
       </span>
     </Link>

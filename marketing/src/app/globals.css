@@ -11,10 +11,14 @@
   --ifm-global-radius: 0.4rem;
   --ifm-tabs-padding-horizontal: 1rem;
   --ifm-tabs-padding-vertical: 1rem;
+  --ifm-pre-padding: 1rem;
+  --ifm-transition-fast: 200ms;
+  --ifm-transition-slow: 400ms;
   /* Color Tokens */
   --ifm-color-brand: #fdea2e;
   --ifm-color-primary: #3578e5;
   --ifm-color-brand-dark: #000;
+  --ifm-color-gray-300: #dadde1;
   --ifm-color-brand-dark-opacity-05: rgba(0, 0, 0, 0.05);
   --ifm-color-brand-light: #ffffff;
   --ifm-color-gray-900: #1c1e21;
@@ -157,4 +161,42 @@
 
 .tabs-item:hover {
   background-color: var(--ifm-hover-overlay);
+}
+.buttonGroup__atx {
+  background: var(--prism-background-color);
+  color: var(--prism-color);
+}
+
+.buttonGroup__atx {
+  column-gap: 0.2rem;
+  display: flex;
+  position: absolute;
+  right: calc(var(--ifm-pre-padding) / 2);
+  top: calc(var(--ifm-pre-padding) / 2);
+}
+
+.buttonGroup__atx button {
+  align-items: center;
+  border: 1px solid var(--ifm-color-gray-300);
+  border-radius: var(--ifm-global-radius);
+  display: flex;
+  line-height: 0;
+  opacity: 0;
+  padding: 0.4rem;
+  transition: opacity var(--ifm-transition-fast) ease-in-out;
+}
+
+.buttonGroup__atx button:focus-visible,
+.buttonGroup__atx button:hover {
+  opacity: 1 !important;
+}
+
+.theme-code-block:hover .buttonGroup__atx button {
+  opacity: 0.4;
+}
+
+.button-grid-bg-section,.button-grid-bg-section-dark {
+  background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
+  border-radius: 20px;
+  position: absolute;
 }
