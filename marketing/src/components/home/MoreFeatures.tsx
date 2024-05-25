@@ -19,9 +19,7 @@ const MoreFeatures = (): JSX.Element => {
   return (
     <section className="w-full mb-SPACE_08 sm:mb-SPACE_20">
       <div className="max-w-7xl mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto text-center flex flex-col items-center">
-        <h5
-          className="text-title-semi-large sm:text-display-tiny lg:text-display-small text-tailCall-dark-500"
-        >
+        <h5 className="text-title-semi-large sm:text-display-tiny lg:text-display-small text-tailCall-dark-500">
           There’s so much more.
         </h5>
         <div className="grid grid-cols-2 my-SPACE_04 sm:my-SPACE_10 lg:my-SPACE_16 gap-x-SPACE_06 sm:gap-x-SPACE_10">

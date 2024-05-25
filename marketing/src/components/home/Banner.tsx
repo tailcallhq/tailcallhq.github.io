@@ -10,9 +10,7 @@ const Banner = (): JSX.Element => {
     <main>
       <div className="flex flex-col sm:items-center sm:text-center w-full mt-SPACE_06 px-SPACE_04 sm:mt-SPACE_20">
         <div className="h-full 2xl:min-h-0">
-          <h2
-            className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl"
-          >
+          <h2 className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl">
             GraphQL platform engineered for{" "}
             <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">scale</span>
           </h2>
@@ -53,7 +51,7 @@ const Banner = (): JSX.Element => {
           </div>
         </div>
 
-        <img className="object-contain h-full sm:h-full w-full mt-SPACE_10 max-w-7xl"  src="images/home/hero.svg"/>
+        <img className="object-contain h-full sm:h-full w-full mt-SPACE_10 max-w-7xl" src="images/home/hero.svg" />
       </div>
     </main>
   )

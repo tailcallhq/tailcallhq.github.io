@@ -23,7 +23,6 @@ const GraphContainer = ({
   duration,
   start,
 }: GraphContainerProps): JSX.Element => {
-
   return (
     <div className="border border-solid border-tailCall-border-dark-300 h-[300px] lg:h-[400px] w-[95%] sm:w-[680px] rounded-3xl sm:rounded-[32px] flex flex-col relative">
       <div className="flex flex-col px-SPACE_06 py-SPACE_04 lg:px-SPACE_12 lg:py-SPACE_08 z-10">

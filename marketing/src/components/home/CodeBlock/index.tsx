@@ -1,7 +1,7 @@
 import React from "react"
 import CopyButton from "./CopyButton"
-import { Highlight, PrismTheme, themes } from "prism-react-renderer"
-import { twMerge } from "tailwind-merge"
+import {Highlight, PrismTheme, themes} from "prism-react-renderer"
+import {twMerge} from "tailwind-merge"
 
 const baseTheme = themes.github
 const prismTheme = {
@@ -108,17 +108,17 @@ const CodeBlock = ({
   showLineNumbers?: boolean
 }) => (
   <Highlight theme={prismTheme} code={children} language={language}>
-    {({ tokens, getLineProps, getTokenProps }) => (
+    {({tokens, getLineProps, getTokenProps}) => (
       <pre
         className={twMerge("relative font-mono bg-gray-50 p-4 rounded-lg my-4", className)}
-        style={{ boxShadow: "0 1px 2px 0 #0000001a" }}
+        style={{boxShadow: "0 1px 2px 0 #0000001a"}}
       >
         <CopyButton code={children} className={"absolute top-5 right-5"} />
         {tokens.map((line, i) => (
-          <div key={i} {...getLineProps({ line })}>
+          <div key={i} {...getLineProps({line})}>
             {showLineNumbers && <span className="text-gray-400 ml-3 mr-6">{i + 1}</span>}
             {line.map((token, key) => (
-              <span key={key} {...getTokenProps({ token })} />
+              <span key={key} {...getTokenProps({token})} />
             ))}
           </div>
         ))}

@@ -1,6 +1,5 @@
 import React from "react"
 
-
 import LinkButton from "../shared/LinkButton"
 import ChooseTailcall from "./ChooseTailcall"
 import GraphContainer from "./GraphContainer"
@@ -15,9 +14,7 @@ const Graph = (): JSX.Element => {
     <section className="bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 lg:px-SPACE_16">
       <div className="sm:max-w-7xl mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto  py-SPACE_08 sm:py-SPACE_20">
         <div className="flex items-center justify-between">
-          <h5
-            className="text-title-large sm:text-display-tiny lg:text-display-medium sm:max-w-sm lg:max-w-xl"
-          >
+          <h5 className="text-title-large sm:text-display-tiny lg:text-display-medium sm:max-w-sm lg:max-w-xl">
             Platform made for performance.
           </h5>
           <div className="hidden sm:block">

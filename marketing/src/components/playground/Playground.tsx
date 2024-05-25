@@ -1,4 +1,4 @@
-'use client';
+"use client"
 import React, {useEffect, useState} from "react"
 import {GraphiQL} from "graphiql-tc/esm"
 import {isValidURL} from "../../utils"

@@ -21,12 +21,17 @@ const Tabs = ({children}: TabsProps) => {
   return (
     <div>
       <div className="tab-list ">
-        <ul role="tablist" className="flex flex-row gap-4 text-[var(--ifm-color-content-secondary)] mb-0 overflow-x-auto pl-0">
+        <ul
+          role="tablist"
+          className="flex flex-row gap-4 text-[var(--ifm-color-content-secondary)] mb-0 overflow-x-auto pl-0"
+        >
           {childrenArray.map((child) => (
             <li
               key={child.props.value}
               role="tab"
-              className={`tabs-item font-semibold cursor-pointer border-b-3 border-transparent  ${child.props.value === activeTab ? "tabs-item-active" : ""}`}
+              className={`tabs-item font-semibold cursor-pointer border-b-3 border-transparent  ${
+                child.props.value === activeTab ? "tabs-item-active" : ""
+              }`}
               onClick={() => setActiveTab(child.props.value)}
             >
               {child.props.label}

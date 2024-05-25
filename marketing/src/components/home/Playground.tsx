@@ -3,9 +3,7 @@ import React from "react"
 const Playground = (): JSX.Element => {
   return (
     <div className="hidden lg:flex flex-col items-center justify-center my-SPACE_16">
-      <h3 className="text-display-medium text-start">
-        Playground
-      </h3>
+      <h3 className="text-display-medium text-start">Playground</h3>
       <iframe
         title="Tailcall GraphQL Playground"
         style={{

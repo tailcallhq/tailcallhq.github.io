@@ -1,10 +1,8 @@
-'use client';
+"use client"
 import React, {useContext, useEffect, useState} from "react"
 import {GithubStarsContext} from "./GithubStarsProvider"
 import {githubRepoURL} from "../../constants"
 import Link from "next/link"
-
-
 
 // Define props types for the GithubStarsButton component
 type GithubStarsButtonProps = {
@@ -14,7 +12,6 @@ type GithubStarsButtonProps = {
 // Export the GithubStarsButton component
 const GithubStarsButton = ({className}: GithubStarsButtonProps): JSX.Element => {
   const [starsCount, setStarsCount] = useState(0)
-
 
   const fetchGithubStars = async () => {
     try {
@@ -32,7 +29,7 @@ const GithubStarsButton = ({className}: GithubStarsButtonProps): JSX.Element => 
   useEffect(() => {
     fetchGithubStars()
   }, [])
-  
+
   return (
     <Link href={githubRepoURL} target="_blank" className={`${className} header-button header-button-github`}>
       <div className="hidden lg:block button-grid-bg-section-dark h-full w-40 scale-90 opacity-0 hover:scale-[1] hover:opacity-100 transform transition-all ease-out duration-250 active:hidden" />
