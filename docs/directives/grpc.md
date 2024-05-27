@@ -134,7 +134,5 @@ type Query {
 ```
 
 :::info
-Read about **[n + 1]** to learn how to use the `batchKey` setting.
+Read about [n + 1](../n+1/introduction.md) to learn how to use the `batchKey` setting.
 :::
-
-[n + 1]: /docs/guides/n+1/
