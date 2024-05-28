@@ -25,6 +25,7 @@ const Banner = (): JSX.Element => {
               title="Learn More"
               href={pageLinks.introduction}
               theme={Theme.Dark}
+              width="small"
               onClick={() => analyticsHandler("Home Page", "Click", "Learn More")}
             />
             <LinkButton
@@ -41,12 +42,14 @@ const Banner = (): JSX.Element => {
               title="Learn More"
               href={pageLinks.introduction}
               theme={Theme.Dark}
+              width="small"
               onClick={() => analyticsHandler("Home Page", "Click", "Learn More")}
             />
             <LinkButton
               title="Get Started"
               href={pageLinks.docs}
               theme={Theme.Light}
+              width="small"
               onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
             />
           </div>
