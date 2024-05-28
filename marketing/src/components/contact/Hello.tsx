@@ -1,10 +1,10 @@
-'use client';
+"use client"
 import React, {useCallback, useEffect, useState} from "react"
 import toast, {Toaster} from "react-hot-toast"
 import LinkButton from "../shared/LinkButton"
 import ReactGA from "react-ga4"
-import { zapierLink, radioOptions, Theme } from "@/constants"
-import { validateEmail, analyticsHandler } from "@/utils"
+import {zapierLink, radioOptions, Theme} from "@/constants"
+import {validateEmail, analyticsHandler} from "@/utils"
 
 const Hello = (): JSX.Element => {
   const [email, setEmail] = useState<string>("")
@@ -50,9 +50,7 @@ const Hello = (): JSX.Element => {
       <img className="absolute inset-0 -z-10 h-[540px] w-full" src="/images/about/grid-large.svg" />
 
       <div className="p-SPACE_06 sm:py-SPACE_10 lg:py-SPACE_20 flex flex-col lg:flex-row items-center lg:items-start justify-center lg:space-x-40">
-        <h1
-          className="text-title-large text-center sm:text-left sm:text-display-medium lg:text-display-large lg:max-w-md"
-        >
+        <h1 className="text-title-large text-center sm:text-left sm:text-display-medium lg:text-display-large lg:max-w-md">
           Say <span className="bg-tailCall-yellow rounded sm:rounded-2xl px-SPACE_01 sm:px-SPACE_02">hello</span> to us!
         </h1>
 
@@ -115,7 +113,13 @@ const Hello = (): JSX.Element => {
             />
           </div>
 
-          <LinkButton theme={Theme.Dark} onClick={sendData} title="Send message" disabled={!(email && stage)} href="javascript:void(0)" />
+          <LinkButton
+            theme={Theme.Dark}
+            onClick={sendData}
+            title="Send message"
+            disabled={!(email && stage)}
+            href="javascript:void(0)"
+          />
         </div>
       </div>
     </section>

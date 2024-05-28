@@ -1,6 +1,6 @@
 import Playground from "@/components/playground"
-import { PageTitle, PageDescription } from "@/constants/titles";
-import { Metadata } from "next";
+import {PageTitle, PageDescription} from "@/constants/titles"
+import {Metadata} from "next"
 
 export const metadata: Metadata = {
   title: PageTitle.PLAYGROUND,

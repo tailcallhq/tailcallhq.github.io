@@ -1,7 +1,7 @@
 import React from "react"
-import { Metadata } from "next"
-import { PageDescription, PageTitle } from "@/constants/titles"
-import ContactPage from '@/components/contact'
+import {Metadata} from "next"
+import {PageDescription, PageTitle} from "@/constants/titles"
+import ContactPage from "@/components/contact"
 
 export const metadata: Metadata = {
   title: PageTitle.CONTACT,
@@ -9,9 +9,7 @@ export const metadata: Metadata = {
 }
 
 const Contact = (): JSX.Element => {
-  return (
-      <ContactPage />
-  )
+  return <ContactPage />
 }
 
 export default Contact
