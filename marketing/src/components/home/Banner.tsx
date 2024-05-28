@@ -17,16 +17,15 @@ const Banner = (): JSX.Element => {
             <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">scale</span>
           </h2>
           <p className="sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-SPACE_04 mb-0">
-            Tailcall is a high-performance open-source API orchestrator that allows organizations to build versatile
-            data access layers, atop existing APIs.
+            Tailcall is a high-performance, open-source API orchestrator that enables organizations to construct unified
+            data access layers on top of existing APIs.
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Try it Out"
-              href={codeSandboxUrl}
+              title="Learn More"
+              href={pageLinks.introduction}
               theme={Theme.Dark}
-              width="small"
-              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              onClick={() => analyticsHandler("Home Page", "Click", "Learn More")}
             />
             <LinkButton
               title="Get Started"
@@ -39,10 +38,10 @@ const Banner = (): JSX.Element => {
 
           <div className="sm:hidden flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Try it Out"
-              href={codeSandboxUrl}
+              title="Learn More"
+              href={pageLinks.introduction}
               theme={Theme.Dark}
-              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              onClick={() => analyticsHandler("Home Page", "Click", "Learn More")}
             />
             <LinkButton
               title="Get Started"

@@ -22,7 +22,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
-    <header className="relative flex items-center justify-between px-4 py-5 md:py-8 border-b">
+    <header className="sticky top-0 z-50 bg-white relative flex items-center justify-between px-4 py-5 md:py-8 border-b">
       <div className="flex items-center">
         <Link href="/">
           {/* eslint-disable-next-line @next/next/no-img-element */}
