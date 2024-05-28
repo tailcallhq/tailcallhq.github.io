@@ -2,8 +2,8 @@
 const nextConfig = {
   rewrites: async () => [
     {
-      source: "/doc",
-      destination: "/doc/index.html",
+      source: "/docs",
+      destination: "/docs/index.html",
     },
   ],
 }
