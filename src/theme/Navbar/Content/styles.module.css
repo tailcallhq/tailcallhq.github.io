@@ -1,0 +1,96 @@
+/*
+Hide color mode toggle in small viewports
+ */
+@media (min-width: 996px) {
+  .colorModeToggle {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 996px) {
+  .searchInput {
+    width: 600px;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .modal {
+    display: none;
+  }
+}
+
+.overlay {
+  background-color: var(--ifm-color-brand-light);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  backdrop-filter: blur(3px);
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  margin-right: -50%;
+  z-index: 9;
+  background: var(--ifm-color-brand-light);
+  width: 100%;
+}
+
+.initialCase {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.modalContent {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.searchInput {
+  width: 300px;
+}
+
+.searchDocsTitle {
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.searchDocsCommon {
+  font-size: var(--ifm-search-desc-font-size);
+  line-height: 20.73px;
+  letter-spacing: -4%;
+  color: var(--ifm-color-brand-dark-400);
+}
+
+.searchDocsDesc {
+  font-weight: 400;
+}
+
+.searchDocsClose {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media (max-height: 600px) {
+  .modal {
+    top: calc(var(--header-height) + 1rem);
+    transform: translate(-50%, 0);
+  }
+}

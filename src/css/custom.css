@@ -398,6 +398,26 @@ nav.menu {
   padding-bottom: calc(var(--ifm-navbar-height) * 2);
 }
 
+.algolia-autocomplete .ds-dropdown-menu:before {
+  display: none !important;
+}
+
+.algolia-autocomplete.algolia-autocomplete.algolia-autocomplete-right .ds-dropdown-menu {
+  margin-top: 0 !important;
+  left: 0 !important;
+  overflow: auto;
+  top: 44px;
+  border-radius: 0;
+  box-shadow: none;
+  height: var(--ifm-search-dropdown-height);
+  max-width: none;
+  background: var(--ifm-color-brand-light);
+}
+
+.algolia-autocomplete .ds-dropdown-menu [class^="ds-dataset-"] {
+  border-radius: 0 !important;
+}
+
 .grid-bg-section {
   background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 1px),
     linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 1px);
@@ -517,3 +537,27 @@ nav.menu {
   }
 }
 
+@media (max-width: 600px) {
+  .algolia-autocomplete span[role="listbox"] {
+    display: block;
+    max-height: 90%;
+    max-width: 100%;
+    position: fixed;
+    top: 90px !important;
+    left: 0px !important;
+    width: 600px;
+    height: 100vh;
+    z-index: 100;
+    background: transparent;
+    overflow-y: auto;
+  }
+
+  .algolia-autocomplete .ds-dropdown-menu {
+    box-shadow: none;
+  }
+}
+
+ol.ais-Hits-list {
+  list-style: none !important;
+  padding-left: 5px;
+}

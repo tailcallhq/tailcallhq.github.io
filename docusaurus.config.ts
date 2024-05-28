@@ -57,6 +57,7 @@ export default {
           anonymizeIP: false,
         },
         docs: {
+          routeBasePath: "/", // Serve the docs at the site's root
           // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
           sidebarPath: require.resolve("./sidebars.ts"),
           sidebarCollapsible: true,
