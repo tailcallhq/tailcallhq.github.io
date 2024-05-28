@@ -13,8 +13,8 @@ const headerConfig = {
   navItems: [
     {name: "Home", href: "/", active: true},
     {name: "Docs", href: "/docs"},
-    {name: "Blog", href: "/blog"},
-    {name: "Developers", href: "/developers"},
+    {name: "Blog", href: "https://blog.tailcall.run/"},
+    {name: "Developers", href: "/docs"},
   ],
 }
 
