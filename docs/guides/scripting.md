@@ -18,7 +18,7 @@ function onRequest({request}) {
 }
 ```
 
-Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/directives/link) directive.
+Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/directives/link) directive.
 
 ```graphql
 schema @link(type: Script, src: "./worker.js") {
@@ -28,7 +28,7 @@ schema @link(type: Script, src: "./worker.js") {
 
 Once the worker is linked, you can start the server using the usual [start] command. Making requests to tailcall will now be intercepted by the worker and logged to the console.
 
-[start]: /docs/guides/cli/#start
+[start]:/guides/cli/#start
 
 ## Modify Request
 

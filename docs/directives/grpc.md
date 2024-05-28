@@ -137,4 +137,4 @@ type Query {
 Read about **[n + 1]** to learn how to use the `batchKey` setting.
 :::
 
-[n + 1]: /docs/guides/n+1/
+[n + 1]:/guides/n+1/

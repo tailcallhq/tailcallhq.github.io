@@ -89,10 +89,10 @@ export default {
         height: "2.5rem",
       },
       items: [
-        {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
+        {to: "https://tailcall.run/", label: "Home", position: "left"},
         // {to: "/about", label: "About", position: "left"},
         // {to: "/enterprise", label: "Enterprise", position: "left"},
-        {to: "/docs", label: "Docs", position: "left"},
+        {to: "/", label: "Docs", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
         {to: "/developers", label: "Developers", position: "left"},
         {

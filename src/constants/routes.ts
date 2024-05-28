@@ -1,3 +1,3 @@
 export const pageLinks = {
-  docs: "/docs/",
+  docs: "/",
 }

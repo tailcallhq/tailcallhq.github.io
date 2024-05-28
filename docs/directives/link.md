@@ -69,7 +69,7 @@ Example use case:
 
 The `Protobuf` link type integrates Protocol Buffers definitions by importing .proto files. This integration is crucial for Tailcall to communicate with gRPC services. By including `.proto` definitions, the Tailcall server can directly interact with gRPC services, allowing for efficient and type-safe communication.
 
-For detailed integration steps and best practices, refer to the [gRPC Integration Guide](/docs/guides/grpc.md).
+For detailed integration steps and best practices, refer to the [gRPC Integration Guide](/guides/grpc.md).
 
 ### Script
 

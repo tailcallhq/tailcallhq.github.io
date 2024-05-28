@@ -314,7 +314,7 @@ export const pricingPlans: PricingPlans[] = [
 
     buttonText: "Get Started",
     mostPopular: false,
-    href: "/docs/getting_started/",
+    href: "/getting_started/",
   },
   {
     id: 2,

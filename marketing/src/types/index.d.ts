@@ -20,7 +20,6 @@ type Social = {
   id: number
   name: string
   image?: FunctionComponent<SVGProps<SVGSVGElement>> | undefined
-  alt: string
   href: string
 }
 
