@@ -30,9 +30,4 @@ jobs:
           npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
           npm run typecheck
           npm run build
-
-      - name: Deploy 🚀
-        if: github.ref == 'refs/heads/develop'
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build
+          cd marketing && npm run build

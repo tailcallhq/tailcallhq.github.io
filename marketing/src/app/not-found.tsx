@@ -9,7 +9,9 @@ export default function NotFound() {
         <p>
           Please contact the owner of the site that linked you to the original URL and let them know their link is
           broken.
-          <Link href="/" className="text-blue-500 ml-2">Return Home</Link>
+          <Link href="/" className="text-blue-500 ml-2">
+            Return Home
+          </Link>
         </p>
       </div>
     </div>
