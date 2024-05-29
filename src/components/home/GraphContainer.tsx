@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react"
 import CountUp from "react-countup"
 import TrackVisibility from "react-on-screen"
-import {InteractivityProps, LottieRefCurrentProps, useLottie, useLottieInteractivity} from "lottie-react"
+import {InteractivityProps, LottieRefCurrentProps} from "lottie-light-react"
 import LottieContainer from "./LottieContainer.tsxsrc/components/home/LottieContainer"
 
 type GraphContainerProps = {
