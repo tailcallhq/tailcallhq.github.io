@@ -13,5 +13,5 @@
     "@typescript-eslint/no-explicit-any": ["error", {"ignoreRestArgs": true}]
     // Add other TypeScript rules as needed
   },
-  "ignorePatterns": ["node_modules/", "build/"]
+  "ignorePatterns": ["node_modules/", "build/", "marketing/"]
 }
