@@ -57,32 +57,19 @@ You are now ready to deploy your `tailcall` server on Fly.
 
 In this example, we will deploy a simple `graphQL` server using `tailcall`, on Fly, which will convert the JSONPlaceholder REST API to a GraphQL API.
 
-Below is the config which will be used for this deployment. If you need to make any updates, you can either clone your repo and make the changes locally or you can edit it directly on GitHub.
+Below is the config present in the template repo, that will be used for this deployment. You can learn more about this [here](https://tailcall.run/docs/getting_started/configuration/).
 
 ```graphql
 schema
-  @server(
-    port: 8080
-    headers: {
-      cors: {
-        allowOrigins: ["*"]
-        allowHeaders: ["*"]
-        allowMethods: [POST, GET, OPTIONS]
-      }
-    }
-  )
+  @server(hostname: "0.0.0.0", port: 8080)
   @upstream(
     baseURL: "http://jsonplaceholder.typicode.com"
-    httpCache: 42
-    batch: {delay: 100}
   ) {
   query: Query
 }
 
 type Query {
   posts: [Post] @http(path: "/posts")
-  users: [User] @http(path: "/users")
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
 }
 
 type User {
@@ -99,18 +86,11 @@ type Post {
   userId: Int!
   title: String!
   body: String!
-  user: User
-    @call(
-      steps: [
-        {query: "user", args: {id: "{{.value.userId}}"}}
-      ]
-    )
+  user: User @http(path: "/users/{{.value.userId}}")
 }
 ```
 
-The template repo that we are using for this deployment [tailcallhq/deploy-tailcall](https://github.com/tailcallhq/deploy-tailcall) uses the GitHub action `tailcallhq/gh-action` to deploy the `tailcall` server on Fly. Since the action can be used to deploy on multiple could providers, we need to specify the provider as `fly` in the action input .
-
-Update the `./.github/workflows/main.yml` file in your repo to look like the following. Also, make sure you use the latest version of the action by updating the version in the `uses` field.
+To deploy the server, just update the `provider` to `fly` in the `deploy-tailcall` job in the `.github/workflows/main.yml` file, similar to the example below.
 
 ```yaml
 on: [push]
@@ -126,23 +106,11 @@ jobs:
         id: deploy-tailcall
         uses: tailcallhq/gh-action@v0.2
         with:
-          provider: "fly" # Specifies the cloud provider. In this case 'fly'
+          provider: "fly" # Specifies the cloud provider as 'fly'
           fly-api-token: ${{ secrets.FLY_API_TOKEN }}
           fly-app-name: "tailcall"
           fly-region: "lax"
           tailcall-config: "config.graphql"
 ```
 
-That's it! Now, whenever you push changes to your repository, the `tailcall` server will automatically be deployed on Fly by the Github action.
-
-### Inputs for `tailcallhq/gh-action`
-
-You can customize the deployment by changing the inputs for the `tailcallhq/gh-action` action. Following is a description of the necessary inputs to the action when deploying to Fly:
-
-| Input             | Description                                                                                                     |
-| ----------------- | --------------------------------------------------------------------------------------------------------------- |
-| `provider`        | When deploying to Fly, this should be set to `fly`                                                              |
-| `fly-api-token`   | The Fly API token required for authentication. Ensure this value is stored securely, such as in GitHub Secrets. |
-| `fly-app-name`    | The name of the Fly app being deployed. Defaults to `tailcall` if not specified.                                |
-| `fly-region`      | The region where the Fly app will be deployed. Defaults to `ord` if not specified.                              |
-| `tailcall-config` | The name of the Tailcall configuration file. This file should be present in the root of the repository.         |
+After updating the `main.yml` file, commit the changes and push them to the repository. This will trigger the deployment of the `tailcall` server on Fly.
