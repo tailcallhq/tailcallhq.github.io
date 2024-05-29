@@ -22,7 +22,7 @@ jobs:
         uses: codespell-project/actions-codespell@v2
         with:
           ignore_words_file: .github/codespell-ignore
-          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock,*.excalidraw
+          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock,*.excalidraw,HeroImage.tsx
 
       - name: Install and Build 🔧
         run: |
