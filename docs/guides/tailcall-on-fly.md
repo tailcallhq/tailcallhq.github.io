@@ -137,7 +137,7 @@ That's it! Now, whenever you push changes to your repository, the `tailcall` ser
 
 ### Inputs for `tailcallhq/gh-action`
 
-You can customize the deployment by changing the inputs for the `tailcallhq/gh-action` action. Following is a description of the inputs to the action when deploying to Fly:
+You can customize the deployment by changing the inputs for the `tailcallhq/gh-action` action. Following is a description of the necessary inputs to the action when deploying to Fly:
 
 | Input             | Description                                                                                                     |
 | ----------------- | --------------------------------------------------------------------------------------------------------------- |
