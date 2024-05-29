@@ -1,7 +1,7 @@
 "use client"
 import React, {useEffect, useState} from "react"
 import Link from "next/link"
-import {githubRepoURL} from "../../constants"
+import {githubRepoURL} from "../../../constants"
 
 const GithubStarsButton = (): JSX.Element => {
   const [starsCount, setStarsCount] = useState(0)
