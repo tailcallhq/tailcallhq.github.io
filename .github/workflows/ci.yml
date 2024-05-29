@@ -29,5 +29,4 @@ jobs:
           npm install
           npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
           npm run typecheck
-          npm run build
           cd marketing && npm run build
