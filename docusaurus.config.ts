@@ -28,7 +28,7 @@ export default {
     },
   ],
   url: "https://tailcall.run",
-  baseUrl: "/",
+  baseUrl: "/docs",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "images/favicon.ico",
@@ -57,6 +57,7 @@ export default {
           anonymizeIP: false,
         },
         docs: {
+          routeBasePath: "/", // Serve the docs at the site's root
           // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
           sidebarPath: require.resolve("./sidebars.ts"),
           sidebarCollapsible: true,
@@ -88,10 +89,10 @@ export default {
         height: "2.5rem",
       },
       items: [
-        {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
+        {to: "https://tailcall.run/", label: "Home", position: "left"},
         // {to: "/about", label: "About", position: "left"},
         // {to: "/enterprise", label: "Enterprise", position: "left"},
-        {to: "/docs", label: "Docs", position: "left"},
+        {to: "/", label: "Docs", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
         {to: "/developers", label: "Developers", position: "left"},
         {

@@ -2,10 +2,13 @@
   "name": "my-website",
   "version": "0.0.0",
   "private": true,
+  "workspaces": [
+    "marketing"
+  ],
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "docusaurus build && rm -rf './marketing/public/docs' && mv 'build' './marketing/public/docs'",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

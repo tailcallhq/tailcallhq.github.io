@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Font and Dimension Tokens */
+  --ifm-font-family-base: "Space Grotesk", sans-serif;
+  --ifm-grid-bg-size-lg: 3.25rem;
+  --ifm-grid-bg-size-md: 2.5rem;
+  --ifm-grid-bg-size-sm: 1.25rem;
+  --ifm-global-radius: 0.4rem;
+  --ifm-tabs-padding-horizontal: 1rem;
+  --ifm-tabs-padding-vertical: 1rem;
+  --ifm-pre-padding: 1rem;
+  --ifm-transition-fast: 200ms;
+  --ifm-transition-slow: 400ms;
+  --ifm-heading-margin-top: 0;
+  --ifm-global-spacing: 1rem;
+  --ifm-heading-margin-bottom: var(--ifm-spacing-vertical);
+  --ifm-spacing-vertical: var(--ifm-global-spacing);
+  /* Color Tokens */
+  --ifm-color-brand: #fdea2e;
+  --ifm-color-primary: #3578e5;
+  --ifm-color-brand-dark: #000;
+  --ifm-color-brand-light-100: #f3f4f7;
+  --ifm-color-gray-300: #dadde1;
+  --ifm-color-brand-dark-opacity-05: rgba(0, 0, 0, 0.05);
+  --ifm-color-brand-light: #ffffff;
+  --ifm-color-gray-900: #1c1e21;
+  --ifm-color-brand-light-opacity-15: rgba(255, 255, 255, 0.15);
+  --ifm-tabs-color-active: var(--ifm-color-primary);
+  --ifm-tabs-color-active-border: var(--ifm-tabs-color-active);
+  --ifm-hover-overlay: #0000000d;
+}
+
+.header-button {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  color: var(--ifm-color-gray-900);
+  border: 2px solid var(--ifm-color-gray-900);
+  border-radius: 8px;
+  justify-content: center;
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+.header-button.header-button-github {
+  padding: 0 1.25rem;
+  margin-right: 0;
+}
+
+.header-button.header-button-github svg {
+  margin-right: 0.5rem;
+}
+
+.header-button.header-button-discord {
+  padding: 0 1rem;
+}
+
+.grid-bg-section {
+  background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 1px);
+  background-size: var(--ifm-grid-bg-size-lg) var(--ifm-grid-bg-size-lg);
+  clip-path: inset(0.5rem 0 1rem 0);
+}
+
+.button-grid-bg-section {
+  background-image: linear-gradient(var(--ifm-color-brand-light-opacity-15) 1px, transparent 2px),
+    linear-gradient(90deg, var(--ifm-color-brand-light-opacity-15) 1px, transparent 2px);
+  background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
+  clip-path: inset(0.2rem);
+  position: absolute;
+  border-radius: 20px;
+}
+
+.button-grid-bg-section-dark {
+  background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px),
+    linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px);
+  background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
+  position: absolute;
+  border-radius: 20px;
+}
+
+.button-grid-bg-github {
+  background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px),
+    linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, transparent 2px);
+  background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
+  scale: 0.9;
+  opacity: 0;
+}
+
+.button-grid-bg-github:hover {
+  scale: 1;
+  opacity: 1;
+  transition: all 250ms ease-out;
+}
+
+@media (max-width: 996px) {
+  .grid-bg-section {
+    background-size: var(--ifm-grid-bg-size-md) var(--ifm-grid-bg-size-md);
+  }
+
+  .header-button {
+    width: auto;
+    display: inline-flex;
+    margin-left: 1rem;
+  }
+}
+
+.clean-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+.button-grid-bg-github,
+.button-grid-bg-section-dark {
+  background-image: linear-gradient(var(--ifm-color-brand-dark-opacity-05) 1px, #0000 2px),
+    linear-gradient(90deg, var(--ifm-color-brand-dark-opacity-05) 1px, #0000 2px);
+}
+
+.button-grid-bg-github {
+  background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
+  opacity: 0;
+  scale: 0.9;
+}
+
+.button-grid-bg-github:hover {
+  opacity: 1;
+  scale: 1;
+  transition: 0.25s ease-out;
+}
+
+.header-button {
+  align-items: center;
+  border: 2px solid var(--ifm-color-gray-900);
+  border-radius: 8px;
+  display: flex;
+  height: 3rem;
+  justify-content: center;
+}
+
+.header-button.header-button-github {
+  margin-right: 0;
+  padding: 0 1.25rem;
+}
+
+.tabs-item-active {
+  border-bottom-color: var(--ifm-tabs-color-active-border) !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  color: #3578e5 !important;
+}
+
+.tabs-item {
+  border-bottom: 3px solid #0000;
+  border-radius: var(--ifm-global-radius);
+  cursor: pointer;
+  display: inline-flex;
+  padding: var(--ifm-tabs-padding-vertical) var(--ifm-tabs-padding-horizontal);
+  transition: background-color var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+}
+
+.tabs-item:hover {
+  background-color: var(--ifm-hover-overlay);
+}
+.buttonGroup__atx {
+  background: var(--prism-background-color);
+  color: var(--prism-color);
+}
+
+.buttonGroup__atx {
+  column-gap: 0.2rem;
+  display: flex;
+  position: absolute;
+  right: calc(var(--ifm-pre-padding) / 2);
+  top: calc(var(--ifm-pre-padding) / 2);
+}
+
+.buttonGroup__atx button {
+  align-items: center;
+  border: 1px solid var(--ifm-color-gray-300);
+  border-radius: var(--ifm-global-radius);
+  display: flex;
+  line-height: 0;
+  opacity: 0;
+  padding: 0.4rem;
+  transition: opacity var(--ifm-transition-fast) ease-in-out;
+}
+
+.buttonGroup__atx button:focus-visible,
+.buttonGroup__atx button:hover {
+  opacity: 1 !important;
+}
+
+.theme-code-block:hover .buttonGroup__atx button {
+  opacity: 0.4;
+}
+
+.button-grid-bg-section,
+.button-grid-bg-section-dark {
+  background-size: var(--ifm-grid-bg-size-sm) var(--ifm-grid-bg-size-sm);
+  border-radius: 20px;
+  position: absolute;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: var(--ifm-heading-margin-top) 0 var(--ifm-heading-margin-bottom) 0;
+}
