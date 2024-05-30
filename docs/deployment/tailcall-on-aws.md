@@ -5,7 +5,7 @@ description: "Deploy `tailcall` on AWS Lambda using the github action `tailcallh
 
 Before deploying `tailcall` on AWS Lambda, you need to generate the AWS Access Key ID and Secret Access Key. If you don't have an AWS account, you can create one [here](https://aws.amazon.com/).
 
-### Generate Access Keys for AWS
+## Generate Access Keys for AWS
 
 Follow the steps below to generate the Access Keys:
 
@@ -25,15 +25,19 @@ Follow the steps below to generate the Access Keys:
 
 ![access-keys.png](../../static/images/aws/access-keys.png)
 
-### Terraform setup
+## Terraform setup
 
 Now that you have the AWS Access Key ID and Secret Access Key, you will need to generate API token for terraform and setup a terraform organization and workspace. If you don't have a Terraform Cloud account, you can create one [here](https://app.terraform.io/signup/account).
+
+### Terraform API Token
+
+Follow these steps to generate the Terraform API token:
 
 1. Go to the [Tokens section in Settings](https://app.terraform.io/app/settings/tokens) and click on `Create an API token`.
 
 ![create-token.png](../../static/images/aws/create-token.png)
 
-2. Give a description for the token and click on `Generate token`.
+2. Give a description for the token and change the expiration if required. Click on `Generate token`.
 
 ![gen-token.png](../../static/images/aws/gen-token.png)
 
@@ -41,27 +45,29 @@ Now that you have the AWS Access Key ID and Secret Access Key, you will need to 
 
 ![token.png](../../static/images/aws/token.png)
 
-3. Now to create an organization, go to the [Organizations section in Settings](https://app.terraform.io/app/organizations) and click on `Create organization`.
+### Terraform Organization and Workspace
+
+1. To create an organization, go to the [Organizations section in Settings](https://app.terraform.io/app/organizations) and click on `Create organization`.
 
 ![terra-org.png](../../static/images/aws/terra-org.png)
 
-4. Fill in the organization name and email and click on `Create organization`.
+2. Fill in the organization name and email and click on `Create organization`.
 
 ![create-org.png](../../static/images/aws/create-org.png)
 
-5. Now that you have created an organization, you will be presented with the following page for creating a workspace. Click on `CLI-Driven Workflow`, since the github action which we will be using for deployment, [tailcallhq/gh-action](https://github.com/tailcallhq/gh-action), uses the terraform CLI.
+3. Now that you have created an organization, you will be presented with the following page for creating a workspace. Click on `CLI-Driven Workflow`, since the github action which we will be using for deployment, [tailcallhq/gh-action](https://github.com/tailcallhq/gh-action), uses the terraform CLI.
 
 ![workflow.png](../../static/images/aws/workflow.png)
 
-6. Fill in the workspace name. By default the project will be set to `Default Project`, if you have any project in terraform cloud, you can select that project, otherwise continue with the `Default Project` and click on `Create`.
+4. Fill in the workspace name. By default the project will be set to `Default Project`, if you have any project in terraform cloud, you can select that project, otherwise continue with the `Default Project` and click on `Create`.
 
 ![create-workspace.png](../../static/images/aws/create-workspace.png)
 
-You now have everything that is required for a successful deployment of your `tailcall` on AWS Lambda.
+You now have everything required for a successful deployment of your `tailcall` server on AWS Lambda.
 
-### Setting up the project repo
+## Setting up the project repo
 
-The easiest way to get started is to create a new repository using this template repo [https://github.com/tailcallhq/deploy-tailcall](https://github.com/tailcallhq/deploy-tailcall).
+Now you need to create a new repository on Github and use the Github action `tailcallhq/gh-action` to deploy it. The easiest way to get started is to create a new repository using this template repo [https://github.com/tailcallhq/deploy-tailcall](https://github.com/tailcallhq/deploy-tailcall).
 
 1. Go to the repo and click on `Use this template` and create a new repository.
 
@@ -93,7 +99,7 @@ The easiest way to get started is to create a new repository using this template
 
 You are now ready to deploy your `tailcall` server on AWS Lambda using terraform.
 
-### Deploy on AWS Lambda using terraform
+## Deploy on AWS Lambda using terraform
 
 In this example, we will deploy a simple `graphQL` server using `tailcall`, on AWS Lambda using terraform, which will convert the JSONPlaceholder REST API to a GraphQL API.
 
@@ -101,7 +107,6 @@ Below is the config present in the template repo, that will be used for this dep
 
 ```graphql
 schema
-  @server(hostname: "0.0.0.0", port: 8080)
   @upstream(
     baseURL: "http://jsonplaceholder.typicode.com"
   ) {

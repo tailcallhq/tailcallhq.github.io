@@ -5,7 +5,7 @@ description: "Deploy `tailcall` on Fly using the github action `tailcallhq/gh-ac
 
 Before deploying `tailcall` on fly, you need to generate an API Key from Fly.io. If you don't have an account on Fly.io, you can create one [here](https://fly.io/app/sign-up).
 
-### Generate API Key for Fly
+## Generate API Key for Fly
 
 Follow the steps below to generate an API Key:
 
@@ -21,11 +21,11 @@ Follow the steps below to generate an API Key:
 
 ![token.png](../../static/images/fly/token.png)
 
-4. Copy the generated token and store it securely.
+4. Copy the generated token and store it securely. You need to provide this token as input to the `tailcallhq/gh-action` action, when deploying to Fly.
 
-### Setting up the project repo
+## Setting up the project repo
 
-The easiest way to get started is to create a new repository using this template repo [https://github.com/tailcallhq/deploy-tailcall](https://github.com/tailcallhq/deploy-tailcall).
+Now you need to create a new repository on Github and use the Github action `tailcallhq/gh-action` to deploy it. The easiest way to get started is to create a new repository using this template repo [https://github.com/tailcallhq/deploy-tailcall](https://github.com/tailcallhq/deploy-tailcall).
 
 1. Go to the repo and click on `Use this template` and create a new repository.
 
@@ -53,7 +53,7 @@ The easiest way to get started is to create a new repository using this template
 
 You are now ready to deploy your `tailcall` server on Fly.
 
-### Deploy on Fly
+## Deploy on Fly
 
 In this example, we will deploy a simple `graphQL` server using `tailcall`, on Fly, which will convert the JSONPlaceholder REST API to a GraphQL API.
 
@@ -61,7 +61,6 @@ Below is the config present in the template repo, that will be used for this dep
 
 ```graphql
 schema
-  @server(hostname: "0.0.0.0", port: 8080)
   @upstream(
     baseURL: "http://jsonplaceholder.typicode.com"
   ) {
