@@ -71,9 +71,7 @@ export const features: Feature[] = [
       <>
         With Tailcall, your focus shifts to the 'what'—such as entities, their relationships, access control, security,
         authentication, caching, and more—rather than the 'how'. This shift is enabled by the Tailcall DSL, embodying a
-        true <Highlight text="declarative approach" /> to managing APIs. Unlike traditional API gateways that apply
-        these properties directly to APIs, Tailcall's DSL simplifies governance and clarifies semantics, providing a
-        more intuitive framework for API management.
+        true <Highlight text="declarative approach" /> to managing APIs.
       </>
     ),
   },
