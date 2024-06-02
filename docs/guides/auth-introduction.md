@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Auth Introduction
 description: "Learn how you can provide granular access to types and fields in GraphQL schema with the help of authentication providers"
 slug: /auth
 sidebar_position: 1
