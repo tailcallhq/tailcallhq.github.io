@@ -1,6 +1,7 @@
 ---
-title: "REST on top of GraphQL"
+title: GraphQL REST Integration
 description: Exposing REST endpoints on top of GraphQL via @rest directive.
+slug: graphql-rest-integration
 ---
 
 In order to handle complicated business problems, modern systems frequently need to work with hundreds or even thousands of APIs. Because of its powerful API composition capabilities, GraphQL has been adopted by numerous organisations. But switching to GraphQL can be difficult. It involves a lot of team training as well as major adjustments to frontend and backend architectures.
