@@ -55,7 +55,7 @@ type User {
 }
 ```
 
-for more information on how to define your Tailcall GraphQL configuration file, please refer to the [Tailcall GraphQL Configuration](../getting_started/configuration.mdx).
+for more information on how to define your Tailcall GraphQL configuration file, please refer to the [Tailcall GraphQL Configuration](../guides/configuration.mdx).
 
 ### Step 2: Define an operation using `@rest` directive
 
