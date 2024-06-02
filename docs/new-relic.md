@@ -32,8 +32,8 @@ The guide is based on [official doc](https://docs.newrelic.com/docs/more-integra
 
 Now make some requests to running service and wait a little bit until New Relic proceeds the data. After that you can go to `Traces` locate `request` trace, click on it, then pick one of the available traces and click on it. You should see something like the screenshot below:
 
-![newrelic-trace](../../static/images/telemetry/newrelic-trace.png)
+![newrelic-trace](../static/images/telemetry/newrelic-trace.png)
 
 To see metrics now go to `APM & Services -> Metrics Explorer` and choose the metrics you want to see like on example below.
 
-![newrelic-metrics](../../static/images/telemetry/newrelic-metrics.png)
+![newrelic-metrics](../static/images/telemetry/newrelic-metrics.png)

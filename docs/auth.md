@@ -118,7 +118,7 @@ If you execute the query that don't have any `@protected` fields like
 ```
 
 Then the data for this will be resolved as usual without providing any additional info. showing the list of posts with their titles:
-![unprotected.png](../../static/images/auth/unprotected.png)
+![unprotected.png](../static/images/auth/unprotected.png)
 But if you change the query to access protected data, then if you don't provide any authentication data, i.e. for query:
 
 ```graphql
@@ -148,7 +148,7 @@ You will get an authentication failure error stating that authentication paramet
 }
 ```
 
-![protected.png](../../static/images/auth/protected.png)
+![protected.png](../static/images/auth/protected.png)
 
 Now update the request by providing additional Authorization header. You can do in the Playground by navigating to the tab `HTTP HEADERS` at the bottom by adding following header for Basic Auth:
 
@@ -159,7 +159,7 @@ Now update the request by providing additional Authorization header. You can do 
 ```
 
 Now after executing the request again you'll get the response for all the requested fields without any error.
-![basic_auth.png](../../static/images/auth/basic_auth.png)
+![basic_auth.png](../static/images/auth/basic_auth.png)
 
 ## How it works
 

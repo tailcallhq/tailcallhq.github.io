@@ -120,7 +120,7 @@ Tailcall fully supports [Context Propagation](https://opentelemetry.io/docs/conc
 
 That may look like this:
 
-![honeycomb-propagation](../../static/images/telemetry/honeycomb-propagation.png)
+![honeycomb-propagation](../static/images/telemetry/honeycomb-propagation.png)
 
 Where Tailcall is a part of whole distributed trace
 

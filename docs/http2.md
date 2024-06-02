@@ -29,7 +29,7 @@ For Tailcall to serve GraphQL over HTTP/2 we need to first enable SSL for which 
 
    You will be prompted to provide information for the certificate, such as the Common Name (CN), organization details, and locality. This information is embedded into the CSR, saved in a file named `csr.pem`. This file can be used to request a certificate from a Certificate Authority (CA) or generate a self-signed certificate.
 
-   ![http2-csr.png](../../static/images/docs/http2-csr.png)
+   ![http2-csr.png](../static/images/docs/http2-csr.png)
 
 4. **Generate Self-Signed Certificate**
 
@@ -39,7 +39,7 @@ For Tailcall to serve GraphQL over HTTP/2 we need to first enable SSL for which 
 
    This generates a self-signed certificate valid for 365 days using the CSR from step 3 and the private key from step 2. The validity period can be adjusted by changing the number of days (-days). A "Signature ok" prompt confirms the successful creation.
 
-   ![http/2-cert.png](../../static/images/docs/http2-cert.png)
+   ![http/2-cert.png](../static/images/docs/http2-cert.png)
 
 5. **Cleanup Intermediate Files**
 

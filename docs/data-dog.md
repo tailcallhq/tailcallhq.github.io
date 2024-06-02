@@ -61,8 +61,8 @@ This guide is based on the [official doc](https://docs.datadoghq.com/getting_sta
 
 Now make some requests to running service and wait a little bit until Datadog proceeds the data. After that you can go to `APM -> Traces`, locate the span with name `request` and click on it. You should see something like on screenshot below:
 
-![datadog-trace](../../static/images/telemetry/datadog-trace.png)
+![datadog-trace](../static/images/telemetry/datadog-trace.png)
 
 To see metrics now go to `Metrics -> Explorer` and search for metric you want to see. After updating the query you should see something like on example below:
 
-![datadog-metrics](../../static/images/telemetry/datadog-metrics.png)
+![datadog-metrics](../static/images/telemetry/datadog-metrics.png)
