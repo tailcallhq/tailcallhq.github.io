@@ -55,7 +55,7 @@ type User {
 }
 ```
 
-for more information on how to define your Tailcall GraphQL configuration file, please refer to the [Tailcall GraphQL Configuration](/docs/guides/getting-started-with-graphql-using-tailcall/#configuration).
+for more information on how to define your Tailcall GraphQL configuration file, please refer to the [Tailcall GraphQL Configuration](/docs/getting-started-with-graphql-using-tailcall/#configuration).
 
 ### Step 2: Define an operation using `@rest` directive
 
@@ -76,7 +76,7 @@ query ($id: Int!) @rest(method: GET, path: "/post/$id") {
 }
 ```
 
-to know more about the `@rest` directive, please refer to the [Tailcall GraphQL Directives](/docs/guides/directives/#rest-directive).
+to know more about the `@rest` directive, please refer to the [Tailcall GraphQL Directives](/docs/directives/#rest-directive).
 
 ### Step 3: Link the operation to the main config file
 
@@ -92,7 +92,7 @@ schema
 }
 ```
 
-To know more about the `@link` directive, please refer to the [Tailcall GraphQL Directives](/docs/guides/directives/#link-directive).
+To know more about the `@link` directive, please refer to the [Tailcall GraphQL Directives](/docs/directives/#link-directive).
 
 #### Response
 
