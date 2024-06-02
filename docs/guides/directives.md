@@ -8,9 +8,9 @@ Here is a list of all the custom directives supported by Tailcall:
 
 <!-- SORT OPERATOR BY NAME -->
 
-| Operator                     | Description                                                                                                  |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`@addField`](#addfield-directive)  | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
+| Operator                             | Description                                                                                                  |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| [`@addField`](#addfield-directive)   | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
 | [`@cache`](#cache-directive)         | Enables caching for the query, field or type applied to.                                                     |
 | [`@call`](#call-directive)           | Invokes a query or mutation from another query or mutation field.                                            |
 | [`@expr`](#expr-directive)           | Allows embedding of a constant response within the schema.                                                   |
@@ -114,7 +114,7 @@ type Post {
 ```
 
 In conclusion, the `@addField` directive helps tidy up your schema and streamline data fetching by reducing query depth, promoting better performance and simplicity.
--e 
+-e
 
 ## @cache Directive
 
@@ -252,7 +252,7 @@ Thus, in the configuration above, while all fields inherit the `@cache(maxAge: 2
 The caching mechanism generates a hash based on information related to the applied query to serve as the cache key for the corresponding value.
 
 For instance, the system caches the `user` field in the following configuration, using the hash of the interpolated string `"/user/{{.value.userId}}"` as the cache key. For example, if `Post.userId` equals `1`, the system generates the cache key by hashing the string `"/users/1"`.
--e 
+-e
 
 ## @call Directive
 
@@ -428,7 +428,7 @@ Here is how the response would look like:
 }
 ```
 
-As you can see the [`@expr`](../directives/expr.md) directive plucks the inner value and returns the result. How about we implement an `abc` operation that could leverage the existing operations and unwrap the following input value:
+As you can see the [`@expr`](#expr-directive) directive plucks the inner value and returns the result. How about we implement an `abc` operation that could leverage the existing operations and unwrap the following input value:
 
 ```json
 {"a": {"b": {"c": {"d": 1000}}}}
@@ -489,7 +489,7 @@ This way you can compose combine multiple operations can compose them together u
 :::note
 We use `JSON` scalar here because we don't care about the type safety of this option. In a real world example you might want to use proper input and output types.
 :::
--e 
+-e
 
 ## @expr Directive
 
@@ -559,7 +559,7 @@ type Emails {
 ```
 
 In this example, the `@expr` directive dynamically generate an `Emails` object based on the provided template data. The placeholders within the template (`{{.value.workEmail}}` and `{{.value.personalEmail}}`) gets replaced with the actual values specified in the `User` type, allowing for dynamic content generation while still adhering to the schema's structure.
--e 
+-e
 
 ## @graphQL Directive
 
@@ -597,7 +597,7 @@ query {
 
 ### baseURL
 
-This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [`@upstream`](./upstream.md) directive.
+This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [`@upstream`](#upstream-directive) directive.
 
 ```graphql showLineNumbers
 type Query {
@@ -687,7 +687,7 @@ type Query {
 ```
 
 Make sure you have also specified batch settings to the `@upstream` and to the `@graphQL` directive.
--e 
+-e
 
 ## @grpc Directive
 
@@ -825,7 +825,7 @@ type Query {
 :::info
 Read about [n + 1](../guides/N+1.md) to learn how to use the `batchKey` setting.
 :::
--e 
+-e
 
 ## @http Directive
 
@@ -841,7 +841,7 @@ In this example, adding the `@http` directive to the `users` field of the `Query
 
 ### baseURL
 
-Specifies the API's base URL. If unspecified, it defaults to the URL in the [`@upstream`](./upstream.md) directive.
+Specifies the API's base URL. If unspecified, it defaults to the URL in the [`@upstream`](#upstream-directive) directive.
 
 ```graphql showLineNumbers
 type Query {
@@ -1041,7 +1041,7 @@ function resolve(val) {
 ### Performance Considerations
 
 When using the `@js` directive, keep in mind that JavaScript functions can introduce performance overhead, especially if they perform complex operations or are called frequently. To minimize performance impact, ensure that your functions are optimized and avoid unnecessary computations.
--e 
+-e
 
 ## @link Directive
 
@@ -1161,7 +1161,7 @@ The `Htpasswd` link type allows the importation of an [`htpasswd`](https://httpd
 ### Jwks
 
 The `Jwks` link type enables the importation of a [`JWKS`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) file. This file facilitates the provision of detailed access control through [JWT authentication](../guides/auth.md#jwt-authentication).
--e 
+-e
 
 ## @modify Directive
 
@@ -1192,9 +1192,9 @@ type User {
 `@modify(omit: true)` instructs GraphQL to exclude the `id` field from the schema, making it inaccessible to the client.
 
 :::tip
-`@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/directives/omit)
+`@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/guides/directives/#omit-directive)
 :::
--e 
+-e
 
 ## @omit Directive
 
@@ -1228,8 +1228,8 @@ The `@omit` directive and `@modify(omit: true)` essentially serve the same purpo
 
 - `@omit` offers a concise way to directly exclude a field or node without additional arguments.
 
-- `@modify(omit: true)`, as part of the broader [`@modify`](/docs/directives/modify#omit) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
--e 
+- `@modify(omit: true)`, as part of the broader [`@modify`](/docs/guides/directives/#omit-directive) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
+  -e
 
 ## @protected Directive
 
@@ -1248,14 +1248,14 @@ type ProtectedType @protected {
 ```
 
 :::important
-To utilize the `@protected` directive, you must link at least one authentication provider in the configuration using the [`@link`](./link.md) directive (`Htpasswd` or `Jwks`).
+To utilize the `@protected` directive, you must link at least one authentication provider in the configuration using the [`@link`](#link-directive) directive (`Htpasswd` or `Jwks`).
 :::
 
 ### How It Works
 
 - When a field is annotated with `@protected`, an authentication check is performed upon receiving the request. Depending on the authentication result, either the requested data is provided in the response, or an authentication error is returned.
 - If a type is annotated with `@protected`, all fields within that type inherit the protection, requiring user authentication for any field that's queried.
--e 
+  -e
 
 ## @rest Directive
 
@@ -1306,7 +1306,7 @@ query ($id: Int!) @rest(method: GET, path: "/user/$id") {
 ![REST Demo](/images/docs/rest-user.png)
 
 This example demonstrates how to define a simple query to fetch user data from a REST endpoint using the `@rest` directive. By leveraging `@rest`, GraphQL can serve as a layer over RESTful services, combining REST's simplicity with GraphQL's flexibility.
--e 
+-e
 
 ## @server Directive
 
@@ -1629,7 +1629,7 @@ schema @server(
 ### Trade-offs
 
 Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
--e 
+-e
 
 ## @telemetry Directive
 
@@ -1654,7 +1654,7 @@ The `@telemetry` directive also captures the following metrics:
 
 |                    Metric | Description                                                                                                                                     |
 | ------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------- |
-|            cache.hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](./cache.md) directive                                                       |
+|            cache.hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](#cache-directive) directive                                                 |
 | http.server.request.count | Counts the number of incoming requests made to specific route. Optionally enriched with selected headers by [`requestHeaders`](#requestheaders) |
 | http.client.request.count | Counts the number of outgoing requests to specific upstream                                                                                     |
 
@@ -1769,7 +1769,7 @@ You can configure the apollo exporter with the following options:
 |   version | Version of Apollo which is being used.                                                                                                                        |
 
 By integrating the `@telemetry` directive into your GraphQL schema, you empower your development teams with critical insights into application performance, enabling proactive optimization and maintenance.
--e 
+-e
 
 ## @upstream Directive
 
@@ -1955,7 +1955,7 @@ In the example above, the configuration for `allowedHeaders` permits `Authorizat
 
 ### baseURL
 
-This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` directive, then each [`@http`](./http.md) directive must specify its own `baseURL`. If neither `@upstream` nor [`@http`](./http.md) provides a `baseURL`, it results in a compilation error.
+This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` directive, then each [`@http`](#http-directive) directive must specify its own `baseURL`. If neither `@upstream` nor [`@http`](#http-directive) provides a `baseURL`, it results in a compilation error.
 
 ```graphql showLineNumbers
 schema
@@ -2022,5 +2022,5 @@ schema @upstream(dedupe: true) {
   mutation: Mutation
 }
 ```
--e 
 
+-e

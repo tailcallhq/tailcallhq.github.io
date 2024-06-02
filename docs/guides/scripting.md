@@ -18,7 +18,7 @@ function onRequest({request}) {
 }
 ```
 
-Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/directives/link) directive.
+Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/guides/directives/#link-directive) directive.
 
 ```graphql
 schema @link(type: Script, src: "./worker.js") {
