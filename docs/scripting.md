@@ -18,7 +18,7 @@ function onRequest({request}) {
 }
 ```
 
-Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/guides/directives/#link-directive) directive.
+Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/directives/#link-directive) directive.
 
 ```graphql
 schema @link(type: Script, src: "./worker.js") {
@@ -28,7 +28,7 @@ schema @link(type: Script, src: "./worker.js") {
 
 Once the worker is linked, you can start the server using the usual [start] command. Making requests to tailcall will now be intercepted by the worker and logged to the console.
 
-[start]: /docs/guides/cli/#start
+[start]: /docs/cli/#start
 
 ## Modify Request
 
@@ -112,7 +112,7 @@ type Request = {
 }
 ```
 
-By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](/docs/guides/directives/#allowedheaders) setting in [`@upstream`](/docs/guides/directives/#upstream-directive).
+By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](/docs/directives/#allowedheaders) setting in [`@upstream`](/docs/directives/#upstream-directive).
 
 The http filter doesn't have access to the request's body, hence you can't directly modify the body of an outgoing request. This is more of a design choice than a limitation we have made to ensure that developers don't misuse this API to write all kind of business logic in Tailcall.
 

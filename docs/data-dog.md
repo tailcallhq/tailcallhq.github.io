@@ -9,7 +9,7 @@ This guide is based on the [official doc](https://docs.datadoghq.com/getting_sta
 1. Go to [datadoghq.com](https://www.datadoghq.com)
 2. Login to your account (make sure you choose right region for your account on login)
 3. Go to `Organization Settings -> API Keys` and copy the value of existing key or create a new one
-4. Integration with datadog requires [OpenTelemetry Collector](./introduction.md#opentelemetry-collector) to be able to send data to. As an example we can use following config for the collector:
+4. Integration with datadog requires [OpenTelemetry Collector](./telemetry.md#opentelemetry-collector) to be able to send data to. As an example we can use following config for the collector:
    ```yml
    receivers:
      otlp:
