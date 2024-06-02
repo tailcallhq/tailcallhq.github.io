@@ -1,7 +1,6 @@
 ---
 title: Data Dog
 description: Discover how to enhance application performance with our guide on enabling and analyzing telemetry data in Tailcall. Learn to configure observability support using OpenTelemetry for insights into logs, metrics, and traces, with practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog.
-sidebar_position: 2
 ---
 
 This guide is based on the [official doc](https://docs.datadoghq.com/getting_started/opentelemetry/?s=header#exploring-observability-data-in-datadog).

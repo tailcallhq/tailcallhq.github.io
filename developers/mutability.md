@@ -1,6 +1,5 @@
 ---
 title: Mutability
-sidebar_position: 2
 description: "Explore best practices for handling mutability in programming with our detailed guide. Learn when to use references versus ownership in functions with clear examples. This guideline helps developers optimize their code for better performance and clarity, especially in performance-sensitive environments. Ideal for contributors and programmers looking to refine their coding techniques and understanding of mutability."
 ---
 
