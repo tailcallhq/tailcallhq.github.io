@@ -1,5 +1,5 @@
 ---
-title: Auth Introduction
+title: Auth
 description: "Learn how you can provide granular access to types and fields in GraphQL schema with the help of authentication providers"
 slug: /auth
 sidebar_position: 1
@@ -19,8 +19,8 @@ The primary reasons for implementing authentication in an application include:
 
 Authentication can be implemented using credential validation mechanisms, such as:
 
-- [Basic Auth](../guides/auth-introduction.md#basic-authentication)
-- [JWT](../guides/auth-introduction.md#jwt-authentication)
+- [Basic Auth](#basic-authentication)
+- [JWT](#jwt-authentication)
 - OAuth
 - API Key
 
@@ -39,8 +39,8 @@ Advantages of this approach:
 Tailcall provides a straightforward way to implement entity level authentication in your GraphQL schema. By leveraging custom directives, you can define which entities or fields require authentication to access their data. Tailcall supports multiple authentication providers, such as Basic Auth and JWT, allowing you to choose the authentication mechanism that best suits your application's requirements.
 to know more about how to use it, read the following articles:
 
-1. [Basic Auth](../guides/auth-introduction.md#basic-authentication)
-2. [JWT](../guides/auth-introduction.md#jwt-authentication)
+1. [Basic Auth](#basic-authentication)
+2. [JWT](#jwt-authentication)
 
 ## Tailcall config
 
@@ -101,7 +101,7 @@ In that case the whole `User` type and `Post.body` are marked as protected and t
 - any query for any field of `User` will require authentication
 - any field that resolves to `User` type will require authentication
 
-For more info about possible configuration for available providers read articles for [Basic Auth](../guides/auth-introduction.md#basic-authentication) and [JWT](../guides/auth-introduction.md#jwt-authentication)
+For more info about possible configuration for available providers read articles for [Basic Auth](#basic-authentication) and [JWT](#jwt-authentication)
 
 ## Making test requests
 
