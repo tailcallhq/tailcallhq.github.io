@@ -1,6 +1,5 @@
 ---
 title: Telemetry
-sidebar_position: 4
 description: "Discover how to elevate application observability with Tailcall's comprehensive guide on implementing telemetry using the OpenTelemetry specification. This guide provides a detailed overview of using Rust crates such as rust-opentelemetry, tracing, and tracing-opentelemetry for effective data collection and export. It includes specific examples and best practices for tracing significant operations, naming spans accurately, and adhering to semantic conventions. Perfect for developers seeking to enhance monitoring and debugging capabilities in their applications, this resource is your go-to for integrating advanced observability features efficiently. Learn more about how to optimize your development process by visiting Tailcall's contributor guidelines."
 ---
 

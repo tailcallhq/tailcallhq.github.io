@@ -1,11 +1,8 @@
 ---
 title: "Guidelines"
-sidebar_position: 1
 description: "Explore how to contribute to the Tailcall project with this SEO-optimized guide. Learn the best practices for collaborating effectively, from forking and setting up your environment with tools like Rust and Prettier, to making incremental changes and engaging in community discussions. This document outlines key steps like creating new branches, submitting pull requests, and ensuring high code quality. Whether you're discussing on Discord or pushing changes, these guidelines ensure a smooth process. Perfect for developers looking to contribute to a thriving, respectful, and inclusive community. Join and enhance the Tailcall project today!"
 slug: "/"
 ---
-
-# Contribution Guidelines
 
 Welcome to the **Tailcall** project! If you haven't stared us yet, make sure you do by clicking [here](https://github.com/tailcallhq/tailcall).
 This document provides an overview of the best practices for contributing effectively. Follow these guidelines to ensure a smooth collaboration process.
