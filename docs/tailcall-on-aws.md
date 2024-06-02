@@ -1,6 +1,7 @@
 ---
 title: Tailcall on AWS
 description: "Deploy Tailcall on AWS effortlessly using the tailcall-on-aws template and Terraform. This guide covers everything from setting environment variables to configuring and updating your Tailcall deployment, complete with logging via AWS CloudWatch for comprehensive monitoring and management."
+slug: tailcall-aws-deployment
 ---
 
 Tailcall can be hosted on AWS using Lambda and API Gateway using the [tailcall-on-aws](https://github.com/tailcallhq/tailcall-on-aws) template.
