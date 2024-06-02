@@ -13,22 +13,23 @@ Certainly! Here's the table with hyperlinks added back to the directive names:
 
 <!-- SORT OPERATOR BY NAME -->
 
-| Operator                     | Description                                                                                                  |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`@addField`](add-field.md)  | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
-| [`@cache`](cache.md)         | Enables caching for the query, field or type applied to.                                                     |
-| [`@call`](call.md)           | Invokes a query or mutation from another query or mutation field.                                            |
-| [`@expr`](expr.md)           | Allows embedding of a constant response within the schema.                                                   |
-| [`@graphQL`](graphql.md)     | Resolves a field or node by a GraphQL API.                                                                   |
-| [`@grpc`](grpc.md)           | Resolves a field or node by a gRPC API.                                                                      |
-| [`@http`](http.md)           | Resolves a field or node by a REST API.                                                                      |
-| [`@link`](link.md)           | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |
-| [`@modify`](modify.md)       | Enables changes to attributes of fields or nodes in the schema.                                              |
-| [`@omit`](omit.md)           | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
-| [`@rest`](rest.md)           | Allows exposing REST endpoints on top of GraphQL.                                                            |
-| [`@server`](server.md)       | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
-| [`@telemetry`](telemetry.md) | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
-| [`@upstream`](upstream.md)   | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
+| Operator                   | Description                                                                                                  |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [`@addField`](#addfield)   | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
+| [`@cache`](#cache)         | Enables caching for the query, field or type applied to.                                                     |
+| [`@call`](#call)           | Invokes a query or mutation from another query or mutation field.                                            |
+| [`@expr`](#expr)           | Allows embedding of a constant response within the schema.                                                   |
+| [`@graphQL`](#graphql)     | Resolves a field or node by a GraphQL API.                                                                   |
+| [`@grpc`](#grpc)           | Resolves a field or node by a gRPC API.                                                                      |
+| [`@http`](#http)           | Resolves a field or node by a REST API.                                                                      |
+| [`@js`](#js)               | Allows to use JavaScript functions to resolve fields in your GraphQL schema                                  |
+| [`@link`](#link)           | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |
+| [`@modify`](#modify)       | Enables changes to attributes of fields or nodes in the schema.                                              |
+| [`@omit`](#omit)           | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
+| [`@rest`](#rest)           | Allows exposing REST endpoints on top of GraphQL.                                                            |
+| [`@server`](#server)       | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
+| [`@telemetry`](#telemetry) | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
+| [`@upstream`](#upstream)   | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
 
 ## @addField
 
@@ -598,7 +599,7 @@ query {
 
 #### baseURL
 
-This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [`@upstream`](./upstream.md) directive.
+This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [`@upstream`](#upstream) directive.
 
 ```graphql showLineNumbers
 type Query {
@@ -840,7 +841,7 @@ In this example, adding the `@http` directive to the `users` field of the `Query
 
 ### baseURL
 
-Specifies the API's base URL. If unspecified, it defaults to the URL in the [`@upstream`](./upstream.md) directive.
+Specifies the API's base URL. If unspecified, it defaults to the URL in the [`@upstream`](#upstream) directive.
 
 ```graphql showLineNumbers
 type Query {
@@ -1243,7 +1244,7 @@ type ProtectedType @protected {
 ```
 
 :::important
-To utilize the `@protected` directive, you must link at least one authentication provider in the configuration using the [`@link`](./link.md) directive (`Htpasswd` or `Jwks`).
+To utilize the `@protected` directive, you must link at least one authentication provider in the configuration using the [`@link`](#link) directive (`Htpasswd` or `Jwks`).
 :::
 
 ### How It Works
@@ -1646,7 +1647,7 @@ The `@telemetry` directive also captures the following metrics:
 
 |                    Metric | Description                                                                                                                                     |
 | ------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------- |
-|            cache.hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](./cache.md) directive                                                       |
+|            cache.hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](#cache) directive                                                           |
 | http.server.request.count | Counts the number of incoming requests made to specific route. Optionally enriched with selected headers by [`requestHeaders`](#requestheaders) |
 | http.client.request.count | Counts the number of outgoing requests to specific upstream                                                                                     |
 
@@ -1946,7 +1947,7 @@ In the example above, the configuration for `allowedHeaders` permits `Authorizat
 
 ### baseURL
 
-This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` directive, then each [`@http`](./http.md) directive must specify its own `baseURL`. If neither `@upstream` nor [`@http`](./http.md) provides a `baseURL`, it results in a compilation error.
+This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` directive, then each [`@http`](#http) directive must specify its own `baseURL`. If neither `@upstream` nor [`@http`](#http) provides a `baseURL`, it results in a compilation error.
 
 ```graphql showLineNumbers
 schema
