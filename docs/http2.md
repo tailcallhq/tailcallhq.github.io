@@ -1,7 +1,8 @@
 ---
-title: Leveraging HTTP/2
+title: Harnessing HTTP/2
 description: Boost web performance and secure your communications by utilizing HTTP/2 with Tailcall.
 slug: http2-guide
+sidebar_label: HTTP/2 Guide
 ---
 
 [HTTP/2](https://www.cloudflare.com/en-in/learning/performance/http2-vs-http1.1/) represents a significant advancement in web protocols, offering enhancements such as multiplexing, header compression, and streamlined connection handling, all designed to improve web performance.

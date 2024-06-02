@@ -1,7 +1,8 @@
 ---
-title: Tailcall Refines GraphQL.
-description: Enhance your understanding of naming and casing conventions for GraphQL schema to ensure clarity and consistency in your schema design using Tailcall. Learn best practices for naming to maintain a well-structured and readable GraphQL schema.
+title: Tailcall Refines GraphQL
+description: "Enhance your understanding of naming and casing conventions for GraphQL schema to ensure clarity and consistency in your schema design using Tailcall. Learn best practices for naming to maintain a well-structured and readable GraphQL schema."
 slug: graphql-naming-conventions-tailcall
+sidebar_label: GraphQL Naming Conventions
 ---
 
 ## General Naming Principles

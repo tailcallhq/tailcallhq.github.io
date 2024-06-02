@@ -1,7 +1,8 @@
 ---
 title: Tailcall Context Mechanism
 description: "Explore Tailcall's dynamic Context mechanism for schema field resolution, enabling access to arguments, values, and environment variables for efficient GraphQL queries. Enhance your query handling with Tailcall's advanced Context features for optimized schema field resolution."
-slug: "tailcall-dynamic-context-mechanism"
+slug: tailcall-dynamic-context-mechanism
+sidebar_label: Dynamic Context Mechanism
 ---
 
 Within Tailcall, `Context` is a pivotal component that allows for dynamic retrieval of values during the resolution of fields for a given type within the schema.

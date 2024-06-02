@@ -2,6 +2,7 @@
 title: Simplifying GraphQL Scalars
 description: Explore GraphQL's core and Tailcall's custom scalars, including `Int`, `Float`, `String`, `Boolean`, `ID`, `Email`, and more, in our guide that simplifies data handling with clear definitions and examples. Enhance your applications with our comprehensive scalar support, designed for precise data validation and efficiency.
 slug: graphql-scalars-guide
+sidebar_label: GraphQL Scalars
 ---
 
 The GraphQL specification includes default scalar types `Int`, `Float`, `String`, `Boolean`, and `ID`. Although these scalars cover the majority of use cases, some applications need to support other atomic data types such as `Date` or an `Email`.

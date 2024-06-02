@@ -1,7 +1,8 @@
 ---
 title: Watch Mode
-description: Learn how to enhance your development workflow by running servers in watch mode with the versatile file-watcher tool, entr. This guide provides installation instructions for different operating systems, usage tips, and best practices to optimize your development process.
+description: "Learn how to enhance your development workflow by running servers in watch mode with the versatile file-watcher tool, entr. This guide provides installation instructions for different operating systems, usage tips, and best practices to optimize your development process."
 slug: watch-mode-guide
+sidebar_label: Watch Mode
 ---
 
 Developers often find themselves in situations where they need to run a server in watch mode to streamline the development process. This guide will introduce you to [entr], a versatile file-watcher tool, and how to run your server in watch mode with it. We'll also touch on the installation process and suggest some best practices to optimize your workflow.

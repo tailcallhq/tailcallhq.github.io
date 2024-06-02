@@ -1,7 +1,8 @@
 ---
 title: Telemetry in Tailcall
-description: Learn how to configure observability support using OpenTelemetry for insights into logs, metrics, and traces. Discover practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog.
+description: "Learn how to configure observability support using OpenTelemetry for insights into logs, metrics, and traces. Discover practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog."
 slug: /telemetry-guide
+sidebar_label: Telemetry Guide
 ---
 
 This guide will walk you through observability support in Tailcall i.e. how to collect and analyze telemetry data with different observability backends. In this guide you'll learn:
