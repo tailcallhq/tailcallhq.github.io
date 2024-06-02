@@ -125,7 +125,7 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 ## batchKey
 
-Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](../n+1//introduction.md) for more details.
+Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](../../guides/N+1) for more details.
 
 ```graphql showLineNumbers
 type Post {
