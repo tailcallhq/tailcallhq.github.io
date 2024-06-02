@@ -825,7 +825,7 @@ type Query {
 ```
 
 :::info
-Read about [n + 1](../guides/N+1.md) to learn how to use the `batchKey` setting.
+Read about [n + 1](./N+1.md) to learn how to use the `batchKey` setting.
 :::
 -e
 
@@ -935,7 +935,7 @@ In this example, a request to `/users` will include a HTTP header `X-Server` wit
 
 You can make use of mustache templates to provide dynamic values for headers, derived from the arguments or [context] provided in the request. For example:
 
-[context]: /docs/guides/context
+[context]: /docs/context
 
 ```graphql showLineNumbers
 type Mutation {
@@ -954,7 +954,7 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 ### batchKey
 
-Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](../guides/N+1.md) for more details.
+Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](./N+1.md) for more details.
 
 ```graphql showLineNumbers
 type Post {
@@ -1073,7 +1073,7 @@ schema
   )
   @link(
     id: "news"
-    src: "../src/grpc/news.proto"
+    src: "./src/grpc/news.proto"
     type: Protobuf
   ) {
   query: Query
@@ -1113,7 +1113,7 @@ Example use case:
 
 The `Protobuf` link type integrates Protocol Buffers definitions by importing .proto files. This integration is crucial for Tailcall to communicate with gRPC services. By including `.proto` definitions, the Tailcall server can directly interact with gRPC services, allowing for efficient and type-safe communication.
 
-For detailed integration steps and best practices, refer to the [gRPC Integration Guide](/docs/guides/grpc.md).
+For detailed integration steps and best practices, refer to the [gRPC Integration Guide](/docs/grpc.md).
 
 ### Script
 
@@ -1158,11 +1158,11 @@ Each type serves a specific purpose, enabling the flexible integration of extern
 
 ### Htpasswd
 
-The `Htpasswd` link type allows the importation of an [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) file. This file is utilized to set up [Basic authentication](../guides/auth.md#basic-authentication).
+The `Htpasswd` link type allows the importation of an [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) file. This file is utilized to set up [Basic authentication](./auth.md#basic-authentication).
 
 ### Jwks
 
-The `Jwks` link type enables the importation of a [`JWKS`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) file. This file facilitates the provision of detailed access control through [JWT authentication](../guides/auth.md#jwt-authentication).
+The `Jwks` link type enables the importation of a [`JWKS`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) file. This file facilitates the provision of detailed access control through [JWT authentication](./auth.md#jwt-authentication).
 -e
 
 ## @modify Directive
@@ -1194,7 +1194,7 @@ type User {
 `@modify(omit: true)` instructs GraphQL to exclude the `id` field from the schema, making it inaccessible to the client.
 
 :::tip
-`@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/guides/directives/#omit-directive)
+`@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/directives/#omit-directive)
 :::
 -e
 
@@ -1230,7 +1230,7 @@ The `@omit` directive and `@modify(omit: true)` essentially serve the same purpo
 
 - `@omit` offers a concise way to directly exclude a field or node without additional arguments.
 
-- `@modify(omit: true)`, as part of the broader [`@modify`](/docs/guides/directives/#omit-directive) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
+- `@modify(omit: true)`, as part of the broader [`@modify`](/docs/directives/#omit-directive) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
   -e
 
 ## @protected Directive
