@@ -56,7 +56,7 @@ Use self-signed certificates for HTTP/2 configurations in development environmen
 
 ## Configuration
 
-Once the certificate and key are generated we can link them with our main configuration using the [@link](/docs/guides/directives/#link-directive) directive, to enable HTTPS.
+Once the certificate and key are generated we can link them with our main configuration using the [@link](/docs/directives/#link-directive) directive, to enable HTTPS.
 
 ```graphql showLineNumbers
 schema
@@ -101,7 +101,7 @@ type User {
 }
 ```
 
-That's pretty much all that's required. Now you can go ahead and [launch](/docs/guides/getting-started-with-graphql-using-tailcall/#starting-the-tailcall-server) your server as usual.
+That's pretty much all that's required. Now you can go ahead and [launch](/docs/getting-started-with-graphql-using-tailcall/#starting-the-tailcall-server) your server as usual.
 
 ```bash
 INFO File read: ./jsonplaceholder.graphql ... ok

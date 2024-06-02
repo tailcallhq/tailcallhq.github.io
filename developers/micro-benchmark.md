@@ -1,6 +1,5 @@
 ---
 title: Micro Benchmarks
-sidebar_position: 5
 description: "Explore Tailcall's comprehensive guide to benchmarking for continuous integration (CI) systems. Learn how to seamlessly integrate and run performance tests on every commit to the main branch using Criterion. The guide covers installation of essential tools like cargo-criterion and rust-script, provides step-by-step instructions for executing benchmarks, and details procedures for comparing benchmark results across different code branches. Ensure code efficiency and detect performance degradations early with Tailcall's benchmarking strategies, essential for developers seeking to maintain and improve software performance consistently. Visit the complete guide to start optimizing your CI pipeline today."
 ---
 

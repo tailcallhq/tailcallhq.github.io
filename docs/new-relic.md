@@ -2,7 +2,6 @@
 title: New Relic Integration
 description: "Learn to enhance application performance with Tailcall by enabling and analyzing telemetry data. This guide covers configuring OpenTelemetry for insights into logs, metrics, and traces, with practical examples for platforms like New Relic."
 slug: new-relic-integration
-
 sidebar_position: 3
 ---
 

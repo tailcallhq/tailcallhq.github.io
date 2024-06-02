@@ -52,4 +52,4 @@ The combination of `httpCache` and `cacheControl` provides a comprehensive cachi
 
 These caching primitives are beneficial for REST APIs that are latency-sensitive, have a high rate of request repetition, or come with explicit caching headers indicating cacheable responses. Together, they tackle the common challenges of optimizing REST API performance by minimizing unnecessary network traffic and server load while ensuring response accuracy.
 
-To further enhance the performance of any API with Tailcall, integrating the [`@cache`](/docs/guides/directives/#cache-directive) directive offers protocol agnostic control over caching at the field level within a GraphQL schema.
+To further enhance the performance of any API with Tailcall, integrating the [`@cache`](/docs/directives/#cache-directive) directive offers protocol agnostic control over caching at the field level within a GraphQL schema.
