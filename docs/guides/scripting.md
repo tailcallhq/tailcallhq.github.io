@@ -112,7 +112,7 @@ type Request = {
 }
 ```
 
-By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](../directives/upstream.md#allowedheaders) setting in [`@upstream`](../directives/upstream.md).
+By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](/docs/guides/directives/#allowedheaders) setting in [`@upstream`](/docs/guides/directives/#upstream-directive).
 
 The http filter doesn't have access to the request's body, hence you can't directly modify the body of an outgoing request. This is more of a design choice than a limitation we have made to ensure that developers don't misuse this API to write all kind of business logic in Tailcall.
 
