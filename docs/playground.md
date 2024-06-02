@@ -1,5 +1,5 @@
 ---
-title: GraphQL Playground Environment
+title: GraphQL Playground
 description: Explore and test server configurations with @server directive's showcase feature in a controlled environment. Ideal for quick experimentation and learning with dynamic GraphQL schema configurations. Not recommended for production due to performance and security considerations.
 slug: graphql-playground-guide
 ---
