@@ -1,6 +1,7 @@
 ---
 title: Streamline GraphQL Development with Tailcall's Watch Mode
 description: "Accelerate your GraphQL development workflow using Tailcall's Watch Mode. Automatically reload your GraphQL server upon schema changes, ensuring real-time updates and faster iteration cycles. Boost productivity and efficiency with this powerful development feature."
+sidebar_title: "Watch Mode"
 slug: /streamline-graphql-development-tailcall-watch-mode
 ---
 

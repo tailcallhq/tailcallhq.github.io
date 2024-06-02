@@ -1,6 +1,7 @@
 ---
 title: Granular GraphQL Authentication with Tailcall
 description: "Discover how Tailcall empowers you to implement granular, type and field-level authentication in your GraphQL schema using various authentication providers. Our comprehensive guide walks you through the process of setting up entity-level authentication, supporting methods like Basic Auth and JWT. Learn to secure sensitive data and deliver personalized user experiences with ease. Get started now and take control of your GraphQL API's security."
+sidebar_title: "Authentication"
 slug: /graphql-granular-authentication-tailcall
 ---
 

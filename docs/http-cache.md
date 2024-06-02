@@ -1,6 +1,7 @@
 ---
 title: Boost REST API Performance with Tailcall's HTTP Caching
 description: "Accelerate your REST APIs with Tailcall's powerful HTTP caching capabilities. Learn how to configure caching, leverage Cache-Control headers, and follow best practices to optimize performance, reduce latency, and minimize upstream service requests."
+sidebar_title: HTTP Caching
 slug: /boost-rest-api-performance-tailcall-http-caching
 ---
 

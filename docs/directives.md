@@ -1,7 +1,7 @@
 ---
 title: "Tailcall Directives: Enhance GraphQL Schema with Custom Functionality"
 description: "Supercharge your GraphQL schema with Tailcall Directives. Learn how to implement custom functionality, optimize performance, and streamline development using directives like @cache, @rest, @graphql, and more. Discover the power of Tailcall Directives and take your GraphQL API to the next level."
-slug: /tailcall-directives-graphql-schema-custom-functionality
+sidebar_title: Tailcall Directives
 ---
 
 Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition of some custom directives. These directives provide powerful compile time guarantees to ensure your API composition is tight and robust. Tailcall automatically generates highly optimized resolver logic for your types using the information in the directives.
@@ -935,7 +935,7 @@ In this example, a request to `/users` will include a HTTP header `X-Server` wit
 
 You can make use of mustache templates to provide dynamic values for headers, derived from the arguments or [context] provided in the request. For example:
 
-[context]: /docs/context
+[context]: /docs/tailcall-context-dynamic-graphql-field-resolution
 
 ```graphql showLineNumbers
 type Mutation {

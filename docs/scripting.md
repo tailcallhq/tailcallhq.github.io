@@ -1,6 +1,7 @@
 ---
 title: Simplify GraphQL Middleware with Tailcall Scripting
 description: "Effortlessly create GraphQL middleware using Tailcall's lightweight JS runtime. Modify requests and responses without the complexity of Node.js, ensuring secure and focused development. Streamline your GraphQL API with Tailcall's powerful scripting capabilities."
+sidebar_title: Middleware Scripting
 slug: /simplify-graphql-middleware-tailcall-scripting
 ---
 

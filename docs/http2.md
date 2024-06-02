@@ -1,6 +1,7 @@
 ---
 title: Supercharge Web Performance with HTTP/2 in Tailcall
 description: "Enhance your web application's performance and security by leveraging HTTP/2 with Tailcall. Learn how to enable HTTP/2 support for server and client operations, generate SSL certificates, and optimize your GraphQL API for faster, more efficient communication."
+sidebar_title: HTTP/2
 slug: /supercharge-web-performance-http2-tailcall
 ---
 

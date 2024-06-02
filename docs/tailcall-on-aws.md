@@ -1,6 +1,7 @@
 ---
 title: Effortless Tailcall Deployment on AWS with Terraform
 description: "Deploy Tailcall on AWS with ease using the tailcall-on-aws template and Terraform. Learn to set environment variables, configure, and update your Tailcall deployment. Leverage AWS CloudWatch for comprehensive logging, monitoring, and management of your GraphQL API."
+sidebar_title: "Tailcall on AWS"
 slug: /effortless-tailcall-deployment-aws-terraform
 ---
 

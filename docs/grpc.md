@@ -1,6 +1,7 @@
 ---
 title: Seamless gRPC Integration with Tailcall's GraphQL Gateway
 description: "Integrate gRPC services with Tailcall's GraphQL gateway for high-performance data transfer in microservices and distributed systems. Learn to set up gRPC services, define protobuf files, and configure Tailcall to connect GraphQL and gRPC types. Enable batching and reflection for dynamic service discovery and enhanced performance."
+sidebar_title: GraphQL on gRPC
 slug: /grpc-integration-tailcall-graphql-gateway
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Enhance GraphQL Data Validation with Tailcall Scalars
 description: "Improve data validation in your GraphQL applications with Tailcall's comprehensive guide to core and custom scalars. Explore `Int`, `Float`, `String`, `Boolean`, `ID`, `Email`, and more, with clear definitions and examples. Ensure precise data integrity and efficiency using Tailcall's scalar support."
+sidebar_title: Scalars
 slug: /enhance-graphql-data-validation-tailcall-scalars
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Expose REST Endpoints on GraphQL with Tailcall's @rest Directive"
 description: "Seamlessly integrate RESTful services with your GraphQL API using Tailcall's @rest directive. Learn how to expose REST endpoints on top of GraphQL, leveraging its power while maintaining compatibility with existing REST clients. Simplify API development and enhance flexibility with Tailcall."
+sidebar_title: REST on top of GraphQL
 slug: /expose-rest-endpoints-graphql-tailcall-rest-directive
 ---
 
