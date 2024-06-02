@@ -1,5 +1,5 @@
 ---
-title: "Optimized Data Access with Tailcall: Enhancing Sequencing & Parallelism"
+title: "Enhancing Sequencing & Parallelism"
 description: "Tailcall revolutionizes data access layer development by automating API call orchestration, ensuring optimal execution strategies through advanced sequencing and parallelism techniques."
 ---
 
