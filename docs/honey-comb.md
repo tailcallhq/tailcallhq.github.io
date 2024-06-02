@@ -1,6 +1,7 @@
 ---
-title: Honeycomb
-description: "Discover how to enhance application performance with our guide on enabling and analyzing telemetry data in Tailcall. Learn to configure observability support using OpenTelemetry for insights into logs, metrics, and traces, with practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog."
+title: Boost Application Performance with Tailcall and Honeycomb
+description: "Enhance your application's performance by enabling and analyzing telemetry data in Tailcall. Learn to configure observability support using OpenTelemetry for insights into logs, metrics, and traces. Explore practical integration examples with Honeycomb.io for improved performance monitoring."
+slug: /boost-application-performance-tailcall-honeycomb
 sidebar_position: 4
 ---
 

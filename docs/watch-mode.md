@@ -1,5 +1,7 @@
 ---
-title: Watch Mode
+title: Streamline GraphQL Development with Tailcall's Watch Mode
+description: "Accelerate your GraphQL development workflow using Tailcall's Watch Mode. Automatically reload your GraphQL server upon schema changes, ensuring real-time updates and faster iteration cycles. Boost productivity and efficiency with this powerful development feature."
+slug: /streamline-graphql-development-tailcall-watch-mode
 ---
 
 Developers often find themselves in situations where they need to run a server in watch mode to streamline the development process. This guide will introduce you to [entr], a versatile file-watcher tool, and how to run your server in watch mode with it. We'll also touch on the installation process and suggest some best practices to optimize your workflow.

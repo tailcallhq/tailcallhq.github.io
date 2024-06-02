@@ -1,5 +1,7 @@
 ---
-title: Tailcall Directives
+title: "Tailcall Directives: Enhance GraphQL Schema with Custom Functionality"
+description: "Supercharge your GraphQL schema with Tailcall Directives. Learn how to implement custom functionality, optimize performance, and streamline development using directives like @cache, @rest, @graphql, and more. Discover the power of Tailcall Directives and take your GraphQL API to the next level."
+slug: /tailcall-directives-graphql-schema-custom-functionality
 ---
 
 Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition of some custom directives. These directives provide powerful compile time guarantees to ensure your API composition is tight and robust. Tailcall automatically generates highly optimized resolver logic for your types using the information in the directives.

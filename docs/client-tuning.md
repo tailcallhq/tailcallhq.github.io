@@ -1,6 +1,7 @@
 ---
-title: Client Tuning
-description: Tuning client for performance
+title: Optimize GraphQL Performance with Tailcall Client Tuning
+description: "Boost GraphQL performance with Tailcall's client tuning options. Learn to configure connection pooling, set optimal timeouts, and leverage protocol optimizations for HTTP/1.x, HTTP/2, and HTTP/3. Improve resource usage and reduce latency with our expert guide."
+slug: /optimize-graphql-performance-tailcall-client-tuning
 ---
 
 ### HTTP (Hypertext Transfer Protocol)

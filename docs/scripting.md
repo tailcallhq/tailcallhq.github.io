@@ -1,6 +1,7 @@
 ---
-title: Scripting
-description: "Discover how to effortlessly manipulate HTTP requests and responses using Tailcall's lightweight JS runtime. Tailcall provides a streamlined JavaScript environment specifically designed for simple yet powerful request/response modifications without the complexity of a full Node.js setup. Ideal for developers looking to implement middleware solutions, Tailcall's runtime does not require file system or network access, ensuring a secure and focused development process."
+title: Simplify GraphQL Middleware with Tailcall Scripting
+description: "Effortlessly create GraphQL middleware using Tailcall's lightweight JS runtime. Modify requests and responses without the complexity of Node.js, ensuring secure and focused development. Streamline your GraphQL API with Tailcall's powerful scripting capabilities."
+slug: /simplify-graphql-middleware-tailcall-scripting
 ---
 
 Tailcall provides a light-weight JS runtime to modify requests and resolve with custom responses.

@@ -1,5 +1,7 @@
 ---
-title: Logging
+title: Streamline Debugging and Monitoring with Tailcall Logging
+description: "Simplify debugging and monitoring of your GraphQL applications with Tailcall's comprehensive logging capabilities. Learn how to configure log levels, capture detailed execution insights, and integrate with popular logging platforms for centralized log management and analysis."
+slug: /streamline-debugging-monitoring-tailcall-logging
 ---
 
 Logging acts as an essential tool for obtaining insights into code execution and addressing software development challenges. You can configure the verbosity of logs via log levels. Use `TAILCALL_LOG_LEVEL` or `TC_LOG_LEVEL` environment variables to set the application's log level. The available log levels include:
