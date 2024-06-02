@@ -7,7 +7,7 @@ description: Learn how to compose APIs using Tailcall primitives. Understand the
 Before diving into solutions, let's observe the N+1 problem in the following Tailcall configuration:
 
 :::tip
-If you are new here you might want to checkout our [Getting Started](/docs/getting_started/introduction.md) guide.
+If you are new here you might want to checkout our [Getting Started](/docs/guides/introduction.md) guide.
 :::
 
 ```graphql
