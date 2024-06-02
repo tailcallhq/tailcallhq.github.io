@@ -1,7 +1,7 @@
 ---
 title: Secure and Flexible Configuration with Tailcall Environment Variables
 description: "Streamline your GraphQL configuration with Tailcall Environment Variables. Learn how to securely store and access sensitive information, such as API keys and database credentials. Discover best practices for managing environment variables across development, staging, and production environments."
-sidebar_title: Environment Variables
+sidebar_label: Environment Variables
 slug: /tailcall-environment-variables-secure-flexible-configuration
 ---
 

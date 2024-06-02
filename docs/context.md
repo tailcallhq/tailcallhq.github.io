@@ -1,7 +1,7 @@
 ---
 title: "Tailcall Context: Dynamic GraphQL Field Resolution"
 description: "Harness the power of Tailcall's dynamic Context for efficient GraphQL field resolution. Access arguments, values, and environment variables to build flexible and performant queries. Streamline your GraphQL development with Tailcall's Context mechanism."
-sidebar_title: Context
+sidebar_label: Context
 slug: /tailcall-context-dynamic-graphql-field-resolution
 ---
 

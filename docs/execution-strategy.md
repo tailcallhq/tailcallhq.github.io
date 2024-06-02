@@ -1,7 +1,7 @@
 ---
 title: "Tailcall: Automated API Orchestration for Optimal Performance"
 description: "Revolutionize your data access layer development with Tailcall's automated API call orchestration. Leverage intelligent sequencing and parallelism strategies to optimize performance. Focus on your core application logic while Tailcall seamlessly handles execution efficiency."
-sidebar_title: Sequencing & Parallelism
+sidebar_label: Sequencing & Parallelism
 slug: /tailcall-automated-api-orchestration-optimal-performance
 ---
 

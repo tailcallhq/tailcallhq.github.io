@@ -1,7 +1,7 @@
 ---
 title: Streamline Debugging and Monitoring with Tailcall Logging
 description: "Simplify debugging and monitoring of your GraphQL applications with Tailcall's comprehensive logging capabilities. Learn how to configure log levels, capture detailed execution insights, and integrate with popular logging platforms for centralized log management and analysis."
-sidebar_title: Logging
+sidebar_label: Logging
 slug: /streamline-debugging-monitoring-tailcall-logging
 ---
 

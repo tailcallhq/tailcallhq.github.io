@@ -1,7 +1,7 @@
 ---
 title: Enhance Application Performance with Tailcall and Datadog
 description: "Boost your application's performance by enabling and analyzing telemetry data in Tailcall. Learn to configure observability support using OpenTelemetry for insights into logs, metrics, and traces. Discover practical integration examples for platforms like Datadog."
-sidebar_title: "Datadog Integration"
+sidebar_label: "Datadog Integration"
 slug: /enhance-graphql-application-performance-tailcall-datadog
 ---
 
