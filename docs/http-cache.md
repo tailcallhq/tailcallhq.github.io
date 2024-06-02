@@ -1,6 +1,7 @@
 ---
-title: Http Cache
-description: A comprehensive guide to leverage HTTP cache for REST APIs using Tailcall
+title: Utilizing HTTP Cache
+description: A comprehensive guide to leverage HTTP cache for REST APIs using Tailcall.
+slug: http-cache-guide
 ---
 
 HTTP Caching in Tailcall is designed to enhance performance and minimize the frequency of requests to upstream services by caching HTTP responses. This guide explains the concept, benefits, and how to effectively implement HTTP caching within Tailcall.
