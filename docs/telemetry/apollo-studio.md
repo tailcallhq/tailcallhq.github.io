@@ -33,7 +33,7 @@ This guide illustrates how to configure `tailcall` to send usage metrics to [Apo
 
       ![local-schema.png](../../static/images/apollo-studio/local-schema.png)
 
-You have now created a Monolith graph in Apollo Studio. The next step is to configure `tailcall` to use the `APOLLO_API_KEY` and `APOLLO_GRAPH_REF`. Follow detailed instructions [here](../directives/telemetry.md).
+You have now created a Monolith graph in Apollo Studio. The next step is to configure `tailcall` to use the `APOLLO_API_KEY` and `APOLLO_GRAPH_REF`. Follow detailed instructions [here](../guides/directives.md#telemetry).
 
 ## Checking the metrics in Apollo Studio
 

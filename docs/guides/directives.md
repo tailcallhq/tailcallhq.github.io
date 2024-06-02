@@ -30,7 +30,6 @@ Certainly! Here's the table with hyperlinks added back to the directive names:
 | [`@telemetry`](telemetry.md) | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
 | [`@upstream`](upstream.md)   | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
 
-
 ## @addField
 
 The `@addField` directive simplifies data structures and queries by adding a field that _inline_ or flattens a nested field or node within your schema. It modifies the schema and the data transformation process, making nested data more accessible and straightforward to present.
@@ -432,7 +431,7 @@ Here is how the response would look like:
 }
 ```
 
-As you can see the [`@expr`](../directives/expr.md) directive plucks the inner value and returns the result. How about we implement an `abc` operation that could leverage the existing operations and unwrap the following input value:
+As you can see the [`@expr`](./directives.md#expr) directive plucks the inner value and returns the result. How about we implement an `abc` operation that could leverage the existing operations and unwrap the following input value:
 
 ```json
 {"a": {"b": {"c": {"d": 1000}}}}
@@ -1190,7 +1189,7 @@ type User {
 `@modify(omit: true)` instructs GraphQL to exclude the `id` field from the schema, making it inaccessible to the client.
 
 :::tip
-`@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/directives/omit)
+`@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](./directives.md#omit-1)
 :::
 
 ## @omit
@@ -1225,7 +1224,7 @@ The `@omit` directive and `@modify(omit: true)` essentially serve the same purpo
 
 - `@omit` offers a concise way to directly exclude a field or node without additional arguments.
 
-- `@modify(omit: true)`, as part of the broader [`@modify`](/docs/directives/modify#omit) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
+- `@modify(omit: true)`, as part of the broader [`@modify`](./directives.md#omit) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
 
 ## @protected
 
