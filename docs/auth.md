@@ -1,7 +1,7 @@
 ---
 title: Auth
-description: "Learn how you can provide granular access to types and fields in GraphQL schema with the help of authentication providers"
-slug: /auth
+description: "Discover how to provide granular access to types and fields in your GraphQL schema using authentication providers. Our guide helps you enhance security and control by configuring precise access levels within your GraphQL server. Start implementing advanced access control measures today."
+slug: granular-access-control-graphql-authentication
 sidebar_position: 1
 ---
 

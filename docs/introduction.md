@@ -1,5 +1,6 @@
 ---
-title: Introduction
+title: Introduction to Tailcall
+description: Welcome to Tailcall! Discover the features and benefits of using Tailcall for optimizing and managing your GraphQL server configurations. This introduction provides an overview of Tailcall's capabilities, guiding you through its essential tools and functionalities to enhance your GraphQL development and performance.
 sidebar_position: 1
 slug: /
 ---
