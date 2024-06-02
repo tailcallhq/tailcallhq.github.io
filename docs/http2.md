@@ -1,6 +1,7 @@
 ---
-title: HTTP/2
-description: Boost web performance and secure your communications by utilizing HTTP/2 with Tailcall.
+title: Enabling HTTP/2 with Tailcall
+description: Enhance web performance and security by configuring HTTP/2 with Tailcall. Learn how to set up SSL and enable HTTP/2 for your GraphQL server.
+slug: http2-guide
 ---
 
 [HTTP/2](https://www.cloudflare.com/en-in/learning/performance/http2-vs-http1.1/) represents a significant advancement in web protocols, offering enhancements such as multiplexing, header compression, and streamlined connection handling, all designed to improve web performance.

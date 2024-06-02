@@ -1,6 +1,7 @@
 ---
 title: "REST on top of GraphQL"
-description: Exposing REST endpoints on top of GraphQL via @rest directive.
+description: "Learn how to expose REST endpoints on top of GraphQL using the @rest directive with Tailcall, streamlining the transition to GraphQL and enhancing API composition without a complete overhaul."
+slug: rest-on-graphql
 ---
 
 In order to handle complicated business problems, modern systems frequently need to work with hundreds or even thousands of APIs. Because of its powerful API composition capabilities, GraphQL has been adopted by numerous organisations. But switching to GraphQL can be difficult. It involves a lot of team training as well as major adjustments to frontend and backend architectures.

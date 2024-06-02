@@ -1,6 +1,8 @@
 ---
-title: CLI
-description: "Discover the TailCall CLI, a vital tool for developers to manage and optimize GraphQL configurations directly from the command line. Learn about commands like 'check', 'start', 'init', and 'gen' to validate GraphQL specs, launch servers, bootstrap projects, and generate configurations. Explore options for detecting N+1 issues, displaying schemas, formatting inputs, and more. TailCall CLI simplifies GraphQL composition and enhances development workflows."
+title: Tailcall CLI: Streamline GraphQL Management
+description: Discover the Tailcall CLI, a vital tool for developers to manage and optimize GraphQL configurations directly from the command line. Learn about commands like 'check', 'start', 'init', and 'gen' to validate GraphQL specs, launch servers, bootstrap projects, and generate configurations. Explore options for detecting N+1 issues, displaying schemas, formatting inputs, and more. Tailcall CLI simplifies GraphQL composition and enhances development workflows.
+slug: tailcall-cli-streamline-graphql-management
+
 ---
 
 The TailCall CLI (Command Line Interface) allows developers to manage and optimize GraphQL configurations directly from the command line.

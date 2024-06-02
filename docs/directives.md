@@ -1,5 +1,7 @@
 ---
-title: Tailcall Directives
+title: Comprehensive Guide to Tailcall Directives
+description: Learn about the powerful custom directives supported by Tailcall. Enhance your GraphQL schema with directives like @cache, @http, @telemetry, and more for optimized and robust API composition.
+slug: tailcall-directives-guide
 ---
 
 Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition of some custom directives. These directives provide powerful compile time guarantees to ensure your API composition is tight and robust. Tailcall automatically generates highly optimized resolver logic for your types using the information in the directives.

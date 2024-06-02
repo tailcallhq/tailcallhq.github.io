@@ -1,6 +1,7 @@
 ---
-title: Naming Conventions
-description: Enhance your understanding of naming and casing conventions for GraphQL schema to ensure clarity and consistency in your schema design using Tailcall.
+title: GraphQL Naming Conventions with Tailcall
+description: Enhance your understanding of naming and casing conventions for GraphQL schema to ensure clarity and consistency in your schema design using Tailcall. Learn best practices for naming fields, types, and directives.
+slug: graphql-naming-conventions-tailcall
 ---
 
 ## General Naming Principles

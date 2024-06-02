@@ -1,6 +1,7 @@
 ---
-title: Apollo Studio
-description: "Learn to enhance your GraphQL server's efficiency by integrating Tailcall with Apollo Studio through our concise guide. Discover how to configure Tailcall to send vital usage metrics to Apollo Studio, enabling advanced performance monitoring and optimization. Whether you're establishing a Monolith graph or improving an existing one, our instructions will facilitate a seamless integration. This guide helps you set up for better insights and also advises on leveraging Apollo Studio's features for a more responsive GraphQL server. Start optimizing today with our straightforward steps, and explore how to access Apollo Studio's free trial for new users."
+title: Optimize Your GraphQL Server with Tailcall and Apollo Studio
+description: Enhance your GraphQL server's performance by integrating Tailcall with Apollo Studio. This guide shows you how to configure Tailcall to send usage metrics to Apollo Studio, providing advanced performance monitoring and optimization. Ideal for setting up or improving a Monolith graph, our step-by-step instructions ensure a smooth integration. Explore Apollo Studio's features and start optimizing today!
+slug: optimize-graphql-tailcall-apollo-studio
 sidebar_position: 5
 ---
 

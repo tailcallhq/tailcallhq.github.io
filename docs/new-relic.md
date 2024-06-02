@@ -1,6 +1,8 @@
 ---
-title: New Relic
-description: "Discover how to enhance application performance with our guide on enabling and analyzing telemetry data in Tailcall. Learn to configure observability support using OpenTelemetry for insights into logs, metrics, and traces, with practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog."
+title: New Relic Integration
+description: "Learn to enhance application performance with Tailcall by enabling and analyzing telemetry data. This guide covers configuring OpenTelemetry for insights into logs, metrics, and traces, with practical examples for platforms like New Relic."
+slug: new-relic-integration
+
 sidebar_position: 3
 ---
 

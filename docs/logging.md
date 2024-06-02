@@ -1,5 +1,7 @@
 ---
-title: Logging
+title: Configuring Log Levels in Tailcall
+description: Learn how to set and adjust log levels in Tailcall to gain insights into code execution and streamline debugging. This guide covers the various log levels available and how to configure them using environment variables.
+slug: configuring-log-levels
 ---
 
 Logging acts as an essential tool for obtaining insights into code execution and addressing software development challenges. You can configure the verbosity of logs via log levels. Use `TAILCALL_LOG_LEVEL` or `TC_LOG_LEVEL` environment variables to set the application's log level. The available log levels include:

@@ -1,5 +1,7 @@
 ---
-title: Environment Variables
+title: Effective Management of Environment Variables in Tailcall
+description: Learn how to utilize environment variables to enhance the flexibility and security of your Tailcall GraphQL schemas. Discover best practices for managing sensitive configuration values in your applications.
+slug: managing-environment-variables-tailcall
 ---
 
 Environment variables are key-value pairs stored in our operating systems. Most of them come by default, and we can also create our own. They store information used by our operating system or other programs. For example, the `PATH` variable stores a list of directories the operating system searches when we run a command in the terminal. The `HOME` variable stores the path to our home directory.

@@ -1,6 +1,8 @@
 ---
-title: "Sequencing & Parallelism"
-description: "Tailcall revolutionizes data access layer development by automating the orchestration of API calls, enabling optimal execution strategies for both sequencing and parallelism."
+title: Efficient Data Access with Tailcall: Sequencing & Parallelism
+description: Tailcall revolutionizes data access layer development by automating the orchestration of API calls, enabling optimal execution strategies for both sequencing and parallelism.
+slug: efficient-data-access-tailcall-sequencing-parallelism
+
 ---
 
 Building data access layers often involves meticulous orchestration of API calls, but Tailcall simplifies this process. By analyzing your defined schema, it automatically determines the optimal execution strategy, deciding when to sequence calls and when to run them in parallel. This allows you to focus on your core application logic, while Tailcall handles the optimization seamlessly. Now, let's get into some real-world examples to illustrate its functionality.

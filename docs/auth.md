@@ -1,7 +1,7 @@
 ---
-title: Auth
-description: "Learn how you can provide granular access to types and fields in GraphQL schema with the help of authentication providers"
-slug: /auth
+title: Granular Access Control in GraphQL with Tailcall Authentication
+description: Learn how to provide granular access to types and fields in a GraphQL schema using authentication providers. Explore entity-level authentication in GraphQL with Tailcall, enabling you to secure data with Basic Auth, JWT, and more.
+slug: granular-access-control-graphql-tailcall-authentication
 sidebar_position: 1
 ---
 

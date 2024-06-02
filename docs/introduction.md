@@ -1,7 +1,7 @@
 ---
-title: Introduction
-sidebar_position: 1
-slug: /
+title: Transforming API Orchestration with Tailcall
+description: Discover how Tailcall revolutionizes API integration with its robust DSL, enabling efficient orchestration, caching, and governance. Learn how Tailcall simplifies Backend for Frontend (BFF) layers, optimizing performance and scalability for modern applications.
+slug: introduction-to-tailcall
 ---
 
 Good APIs craft a broad spectrum of functionalities. Yet, the broader their scope, the more they diverge from being the perfect fit for any specific use case. This fundamental discrepancy — the impedance mismatch between the general capabilities of an API and the precise needs of a particular scenario — amplifies the necessity for an orchestration layer. Such a layer adeptly bridges this gap, tailor-fitting generic APIs to meet exact requirements with finesse. Tailcall stands at the forefront of this innovation, seamlessly transforming the way APIs are integrated and interacted with.

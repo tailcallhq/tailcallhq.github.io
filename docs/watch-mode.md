@@ -1,5 +1,7 @@
 ---
-title: Watch Mode
+title: "Watch Mode with Tailcall"
+description: "Learn how to streamline your development process by running Tailcall in watch mode using the versatile file-watcher tool, `entr`. This guide covers installation steps, usage instructions, and best practices for various operating systems, ensuring real-time feedback and enhanced efficiency."
+slug: watch-mode
 ---
 
 Developers often find themselves in situations where they need to run a server in watch mode to streamline the development process. This guide will introduce you to [entr], a versatile file-watcher tool, and how to run your server in watch mode with it. We'll also touch on the installation process and suggest some best practices to optimize your workflow.

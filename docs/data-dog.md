@@ -1,6 +1,8 @@
 ---
-title: Data Dog
+title: Enhancing Application Performance with Datadog and Tailcall
 description: Discover how to enhance application performance with our guide on enabling and analyzing telemetry data in Tailcall. Learn to configure observability support using OpenTelemetry for insights into logs, metrics, and traces, with practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog.
+slug: enhance-app-performance-datadog-tailcall
+
 sidebar_position: 2
 ---
 
