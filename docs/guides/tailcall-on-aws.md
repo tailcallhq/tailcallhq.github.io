@@ -11,7 +11,7 @@ Tailcall can be hosted on AWS using Lambda and API Gateway using the [tailcall-o
 4. Clone your new repository, run `terraform init`, and then `terraform apply`.
 5. Done! The API Gateway URL will be logged to the console when you run `terraform apply`.
 
-Once you've deployed Tailcall for the first time, you can edit `config/config.graphql` to [build your API](../../getting_started/configuration/). If you [install Tailcall locally](../../getting_started/), you can test your config by running:
+Once you've deployed Tailcall for the first time, you can edit `config/config.graphql` to [build your API](../../guides/getting-started-with-graphql-using-tailcall/#configuration). If you [install Tailcall locally](../../guides/getting-started-with-graphql-using-tailcall/#installing-the-tailcall-cli), you can test your config by running:
 
 ```bash
 tailcall start ./config/config.graphql

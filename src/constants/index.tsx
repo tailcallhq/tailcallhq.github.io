@@ -312,7 +312,7 @@ export const pricingPlans: PricingPlans[] = [
 
     buttonText: "Get Started",
     mostPopular: false,
-    href: "/docs/getting_started/",
+    href: "/docs/guides/getting-started-with-graphql-using-tailcall",
   },
   {
     id: 2,
