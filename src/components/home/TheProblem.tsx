@@ -1,7 +1,6 @@
 import React from "react"
 import Heading from "@theme/Heading"
 
-import {useLottie} from "lottie-react"
 import SolutionGraphic from "@site/static/animations/solution-graphic.json"
 import SectionTitle from "../shared/SectionTitle"
 import LottieContainer from "./LottieContainer.tsxsrc/components/home/LottieContainer"
@@ -16,17 +15,15 @@ const LegacyGateway = (): JSX.Element => {
             as="h3"
             className="text-title-large sm:text-display-tiny lg:text-display-small text-tailCall-dark-500 min-w-fit"
           >
-            Where traditional
-            <br />
-            <span className="bg-tailCall-yellow px-SPACE_02 rounded-md sm:rounded-2xl">gateways fail?</span>
+            REST APIs are <br />
+            <span className="bg-tailCall-yellow px-SPACE_02 rounded-md sm:rounded-2xl">not composable</span> <br />
           </Heading>
 
           <p className="text-content-tiny font-normal sm:text-content-small lg:text-content-medium text-tailCall-dark-500">
-            A traditional API Gateway restricts operations to an API's route, method, or headers, and doesn't allow
-            modifications to the request and response bodies. This limitation constrains the operations that can be
-            performed on an API, ultimately compelling engineering teams to either intertwine orchestration logic with
-            business logic or to develop and maintain a separate layer of abstraction such as BFF (backend for
-            frontend).
+            API composition is pivotal for building rich user experiences, but REST APIs are not inherently composable,
+            often leading to awkward, unmaintainable hand-written Backend for Frontends. On the other hand, GraphQL is a
+            highly composable protocol, giving clients the power to express exactly what they need, and Tailcall makes
+            GraphQL easy, secure, and fast.
           </p>
         </div>
       </div>
