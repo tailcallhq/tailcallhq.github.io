@@ -15,9 +15,7 @@ The three formats, `GraphQL`, `YAML`, and `JSON`, are supported due to their dis
 To convert files between different formats, use the following command:
 
 ```bash
-# prettier-ignore-start
-tailcall check format_type < input_files > --format
-# prettier-ignore-end
+tailcall check <input_files> --format format_type
 ```
 
 Let's try to convert a Tailcall graphql file to json and then back to graphql
