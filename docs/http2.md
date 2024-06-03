@@ -57,7 +57,7 @@ Use self-signed certificates for HTTP/2 configurations in development environmen
 
 ## Configuration
 
-Once the certificate and key are generated we can link them with our main configuration using the [@link](/docs/directives/#link-directive) directive, to enable HTTPS.
+Once the certificate and key are generated we can link them with our main configuration using the [@link](/docs/tailcall-dsl-graphql-custom-directives/#link-directive) directive, to enable HTTPS.
 
 ```graphql showLineNumbers
 schema

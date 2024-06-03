@@ -1195,7 +1195,7 @@ type User {
 `@modify(omit: true)` instructs GraphQL to exclude the `id` field from the schema, making it inaccessible to the client.
 
 :::tip
-`@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/directives/#omit-directive)
+`@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/tailcall-dsl-graphql-custom-directives/#omit-directive)
 :::
 -e
 
@@ -1231,7 +1231,7 @@ The `@omit` directive and `@modify(omit: true)` essentially serve the same purpo
 
 - `@omit` offers a concise way to directly exclude a field or node without additional arguments.
 
-- `@modify(omit: true)`, as part of the broader [`@modify`](/docs/directives/#omit-directive) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
+- `@modify(omit: true)`, as part of the broader [`@modify`](/docs/tailcall-dsl-graphql-custom-directives/#omit-directive) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
   -e
 
 ## @protected Directive
