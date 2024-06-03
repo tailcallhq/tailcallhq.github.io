@@ -1,7 +1,7 @@
 ---
 title: Harnessing HTTP/2
 description: Boost web performance and secure your communications by utilizing HTTP/2 with Tailcall.
-slug: http2-guide
+slug: graphql-http2-guide-tailcall
 sidebar_label: HTTP/2 Guide
 ---
 
