@@ -2,7 +2,7 @@
 title: GraphQL Best Practices
 description: "Enhance your understanding of naming and casing conventions for GraphQL schema to ensure clarity and consistency in your schema design using Tailcall. Learn best practices for naming to maintain a well-structured and readable GraphQL schema."
 slug: graphql-best-practices-tailcall
-sidebar_label: GraphQL Naming Conventions
+sidebar_label: Best Practices
 ---
 
 ## General Naming Principles
