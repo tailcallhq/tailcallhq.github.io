@@ -1,7 +1,7 @@
 ---
 title: Logging Levels Configuration
 description: Learn how to configure log levels in Tailcall to obtain insights into code execution and address software development challenges. Discover the available log levels, set verbosity via environment variables, and understand the hierarchy of log levels for effective logging.
-slug: logging-levels-guide
+slug: graphql-logging-levels-tailcall
 sidebar_label: Logging Levels
 ---
 
