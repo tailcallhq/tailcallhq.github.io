@@ -1,7 +1,6 @@
 ---
 title: Data Dog
 description: Discover how to enhance application performance with our guide on enabling and analyzing telemetry data in Tailcall. Learn to configure observability support using OpenTelemetry for insights into logs, metrics, and traces, with practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog.
-sidebar_position: 2
 ---
 
 This guide is based on the [official doc](https://docs.datadoghq.com/getting_started/opentelemetry/?s=header#exploring-observability-data-in-datadog).
@@ -9,7 +8,7 @@ This guide is based on the [official doc](https://docs.datadoghq.com/getting_sta
 1. Go to [datadoghq.com](https://www.datadoghq.com)
 2. Login to your account (make sure you choose right region for your account on login)
 3. Go to `Organization Settings -> API Keys` and copy the value of existing key or create a new one
-4. Integration with datadog requires [OpenTelemetry Collector](./introduction.md#opentelemetry-collector) to be able to send data to. As an example we can use following config for the collector:
+4. Integration with datadog requires [OpenTelemetry Collector](./telemetry.md#opentelemetry-collector) to be able to send data to. As an example we can use following config for the collector:
    ```yml
    receivers:
      otlp:
@@ -61,8 +60,8 @@ This guide is based on the [official doc](https://docs.datadoghq.com/getting_sta
 
 Now make some requests to running service and wait a little bit until Datadog proceeds the data. After that you can go to `APM -> Traces`, locate the span with name `request` and click on it. You should see something like on screenshot below:
 
-![datadog-trace](../../static/images/telemetry/datadog-trace.png)
+![datadog-trace](../static/images/telemetry/datadog-trace.png)
 
 To see metrics now go to `Metrics -> Explorer` and search for metric you want to see. After updating the query you should see something like on example below:
 
-![datadog-metrics](../../static/images/telemetry/datadog-metrics.png)
+![datadog-metrics](../static/images/telemetry/datadog-metrics.png)
