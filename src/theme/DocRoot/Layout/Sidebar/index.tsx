@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect, useState, useRef} from "react"
 import {useHistory} from "react-router-dom"
 import Sidebar from "@theme-original/DocRoot/Layout/Sidebar"
 import Search from "docusaurus-lunr-search/src/theme/SearchBar"
@@ -14,6 +14,7 @@ import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
 
 const CustomSearch = () => {
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
+  const focusRef = useRef()
   const history = useHistory()
   const isBrowser = useIsBrowser()
   const placeholder = isBrowser ? (Platform.OS.startsWith("Mac") ? "Search ⌘+K" : "Search Ctrl+K") : "Search"
@@ -51,8 +52,6 @@ const CustomSearch = () => {
   }
 
   useEffect(() => {
-    let timer: NodeJS.Timeout
-
     // handle body scroll based on modal visibility changes
     setBodyScroll()
 
@@ -66,23 +65,31 @@ const CustomSearch = () => {
       }
     })
 
-    // focus on search input when modal becomes visible
-    if (isSearchModalVisible) {
-      timer = setTimeout(() => {
-        const searchInput = getSearchInputRef()
-        if (searchInput) {
+    const focusSearchBar = () => {
+      const searchInput = getSearchInputRef()
+      if (searchInput && focusRef.current !== "Loading...") {
+        setTimeout(() => {
           searchInput.focus()
-        }
-      }, 50)
+        }, 20)
+      }
     }
 
+    const searchContainer = document.getElementById("search-container")
+    if (searchContainer) {
+      searchContainer.addEventListener("DOMSubtreeModified", focusSearchBar)
+    }
+
+    // Cleanup (when component unmounts or dependencies change)
     return () => {
-      clearTimeout(timer)
       setBodyOverflow("initial")
       document.removeEventListener("keydown", handleKeyPress)
       unlisten()
+
+      if (searchContainer) {
+        searchContainer.removeEventListener("DOMSubtreeModified", focusSearchBar)
+      }
     }
-  }, [isSearchModalVisible, history])
+  }, [history, isSearchModalVisible])
 
   return (
     <>
@@ -93,35 +100,37 @@ const CustomSearch = () => {
       </div>
 
       {/* Search modal */}
-      {isSearchModalVisible ? (
-        <>
-          <div onClick={handleSearchModalClose} className={styles.overlay}></div>
-          <div className={styles.modal}>
-            <div className={styles.modalContent}>
-              <Search />
-              <div className={styles.initialCase}>
-                <PageSearchIcon />
-                <div className={styles.searchDocsTitle}>Search Docs</div>
-                <div className={styles.searchDocsDesc}>Search anything within the docs</div>
+      <div id="search-container">
+        {isSearchModalVisible ? (
+          <>
+            <div onClick={handleSearchModalClose} className={styles.overlay}></div>
+            <div className={styles.modal}>
+              <div className={styles.modalContent}>
+                <Search />
+                <div className={styles.initialCase}>
+                  <PageSearchIcon />
+                  <div className={styles.searchDocsTitle}>Search Docs</div>
+                  <div className={styles.searchDocsDesc}>Search anything within the docs</div>
+                </div>
+              </div>
+              <div className={styles.footer}>
+                <div className={styles.navigationInfoItem}>
+                  <EnterKeyIcon />
+                  <span>to select</span>
+                </div>
+                <div className={styles.navigationInfoItem}>
+                  <UpDownKeyIcon />
+                  <span>to navigate</span>
+                </div>
+                <div className={styles.navigationInfoItem}>
+                  <EscapeKeyIcon />
+                  <span>to close</span>
+                </div>
               </div>
             </div>
-            <div className={styles.footer}>
-              <div className={styles.navigationInfoItem}>
-                <EnterKeyIcon />
-                <span>to select</span>
-              </div>
-              <div className={styles.navigationInfoItem}>
-                <UpDownKeyIcon />
-                <span>to navigate</span>
-              </div>
-              <div className={styles.navigationInfoItem}>
-                <EscapeKeyIcon />
-                <span>to close</span>
-              </div>
-            </div>
-          </div>
-        </>
-      ) : null}
+          </>
+        ) : null}
+      </div>
     </>
   )
 }
