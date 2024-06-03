@@ -29,7 +29,7 @@ schema @link(type: Script, src: "./worker.js") {
 
 Once the worker is linked, you can start the server using the usual [start] command. Making requests to tailcall will now be intercepted by the worker and logged to the console.
 
-[start]: /docs/cli/#start
+[start]: /docs/tailcall-graphql-cli/#start
 
 ## Modify Request
 
