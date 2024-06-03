@@ -1,7 +1,7 @@
 ---
 title: Using HTTP Cache
 description: A comprehensive guide to leverage HTTP cache for REST APIs using Tailcall.
-slug: http-cache-guide
+slug: graphql-http-cache-guide-tailcall
 sidebar_label: HTTP Cache
 ---
 
