@@ -1,7 +1,7 @@
 ---
 title: Sequencing & Parallelism
 description: "Tailcall revolutionizes data access layer development by automating API call orchestration, ensuring optimal execution strategies through advanced sequencing and parallelism techniques."
-slug: data-access-optimization
+slug: graphql-data-access-parallel-vs-sequence
 sidebar_label: Data Access Optimization
 ---
 
