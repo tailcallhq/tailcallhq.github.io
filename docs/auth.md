@@ -1,5 +1,5 @@
 ---
-title: Granular Access Control with GraphQL Authentication
+title: Field Level GraphQL Authentication
 description: "Discover how to provide granular access to types and fields in your GraphQL schema using authentication providers. Our guide helps you enhance security and control by configuring precise access levels within your GraphQL server. Start implementing advanced access control measures today."
 slug: field-level-access-control-graphql-authentication
 sidebar_label: Authentication
