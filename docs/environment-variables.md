@@ -1,5 +1,5 @@
 ---
-title: Managing Environment Variables
+title: Reading Environment Variables
 description: "Learn how to effectively manage environment variables in your Tailcall GraphQL schema, enhancing security and flexibility in your application configuration. This guide explores the need for environment variables, their implementation in Tailcall schemas, and best practices for security and management."
 slug: environment-variables-guide
 sidebar_label: Environment Variables
