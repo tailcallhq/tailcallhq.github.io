@@ -1,5 +1,5 @@
 ---
-title: Scripting with Tailcall
+title: Javascript Extension
 description: "Discover how to effortlessly manipulate HTTP requests and responses using Tailcall's lightweight JS runtime. Tailcall provides a streamlined JavaScript environment specifically designed for simple yet powerful request/response modifications without the complexity of a full Node.js setup. Ideal for developers looking to implement middleware solutions, Tailcall's runtime does not require file system or network access, ensuring a secure and focused development process."
 slug: http-scripting-guide
 ---
