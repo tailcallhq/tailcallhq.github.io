@@ -1,5 +1,5 @@
 ---
-title: Telemetry in Tailcall
+title: GraphQL Telemetry
 description: "Learn how to configure observability support using OpenTelemetry for insights into logs, metrics, and traces. Discover practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog."
 slug: graphql-telemetry-guide
 sidebar_label: Telemetry Guide
