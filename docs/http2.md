@@ -1,6 +1,8 @@
 ---
-title: HTTP/2
+title: Harnessing HTTP/2
 description: Boost web performance and secure your communications by utilizing HTTP/2 with Tailcall.
+slug: graphql-http2-guide-tailcall
+sidebar_label: HTTP/2 Guide
 ---
 
 [HTTP/2](https://www.cloudflare.com/en-in/learning/performance/http2-vs-http1.1/) represents a significant advancement in web protocols, offering enhancements such as multiplexing, header compression, and streamlined connection handling, all designed to improve web performance.
@@ -55,7 +57,7 @@ Use self-signed certificates for HTTP/2 configurations in development environmen
 
 ## Configuration
 
-Once the certificate and key are generated we can link them with our main configuration using the [@link](/docs/directives/#link-directive) directive, to enable HTTPS.
+Once the certificate and key are generated we can link them with our main configuration using the [@link](/docs/tailcall-dsl-graphql-custom-directives/#link-directive) directive, to enable HTTPS.
 
 ```graphql showLineNumbers
 schema
@@ -100,7 +102,7 @@ type User {
 }
 ```
 
-That's pretty much all that's required. Now you can go ahead and [launch](/docs/getting-started-with-graphql-using-tailcall/#starting-the-tailcall-server) your server as usual.
+That's pretty much all that's required. Now you can go ahead and [launch](/docs/getting-started-with-graphql/#starting-the-tailcall-server) your server as usual.
 
 ```bash
 INFO File read: ./jsonplaceholder.graphql ... ok

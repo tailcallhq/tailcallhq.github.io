@@ -1,6 +1,8 @@
 ---
-title: "REST on top of GraphQL"
-description: Exposing REST endpoints on top of GraphQL via @rest directive.
+title: GraphQL REST Integration
+description: Exposing REST endpoints on top of GraphQL via the @rest directive.
+slug: graphql-rest-integration
+sidebar_label: REST Integration
 ---
 
 In order to handle complicated business problems, modern systems frequently need to work with hundreds or even thousands of APIs. Because of its powerful API composition capabilities, GraphQL has been adopted by numerous organisations. But switching to GraphQL can be difficult. It involves a lot of team training as well as major adjustments to frontend and backend architectures.
@@ -55,7 +57,7 @@ type User {
 }
 ```
 
-for more information on how to define your Tailcall GraphQL configuration file, please refer to the [Tailcall GraphQL Configuration](/docs/getting-started-with-graphql-using-tailcall/#configuration).
+for more information on how to define your Tailcall GraphQL configuration file, please refer to the [Tailcall GraphQL Configuration](/docs/getting-started-with-graphql/#configuration).
 
 ### Step 2: Define an operation using `@rest` directive
 
@@ -76,7 +78,7 @@ query ($id: Int!) @rest(method: GET, path: "/post/$id") {
 }
 ```
 
-to know more about the `@rest` directive, please refer to the [Tailcall GraphQL Directives](/docs/directives/#rest-directive).
+to know more about the `@rest` directive, please refer to the [Tailcall GraphQL Directives](/docs/tailcall-dsl-graphql-custom-directives/#rest-directive).
 
 ### Step 3: Link the operation to the main config file
 
@@ -92,7 +94,7 @@ schema
 }
 ```
 
-To know more about the `@link` directive, please refer to the [Tailcall GraphQL Directives](/docs/directives/#link-directive).
+To know more about the `@link` directive, please refer to the [Tailcall GraphQL Directives](/docs/tailcall-dsl-graphql-custom-directives/#link-directive).
 
 #### Response
 

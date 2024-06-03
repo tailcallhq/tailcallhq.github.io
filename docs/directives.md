@@ -1,5 +1,8 @@
 ---
 title: Tailcall Directives
+description: Enhance your GraphQL API with Tailcall DSL's custom directives. These directives offer powerful compile-time guarantees, ensuring robust and optimized API composition. Tailcall automates the generation of resolver logic for improved performance.
+slug: tailcall-dsl-graphql-custom-directives
+sidebar_label: Tailcall Directives
 ---
 
 Tailcall DSL builds on your existing GraphQL knowledge by allowing the addition of some custom directives. These directives provide powerful compile time guarantees to ensure your API composition is tight and robust. Tailcall automatically generates highly optimized resolver logic for your types using the information in the directives.
@@ -933,7 +936,7 @@ In this example, a request to `/users` will include a HTTP header `X-Server` wit
 
 You can make use of mustache templates to provide dynamic values for headers, derived from the arguments or [context] provided in the request. For example:
 
-[context]: /docs/context
+[context]: /docs/graphql-resolver-context-tailcall
 
 ```graphql showLineNumbers
 type Mutation {
@@ -1192,7 +1195,7 @@ type User {
 `@modify(omit: true)` instructs GraphQL to exclude the `id` field from the schema, making it inaccessible to the client.
 
 :::tip
-`@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/directives/#omit-directive)
+`@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/tailcall-dsl-graphql-custom-directives/#omit-directive)
 :::
 -e
 
@@ -1228,7 +1231,7 @@ The `@omit` directive and `@modify(omit: true)` essentially serve the same purpo
 
 - `@omit` offers a concise way to directly exclude a field or node without additional arguments.
 
-- `@modify(omit: true)`, as part of the broader [`@modify`](/docs/directives/#omit-directive) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
+- `@modify(omit: true)`, as part of the broader [`@modify`](/docs/tailcall-dsl-graphql-custom-directives/#omit-directive) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
   -e
 
 ## @protected Directive

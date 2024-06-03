@@ -1,6 +1,8 @@
 ---
-title: Http Cache
-description: A comprehensive guide to leverage HTTP cache for REST APIs using Tailcall
+title: Using HTTP Cache
+description: A comprehensive guide to leverage HTTP cache for REST APIs using Tailcall.
+slug: graphql-http-cache-guide-tailcall
+sidebar_label: HTTP Cache
 ---
 
 HTTP Caching in Tailcall is designed to enhance performance and minimize the frequency of requests to upstream services by caching HTTP responses. This guide explains the concept, benefits, and how to effectively implement HTTP caching within Tailcall.
@@ -51,4 +53,4 @@ The combination of `httpCache` and `cacheControl` provides a comprehensive cachi
 
 These caching primitives are beneficial for REST APIs that are latency-sensitive, have a high rate of request repetition, or come with explicit caching headers indicating cacheable responses. Together, they tackle the common challenges of optimizing REST API performance by minimizing unnecessary network traffic and server load while ensuring response accuracy.
 
-To further enhance the performance of any API with Tailcall, integrating the [`@cache`](/docs/directives/#cache-directive) directive offers protocol agnostic control over caching at the field level within a GraphQL schema.
+To further enhance the performance of any API with Tailcall, integrating the [`@cache`](/docs/tailcall-dsl-graphql-custom-directives/#cache-directive) directive offers protocol agnostic control over caching at the field level within a GraphQL schema.

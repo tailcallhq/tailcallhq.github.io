@@ -1,6 +1,8 @@
 ---
-title: "Playground"
-description: "Explore and test server configurations with @server directive's showcase feature in a controlled environment. Ideal for quick experimentation and learning with dynamic GraphQL schema configurations. Not recommended for production due to performance and security considerations."
+title: GraphQL Playground
+description: "Explore and test server configurations with the @server directive's showcase feature in a controlled environment. Ideal for quick experimentation and learning with dynamic GraphQL schema configurations. Not recommended for production due to performance and security considerations."
+slug: graphql-playground-guide
+sidebar_label: GraphQL Playground
 ---
 
 The `@server` directive's `showcase` option allows for hands-on experimentation with server configurations in a controlled environment. This feature simplifies the process of exploring and testing different settings. This enables experimenting with random configurations hosted, without the need to restart the server or affect existing setups.

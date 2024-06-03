@@ -1,6 +1,7 @@
 ---
 title: GraphQL on gRPC
-description: "Learn how to integrate gRPC services with Tailcall's GraphQL gateway in this comprehensive guide. Discover the benefits of using gRPC, a high-performance framework by Google, for efficient data transfer in microservices and distributed systems. Understand how to set up simple gRPC services, define protobuf files, and implement a gRPC server. Explore how to configure Tailcall to seamlessly connect GraphQL types to gRPC types and enable advanced features like batching and reflection for dynamic service discovery. This guide is perfect for developers looking to enhance their system's capability to handle high-performance data operations with simplicity and scalability. Ideal for those with a basic understanding of gRPC, ready to dive into practical integration with Tailcall."
+description: "Discover how to integrate gRPC services with Tailcall's GraphQL gateway in this comprehensive guide. Learn about the benefits of using gRPC, a high-performance framework by Google, for efficient data transfer in microservices and distributed systems. Understand how to set up simple gRPC services, define protobuf files, and implement a gRPC server. Explore how to configure Tailcall to seamlessly connect GraphQL types to gRPC types, enabling advanced features like batching and reflection for dynamic service discovery. Perfect for developers with a basic understanding of gRPC, this guide will help you enhance your system's capability to handle high-performance data operations with simplicity and scalability."
+slug: graphql-grpc-tailcall
 ---
 
 In this guide, we will set up a simple gRPC service and use it inside Tailcall's config to fetch some of the data provided by the service. This way Tailcall can provide a single GraphQL interface wrapping any number of gRPC services.
@@ -112,7 +113,7 @@ type Query {
 }
 ```
 
-Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`@server`](/docs/directives/#server-directive) and [`@upstream`](/docs/directives/#upstream-directive) directives.
+Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`@server`](/docs/tailcall-dsl-graphql-custom-directives/#server-directive) and [`@upstream`](/docs/tailcall-dsl-graphql-custom-directives/#upstream-directive) directives.
 
 ```graphql
 schema
@@ -131,7 +132,7 @@ To specify the protobuf file to read types from, use the `@link` directive with 
 schema @link(id: "news", src: "./news.proto", type: Protobuf)
 ```
 
-Now you can connect GraphQL types to gRPC types. To do this you may want to explore more about [`@grpc` directive](/docs/directives/#grpc-directive). Its usage is pretty straightforward and requires you to specify the path to a method that should be used to make a call. The method name will start with the package name, followed by the service name and the method name, all separated by the `.` symbol.
+Now you can connect GraphQL types to gRPC types. To do this you may want to explore more about [`@grpc` directive](/docs/tailcall-dsl-graphql-custom-directives/#grpc-directive). Its usage is pretty straightforward and requires you to specify the path to a method that should be used to make a call. The method name will start with the package name, followed by the service name and the method name, all separated by the `.` symbol.
 
 If you need to provide any input to the gRPC method call you can specify it with the `body` option that allows you to specify a Mustache template and therefore it could use any input data like `args` and `value` to construct the body request. The body value is specified in the JSON format if you need to create the input manually and cannot use `args` input.
 
@@ -224,7 +225,7 @@ Or
 
 Another important feature of the `@grpc` directive is that it allows you to implement request batching for remote data almost effortlessly as soon as you have gRPC methods that resolve multiple responses for multiple inputs in a single request.
 
-In our protobuf example file, we have a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`@upstream.batch` option](/docs/directives/#batch) first and specify `batchKey` option for the `@grpc` directive.
+In our protobuf example file, we have a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`@upstream.batch` option](/docs/tailcall-dsl-graphql-custom-directives/#batch) first and specify `batchKey` option for the `@grpc` directive.
 
 ```graphql
 schema

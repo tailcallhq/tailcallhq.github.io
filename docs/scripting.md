@@ -1,6 +1,7 @@
 ---
-title: Scripting
+title: Javascript Extension
 description: "Discover how to effortlessly manipulate HTTP requests and responses using Tailcall's lightweight JS runtime. Tailcall provides a streamlined JavaScript environment specifically designed for simple yet powerful request/response modifications without the complexity of a full Node.js setup. Ideal for developers looking to implement middleware solutions, Tailcall's runtime does not require file system or network access, ensuring a secure and focused development process."
+slug: graphql-javascript-customization
 ---
 
 Tailcall provides a light-weight JS runtime to modify requests and resolve with custom responses.
@@ -18,7 +19,7 @@ function onRequest({request}) {
 }
 ```
 
-Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/directives/#link-directive) directive.
+Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/tailcall-dsl-graphql-custom-directives/#link-directive) directive.
 
 ```graphql
 schema @link(type: Script, src: "./worker.js") {
@@ -28,7 +29,7 @@ schema @link(type: Script, src: "./worker.js") {
 
 Once the worker is linked, you can start the server using the usual [start] command. Making requests to tailcall will now be intercepted by the worker and logged to the console.
 
-[start]: /docs/cli/#start
+[start]: /docs/tailcall-graphql-cli/#start
 
 ## Modify Request
 
@@ -112,7 +113,7 @@ type Request = {
 }
 ```
 
-By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](/docs/directives/#allowedheaders) setting in [`@upstream`](/docs/directives/#upstream-directive).
+By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](/docs/tailcall-dsl-graphql-custom-directives/#allowedheaders) setting in [`@upstream`](/docs/tailcall-dsl-graphql-custom-directives/#upstream-directive).
 
 The http filter doesn't have access to the request's body, hence you can't directly modify the body of an outgoing request. This is more of a design choice than a limitation we have made to ensure that developers don't misuse this API to write all kind of business logic in Tailcall.
 

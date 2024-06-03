@@ -1,6 +1,8 @@
 ---
-title: Client Tuning
-description: Tuning client for performance
+title: Optimizing GraphQL Client Performance
+description: "Learn how to tune your client for optimal performance. Our guide provides essential tips and techniques to enhance responsiveness and efficiency in your applications. Start optimizing your client today for a faster, smoother user experience."
+slug: graphql-client-performance-tuning
+sidebar_label: Client Performance
 ---
 
 ### HTTP (Hypertext Transfer Protocol)
@@ -48,7 +50,7 @@ Connection pooling mitigates these issues by reusing existing connections for re
 
 ## Tuning HTTP Client
 
-Tailcall uses connection pooling by default and sets up with default tuning suitable for most use cases. You might need to further tune the HTTP client to improve your application's performance. Tailcall DSL provides a directive named [`@upstream`](/docs/directives/#upstream-directive) for this purpose.
+Tailcall uses connection pooling by default and sets up with default tuning suitable for most use cases. You might need to further tune the HTTP client to improve your application's performance. Tailcall DSL provides a directive named [`@upstream`](/docs/tailcall-dsl-graphql-custom-directives/#upstream-directive) for this purpose.
 
 :::note
 Connection pooling optimizes HTTP/1. Since HTTP/2 and HTTP/3 support multiplexing, pooling enabled does not noticeably affect performance.

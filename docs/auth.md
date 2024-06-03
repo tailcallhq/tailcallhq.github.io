@@ -1,7 +1,9 @@
 ---
-title: Auth
-description: "Learn how you can provide granular access to types and fields in GraphQL schema with the help of authentication providers"
-slug: /auth
+title: Field Level GraphQL Authentication
+description: "Discover how to provide granular access to types and fields in your GraphQL schema using authentication providers. Our guide helps you enhance security and control by configuring precise access levels within your GraphQL server. Start implementing advanced access control measures today."
+slug: field-level-access-control-graphql-authentication
+sidebar_label: Authentication
+sidebar_position: 1
 ---
 
 This guide will walk you through entity level authentication in GraphQL and how it could be achieved with Tailcall.
@@ -45,8 +47,8 @@ to know more about how to use it, read the following articles:
 
 Enabling support for authentication in Tailcall could be done in two steps:
 
-1. With the help of [`@link` directive](/docs/directives/#link-directive) connect multiple authentication files as you need for different provides. To connect it use either [`Htpasswd`](/docs/directives/#htpasswd) or [`Jwks`](/docs/directives/#jwks) link type
-2. Mark that some type of field requires authentication to be fetched with the help of [`@protected` directive](/docs/directives/#protected-directive)
+1. With the help of [`@link` directive](/docs/tailcall-dsl-graphql-custom-directives/#link-directive) connect multiple authentication files as you need for different provides. To connect it use either [`Htpasswd`](/docs/tailcall-dsl-graphql-custom-directives/#htpasswd) or [`Jwks`](/docs/tailcall-dsl-graphql-custom-directives/#jwks) link type
+2. Mark that some type of field requires authentication to be fetched with the help of [`@protected` directive](/docs/tailcall-dsl-graphql-custom-directives/#protected-directive)
 
 Your config could look like this now:
 
@@ -228,7 +230,7 @@ In case you linked multiple authentication files all of them will be used to exe
 
 ### Authentication headers
 
-To validate authentication for user request the specific headers are used (like `Authorization` header). In case auth is enabled for tailcall those headers will be also added to the [`allowedHeaders` list](/docs/directives/#allowedheaders) and therefore they will be forwarded to the upstream requests implicitly.
+To validate authentication for user request the specific headers are used (like `Authorization` header). In case auth is enabled for tailcall those headers will be also added to the [`allowedHeaders` list](/docs/tailcall-dsl-graphql-custom-directives/#allowedheaders) and therefore they will be forwarded to the upstream requests implicitly.
 
 ## Basic Authentication
 
@@ -248,7 +250,7 @@ Since this file stores secure information make sure to hash the password you use
 
 ### Tailcall config
 
-To use Basic Auth you should first include htpasswd file generated from [Prerequisites](#prerequisites) with the help of [`@link` directive](/docs/directives/#htpasswd).
+To use Basic Auth you should first include htpasswd file generated from [Prerequisites](#prerequisites) with the help of [`@link` directive](/docs/tailcall-dsl-graphql-custom-directives/#htpasswd).
 
 We can use that file as an example for it that has data for `testuser:mypassword` credentials in encrypted format:
 
@@ -256,7 +258,7 @@ We can use that file as an example for it that has data for `testuser:mypassword
 testuser:$2y$10$wJ/mZDURcAOBIrswCAKFsO0Nk7BpHmWl/XuhF7lNm3gBAFH3ofsuu
 ```
 
-After adding `@link` you can use the [`@protected` directive](/docs/directives/#protected-directive) to mark the fields that requiring success authentication to be requested.
+After adding `@link` you can use the [`@protected` directive](/docs/tailcall-dsl-graphql-custom-directives/#protected-directive) to mark the fields that requiring success authentication to be requested.
 
 The whole example could look like this:
 
@@ -329,7 +331,7 @@ To create this file you can use available web-tools like [JWK creator](https://r
 
 ### Tailcall config
 
-To use JWT you should first include JWKS file generated from [Prerequisites](#prerequisites) with the help of [`@link` directive](/docs/directives/#jwks).
+To use JWT you should first include JWKS file generated from [Prerequisites](#prerequisites) with the help of [`@link` directive](/docs/tailcall-dsl-graphql-custom-directives/#jwks).
 
 We can use that file as an example for it:
 
@@ -348,7 +350,7 @@ We can use that file as an example for it:
 }
 ```
 
-After adding `@link` you can use the [`@protected` directive](/docs/directives/#protected-directive) to mark the fields that requiring success authentication to be requested.
+After adding `@link` you can use the [`@protected` directive](/docs/tailcall-dsl-graphql-custom-directives/#protected-directive) to mark the fields that requiring success authentication to be requested.
 
 The whole example could look like this:
 
