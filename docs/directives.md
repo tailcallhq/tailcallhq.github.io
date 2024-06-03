@@ -936,7 +936,7 @@ In this example, a request to `/users` will include a HTTP header `X-Server` wit
 
 You can make use of mustache templates to provide dynamic values for headers, derived from the arguments or [context] provided in the request. For example:
 
-[context]: /docs/context
+[context]: /docs/graphql-resolver-context-tailcall
 
 ```graphql showLineNumbers
 type Mutation {
