@@ -1,7 +1,7 @@
 ---
 title: Tailcall Server Watch Mode
 description: "Learn how to enhance your development workflow by running servers in watch mode with the versatile file-watcher tool, entr. This guide provides installation instructions for different operating systems, usage tips, and best practices to optimize your development process."
-slug: watch-mode-guide
+slug: graphql-watch-mode-tailcall
 sidebar_label: Watch Mode
 ---
 
