@@ -1,5 +1,4 @@
 import {themes as prismThemes} from "prism-react-renderer"
-import type {Config} from "@docusaurus/types"
 import type * as Preset from "@docusaurus/preset-classic"
 
 const title = "Tailcall"
@@ -94,6 +93,7 @@ export default {
         {to: "/docs", label: "Docs", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
         {to: "/developers", label: "Developers", position: "left"},
+        {to: "/graphql", label: "GraphQL", position: "left"},
         {
           href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
@@ -126,6 +126,15 @@ export default {
         sidebarPath: require.resolve("./sidebars.ts"),
       },
     ],
+      [
+          "@docusaurus/plugin-content-docs",
+          {
+              id: "graphql",
+              path: "graphql",
+              routeBasePath: "graphql",
+              sidebarPath: require.resolve("./sidebars.ts"),
+          },
+      ],
     [
       require.resolve("docusaurus-lunr-search"),
       {
