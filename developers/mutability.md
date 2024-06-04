@@ -1,8 +1,12 @@
 ---
-title: Mutability
-description: "Explore best practices for handling mutability in programming with our detailed guide. Learn when to use references versus ownership in functions with clear examples. This guideline helps developers optimize their code for better performance and clarity, especially in performance-sensitive environments. Ideal for contributors and programmers looking to refine their coding techniques and understanding of mutability."
+title: Using Mutability in Tailcall
+sidebar_label: Mutability
+description: "Understand and implement mutability in your APIs with Tailcall. Access comprehensive guides to manage state changes effectively."
 ---
 
+<head>
+  <title>Mutability For Developers | Tailcall</title>
+</head>
 Typically you would have a question about an argument being passed as a value vs as a reference specially if you are new to Rust. This is short guide that will help in deciding when to use mutability in the Tailcall codebase.
 
 ## Using References

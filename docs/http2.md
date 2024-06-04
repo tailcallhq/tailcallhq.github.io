@@ -1,6 +1,6 @@
 ---
 title: Harnessing HTTP/2
-description: Boost web performance and secure your communications by utilizing HTTP/2 with Tailcall.
+description: Optimize your APIs with HTTP/2 using Tailcall. Follow our guides to implement and benefit from HTTP/2 features.
 slug: graphql-http2-guide-tailcall
 sidebar_label: HTTP/2 Guide
 ---

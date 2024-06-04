@@ -1,8 +1,12 @@
 ---
-title: Javascript Extension
-description: "Discover how to effortlessly manipulate HTTP requests and responses using Tailcall's lightweight JS runtime. Tailcall provides a streamlined JavaScript environment specifically designed for simple yet powerful request/response modifications without the complexity of a full Node.js setup. Ideal for developers looking to implement middleware solutions, Tailcall's runtime does not require file system or network access, ensuring a secure and focused development process."
+title: Leverage Javascript for Modifying requests and responses
+description: "Automate your API tasks with scripting using Tailcall. Follow our comprehensive scripting guides for enhanced efficiency."
 slug: graphql-javascript-customization
 ---
+
+<Head>
+  <title>Tailcall Scripting: Modify Requests and Customize Responses | Tailcall Guides</title>
+</Head>
 
 Tailcall provides a light-weight JS runtime to modify requests and resolve with custom responses.
 The runtime is not a full-fledged Node.js environment and has no access to the file system or the network. It is designed to be used for simple request/response modifications.

@@ -1,10 +1,13 @@
 ---
 title: GraphQL REST Integration
-description: Exposing REST endpoints on top of GraphQL via the @rest directive.
+description: Use REST directives with Tailcall to manage your APIs. Access detailed documentation on how to implement and optimize RESTful services.
 slug: graphql-rest-integration
 sidebar_label: REST Integration
 ---
 
+<Head>
+  <title>Generate REST Endpoints with GraphQL Orchestration | Tailcall Docs</title>
+</Head>
 In order to handle complicated business problems, modern systems frequently need to work with hundreds or even thousands of APIs. Because of its powerful API composition capabilities, GraphQL has been adopted by numerous organisations. But switching to GraphQL can be difficult. It involves a lot of team training as well as major adjustments to frontend and backend architectures.
 
 That's why Tailcall has developed a directive called `@rest` to streamline this transition and take advantage of GraphQL's power without requiring a complete overhaul. With the help of this directive, Tailcall GraphQL queries and mutations may be made available as REST endpoints.
