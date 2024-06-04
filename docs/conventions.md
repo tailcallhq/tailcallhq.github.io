@@ -1,5 +1,5 @@
 ---
-title: Tailcall API Development Conventions
+title: GraphQL Best Practices
 description: "Follow Tailcall's conventions to ensure consistency and efficiency in your API development. Access our comprehensive convention guides."
 slug: graphql-best-practices-tailcall
 sidebar_label: Best Practices

@@ -1,6 +1,6 @@
 ---
-title: Execution Strategy Guides for Tailcall APIs
-description: "Choose the right execution strategy for your APIs with Tailcall. Follow our guides to optimize execution and performance."
+title: Sequencing & Parallelism
+description: "Tailcall revolutionizes data access layer development by automating API call orchestration, ensuring optimal execution strategies through advanced sequencing and parallelism techniques."
 slug: graphql-data-access-parallel-vs-sequence
 sidebar_label: Sequence vs Parallel
 ---
