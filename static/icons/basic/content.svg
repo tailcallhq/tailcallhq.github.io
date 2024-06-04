@@ -1,0 +1,10 @@
+<svg width="20" height="20" viewBox="0 0 20 20">
+  <path
+    d="M17 5H3h14zm0 5H3h14zm0 5H3h14z"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    fill-rule="evenodd"
+    strokeLinejoin="round"
+  />
+</svg>
