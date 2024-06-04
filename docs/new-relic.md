@@ -1,10 +1,13 @@
 ---
-title: New Relic Telemetry Integration
-description: "Discover how to enhance application performance with our guide on enabling and analyzing telemetry data in Tailcall. Learn to configure observability support using OpenTelemetry for insights into logs, metrics, and traces, with practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog."
+title: New Relic Telemetry Integration with Tailcall
+description: "Integrate New Relic telemetry with Tailcall for in-depth monitoring. Follow our guides to enhance your API performance using New Relic."
 slug: graphql-newrelic-guide-telemetry
 sidebar_label: New Relic Telemetry
 ---
 
+<Head>
+  <title>Enhance Telemetry with New Relic | Tailcall Docs</title>
+</Head>
 The guide is based on [official doc](https://docs.newrelic.com/docs/more-integrations/open-source-telemetry-integrations/opentelemetry/get-started/opentelemetry-set-up-your-app/)
 
 1. Go to [newrelic.com](https://newrelic.com)

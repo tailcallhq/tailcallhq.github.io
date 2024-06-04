@@ -1,9 +1,13 @@
 ---
-title: Optimizing GraphQL Client Performance
-description: "Learn how to tune your client for optimal performance. Our guide provides essential tips and techniques to enhance responsiveness and efficiency in your applications. Start optimizing your client today for a faster, smoother user experience."
+title: Client Tuning Guides for Tailcall APIs
+description: "Tune your API clients for optimal performance with Tailcall. Access comprehensive client tuning guides and best practices."
 slug: graphql-client-performance-tuning
 sidebar_label: Client Performance
 ---
+
+<Head>
+  <title>Tuning HTTP Client for Improved Application Performance | Tailcall Docs</title>
+</Head>
 
 ### HTTP (Hypertext Transfer Protocol)
 

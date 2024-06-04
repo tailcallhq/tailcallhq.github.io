@@ -1,7 +1,12 @@
 ---
-title: "Bounty"
-description: "This guide outlines the Tailcall Bounty Program, emphasizing quick, high-quality contributions and collaborative engagement through challenges and rewards. It provides essential participation rules and encourages active community involvement for innovation and excellence."
+title: "Tailcall Developer Bounty Programs"
+sidebar_label: "Bounty Program"
+description: "Participate in Tailcall's developer bounty programs. Contribute, earn rewards, and enhance your skills with challenging projects."
 ---
+
+<head>
+  <title>Bounty Program | Tailcall</title>
+</head>
 
 Hey there! We're thrilled that you're considering joining our Bounty Program. This is your chance to showcase your skills and get rewarded for them. Here's everything you need to know to dive in and make a splash.
 

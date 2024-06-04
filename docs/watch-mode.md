@@ -1,9 +1,13 @@
 ---
-title: Tailcall Server Watch Mode
-description: "Learn how to enhance your development workflow by running servers in watch mode with the versatile file-watcher tool, entr. This guide provides installation instructions for different operating systems, usage tips, and best practices to optimize your development process."
+title: Using Watch Mode with Tailcall APIs
+description: "Enable watch mode for your APIs with Tailcall. Follow our guides to set up and utilize watch mode for real-time monitoring."
 slug: graphql-watch-mode-tailcall
 sidebar_label: Watch Mode
 ---
+
+<Head>
+  <title>Run Your Server in Watch Mode with entr | Tailcall Docs</title>
+</Head>
 
 Developers often find themselves in situations where they need to run a server in watch mode to streamline the development process. This guide will introduce you to [entr], a versatile file-watcher tool, and how to run your server in watch mode with it. We'll also touch on the installation process and suggest some best practices to optimize your workflow.
 
