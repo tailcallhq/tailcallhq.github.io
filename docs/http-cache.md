@@ -1,5 +1,5 @@
 ---
-title: HTTP Caching with Tailcall APIs
+title: HTTP Caching with Tailcall
 description: Implement HTTP caching with Tailcall to boost performance. Access our guides for setting up and optimizing HTTP cache.
 slug: graphql-http-cache-guide-tailcall
 sidebar_label: HTTP Cache

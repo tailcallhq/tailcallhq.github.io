@@ -1,6 +1,6 @@
 ---
-title: Implementing gRPC Services with Tailcall
-description: "Explore gRPC guides with Tailcall. Learn how to implement and optimize gRPC services for high-performance APIs."
+title: GraphQL on gRPC
+description: "Explore gRPC guides with Tailcall. Learn how to integrate and onboard gRPC services on Tailcall for high-performance APIs."
 slug: graphql-grpc-tailcall
 ---
 

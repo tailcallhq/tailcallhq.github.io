@@ -1,5 +1,5 @@
 ---
-title: Implementing REST Directives in Tailcall APIs
+title: GraphQL REST Integration
 description: Use REST directives with Tailcall to manage your APIs. Access detailed documentation on how to implement and optimize RESTful services.
 slug: graphql-rest-integration
 sidebar_label: REST Integration

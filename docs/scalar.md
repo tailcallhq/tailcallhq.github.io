@@ -1,5 +1,5 @@
 ---
-title: Implementing Scalar Types in Tailcall APIs
+title: Scalar Types in Tailcall
 description: Learn how to use scalar types in your APIs with Tailcall. Access detailed guides and examples for effective scalar implementation.
 slug: graphql-scalars-guide
 sidebar_label: GraphQL Scalars

@@ -1,5 +1,5 @@
 ---
-title: Using Watch Mode with Tailcall APIs
+title: Using Watch Mode with Tailcall CLI
 description: "Enable watch mode for your APIs with Tailcall. Follow our guides to set up and utilize watch mode for real-time monitoring."
 slug: graphql-watch-mode-tailcall
 sidebar_label: Watch Mode

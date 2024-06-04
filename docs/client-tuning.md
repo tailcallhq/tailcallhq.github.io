@@ -1,5 +1,5 @@
 ---
-title: Client Tuning Guides for Tailcall APIs
+title: Optimizing GraphQL Client Performance
 description: "Tune your API clients for optimal performance with Tailcall. Access comprehensive client tuning guides and best practices."
 slug: graphql-client-performance-tuning
 sidebar_label: Client Performance

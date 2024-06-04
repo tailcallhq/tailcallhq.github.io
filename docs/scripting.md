@@ -1,5 +1,5 @@
 ---
-title: API Scripting with Tailcall
+title: Leverage Javascript for Modifying requests and responses
 description: "Automate your API tasks with scripting using Tailcall. Follow our comprehensive scripting guides for enhanced efficiency."
 slug: graphql-javascript-customization
 ---

@@ -1,5 +1,5 @@
 ---
-title: Managing Environment Variables in Tailcall APIs
+title: Reading Environment Variables
 description: "Manage environment variables effectively with Tailcall. Access our detailed guides for setting up and using environment variables."
 slug: graphql-environment-variables
 sidebar_label: Environment Variables

@@ -1,5 +1,5 @@
 ---
-title: Implementing Telemetry in Tailcall Applications
+title: Integrating Telemetry in Tailcall Applications
 description: "Learn how to implement telemetry in your applications with Tailcall. Get detailed insights and enhance your application's performance."
 slug: graphql-telemetry-guide
 sidebar_label: Telemetry Guide
