@@ -1,5 +1,5 @@
 ---
-title: "Comprehensive Testing Guides for Tailcall Developers"
+title: "Comprehensive Testing Guides for Tailcall"
 sidebar_label: "Unit Testing"
 description: "Access comprehensive testing guides for developers using Tailcall. Ensure your APIs are robust and reliable with our best practices."
 ---

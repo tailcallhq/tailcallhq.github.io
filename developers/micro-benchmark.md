@@ -1,5 +1,5 @@
 ---
-title: "Performing Micro Benchmarks with Tailcall"
+title: "Performing Micro Benchmarks in Tailcall"
 sidebar_label: Micro Benchmarks
 description: "Learn how to perform micro benchmarks for your APIs with Tailcall. Optimize performance with our detailed guides and tools."
 ---

@@ -5,7 +5,7 @@ description: "Discover how to elevate application observability with Tailcall's 
 ---
 
 <Head>
-  <title>Telemetry: Enhance Performance Monitoring with Tailcall | Tailcall Docs</title>
+  <title>Telemetry Guide | Tailcall Docs</title>
 </Head>
 
 At Tailcall, we adhere to high observability standards in line with the [OpenTelemetry](https://opentelemetry.io) specification. Our implementation utilizes several key Rust crates:

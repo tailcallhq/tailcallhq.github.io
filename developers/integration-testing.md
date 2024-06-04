@@ -1,5 +1,5 @@
 ---
-title: "Integration Testing with Tailcall: Best Practices"
+title: "Integration Testing in Tailcall: Best Practices"
 sidebar_label: "Integration Testing"
 description: "Master integration testing with Tailcall. Access practical guides and best practices to ensure seamless API integration."
 ---
