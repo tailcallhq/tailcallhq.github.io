@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from "react"
-import ItemIcon from "./icons"
+import ItemIcon from "./Icons"
 import clsx from "clsx"
 import {DocSearchHit} from "@docsearch/react/dist/esm/types"
 import {groupBy} from "./utils"

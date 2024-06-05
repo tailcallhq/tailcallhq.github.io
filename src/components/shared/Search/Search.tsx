@@ -15,13 +15,13 @@ import {performSearch} from "./utils"
 import SearchInput from "./SearchBar"
 import Results from "./Results"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
+import BrowserOnly from "@docusaurus/BrowserOnly"
 
-const SearchRoot = () => {
+const SearchRoot = ({isMobile = false}: {isMobile?: boolean}) => {
   const [query, setQuery] = useState("")
   const [debouncedQuery] = useDebounce(query, 300)
   const [hits, setHits] = useState<DocSearchHit[]>([])
   const [isSearchModalVisible, setIsSearchModalVisible] = useState(false)
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
   const [selectedIndex, setSelectedIndex] = useState(-1)
   const {siteConfig} = useDocusaurusContext()
   const isBrowser = useIsBrowser()
@@ -152,14 +152,8 @@ const SearchRoot = () => {
         break
     }
   }
-
-  const handleResize = () => {
-    setIsMobile(window.innerWidth <= 768)
-  }
-
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress)
-    window.addEventListener("resize", handleResize)
 
     if (isSearchModalVisible) {
       setBodyOverflow("hidden")
@@ -168,7 +162,6 @@ const SearchRoot = () => {
     }
 
     return () => {
-      window.removeEventListener("resize", handleResize)
       window.removeEventListener("keydown", handleKeyPress)
       setSelectedIndex(-1)
     }
@@ -186,8 +179,8 @@ const SearchRoot = () => {
   return <>{isMobile ? <SearchMobile /> : <SearchDesktop />}</>
 }
 
-const SearchBar = () => {
-  return <SearchRoot />
+const SearchBar = ({isMobile = false}: {isMobile?: boolean}) => {
+  return <BrowserOnly>{() => <SearchRoot isMobile={isMobile} />}</BrowserOnly>
 }
 
 export default SearchBar

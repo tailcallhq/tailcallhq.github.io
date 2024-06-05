@@ -17,6 +17,7 @@ import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
 import Search from "@site/src/components/shared/Search/Search"
 import styles from "@site/src/theme/Navbar/Content/styles.module.css"
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 const useNavbarItems = () => {
   // TODO temporary casting until ThemeConfig type is improved (added by docusaurus)
@@ -58,26 +59,16 @@ const NavbarContent = (): JSX.Element => {
 
   const items = useNavbarItems()
   const [leftItems, rightItems] = splitNavbarItems(items)
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
-
+  
   const searchBarItem = items.find((item) => item.type === "search")
-
-  const handleResize = () => {
-    setIsMobile(window.innerWidth <= 768)
-  }
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
-
+  
   return (
     <NavbarContentLayout
       left={
         // TODO stop hardcoding items? (added by docusaurus)
         // Render left navbar items
         <>
-          {isMobile && <Search />}
+          {<Search isMobile={true} />}
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
           <NavbarItems items={leftItems} />
