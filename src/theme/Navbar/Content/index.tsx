@@ -17,7 +17,7 @@ import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
 import Search from "@site/src/components/shared/Search/Search"
 import styles from "@site/src/theme/Navbar/Content/styles.module.css"
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment"
 
 const useNavbarItems = () => {
   // TODO temporary casting until ThemeConfig type is improved (added by docusaurus)
@@ -59,9 +59,9 @@ const NavbarContent = (): JSX.Element => {
 
   const items = useNavbarItems()
   const [leftItems, rightItems] = splitNavbarItems(items)
-  
+
   const searchBarItem = items.find((item) => item.type === "search")
-  
+
   return (
     <NavbarContentLayout
       left={
