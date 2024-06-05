@@ -1,14 +1,11 @@
 ---
-title: "Tailcall Documentation: Guides, References, and Tutorials"
-description: Access the complete Tailcall documentation. Find detailed guides, API references, and tutorials to optimize your development workflow.
+title: Introduction to Tailcall
+description: Welcome to Tailcall! Discover the features and benefits of using Tailcall for optimizing and managing your GraphQL server configurations. This introduction provides an overview of Tailcall's capabilities, guiding you through its essential tools and functionalities to enhance your GraphQL development and performance.
 sidebar_position: 1
 slug: /
 sidebar_label: Introduction
 ---
 
-<Head>
-  <title>Introduction To Tailcall</title>
-</Head>
 Good APIs craft a broad spectrum of functionalities. Yet, the broader their scope, the more they diverge from being the perfect fit for any specific use case. This fundamental discrepancy — the impedance mismatch between the general capabilities of an API and the precise needs of a particular scenario — amplifies the necessity for an orchestration layer. Such a layer adeptly bridges this gap, tailor-fitting generic APIs to meet exact requirements with finesse. Tailcall stands at the forefront of this innovation, seamlessly transforming the way APIs are integrated and interacted with.
 
 Tailcall introduces a robust DSL (Domain-Specific Language), enabling developers to fine-tune how APIs are orchestrated. This DSL facilitates specifying different caching and batching strategies to enhance the system's efficiency. It also enables precise governance and access control mechanisms. Tailcall serves as a central hub for team collaboration, offering a unified point for managing all APIs, documentation, and more. Once configured, it positions itself between the clients and microservices, adeptly managing all requests and orchestrating them as needed.

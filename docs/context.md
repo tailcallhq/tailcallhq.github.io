@@ -5,9 +5,6 @@ slug: graphql-resolver-context-tailcall
 sidebar_label: Resolver Context
 ---
 
-<Head>
-  <title>Context Overview | Tailcall</title>
-</Head>
 Within Tailcall, `Context` is a pivotal component that allows for dynamic retrieval of values during the resolution of fields for a given type within the schema.
 
 ## Schema Definition

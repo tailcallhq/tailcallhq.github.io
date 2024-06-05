@@ -1,13 +1,10 @@
 ---
-title: Data Dog Telemetry Integration with Tailcall
-description: "Integrate Data Dog telemetry with Tailcall. Monitor and improve your API performance with our detailed integration guides."
+title: Data Dog Telemetry Integration
+description: "Discover how to enhance application performance with our guide on enabling and analyzing telemetry data in Tailcall. Learn to configure observability support using OpenTelemetry for insights into logs, metrics, and traces, with practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog."
 slug: graphql-data-dog-telemetry-tailcall
 sidebar_label: Data Dog Integration
 ---
 
-<Head>
-  <title>How to Use Data Dog on Tailcall.run | Tailcall Docs</title>
-</Head>
 This guide is based on the [official doc](https://docs.datadoghq.com/getting_started/opentelemetry/?s=header#exploring-observability-data-in-datadog).
 
 1. Go to [datadoghq.com](https://www.datadoghq.com)

@@ -1,13 +1,9 @@
 ---
-title: Authentication Methods with Tailcall
-description: "Understand authentication methods with Tailcall. Explore various strategies and implementation guides for secure API access."
+title: Field Level GraphQL Authentication
+description: "Discover how to provide granular access to types and fields in your GraphQL schema using authentication providers. Our guide helps you enhance security and control by configuring precise access levels within your GraphQL server. Start implementing advanced access control measures today."
 slug: field-level-access-control-graphql-authentication
 sidebar_label: Authentication
 ---
-
-<Head>
-  <title>Authentication on GraphQL | Tailcall Docs</title>
-</Head>
 
 This guide will walk you through entity level authentication in GraphQL and how it could be achieved with Tailcall.
 
