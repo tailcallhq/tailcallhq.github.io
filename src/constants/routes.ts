@@ -1,6 +1,6 @@
 export const pageLinks = {
   home: "/",
-  docs: "/docs/guides/getting-started-with-graphql-using-tailcall",
+  docs: "/docs/getting-started-with-graphql",
   introduction: "/docs/",
   pricing: "/pricing",
   // about: "/about",

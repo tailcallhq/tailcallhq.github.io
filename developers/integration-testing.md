@@ -1,7 +1,6 @@
 ---
 title: "Integration Testing"
 description: "Discover Tailcall's innovative markdown-based snapshot testing framework, designed to enhance testing across various programming languages seamlessly. This framework focuses on simplicity and maintainability, utilizing Markdown to make test cases easy to write and understand. Tailored for users of Tailcall, the framework supports extensive testing of GraphQL backends without language constraints. Features include detailed instructions on running and filtering tests, a structured test syntax guide, and comprehensive sections on test processes and snapshot maintenance. Ideal for developers seeking a straightforward, language-agnostic testing solution. Learn more about implementing and maintaining effective tests with Tailcall's unique approach."
-sidebar_position: 4
 ---
 
 As you may be aware, Tailcall offers a method for writing a configuration to generate a GraphQL backend. Additionally, you can link multiple configurations to compose them together. Extending the behavior of Tailcall is also possible by integrating custom JavaScript scripts. Managing this involves handling multiple files in various formats, which complicates the experience of writing integration tests.

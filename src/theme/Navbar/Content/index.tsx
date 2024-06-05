@@ -1,4 +1,4 @@
-import React, {type ReactNode, useEffect, useState} from "react"
+import React, {type ReactNode, useEffect, useState, useRef} from "react"
 import {useThemeConfig, ErrorCauseBoundary} from "@docusaurus/theme-common"
 import {splitNavbarItems, useNavbarMobileSidebar} from "@docusaurus/theme-common/internal"
 import {useHistory} from "react-router-dom"
@@ -56,6 +56,7 @@ const NavbarContentLayout = ({left, right}: {left: ReactNode; right: ReactNode})
 const CustomSearch = () => {
   const [showSearchIcon, setShowSearchIcon] = useState<boolean>(false)
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
+  const focusRef = useRef()
   const history = useHistory()
   const location = useLocation()
 
@@ -96,9 +97,6 @@ const CustomSearch = () => {
   }
 
   useEffect(() => {
-    // Variable to store the timer for handling modal animation
-    let timer: NodeJS.Timeout
-
     // Check if the current page is within the "/docs/" path to show or hide the search icon
     location.pathname.includes("/docs/") ? setShowSearchIcon(true) : setShowSearchIcon(false)
 
@@ -114,57 +112,64 @@ const CustomSearch = () => {
     if (isSearchModalVisible) {
       // If the search modal is visible, prevent body scrolling and handle modal animations
       setBodyOverflow("hidden")
-      timer = setTimeout(() => {
-        // After a delay, focus on the search input and apply zoom behavior
-        const searchInput = getSearchInputRef()
-        handleZoomBehavior()
-        if (searchInput) {
-          searchInput.focus()
-        }
-      }, 200)
     } else {
       // If the search modal is not visible, allow body scrolling
       setBodyOverflow("initial")
     }
 
-    // Clean up timer and history listener when the component unmounts or when dependencies change
+    const focusSearchBar = () => {
+      const searchInput = getSearchInputRef()
+      if (searchInput && focusRef.current != "Loading...") {
+        setTimeout(() => {
+          searchInput.focus()
+          handleZoomBehavior()
+        }, 20)
+      }
+    }
+
+    const searchContainer = document.getElementById("search-container-mobile")
+    if (searchContainer) searchContainer.addEventListener("DOMSubtreeModified", focusSearchBar)
+
+    // Clean up history listener when the component unmounts or when dependencies change
     return () => {
-      clearTimeout(timer)
       unlisten()
+      if (searchContainer) searchContainer.removeEventListener("DOMSubtreeModified", focusSearchBar)
     }
   }, [isSearchModalVisible, history])
 
   return (
     <>
       {showSearchIcon && <SearchIcon onClick={handleSearchClick} className="lg:hidden mr-SPACE_03 h-6 w-6" />}
-      {isSearchModalVisible ? (
-        <>
-          <div onClick={handleSearchModalClose} className={styles.overlay}></div>
-          <div className={styles.modal}>
-            {/* Search modal content */}
-            <div className={styles.modalContent}>
-              <div className={styles.search}>
-                <div className={styles.searchInput}>
-                  <Search />
+      <div id="search-container-mobile">
+        {isSearchModalVisible ? (
+          <>
+            <div onClick={handleSearchModalClose} className={styles.overlay}></div>
+            <div className={styles.modal}>
+              {/* Search modal content */}
+              <div className={styles.modalContent}>
+                <div className={styles.search}>
+                  <div className={styles.searchInput}>
+                    <Search />
+                  </div>
+                  <span
+                    className={`${styles.searchDocsClose} ${styles.searchDocsCommon}`}
+                    onClick={handleSearchModalClose}
+                  >
+                    Close
+                  </span>
                 </div>
-                <span
-                  className={`${styles.searchDocsClose} ${styles.searchDocsCommon}`}
-                  onClick={handleSearchModalClose}
-                >
-                  Close
-                </span>
-              </div>
-              <div className={styles.initialCase}>
-                <PageSearchIcon />
-                <div className={styles.searchDocsTitle}>Search Docs</div>
-                <div className={`${styles.searchDocsDesc} ${styles.searchDocsCommon}`}>
-                  Search anything within the docs
+                <div className={styles.initialCase}>
+                  <PageSearchIcon />
+                  <div className={styles.searchDocsTitle}>Search Docs</div>
+                  <div className={`${styles.searchDocsDesc} ${styles.searchDocsCommon}`}>
+                    Search anything within the docs
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </>
-      ) : null}
+          </>
+        ) : null}
+      </div>
     </>
   )
 }
