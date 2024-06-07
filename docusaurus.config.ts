@@ -71,7 +71,7 @@ export default {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
-          ignorePatterns: ["/blog/**", "/docs/**"],
+          ignorePatterns: ["/blog/**"],
         },
       },
     ],
