@@ -119,6 +119,69 @@ export default {
   } satisfies Preset.ThemeConfig,
   plugins: [
     [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            from: "/about",
+            to: "/",
+          },
+          {
+            from: "/docs/guides/n+1/",
+            to: "/docs/graphql-n-plus-one-problem-solved-tailcall/",
+          },
+          {
+            from: "/docs/intro/architecture",
+            to: "/docs/",
+          },
+          {
+            from: "/docs/intro/cli/",
+            to: "/docs/tailcall-graphql-cli/",
+          },
+          {
+            from: "/docs/intro/operators/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/",
+          },
+          {
+            from: "/docs/intro/server",
+            to: "/docs/getting-started-with-graphql/",
+          },
+          {
+            from: "/docs/operators/add-field/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#addfield-directive",
+          },
+          {
+            from: "/docs/operators/graphql/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#graphql-directive",
+          },
+          {
+            from: "/docs/operators/http/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#http-directive",
+          },
+          {
+            from: "/docs/operators/server/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#server-directive",
+          },
+          {
+            from: "/docs/operators/telemetry/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#telemetry-directive",
+          },
+          {
+            from: "/docs/operators/upstream/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#upstream-directive",
+          },
+          {
+            from: "/docs/n+1/introduction/",
+            to: "/docs/graphql-n-plus-one-problem-solved-tailcall/",
+          },
+          {
+            from: "/enterprise/",
+            to: "/",
+          },
+        ],
+      },
+    ],
+    [
       "@docusaurus/plugin-content-docs",
       {
         id: "developers",
