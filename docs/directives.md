@@ -973,6 +973,23 @@ type Post {
 
 - `query: {key: "id", value: "{{.value.userId}}"}]`: Instructs TailCall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?id=1&id=2&id=3...id=10`, consolidating requests into one.
 
+### onRequest
+
+A property which accepts string value and helps in defining middleware/filter for the requests. The middleware defined in http directive is applicable to only there. This only works when a js worker file is linked.
+
+Note: Check [here](/docs/directives.md#onrequest-1) if you want to define the middleware globally for all requests in upstream directive.
+
+```graphql showLineNumbers
+type Query {
+  userPosts(id: ID!): [Post]
+    @http(
+      path: "/posts"
+      query: [{key: "userId", value: "{{.args.id}}"}],
+      onRequest: "someFunctionName"
+    )
+}
+```
+
 ## @js Directive
 
 The `@js` directive allows you to use JavaScript functions to resolve fields in your GraphQL schema. This can be useful
@@ -2022,6 +2039,18 @@ A boolean flag, if set to `true`, will ensure no HTTP, GRPC, or any other IO cal
 
 ```graphql showLineNumbers
 schema @upstream(dedupe: true) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+### onRequest
+
+A property which accepts string value and helps in defining middleware/filter for the requests. The middleware defined in upstream directive is applicable for all the requests in the server. This only works when a js worker file is linked. This property defined in http directive overrides the one defined in upstream directive.
+
+```graphql showLineNumbers
+schema @upstream(onRequest: 'someFunctionName') 
+@link(type: Script, src: "path_to/worker.js") {
   query: Query
   mutation: Mutation
 }

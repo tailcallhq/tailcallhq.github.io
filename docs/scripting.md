@@ -9,25 +9,30 @@ The runtime is not a full-fledged Node.js environment and has no access to the f
 
 ## Getting Started
 
-To leverage this functionality, a JavaScript function named `onRequest` must be created in a `worker.js` file. This function serves as middleware, allowing for the interception and modification of the request. Here is a simple example of a `worker.js` file that logs the request and returns the original request without any modifications.
+To leverage this functionality, JavaScript functions with some name must be created in some js file, file should be linked using link directive and the function names to be registered as a middleware/filter for the intended requests. We can register the middleware in two ways - 
+1. Define an onRequest Property with respective function name in http directive.
+2. Define it in upstream directive (which acts as a global middleware/filter for all requests if http directive has no onRequest property defined).
+
+The function serves as middleware, allowing for the interception and modification of the request. Here is a simple example of a `worker.js` file with a function named `foo` which takes `request` object as an argument, logs the request and returns the original request without any modifications.
 
 ```javascript
-function onRequest({request}) {
+function foo({request}) {
   console.log(`${request.method} ${request.uri.path}`)
 
   return {request}
 }
 ```
 
-Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/directives.md#link-directive) directive.
+Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/directives.md#link-directive) directive and define onRequest property. Lets say we define it in upstream directive like below.
 
 ```graphql
-schema @link(type: Script, src: "./worker.js") {
+schema @upstream(onRequest: "foo")
+@link(type: Script, src: "./worker.js") {
   query: Query
 }
 ```
 
-Once the worker is linked, you can start the server using the usual [start] command. Making requests to tailcall will now be intercepted by the worker and logged to the console.
+Now, you can start the server using the usual [start] command. Making requests to tailcall will now be intercepted by the worker and logged to the console.
 
 [start]: /docs/tailcall-graphql-cli/#start
 
