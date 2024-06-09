@@ -9,7 +9,8 @@ The runtime is not a full-fledged Node.js environment and has no access to the f
 
 ## Getting Started
 
-To leverage this functionality, JavaScript functions with some name must be created in some js file, file should be linked using link directive and the function names to be registered as a middleware/filter for the intended requests. We can register the middleware in two ways - 
+To leverage this functionality, JavaScript functions with some name must be created in some js file, file should be linked using link directive and the function names to be registered as a middleware/filter for the intended requests. We can register the middleware in two ways -
+
 1. Define an onRequest Property with respective function name in http directive.
 2. Define it in upstream directive (which acts as a global middleware/filter for all requests if http directive has no onRequest property defined).
 
@@ -26,8 +27,9 @@ function foo({request}) {
 Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/directives.md#link-directive) directive and define onRequest property. Lets say we define it in upstream directive like below.
 
 ```graphql
-schema @upstream(onRequest: "foo")
-@link(type: Script, src: "./worker.js") {
+schema
+  @upstream(onRequest: "foo")
+  @link(type: Script, src: "./worker.js") {
   query: Query
 }
 ```

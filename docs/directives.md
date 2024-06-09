@@ -984,7 +984,7 @@ type Query {
   userPosts(id: ID!): [Post]
     @http(
       path: "/posts"
-      query: [{key: "userId", value: "{{.args.id}}"}],
+      query: [{key: "userId", value: "{{.args.id}}"}]
       onRequest: "someFunctionName"
     )
 }
@@ -2049,7 +2049,7 @@ schema @upstream(dedupe: true) {
 A property which accepts string value and helps in defining middleware/filter for the requests. The middleware defined in upstream directive is applicable for all the requests in the server. This only works when a js worker file is linked. This property defined in http directive overrides the one defined in upstream directive.
 
 ```graphql showLineNumbers
-schema @upstream(onRequest: 'someFunctionName') 
+schema @upstream(onRequest: 'someFunctionName')
 @link(type: Script, src: "path_to/worker.js") {
   query: Query
   mutation: Mutation
