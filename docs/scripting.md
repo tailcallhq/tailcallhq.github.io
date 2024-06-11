@@ -9,12 +9,16 @@ The runtime is not a full-fledged Node.js environment and has no access to the f
 
 ## Getting Started
 
-To leverage this functionality, JavaScript functions with some name must be created in some js file, file should be linked using link directive and the function names to be registered as a middleware/filter for the intended requests. We can register the middleware in two ways -
+To leverage this customization, JavaScript functions must be created in a JavaScript file and linked with the main configuration file using the [@link](./directives.md#link-directive) directive. There are two primary ways to achieve this:
 
-1. Define an onRequest Property with respective function name in http directive.
-2. Define it in upstream directive (which acts as a global middleware/filter for all requests if http directive has no onRequest property defined).
+1. Define an `onRequest` property with the JS function name in the [http](./directives.md#onrequest) directive.
+2. Define it in the [upstream](./directives.md#onrequest-1) directive, which acts as a global middleware for all requests.
 
-The function serves as middleware, allowing for the interception and modification of the request. Here is a simple example of a `worker.js` file with a function named `foo` which takes `request` object as an argument, logs the request and returns the original request without any modifications.
+:::tip
+If you specify a `onRequest` handler for both `http` and `upstream` the `http` one will always take precedence over the global `onRequest` handler.
+:::
+
+The function serves as middleware, allowing for the interception and modification of the request, as well as the production of artificial responses. Here is a simple example of a `worker.js` file with a function named `foo`, which takes a `request` object as an argument, logs the request, and returns the original request without any modifications.
 
 ```javascript
 function foo({request}) {
@@ -24,19 +28,17 @@ function foo({request}) {
 }
 ```
 
-Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/directives.md#link-directive) directive and define onRequest property. Lets say we define it in upstream directive like below.
+Once you have a worker file ready, link that file to the tailcall configuration using the [`@link`](./directives.md#link-directive) directive and define the [onRequest](./directives.md#onrequest-1) property.
 
 ```graphql
 schema
-  @upstream(onRequest: "foo")
-  @link(type: Script, src: "./worker.js") {
+  @link(type: Script, src: "./worker.js")
+  @upstream(onRequest: "foo") {
   query: Query
 }
 ```
 
-Now, you can start the server using the usual [start] command. Making requests to tailcall will now be intercepted by the worker and logged to the console.
-
-[start]: /docs/tailcall-graphql-cli/#start
+Now, you can start the server using the usual [start](./cli.md#start) command. Requests made to tailcall will now be intercepted by the worker and logged to the console.
 
 ## Modify Request
 
