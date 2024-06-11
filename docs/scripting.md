@@ -9,27 +9,36 @@ The runtime is not a full-fledged Node.js environment and has no access to the f
 
 ## Getting Started
 
-To leverage this functionality, a JavaScript function named `onRequest` must be created in a `worker.js` file. This function serves as middleware, allowing for the interception and modification of the request. Here is a simple example of a `worker.js` file that logs the request and returns the original request without any modifications.
+To leverage this customization, JavaScript functions must be created in a JavaScript file and linked with the main configuration file using the [@link](./directives.md#link-directive) directive. There are two primary ways to achieve this:
+
+1. Define an `onRequest` property with the JS function name in the [http](./directives.md#onrequest) directive.
+2. Define it in the [upstream](./directives.md#onrequest-1) directive, which acts as a global middleware for all requests.
+
+:::tip
+If you specify a `onRequest` handler for both `http` and `upstream` the `http` one will always take precedence over the global `onRequest` handler.
+:::
+
+The function serves as middleware, allowing for the interception and modification of the request, as well as the production of artificial responses. Here is a simple example of a `worker.js` file with a function named `foo`, which takes a `request` object as an argument, logs the request, and returns the original request without any modifications.
 
 ```javascript
-function onRequest({request}) {
+function foo({request}) {
   console.log(`${request.method} ${request.uri.path}`)
 
   return {request}
 }
 ```
 
-Once you have a worker file ready, you link that file to the tailcall configuration using the [`@link`](/docs/directives.md#link-directive) directive.
+Once you have a worker file ready, link that file to the tailcall configuration using the [`@link`](./directives.md#link-directive) directive and define the [onRequest](./directives.md#onrequest-1) property.
 
 ```graphql
-schema @link(type: Script, src: "./worker.js") {
+schema
+  @link(type: Script, src: "./worker.js")
+  @upstream(onRequest: "foo") {
   query: Query
 }
 ```
 
-Once the worker is linked, you can start the server using the usual [start] command. Making requests to tailcall will now be intercepted by the worker and logged to the console.
-
-[start]: /docs/tailcall-graphql-cli/#start
+Now, you can start the server using the usual [start](./cli.md#start) command. Requests made to tailcall will now be intercepted by the worker and logged to the console.
 
 ## Modify Request
 

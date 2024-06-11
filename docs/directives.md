@@ -973,6 +973,25 @@ type Post {
 
 - `query: {key: "id", value: "{{.value.userId}}"}]`: Instructs TailCall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?id=1&id=2&id=3...id=10`, consolidating requests into one.
 
+### onRequest
+
+The `onRequest` property accepts a string value representing the remote function to be called every time an HTTP request is initiated. Typically the remote function is defined in a linked JavaScript worker file.
+
+:::note
+For defining a request middleware globally for all requests, refer to the [upstream directive documentation](/docs/directives.md#onrequest-1).
+:::
+
+```graphql showLineNumbers
+type Query {
+  userPosts(id: ID!): [Post]
+    @http(
+      path: "/posts"
+      query: [{key: "userId", value: "{{.args.id}}"}]
+      onRequest: "someFunctionName"
+    )
+}
+```
+
 ## @js Directive
 
 The `@js` directive allows you to use JavaScript functions to resolve fields in your GraphQL schema. This can be useful
@@ -2027,4 +2046,14 @@ schema @upstream(dedupe: true) {
 }
 ```
 
--e
+### onRequest
+
+Similar to the [@http](#http-directive) property, this accepts a string value representing a middleware function defined in a JavaScript file. It intercepts all outgoing HTTP requests from the server. This interceptor, written in JavaScript, can be used to modify outgoing requests and also generate artificial responses to customize the behavior of the GraphQL server.
+
+```graphql showLineNumbers
+schema @upstream(onRequest: 'someFunctionName')
+@link(type: Script, src: "path_to/worker.js") {
+  query: Query
+  mutation: Mutation
+}
+```
