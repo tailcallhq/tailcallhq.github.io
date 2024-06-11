@@ -975,9 +975,11 @@ type Post {
 
 ### onRequest
 
-A property which accepts string value and helps in defining middleware/filter for the requests. The middleware defined in http directive is applicable to only there. This only works when a js worker file is linked.
+The `onRequest` property accepts a string value representing the remote function to be called every time an HTTP request is initiated. Typically the remote function is defined in a linked JavaScript worker file.
 
-Note: Check [here](/docs/directives.md#onrequest-1) if you want to define the middleware globally for all requests in upstream directive.
+:::note
+For defining a request middleware globally for all requests, refer to the [upstream directive documentation](/docs/directives.md#onrequest-1).
+:::
 
 ```graphql showLineNumbers
 type Query {
@@ -2046,7 +2048,7 @@ schema @upstream(dedupe: true) {
 
 ### onRequest
 
-A property which accepts string value and helps in defining middleware/filter for the requests. The middleware defined in upstream directive is applicable for all the requests in the server. This only works when a js worker file is linked. This property defined in http directive overrides the one defined in upstream directive.
+Similar to the [@http](#http-directive) property, this accepts a string value representing a middleware function defined in a JavaScript file. It intercepts all outgoing HTTP requests from the server. This interceptor, written in JavaScript, can be used to modify outgoing requests and also generate artificial responses to customize the behavior of the GraphQL server.
 
 ```graphql showLineNumbers
 schema @upstream(onRequest: 'someFunctionName')
@@ -2055,5 +2057,3 @@ schema @upstream(onRequest: 'someFunctionName')
   mutation: Mutation
 }
 ```
-
--e
