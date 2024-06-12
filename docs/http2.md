@@ -1,8 +1,8 @@
 ---
-title: Harnessing HTTP/2
-description: Boost web performance and secure your communications by utilizing HTTP/2 with Tailcall.
+title: GraphQL over HTTP/2
+description: Boost web performance and secure your communications by utilizing HTTP/2 with Tailcall GraphQL.
 slug: graphql-http2-guide-tailcall
-sidebar_label: HTTP/2 Guide
+sidebar_label: HTTP/2
 ---
 
 [HTTP/2](https://www.cloudflare.com/en-in/learning/performance/http2-vs-http1.1/) represents a significant advancement in web protocols, offering enhancements such as multiplexing, header compression, and streamlined connection handling, all designed to improve web performance.
@@ -102,7 +102,7 @@ type User {
 }
 ```
 
-That's pretty much all that's required. Now you can go ahead and [launch](/docs/getting-started-with-graphql/#starting-the-graphql-server) your server as usual.
+That's pretty much all that's required. Now you can go ahead and [launch](/docs/getting-started.mdx#starting-the-graphql-server) your server as usual.
 
 ```bash
 INFO File read: ./jsonplaceholder.graphql ... ok
