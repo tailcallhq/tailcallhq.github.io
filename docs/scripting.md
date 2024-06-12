@@ -28,7 +28,7 @@ function foo({request}) {
 }
 ```
 
-Once you have a worker file ready, link that file to the tailcall configuration using the [`@link`](./directives.md#link-directive) directive and define the [onRequest](./directives.md#onrequest-1) property.
+Once you have a worker file ready, link that file to the GraphQL configuration using the [`@link`](./directives.md#link-directive) directive and define the [onRequest](./directives.md#onrequest-1) property.
 
 ```graphql
 schema

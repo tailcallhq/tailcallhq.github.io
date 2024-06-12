@@ -8,7 +8,7 @@ sidebar_label: Honeycomb Integration
 1. Go to [honeycomb.io](https://www.honeycomb.io)
 2. Login to your account
 3. Go to `Account -> Team Settings -> Environments and API Keys -> Configuration` and create new or copy existing api key
-4. Go to tailcall config and update settings:
+4. Go to your GraphQL configuration and update settings:
    ```graphql
    schema
      @telemetry(

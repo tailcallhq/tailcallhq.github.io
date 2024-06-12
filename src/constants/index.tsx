@@ -243,7 +243,7 @@ export const enterpriseFeatures: EnterpriseFeature[] = [
     id: 3,
     logo: require("@site/static/icons/basic/reflect.svg").default,
     title: "Managed Solution",
-    description: "The change in any Tailcall config gets seamlessly reflected on your GraphQL. ",
+    description: "The change in any GraphQL config gets seamlessly reflected on your GraphQL. ",
   },
   {
     id: 4,
