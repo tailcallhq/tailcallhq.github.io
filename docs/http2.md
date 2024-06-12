@@ -102,7 +102,7 @@ type User {
 }
 ```
 
-That's pretty much all that's required. Now you can go ahead and [launch](/docs/getting-started-with-graphql/#starting-the-tailcall-server) your server as usual.
+That's pretty much all that's required. Now you can go ahead and [launch](/docs/getting-started.mdx#starting-the-graphql-server) your server as usual.
 
 ```bash
 INFO File read: ./jsonplaceholder.graphql ... ok
