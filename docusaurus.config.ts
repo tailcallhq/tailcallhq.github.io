@@ -143,7 +143,11 @@ export default {
           },
           {
             from: "/docs/intro/server",
-            to: "/docs/getting-started-with-graphql/",
+            to: "/docs/",
+          },
+          {
+            from: "/docs/getting-started-with-graphql/",
+            to: "/docs/",
           },
           {
             from: "/docs/operators/add-field/",
