@@ -92,7 +92,7 @@ export default {
         // {to: "/about", label: "About", position: "left"},
         // {to: "/enterprise", label: "Enterprise", position: "left"},
         {to: "/docs", label: "Docs", position: "left"},
-        {to: "/graphql", label: "GraphQL", position: "left"},
+        // {to: "/graphql", label: "GraphQL", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
         {
           href: "https://discord.gg/kRZBPpkgwq",
