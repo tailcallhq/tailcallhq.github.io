@@ -38,7 +38,7 @@ schema
 }
 ```
 
-Now, you can start the server using the usual [start](./cli.md#start) command. Requests made to tailcall will now be intercepted by the worker and logged to the console.
+Now, you can start the server using the usual [start](./cli.md#start) command. Requests made to the GraphQL server will now be intercepted by the worker and logged to the console.
 
 ## Modify Request
 
