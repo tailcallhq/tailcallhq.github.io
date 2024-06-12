@@ -94,6 +94,7 @@ export default {
         {to: "/docs", label: "Docs", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
         {to: "/developers", label: "Developers", position: "left"},
+        {to: "/graphql", label: "GraphQL", position: "left"},
         {
           href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
@@ -186,6 +187,15 @@ export default {
         id: "developers",
         path: "developers",
         routeBasePath: "developers",
+        sidebarPath: require.resolve("./sidebars.ts"),
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "graphql",
+        path: "graphql",
+        routeBasePath: "graphql",
         sidebarPath: require.resolve("./sidebars.ts"),
       },
     ],
