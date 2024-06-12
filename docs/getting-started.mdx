@@ -111,7 +111,7 @@ To install Tailcall with Docker, follow the steps below. Please note that curren
      {/* prettier-ignore-end  */}
    </CodeBlock>
 
-   This command launches the Tailcall server in a Docker container, exposing the GraphQL endpoint on port 8080.
+   This command launches the GraphQL server in a Docker container, exposing the GraphQL endpoint on port 8080.
 
 ## Configuration
 
@@ -128,7 +128,7 @@ Create one of the following files and paste the contents into it.
 <TabItem value="graphql" label="graphql">
 ```graphql showLineNumbers
 schema
-  # Specify server configuration: Start tailcall server at 0.0.0.0:8000
+  # Specify server configuration: Start GraphQL server at 0.0.0.0:8000
   @server(port: 8000)
 
 # Specify a base url for all http requests
@@ -317,7 +317,7 @@ types:
 
 The above file is a standard `.graphQL` file, with some minor additions such as `@upstream` and `@http` directives. Basically we specify the GraphQL schema and how to resolve that GraphQL schema in the same file, without having to write any code!
 
-## Starting the Tailcall server
+## Starting the GraphQL server
 
 Now, run the following command to start the server with the full path to the file that you created earlier.
 
@@ -356,7 +356,7 @@ INFO 🌍 Playground: https://tailcall.run/playground/?u=http://127.0.0.1:8000/g
 
 The server starts with the schema provided and prints out a load of meta information. We will cover those in detail in a bit. For now, open the **playground URL** in a new tab in your browser and try it out for yourself!
 
-## Making GraphQL requests to the Tailcall server
+## Making GraphQL requests to the server
 
 1. Open a web browser and go to [https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql](https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql). This should load the GraphiQL interface.
 2. In the query editor of GraphiQL, enter the following query

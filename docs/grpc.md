@@ -250,7 +250,7 @@ type Query {
 }
 ```
 
-Restart the Tailcall server and make the query with multiple news separately, e.g.:
+Restart the GraphQL server and make the query with multiple news separately, e.g.:
 
 ```graphql
 {
@@ -273,7 +273,7 @@ Those 2 requests will be executed inside a single request to the gRPC method `Ge
 
 gRPC reflection is a potent feature enabling clients to dynamically discover services and their methods at runtime. Tailcall enhances this capability by obviating the need for developers to link each proto file individually. This feature proves particularly valuable in environments where proto files are continuously evolving or when services dynamically expose varying methods. Here are the steps to follow:
 
-1. Add the gRPC endpoint as a [link] with type set to `Grpc`. This enables the Tailcall server to understand that the specified source is a gRPC endpoint that supports reflection.
+1. Add the gRPC endpoint as a [link] with type set to `Grpc`. This enables the GraphQL server to understand that the specified source is a gRPC endpoint that supports reflection.
 
    ```graphql
    schema

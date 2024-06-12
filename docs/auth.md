@@ -105,7 +105,7 @@ For more info about possible configuration for available providers read articles
 
 ## Making test requests
 
-Now let's try to access some data from the example above. Start the tailcall server with provided config and use graphQL playground that should be opened automatically in your browser.
+Now let's try to access some data from the example above. Start the graphql server with provided config and use graphQL playground that should be opened automatically in your browser.
 
 If you execute the query that don't have any `@protected` fields like
 

@@ -575,7 +575,7 @@ type Query {
 }
 ```
 
-The `@graphQL` directive facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the Tailcall server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` directive, the Tailcall config determines the query's operation type.
+The `@graphQL` directive facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the GraphQL server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` directive, the Tailcall config determines the query's operation type.
 
 For the next request with the config above:
 
@@ -1132,7 +1132,7 @@ Example use case:
 
 ### Protobuf
 
-The `Protobuf` link type integrates Protocol Buffers definitions by importing .proto files. This integration is crucial for Tailcall to communicate with gRPC services. By including `.proto` definitions, the Tailcall server can directly interact with gRPC services, allowing for efficient and type-safe communication.
+The `Protobuf` link type integrates Protocol Buffers definitions by importing .proto files. This integration is crucial for Tailcall to communicate with gRPC services. By including `.proto` definitions, the GraphQL server can directly interact with gRPC services, allowing for efficient and type-safe communication.
 
 For detailed integration steps and best practices, refer to the [gRPC Integration Guide](/docs/grpc.md).
 
@@ -1154,7 +1154,7 @@ function onRequest({request}) {
 
 ### Cert
 
-The `Cert` link type is designed for importing SSL/TLS certificates, a crucial component for enabling HTTPS in your Tailcall server. This link type ensures that your Tailcall server can expose connections over HTTPS.
+The `Cert` link type is designed for importing SSL/TLS certificates, a crucial component for enabling HTTPS in your GraphQL server. This link type ensures that the server can expose connections over HTTPS.
 
 :::tip
 When using the `Cert` link type, specify the path to the certificate file. Ensure the certificate is up-to-date and issued by a trusted certificate authority (CA) to avoid security warnings or connection issues.
@@ -1162,18 +1162,18 @@ When using the `Cert` link type, specify the path to the certificate file. Ensur
 
 Example use case:
 
-- Securing communication between the Tailcall server and clients.
+- Securing communication between the GraphQL server and clients.
 - Enhancing privacy and security by encrypting data in transit.
 
 ### Key
 
-The `Key` link type imports the private key associated with your SSL/TLS certificate, enabling HTTPS for your Tailcall server. The private key is a critical security element that decrypts information encrypted by the corresponding public key in the SSL/TLS certificate.
+The `Key` link type imports the private key associated with your SSL/TLS certificate, enabling HTTPS for your GraphQL server. The private key is a critical security element that decrypts information encrypted by the corresponding public key in the SSL/TLS certificate.
 
 When configuring the `Key` link type, provide the path to your private key file. Ensure the private key matches the imported certificate specified by the [Cert](#cert) link above, and is protected by appropriate file permissions to maintain security.
 
 ### Operation
 
-The `Operation` link type connects your schema to a set of predefined, GraphQL spec-compliant queries and mutations. This functionality allows for the validation and optimization of these operations by the Tailcall server.
+The `Operation` link type connects your schema to a set of predefined, GraphQL spec-compliant queries and mutations. This functionality allows for the validation and optimization of these operations by the GraphQL server.
 
 Each type serves a specific purpose, enabling the flexible integration of external resources into your GraphQL schema.
 
@@ -1348,7 +1348,7 @@ The `ServerSettings` options and their details appear below.
 
 ### workers
 
-Setting `workers` to `32` means that the Tailcall server will use 32 worker threads.
+Setting `workers` to `32` means that the GraphQL server will use 32 worker threads.
 
 ```graphql showLineNumbers
 schema @server(workers: 32) {
@@ -1357,7 +1357,7 @@ schema @server(workers: 32) {
 }
 ```
 
-This example sets the `workers` to `32`, meaning the Tailcall server will use 32 worker threads.
+This example sets the `workers` to `32`, meaning the GraphQL server will use 32 worker threads.
 
 ### port
 

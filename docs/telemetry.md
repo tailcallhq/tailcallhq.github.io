@@ -108,7 +108,7 @@ In summary, if you're gonna to use OTLP compatible platform or [prometheus](#exp
 
 [Prometheus](https://prometheus.io) is a metric monitoring solution. Please note that prometheus works purely with metrics and other telemetry data like traces and logs won't be sent to it.
 
-Prometheus integration works by adding a special route for tailcall server router that outputs generated metrics in prometheus format consumable by prometheus scraper.
+Prometheus integration works by adding a special route for the GraphQL server's router that outputs generated metrics in prometheus format consumable by prometheus scraper.
 
 ## Data generated
 
