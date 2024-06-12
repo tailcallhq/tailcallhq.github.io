@@ -84,11 +84,11 @@ tailcall init <file_path>
 
 This command prompts for file creation and configuration, creating the following files:
 
-|                 File Name | Description                                                                                                                          |
-| ------------------------: | ------------------------------------------------------------------------------------------------------------------------------------ |
-| [.tailcallrc.schema.json] | Provides autocomplete in your editor when the configuration is written in `json` or `yml` format.                                    |
-|          [.graphqlrc.yml] | A GraphQL Configuration that references your Tailcall config (if it's in `.graphql` format) and the following `.tailcallrc.graphql`. |
-|     [.tailcallrc.graphql] | Contains Tailcall specific auto-completions for `.graphql` format.                                                                   |
+|                 File Name | Description                                                                                                                             |
+| ------------------------: | --------------------------------------------------------------------------------------------------------------------------------------- |
+| [.tailcallrc.schema.json] | Provides autocomplete in your editor when the configuration is written in `json` or `yml` format.                                       |
+|          [.graphqlrc.yml] | An IDE configuration that references your GraphQL configuration (if it's in `.graphql` format) and the following `.tailcallrc.graphql`. |
+|     [.tailcallrc.graphql] | Contains Tailcall specific auto-completions for `.graphql` format.                                                                      |
 
 [.tailcallrc.schema.json]: https://github.com/tailcallhq/tailcall/blog/main/generated/.tailcallrc.schema.json
 [.graphqlrc.yml]: https://the-guild.dev/graphql/config/docs
@@ -96,7 +96,7 @@ This command prompts for file creation and configuration, creating the following
 
 ## gen
 
-The `gen` command in the TailCall CLI is designed for generating TailCall configurations from one or more source files.
+The `gen` command in the TailCall CLI is designed for generating GraphQL configurations from one or more source files.
 
 ### --input
 

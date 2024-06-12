@@ -78,7 +78,7 @@ npm i
 npm start
 ```
 
-## Tailcall config
+## GraphQL Configuration for GRPC
 
 Now when we have a running gRPC service we're going to write Tailcall's config to make the integration. To do this we need to specify GraphQL types corresponding to gRPC types we have defined in the protobuf file. Let's create a new file `grpc.graphql` file with the following content:
 

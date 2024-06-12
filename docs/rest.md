@@ -25,7 +25,7 @@ There are three main steps to this process:
 
 ## Example
 
-### Step 1: Define your Tailcall GraphQL configuration
+### Step 1: Define your GraphQL configuration
 
 ```graphql
 schema

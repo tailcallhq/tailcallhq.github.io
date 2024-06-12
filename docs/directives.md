@@ -1,5 +1,5 @@
 ---
-title: Tailcall Configuration
+title: GraphQL Configuration
 description: Enhance your GraphQL API with Tailcall DSL's custom directives. These directives offer powerful compile-time guarantees, ensuring robust and optimized API composition. Tailcall automates the generation of resolver logic for improved performance.
 slug: tailcall-dsl-graphql-custom-directives
 sidebar_label: Configuration Reference
@@ -575,7 +575,7 @@ type Query {
 }
 ```
 
-The `@graphQL` directive facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the GraphQL server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` directive, the Tailcall config determines the query's operation type.
+The `@graphQL` directive facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the GraphQL server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` directive, the GraphQL configuration determines the query's operation type.
 
 For the next request with the config above:
 
@@ -1516,7 +1516,7 @@ type Query {
 In the provided example, setting a variable named `apiKey` with a placeholder value of "YOUR_API_KEY_HERE" implies that whenever Tailcall fetches data from the `externalData` endpoint, it includes the `apiKey` in the Authorization header of the HTTP request.
 
 :::tip
-Local variables, like `apiKey`, are instrumental in securing access to external services or providing a unified place for configurations. Ensure that sensitive information stored this way is well protected and not exposed unintentionally, if your Tailcall configuration is publicly accessible.
+Local variables, like `apiKey`, are instrumental in securing access to external services or providing a unified place for configurations. Ensure that sensitive information stored this way is well protected and not exposed unintentionally, if your GraphQL configuration is publicly accessible.
 :::
 
 ### introspection

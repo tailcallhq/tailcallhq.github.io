@@ -42,7 +42,7 @@ Try to play around with the `cargo test` command by modifying the tests written 
 
 ## How does it work?
 
-[Execution Spec](https://github.com/tailcallhq/tailcall/blob/main/tests/execution_spec.rs) implements a custom markdown-based testing framework for Tailcall. The framework is designed to help write integration tests for Tailcall configs.
+[Execution Spec](https://github.com/tailcallhq/tailcall/blob/main/tests/execution_spec.rs) implements a custom markdown-based testing framework for Tailcall. The framework is designed to help write integration tests for GraphQL configs.
 
 ### Run all tests
 
@@ -140,7 +140,7 @@ The rest of the file is the test's body consisting of code blocks and descriptio
 
 ### Config
 
-Codeblocks can be enhanced with additional meta information for the test parser to make sense of the code. So for example a Tailcall configuration could be written in a code block with the `graphql` language and a `@config` meta information could be attached to it.
+Codeblocks can be enhanced with additional meta information for the test parser to make sense of the code. So for example a GraphQL configuration could be written in a code block with the `graphql` language and a `@config` meta information could be attached to it.
 
 ````md showLineNumbers {1}
 ```graphql @config

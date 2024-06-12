@@ -49,7 +49,7 @@ This guide is based on the [official doc](https://docs.datadoghq.com/getting_sta
          processors: [batch]
          exporters: [datadog]
    ```
-5. Go to your tailcall config and update it to:
+5. Go to your GraphQL configuration and update it to:
    ```graphql
    schema
      @telemetry(

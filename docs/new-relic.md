@@ -10,7 +10,7 @@ The guide is based on [official doc](https://docs.newrelic.com/docs/more-integra
 1. Go to [newrelic.com](https://newrelic.com)
 2. Login to your account
 3. Go to `<your user name> -> Api Keys` and copy license value for key with access to write data
-4. Go to tailcall config and update it with:
+4. Go to GraphQL configuration and update it with:
    ```graphql
    schema
      @telemetry(
