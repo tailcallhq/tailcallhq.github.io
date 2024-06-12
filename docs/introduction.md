@@ -1,9 +1,9 @@
 ---
-title: Introduction to Tailcall
+title: Why should you use Tailcall?
 description: Welcome to Tailcall! Discover the features and benefits of using Tailcall for optimizing and managing your GraphQL server configurations. This introduction provides an overview of Tailcall's capabilities, guiding you through its essential tools and functionalities to enhance your GraphQL development and performance.
 sidebar_position: 1
 slug: /
-sidebar_label: Introduction
+sidebar_label: Why Tailcall?
 ---
 
 Good APIs craft a broad spectrum of functionalities. Yet, the broader their scope, the more they diverge from being the perfect fit for any specific use case. This fundamental discrepancy — the impedance mismatch between the general capabilities of an API and the precise needs of a particular scenario — amplifies the necessity for an orchestration layer. Such a layer adeptly bridges this gap, tailor-fitting generic APIs to meet exact requirements with finesse. Tailcall stands at the forefront of this innovation, seamlessly transforming the way APIs are integrated and interacted with.

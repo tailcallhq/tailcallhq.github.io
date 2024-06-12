@@ -2,7 +2,7 @@
 title: GraphQL Configuration
 description: Enhance your GraphQL API with Tailcall DSL's custom directives. These directives offer powerful compile-time guarantees, ensuring robust and optimized API composition. Tailcall automates the generation of resolver logic for improved performance.
 slug: tailcall-dsl-graphql-custom-directives
-sidebar_label: Configuration Reference
+sidebar_label: Configuration
 sidebar_position: 5
 ---
 

@@ -2,7 +2,7 @@
 title: Honeycomb Telemetry Integration
 description: "Enhance your application's performance with our guide on enabling and analyzing telemetry data in Tailcall. Learn how to configure observability support using OpenTelemetry for comprehensive insights into logs, metrics, and traces. This guide includes practical integration examples for platforms such as Honeycomb.io, New Relic, and Datadog."
 slug: graphql-honeycomb-telemetry-tailcall
-sidebar_label: Honeycomb Integration
+sidebar_label: Honeycomb
 ---
 
 1. Go to [honeycomb.io](https://www.honeycomb.io)
