@@ -59,7 +59,7 @@ export default {
         docs: {
           // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
           sidebarPath: require.resolve("./sidebars.ts"),
-          sidebarCollapsible: false,
+          sidebarCollapsible: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: `https://github.com/${organization}/${project}/tree/develop`,
@@ -92,8 +92,8 @@ export default {
         // {to: "/about", label: "About", position: "left"},
         // {to: "/enterprise", label: "Enterprise", position: "left"},
         {to: "/docs", label: "Docs", position: "left"},
+        // {to: "/graphql", label: "GraphQL", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
-        {to: "/developers", label: "Developers", position: "left"},
         {
           href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
@@ -143,7 +143,11 @@ export default {
           },
           {
             from: "/docs/intro/server",
-            to: "/docs/getting-started-with-graphql/",
+            to: "/docs/",
+          },
+          {
+            from: "/docs/getting-started-with-graphql/",
+            to: "/docs/",
           },
           {
             from: "/docs/operators/add-field/",
@@ -180,13 +184,14 @@ export default {
         ],
       },
     ],
+
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "developers",
-        path: "developers",
-        routeBasePath: "developers",
-        sidebarPath: require.resolve("./sidebars-developers.ts"),
+        id: "graphql",
+        path: "graphql",
+        routeBasePath: "graphql",
+        sidebarPath: require.resolve("./graphql/sidebar.ts"),
       },
     ],
     [

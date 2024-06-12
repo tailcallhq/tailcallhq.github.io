@@ -14,7 +14,6 @@ import {SidebarsConfig} from "@docusaurus/plugin-content-docs"
 const sidebars: SidebarsConfig = {
   // By default, Docusaurus generates a sidebar from the docs folder structure
   docs: [
-    "introduction",
     {
       type: "category",
       label: "Usage",
@@ -49,6 +48,20 @@ const sidebars: SidebarsConfig = {
     },
     {type: "category", label: "Integrations", items: ["apollo-studio", "data-dog", "new-relic", "honey-comb"]},
     {type: "category", label: "Production", items: ["tailcall-on-aws", "client-tuning"]},
+    {
+      type: "category",
+      label: "Contributors",
+      items: [
+        "contributors/guidelines",
+        "contributors/bounty",
+        "contributors/testing",
+        "contributors/integration-testing",
+        "contributors/mutability",
+        "contributors/telemetry",
+        "contributors/micro-benchmark",
+        "contributors/wrk-benchmark",
+      ],
+    },
   ],
 }
 
