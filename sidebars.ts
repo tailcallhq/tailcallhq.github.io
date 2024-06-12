@@ -49,6 +49,20 @@ const sidebars: SidebarsConfig = {
     },
     {type: "category", label: "Integrations", items: ["apollo-studio", "data-dog", "new-relic", "honey-comb"]},
     {type: "category", label: "Production", items: ["tailcall-on-aws", "client-tuning"]},
+    {
+      type: "category",
+      label: "Contributors",
+      items: [
+        "developers/guidelines",
+        "developers/bounty",
+        "developers/testing",
+        "developers/integration-testing",
+        "developers/mutability",
+        "developers/telemetry",
+        "developers/micro-benchmark",
+        "developers/wrk-benchmark",
+      ],
+    },
   ],
 }
 
