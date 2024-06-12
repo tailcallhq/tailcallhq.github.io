@@ -1,8 +1,8 @@
 ---
-title: "The Comprehensive Guide to GraphQL"
+title: The Comprehensive Guide to GraphQL
 sidebar_label: "GraphQL"
 description: "Dive into the world of GraphQL with our comprehensive guide. Discover best practices, and resources about GraphQL. Read more."
-slug: "/"
+slug: /
 ---
 
 <Head>

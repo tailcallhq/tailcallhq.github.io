@@ -187,7 +187,7 @@ export default {
         id: "graphql",
         path: "graphql",
         routeBasePath: "graphql",
-        sidebarPath: require.resolve("./sidebars-developers.ts"),
+        sidebarPath: require.resolve("./graphql/sidebar.ts"),
       },
     ],
     [
