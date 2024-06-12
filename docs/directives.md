@@ -1637,9 +1637,21 @@ schema @server(
 )
 ```
 
-### Trade-offs
-
+:::tip
 Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
+:::
+
+### batchExecution
+
+The `@server` directive's `batchExecution` option, when set to `true`, it will ensure no graphQL execution is done more than once if
+similar query is being executed across the server's lifetime. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+schema @server(
+  port: 8000
+  batchExecution: true
+)
+```
 
 ## @telemetry Directive
 
@@ -2027,6 +2039,18 @@ A boolean flag, if set to `true`, will ensure no HTTP, GRPC, or any other IO cal
 
 ```graphql showLineNumbers
 schema @upstream(dedupe: true) {
+  query: Query
+  mutation: Mutation
+}
+```
+
+### dedupeInFlight
+
+The `dedupeInFlight` option, If set to `true`, it will ensure no HTTP, GRPC, or any other IO call is made more
+than once if similar request is inflight across the server's lifetime. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+schema @upstream(dedupeInFlight: true) {
   query: Query
   mutation: Mutation
 }
