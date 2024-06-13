@@ -2,7 +2,7 @@
 title: CTOs Guide to GraphQL
 description: Welcome to Tailcall! Discover the features and benefits of using Tailcall for optimizing and managing your GraphQL server configurations. This introduction provides an overview of Tailcall's capabilities, guiding you through its essential tools and functionalities to enhance your GraphQL development and performance.
 sidebar_position: 1
-slug: /graphql-server-cto-guide
+slug: cto-guide
 sidebar_label: CTOs Guide
 ---
 

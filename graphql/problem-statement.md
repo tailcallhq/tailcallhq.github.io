@@ -1,6 +1,6 @@
 ---
 title: Problem Statement
-slug: graphql-white-paper
+slug: problem-statement
 ---
 
 Tailcall is solving the problem of API orchestration for a microservices architecture. In a microservices architecture, different services are developed and deployed separately. However, when you are building an application, you need to access multiple services to do anything meaningful. Typically you would access these services via APIs using REST, GRPC, or GraphQL protocol.
