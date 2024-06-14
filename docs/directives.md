@@ -1641,15 +1641,14 @@ schema @server(
 Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
 :::
 
-### batchExecution
+### dedupe
 
-The `@server` directive's `batchExecution` option, when set to `true`, it will ensure no graphQL execution is done more than once if
-similar query is being executed across the server's lifetime. If not specified, this feature defaults to `false`.
+A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
 ```graphql showLineNumbers
 schema @server(
   port: 8000
-  batchExecution: true
+  dedupe: true
 )
 ```
 
@@ -2028,29 +2027,6 @@ schema
       headers: ["X-Server", "Authorization"]
     }
   ) {
-  query: Query
-  mutation: Mutation
-}
-```
-
-### dedupe
-
-A boolean flag, if set to `true`, will ensure no HTTP, GRPC, or any other IO call is made more than once within the context of a single GraphQL request. If not specified, this feature defaults to `false`.
-
-```graphql showLineNumbers
-schema @upstream(dedupe: true) {
-  query: Query
-  mutation: Mutation
-}
-```
-
-### dedupeInFlight
-
-The `dedupeInFlight` option, If set to `true`, it will ensure no HTTP, GRPC, or any other IO call is made more
-than once if similar request is inflight across the server's lifetime. If not specified, this feature defaults to `false`.
-
-```graphql showLineNumbers
-schema @upstream(dedupeInFlight: true) {
   query: Query
   mutation: Mutation
 }
