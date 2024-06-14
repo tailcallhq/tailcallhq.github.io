@@ -113,7 +113,19 @@ To install Tailcall with Docker, follow the steps below. Please note that curren
 
    This command launches the GraphQL server in a Docker container, exposing the GraphQL endpoint on port 8080.
 
-## Configuration
+## Initializing a GraphQL project
+
+Once you have installed the Tailcall binaries, you can simply use the [init](cli.md#init) command to initialize your GraphQL project.
+
+```bash
+tailcall init
+```
+
+The command will ask you a few questions and based on your input bootstrap a new GraphQL project with a few files:
+
+1. `.tailcallrc.schema.json`: Provides autocomplete in your editor when the configuration is written in `json` or `yml` format.
+2. `.graphqlrc.yml`: An IDE configuration that references your GraphQL configuration (if it's in `.graphql` format) and the following `.tailcallrc.graphql`.
+3. `.tailcallrc.graphql`: Contains Tailcall specific auto-completions for `.graphql` format.
 
 ## Writing a GraphQL Configuration
 
