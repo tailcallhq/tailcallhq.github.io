@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {GraphiQL} from "graphiql"
-import {isValidURL} from "@site/src/utils"
+import {analyticsHandler, isValidURL} from "@site/src/utils"
 import "graphiql/graphiql.css"
 import "../../css/graphiql.css"
 import {type FetcherParams, FetcherOpts} from "@graphiql/toolkit"
@@ -44,6 +44,7 @@ const Playground = () => {
     if (apiEndpoint.toString().trim() === "") {
       return Promise.resolve({})
     }
+    analyticsHandler("GraphQL", "fetch_query", apiEndpoint.toString())
 
     const response = await fetch(apiEndpoint.toString(), {
       method: "post",
