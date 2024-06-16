@@ -113,7 +113,19 @@ To install Tailcall with Docker, follow the steps below. Please note that curren
 
    This command launches the GraphQL server in a Docker container, exposing the GraphQL endpoint on port 8080.
 
-## Configuration
+## Initializing a GraphQL project
+
+Once you have installed the Tailcall binaries, you can simply use the [init](cli.md#init) command to initialize your GraphQL project.
+
+```bash
+tailcall init
+```
+
+The command will ask you a few questions and based on your input bootstrap a new GraphQL project with a few files:
+
+1. `.tailcallrc.schema.json`: Provides autocomplete in your editor when the configuration is written in `json` or `yml` format.
+2. `.graphqlrc.yml`: An IDE configuration that references your GraphQL configuration (if it's in `.graphql` format) and the following `.tailcallrc.graphql`.
+3. `.tailcallrc.graphql`: Contains Tailcall specific auto-completions for `.graphql` format.
 
 ## Writing a GraphQL Configuration
 
@@ -126,52 +138,46 @@ Create one of the following files and paste the contents into it.
 
 <Tabs>
 <TabItem value="graphql" label="graphql">
+
 ```graphql showLineNumbers
 schema
   # Specify server configuration: Start GraphQL server at 0.0.0.0:8000
   @server(port: 8000)
+  # Specify a base url for all http requests
 
-# Specify a base url for all http requests
-
-@upstream(baseURL: "http://jsonplaceholder.typicode.com") {
-
-query: Query
+  @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
 }
 
 type Query {
-
-# Specify the http path for the users query
-
-users: [User] @http(path: "/users")
+  # Specify the http path for the users query
+  users: [User] @http(path: "/users")
 }
 
 # Create a user type with the fields returned by the users api
 
 type User {
-id: Int!
-name: String!
-username: String!
-email: String!
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
 
-# Extend the user type with the posts field
-
-# Use the current user's id to construct the path
-
-posts: [Post] @http(path: "/users/{{.value.id}}/posts")
+  # Extend the user type with the posts field
+  # Use the current user's id to construct the path
+  posts: [Post] @http(path: "/users/{{.value.id}}/posts")
 }
 
 # Create a post type with the fields returned by the posts api
-
 type Post {
-id: Int!
-title: String!
-body: String!
+  id: Int!
+  title: String!
+  body: String!
 }
-
-````
+```
 
 </TabItem>
 <TabItem value="yml" label="yml">
+
 ```yml showLineNumbers
 server:
   port: 8000
@@ -226,10 +232,11 @@ types:
         required: true
       website:
         type: String
-````
+```
 
 </TabItem>
 <TabItem value="json" label="json">
+
 ```json showLineNumbers
 {
   "server": {

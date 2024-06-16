@@ -90,9 +90,9 @@ This command prompts for file creation and configuration, creating the following
 |          [.graphqlrc.yml] | An IDE configuration that references your GraphQL configuration (if it's in `.graphql` format) and the following `.tailcallrc.graphql`. |
 |     [.tailcallrc.graphql] | Contains Tailcall specific auto-completions for `.graphql` format.                                                                      |
 
-[.tailcallrc.schema.json]: https://github.com/tailcallhq/tailcall/blog/main/generated/.tailcallrc.schema.json
+[.tailcallrc.schema.json]: https://github.com/tailcallhq/tailcall/blob/main/generated/.tailcallrc.schema.json
 [.graphqlrc.yml]: https://the-guild.dev/graphql/config/docs
-[.tailcallrc.graphql]: https://github.com/tailcallhq/tailcall/blog/main/generated/.tailcallrc.graphql
+[.tailcallrc.graphql]: https://github.com/tailcallhq/tailcall/blob/main/generated/.tailcallrc.graphql
 
 ## gen
 
