@@ -1,7 +1,7 @@
 export const pageLinks = {
   home: "/",
-  docs: "/docs/getting_started/",
-  introduction: "/docs/",
+  docs: "/docs",
+  introduction: "/graphql/",
   pricing: "/pricing",
   // about: "/about",
   contact: "/contact",
