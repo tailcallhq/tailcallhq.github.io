@@ -47,7 +47,11 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {type: "category", label: "Integrations", items: ["apollo-studio", "data-dog", "new-relic", "honey-comb"]},
-    {type: "category", label: "Production", items: ["tailcall-on-aws", "client-tuning"]},
+    {
+      type: "category",
+      label: "Production",
+      items: ["gh-action", "tailcall-on-fly", "tailcall-on-aws", "client-tuning"],
+    },
     {
       type: "category",
       label: "Contributors",
