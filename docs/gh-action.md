@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Deploy Tailcall
         id: deploy-tailcall
-        uses: tailcallhq/gh-action@v0.2
+        uses: tailcallhq/gh-action@<version> # Replace <version> with the desired version
         with:
           provider: "fly" # Specifies the cloud provider as 'fly'
           fly-api-token: ${{ secrets.FLY_API_TOKEN }}
@@ -32,7 +32,7 @@ jobs:
 
 ### Inputs for `tailcallhq/gh-action`
 
-Following are the inputs for the `tailcallhq/gh-action` action for deploying to Fly:
+Following are the inputs for the `tailcallhq/gh-action` action when deploying to Fly:
 
 | Input              | Description                                                                                                                      |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -40,7 +40,7 @@ Following are the inputs for the `tailcallhq/gh-action` action for deploying to 
 | `tailcall-config`  | The path of the `tailcall` configuration file.                                                                                   |
 | `tailcall-version` | Specifies the version of `tailcall` to use for deployment. If not provided, the Action defaults to the latest available version. |
 | `fly-api-token`    | The Fly API token required for authentication. Ensure this value is stored securely, such as in GitHub Secrets.                  |
-| `fly-app-name`     | The name of the Fly app being deployed. Defaults to `tailcall` if not specified.                                                 |
+| `fly-app-name`     | The name of the Fly app being deployed. Defaults to `<orgname>-<reponame>` if not specified.                                     |
 | `fly-region`       | The region where the Fly app will be deployed. Defaults to `ord` if not specified.                                               |
 
 ## Deploying to AWS Lambda
@@ -57,7 +57,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Deploy Tailcall
         id: deploy-tailcall
-        uses: tailcallhq/gh-action@v0.2
+        uses: tailcallhq/gh-action@<version> # Replace <version> with the desired version
         with:
           provider: "aws"
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -70,7 +70,7 @@ jobs:
 
 ### Inputs for `tailcallhq/gh-action`
 
-Following are the inputs for the `tailcallhq/gh-action` action for deploying to Fly:
+Following are the inputs for the `tailcallhq/gh-action` action when deploying to AWS Lambda:
 
 | Input                      | Description                                                                                                                      |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
