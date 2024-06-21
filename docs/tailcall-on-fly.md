@@ -1,6 +1,8 @@
 ---
-title: Tailcall on Fly
-description: "Deploy `tailcall` on Fly using the github action `tailcallhq/gh-action`"
+title: Deploy Tailcall GraphQL on Fly
+sidebar_label: Deploy on Fly
+description: "Learn how to deploy Tailcall GraphQL servers on Fly.io with GitHub Actions quickly and securely."
+slug: deploy-tailcall-graphql-fly-actions
 ---
 
 Before deploying `tailcall` on fly, you need to generate an API Key from Fly.io. If you don't have an account on Fly.io, you can create one [here](https://fly.io/app/sign-up).

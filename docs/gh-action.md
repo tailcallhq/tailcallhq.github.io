@@ -1,6 +1,8 @@
 ---
-title: tailcallhq/gh-action
-description: "Github action for deploying to tailcall"
+title: Github Action for Deploying GraphQL
+sidebar_label: Deployments
+description: "Deploy GraphQL servers effortlessly with GitHub Actions."
+slug: deploy-graphql-github-actions
 ---
 
 The Github Action [tailcallhq/gh-action](https://github.com/tailcallhq/gh-action) can be used to easily deploy a `tailcall` server to any supported cloud provider. Currently, AWS Lambda and Fly are supported.
