@@ -15,8 +15,8 @@
 
 <script async="true" src="https://tag.clearbitscripts.com/v1/pk_498a76355e253f5c7f4e7c7bed78748e/tags.js" referrerpolicy="strict-origin-when-cross-origin"></script>
 <link rel="preconnect" href="https://codesandbox.io"><link rel="stylesheet" href="/assets/css/styles.1f65f578.css">
-<script src="/assets/js/runtime~main.1de3b9fd.js" defer="defer"></script>
-<script src="/assets/js/main.fac0bfb3.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.3414319c.js" defer="defer"></script>
+<script src="/assets/js/main.ed972328.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
 <script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top navbarHideable_m1mJ"><div class="navbar__inner"><div class="navbar__items"><div id="search-container-mobile"></div><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/icons/companies/taicall.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE" height="2.5rem"><img src="/icons/companies/taicall.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU" height="2.5rem"></div></a><a class="navbar__item navbar__link" href="/">Home</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/">Docs</a><a class="navbar__item navbar__link" href="/graphql/">GraphQL</a><a href="https://blog.tailcall.run/" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Blog</a></div><div class="navbar__items navbar__items--right"><a href="https://discord.gg/kRZBPpkgwq" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-button header-button-discord">      
@@ -26,85 +26,93 @@
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="generate-access-keys-for-aws">Generate Access Keys for AWS<a href="#generate-access-keys-for-aws" class="hash-link" aria-label="Direct link to Generate Access Keys for AWS" title="Direct link to Generate Access Keys for AWS">​</a></h2>
 <p>Follow the steps below to generate the Access Keys:</p>
 <ol>
-<li>Go to <a href="https://console.aws.amazon.com/" target="_blank" rel="noopener noreferrer">AWS Management Console</a> and click the drop down menu in the top right corner and Click on <code>Security credentials</code>.</li>
+<li>
+<p>Go to <a href="https://console.aws.amazon.com/" target="_blank" rel="noopener noreferrer">AWS Management Console</a> and click the drop down menu in the top right corner and Click on <code>Security credentials</code>.</p>
+<p><img decoding="async" loading="lazy" alt="credentials.png" src="/assets/images/credentials-67756fb78add9bde6c46ea3a74cae426.png" width="1512" height="928" class="img_ev3q"></p>
+</li>
+<li>
+<p>Scroll down to the <code>Access Keys</code> section and click on <code>Create access key</code>.</p>
+<p><img decoding="async" loading="lazy" alt="access-key.png" src="/assets/images/access-key-6bcb0b3b4d3cc1c0bfa1b7ced1874fd3.png" width="1512" height="882" class="img_ev3q"></p>
+</li>
+<li>
+<p>You will get the following warning since we are trying to create access keys for the root user. For this guide, we will continue with creating the access keys. If you do not want to continue with the root user, you can learn more about the AWS security credentials <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html" target="_blank" rel="noopener noreferrer">here</a> and managing access keys <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html?icmpid=docs_iam_console#Using_CreateAccessKey" target="_blank" rel="noopener noreferrer">here</a>.</p>
+<p><img decoding="async" loading="lazy" alt="warning.png" src="/assets/images/warning-9c9ea8bbf4afd6d31086a1ed6763da1e.png" width="1512" height="883" class="img_ev3q"></p>
+</li>
+<li>
+<p>Once you click on <code>Create access key</code>, you will get the <code>Access key ID</code> and <code>Secret access key</code>. Make sure to download the <code>CSV</code> file and store it securely.</p>
+<p><img decoding="async" loading="lazy" alt="access-keys.png" src="/assets/images/access-keys-b80c39afd444e1224944ba3a98a1068a.png" width="1512" height="884" class="img_ev3q"></p>
+</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="credentials.png" src="/assets/images/credentials-4c2608f78a8a3f8d9aa4b128075fb0e5.png" width="1512" height="928" class="img_ev3q"></p>
-<ol start="2">
-<li>Scroll down to the <code>Access Keys</code> section and click on <code>Create access key</code>.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="access-key.png" src="/assets/images/access-key-67b77a3270262c432b603cc717e97fd0.png" width="1512" height="882" class="img_ev3q"></p>
-<ol start="3">
-<li>You will get the following warning since we are trying to create access keys for the root user. For this guide, we will continue with creating the access keys. If you do not want to continue with the root user, you can learn more about the AWS security credentials <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html" target="_blank" rel="noopener noreferrer">here</a> and managing access keys <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html?icmpid=docs_iam_console#Using_CreateAccessKey" target="_blank" rel="noopener noreferrer">here</a>.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="warning.png" src="/assets/images/warning-e1316f6743c055695dd6efc24d0dffb4.png" width="1512" height="883" class="img_ev3q"></p>
-<ol start="4">
-<li>Once you click on <code>Create access key</code>, you will get the <code>Access key ID</code> and <code>Secret access key</code>. Make sure to download the <code>CSV</code> file and store it securely.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="access-keys.png" src="/assets/images/access-keys-f2cf82e1669e07f76fd9f0fdff21d771.png" width="1512" height="884" class="img_ev3q"></p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="terraform-setup">Terraform setup<a href="#terraform-setup" class="hash-link" aria-label="Direct link to Terraform setup" title="Direct link to Terraform setup">​</a></h2>
 <p>Now that you have the AWS Access Key ID and Secret Access Key, you will need to generate API token for terraform and setup a terraform organization and workspace. If you don&#x27;t have a Terraform Cloud account, you can create one <a href="https://app.terraform.io/signup/account" target="_blank" rel="noopener noreferrer">here</a>.</p>
 <h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="terraform-api-token">Terraform API Token<a href="#terraform-api-token" class="hash-link" aria-label="Direct link to Terraform API Token" title="Direct link to Terraform API Token">​</a></h3>
 <p>Follow these steps to generate the Terraform API token:</p>
 <ol>
-<li>Go to the <a href="https://app.terraform.io/app/settings/tokens" target="_blank" rel="noopener noreferrer">Tokens section in Settings</a> and click on <code>Create an API token</code>.</li>
+<li>
+<p>Go to the <a href="https://app.terraform.io/app/settings/tokens" target="_blank" rel="noopener noreferrer">Tokens section in Settings</a> and click on <code>Create an API token</code>.</p>
+<p><img decoding="async" loading="lazy" alt="create-token.png" src="/assets/images/create-token-3a10bdb1b4352e52bdeeeaaaa21f1efe.png" width="1512" height="883" class="img_ev3q"></p>
+</li>
+<li>
+<p>Give a description for the token and change the expiration if required. Click on <code>Generate token</code>.</p>
+<p><img decoding="async" loading="lazy" alt="gen-token.png" src="/assets/images/gen-token-60237395ed36ba3e0ff4c71beb4bd320.png" width="1512" height="882" class="img_ev3q"></p>
+</li>
+<li>
+<p>Copy the generated token and store it securely.</p>
+<p><img decoding="async" loading="lazy" alt="token.png" src="/assets/images/token-ac99fd414e9f030eb9e19965c641a712.png" width="1512" height="882" class="img_ev3q"></p>
+</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="create-token.png" src="/assets/images/create-token-a00516737ea72d6a8ec48dab4cc4a7a1.png" width="1512" height="883" class="img_ev3q"></p>
-<ol start="2">
-<li>Give a description for the token and change the expiration if required. Click on <code>Generate token</code>.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="gen-token.png" src="/assets/images/gen-token-0f5075e42345a6ab61647a8cd106bf6c.png" width="1512" height="882" class="img_ev3q"></p>
-<ol start="3">
-<li>Copy the generated token and store it securely.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="token.png" src="/assets/images/token-51272d6db65bff80ce2ee69024964831.png" width="1512" height="882" class="img_ev3q"></p>
 <h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="terraform-organization-and-workspace">Terraform Organization and Workspace<a href="#terraform-organization-and-workspace" class="hash-link" aria-label="Direct link to Terraform Organization and Workspace" title="Direct link to Terraform Organization and Workspace">​</a></h3>
 <ol>
-<li>To create an organization, go to the <a href="https://app.terraform.io/app/organizations" target="_blank" rel="noopener noreferrer">Organizations section in Settings</a> and click on <code>Create organization</code>.</li>
+<li>
+<p>To create an organization, go to the <a href="https://app.terraform.io/app/organizations" target="_blank" rel="noopener noreferrer">Organizations section in Settings</a> and click on <code>Create organization</code>.</p>
+<p><img decoding="async" loading="lazy" alt="terra-org.png" src="/assets/images/terra-org-456a584e374698a1755e29340a75d326.png" width="1512" height="881" class="img_ev3q"></p>
+</li>
+<li>
+<p>Fill in the organization name and email and click on <code>Create organization</code>.</p>
+<p><img decoding="async" loading="lazy" alt="create-org.png" src="/assets/images/create-org-090ccca5237c6ad623bf0bc0c25716ea.png" width="1512" height="880" class="img_ev3q"></p>
+</li>
+<li>
+<p>Now that you have created an organization, you will be presented with the following page for creating a workspace. Click on <code>CLI-Driven Workflow</code>, since the github action which we will be using for deployment, <a href="https://github.com/tailcallhq/gh-action" target="_blank" rel="noopener noreferrer">tailcallhq/gh-action</a>, uses the terraform CLI.</p>
+<p><img decoding="async" loading="lazy" alt="workflow.png" src="/assets/images/workflow-a7c9f11caf3e713b325baa6fbb5d22af.png" width="1512" height="880" class="img_ev3q"></p>
+</li>
+<li>
+<p>Fill in the workspace name. By default the project will be set to <code>Default Project</code>, if you have any project in terraform cloud, you can select that project, otherwise continue with the <code>Default Project</code> and click on <code>Create</code>.</p>
+<p><img decoding="async" loading="lazy" alt="create-workspace.png" src="/assets/images/create-workspace-7d7d25363534ff5b1d368c91ba78f0f4.png" width="1512" height="883" class="img_ev3q"></p>
+</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="terra-org.png" src="/assets/images/terra-org-4d079dafb0b5b936b2c4751b1be24193.png" width="1512" height="881" class="img_ev3q"></p>
-<ol start="2">
-<li>Fill in the organization name and email and click on <code>Create organization</code>.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="create-org.png" src="/assets/images/create-org-0307164de1fe787ed48a5fba87466f8e.png" width="1512" height="880" class="img_ev3q"></p>
-<ol start="3">
-<li>Now that you have created an organization, you will be presented with the following page for creating a workspace. Click on <code>CLI-Driven Workflow</code>, since the github action which we will be using for deployment, <a href="https://github.com/tailcallhq/gh-action" target="_blank" rel="noopener noreferrer">tailcallhq/gh-action</a>, uses the terraform CLI.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="workflow.png" src="/assets/images/workflow-f56cef134a546fd60f84157ec1239491.png" width="1512" height="880" class="img_ev3q"></p>
-<ol start="4">
-<li>Fill in the workspace name. By default the project will be set to <code>Default Project</code>, if you have any project in terraform cloud, you can select that project, otherwise continue with the <code>Default Project</code> and click on <code>Create</code>.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="create-workspace.png" src="/assets/images/create-workspace-a92dba3ea2a41e6c3d7e066f99c4572a.png" width="1512" height="883" class="img_ev3q"></p>
 <p>You now have everything required for a successful deployment of your <code>tailcall</code> server on AWS Lambda.</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="setting-up-the-project-repo">Setting up the project repo<a href="#setting-up-the-project-repo" class="hash-link" aria-label="Direct link to Setting up the project repo" title="Direct link to Setting up the project repo">​</a></h2>
 <p>Now you need to create a new repository on Github and use the Github action <code>tailcallhq/gh-action</code> to deploy it. The easiest way to get started is to create a new repository using this template repo <a href="https://github.com/tailcallhq/deploy-tailcall" target="_blank" rel="noopener noreferrer">https://github.com/tailcallhq/deploy-tailcall</a>.</p>
 <ol>
-<li>Go to the repo and click on <code>Use this template</code> and create a new repository.</li>
-</ol>
+<li>
+<p>Go to the repo and click on <code>Use this template</code> and create a new repository.</p>
 <p><img decoding="async" loading="lazy" alt="github-template.png" src="/assets/images/github-template-e87619685764c3e49a685001fed19a44.png" width="1512" height="924" class="img_ev3q"></p>
-<ol start="2">
-<li>Give your repository a name and click on <code>Create repository</code>.</li>
+</li>
+<li>
+<p>Give your repository a name and click on <code>Create repository</code>.</p>
+<p><img decoding="async" loading="lazy" alt="create-repo.png" src="/assets/images/create-repo-44237ad8b9ad599f0a4d38bdd8aee394.png" width="1512" height="882" class="img_ev3q"></p>
+</li>
+<li>
+<p>Now that you have created a repository, you will need to add the AWS access keys and Terraform API token to the repository secrets. To do that, click on <code>Settings</code>.</p>
+<p><img decoding="async" loading="lazy" alt="settings.png" src="/assets/images/settings-49273e4c000d0c12f2ce86eecaa06cd6.png" width="1512" height="882" class="img_ev3q"></p>
+</li>
+<li>
+<p>Click on <code>Secrets and variables</code> in the left side bar to expand the section and click on <code>Actions</code>.</p>
+<p><img decoding="async" loading="lazy" alt="actions.png" src="/assets/images/actions-df96d37360ea641e4468f1b83c60710a.png" width="1512" height="883" class="img_ev3q"></p>
+</li>
+<li>
+<p>Click on <code>New repository secret</code> to add a new secret.</p>
+<p><img decoding="async" loading="lazy" alt="new-secret.png" src="/assets/images/new-secret-7db80ac96ce5eca3faf81575c09f0be7.png" width="1512" height="882" class="img_ev3q"></p>
+</li>
+<li>
+<p>Add the secret name as <code>AWS_ACCESS_KEY_ID</code> or any name you prefer and paste the AWS access key ID that you generated earlier in the value field. Click on <code>Add secret</code> to save the secret.</p>
+<p><img decoding="async" loading="lazy" alt="secret.png" src="/assets/images/secret-c16b07e285a30561c1ac0176ffa0c2d5.png" width="1512" height="881" class="img_ev3q"></p>
+</li>
+<li>
+<p>Similarly add the AWS secret access key and the Terraform API token as secrets to the repository.</p>
+<p><img decoding="async" loading="lazy" alt="other-secrets.png" src="/assets/images/other-secrets-0b28a7e60fb17292a2d3a157c4a3bc64.png" width="1512" height="879" class="img_ev3q"></p>
+</li>
 </ol>
-<p><img decoding="async" loading="lazy" alt="create-repo.png" src="/assets/images/create-repo-03e8f3a079f47b44d8ea86c50281bb77.png" width="1512" height="882" class="img_ev3q"></p>
-<ol start="3">
-<li>Now that you have created a repository, you will need to add the AWS access keys and Terraform API token to the repository secrets. To do that, click on <code>Settings</code>.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="settings.png" src="/assets/images/settings-6faa6424c4ac5c949d6b330a4efa9d88.png" width="1512" height="882" class="img_ev3q"></p>
-<ol start="4">
-<li>Click on <code>Secrets and variables</code> in the left side bar to expand the section and click on <code>Actions</code>.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="actions.png" src="/assets/images/actions-4908d69a175c4731ebd66be3b0c64743.png" width="1512" height="883" class="img_ev3q"></p>
-<ol start="5">
-<li>Click on <code>New repository secret</code> to add a new secret.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="new-secret.png" src="/assets/images/new-secret-a18ad3f504168c33560f22198170a287.png" width="1512" height="882" class="img_ev3q"></p>
-<ol start="6">
-<li>Add the secret name as <code>AWS_ACCESS_KEY_ID</code> or any name you prefer and paste the AWS access key ID that you generated earlier in the value field. Click on <code>Add secret</code> to save the secret.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="secret.png" src="/assets/images/secret-7960d2df9ba9b48cea9f3ac1b83bcb5d.png" width="1512" height="881" class="img_ev3q"></p>
-<ol start="7">
-<li>Similarly add the AWS secret access key and the Terraform API token as secrets to the repository.</li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="other-secrets.png" src="/assets/images/other-secrets-d6b0066f5891ecd7f314a7d0d4410d84.png" width="1512" height="879" class="img_ev3q"></p>
 <p>You are now ready to deploy your <code>tailcall</code> server on AWS Lambda using terraform.</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="deploy-on-aws-lambda-using-terraform">Deploy on AWS Lambda using terraform<a href="#deploy-on-aws-lambda-using-terraform" class="hash-link" aria-label="Direct link to Deploy on AWS Lambda using terraform" title="Direct link to Deploy on AWS Lambda using terraform">​</a></h2>
 <p>In this example, we will deploy a simple <code>graphQL</code> server using <code>tailcall</code>, on AWS Lambda using terraform, which will convert the JSONPlaceholder REST API to a GraphQL API.</p>
