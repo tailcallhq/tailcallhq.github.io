@@ -13,15 +13,15 @@ Follow the steps below to generate an API Key:
 
 1. Go to [Fly.io dashboard](https://fly.io/dashboard).
 
-![dashboard.png](../static/images/fly/dashboard.png)
+![dashboard.png](../static/images/docs/fly/dashboard.png)
 
 2. Click on `Tokens` in the left sidebar.
 
-![tokens.png](../static/images/fly/tokens.png)
+![tokens.png](../static/images/docs/fly/tokens.png)
 
 3. Here, you can optionally provide a name and the expiry for the token. Click on `Create Organization Token` to generate the token.
 
-![token.png](../static/images/fly/token.png)
+![token.png](../static/images/docs/fly/token.png)
 
 4. Copy the generated token and store it securely. You need to provide this token as input to the `tailcallhq/gh-action` action, when deploying to Fly.
 
@@ -31,27 +31,27 @@ Now you need to create a new repository on Github and use the Github action `tai
 
 1. Go to the repo and click on `Use this template` and create a new repository.
 
-![github-template.png](../static/images/fly/github-template.png)
+![github-template.png](../static/images/docs/fly/github-template.png)
 
 2. Give your repository a name and click on `Create repository`.
 
-![create-repo.png](../static/images/fly/create-repo.png)
+![create-repo.png](../static/images/docs/fly/create-repo.png)
 
 3. Now that you have created a repository, you will need to add the Fly API token to the repository secrets. To do that, click on `Settings`.
 
-![settings.png](../static/images/fly/settings.png)
+![settings.png](../static/images/docs/fly/settings.png)
 
 4. Click on `Secrets and variables` in the left side bar to expand the section and click on `Actions`.
 
-![actions.png](../static/images/fly/actions.png)
+![actions.png](../static/images/docs/fly/actions.png)
 
 5. Click on `New repository secret` to add a new secret.
 
-![new-repo-secret.png](../static/images/fly/new-repo-secret.png)
+![new-repo-secret.png](../static/images/docs/fly/new-repo-secret.png)
 
 6. Add the secret name as `FLY_API_TOKEN` or any name you prefer and paste the Fly API token that you generated earlier in the value field. Click on `Add secret` to save the secret.
 
-![secret.png](../static/images/fly/secret.png)
+![secret.png](../static/images/docs/fly/secret.png)
 
 You are now ready to deploy your `tailcall` server on Fly.
 

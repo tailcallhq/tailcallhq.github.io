@@ -71,7 +71,7 @@ Now you need to create a new repository on Github and use the Github action `tai
 
 1. Go to the repo and click on `Use this template` and create a new repository.
 
-![github-template.png](../static/images/fly/github-template.png)
+![github-template.png](../static/images/docs/fly/github-template.png)
 
 2. Give your repository a name and click on `Create repository`.
 
