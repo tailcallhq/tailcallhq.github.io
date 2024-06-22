@@ -11,19 +11,19 @@ Follow the steps below to generate the Access Keys:
 
 1. Go to [AWS Management Console](https://console.aws.amazon.com/) and click the drop down menu in the top right corner and Click on `Security credentials`.
 
-![credentials.png](../static/images/aws/credentials.png)
+   ![credentials.png](../static/images/aws/credentials.png)
 
 2. Scroll down to the `Access Keys` section and click on `Create access key`.
 
-![access-key.png](../static/images/aws/access-key.png)
+   ![access-key.png](../static/images/aws/access-key.png)
 
 3. You will get the following warning since we are trying to create access keys for the root user. For this guide, we will continue with creating the access keys. If you do not want to continue with the root user, you can learn more about the AWS security credentials [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html) and managing access keys [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html?icmpid=docs_iam_console#Using_CreateAccessKey).
 
-![warning.png](../static/images/aws/warning.png)
+   ![warning.png](../static/images/aws/warning.png)
 
 4. Once you click on `Create access key`, you will get the `Access key ID` and `Secret access key`. Make sure to download the `CSV` file and store it securely.
 
-![access-keys.png](../static/images/aws/access-keys.png)
+   ![access-keys.png](../static/images/aws/access-keys.png)
 
 ## Terraform setup
 
@@ -35,33 +35,33 @@ Follow these steps to generate the Terraform API token:
 
 1. Go to the [Tokens section in Settings](https://app.terraform.io/app/settings/tokens) and click on `Create an API token`.
 
-![create-token.png](../static/images/aws/create-token.png)
+   ![create-token.png](../static/images/aws/create-token.png)
 
 2. Give a description for the token and change the expiration if required. Click on `Generate token`.
 
-![gen-token.png](../static/images/aws/gen-token.png)
+   ![gen-token.png](../static/images/aws/gen-token.png)
 
 3. Copy the generated token and store it securely.
 
-![token.png](../static/images/aws/token.png)
+   ![token.png](../static/images/aws/token.png)
 
 ### Terraform Organization and Workspace
 
 1. To create an organization, go to the [Organizations section in Settings](https://app.terraform.io/app/organizations) and click on `Create organization`.
 
-![terra-org.png](../static/images/aws/terra-org.png)
+   ![terra-org.png](../static/images/aws/terra-org.png)
 
 2. Fill in the organization name and email and click on `Create organization`.
 
-![create-org.png](../static/images/aws/create-org.png)
+   ![create-org.png](../static/images/aws/create-org.png)
 
 3. Now that you have created an organization, you will be presented with the following page for creating a workspace. Click on `CLI-Driven Workflow`, since the github action which we will be using for deployment, [tailcallhq/gh-action](https://github.com/tailcallhq/gh-action), uses the terraform CLI.
 
-![workflow.png](../static/images/aws/workflow.png)
+   ![workflow.png](../static/images/aws/workflow.png)
 
 4. Fill in the workspace name. By default the project will be set to `Default Project`, if you have any project in terraform cloud, you can select that project, otherwise continue with the `Default Project` and click on `Create`.
 
-![create-workspace.png](../static/images/aws/create-workspace.png)
+   ![create-workspace.png](../static/images/aws/create-workspace.png)
 
 You now have everything required for a successful deployment of your `tailcall` server on AWS Lambda.
 
@@ -71,31 +71,31 @@ Now you need to create a new repository on Github and use the Github action `tai
 
 1. Go to the repo and click on `Use this template` and create a new repository.
 
-![github-template.png](../static/images/docs/fly/github-template.png)
+   ![github-template.png](../static/images/docs/fly/github-template.png)
 
 2. Give your repository a name and click on `Create repository`.
 
-![create-repo.png](../static/images/aws/create-repo.png)
+   ![create-repo.png](../static/images/aws/create-repo.png)
 
 3. Now that you have created a repository, you will need to add the AWS access keys and Terraform API token to the repository secrets. To do that, click on `Settings`.
 
-![settings.png](../static/images/aws/settings.png)
+   ![settings.png](../static/images/aws/settings.png)
 
 4. Click on `Secrets and variables` in the left side bar to expand the section and click on `Actions`.
 
-![actions.png](../static/images/aws/actions.png)
+   ![actions.png](../static/images/aws/actions.png)
 
 5. Click on `New repository secret` to add a new secret.
 
-![new-secret.png](../static/images/aws/new-secret.png)
+   ![new-secret.png](../static/images/aws/new-secret.png)
 
 6. Add the secret name as `AWS_ACCESS_KEY_ID` or any name you prefer and paste the AWS access key ID that you generated earlier in the value field. Click on `Add secret` to save the secret.
 
-![secret.png](../static/images/aws/secret.png)
+   ![secret.png](../static/images/aws/secret.png)
 
 7. Similarly add the AWS secret access key and the Terraform API token as secrets to the repository.
 
-![other-secrets.png](../static/images/aws/other-secrets.png)
+   ![other-secrets.png](../static/images/aws/other-secrets.png)
 
 You are now ready to deploy your `tailcall` server on AWS Lambda using terraform.
 
