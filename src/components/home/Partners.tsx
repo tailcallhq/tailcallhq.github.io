@@ -13,16 +13,16 @@ const Partners = (): JSX.Element => {
       </div>
       <Marquee autoFill>
         <div className="hidden sm:flex space-x-SPACE_16 mt-SPACE_10 overflow-hidden">
-          {partnerImages.map((partner) => (
-            <div key={partner.id} className="h-20">
+          {partnerImages.map((partner, index) => (
+            <div key={index} className="h-20">
               <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
             </div>
           ))}
         </div>
       </Marquee>
       <div className="sm:hidden flex items-center justify-around flex-wrap mt-SPACE_06 space-y-SPACE_02">
-        {partnerImages.map((partner) => (
-          <div key={partner.id} className="h-20">
+        {partnerImages.map((partner, index) => (
+          <div key={index} className="h-20">
             <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
           </div>
         ))}
