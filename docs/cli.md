@@ -139,10 +139,10 @@ The inputs section specifies the sources from which the GraphQL configuration ca
 
     ```json
     {
-    "curl": {
-        "src": "https://jsonplaceholder.typicode.com/posts/1",
-        "fieldName": "post"
-    },
+        "curl": {
+            "src": "https://jsonplaceholder.typicode.com/posts/1",
+            "fieldName": "post"
+        }
     }
     ```
 
