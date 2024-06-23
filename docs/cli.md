@@ -131,115 +131,134 @@ To generate a TailCall GraphQL configuration, pass a configuration file to the g
 }
 ```
 
-**Configuration File Structure**
-
-**Inputs**
+### Inputs
 
 The inputs section specifies the sources from which the GraphQL configuration can be generated. Each source can be a REST endpoint or a protobuf file.
 
-**REST** - For REST endpoints, provide the endpoint URL (src), the field name in the configuration (fieldName) which will be used as field name in operation type.
+1. **REST** - For REST endpoints, provide the endpoint URL (src), the field name in the configuration (fieldName) which will be used as field name in operation type.
 
-```json
-{
-  "curl": {
-    "src": "https://jsonplaceholder.typicode.com/posts/1",
-    "fieldName": "post"
-  },
-}
-```
+    ```json
+    {
+    "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts/1",
+        "fieldName": "post"
+    },
+    }
+    ```
 
-for above input config following field will be generated in operation type.
- 
-```graphql {2} showLineNumbers
-    type Query {
-        # field name is taken from the above json config.
-        post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
+    for above input config following field will be generated in operation type.
+    
+    ```graphql {2} showLineNumbers
+        type Query {
+            # field name is taken from the above json config.
+            post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
+        }
+
+    ```
+
+    :::note
+
+     It's essential to ensure that each field name is unique across the entire configuration to prevent overwriting previous definitions.
+    
+    :::
+
+2. **Proto** - For protobuf files, specify the path to the proto file (src).
+
+    ```json
+    {
+    "proto": {
+        "src": "./path/to/file.proto"
+    },
+    }
+    ```
+
+### Preset
+
+The `preset` section configures various transformers that modify the generated configuration.
+
+1. **mergeType**: The `Merge Type Transformer` merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between 0.0 and 1.0 to determine if two types can be merged or not. The defaults to 1.0.
+
+    for example, following types `T1` and `T2` are exactly similar and with threshold value of 1.0, they can be merged into single type called `M1`
+
+    ```graphql {14} showLineNumbers title="Merging type T1 and T2 into M1"
+
+    type T1 {
+        id: ID,
+        firstName: String,
+        lastName: String,
     }
 
-```
+    type T2 {
+        id: ID,
+        firstName: String,
+        lastName: String,
+    }
 
-**Proto** - For protobuf files, specify the path to the proto file (src).
+    # T1 and T2 are merged into M1.
+    type M1 {
+        id: ID,
+        firstName: String,
+        lastName: String,
+    }
+    ```
 
-```json
-{
-  "proto": {
-    "src": "./path/to/file.proto"
-  },
-}
-```
+2. **consolidateURL**: The `Consolidate URL Transformer` finds the most common base URL among multiple REST endpoints and uses this URL in the upstream directive. It takes a threshold value between 0.0 and 1.0 to figure out the most common endpoint. The defaults to 0.5.
 
-**Preset** - The `preset` section configures various transformers that modify the generated configuration.
-- **mergeType**: The `Merge Type Transformer` merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between 0.0 and 1.0 to determine if two types can be merged or not. The defaults to 1.0.
+    `for example, Query type has three baseURL's, if we use consolidateURL transformer with 0.5 threshold. it will pick the most common baseUrl which is `http://jsonplaceholder.typicode.com` and will add it to the upstream and clean the baseURL's from query type..
 
-for example, following types `T1` and `T2` are exactly similar and with threshold value of 1.0, they can be merged into single type called `M1`
+    ```graphql showLineNumbers
+    schema @server(hostname: "0.0.0.0", port: 8000) @upstream(httpCache: 42) {
+    query: Query
+    }
 
-```graphql {14} showLineNumbers title="Merging type T1 and T2 into M1"
+    type Query {
+        post(id: Int!): Post @http(baseURL: "http://jsonplaceholder.typicode.com", path: "/posts/{{.args.id}}")
+        posts: [Post] @http(baseURL: "http://jsonplaceholder.typicode.com", path: "/posts")
+        user(id: Int!): User @http(baseURL: "http://jsonplaceholder.typicode.com", path: "/users/{{.args.id}}")
+        users: [User] @http(baseURL: "http://jsonplaceholder-1.typicode.com", path: "/users")
+    }
+    ```
 
-type T1 {
-    id: ID,
-    firstName: String,
-    lastName: String,
-}
-
-type T2 {
-    id: ID,
-    firstName: String,
-    lastName: String,
-}
-
-# T1 and T2 are merged into M1.
-type M1 {
-    id: ID,
-    firstName: String,
-    lastName: String,
-}
-```
-
-- **consolidateURL**: The `Consolidate URL Transformer` finds the most common base URL among multiple REST endpoints and uses this URL in the upstream directive. It takes a threshold value between 0.0 and 1.0 to figure out the most common endpoint. The defaults to 0.5.
-
-for example, Query type has three baseURL's, if we use consolidateURL transformer with 0.5 threshold. it will pick the most common baseUrl which is `http://jsonplaceholder.typicode.com` and will add it to the upstream and clean the baseURL's from query type..
-
-```graphql showLineNumbers
-schema @server(hostname: "0.0.0.0", port: 8000) @upstream(httpCache: 42) {
-  query: Query
-}
-
-type Query {
-  post(id: Int!): Post @http(baseURL: "http://jsonplaceholder.typicode.com", path: "/posts/{{.args.id}}")
-  posts: [Post] @http(baseURL: "http://jsonplaceholder.typicode.com", path: "/posts")
-  user(id: Int!): User @http(baseURL: "http://jsonplaceholder.typicode.com", path: "/users/{{.args.id}}")
-  users: [User] @http(baseURL: "http://jsonplaceholder-1.typicode.com", path: "/users")
-}
-```
-
-to
+    to
 
 
-```graphql
-schema @server(hostname: "0.0.0.0", port: 8000) @upstream(baseURL: "http://jsonplaceholder.typicode.com",httpCache: 42) {
-  query: Query
-}
+    ```graphql showLineNumbers
+    schema @server(hostname: "0.0.0.0", port: 8000) @upstream(baseURL: "http://jsonplaceholder.typicode.com",httpCache: 42) {
+    query: Query
+    }
 
-type Query {
-  post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
-  posts: [Post] @http(path: "/posts")
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
-  users: [User] @http(baseURL: "http://jsonplaceholder-1.typicode.com", path: "/users")
-}
-```
+    type Query {
+        post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
+        posts: [Post] @http(path: "/posts")
+        user(id: Int!): User @http(path: "/users/{{.args.id}}")
+        users: [User] @http(baseURL: "http://jsonplaceholder-1.typicode.com", path: "/users")
+    }
+    ```
 
 
-**Output**
+### Output
 
 The output section specifies the path and format for the generated GraphQL configuration.
 - **path**: The file path where the output will be saved.
-- **format**: The format of the output file. Supported formats are Json, Yml and GraphQL.
+- **format**: The format of the output file. Supported formats are `Json`, `Yml` and `GraphQL`.
 
-**Schema**
+### Schema
 
-The schema section defines the root type name for the schema. In this example, the root type for queries is specified as `Query`.
+The schema section defines allows you to define the type name for opeartion types in configuration.
+```json
+  "schema": {
+    "query": "MainRootType"
+  }
+```
 
-**Example**
+For example, with the above configuration, the query operation type with "MainQuery" as the type name will be generated as follows:
+
+```graphql {1} showLineNumbers
+    type MainRootType {
+        post(id: Int!): Post @http(baseURL: "http://jsonplaceholder.typicode.com", path: "/posts/{{.args.id}}")
+    }
+```
+### Example
 ```bash
 tailcall gen path_to_configuration_file.json
 ```
