@@ -96,18 +96,93 @@ This command prompts for file creation and configuration, creating the following
 
 ## gen
 
-The `gen` command in the TailCall CLI is designed for generating GraphQL configurations from one or more source files.
+The `gen` command in the TailCall CLI is designed for generating GraphQL configurations from one or more sources such as protobuf files and REST Endpoints.
 
-### --input
+**Usage:**
 
-Supported input formats include `PROTO`.
+To generate a TailCall GraphQL configuration, pass a configuration file to the gen command. The configuration file should be in JSON format, as shown in the example below:
 
-### --output
+```json
+{
+  "inputs": [
+    {
+      "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts/1",
+        "fieldName": "post"
+      }
+    },
+    {
+      "proto": {
+        "src": "./news.proto"
+      }
+    }
+  ],
+  "preset": {
+    "mergeType": 1,
+    "consolidateURL": 0.5
+  },
+  "output": {
+    "path": "./output.graphql",
+    "format": "graphQL"
+  },
+  "schema": {
+    "query": "Query"
+  }
+}
+```
 
-Output is same as [--format](#--format), it supports `graphql`, `json` and `yaml` as output type
+**Configuration File Structure**
 
-**Example:**
+**Inputs**
 
+The inputs section specifies the sources from which the GraphQL configuration can be generated. Each source can be a REST endpoint or a protobuf file.
+
+**REST** - For REST endpoints, provide the endpoint URL (src), the field name in the configuration (fieldName) which will be used as field name in operation type.
+
+```json
+{
+  "curl": {
+    "src": "https://jsonplaceholder.typicode.com/posts/1",
+    "fieldName": "post"
+  },
+}
+```
+
+for above input config following field will be generated in operation type.
+ 
+```graphql
+    type Query {
+        // field name is taken from the above json config.
+        post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
+    }
+
+```
+
+**Proto** - For protobuf files, specify the path to the proto file (src).
+
+```json
+{
+  "proto": {
+    "src": "./path/to/file.proto"
+  },
+}
+```
+
+**Preset** - The `preset` section configures various transformers that modify the generated configuration.
+- **mergeType**: The `Merge Type Transformer` merges types generated in the configuration. It takes a threshold value between 0.0 and 1.0 to determine if two types can be merged. The default is 1.0.
+- **consolidateURL**: The `Consolidate URL Transformer` finds the most common base URL among multiple REST endpoints and uses this URL in the upstream directive. It takes a threshold value between 0.0 and 1.0 to figure out the most common endpoint. The default is 0.5.
+
+**Output**
+
+The output section specifies the path and format for the generated GraphQL configuration.
+- **path**: The file path where the output will be saved.
+- **format**: The format of the output file. Supported formats are Json, Yml and GraphQL.
+
+**Schema**
+
+The schema section defines the root type name for the schema. In this example, the root type for queries is specified as `Query`.
+
+**Example**
 ```bash
-tailcall gen <file1> <file2> ... <fileN> --input proto --output gql
+tailcall gen path_to_configuration_file.json
 ```
