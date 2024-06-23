@@ -197,6 +197,38 @@ type M1 {
 
 - **consolidateURL**: The `Consolidate URL Transformer` finds the most common base URL among multiple REST endpoints and uses this URL in the upstream directive. It takes a threshold value between 0.0 and 1.0 to figure out the most common endpoint. The defaults to 0.5.
 
+for example, Query type has three baseURL's, if we use consolidateURL transformer with 0.5 threshold. it will pick the most common baseUrl which is `http://jsonplaceholder.typicode.com` and will add it to the upstream and clean the baseURL's from query type..
+
+```graphql
+schema @server(hostname: "0.0.0.0", port: 8000) @upstream(httpCache: 42) {
+  query: Query
+}
+
+type Query {
+  post(id: Int!): Post @http(baseURL: "http://jsonplaceholder.typicode.com", path: "/posts/{{.args.id}}")
+  posts: [Post] @http(baseURL: "http://jsonplaceholder.typicode.com", path: "/posts")
+  user(id: Int!): User @http(baseURL: "http://jsonplaceholder.typicode.com", path: "/users/{{.args.id}}")
+  users: [User] @http(baseURL: "http://jsonplaceholder-1.typicode.com", path: "/users")
+}
+```
+
+to
+
+
+```graphql
+schema @server(hostname: "0.0.0.0", port: 8000) @upstream(baseURL: "http://jsonplaceholder.typicode.com",httpCache: 42) {
+  query: Query
+}
+
+type Query {
+  post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
+  posts: [Post] @http(path: "/posts")
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  users: [User] @http(baseURL: "http://jsonplaceholder-1.typicode.com", path: "/users")
+}
+```
+
+
 **Output**
 
 The output section specifies the path and format for the generated GraphQL configuration.
