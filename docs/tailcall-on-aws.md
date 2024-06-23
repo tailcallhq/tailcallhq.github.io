@@ -103,7 +103,7 @@ You are now ready to deploy your `tailcall` server on AWS Lambda using terraform
 
 In this example, we will deploy a simple `graphQL` server using `tailcall`, on AWS Lambda using terraform, which will convert the JSONPlaceholder REST API to a GraphQL API.
 
-Below is the config present in the template repo, that will be used for this deployment. You can learn more about this [here](https://tailcall.run/docs/getting_started/configuration/).
+Below is the config present in the template repo, that will be used for this deployment. You can learn more about this [here](getting-started.mdx#writing-a-graphql-configuration).
 
 ```graphql
 schema

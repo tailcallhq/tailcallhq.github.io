@@ -49,7 +49,7 @@ Next, create a new repository on GitHub and use the `tailcallhq/gh-action` GitHu
 
    ![new-repo-secret.png](../static/images/docs/fly/new-repo-secret.png)
 
-6. Name the secret `FLY_API_TOKEN` or any preferred name, and paste the Fly.io API token you generated [earlier](#generate-api-key-for-fly) into the value field. Click on `Add secret` to save it.
+6. Name the secret `FLY_API_TOKEN` or any preferred name, and paste the Fly.io API token you generated [earlier](#generate-api-key-for-flyio) into the value field. Click on `Add secret` to save it.
 
    ![secret.png](../static/images/docs/fly/secret.png)
 
