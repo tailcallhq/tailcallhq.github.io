@@ -150,7 +150,7 @@ The inputs section specifies the sources from which the GraphQL configuration ca
 
 for above input config following field will be generated in operation type.
  
-```graphql
+```graphql {2} showLineNumbers
     type Query {
         # field name is taken from the above json config.
         post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
@@ -173,7 +173,7 @@ for above input config following field will be generated in operation type.
 
 for example, following types `T1` and `T2` are exactly similar and with threshold value of 1.0, they can be merged into single type called `M1`
 
-```graphql
+```graphql {14} showLineNumbers title="Merging type T1 and T2 into M1"
 
 type T1 {
     id: ID,
@@ -199,7 +199,7 @@ type M1 {
 
 for example, Query type has three baseURL's, if we use consolidateURL transformer with 0.5 threshold. it will pick the most common baseUrl which is `http://jsonplaceholder.typicode.com` and will add it to the upstream and clean the baseURL's from query type..
 
-```graphql
+```graphql showLineNumbers
 schema @server(hostname: "0.0.0.0", port: 8000) @upstream(httpCache: 42) {
   query: Query
 }
