@@ -152,7 +152,7 @@ for above input config following field will be generated in operation type.
  
 ```graphql
     type Query {
-        // field name is taken from the above json config.
+        # field name is taken from the above json config.
         post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
     }
 
@@ -169,8 +169,33 @@ for above input config following field will be generated in operation type.
 ```
 
 **Preset** - The `preset` section configures various transformers that modify the generated configuration.
-- **mergeType**: The `Merge Type Transformer` merges types generated in the configuration. It takes a threshold value between 0.0 and 1.0 to determine if two types can be merged. The default is 1.0.
-- **consolidateURL**: The `Consolidate URL Transformer` finds the most common base URL among multiple REST endpoints and uses this URL in the upstream directive. It takes a threshold value between 0.0 and 1.0 to figure out the most common endpoint. The default is 0.5.
+- **mergeType**: The `Merge Type Transformer` merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between 0.0 and 1.0 to determine if two types can be merged or not. The defaults to 1.0.
+
+for example, following types `T1` and `T2` are exactly similar and with threshold value of 1.0, they can be merged into single type called `M1`
+
+```graphql
+
+type T1 {
+    id: ID,
+    firstName: String,
+    lastName: String,
+}
+
+type T2 {
+    id: ID,
+    firstName: String,
+    lastName: String,
+}
+
+# T1 and T2 are merged into M1.
+type M1 {
+    id: ID,
+    firstName: String,
+    lastName: String,
+}
+```
+
+- **consolidateURL**: The `Consolidate URL Transformer` finds the most common base URL among multiple REST endpoints and uses this URL in the upstream directive. It takes a threshold value between 0.0 and 1.0 to figure out the most common endpoint. The defaults to 0.5.
 
 **Output**
 
