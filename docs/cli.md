@@ -244,7 +244,7 @@ The output section specifies the path and format for the generated GraphQL confi
 
 ### Schema
 
-The schema section defines allows you to define the type name for opeartion types in configuration.
+The schema section defines allows you to define the type name for operation types in configuration.
 ```json
   "schema": {
     "query": "MainRootType"
