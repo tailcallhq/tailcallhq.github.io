@@ -56,6 +56,7 @@ export const features: Feature[] = [
         transformations or build a completely new set of aggregation APIs.
       </>
     ),
+    alt: "Orchestration",
   },
   {
     logo: require("@site/static/images/home/governance.png").default,
@@ -67,6 +68,7 @@ export const features: Feature[] = [
         true <Highlight text="declarative approach" /> to managing APIs.
       </>
     ),
+    alt: "Governance",
   },
   {
     logo: require("@site/static/images/home/efficiency.png").default,
@@ -78,6 +80,7 @@ export const features: Feature[] = [
         opens up opportunities to use in ultra-low latency workloads.
       </>
     ),
+    alt: "Efficiency",
   },
   // {
   //   logo: require("@site/static/images/home/resiliency.png").default,
@@ -104,6 +107,7 @@ export const features: Feature[] = [
         subsequent actions Tailcall should execute.
       </>
     ),
+    alt: "Extendability",
   },
 ]
 

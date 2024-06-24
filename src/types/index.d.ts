@@ -8,6 +8,7 @@ type Feature = {
   logo: string
   title: string
   content: React.JSX.Element
+  alt: string
 }
 
 type MoreFeatures = {

@@ -25,6 +25,33 @@ export default {
         href: "https://codesandbox.io",
       },
     },
+    {
+      tagName: "script",
+      attributes: {
+        type: "application/ld+json",
+      },
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org/",
+        "@type": "WebSite",
+        name: "Tailcall",
+        url: "https://tailcall.run/",
+        author: {
+          "@type": "Organization",
+          name: "Tailcall, Inc.",
+          url: "https://tailcall.run/",
+          logo: "https://tailcall.run/icons/companies/taicall.svg",
+        },
+        description: "Tailcall is a GraphQL platform engineered for scale.",
+        publisher: {
+          "@type": "Organization",
+          name: "Tailcall, Inc.",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://tailcall.run/icons/companies/taicall.svg",
+          },
+        },
+      }),
+    },
   ],
   url: "https://tailcall.run",
   baseUrl: "/",
