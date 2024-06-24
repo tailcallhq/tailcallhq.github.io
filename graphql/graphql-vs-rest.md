@@ -1,7 +1,7 @@
 ---
 title: "GraphQL vs REST: A Detailed Comparison for Modern API Design"
 sidebar_label: GraphQL vs REST
-description: "Explore the differences in our GraphQL vs REST guide. Learn how GraphQL's efficient fetching and real-time capabilities surpass REST, and choose the best API for your 2024 project."
+description: "Learn the differences in GraphQL vs REST, how GraphQL's efficient fetching capabilities surpass REST, and choose the best API for 2024."
 slug: graphql-vs-rest-api-comparison
 ---
 
