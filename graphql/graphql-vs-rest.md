@@ -92,11 +92,11 @@ It’s possible to use both GraphQL and REST within the same application, levera
 
 1. **Analyze Existing RESTful API**: Understand the current data model and endpoint structure.
 2. **Define GraphQL Schema**: Write a schema that represents the data model and required operations.
-3. **Create Resolvers**: Develop resolver functions to fetch data from REST endpoints or other data sources. In Tailcall resolvers can be defined using the `@http`, `@grpc`, `@graphql` and `@expr` directive. Check out the [Tailcall GraphQL Directives](/docs/directives.md) for more information.
+3. **Create Resolvers**: Develop resolver functions to fetch data from REST endpoints or other data sources. In Tailcall resolvers can be defined using the `@http`, `@grpc`, `@graphql` and `@expr` directive. Check out the [Tailcall GraphQL Directives](/docs/tailcall-dsl-graphql-custom-directives/) for more information.
 4. **Integrate**: Set up a GraphQL server alongside your RESTful services, allowing clients to query data through both APIs.
 
 ## Conclusion
 
 Both GraphQL and REST have their advantages and use cases. While REST is great for simpler applications with clearly defined endpoints, GraphQL offers a more flexible and efficient solution for complex and data-intensive applications. By understanding their differences and leveraging their strengths, you can design robust APIs that meet the needs of modern applications.
 
-For quickly creating a GraphQL server that converts REST APIs to GraphQL, check out [Getting Started with Tailcall](../docs/getting-started.mdx).
+For quickly creating a GraphQL server that converts REST APIs to GraphQL, check out [Getting Started with Tailcall](/docs).
