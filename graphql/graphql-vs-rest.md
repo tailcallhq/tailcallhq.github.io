@@ -25,7 +25,7 @@ GraphQL and REST represent two different methodologies for developing APIs that 
 
 ## What is GraphQL?
 
-GraphQL is a query language for APIs and a runtime for executing those queries. It allows clients to request exactly the data they need, avoiding over-fetching and under-fetching issues common with REST. Developed by Facebook in 2012 and open-sourced in 2015, GraphQL provides a more flexible and efficient approach to API design.
+[GraphQL](./graphql.md) is a query language for APIs and a runtime for executing those queries. It allows clients to request exactly the data they need, avoiding over-fetching and under-fetching issues common with REST. Developed by Facebook in 2012 and open-sourced in 2015, GraphQL provides a more flexible and efficient approach to API design.
 
 ### Key Characteristics of GraphQL:
 
@@ -98,3 +98,5 @@ It’s possible to use both GraphQL and REST within the same application, levera
 ## Conclusion
 
 Both GraphQL and REST have their advantages and use cases. While REST is great for simpler applications with clearly defined endpoints, GraphQL offers a more flexible and efficient solution for complex and data-intensive applications. By understanding their differences and leveraging their strengths, you can design robust APIs that meet the needs of modern applications.
+
+For quickly creating a GraphQL server that converts REST APIs to GraphQL, check out [Getting Started with Tailcall](../docs/getting-started.mdx).
