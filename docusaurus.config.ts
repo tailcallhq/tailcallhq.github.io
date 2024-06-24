@@ -190,6 +190,7 @@ export default {
         id: "graphql",
         path: "graphql",
         routeBasePath: "graphql",
+        showLastUpdateTime: true,
         sidebarPath: require.resolve("./graphql/sidebar.ts"),
       },
     ],
