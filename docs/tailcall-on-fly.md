@@ -1,65 +1,69 @@
 ---
-title: Deploy Tailcall GraphQL on Fly
+title: Deploy Tailcall GraphQL on Fly.io
 sidebar_label: Deploy on Fly
-description: "Learn how to deploy Tailcall GraphQL servers on Fly.io with GitHub Actions quickly and securely."
+description: "Learn how to deploy Tailcall GraphQL servers on Fly.io using GitHub Actions quickly and securely."
 slug: deploy-tailcall-graphql-fly-actions
 ---
 
-Before deploying `tailcall` on fly, you need to generate an API Key from Fly.io. If you don't have an account on Fly.io, you can create one [here](https://fly.io/app/sign-up).
+To deploy `tailcall` on Fly.io, you first need to generate an API key from Fly.io. If you don't already have an account, you can create one [here](https://fly.io/app/sign-up).
 
-## Generate API Key for Fly
+## Generate API Key for Fly.io
 
-Follow the steps below to generate an API Key:
+Follow these steps to generate an API key:
 
-1. Go to [Fly.io dashboard](https://fly.io/dashboard).
+1. Go to the [Fly.io dashboard](https://fly.io/dashboard).
 
-![dashboard.png](../static/images/fly/dashboard.png)
+   ![dashboard.png](../static/images/docs/fly/dashboard.png)
 
 2. Click on `Tokens` in the left sidebar.
 
-![tokens.png](../static/images/fly/tokens.png)
+   ![tokens.png](../static/images/docs/fly/tokens.png)
 
-3. Here, you can optionally provide a name and the expiry for the token. Click on `Create Organization Token` to generate the token.
+3. Optionally, provide a name and an expiry date for the token. Click on `Create Organization Token` to generate the token.
 
-![token.png](../static/images/fly/token.png)
+   ![token.png](../static/images/docs/fly/token.png)
 
-4. Copy the generated token and store it securely. You need to provide this token as input to the `tailcallhq/gh-action` action, when deploying to Fly.
+4. Copy the generated token and store it securely. You will need this token as input to the [tailcallhq/gh-action](https://github.com/tailcallhq/gh-action) when deploying to Fly.io.
 
-## Setting up the project repo
+## Setting Up the Project Repository
 
-Now you need to create a new repository on Github and use the Github action `tailcallhq/gh-action` to deploy it. The easiest way to get started is to create a new repository using this template repo [https://github.com/tailcallhq/deploy-tailcall](https://github.com/tailcallhq/deploy-tailcall).
+Next, create a new repository on GitHub and use the `tailcallhq/gh-action` GitHub action to deploy it. The easiest way to get started is by using this template repository: [https://github.com/tailcallhq/deploy-tailcall](https://github.com/tailcallhq/deploy-tailcall).
 
-1. Go to the repo and click on `Use this template` and create a new repository.
+1. Go to the repository and click on `Use this template` to create a new repository.
 
-![github-template.png](../static/images/fly/github-template.png)
+   ![github-template.png](../static/images/docs/fly/github-template.png)
 
-2. Give your repository a name and click on `Create repository`.
+2. Name your repository and click on `Create repository`.
 
-![create-repo.png](../static/images/fly/create-repo.png)
+   ![create-repo.png](../static/images/docs/fly/create-repo.png)
 
-3. Now that you have created a repository, you will need to add the Fly API token to the repository secrets. To do that, click on `Settings`.
+3. After creating the repository, add the Fly.io API token to the repository secrets. To do this, click on `Settings`.
 
-![settings.png](../static/images/fly/settings.png)
+   ![settings.png](../static/images/docs/fly/settings.png)
 
-4. Click on `Secrets and variables` in the left side bar to expand the section and click on `Actions`.
+4. Click on `Secrets and variables` in the left sidebar to expand the section, then click on `Actions`.
 
-![actions.png](../static/images/fly/actions.png)
+   ![actions.png](../static/images/docs/fly/actions.png)
 
 5. Click on `New repository secret` to add a new secret.
 
-![new-repo-secret.png](../static/images/fly/new-repo-secret.png)
+   ![new-repo-secret.png](../static/images/docs/fly/new-repo-secret.png)
 
-6. Add the secret name as `FLY_API_TOKEN` or any name you prefer and paste the Fly API token that you generated earlier in the value field. Click on `Add secret` to save the secret.
+6. Name the secret `FLY_API_TOKEN` or any preferred name, and paste the Fly.io API token you generated [earlier](#generate-api-key-for-flyio) into the value field. Click on `Add secret` to save it.
 
-![secret.png](../static/images/fly/secret.png)
+   ![secret.png](../static/images/docs/fly/secret.png)
 
-You are now ready to deploy your `tailcall` server on Fly.
+You are now ready to deploy your `tailcall` server on Fly.io.
 
-## Deploy on Fly
+## Deploy on Fly.io
 
-In this example, we will deploy a simple `graphQL` server using `tailcall`, on Fly, which will convert the JSONPlaceholder REST API to a GraphQL API.
+In this example, we will deploy a simple GraphQL server using `tailcall` on Fly.io, which converts the JSONPlaceholder REST API to a GraphQL API.
 
-Below is the config present in the template repo, that will be used for this deployment. You can learn more about this [here](https://tailcall.run/docs/getting_started/configuration/).
+Below is the configuration present in the template repository, which will be used for this deployment.
+
+:::tip
+You can learn more about the configuration [here](./configuration.mdx)
+:::
 
 ```graphql
 schema
@@ -91,7 +95,7 @@ type Post {
 }
 ```
 
-To deploy the server, just update the `provider` to `fly` in the `deploy-tailcall` job in the `.github/workflows/main.yml` file, similar to the example below.
+To deploy the server, update the `provider` to `fly` in the `deploy-tailcall` job in the `.github/workflows/main.yml` file, as shown below.
 
 ```yaml
 on: [push]
@@ -115,7 +119,9 @@ jobs:
 ```
 
 :::important
-When specifying the fly-app-name in your GitHub Actions workflow for deploying to Fly.io, please ensure that the app name you choose is unique across all Fly.io users. Fly.io requires each app name to be globally unique. If the name you select is already taken by another user, your deployment will fail. To avoid this issue, consider using a name that includes unique identifiers such as your organization name, project name, etc. If you do not specify the app name then `<orgname>-<reponame>` will be used.
+When specifying the `fly-app-name` in your GitHub Actions workflow for deploying to Fly.io, ensure the app name you choose is unique across all Fly.io users.
 :::
 
-After updating the `main.yml` file, commit the changes and push them to the repository. This will trigger the deployment of the `tailcall` server on Fly. Once deployment is successful, you can access the GraphQL playground at `https://tailcall.run/playground/?u=https://<fly-app-name>.fly.dev/graphql`.
+Fly.io requires each app name to be globally unique. If the name you select is already taken by another user, your deployment will fail. To avoid this issue, consider using a name that includes unique identifiers such as your organization name, project name, etc. If you do not specify the app name, `<orgname>-<reponame>` will be used.
+
+After updating the `main.yml` file, commit the changes and push them to the repository. This will trigger the deployment of the `tailcall` server on Fly.io. Once the deployment is successful, you can access the GraphQL playground at `https://tailcall.run/playground/?u=https://<fly-app-name>.fly.dev/graphql`.

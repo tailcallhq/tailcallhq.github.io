@@ -1,5 +1,5 @@
 type PartnerImage = {
-  id: number
+  // id: number
   name: string
   logo: string
 }
