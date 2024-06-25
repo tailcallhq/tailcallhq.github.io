@@ -10,7 +10,7 @@ const Footer = (): JSX.Element => {
     <footer className="bg-tailCall-dark-700 pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04">
       <img
         src={require("@site/static/images/about/grid-dark.png").default}
-        alt=""
+        alt="grid background"
         className="absolute inset-0 w-full h-full"
       />
       <TailcallLogo className="w-[120px] h-10" />
