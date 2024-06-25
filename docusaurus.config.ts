@@ -141,6 +141,17 @@ export default {
       respectPrefersColorScheme: false,
     },
     tableOfContents: {},
+    metadata: [
+      {name: "og:title", content: "Tailcall - The modern GraphQL runtime"},
+      {
+        name: "og:description",
+        content:
+          "Tailcall gives you instant GraphQL on new and existing REST, Grpc and GraphQL APIs. Connect Tailcall to your API & get GraphQL in under a minute.",
+      },
+      {name: "og:image", content: "https://tailcall.run/icons/companies/taicall.svg"}, // Ensure you have the correct URL for the logo
+      {name: "og:url", content: "https://tailcall.run"},
+      {name: "og:type", content: "website"},
+    ],
   } satisfies Preset.ThemeConfig,
   plugins: [
     [
