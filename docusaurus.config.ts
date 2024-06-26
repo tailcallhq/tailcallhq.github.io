@@ -19,13 +19,6 @@ export default {
       },
     },
     {
-      tagName: "link",
-      attributes: {
-        rel: "preconnect",
-        href: "https://codesandbox.io",
-      },
-    },
-    {
       tagName: "script",
       attributes: {
         type: "application/ld+json",
@@ -35,21 +28,7 @@ export default {
         "@type": "WebSite",
         name: "Tailcall",
         url: "https://tailcall.run/",
-        author: {
-          "@type": "Organization",
-          name: "Tailcall, Inc.",
-          url: "https://tailcall.run/",
-          logo: "https://tailcall.run/icons/companies/taicall.svg",
-        },
-        description: "Tailcall is a GraphQL platform engineered for scale.",
-        publisher: {
-          "@type": "Organization",
-          name: "Tailcall, Inc.",
-          logo: {
-            "@type": "ImageObject",
-            url: "https://tailcall.run/icons/companies/taicall.svg",
-          },
-        },
+        logo: "https://tailcall.run/icons/companies/taicall.svg",
       }),
     },
   ],
@@ -105,7 +84,7 @@ export default {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    image: "icons/companies/taicall.svg",
     navbar: {
       hideOnScroll: true,
       logo: {
@@ -141,17 +120,6 @@ export default {
       respectPrefersColorScheme: false,
     },
     tableOfContents: {},
-    metadata: [
-      {name: "og:title", content: "Tailcall - The modern GraphQL runtime"},
-      {
-        name: "og:description",
-        content:
-          "Tailcall gives you instant GraphQL on new and existing REST, Grpc and GraphQL APIs. Connect Tailcall to your API & get GraphQL in under a minute.",
-      },
-      {name: "og:image", content: "https://tailcall.run/icons/companies/taicall.svg"}, // Ensure you have the correct URL for the logo
-      {name: "og:url", content: "https://tailcall.run"},
-      {name: "og:type", content: "website"},
-    ],
   } satisfies Preset.ThemeConfig,
   plugins: [
     [
