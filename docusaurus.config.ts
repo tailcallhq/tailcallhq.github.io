@@ -28,7 +28,6 @@ export default {
         "@type": "WebSite",
         name: "Tailcall",
         url: "https://tailcall.run/",
-        logo: "https://tailcall.run/icons/companies/taicall.svg",
       }),
     },
   ],
