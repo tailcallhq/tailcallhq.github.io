@@ -1,10 +1,20 @@
 ---
-title: GraphQL on gRPC
-description: "Discover how to integrate gRPC services with Tailcall's GraphQL gateway in this comprehensive guide. Learn about the benefits of using gRPC, a high-performance framework by Google, for efficient data transfer in microservices and distributed systems. Understand how to set up simple gRPC services, define protobuf files, and implement a gRPC server. Explore how to configure Tailcall to seamlessly connect GraphQL types to gRPC types, enabling advanced features like batching and reflection for dynamic service discovery. Perfect for developers with a basic understanding of gRPC, this guide will help you enhance your system's capability to handle high-performance data operations with simplicity and scalability."
+title: "Step-by-Step Tutorial: Building GraphQL over gRPC"
+sidebar_label: "GraphQL on gRPC"
+description: "Learn how gRPC and GraphQL boost microservices. Discover their benefits and how they work together for better APIs."
 slug: graphql-grpc-tailcall
+image: /images/docs/graphql_on_grpc.png
 ---
 
-In this guide, we will set up a simple gRPC service and use it inside Tailcall's config to fetch some of the data provided by the service. This way Tailcall can provide a single GraphQL interface wrapping any number of gRPC services.
+<head>
+  <meta property="og:type" content="article"/>
+  <title>How to build GraphQL over gRPC APIs</title>
+</head>
+
+![GraphQL on gRPC](../static/images/docs/graphql_on_grpc.png)
+_Architecture Diagram Showcasing GraphQL as an API Orchestrator for gRPC APIs_
+
+In this guide, we will set up a simple gRPC service and use it inside Tailcall's GraphQL config to fetch some of the data provided by the service. This way Tailcall can provide a single GraphQL schema wrapping any number of gRPC services. Which client side can use to fetch data from multiple services in a single request.
 
 ## What is gRPC?
 
