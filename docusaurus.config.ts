@@ -63,6 +63,7 @@ export default {
         docs: {
           // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
           sidebarPath: require.resolve("./sidebars.ts"),
+          showLastUpdateTime: true,
           sidebarCollapsible: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
