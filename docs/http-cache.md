@@ -15,7 +15,7 @@ By default, HTTP caching is turned off in Tailcall. Enabling it requires setting
 
 ### Enabling HTTP Caching
 
-To activate HTTP caching, adjust the upstream configuration in Tailcall by setting `httpCache` to appropriate cache size, as shown in the following example:
+To activate HTTP caching in Tailcall, configure the httpCache in the upstream settings. You can specify cache size either as a fixed number of entries or as a percentage of available memory:
 
 ```graphql
 schema
@@ -23,12 +23,16 @@ schema
   @upstream(
     baseURL: "https://api.example.com"
     # highlight-start
-    httpCache: 42
+    httpCache: {size: 42} # Fixed number of entries
+    # OR
+    httpCache: {enable: true, size: 2} # 2% of available memory (i.e. RAM)
     # highlight-end
   ) {
   query: Query
 }
 ```
+
+The size parameter sets the number of entries when used alone. When enable is true, size represents a percentage (1-100) of available memory for caching.
 
 This configuration instructs Tailcall to cache responses from the designated upstream API.
 
