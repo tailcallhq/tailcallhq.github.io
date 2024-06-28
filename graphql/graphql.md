@@ -17,6 +17,8 @@ This flexibility empowers developers to design more efficient and adaptable APIs
 
 At its core, GraphQL enables declarative data fetching, where clients specify the exact structure of the data they require, and the server responds with precisely that data. This contrasts with REST APIs, where endpoints are predefined, and clients receive fixed responses regardless of their specific data needs.
 
+To know more in detail about GraphQL, you can refer [What is GraphQL](what-is-graphql.md).
+
 ## Fundamental Concepts of GraphQL Server
 
 GraphQL is built upon several core concepts that form the foundation of its query language and API design. Understanding these concepts is essential for effectively utilizing GraphQL in your projects.
