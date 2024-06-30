@@ -8,37 +8,30 @@ export const zapierLink = "https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/
 
 export const partnerImages: PartnerImage[] = [
   {
-    id: 1,
     name: "Digital Ocean",
     logo: require("@site/static/icons/companies/digital-ocean.png").default,
   },
   {
-    id: 2,
     name: "Vercel",
     logo: require("@site/static/icons/companies/vercel.png").default,
   },
   {
-    id: 3,
     name: "Fastly",
     logo: require("@site/static/icons/companies/fastly.png").default,
   },
   {
-    id: 4,
     name: "Cloud Flare",
     logo: require("@site/static/icons/companies/cloudflare.png").default,
   },
   {
-    id: 5,
     name: "AWS",
     logo: require("@site/static/icons/companies/aws.png").default,
   },
   {
-    id: 6,
     name: "Google Cloud",
     logo: require("@site/static/icons/companies/google-cloud.png").default,
   },
   {
-    id: 7,
     name: "Fly",
     logo: require("@site/static/icons/companies/fly-io.png").default,
   },
@@ -63,6 +56,7 @@ export const features: Feature[] = [
         transformations or build a completely new set of aggregation APIs.
       </>
     ),
+    alt: "Orchestration",
   },
   {
     logo: require("@site/static/images/home/governance.png").default,
@@ -74,6 +68,7 @@ export const features: Feature[] = [
         true <Highlight text="declarative approach" /> to managing APIs.
       </>
     ),
+    alt: "Governance",
   },
   {
     logo: require("@site/static/images/home/efficiency.png").default,
@@ -85,6 +80,7 @@ export const features: Feature[] = [
         opens up opportunities to use in ultra-low latency workloads.
       </>
     ),
+    alt: "Efficiency",
   },
   // {
   //   logo: require("@site/static/images/home/resiliency.png").default,
@@ -111,6 +107,7 @@ export const features: Feature[] = [
         subsequent actions Tailcall should execute.
       </>
     ),
+    alt: "Extendability",
   },
 ]
 
@@ -160,11 +157,11 @@ export const moreFeatures: MoreFeatures[] = [
     logo: require("@site/static/icons/basic/adaptive.svg").default,
     title: "Adaptive performance improvements",
   },
-  {
-    id: 10,
-    logo: require("@site/static/icons/basic/rate-limit.svg").default,
-    title: "Global rate limiting",
-  },
+  // {
+  //   id: 10,
+  //   logo: require("@site/static/icons/basic/rate-limit.svg").default,
+  //   title: "Global rate limiting",
+  // },
   {
     id: 11,
     logo: require("@site/static/icons/basic/insight.svg").default,
@@ -233,17 +230,17 @@ export const enterpriseFeatures: EnterpriseFeature[] = [
     title: "Adaptive performance improvements",
     description: "Adaptive optimisation by analysing the hot queries in your Production environment",
   },
-  {
-    id: 2,
-    logo: require("@site/static/icons/basic/rate-limit.svg").default,
-    title: "Global rate limiting",
-    description: "Ability to set global rate limits on access of each field of your data graph.",
-  },
+  // {
+  //   id: 2,
+  //   logo: require("@site/static/icons/basic/rate-limit.svg").default,
+  //   title: "Global rate limiting",
+  //   description: "Ability to set global rate limits on access of each field of your data graph.",
+  // },
   {
     id: 3,
     logo: require("@site/static/icons/basic/reflect.svg").default,
     title: "Managed Solution",
-    description: "The change in any Tailcall config gets seamlessly reflected on your GraphQL. ",
+    description: "The change in any GraphQL config gets seamlessly reflected on your GraphQL. ",
   },
   {
     id: 4,

@@ -1,8 +1,8 @@
 ---
-title: GraphQL REST Integration
+title: Exposing GraphQL as REST APIs
 description: Exposing REST endpoints on top of GraphQL via the @rest directive.
 slug: graphql-rest-integration
-sidebar_label: REST Integration
+sidebar_label: REST on GraphQL
 ---
 
 In order to handle complicated business problems, modern systems frequently need to work with hundreds or even thousands of APIs. Because of its powerful API composition capabilities, GraphQL has been adopted by numerous organisations. But switching to GraphQL can be difficult. It involves a lot of team training as well as major adjustments to frontend and backend architectures.
@@ -10,10 +10,6 @@ In order to handle complicated business problems, modern systems frequently need
 That's why Tailcall has developed a directive called `@rest` to streamline this transition and take advantage of GraphQL's power without requiring a complete overhaul. With the help of this directive, Tailcall GraphQL queries and mutations may be made available as REST endpoints.
 
 ## How it works
-
-![Diagram](/images/docs/rest-diagram.svg)
-
-<h4 align="center">Diagram showcasing how it works under hood</h4>
 
 This guide show you how to expose REST endpoints for your GraphQL operations by using the @rest directive like follows:
 
@@ -25,7 +21,7 @@ There are three main steps to this process:
 
 ## Example
 
-### Step 1: Define your Tailcall GraphQL configuration
+### Step 1: Define your GraphQL configuration
 
 ```graphql
 schema
@@ -57,7 +53,7 @@ type User {
 }
 ```
 
-for more information on how to define your Tailcall GraphQL configuration file, please refer to the [Tailcall GraphQL Configuration](/docs/getting-started-with-graphql/#configuration).
+for more information on how to define your Tailcall GraphQL configuration file, please refer to the [Tailcall GraphQL Configuration](getting-started.mdx#writing-a-graphql-configuration).
 
 ### Step 2: Define an operation using `@rest` directive
 

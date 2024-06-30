@@ -12,13 +12,15 @@ const Banner = (): JSX.Element => {
     <main>
       <div className="flex flex-col sm:items-center sm:text-center w-full mt-SPACE_06 px-SPACE_04 sm:mt-SPACE_20">
         <div className="h-full 2xl:min-h-0">
-          <h2 className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl">
-            GraphQL platform engineered for{" "}
-            <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">scale</span>
-          </h2>
+          <Heading
+            as="h1"
+            className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl"
+          >
+            The modern <br />
+            <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">GraphQL</span> runtime
+          </Heading>
           <p className="sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-SPACE_04 mb-0">
-            Tailcall is a high-performance, open-source API orchestrator that enables organizations to construct unified
-            data access layers on top of existing APIs.
+            Swiftly design and ship best-practice GraphQL backends atop existing data sources and APIs.
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton

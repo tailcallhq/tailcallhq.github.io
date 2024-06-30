@@ -1,27 +1,165 @@
 ---
-title: Tailcall on AWS
-description: "Deploy Tailcall on AWS effortlessly using the tailcall-on-aws template and Terraform. This guide covers everything from setting environment variables to configuring and updating your Tailcall deployment, complete with logging via AWS CloudWatch for comprehensive monitoring and management."
-slug: graphql-aws-deployment-tailcall
+title: Tailcall on AWS Lambda
+description: "Deploy `tailcall` on AWS Lambda using the github action `tailcallhq/gh-action`"
 ---
 
-Tailcall can be hosted on AWS using Lambda and API Gateway using the [tailcall-on-aws](https://github.com/tailcallhq/tailcall-on-aws) template.
+Before deploying `tailcall` on AWS Lambda, you need to generate the AWS Access Key ID and Secret Access Key. If you don't have an AWS account, you can create one [here](https://aws.amazon.com/).
 
-1. [Install Terraform.](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) The template uses Terraform to orchestrate the required AWS infrastructure, to spare you the time of setting it up by hand.
-2. Set the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_REGION` environment variables. These are required by Terraform to be able to manage the resourced on AWS. [More info here.](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#environment-variables)
-3. [Create a new repository using the tailcall-on-aws template.](https://github.com/new?template_name=tailcall-on-aws&template_owner=tailcallhq)
-4. Clone your new repository, run `terraform init`, and then `terraform apply`.
-5. Done! The API Gateway URL will be logged to the console when you run `terraform apply`.
+## Generate Access Keys for AWS
 
-Once you've deployed Tailcall for the first time, you can edit `config/config.graphql` to [build your API](../getting-started-with-graphql/#configuration). If you [install Tailcall locally](../getting-started-with-graphql/#installing-the-tailcall-cli), you can test your config by running:
+Follow the steps below to generate the Access Keys:
 
-```bash
-tailcall start ./config/config.graphql
+1. Go to [AWS Management Console](https://console.aws.amazon.com/) and click the drop down menu in the top right corner and Click on `Security credentials`.
+
+   ![credentials.png](../static/images/aws/credentials.png)
+
+2. Scroll down to the `Access Keys` section and click on `Create access key`.
+
+   ![access-key.png](../static/images/aws/access-key.png)
+
+3. You will get the following warning since we are trying to create access keys for the root user. For this guide, we will continue with creating the access keys. If you do not want to continue with the root user, you can learn more about the AWS security credentials [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html) and managing access keys [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html?icmpid=docs_iam_console#Using_CreateAccessKey).
+
+   ![warning.png](../static/images/aws/warning.png)
+
+4. Once you click on `Create access key`, you will get the `Access key ID` and `Secret access key`. Make sure to download the `CSV` file and store it securely.
+
+   ![access-keys.png](../static/images/aws/access-keys.png)
+
+## Terraform setup
+
+Now that you have the AWS Access Key ID and Secret Access Key, you will need to generate API token for terraform and setup a terraform organization and workspace. If you don't have a Terraform Cloud account, you can create one [here](https://app.terraform.io/signup/account).
+
+### Terraform API Token
+
+Follow these steps to generate the Terraform API token:
+
+1. Go to the [Tokens section in Settings](https://app.terraform.io/app/settings/tokens) and click on `Create an API token`.
+
+   ![create-token.png](../static/images/aws/create-token.png)
+
+2. Give a description for the token and change the expiration if required. Click on `Generate token`.
+
+   ![gen-token.png](../static/images/aws/gen-token.png)
+
+3. Copy the generated token and store it securely.
+
+   ![token.png](../static/images/aws/token.png)
+
+### Terraform Organization and Workspace
+
+1. To create an organization, go to the [Organizations section in Settings](https://app.terraform.io/app/organizations) and click on `Create organization`.
+
+   ![terra-org.png](../static/images/aws/terra-org.png)
+
+2. Fill in the organization name and email and click on `Create organization`.
+
+   ![create-org.png](../static/images/aws/create-org.png)
+
+3. Now that you have created an organization, you will be presented with the following page for creating a workspace. Click on `CLI-Driven Workflow`, since the github action which we will be using for deployment, [tailcallhq/gh-action](https://github.com/tailcallhq/gh-action), uses the terraform CLI.
+
+   ![workflow.png](../static/images/aws/workflow.png)
+
+4. Fill in the workspace name. By default the project will be set to `Default Project`, if you have any project in terraform cloud, you can select that project, otherwise continue with the `Default Project` and click on `Create`.
+
+   ![create-workspace.png](../static/images/aws/create-workspace.png)
+
+You now have everything required for a successful deployment of your `tailcall` server on AWS Lambda.
+
+## Setting up the project repo
+
+Now you need to create a new repository on Github and use the Github action `tailcallhq/gh-action` to deploy it. The easiest way to get started is to create a new repository using this template repo [https://github.com/tailcallhq/deploy-tailcall](https://github.com/tailcallhq/deploy-tailcall).
+
+1. Go to the repo and click on `Use this template` and create a new repository.
+
+   ![github-template.png](../static/images/docs/fly/github-template.png)
+
+2. Give your repository a name and click on `Create repository`.
+
+   ![create-repo.png](../static/images/aws/create-repo.png)
+
+3. Now that you have created a repository, you will need to add the AWS access keys and Terraform API token to the repository secrets. To do that, click on `Settings`.
+
+   ![settings.png](../static/images/aws/settings.png)
+
+4. Click on `Secrets and variables` in the left side bar to expand the section and click on `Actions`.
+
+   ![actions.png](../static/images/aws/actions.png)
+
+5. Click on `New repository secret` to add a new secret.
+
+   ![new-secret.png](../static/images/aws/new-secret.png)
+
+6. Add the secret name as `AWS_ACCESS_KEY_ID` or any name you prefer and paste the AWS access key ID that you generated earlier in the value field. Click on `Add secret` to save the secret.
+
+   ![secret.png](../static/images/aws/secret.png)
+
+7. Similarly add the AWS secret access key and the Terraform API token as secrets to the repository.
+
+   ![other-secrets.png](../static/images/aws/other-secrets.png)
+
+You are now ready to deploy your `tailcall` server on AWS Lambda using terraform.
+
+## Deploy on AWS Lambda using terraform
+
+In this example, we will deploy a simple `graphQL` server using `tailcall`, on AWS Lambda using terraform, which will convert the JSONPlaceholder REST API to a GraphQL API.
+
+Below is the config present in the template repo, that will be used for this deployment. You can learn more about this [here](getting-started.mdx#writing-a-graphql-configuration).
+
+```graphql
+schema
+  @upstream(
+    baseURL: "http://jsonplaceholder.typicode.com"
+  ) {
+  query: Query
+}
+
+type Query {
+  posts: [Post] @http(path: "/posts")
+}
+
+type User {
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
+  phone: String
+  website: String
+}
+
+type Post {
+  id: Int!
+  userId: Int!
+  title: String!
+  body: String!
+  user: User @http(path: "/users/{{.value.userId}}")
+}
 ```
 
-When you want to push your changes to the deployment, you should run `terraform apply` again. This will also update Tailcall to the latest version.
+To deploy the server, just update the `provider` to `aws` in the `deploy-tailcall` job in the `.github/workflows/main.yml` file, similar to the example below. Also, update the `terraform-workspace` and `terraform-org` as well as the other inputs based on your requirements.
 
-## Logging
+```yaml
+on: [push]
 
-All Tailcall logs will be uploaded to and stored in AWS CloudWatch. Logs of all levels are stored by default, so that you can filter the logs as necessary when viewing them in CloudWatch.
+jobs:
+  deploy_tailcall:
+    runs-on: ubuntu-latest
+    name: Deploy Tailcall
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Deploy Tailcall
+        id: deploy-tailcall
+        uses: tailcallhq/gh-action@v0.2
+        with:
+          provider: "aws"
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
+          aws-iam-role: "iam_for_tailcall"
+          terraform-api-token: ${{ secrets.TERRAFORM_API_TOKEN }}
+          terraform-org: "tailcall-demo"
+          terraform-workspace: "tailcall"
+          tailcall-config: "config.graphql"
+```
 
-If you would like to filter the logs before they get ingested, you can create the `config/.env` file and specify the minimum log level with the `LOG_LEVEL` environment variable. The available levels are: `TRACE` (default), `DEBUG`, `INFO`, `WARN` and `ERROR`.
+After updating the `main.yml` file, commit the changes and push them to the repository. This will trigger the deployment of the `tailcall` server on AWS Lambda.

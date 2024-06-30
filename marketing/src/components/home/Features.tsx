@@ -26,7 +26,7 @@ const Feature = ({feature}: FeatureProps): JSX.Element => {
           <span>{feature.content}</span>
         </p>
         <div className="sm:mt-SPACE_20">
-          <Image src={feature.logo} alt="" />
+          <Image src={feature.logo} alt={feature.alt} />
         </div>
       </div>
     </div>

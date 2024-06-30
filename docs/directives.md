@@ -1,8 +1,8 @@
 ---
-title: Tailcall Configuration
+title: GraphQL Configuration
 description: Enhance your GraphQL API with Tailcall DSL's custom directives. These directives offer powerful compile-time guarantees, ensuring robust and optimized API composition. Tailcall automates the generation of resolver logic for improved performance.
 slug: tailcall-dsl-graphql-custom-directives
-sidebar_label: Configuration Reference
+sidebar_label: Configuration
 sidebar_position: 5
 ---
 
@@ -118,7 +118,6 @@ type Post {
 ```
 
 In conclusion, the `@addField` directive helps tidy up your schema and streamline data fetching by reducing query depth, promoting better performance and simplicity.
--e
 
 ## @cache Directive
 
@@ -256,7 +255,6 @@ Thus, in the configuration above, while all fields inherit the `@cache(maxAge: 2
 The caching mechanism generates a hash based on information related to the applied query to serve as the cache key for the corresponding value.
 
 For instance, the system caches the `user` field in the following configuration, using the hash of the interpolated string `"/user/{{.value.userId}}"` as the cache key. For example, if `Post.userId` equals `1`, the system generates the cache key by hashing the string `"/users/1"`.
--e
 
 ## @call Directive
 
@@ -493,7 +491,6 @@ This way you can compose combine multiple operations can compose them together u
 :::note
 We use `JSON` scalar here because we don't care about the type safety of this option. In a real world example you might want to use proper input and output types.
 :::
--e
 
 ## @expr Directive
 
@@ -563,7 +560,6 @@ type Emails {
 ```
 
 In this example, the `@expr` directive dynamically generate an `Emails` object based on the provided template data. The placeholders within the template (`{{.value.workEmail}}` and `{{.value.personalEmail}}`) gets replaced with the actual values specified in the `User` type, allowing for dynamic content generation while still adhering to the schema's structure.
--e
 
 ## @graphQL Directive
 
@@ -575,7 +571,7 @@ type Query {
 }
 ```
 
-The `@graphQL` directive facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the Tailcall server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` directive, the Tailcall config determines the query's operation type.
+The `@graphQL` directive facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the GraphQL server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` directive, the GraphQL configuration determines the query's operation type.
 
 For the next request with the config above:
 
@@ -691,7 +687,6 @@ type Query {
 ```
 
 Make sure you have also specified batch settings to the `@upstream` and to the `@graphQL` directive.
--e
 
 ## @grpc Directive
 
@@ -829,7 +824,6 @@ type Query {
 :::info
 Read about [n + 1](./N+1.md) to learn how to use the `batchKey` setting.
 :::
--e
 
 ## @http Directive
 
@@ -973,6 +967,25 @@ type Post {
 
 - `query: {key: "id", value: "{{.value.userId}}"}]`: Instructs TailCall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?id=1&id=2&id=3...id=10`, consolidating requests into one.
 
+### onRequest
+
+The `onRequest` property accepts a string value representing the remote function to be called every time an HTTP request is initiated. Typically the remote function is defined in a linked JavaScript worker file.
+
+:::note
+For defining a request middleware globally for all requests, refer to the [upstream directive documentation](/docs/directives.md#onrequest-1).
+:::
+
+```graphql showLineNumbers
+type Query {
+  userPosts(id: ID!): [Post]
+    @http(
+      path: "/posts"
+      query: [{key: "userId", value: "{{.args.id}}"}]
+      onRequest: "someFunctionName"
+    )
+}
+```
+
 ## @js Directive
 
 The `@js` directive allows you to use JavaScript functions to resolve fields in your GraphQL schema. This can be useful
@@ -1045,7 +1058,6 @@ function resolve(val) {
 ### Performance Considerations
 
 When using the `@js` directive, keep in mind that JavaScript functions can introduce performance overhead, especially if they perform complex operations or are called frequently. To minimize performance impact, ensure that your functions are optimized and avoid unnecessary computations.
--e
 
 ## @link Directive
 
@@ -1113,7 +1125,7 @@ Example use case:
 
 ### Protobuf
 
-The `Protobuf` link type integrates Protocol Buffers definitions by importing .proto files. This integration is crucial for Tailcall to communicate with gRPC services. By including `.proto` definitions, the Tailcall server can directly interact with gRPC services, allowing for efficient and type-safe communication.
+The `Protobuf` link type integrates Protocol Buffers definitions by importing .proto files. This integration is crucial for Tailcall to communicate with gRPC services. By including `.proto` definitions, the GraphQL server can directly interact with gRPC services, allowing for efficient and type-safe communication.
 
 For detailed integration steps and best practices, refer to the [gRPC Integration Guide](/docs/grpc.md).
 
@@ -1135,7 +1147,7 @@ function onRequest({request}) {
 
 ### Cert
 
-The `Cert` link type is designed for importing SSL/TLS certificates, a crucial component for enabling HTTPS in your Tailcall server. This link type ensures that your Tailcall server can expose connections over HTTPS.
+The `Cert` link type is designed for importing SSL/TLS certificates, a crucial component for enabling HTTPS in your GraphQL server. This link type ensures that the server can expose connections over HTTPS.
 
 :::tip
 When using the `Cert` link type, specify the path to the certificate file. Ensure the certificate is up-to-date and issued by a trusted certificate authority (CA) to avoid security warnings or connection issues.
@@ -1143,18 +1155,18 @@ When using the `Cert` link type, specify the path to the certificate file. Ensur
 
 Example use case:
 
-- Securing communication between the Tailcall server and clients.
+- Securing communication between the GraphQL server and clients.
 - Enhancing privacy and security by encrypting data in transit.
 
 ### Key
 
-The `Key` link type imports the private key associated with your SSL/TLS certificate, enabling HTTPS for your Tailcall server. The private key is a critical security element that decrypts information encrypted by the corresponding public key in the SSL/TLS certificate.
+The `Key` link type imports the private key associated with your SSL/TLS certificate, enabling HTTPS for your GraphQL server. The private key is a critical security element that decrypts information encrypted by the corresponding public key in the SSL/TLS certificate.
 
 When configuring the `Key` link type, provide the path to your private key file. Ensure the private key matches the imported certificate specified by the [Cert](#cert) link above, and is protected by appropriate file permissions to maintain security.
 
 ### Operation
 
-The `Operation` link type connects your schema to a set of predefined, GraphQL spec-compliant queries and mutations. This functionality allows for the validation and optimization of these operations by the Tailcall server.
+The `Operation` link type connects your schema to a set of predefined, GraphQL spec-compliant queries and mutations. This functionality allows for the validation and optimization of these operations by the GraphQL server.
 
 Each type serves a specific purpose, enabling the flexible integration of external resources into your GraphQL schema.
 
@@ -1165,7 +1177,6 @@ The `Htpasswd` link type allows the importation of an [`htpasswd`](https://httpd
 ### Jwks
 
 The `Jwks` link type enables the importation of a [`JWKS`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) file. This file facilitates the provision of detailed access control through [JWT authentication](./auth.md#jwt-authentication).
--e
 
 ## @modify Directive
 
@@ -1198,7 +1209,6 @@ type User {
 :::tip
 `@omit` is a standalone directive and is an alias/shorthand for `modify(omit: true)` checkout [documentation](/docs/directives.md#omit-directive)
 :::
--e
 
 ## @omit Directive
 
@@ -1233,7 +1243,6 @@ The `@omit` directive and `@modify(omit: true)` essentially serve the same purpo
 - `@omit` offers a concise way to directly exclude a field or node without additional arguments.
 
 - `@modify(omit: true)`, as part of the broader [`@modify`](/docs/directives.md#omit-directive) directive, provides more options, such as field renaming through the `name` argument. This makes it a more flexible choice when you need more than field exclusion.
-  -e
 
 ## @protected Directive
 
@@ -1259,7 +1268,6 @@ To utilize the `@protected` directive, you must link at least one authentication
 
 - When a field is annotated with `@protected`, an authentication check is performed upon receiving the request. Depending on the authentication result, either the requested data is provided in the response, or an authentication error is returned.
 - If a type is annotated with `@protected`, all fields within that type inherit the protection, requiring user authentication for any field that's queried.
-  -e
 
 ## @rest Directive
 
@@ -1310,7 +1318,6 @@ query ($id: Int!) @rest(method: GET, path: "/user/$id") {
 ![REST Demo](/images/docs/rest-user.png)
 
 This example demonstrates how to define a simple query to fetch user data from a REST endpoint using the `@rest` directive. By leveraging `@rest`, GraphQL can serve as a layer over RESTful services, combining REST's simplicity with GraphQL's flexibility.
--e
 
 ## @server Directive
 
@@ -1329,7 +1336,7 @@ The `ServerSettings` options and their details appear below.
 
 ### workers
 
-Setting `workers` to `32` means that the Tailcall server will use 32 worker threads.
+Setting `workers` to `32` means that the GraphQL server will use 32 worker threads.
 
 ```graphql showLineNumbers
 schema @server(workers: 32) {
@@ -1338,7 +1345,7 @@ schema @server(workers: 32) {
 }
 ```
 
-This example sets the `workers` to `32`, meaning the Tailcall server will use 32 worker threads.
+This example sets the `workers` to `32`, meaning the GraphQL server will use 32 worker threads.
 
 ### port
 
@@ -1497,7 +1504,7 @@ type Query {
 In the provided example, setting a variable named `apiKey` with a placeholder value of "YOUR_API_KEY_HERE" implies that whenever Tailcall fetches data from the `externalData` endpoint, it includes the `apiKey` in the Authorization header of the HTTP request.
 
 :::tip
-Local variables, like `apiKey`, are instrumental in securing access to external services or providing a unified place for configurations. Ensure that sensitive information stored this way is well protected and not exposed unintentionally, if your Tailcall configuration is publicly accessible.
+Local variables, like `apiKey`, are instrumental in securing access to external services or providing a unified place for configurations. Ensure that sensitive information stored this way is well protected and not exposed unintentionally, if your GraphQL configuration is publicly accessible.
 :::
 
 ### introspection
@@ -1630,10 +1637,20 @@ schema @server(
 )
 ```
 
-### Trade-offs
-
+:::tip
 Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
--e
+:::
+
+### dedupe
+
+A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+schema @server(
+  port: 8000
+  dedupe: true
+)
+```
 
 ## @telemetry Directive
 
@@ -1773,7 +1790,6 @@ You can configure the apollo exporter with the following options:
 |   version | Version of Apollo which is being used.                                                                                                                        |
 
 By integrating the `@telemetry` directive into your GraphQL schema, you empower your development teams with critical insights into application performance, enabling proactive optimization and maintenance.
--e
 
 ## @upstream Directive
 
@@ -2016,15 +2032,14 @@ schema
 }
 ```
 
-### dedupe
+### onRequest
 
-A boolean flag, if set to `true`, will ensure no HTTP, GRPC, or any other IO call is made more than once within the context of a single GraphQL request. If not specified, this feature defaults to `false`.
+Similar to the [@http](#http-directive) property, this accepts a string value representing a middleware function defined in a JavaScript file. It intercepts all outgoing HTTP requests from the server. This interceptor, written in JavaScript, can be used to modify outgoing requests and also generate artificial responses to customize the behavior of the GraphQL server.
 
 ```graphql showLineNumbers
-schema @upstream(dedupe: true) {
+schema @upstream(onRequest: 'someFunctionName')
+@link(type: Script, src: "path_to/worker.js") {
   query: Query
   mutation: Mutation
 }
 ```
-
--e

@@ -46,6 +46,7 @@ const Playground = () => {
     if (apiEndpoint.toString().trim() === "") {
       return Promise.resolve({})
     }
+    analyticsHandler("GraphQL", "tc_fetch_query", apiEndpoint.toString())
 
     const response = await fetch(apiEndpoint.toString(), {
       method: "post",

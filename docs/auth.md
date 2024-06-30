@@ -34,7 +34,7 @@ Advantages of this approach:
 - **Scalability**: Facilitates extending security policies to new entities and fields as your schema expands.
 - **Customization**: Enables implementing different authentication mechanisms for distinct entities based on their security requirements.
 
-## Tailcall Authentication
+## GraphQL Authentication
 
 Tailcall provides a straightforward way to implement entity level authentication in your GraphQL schema. By leveraging custom directives, you can define which entities or fields require authentication to access their data. Tailcall supports multiple authentication providers, such as Basic Auth and JWT, allowing you to choose the authentication mechanism that best suits your application's requirements.
 to know more about how to use it, read the following articles:
@@ -42,7 +42,7 @@ to know more about how to use it, read the following articles:
 1. [Basic Auth](#basic-authentication)
 2. [JWT](#jwt-authentication)
 
-## Tailcall config
+## GraphQL Configuration
 
 Enabling support for authentication in Tailcall could be done in two steps:
 
@@ -105,7 +105,7 @@ For more info about possible configuration for available providers read articles
 
 ## Making test requests
 
-Now let's try to access some data from the example above. Start the tailcall server with provided config and use graphQL playground that should be opened automatically in your browser.
+Now let's try to access some data from the example above. Start the graphql server with provided config and use graphQL playground that should be opened automatically in your browser.
 
 If you execute the query that don't have any `@protected` fields like
 
@@ -247,7 +247,7 @@ Since this file stores secure information make sure to hash the password you use
 
 :::
 
-### Tailcall config
+### Basic Auth GraphQL Configuration
 
 To use Basic Auth you should first include htpasswd file generated from [Prerequisites](#prerequisites) with the help of [`@link` directive](/docs/directives.md#htpasswd).
 
@@ -328,7 +328,7 @@ To be able to use JWT authentication you should have configured [`JSON Web Key S
 
 To create this file you can use available web-tools like [JWK creator](https://russelldavies.github.io/jwk-creator/) in case you already have RSA key-pair or [mkjwk](https://mkjwk.org) if you don't.
 
-### Tailcall config
+### JWT Auth GraphQL Configuration
 
 To use JWT you should first include JWKS file generated from [Prerequisites](#prerequisites) with the help of [`@link` directive](/docs/directives.md#jwks).
 

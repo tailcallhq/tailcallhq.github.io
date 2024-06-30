@@ -1,5 +1,5 @@
 type PartnerImage = {
-  id: number
+  // id: number
   name: string
   logo: string
 }
@@ -8,6 +8,7 @@ type Feature = {
   logo: string
   title: string
   content: React.JSX.Element
+  alt: string
 }
 
 type MoreFeatures = {

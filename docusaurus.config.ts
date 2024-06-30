@@ -1,5 +1,4 @@
 import {themes as prismThemes} from "prism-react-renderer"
-import type {Config} from "@docusaurus/types"
 import type * as Preset from "@docusaurus/preset-classic"
 
 const title = "Tailcall"
@@ -20,11 +19,16 @@ export default {
       },
     },
     {
-      tagName: "link",
+      tagName: "script",
       attributes: {
-        rel: "preconnect",
-        href: "https://codesandbox.io",
+        type: "application/ld+json",
       },
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org/",
+        "@type": "WebSite",
+        name: "Tailcall",
+        url: "https://tailcall.run/",
+      }),
     },
   ],
   url: "https://tailcall.run",
@@ -60,6 +64,7 @@ export default {
           routeBasePath: "/", // Serve the docs at the site's root
           // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
           sidebarPath: require.resolve("./sidebars.ts"),
+          showLastUpdateTime: true,
           sidebarCollapsible: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -72,7 +77,7 @@ export default {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
-          ignorePatterns: ["/blog/**", "/docs/**"],
+          ignorePatterns: ["/blog/**"],
         },
       },
     ],
@@ -80,7 +85,7 @@ export default {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    image: "icons/companies/taicall.svg",
     navbar: {
       hideOnScroll: true,
       logo: {
@@ -93,8 +98,8 @@ export default {
         // {to: "/about", label: "About", position: "left"},
         // {to: "/enterprise", label: "Enterprise", position: "left"},
         {to: "/", label: "Docs", position: "left"},
+        {to: "/graphql", label: "GraphQL", position: "left"},
         {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
-        {to: "/developers", label: "Developers", position: "left"},
         {
           href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
@@ -119,12 +124,81 @@ export default {
   } satisfies Preset.ThemeConfig,
   plugins: [
     [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            from: "/about",
+            to: "/",
+          },
+          {
+            from: "/docs/guides/n+1/",
+            to: "/docs/graphql-n-plus-one-problem-solved-tailcall/",
+          },
+          {
+            from: "/docs/intro/architecture",
+            to: "/docs/",
+          },
+          {
+            from: "/docs/intro/cli/",
+            to: "/docs/tailcall-graphql-cli/",
+          },
+          {
+            from: "/docs/intro/operators/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/",
+          },
+          {
+            from: "/docs/intro/server",
+            to: "/docs/",
+          },
+          {
+            from: "/docs/getting-started-with-graphql/",
+            to: "/docs/",
+          },
+          {
+            from: "/docs/operators/add-field/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#addfield-directive",
+          },
+          {
+            from: "/docs/operators/graphql/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#graphql-directive",
+          },
+          {
+            from: "/docs/operators/http/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#http-directive",
+          },
+          {
+            from: "/docs/operators/server/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#server-directive",
+          },
+          {
+            from: "/docs/operators/telemetry/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#telemetry-directive",
+          },
+          {
+            from: "/docs/operators/upstream/",
+            to: "/docs/tailcall-dsl-graphql-custom-directives/#upstream-directive",
+          },
+          {
+            from: "/docs/n+1/introduction/",
+            to: "/docs/graphql-n-plus-one-problem-solved-tailcall/",
+          },
+          {
+            from: "/enterprise/",
+            to: "/",
+          },
+        ],
+      },
+    ],
+
+    [
       "@docusaurus/plugin-content-docs",
       {
-        id: "developers",
-        path: "developers",
-        routeBasePath: "developers",
-        sidebarPath: require.resolve("./sidebars.ts"),
+        id: "graphql",
+        path: "graphql",
+        routeBasePath: "graphql",
+        showLastUpdateTime: true,
+        sidebarPath: require.resolve("./graphql/sidebar.ts"),
       },
     ],
     [

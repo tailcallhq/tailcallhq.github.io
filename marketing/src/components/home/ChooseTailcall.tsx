@@ -15,7 +15,7 @@ const ChooseTailcall = (): JSX.Element => {
             key={item.id}
           >
             <div className="h-16 w-16 sm:w-full sm:h-full">
-              <Image src={item.image} alt="feature icon" className="max-w-[72px] sm:max-w-[110px]" />
+              <Image src={item.image} alt="Image Describing Why Tailcall" className="max-w-[72px] sm:max-w-[110px]" />
             </div>
 
             <div>
