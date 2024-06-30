@@ -54,7 +54,7 @@ const Highlight = ({text}: {text: string}) => (
 
 export const features: Feature[] = [
   {
-    logo: require("@site/static/images/home/orchestration.png").default,
+    logo: "/images/home/orchestration.png",
     title: "Orchestration",
     content: (
       <>
@@ -66,7 +66,7 @@ export const features: Feature[] = [
     alt: "Orchestration",
   },
   {
-    logo: require("@site/static/images/home/governance.png").default,
+    logo: "images/home/governance.png",
     title: "Governance",
     content: (
       <>
@@ -78,7 +78,7 @@ export const features: Feature[] = [
     alt: "Governance",
   },
   {
-    logo: require("@site/static/images/home/efficiency.png").default,
+    logo: "images/home/efficiency.png",
     title: "Efficiency",
     content: (
       <>
@@ -90,7 +90,7 @@ export const features: Feature[] = [
     alt: "Efficiency",
   },
   // {
-  //   logo: require("@site/static/images/home/resiliency.png").default,
+  //   logo: "images/home/resiliency.png",
   //   title: "Resiliency",
   //   content: (
   //     <>
@@ -104,7 +104,7 @@ export const features: Feature[] = [
   //   ),
   // },
   {
-    logo: require("@site/static/images/home/extendability.png").default,
+    logo: "images/home/extendability.png",
     title: "Extendability",
     content: (
       <>

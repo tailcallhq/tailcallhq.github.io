@@ -22,6 +22,7 @@
     "react-ga4": "^2.1.0",
     "react-intersection-observer": "^9.10.2",
     "react-on-screen": "^2.1.1",
+    "styled-jsx": "^5.1.6",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {

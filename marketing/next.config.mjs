@@ -5,6 +5,10 @@ const nextConfig = {
       source: '/docs/:path*',
       destination: "/docs/:path*/index.html",
     },
+    {
+      source: '/graphql/:path*',
+      destination: "/docs/:path*/index.html",
+    },
   ],
 }
 
