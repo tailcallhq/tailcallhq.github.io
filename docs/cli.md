@@ -175,6 +175,15 @@ The inputs section specifies the sources from which the GraphQL configuration ca
 
 The `preset` section configures various transformers that modify the generated configuration.
 
+```json
+{
+  "preset": {
+    "mergeType": 1,
+    "consolidateURL": 0.5
+  }
+}
+```
+
 1. **mergeType**: The `Merge Type Transformer` merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between 0.0 and 1.0 to determine if two types can be merged or not. The defaults to 1.0.
 
    for example, following types `T1` and `T2` are exactly similar and with threshold value of 1.0, they can be merged into single type called `M1`
@@ -286,10 +295,4 @@ type MainRootType {
       path: "/posts/{{.args.id}}"
     )
 }
-```
-
-### Example
-
-```bash
-tailcall gen path_to_configuration_file.json
 ```
