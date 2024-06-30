@@ -10,7 +10,7 @@ const MoreEnterpriseFeatures = (): JSX.Element => {
       <div className="w-full h-full p-SPACE_04 sm:py-0 sm:pr-SPACE_10">
         <img
           src={require("@site/static/icons/basic/more-feat-grid.png").default}
-          alt=""
+          alt="More Features"
           className="absolute inset-0 h-full w-full sm:w-[47vw] -z-10"
         />
         <Heading as="h4" className="text-title-semi-large sm:text-title-large text-center h-full w-full mb-0">

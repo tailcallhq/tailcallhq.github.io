@@ -24,7 +24,7 @@ const SocialBuzz = (): JSX.Element => {
           srcSet={`${require("@site/static/images/about/tweet-1.jpg").default} 1x,
           ${require("@site/static/images/about/tweet-1-2x.jpg").default} 2x
           `}
-          alt=""
+          alt="Devs love tailcall"
           className="border border-solid border-tailCall-border-light-500 rounded-3xl m-SPACE_02"
         />
       </div>

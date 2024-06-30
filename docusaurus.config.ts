@@ -19,11 +19,16 @@ export default {
       },
     },
     {
-      tagName: "link",
+      tagName: "script",
       attributes: {
-        rel: "preconnect",
-        href: "https://codesandbox.io",
+        type: "application/ld+json",
       },
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org/",
+        "@type": "WebSite",
+        name: "Tailcall",
+        url: "https://tailcall.run/",
+      }),
     },
   ],
   url: "https://tailcall.run",
@@ -58,6 +63,7 @@ export default {
         docs: {
           // docRootComponent: require.resolve("./src/components/docs/Layout.tsx"),
           sidebarPath: require.resolve("./sidebars.ts"),
+          showLastUpdateTime: true,
           sidebarCollapsible: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -78,7 +84,7 @@ export default {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    image: "icons/companies/taicall.svg",
     navbar: {
       hideOnScroll: true,
       logo: {
@@ -190,6 +196,7 @@ export default {
         id: "graphql",
         path: "graphql",
         routeBasePath: "graphql",
+        showLastUpdateTime: true,
         sidebarPath: require.resolve("./graphql/sidebar.ts"),
       },
     ],
