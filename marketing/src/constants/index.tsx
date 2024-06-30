@@ -54,7 +54,7 @@ const Highlight = ({text}: {text: string}) => (
 
 export const features: Feature[] = [
   {
-    logo: "/images/home/orchestration.png",
+    logo: require("@site/static/images/home/orchestration.png").default,
     title: "Orchestration",
     content: (
       <>
@@ -63,22 +63,22 @@ export const features: Feature[] = [
         transformations or build a completely new set of aggregation APIs.
       </>
     ),
+    alt: "Orchestration",
   },
   {
-    logo: "/images/home/governance.png",
+    logo: require("@site/static/images/home/governance.png").default,
     title: "Governance",
     content: (
       <>
-        With Tailcall, your focus shifts to the &apos;what&apos;—such as entities, their relationships, access control,
-        security, authentication, caching, and more—rather than the &apos;how&apos;. This shift is enabled by the
-        Tailcall DSL, embodying a true <Highlight text="declarative approach" /> to managing APIs. Unlike traditional
-        API gateways that apply these properties directly to APIs, Tailcall&apos;s DSL simplifies governance and
-        clarifies semantics, providing a more intuitive framework for API management.
+        With Tailcall, your focus shifts to the 'what'—such as entities, their relationships, access control, security,
+        authentication, caching, and more—rather than the 'how'. This shift is enabled by the Tailcall DSL, embodying a
+        true <Highlight text="declarative approach" /> to managing APIs.
       </>
     ),
+    alt: "Governance",
   },
   {
-    logo: "/images/home/efficiency.png",
+    logo: require("@site/static/images/home/efficiency.png").default,
     title: "Efficiency",
     content: (
       <>
@@ -87,9 +87,10 @@ export const features: Feature[] = [
         opens up opportunities to use in ultra-low latency workloads.
       </>
     ),
+    alt: "Efficiency",
   },
   // {
-  //   logo: "/images/home/resiliency.png",
+  //   logo: require("@site/static/images/home/resiliency.png").default,
   //   title: "Resiliency",
   //   content: (
   //     <>
@@ -103,7 +104,7 @@ export const features: Feature[] = [
   //   ),
   // },
   {
-    logo: "/images/home/extendability.png",
+    logo: require("@site/static/images/home/extendability.png").default,
     title: "Extendability",
     content: (
       <>
@@ -113,6 +114,7 @@ export const features: Feature[] = [
         subsequent actions Tailcall should execute.
       </>
     ),
+    alt: "Extendability",
   },
 ]
 
