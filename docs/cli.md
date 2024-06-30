@@ -96,11 +96,9 @@ This command prompts for file creation and configuration, creating the following
 
 ## gen
 
-The `gen` command in the TailCall CLI is designed for generating GraphQL configurations from one or more sources such as protobuf files and REST Endpoints.
+The `gen` command in the TailCall CLI is designed to generate GraphQL configurations from various sources, such as protobuf files and REST endpoints.
 
-**Usage:**
-
-To generate a TailCall GraphQL configuration, pass a configuration file to the gen command. The configuration file should be in JSON format, as shown in the example below:
+To generate a TailCall GraphQL configuration, provide a configuration file to the `gen` command. This configuration file should be in JSON or YAML format, as illustrated in the example below:
 
 ```json
 {
@@ -117,25 +115,25 @@ To generate a TailCall GraphQL configuration, pass a configuration file to the g
       }
     }
   ],
-  "preset": {
-    "mergeType": 1,
-    "consolidateURL": 0.5
-  },
   "output": {
     "path": "./output.graphql",
-    "format": "graphQL"
+    "format": "graphql"
   },
   "schema": {
     "query": "Query"
+  },
+  "preset": {
+    "mergeType": 1,
+    "consolidateURL": 0.5
   }
 }
 ```
 
 ### Inputs
 
-The inputs section specifies the sources from which the GraphQL configuration can be generated. Each source can be a REST endpoint or a protobuf file.
+The `inputs` section specifies the sources from which the GraphQL configuration should be generated. Each source can be either a REST endpoint or a protobuf file.
 
-1. **REST** - For REST endpoints, provide the endpoint URL (src), the field name in the configuration (fieldName) which will be used as field name in operation type.
+1. **REST:** For REST endpoints, provide the endpoint URL (`src`) and the field name in the configuration (`fieldName`), which will be used as the field name in the operation type.
 
    ```json
    {
@@ -146,22 +144,20 @@ The inputs section specifies the sources from which the GraphQL configuration ca
    }
    ```
 
-   for above input config following field will be generated in operation type.
+   For the above input configuration, the following field will be generated in the operation type:
 
    ```graphql {2} showLineNumbers
    type Query {
-     # field name is taken from the above json config.
+     # field name is taken from the above JSON config
      post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
    }
    ```
 
-   :::note
-
-   It's essential to ensure that each field name is unique across the entire configuration to prevent overwriting previous definitions.
-
+   :::important
+   Ensure that each field name is **unique** across the entire configuration to prevent overwriting previous definitions.
    :::
 
-2. **Proto** - For protobuf files, specify the path to the proto file (src).
+2. **Proto:** For protobuf files, specify the path to the proto file (`src`).
 
    ```json
    {
@@ -171,24 +167,36 @@ The inputs section specifies the sources from which the GraphQL configuration ca
    }
    ```
 
+### Output
+
+The `output` section specifies the path and format for the generated GraphQL configuration.
+
+- **path**: The file path where the output will be saved.
+- **format**: The format of the output file. Supported formats are `json`, `yml`, and `graphql`.
+
+:::tip
+You can also change the format of the configuration later using the [check](#--format) command.
+:::
+
 ### Preset
 
-The `preset` section configures various transformers that modify the generated configuration.
+The config generator provides a set of tuning parameters that can make the generated configurations more readable by reducing duplication. This can be configured using the `preset` section.
 
-```json
+```jsonc title="Presets with default values"
 {
   "preset": {
     "mergeType": 1,
-    "consolidateURL": 0.5
-  }
+    "consolidateURL": 0.5,
+  },
 }
 ```
 
-1. **mergeType**: The `Merge Type Transformer` merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between 0.0 and 1.0 to determine if two types can be merged or not. The defaults to 1.0.
+1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`.
 
-   for example, following types `T1` and `T2` are exactly similar and with threshold value of 1.0, they can be merged into single type called `M1`
+   For example, the following types `T1` and `T2` are exactly similar, and with a threshold value of `1.0`, they can be merged into a single type called `M1`:
 
    ```graphql {14} showLineNumbers title="Merging type T1 and T2 into M1"
+   # BEFORE
    type T1 {
      id: ID
      firstName: String
@@ -201,7 +209,7 @@ The `preset` section configures various transformers that modify the generated c
      lastName: String
    }
 
-   # T1 and T2 are merged into M1.
+   # AFTER: T1 and T2 are merged into M1.
    type M1 {
      id: ID
      firstName: String
@@ -209,9 +217,9 @@ The `preset` section configures various transformers that modify the generated c
    }
    ```
 
-2. **consolidateURL**: The `Consolidate URL Transformer` finds the most common base URL among multiple REST endpoints and uses this URL in the upstream directive. It takes a threshold value between 0.0 and 1.0 to figure out the most common endpoint. The defaults to 0.5.
+2. **consolidateURL:** The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](./directives.md#upstream) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
 
-   `for example, Query type has three baseURL's, if we use consolidateURL transformer with 0.5 threshold. it will pick the most common baseUrl which is `http://jsonplaceholder.typicode.com` and will add it to the upstream and clean the baseURL's from query type..
+   For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](./directives.md#http) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
 
    ```graphql showLineNumbers
    schema
@@ -244,7 +252,7 @@ The `preset` section configures various transformers that modify the generated c
    }
    ```
 
-   to
+   After enabling the `consolidateURL` setting:
 
    ```graphql showLineNumbers
    schema
@@ -267,32 +275,3 @@ The `preset` section configures various transformers that modify the generated c
        )
    }
    ```
-
-### Output
-
-The output section specifies the path and format for the generated GraphQL configuration.
-
-- **path**: The file path where the output will be saved.
-- **format**: The format of the output file. Supported formats are `Json`, `Yml` and `GraphQL`.
-
-### Schema
-
-The schema section defines allows you to define the type name for operation types in configuration.
-
-```json
-  "schema": {
-    "query": "MainRootType"
-  }
-```
-
-For example, with the above configuration, the query operation type with "MainQuery" as the type name will be generated as follows:
-
-```graphql {1} showLineNumbers
-type MainRootType {
-  post(id: Int!): Post
-    @http(
-      baseURL: "http://jsonplaceholder.typicode.com"
-      path: "/posts/{{.args.id}}"
-    )
-}
-```
