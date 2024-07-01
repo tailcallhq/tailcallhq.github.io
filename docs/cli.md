@@ -152,8 +152,6 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
        "src": "https://jsonplaceholder.typicode.com/posts/1",
        "fieldName": "post",
        "headers": {
-         "Content-Type": "application/json",
-         "Accept": "application/json",
          "Authorization": "Bearer {{.env.AUTH_TOKEN}}"
        }
      }
