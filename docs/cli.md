@@ -243,7 +243,7 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
 The `output` section specifies the path and format for the generated GraphQL configuration.
 
 - **path**: The file path where the output will be saved.
-- **format**: The format of the output file. Supported formats are `json`, `yml`, and `graphql`.
+- **format**: The format of the output file. Supported formats are `json`, `yml`, and `graphQL`.
 
 :::tip
 You can also change the format of the configuration later using the [check](#--format) command.
