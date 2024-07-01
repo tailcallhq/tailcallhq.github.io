@@ -1,5 +1,6 @@
 ---
-title: Tailcall on AWS Lambda
+title: Deploy Tailcall on AWS Lambda
+sidebar_label: Deploy on AWS
 description: "Deploy `tailcall` on AWS Lambda using the github action `tailcallhq/gh-action`"
 ---
 
