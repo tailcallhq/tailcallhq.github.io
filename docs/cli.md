@@ -299,9 +299,9 @@ The config generator provides a set of tuning parameters that can make the gener
    }
    ```
 
-2. **consolidateURL:** The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](./directives.md#upstream) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
+2. **consolidateURL:** The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
 
-   For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](./directives.md#http) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
+   For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](directives.md#http-directive) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
 
    ```graphql showLineNumbers
    schema
