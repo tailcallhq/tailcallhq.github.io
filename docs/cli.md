@@ -127,7 +127,7 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
   ],
   "output": {
     "path": "./output.graphql",
-    "format": "graphql"
+    "format": "graphQL"
   },
   "schema": {
     "query": "Query"
