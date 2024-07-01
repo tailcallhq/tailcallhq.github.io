@@ -55,6 +55,7 @@ In this schema:
 - We also define a root `Query` type, which contains entry points for querying individual users and posts by their IDs. We will dig deep into this in [Next Section](#2-query)
 
 This schema serves as a contract between the client and the server, defining the structure of the data available through the API and specifying how clients can interact with it. It forms the foundation for building and querying data in a GraphQL API.
+You can learn more about [GraphQL Schema](schema-and-types.md) in detail.
 
 ### 2. Query
 
