@@ -6,6 +6,7 @@ const sidebars: SidebarsConfig = {
     "what-is-graphql",
     "schema-and-types",
     "queries",
+    "mutations",
     "graphql-vs-rest",
     "cto-guide",
     "problem-statement",
