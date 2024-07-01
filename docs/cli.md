@@ -186,8 +186,8 @@ The config generator provides a set of tuning parameters that can make the gener
 {
   "preset": {
     "mergeType": 1,
-    "consolidateURL": 0.5
-  }
+    "consolidateURL": 0.5,
+  },
 }
 ```
 
