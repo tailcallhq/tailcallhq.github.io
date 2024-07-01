@@ -6,6 +6,9 @@ slug: tailcall-graphql-cli
 sidebar_label: Command Line
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 The TailCall CLI (Command Line Interface) allows developers to manage and optimize GraphQL configurations directly from the command line.
 
 ## check
@@ -100,6 +103,8 @@ The `gen` command in the TailCall CLI is designed to generate GraphQL configurat
 
 To generate a TailCall GraphQL configuration, provide a configuration file to the `gen` command. This configuration file should be in JSON or YAML format, as illustrated in the example below:
 
+<Tabs>
+<TabItem value="json" label="JSON">
 ```json
 {
   "inputs": [
@@ -134,30 +139,73 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
 }
 ```
 
+</TabItem>
+<TabItem value="yml" label="YML">
+
+```yaml
+inputs:
+  - curl:
+      src: "https://jsonplaceholder.typicode.com/posts/1"
+      fieldName: "post"
+      headers:
+        Content-Type: "application/json"
+        Accept: "application/json"
+        Authorization: "Bearer {{.env.AUTH_TOKEN}}"
+  - proto:
+      src: "./news.proto"
+output:
+  path: "./output.graphql"
+  format: "graphQL"
+schema:
+  query: "Query"
+preset:
+  mergeType: 1
+  consolidateURL: 0.5
+```
+
+</TabItem>
+</Tabs>
+
 ### Inputs
 
 The `inputs` section specifies the sources from which the GraphQL configuration should be generated. Each source can be either a REST endpoint or a protobuf file.
 
-1. **REST:** When defining REST endpoints, the configuration should include the endpoint URL (src), the required headers for making the HTTP request, and the field name (fieldName) that will be used as the field name in the operation type.
+1. **REST:** When defining REST endpoints, the configuration should include the following properties.
 
-   1. **Headers:** Users can specify the required headers to make the HTTP request in the headers section.
+   1. **src (Required):** The URL of the REST endpoint. In this example, it points to a specific post on `jsonplaceholder.typicode.com`.
+   2. **fieldName (Required):** A unique name that should be used as the field name, which is then used in the operation type. In the example below, it's set to `post`.
+   3. **headers (Optional):** Users can specify the required headers to make the HTTP request in the headers section.
 
       :::info
       Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, see the following configuration where AUTH_TOKEN is referenced from the environment like `{{.env.AUTH_TOKEN}}`.
       :::
 
-   ```json
-   {
-     "curl": {
-       "src": "https://jsonplaceholder.typicode.com/posts/1",
-       "fieldName": "post",
-       "headers": {
-         "Authorization": "Bearer {{.env.AUTH_TOKEN}}"
-       }
-     }
-   }
-   ```
-
+    <Tabs>
+    <TabItem value="json" label="JSON">
+      ```json
+      {
+        "curl": {
+          "src": "https://jsonplaceholder.typicode.com/posts/1",
+          "fieldName": "post",
+          "headers": {
+            "Authorization": "Bearer {{.env.AUTH_TOKEN}}"
+          }
+        }
+      }
+      ```
+    </TabItem>
+     <TabItem value="yml" label="YML">
+      ```yml
+      - curl:
+          src: "https://jsonplaceholder.typicode.com/posts/1"
+          fieldName: "post"
+          headers:
+            Content-Type: "application/json"
+            Accept: "application/json"
+            Authorization: "Bearer {{.env.AUTH_TOKEN}}"
+      ```
+    </TabItem>
+    </Tabs>
    For the above input configuration, the following field will be generated in the operation type:
 
    ```graphql {2} showLineNumbers
@@ -172,7 +220,8 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
    :::
 
 2. **Proto:** For protobuf files, specify the path to the proto file (`src`).
-
+   <Tabs>
+   <TabItem value="json" label="JSON">
    ```json
    {
      "proto": {
@@ -180,6 +229,14 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
      }
    }
    ```
+   </TabItem>
+   <TabItem value="yml" label="YML">
+   ```yml
+    - proto:
+        src: "./news.proto"
+    ```
+   </TabItem>
+   </Tabs>
 
 ### Output
 
@@ -196,14 +253,25 @@ You can also change the format of the configuration later using the [check](#--f
 
 The config generator provides a set of tuning parameters that can make the generated configurations more readable by reducing duplication. This can be configured using the `preset` section.
 
-```jsonc title="Presets with default values"
-{
-  "preset": {
-    "mergeType": 1,
-    "consolidateURL": 0.5,
-  },
-}
-```
+<Tabs>
+   <TabItem value="json" label="JSON">
+   ```jsonc title="Presets with default values"
+  {
+    "preset": {
+      "mergeType": 1,
+      "consolidateURL": 0.5,
+    },
+  }
+  ```
+   </TabItem>
+    <TabItem value="yml" label="YML">
+   ```ymlc title="Presets with default values"
+  preset:
+    mergeType: 1
+    consolidateURL: 0.5
+  ```
+   </TabItem>
+</Tabs>
 
 1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`.
 
