@@ -170,7 +170,7 @@ GraphQL allows you to fetch related data in a single request using nested querie
 
 ### What is GraphiQL?
 
-GraphiQL is an open source in-browser IDE for exploring GraphQL APIs. You can use GraphiQL to interact with GraphQL servers and visualize query results.
+GraphiQL is an open-source in-browser IDE for exploring GraphQL APIs. You can use GraphiQL to interact with GraphQL servers and visualize query results.
 
 ### What is the benefit of using aliases in GraphQL?
 
