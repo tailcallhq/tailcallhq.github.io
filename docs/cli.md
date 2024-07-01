@@ -143,7 +143,7 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
    1. **Headers:** Users can specify the required headers to make the HTTP request in the headers section.
 
       :::info
-      Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, see the following configuration:
+      Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, see the following configuration where AUTH_TOKEN is referenced from the environment like `{{.env.AUTH_TOKEN}}`.
       :::
 
    ```json
