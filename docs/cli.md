@@ -106,7 +106,12 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
     {
       "curl": {
         "src": "https://jsonplaceholder.typicode.com/posts/1",
-        "fieldName": "post"
+        "fieldName": "post",
+        "headers": {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer {{.env.AUTH_TOKEN}}"
+        }
       }
     },
     {
@@ -133,13 +138,24 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
 
 The `inputs` section specifies the sources from which the GraphQL configuration should be generated. Each source can be either a REST endpoint or a protobuf file.
 
-1. **REST:** For REST endpoints, provide the endpoint URL (`src`) and the field name in the configuration (`fieldName`), which will be used as the field name in the operation type.
+1. **REST:** When defining REST endpoints, the configuration should include the endpoint URL (src), the required headers for making the HTTP request, and the field name (fieldName) that will be used as the field name in the operation type.
+
+   1. **Headers:** Users can specify the required headers to make the HTTP request in the headers section.
+
+      :::tip
+      Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, see the following configuration:
+      :::
 
    ```json
    {
      "curl": {
        "src": "https://jsonplaceholder.typicode.com/posts/1",
-       "fieldName": "post"
+       "fieldName": "post",
+       "headers": {
+         "Content-Type": "application/json",
+         "Accept": "application/json",
+         "Authorization": "Bearer {{.env.AUTH_TOKEN}}"
+       }
      }
    }
    ```
