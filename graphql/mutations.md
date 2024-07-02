@@ -169,8 +169,9 @@ mutation {
   }
 }
 ```
+
 :::caution
-  Doing Nested Mutations is possible but caution is advised as by default, GraphQL mutations are not transactional. This means that if one part of the mutation fails, the other parts will still be executed. You may need to implement custom logic to handle this.
+Performing Nested Mutations is possible but caution is advised as by default, GraphQL mutations are not transactional. This means that if one part of the mutation fails, the other parts will still be executed. You may need to implement custom logic to handle this.
 :::
 
 ## Optimizing Mutations for Performance
@@ -196,16 +197,21 @@ Here’s a simple diagram to illustrate the lifecycle of a mutation:
 Mastering GraphQL mutations is fundamental for any developer working with GraphQL APIs. By understanding their structure, implementing them effectively, and optimizing for performance, you can leverage the full potential of GraphQL for dynamic and efficient data manipulation.
 
 ---
+
 ## FAQs
 
 ### What is a GraphQL mutation?
+
 A GraphQL mutation is an operation that allows clients to modify server-side data, including creating, updating, and deleting records.
 
 ### How do I handle errors in GraphQL mutations?
+
 GraphQL responses include both data and errors. Clients can handle partial successes by checking the presence of errors in the response and taking appropriate actions.
 
 ### What is the difference between queries and mutations in GraphQL?
+
 Queries are used to fetch data, while mutations are used to modify data. Queries are typically idempotent, while mutations change the state of the server.
 
 ### How do I secure GraphQL mutations?
+
 Secure GraphQL mutations by implementing authentication to verify user identity and authorization to ensure users have the correct permissions to perform the mutation.
