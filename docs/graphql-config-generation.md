@@ -16,17 +16,33 @@ Configuration generation is the process of automatically generating graphQL conf
 
 ### Problems It Solves
 
-1. **Consistency**: Ensures all configurations are standardized across environments.
-2. **Efficiency**: Reduces the time and effort required to generate the configuration.
-3. **Error Reduction**: Minimizes human errors in writing graphql configuration by hand.
+Configuration generation with Tailcall addresses several critical challenges in creating and maintaining GraphQL configurations, ensuring streamlined and error-free processes.
+
+1. **Consistency**: By automatically generating schemas, types etc. Tailcall maintains a consistent structure, making it easier to manage and understand the API.
+2. **Efficiency**:
+   - **Time Savings**: Significantly reduces the time required to generate and update GraphQL configurations by automating the process, allowing developers to focus on core functionalities.
+   - **Quick Migration**: Enables rapid migration from REST or Protbuff to GraphQL, transforming complex API structures into GraphQL schemas within minutes.
+3. **Error Reduction**:
+   - **Minimized Human Errors**: Automates the tedious and error-prone task of manually writing GraphQL configurations, ensuring accuracy and reducing the risk of mistakes.
+   - **Accurate Type Mapping**: Automatically maps API responses to GraphQL types, ensuring correct and precise type definitions without manual intervention.
+
+By addressing these challenges, Tailcall enhances the development workflow, making the process of creating and managing GraphQL configurations more reliable, efficient, and error-free.
 
 ### Why is it Hard to Write GraphQL Schemas by Hand?
 
-Writing GraphQL schemas manually is challenging due to:
+Writing GraphQL schemas manually presents several challenges that can complicate and slow down the development process:
 
-- **Complex API Responses**: APIs often return large and complex responses, making it tedious to map these to GraphQL types.
-- **Data Consistency**: Handling APIs where some items might have missing properties requires meticulous examination to determine correct types and fields.
-- **Migration Efforts**: Migrating existing APIs to GraphQL involves substantial manual work to create corresponding GraphQL schemas.
+1. **Complex API Responses**:
+   - **Large and Detailed Responses**: APIs often return extensive and intricate data, making it laborious to map these responses accurately to GraphQL types.
+   - **Nested Structures**: Dealing with deeply nested JSON objects requires careful handling to ensure all relationships and data hierarchies are correctly represented in the schema.
+2. **Data Consistency**:
+   - **Missing Properties**: APIs can have inconsistent data where some items might lack certain properties, necessitating meticulous examination to define accurate types and optional fields.
+   - **Dynamic Data**: Handling APIs with dynamic data fields adds another layer of complexity, requiring flexible and robust schema definitions to accommodate various data shapes.
+3. **Migration Efforts**:
+   - **Manual Workload**: Converting existing REST APIs or Protocol Buffers to GraphQL involves substantial manual effort, as each endpoint must be individually mapped to corresponding GraphQL types and queries.
+   - **Error-Prone Process**: The manual creation of schemas increases the likelihood of errors, leading to potential issues in data fetching and integration.
+
+These challenges highlight the need for automated tools, which streamline the process of generating GraphQL schemas, ensuring accuracy and efficiency while reducing the manual workload and error potential.
 
 ## Input Sources
 
