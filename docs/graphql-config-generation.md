@@ -32,11 +32,44 @@ Writing GraphQL schemas manually is challenging due to:
 
 Our system supports generating configurations from various input sources, including:
 
-- **Proto Files**: Protocol buffer files defining the data structure.
-- **URLs**: Direct API endpoints.
-- **Existing Configurations**: Pre-existing configuration files.
+- **Proto Files**: By specifying a proto file path, Tailcall can parse the file and generate corresponding GraphQL types and queries, enabling seamless migration from Protocol Buffers to GraphQL within minutes.
+    <Tabs>
+    <TabItem value="json" label="JSON">
+    ```json showLineNumbers
+        "proto": {
+            "src": "./news.proto"
+        }
+    ```
+    </TabItem>
+    <TabItem value="yml" label="YML">
+    ```yml showLineNumbers
+    proto:
+        src: "./news.proto"
+    ```
+    </TabItem>
+    </Tabs>
+- **URLs**: By specifying a URL, Tailcall can fetch the API response and generate corresponding GraphQL types and queries, allowing migration from REST to GraphQL within minutes.
+    <Tabs>
+    <TabItem value="json" label="JSON">
+    ```json showLineNumbers
+    "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts",
+        "fieldName": "posts"
+    }
+    ```
+    </TabItem>
+    <TabItem value="yml" label="YML">
+    ```yml showLineNumbers
+    curl:
+        src: "https://jsonplaceholder.typicode.com/posts"
+        fieldName: "posts"
+    ```
+    </TabItem>
+    </Tabs>
 
 ## Features
+
+<hr/>
 
 ### Effortless REST Integration:
 
@@ -131,7 +164,7 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
         posts: [Post] @http(path: "/posts")
     }
     ```
-<hr />
+    <hr />
 
 2. **GET Request with Headers**
 
@@ -232,7 +265,10 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
 ## Advanced Features
 
+<hr/>
+
 ### Understanding Presets
+
 
 This entire section is optional and we use best defaults to generate the configuration but you can override these parameter through preset section present in configuration like shown in following.
 if you feel generated GraphQL configuration is good enough then feel free to skip this section. 
@@ -242,7 +278,7 @@ The config generator provides a set of tuning parameters that can make the gener
 
 <Tabs>
 <TabItem value="json" label="JSON">
-```json
+```json showLineNumbers
    "preset": {
     "mergeType": 0.8,
     "consolidateURL": 0.8
@@ -250,7 +286,7 @@ The config generator provides a set of tuning parameters that can make the gener
 ```
 </TabItem>
 <TabItem value="yml" label="YML">
-```yml
+```yml showLineNumbers
    preset:
     mergeType: 0.8
     consolidateURL: 0.8
@@ -448,14 +484,14 @@ When setting up your configuration file for GraphQL generation with Tailcall, co
 
     <Tabs>
     <TabItem value="json" label="JSON">
-    ```json
+    ```json showLineNumbers
     "preset": {
         "mergeType": 0.9,
     }
     ```
     </TabItem>
     <TabItem value="yml" label="YML">
-    ```yml
+    ```yml showLineNumbers
     preset:
         mergeType: 0.9
     ```
@@ -465,14 +501,14 @@ When setting up your configuration file for GraphQL generation with Tailcall, co
 2. **[Consolidate URL](graphql-config-generation.md#consolidateurl)**: Identifies the most common base URL among multiple REST endpoints and uses it in the [@upstream](directives.md#upstream-directive) directive. Set a threshold (0.0 to 1.0) to determine when to consolidate URLs. Recommended threshold is anything above `0.5`.
     <Tabs>
     <TabItem value="json" label="JSON">
-    ```json
+    ```json showLineNumbers
     "preset": {
         "consolidateURL": 0.5
     }
     ```
     </TabItem>
     <TabItem value="yml" label="YML">
-    ```yml
+    ```yml showLineNumbers
     preset:
         consolidateURL: 0.5
     ```
@@ -481,14 +517,14 @@ When setting up your configuration file for GraphQL generation with Tailcall, co
 3. **Headers**: Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from environment variables.
     <Tabs>
     <TabItem value="json" label="JSON">
-    ```json
+    ```json showLineNumbers
     "headers": {
         "secretToken": "{{.env.TOKEN}}"
     }
     ```
     </TabItem>
     <TabItem value="yml" label="YML">
-    ```yml
+    ```yml showLineNumbers
     headers:
         secretToken: "{{.env.TOKEN}}"
     ```
