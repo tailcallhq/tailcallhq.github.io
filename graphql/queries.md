@@ -55,7 +55,7 @@ GraphQL queries support nesting, allowing clients to request related data in a s
 
 ### Fragments
 
-Fragments allow the reuse of common field selections across multiple queries, mutations, or subscriptions. They help in maintaining a DRY (Don't Repeat Yourself) approach in GraphQL queries.
+Fragments allow the reuse of common field selections across multiple queries, mutations, or subscriptions. They help in maintaining a DRY (Don't Repeat Yourself) approach in GraphQL queries. We will cover fragments in detail in the [GraphQL Fragments](fragments.md) section.
 
 ```graphql
 fragment userFields on User {
