@@ -5,6 +5,11 @@ slug: graphql-configuration-generation-with-tailcall
 sidebar_label: GraphQL Config Generation
 ---
 
+<head>
+<meta property="og:type" content="article"/>
+  <title>Generate GraphQL Configuration</title>
+</head>
+
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
@@ -152,9 +157,9 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 
-    - We've set [mergeType](graphql-config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
+    - We've set [mergeType](config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
 
-      if you're interested in understanding preset's in detail head over to [preset](graphql-config-generation.md#understanding-presets) section.
+      if you're interested in understanding preset's in detail head over to [preset](config-generation.md#understanding-presets) section.
 
     **Output**: Specifies where and in what format the output data should be saved.
 
@@ -254,9 +259,9 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 
-    - We've set [mergeType](graphql-config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
+    - We've set [mergeType](config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
 
-      if you're interested in understanding preset's in detail head over to [preset](graphql-config-generation.md#understanding-presets) section.
+      if you're interested in understanding preset's in detail head over to [preset](config-generation.md#understanding-presets) section.
 
     **Output**: Specifies where and in what format the output data should be saved.
 
@@ -506,7 +511,7 @@ Let's understand how each of the parameter works.
 
 When setting up your configuration file for GraphQL generation with Tailcall, consider these key parameters to optimize and customize your setup:
 
-1. **[Merge Type](graphql-config-generation.md#mergetype)**:
+1. **[Merge Type](config-generation.md#mergetype)**:
 Controls the merging of similar GraphQL types to reduce duplication. Adjust the threshold (0.0 to 1.0) based on how strictly you want types to match for merging.
 the closer the number to 1.0, you get the best type inference in graphQL playground. Recommended threshold is anything above `0.9`.
 
@@ -526,7 +531,7 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
    </TabItem>
    </Tabs>
 
-2. **[Consolidate URL](graphql-config-generation.md#consolidateurl)**: Identifies the most common base URL among multiple REST endpoints and uses it in the [@upstream](directives.md#upstream-directive) directive. Set a threshold (0.0 to 1.0) to determine when to consolidate URLs. Recommended threshold is anything above `0.5`.
+2. **[Consolidate URL](config-generation.md#consolidateurl)**: Identifies the most common base URL among multiple REST endpoints and uses it in the [@upstream](directives.md#upstream-directive) directive. Set a threshold (0.0 to 1.0) to determine when to consolidate URLs. Recommended threshold is anything above `0.5`.
    <Tabs>
    <TabItem value="json" label="JSON">
    ```json showLineNumbers
