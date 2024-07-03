@@ -6,14 +6,14 @@ function main() {
   const args = process.argv.slice(2)
 
   if (!args.length || args.length > 2) {
-    throw new Error("The PR title couldn't be regonized")
+    throw new Error("The arguments given are not correct")
   }
 
   if (args[0] == "post:") {
     let post_title = args[1].trim()
 
     if (!isValidPostTitle(post_title)) {
-      throw new Error("The post was not published becasue the post title was not valid")
+      throw new Error("Post title is not valid")
     }
 
     let posts_directory = path.join(__dirname, "posts")
