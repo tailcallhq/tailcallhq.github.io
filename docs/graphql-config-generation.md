@@ -229,8 +229,214 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     }
 ```
 
-### Effortless Proto Integration:
-### Hybrid Integration (REST + Proto):
-## Advanced Features:
+### Effortless Proto Integration
+### Hybrid Integration (REST + Proto)
+## Advanced Features
+
+### Understanding Presets
+
+This entire section is optional and we use best defaults to generate the configuration but you can override these parameter through preset section present in configuration like shown in following.
+if you feel generated GraphQL configuration is good enough then feel free to skip this section. 
+
+The config generator provides a set of tuning parameters that can make the generated configurations more readable by reducing duplication and making configuration more readable. This can be configured using the `preset` section present in configuration.
+
+
+<Tabs>
+<TabItem value="json" label="JSON">
+```json
+   "preset": {
+    "mergeType": 0.8,
+    "consolidateURL": 0.8
+  }
+```
+</TabItem>
+<TabItem value="yml" label="YML">
+```yml
+   preset:
+    mergeType: 0.8
+    consolidateURL: 0.8
+```
+</TabItem>
+</Tabs>
+
+Let's understand how each of the parameter works.
+
+1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`. MergeType also supports union types as well as interface types but merging of these types will happen only when they match exactly.
+
+    **Example 1**: following types `T1` and `T2` are exactly similar, and with a threshold value of `1.0`, they can be merged into a single type called `M1`:
+
+    ```graphql {14} showLineNumbers title="Merging type T1 and T2 into M1"
+    # BEFORE
+    type T1 {
+        id: ID
+        firstName: String
+        lastName: String
+    }
+
+    type T2 {
+        id: ID
+        firstName: String
+        lastName: String
+    }
+
+    # AFTER: T1 and T2 are merged into M1.
+    type M1 {
+        id: ID
+        firstName: String
+        lastName: String
+    }
+    ```
+
+    **Example 2**: following types `T1` and `T2` are similar with a threshold value of `0.5`, they can be merged into a single type called `M1`:
+
+    ```graphql {14} showLineNumbers title="Merging type T1 and T2 into M1"
+    # BEFORE
+    type T1 {
+        id: ID
+        firstName: String
+        age: Int
+    }
+
+    type T2 {
+        id: ID
+        firstName: String
+        lastName: String
+    }
+
+    # AFTER: T1 and T2 are merged into M1.
+    type M1 {
+        id: ID
+        firstName: String
+        lastName: String
+        age: Int
+    }
+    ```
+
+    **Example 3**: following types `T1` and `T2` are similar with a threshold value of `0.5` but we can't merge them as they have same field name but different types:
+
+    ```graphql {5,11} showLineNumbers title="Can't Merge type T1 and T2 as they've same field name but different type"
+    # BEFORE
+    type T1 {
+        id: ID
+        firstName: String
+        age: Int
+    }
+
+    type T2 {
+        id: ID
+        firstName: String
+        age: Float
+    }
+    ```
+
+    **Example 4**: following types `Foo` and `Bar` will be merged into type `M1` as they match exactly and same change will reflected in union type `FooBar`.
+
+    ```graphql {24} showLineNumbers title="Merging type Foo and Bar into M1"
+    # BEFORE
+    type Foo {
+        id: ID
+        firstName: String
+        age: Int
+    }
+
+    type Bar {
+        id: ID
+        firstName: String
+        age: Int
+    }
+
+    union FooBar = Foo | Bar
+
+    # After merging
+    
+    type M1 {
+        id: ID
+        firstName: String
+        age: Int
+    }
+
+    union FooBar = M1
+    ```
+
+    **Example 5**: following types `Foo` and `Bar` won't be merged into type `M1` as they don't match exactly.
+
+    ```graphql showLineNumbers title="Can't Merge type T1 and T2 as they've same field name but different type"
+    # BEFORE
+    type Foo {
+        id: ID
+        firstName: String
+        age: Int
+    }
+
+    type Bar {
+        id: ID
+        firstName: String
+        age: Int
+    }
+
+    union FooBar = Foo | Bar
+    ```
+
+    <hr/>
+
+2. **consolidateURL:** The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
+
+   For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](directives.md#http-directive) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
+
+   ```graphql showLineNumbers
+   schema
+     @server(hostname: "0.0.0.0", port: 8000)
+     @upstream(httpCache: 42) {
+     query: Query
+   }
+
+   type Query {
+     post(id: Int!): Post
+       @http(
+         baseURL: "http://jsonplaceholder.typicode.com"
+         path: "/posts/{{.args.id}}"
+       )
+     posts: [Post]
+       @http(
+         baseURL: "http://jsonplaceholder.typicode.com"
+         path: "/posts"
+       )
+     user(id: Int!): User
+       @http(
+         baseURL: "http://jsonplaceholder.typicode.com"
+         path: "/users/{{.args.id}}"
+       )
+     users: [User]
+       @http(
+         baseURL: "http://jsonplaceholder-1.typicode.com"
+         path: "/users"
+       )
+   }
+   ```
+
+   After enabling the `consolidateURL` setting:
+
+   ```graphql showLineNumbers
+   schema
+     @server(hostname: "0.0.0.0", port: 8000)
+     @upstream(
+       baseURL: "http://jsonplaceholder.typicode.com"
+       httpCache: 42
+     ) {
+     query: Query
+   }
+
+   type Query {
+     post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
+     posts: [Post] @http(path: "/posts")
+     user(id: Int!): User @http(path: "/users/{{.args.id}}")
+     users: [User]
+       @http(
+         baseURL: "http://jsonplaceholder-1.typicode.com"
+         path: "/users"
+       )
+   }
+   ```
+
 ## Recommended Configuration Parameters
 ## FAQ
