@@ -6,8 +6,8 @@ slug: tailcall-graphql-cli
 sidebar_label: Command Line
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
 
 The TailCall CLI (Command Line Interface) allows developers to manage and optimize GraphQL configurations directly from the command line.
 
@@ -170,18 +170,18 @@ preset:
 
 The `inputs` section specifies the sources from which the GraphQL configuration should be generated. Each source can be either a REST endpoint or a protobuf file.
 
-1. **REST:** When defining REST endpoints, the configuration should include the following properties.
+1.  **REST:** When defining REST endpoints, the configuration should include the following properties.
 
-   1. **src (Required):** The URL of the REST endpoint. In this example, it points to a specific post on `jsonplaceholder.typicode.com`.
-   2. **fieldName (Required):** A unique name that should be used as the field name, which is then used in the operation type. In the example below, it's set to `post`.
-   3. **headers (Optional):** Users can specify the required headers to make the HTTP request in the headers section.
+    1. **src (Required):** The URL of the REST endpoint. In this example, it points to a specific post on `jsonplaceholder.typicode.com`.
+    2. **fieldName (Required):** A unique name that should be used as the field name, which is then used in the operation type. In the example below, it's set to `post`.
+    3. **headers (Optional):** Users can specify the required headers to make the HTTP request in the headers section.
 
-      :::info
-      Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, see the following configuration where AUTH_TOKEN is referenced from the environment like `{{.env.AUTH_TOKEN}}`.
-      :::
+       :::info
+       Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, see the following configuration where AUTH_TOKEN is referenced from the environment like `{{.env.AUTH_TOKEN}}`.
+       :::
 
-    <Tabs>
-    <TabItem value="json" label="JSON">
+      <Tabs>
+      <TabItem value="json" label="JSON">
       ```json
       {
         "curl": {
@@ -193,8 +193,8 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
         }
       }
       ```
-    </TabItem>
-     <TabItem value="yml" label="YML">
+      </TabItem>
+      <TabItem value="yml" label="YML">
       ```yml
       - curl:
           src: "https://jsonplaceholder.typicode.com/posts/1"
@@ -204,39 +204,41 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
             Accept: "application/json"
             Authorization: "Bearer {{.env.AUTH_TOKEN}}"
       ```
-    </TabItem>
-    </Tabs>
-   For the above input configuration, the following field will be generated in the operation type:
+      </TabItem>
+      </Tabs>
 
-   ```graphql {2} showLineNumbers
-   type Query {
-     # field name is taken from the above JSON config
-     post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
-   }
-   ```
+    For the above input configuration, the following field will be generated in the operation type:
 
-   :::important
-   Ensure that each field name is **unique** across the entire configuration to prevent overwriting previous definitions.
-   :::
-
-2. **Proto:** For protobuf files, specify the path to the proto file (`src`).
-   <Tabs>
-   <TabItem value="json" label="JSON">
-   ```json
-   {
-     "proto": {
-       "src": "./path/to/file.proto"
-     }
-   }
-   ```
-   </TabItem>
-   <TabItem value="yml" label="YML">
-   ```yml
-    - proto:
-        src: "./news.proto"
+    ```graphql {2} showLineNumbers
+    type Query {
+      # field name is taken from the above JSON config
+      post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
+    }
     ```
-   </TabItem>
-   </Tabs>
+
+    :::important
+    Ensure that each field name is **unique** across the entire configuration to prevent overwriting previous definitions.
+    :::
+
+2.  **Proto:** For protobuf files, specify the path to the proto file (`src`).
+
+    <Tabs>
+      <TabItem value="json" label="JSON">
+      ```json
+      {
+        "proto": {
+          "src": "./path/to/file.proto"
+        }
+      }
+      ```
+      </TabItem>
+      <TabItem value="yml" label="YML">
+      ```yml
+        - proto:
+      src: "./news.proto"
+      ```
+      </TabItem>
+    </Tabs>
 
 ### Output
 
@@ -254,23 +256,26 @@ You can also change the format of the configuration later using the [check](#--f
 The config generator provides a set of tuning parameters that can make the generated configurations more readable by reducing duplication. This can be configured using the `preset` section.
 
 <Tabs>
-   <TabItem value="json" label="JSON">
-   ```jsonc title="Presets with default values"
-  {
-    "preset": {
-      "mergeType": 1,
-      "consolidateURL": 0.5,
-    },
-  }
-  ```
-   </TabItem>
-    <TabItem value="yml" label="YML">
-   ```ymlc title="Presets with default values"
-  preset:
+<TabItem value="json" label="JSON">
+
+```jsonc title="Presets with default values"
+{
+  "preset": {
+    "mergeType": 1,
+    "consolidateURL": 0.5,
+  },
+}
+```
+
+</TabItem>
+
+<TabItem value="yml" label="YML">
+```ymlc title="Presets with default values"
+preset:
     mergeType: 1
     consolidateURL: 0.5
-  ```
-   </TabItem>
+```
+</TabItem>
 </Tabs>
 
 1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`.
