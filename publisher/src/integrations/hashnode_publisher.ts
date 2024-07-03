@@ -64,7 +64,7 @@ export default class HashnodePublisher implements Publisher {
       )
 
       if (response.data.errors) {
-        console.log(`couldn't publish the article ${article.title})} to hashnode`)
+        console.log(`couldn't publish the article ${article.title} to hashnode`)
         for (const error_message of response.data.errors) {
           console.error(error_message)
         }
