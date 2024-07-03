@@ -1,5 +1,8 @@
 {
   "name": "my-website",
+  "workspaces": [
+    "publisher"
+  ],
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -26,6 +29,7 @@
     "autoprefixer": "^10.4.19",
     "clsx": "^2.1.1",
     "docusaurus-lunr-search": "^3.4.0",
+    "dotenv": "^16.4.5",
     "graphiql": "^3.3.1",
     "graphql-ws": "^5.16.0",
     "lottie-light-react": "^2.4.0",
