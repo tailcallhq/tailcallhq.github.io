@@ -1,5 +1,5 @@
-import { Article } from "./article";
+import {Article} from "./article"
 
 export default interface Publisher {
-  publish(article: Article): void;
+  publish(article: Article): void
 }

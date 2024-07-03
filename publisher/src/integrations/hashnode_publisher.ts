@@ -1,26 +1,26 @@
-import axios from "axios";
-import slugify from "slugify";
-import { Article, SEO } from "../domain/article";
-import Publisher from "../domain/publisher";
+import axios from "axios"
+import slugify from "slugify"
+import {Article, SEO} from "../domain/article"
+import Publisher from "../domain/publisher"
 
 interface SEORequest {
-  title: string | null;
-  description: string | null;
+  title: string | null
+  description: string | null
 }
 
 interface TagRequest {
-  name: string;
-  slug: string;
+  name: string
+  slug: string
 }
 
 export default class HashnodePublisher implements Publisher {
-  private api_endpoint: string = "https://gql.hashnode.com/"; 
-  private api_token: string;
-  private publication_id: string;
+  private api_endpoint: string = "https://gql.hashnode.com/"
+  private api_token: string
+  private publication_id: string
 
   constructor(api_token: string, publication_id: string) {
-    this.api_token = api_token;
-    this.publication_id = publication_id;
+    this.api_token = api_token
+    this.publication_id = publication_id
   }
 
   async publish(article: Article) {
@@ -31,7 +31,7 @@ export default class HashnodePublisher implements Publisher {
           title
         }
       }
-    }`;
+    }`
 
     let variables = {
       input: {
@@ -44,52 +44,56 @@ export default class HashnodePublisher implements Publisher {
         metaTags: this.build_meta_tags_request(article.seo),
         publicationId: this.publication_id,
         coverImageOptions: {
-          coverImageURL: article.cover
-        }
-      }
+          coverImageURL: article.cover,
+        },
+      },
     }
 
     try {
-      let response = await axios.post(this.api_endpoint, {
-        query, variables
-      }, {
-        headers: {
-          'Authorization': this.api_token,
-        }
-      });
+      let response = await axios.post(
+        this.api_endpoint,
+        {
+          query,
+          variables,
+        },
+        {
+          headers: {
+            Authorization: this.api_token,
+          },
+        },
+      )
 
       if (response.data.errors) {
-        console.log(`couldn't publish the article ${article.title})} to hashnode`);
-        for (const error_message of response.data.errors) { 
-          console.error(error_message);
+        console.log(`couldn't publish the article ${article.title})} to hashnode`)
+        for (const error_message of response.data.errors) {
+          console.error(error_message)
         }
       } else {
-        console.log(`Published to Hashnode: ${article.title}`);
+        console.log(`Published to Hashnode: ${article.title}`)
       }
     } catch (error_message) {
-      console.log(`couldn't publish the article ${article.title}) to hashnode`);
-      console.error(error_message);
+      console.log(`couldn't publish the article ${article.title}) to hashnode`)
+      console.error(error_message)
     }
   }
 
   build_meta_tags_request(seo: SEO | null): SEORequest | null {
-    if (!seo) return null;
+    if (!seo) return null
     return {
       title: seo.title,
-      description: seo.description
-    };
+      description: seo.description,
+    }
   }
 
   build_tags_request(tags: string[]): TagRequest[] {
-    let updated_tags: TagRequest[] = [];
+    let updated_tags: TagRequest[] = []
     for (const tag_name of tags) {
-      let slug = slugify(tag_name, '-');
+      let slug = slugify(tag_name, "-")
       updated_tags.push({
         name: tag_name,
-        slug: slug
-      });
+        slug: slug,
+      })
     }
-    return updated_tags;
+    return updated_tags
   }
 }
-
