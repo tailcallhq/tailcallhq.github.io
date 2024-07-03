@@ -40,8 +40,8 @@ export default class HashnodePublisher implements Publisher {
         slug: article.slug,
         contentMarkdown: article.content,
         originalArticleURL: article.canonicalUrl,
-        tags: this.build_tags_request(article.tags),
-        metaTags: this.build_meta_tags_request(article.seo),
+        tags: this.buildTagsRequest(article.tags),
+        metaTags: this.buildMetaTagsRequest(article.seo),
         publicationId: this.publication_id,
         coverImageOptions: {
           coverImageURL: article.cover,
@@ -77,7 +77,7 @@ export default class HashnodePublisher implements Publisher {
     }
   }
 
-  build_meta_tags_request(seo: SEO | null): SEORequest | null {
+  buildMetaTagsRequest(seo: SEO | null): SEORequest | null {
     if (!seo) return null
     return {
       title: seo.title,
@@ -85,7 +85,7 @@ export default class HashnodePublisher implements Publisher {
     }
   }
 
-  build_tags_request(tags: string[]): TagRequest[] {
+  buildTagsRequest(tags: string[]): TagRequest[] {
     let updated_tags: TagRequest[] = []
     for (const tag_name of tags) {
       let slug = slugify(tag_name, "-")

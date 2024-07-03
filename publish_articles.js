@@ -12,7 +12,7 @@ function main() {
   if (args[0] == "post:") {
     let post_title = args[1].trim()
 
-    if (!is_valid_post_title(post_title)) {
+    if (!isValidPostTitle(post_title)) {
       throw new Error("The post was not published becasue the post title was not valid")
     }
 
@@ -33,7 +33,7 @@ function main() {
   }
 }
 
-function is_valid_post_title(input) {
+function isValidPostTitle(input) {
   const pattern = /^[a-z](-?[a-z])*$/
   return pattern.test(input)
 }
