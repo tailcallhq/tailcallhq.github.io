@@ -1,6 +1,6 @@
 ---
 title: GraphQL Configuration Generation with Tailcall
-description: Migrate to GraphQL with Tailcall within minutes
+description: Migrate REST or Protobuff to GraphQL within minutes
 slug: graphql-configuration-generation-with-tailcall
 sidebar_label: GraphQL Config Generation
 ---
@@ -101,10 +101,9 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
         :::
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
-        -  We've set `mergeType` to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
+        -  We've set [mergeType](graphql-config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
 
-        if you're interested in understanding preset's in detail head over to this section. 
-        **TODO: Add Linkage to Preset Detail Section**
+            if you're interested in understanding preset's in detail head over to [preset](graphql-config-generation.md#understanding-presets) section. 
 
     **Output**: Specifies where and in what format the output data should be saved.
         - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
@@ -201,10 +200,9 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
         :::
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
-        - We've set `mergeType` to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
+        - We've set [mergeType](graphql-config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
 
-        if you're interested in understanding preset's in detail head over to this section. 
-        **TODO: Add Linkage to Preset Detail Section**
+            if you're interested in understanding preset's in detail head over to [preset](graphql-config-generation.md#understanding-presets) section. 
 
     **Output**: Specifies where and in what format the output data should be saved.
         - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
@@ -231,6 +229,7 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
 ### Effortless Proto Integration
 ### Hybrid Integration (REST + Proto)
+
 ## Advanced Features
 
 ### Understanding Presets
@@ -261,7 +260,8 @@ The config generator provides a set of tuning parameters that can make the gener
 
 Let's understand how each of the parameter works.
 
-1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`. MergeType also supports union types as well as interface types but merging of these types will happen only when they match exactly.
+#### mergeType:
+This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`. MergeType also supports union types as well as interface types but merging of these types will happen only when they match exactly.
 
     **Example 1**: following types `T1` and `T2` are exactly similar, and with a threshold value of `1.0`, they can be merged into a single type called `M1`:
 
@@ -379,7 +379,8 @@ Let's understand how each of the parameter works.
 
     <hr/>
 
-2. **consolidateURL:** The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
+#### consolidateURL: 
+The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
 
    For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](directives.md#http-directive) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
 
