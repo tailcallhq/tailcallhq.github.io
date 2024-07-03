@@ -9,6 +9,7 @@ const sidebars: SidebarsConfig = {
     "mutations",
     "variables",
     "fragments",
+    "introspection",
     "graphql-vs-rest",
     "cto-guide",
     "problem-statement",
