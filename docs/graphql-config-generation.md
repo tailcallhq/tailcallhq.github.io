@@ -33,13 +33,13 @@ Writing GraphQL schemas manually is challenging due to:
 Our system supports generating configurations from various input sources, including:
 
 - **Proto Files**: By specifying a proto file path, Tailcall can parse the file and generate corresponding GraphQL types and queries, enabling seamless migration from Protocol Buffers to GraphQL within minutes.
-    <Tabs>
-    <TabItem value="json" label="JSON">
-    ```json showLineNumbers
-        "proto": {
-            "src": "./news.proto"
-        }
-    ```
+  <Tabs>
+  <TabItem value="json" label="JSON">
+  ```json showLineNumbers
+      "proto": {
+          "src": "./news.proto"
+      }
+  ```
     </TabItem>
     <TabItem value="yml" label="YML">
     ```yml showLineNumbers
@@ -49,14 +49,14 @@ Our system supports generating configurations from various input sources, includ
     </TabItem>
     </Tabs>
 - **URLs**: By specifying a URL, Tailcall can fetch the API response and generate corresponding GraphQL types and queries, allowing migration from REST to GraphQL within minutes.
-    <Tabs>
-    <TabItem value="json" label="JSON">
-    ```json showLineNumbers
-    "curl": {
-        "src": "https://jsonplaceholder.typicode.com/posts",
-        "fieldName": "posts"
-    }
-    ```
+  <Tabs>
+  <TabItem value="json" label="JSON">
+  ```json showLineNumbers
+  "curl": {
+      "src": "https://jsonplaceholder.typicode.com/posts",
+      "fieldName": "posts"
+  }
+  ```
     </TabItem>
     <TabItem value="yml" label="YML">
     ```yml showLineNumbers
@@ -123,50 +123,54 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     Let's understand the above configuration file.
 
-    **Input**: Defines the API endpoints that the configuration interacts with. Each input specifies:          
+    **Input**: Defines the API endpoints that the configuration interacts with. Each input specifies:
+
     - **src**: Specifies the endpoint URL (`https://jsonplaceholder.typicode.com/posts`) in this example.
     - **fieldName**: A unique name that should be used as the field name, which is then used in the operation type. In the example above, it's set to `posts`.
 
-        :::important
+      :::important
 
-        Ensure that each **field name** is unique across the entire configuration to prevent overwriting previous definitions. 
-        
-        :::
+      Ensure that each **field name** is unique across the entire configuration to prevent overwriting previous definitions.
+
+      :::
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
-        -  We've set [mergeType](graphql-config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
 
-            if you're interested in understanding preset's in detail head over to [preset](graphql-config-generation.md#understanding-presets) section. 
+    - We've set [mergeType](graphql-config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
+
+      if you're interested in understanding preset's in detail head over to [preset](graphql-config-generation.md#understanding-presets) section.
 
     **Output**: Specifies where and in what format the output data should be saved.
-        - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
-        - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
+
+    - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
+    - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
     **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
     ```graphql showLineNumbers title="Generated GraphQL Configuration"
     schema
-        @server
-        @upstream(
+      @server
+      @upstream(
         baseURL: "https://jsonplaceholder.typicode.com"
-        ) {
-        query: Query
+      ) {
+      query: Query
     }
 
     type Post {
-        body: String
-        id: Int
-        title: String
-        userId: Int
+      body: String
+      id: Int
+      title: String
+      userId: Int
     }
 
     type Query {
-        posts: [Post] @http(path: "/posts")
+      posts: [Post] @http(path: "/posts")
     }
     ```
+
     <hr />
 
-2. **GET Request with Headers**
+2.  **GET Request with Headers**
 
     In the following example, we demonstrate how to generate a GraphQL schema from `https://jsonplaceholder.typicode.com/posts/1` endpoint which requires some headers in order to produce the response.
 
@@ -223,44 +227,51 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     Let's understand the above configuration file.
 
-    **Input**: Defines the API endpoints that the configuration interacts with. Each input specifies:          
+    **Input**: Defines the API endpoints that the configuration interacts with. Each input specifies:
+
     - **src**: Specifies the endpoint URL (https://jsonplaceholder.typicode.com/posts/1 in this example).
-    - **fieldName**: Assigns a descriptive name (`post` in this case) to uniquely identify the retrieved data.   
+    - **fieldName**: Assigns a descriptive name (`post` in this case) to uniquely identify the retrieved data.
     - **headers**: Optional section for specifying HTTP headers required for the API request.
-        
-        :::tip
-            Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from environment variables.
-        :::
+      :::tip
+      Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from environment variables.
+      :::
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
-        - We've set [mergeType](graphql-config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
 
-            if you're interested in understanding preset's in detail head over to [preset](graphql-config-generation.md#understanding-presets) section. 
+    - We've set [mergeType](graphql-config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
+
+      if you're interested in understanding preset's in detail head over to [preset](graphql-config-generation.md#understanding-presets) section.
 
     **Output**: Specifies where and in what format the output data should be saved.
-        - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
-        - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
+
+    - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
+    - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
     **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
- ```graphql showLineNumbers title="Generated GraphQL Configuration"
-    schema @server @upstream(baseURL: "https://jsonplaceholder.typicode.com") {
-        query: Query
-    }
+```graphql showLineNumbers title="Generated GraphQL Configuration"
+schema
+  @server
+  @upstream(
+    baseURL: "https://jsonplaceholder.typicode.com"
+  ) {
+  query: Query
+}
 
-    type Post {
-        body: String
-        id: Int
-        title: String
-        userId: Int
-    }
+type Post {
+  body: String
+  id: Int
+  title: String
+  userId: Int
+}
 
-    type Query {
-        post(p1: Int!): Post @http(path: "/posts/{{.args.p1}}")
-    }
+type Query {
+  post(p1: Int!): Post @http(path: "/posts/{{.args.p1}}")
+}
 ```
 
 ### Effortless Proto Integration
+
 ### Hybrid Integration (REST + Proto)
 
 ## Advanced Features
@@ -269,12 +280,10 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
 ### Understanding Presets
 
-
 This entire section is optional and we use best defaults to generate the configuration but you can override these parameter through preset section present in configuration like shown in following.
-if you feel generated GraphQL configuration is good enough then feel free to skip this section. 
+if you feel generated GraphQL configuration is good enough then feel free to skip this section.
 
 The config generator provides a set of tuning parameters that can make the generated configurations more readable by reducing duplication and making configuration more readable. This can be configured using the `preset` section present in configuration.
-
 
 <Tabs>
 <TabItem value="json" label="JSON">
@@ -297,7 +306,8 @@ The config generator provides a set of tuning parameters that can make the gener
 Let's understand how each of the parameter works.
 
 - #### mergeType:
-    This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`. MergeType also supports union types as well as interface types but merging of these types will happen only when they match exactly.
+
+  This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`. MergeType also supports union types as well as interface types but merging of these types will happen only when they match exactly.
 
         **Example 1**: following types `T1` and `T2` are exactly similar, and with a threshold value of `1.0`, they can be merged into a single type called `M1`:
 
@@ -384,7 +394,7 @@ Let's understand how each of the parameter works.
         union FooBar = Foo | Bar
 
         # After merging
-        
+
         type M1 {
             id: ID
             firstName: String
@@ -415,120 +425,122 @@ Let's understand how each of the parameter works.
 
         <hr/>
 
-- #### consolidateURL: 
-    The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
+- #### consolidateURL:
 
-    For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](directives.md#http-directive) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
+  The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
 
-    ```graphql showLineNumbers
-    schema
-        @server(hostname: "0.0.0.0", port: 8000)
-        @upstream(httpCache: 42) {
-        query: Query
-    }
+  For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](directives.md#http-directive) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
 
-    type Query {
-        post(id: Int!): Post
-        @http(
-            baseURL: "http://jsonplaceholder.typicode.com"
-            path: "/posts/{{.args.id}}"
-        )
-        posts: [Post]
-        @http(
-            baseURL: "http://jsonplaceholder.typicode.com"
-            path: "/posts"
-        )
-        user(id: Int!): User
-        @http(
-            baseURL: "http://jsonplaceholder.typicode.com"
-            path: "/users/{{.args.id}}"
-        )
-        users: [User]
-        @http(
-            baseURL: "http://jsonplaceholder-1.typicode.com"
-            path: "/users"
-        )
-    }
-    ```
+  ```graphql showLineNumbers
+  schema
+    @server(hostname: "0.0.0.0", port: 8000)
+    @upstream(httpCache: 42) {
+    query: Query
+  }
 
-    After enabling the `consolidateURL` setting:
-
-    ```graphql showLineNumbers
-    schema
-        @server(hostname: "0.0.0.0", port: 8000)
-        @upstream(
+  type Query {
+    post(id: Int!): Post
+      @http(
         baseURL: "http://jsonplaceholder.typicode.com"
-        httpCache: 42
-        ) {
-        query: Query
-    }
+        path: "/posts/{{.args.id}}"
+      )
+    posts: [Post]
+      @http(
+        baseURL: "http://jsonplaceholder.typicode.com"
+        path: "/posts"
+      )
+    user(id: Int!): User
+      @http(
+        baseURL: "http://jsonplaceholder.typicode.com"
+        path: "/users/{{.args.id}}"
+      )
+    users: [User]
+      @http(
+        baseURL: "http://jsonplaceholder-1.typicode.com"
+        path: "/users"
+      )
+  }
+  ```
 
-    type Query {
-        post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
-        posts: [Post] @http(path: "/posts")
-        user(id: Int!): User @http(path: "/users/{{.args.id}}")
-        users: [User]
-        @http(
-            baseURL: "http://jsonplaceholder-1.typicode.com"
-            path: "/users"
-        )
-    }
-    ```
+  After enabling the `consolidateURL` setting:
+
+  ```graphql showLineNumbers
+  schema
+    @server(hostname: "0.0.0.0", port: 8000)
+    @upstream(
+      baseURL: "http://jsonplaceholder.typicode.com"
+      httpCache: 42
+    ) {
+    query: Query
+  }
+
+  type Query {
+    post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
+    posts: [Post] @http(path: "/posts")
+    user(id: Int!): User @http(path: "/users/{{.args.id}}")
+    users: [User]
+      @http(
+        baseURL: "http://jsonplaceholder-1.typicode.com"
+        path: "/users"
+      )
+  }
+  ```
 
 ## Recommended Configuration Parameters
+
 When setting up your configuration file for GraphQL generation with Tailcall, consider these key parameters to optimize and customize your setup:
 
 1. **[Merge Type](graphql-config-generation.md#mergetype)**:
- Controls the merging of similar GraphQL types to reduce duplication. Adjust the threshold (0.0 to 1.0) based on how strictly you want types to match for merging.
- the closer the number to 1.0, you get the best type inference in graphQL playground. Recommended threshold is anything above `0.9`.
+Controls the merging of similar GraphQL types to reduce duplication. Adjust the threshold (0.0 to 1.0) based on how strictly you want types to match for merging.
+the closer the number to 1.0, you get the best type inference in graphQL playground. Recommended threshold is anything above `0.9`.
 
-    <Tabs>
-    <TabItem value="json" label="JSON">
-    ```json showLineNumbers
-    "preset": {
-        "mergeType": 0.9,
-    }
-    ```
-    </TabItem>
-    <TabItem value="yml" label="YML">
-    ```yml showLineNumbers
-    preset:
-        mergeType: 0.9
-    ```
-    </TabItem>
-    </Tabs>
+   <Tabs>
+   <TabItem value="json" label="JSON">
+   ```json showLineNumbers
+   "preset": {
+       "mergeType": 0.9,
+   }
+   ```
+   </TabItem>
+   <TabItem value="yml" label="YML">
+   ```yml showLineNumbers
+   preset:
+       mergeType: 0.9
+   ```
+   </TabItem>
+   </Tabs>
 
 2. **[Consolidate URL](graphql-config-generation.md#consolidateurl)**: Identifies the most common base URL among multiple REST endpoints and uses it in the [@upstream](directives.md#upstream-directive) directive. Set a threshold (0.0 to 1.0) to determine when to consolidate URLs. Recommended threshold is anything above `0.5`.
-    <Tabs>
-    <TabItem value="json" label="JSON">
-    ```json showLineNumbers
-    "preset": {
-        "consolidateURL": 0.5
-    }
-    ```
-    </TabItem>
-    <TabItem value="yml" label="YML">
-    ```yml showLineNumbers
-    preset:
-        consolidateURL: 0.5
-    ```
-    </TabItem>
-    </Tabs>
+   <Tabs>
+   <TabItem value="json" label="JSON">
+   ```json showLineNumbers
+   "preset": {
+       "consolidateURL": 0.5
+   }
+   ```
+   </TabItem>
+   <TabItem value="yml" label="YML">
+   ```yml showLineNumbers
+   preset:
+       consolidateURL: 0.5
+   ```
+   </TabItem>
+   </Tabs>
 3. **Headers**: Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from environment variables.
-    <Tabs>
-    <TabItem value="json" label="JSON">
-    ```json showLineNumbers
-    "headers": {
-        "secretToken": "{{.env.TOKEN}}"
-    }
-    ```
-    </TabItem>
-    <TabItem value="yml" label="YML">
-    ```yml showLineNumbers
-    headers:
-        secretToken: "{{.env.TOKEN}}"
-    ```
-    </TabItem>
-    </Tabs>
+   <Tabs>
+   <TabItem value="json" label="JSON">
+   ```json showLineNumbers
+   "headers": {
+       "secretToken": "{{.env.TOKEN}}"
+   }
+   ```
+   </TabItem>
+   <TabItem value="yml" label="YML">
+   ```yml showLineNumbers
+   headers:
+       secretToken: "{{.env.TOKEN}}"
+   ```
+   </TabItem>
+   </Tabs>
 
 ## FAQ
