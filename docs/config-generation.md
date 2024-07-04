@@ -2,7 +2,7 @@
 title: GraphQL Configuration Generation with Tailcall
 description: Migrate REST or Protobuff to GraphQL within minutes
 slug: graphql-configuration-generation-with-tailcall
-sidebar_label: GraphQL Config Generation
+sidebar_label: Auto Generation
 ---
 
 <head>
@@ -92,7 +92,7 @@ Our system supports generating configurations from various input sources, includ
 
 <hr/>
 
-### Effortless REST Integration:
+### Effortless REST Integration
 
 Tailcall simplifies GraphQL schema generation from REST APIs, supporting various request types and scenarios. Let's understand this through various examples.
 
