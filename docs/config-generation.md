@@ -429,7 +429,7 @@ schema:
 
 Let's understand the above configuration file.
 
-### Inputs
+#### Inputs
 
 - **curl** - section where we can specify the REST endpoint.
   - _src:_ The URL of the REST API endpoint.
