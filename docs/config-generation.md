@@ -15,7 +15,7 @@ import TabItem from "@theme/TabItem"
 
 ## What is Configuration Generation?
 
-Configuration generation is the process of automatically generating graphQL configurations from the various sources such as **REST Endpoints**, **gRPC** and already existing **GraphQL configuration** files.
+Configuration generation is the process of automatically generating graphQL configurations from the various sources such as **REST**, **gRPC** and already existing **GraphQL configuration** files.
 
 ### Why is it Hard to Write GraphQL Schemas by Hand?
 
@@ -283,9 +283,9 @@ type Query {
 
 ### Effortless gRPC Integration
 
-Tailcall simplifies the process of generating GraphQL schemas from Proto files. By specifying the proto file path, Tailcall parses it and generates the corresponding GraphQL types and queries within minutes.
+Tailcall simplifies the process of generating GraphQL schemas from gRPC. By specifying the proto file path, Tailcall parses it and generates the corresponding GraphQL types and queries within minutes.
 
-1. **Proto File Integration**: In the following example, we demonstrate how to generate a GraphQL schema from a `news.proto` file.
+1. **gRPC Integration**: In the following example, we demonstrate how to generate a GraphQL schema from a `news.proto` file.
 
    This configuration allows Tailcall to parse the proto file, generate a GraphQL schema and save it to the output path provided in the configuration.
 
@@ -369,13 +369,13 @@ Tailcall simplifies the process of generating GraphQL schemas from Proto files. 
 
 for more insights on how gPRC works with GraphQL, you can read this [GraphQL over gRPC](grpc.md) article.
 
-### Hybrid Integration (REST + Proto)
+### Hybrid Integration (REST + gRPC)
 
-The Configuration Generator with Tailcall supports a hybrid integration of REST and Protocol Buffers (Proto) sources. This feature allows you to leverage the strengths of both REST APIs and Proto files to create a unified GraphQL schema. By integrating both sources, you can ensure that your GraphQL schema is comprehensive and up-to-date with your existing APIs and data definitions.
+The Configuration Generator with Tailcall supports a hybrid integration of REST and gRPC. This feature allows you to leverage the strengths of both REST APIs and gRPC to create a unified GraphQL schema. By integrating both sources, you can ensure that your GraphQL schema is comprehensive and up-to-date with your existing APIs and data definitions.
 
 #### Example Configuration
 
-Here is an example configuration that demonstrates how to set up a hybrid integration using a REST API and a Proto file:
+Here is an example configuration that demonstrates how to set up a hybrid integration using a REST and gRPC:
 <Tabs>
 <TabItem value="json" label="JSON Config Format">
 
