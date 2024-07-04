@@ -331,16 +331,16 @@ Tailcall simplifies the process of generating GraphQL schemas from Proto files. 
     </TabItem>
     <TabItem value="yml" label="YML Config Format">
    ```yml showLineNumbers
-      inputs:
-        - proto:
-          src: "./news.proto"
-      preset:
-        mergeType: 1.0
-      output:
-        path: "./jsonplaceholder.graphql"
-        format: "graphQL"
-      schema:
-        query: "Query"
+    inputs:
+      - proto:
+        src: "./news.proto"
+    preset:
+      mergeType: 1.0
+    output:
+      path: "./jsonplaceholder.graphql"
+      format: "graphQL"
+    schema:
+      query: "Query"
     ```
     </TabItem>
     </Tabs>
