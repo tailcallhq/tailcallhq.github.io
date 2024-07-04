@@ -66,7 +66,7 @@ async function start_publishing(config: Config) {
 function getUnpublishedPosts(config: Config): Array<Post> {
   let files = readdirSync(config.posts_directory)
 
-  let parsed_files: Array<Post> = []
+  let posts: Array<Post> = []
   for (const file of files) {
     let file_path = path.join(config.posts_directory, file)
     const blog_content = readFileSync(file_path, "utf-8")
@@ -76,10 +76,10 @@ function getUnpublishedPosts(config: Config): Array<Post> {
         file_path,
         matter: file_parsed,
       }
-      parsed_files.push(parsed_file)
+      posts.push(parsed_file)
     }
   }
-  return parsed_files
+  return posts
 }
 
 function updatePost(parsed_file: Post, status: string): void {

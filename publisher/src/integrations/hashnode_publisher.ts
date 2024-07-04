@@ -161,7 +161,6 @@ export default class HashnodePublisher implements Publisher {
 
     console.log(`Article published on hashnode successfully: ${article.title}`)
     let id = response.data.data.publishPost.post.id
-    console.log(response.data.data)
     return id
   }
 
