@@ -28,7 +28,11 @@ Writing GraphQL schemas manually presents several challenges that can complicate
    - **Missing Properties**: APIs can have inconsistent data where some items might lack certain properties, necessitating meticulous examination to define accurate types and optional fields.
    - **Dynamic Data**: Handling APIs with dynamic data fields adds another layer of complexity, requiring flexible and robust schema definitions to accommodate various data shapes.
 3. **Migration Efforts**:
-   - **Manual Workload**: Converting existing REST APIs or Protocol Buffers to GraphQL involves substantial manual effort, as each endpoint must be individually mapped to corresponding GraphQL types and queries.
+   - **Manual Workload**: Converting existing REST APIs or gRPC to GraphQL involves substantial manual effort, such as
+     - **Type and Schema Writing**: Each endpoint must be meticulously mapped to corresponding GraphQL types and queries.
+     - **Type Merging**: Identifying types that are similar in configuration and merging them into single type is tedious and time taking task and prone to errors.
+     - **Duplicate Type**: Identifying and eliminating duplicate in the entire configuration is challenging especially for large scheams, to ensure a clean schema.
+     - **Type Naming**: Inferring and naming types manually, which requires a deep understanding of the underlying data structures and their relationships.
    - **Error-Prone Process**: The manual creation of schemas increases the likelihood of errors, leading to potential issues in data fetching and integration.
 
 These challenges highlight the need for automated tools, which streamline the process of generating GraphQL schemas, ensuring accuracy and efficiency while reducing the manual workload and error potential.
