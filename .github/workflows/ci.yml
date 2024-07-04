@@ -36,3 +36,16 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
+
+      - name: Get changed files
+        id: changes
+        run: |
+          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^blog/')" >> $GITHUB_ENV
+
+      - name: Publish to Hashnode 📝
+        if: github.ref == 'refs/heads/develop' && env.files != ''
+        env:
+          HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+        run: |
+          npx --yes tsx blog-publisher/src/index.ts "${{ env.files }}"

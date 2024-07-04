@@ -1,0 +1,10 @@
+mutation PublishPost($input: PublishPostInput!) {
+  publishPost(input: $input) {
+    post {
+      id
+      slug
+      title
+      subtitle
+    }
+  }
+}
