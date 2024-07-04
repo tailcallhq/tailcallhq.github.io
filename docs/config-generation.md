@@ -381,7 +381,7 @@ Tailcall simplifies the process of generating GraphQL schemas from Proto files. 
    }
    ```
 
-  for more insights on how gPRC works with GraphQL, you can read this [GraphQL over gRPC](grpc.md) article.
+for more insights on how gPRC works with GraphQL, you can read this [GraphQL over gRPC](grpc.md) article.
 
 ### Hybrid Integration (REST + Proto)
 
