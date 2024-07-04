@@ -13,25 +13,9 @@ sidebar_label: Auto Generation
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-# GraphQL Configuration Generation with Tailcall
-
 ## What is Configuration Generation?
 
-Configuration generation is the process of automatically generating graphQL configurations from the various sources such as **REST Endpoints**, **Proto files** and already existing **GraphQL configuration** files.
-
-### Problems It Solves
-
-Configuration generation with Tailcall addresses several critical challenges in creating and maintaining GraphQL configurations, ensuring streamlined and error-free processes.
-
-1. **Consistency**: By automatically generating schemas, types etc. Tailcall maintains a consistent structure, making it easier to manage and understand the API.
-2. **Efficiency**:
-   - **Time Savings**: Significantly reduces the time required to generate and update GraphQL configurations by automating the process, allowing developers to focus on core functionalities.
-   - **Quick Migration**: Enables rapid migration from REST or Protbuff to GraphQL, transforming complex API structures into GraphQL schemas within minutes.
-3. **Error Reduction**:
-   - **Minimized Human Errors**: Automates the tedious and error-prone task of manually writing GraphQL configurations, ensuring accuracy and reducing the risk of mistakes.
-   - **Accurate Type Mapping**: Automatically maps API responses to GraphQL types, ensuring correct and precise type definitions without manual intervention.
-
-By addressing these challenges, Tailcall enhances the development workflow, making the process of creating and managing GraphQL configurations more reliable, efficient, and error-free.
+Configuration generation is the process of automatically generating graphQL configurations from the various sources such as **REST Endpoints**, **gRPC** and already existing **GraphQL configuration** files.
 
 ### Why is it Hard to Write GraphQL Schemas by Hand?
 
@@ -297,7 +281,7 @@ type Query {
 }
 ```
 
-### Effortless Proto Integration
+### Effortless gRPC Integration
 
 Tailcall simplifies the process of generating GraphQL schemas from Proto files. By specifying the proto file path, Tailcall parses it and generates the corresponding GraphQL types and queries within minutes.
 
