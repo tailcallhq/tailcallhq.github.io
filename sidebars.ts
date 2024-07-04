@@ -44,7 +44,7 @@ const sidebars: SidebarsConfig = {
         "scalar",
         "environment-variables",
         "configuration",
-        "config-generation"
+        "config-generation",
       ],
     },
     {type: "category", label: "Integrations", items: ["apollo-studio", "data-dog", "new-relic", "honey-comb"]},
