@@ -773,7 +773,7 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
 
 **Q. Can I use environment variables in my configuration?**
 
-**Ans:** Yes, you can use [environment variables](environment-variables.md) to securely reference sensitive information like access tokens. Here is an example:
+**Answer:** Yes, you can use [environment variables](environment-variables.md) to securely reference sensitive information like access tokens. Here is an example:
 
   <Tabs>
   <TabItem value="json" label="JSON">
@@ -802,7 +802,7 @@ curl:
 
 **Q. How do I merge similar types in the configuration?**
 
-**Ans:** Adjust the [mergeType](config-generation.md#mergetype) parameter in the preset section to control the merging of similar types. A threshold value between 0.0 and 1.0 determines if two types should be merged or not. if you to undestand this in detail then please head over to [preset](config-generation.md#understanding-presets) section. Here is an example:
+**Answer:** Adjust the [mergeType](config-generation.md#mergetype) parameter in the preset section to control the merging of similar types. A threshold value between 0.0 and 1.0 determines if two types should be merged or not. if you to understand this in detail then please head over to [preset](config-generation.md#understanding-presets) section. Here is an example:
 <Tabs>
 <TabItem value="json" label="JSON">
 
@@ -825,7 +825,7 @@ curl:
 
 **Q. What if I have multiple REST endpoints with different base URLs?**
 
-**Ans:** Use the [consolidateURL](config-generation.md#consolidateurl) parameter to identify the most common base URL among multiple REST endpoints and it will automatically select the most common base url and add it to the [@upstream](directives.md#upstream-directive) directive. Here is an example:
+**Answer:** Use the [consolidateURL](config-generation.md#consolidateurl) parameter to identify the most common base URL among multiple REST endpoints and it will automatically select the most common base url and add it to the [@upstream](directives.md#upstream-directive) directive. Here is an example:
 
   <Tabs>
   <TabItem value="json" label="JSON">
@@ -847,7 +847,7 @@ curl:
 
 **Q. Can I specify multiple input sources in a single configuration?**
 
-**Ans:** Yes, you can specify multiple input sources, such as different REST endpoints or Proto files, in a single configuration. Here is an example:
+**Answer:** Yes, you can specify multiple input sources, such as different REST endpoints or Proto files, in a single configuration. Here is an example:
 
   <Tabs>
   <TabItem value="json" label="JSON">
