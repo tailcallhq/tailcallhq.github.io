@@ -618,12 +618,12 @@ Let's understand how each of the parameter works.
 
         **Example 5**: following types `Foo` and `Bar` won't be merged into type `M1` as they don't match exactly.
 
-        ```graphql showLineNumbers title="Can't Merge type T1 and T2 as they've same field name but different type"
+        ```graphql {5,11} showLineNumbers title="Can't Merge type T1 and T2 as they've same field name but different type"
         # BEFORE
         type Foo {
             id: ID
             firstName: String
-            age: Int
+            age: Float
         }
 
         type Bar {
@@ -709,8 +709,10 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
    <Tabs>
    <TabItem value="json" label="JSON">
    ```json showLineNumbers
-   "preset": {
-       "mergeType": 0.9,
+   {
+      "preset": {
+          "mergeType": 0.9
+      }
    }
    ```
    </TabItem>
@@ -726,8 +728,10 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
    <Tabs>
    <TabItem value="json" label="JSON">
    ```json showLineNumbers
-   "preset": {
-       "consolidateURL": 0.5
+   {
+      "preset": {
+          "consolidateURL": 0.5
+      }
    }
    ```
    </TabItem>
@@ -742,8 +746,10 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
    <Tabs>
    <TabItem value="json" label="JSON">
    ```json showLineNumbers
-   "headers": {
-       "secretToken": "{{.env.TOKEN}}"
+   {
+      "headers": {
+          "secretToken": "{{.env.TOKEN}}"
+      }
    }
    ```
    </TabItem>
