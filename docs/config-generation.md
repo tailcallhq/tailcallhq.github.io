@@ -731,9 +731,9 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
    <TabItem value="json" label="JSON">
    ```json showLineNumbers
    {
-      "preset": {
-          "consolidateURL": 0.5
-      }
+     "preset": {
+       "consolidateURL": 0.5
+     }
    }
    ```
    </TabItem>
@@ -749,9 +749,9 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
    <TabItem value="json" label="JSON">
    ```json showLineNumbers
    {
-      "headers": {
-          "secretToken": "{{.env.TOKEN}}"
-      }
+     "headers": {
+       "secretToken": "{{.env.TOKEN}}"
+     }
    }
    ```
    </TabItem>
