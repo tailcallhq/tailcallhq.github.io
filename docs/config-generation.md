@@ -492,17 +492,19 @@ The config generator provides a set of tuning parameters that can make the gener
 <Tabs>
 <TabItem value="json" label="JSON">
 ```json showLineNumbers
+{
    "preset": {
     "mergeType": 0.8,
     "consolidateURL": 0.8
   }
+}
 ```
 </TabItem>
 <TabItem value="yml" label="YML">
 ```yml showLineNumbers
-   preset:
-    mergeType: 0.8
-    consolidateURL: 0.8
+preset:
+  mergeType: 0.8
+  consolidateURL: 0.8
 ```
 </TabItem>
 </Tabs>
