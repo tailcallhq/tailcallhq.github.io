@@ -77,9 +77,11 @@ Our system supports generating configurations from various input sources, includ
   <Tabs>
   <TabItem value="json" label="JSON">
   ```json showLineNumbers
-  "curl": {
+  {
+    "curl": {
       "src": "https://jsonplaceholder.typicode.com/posts",
       "fieldName": "posts"
+    }
   }
   ```
     </TabItem>
@@ -108,40 +110,40 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     <TabItem value="json" label="JSON Config Format">
     ```json showLineNumbers
     {
-        "inputs": [
-            {
-                "curl": {
-                    "src": "https://jsonplaceholder.typicode.com/posts",
-                    "fieldName": "posts",
-                }
+      "inputs":[
+          {
+            "curl":{
+                "src":"https://jsonplaceholder.typicode.com/posts",
+                "fieldName":"posts"
             }
-        ],
-        "preset": {
-            "mergeType": 1.0,
-        },
-        "output": {
-            "path": "./jsonplaceholder.graphql",
-            "format": "graphQL"
-        },
-        "schema": {
-            "query": "Query"
-        },
+          }
+      ],
+      "preset":{
+          "mergeType":1.0
+      },
+      "output":{
+          "path":"./jsonplaceholder.graphql",
+          "format":"graphQL"
+      },
+      "schema":{
+          "query":"Query"
+      }
     }
     ```
     </TabItem>
      <TabItem value="yml" label="YML Config Format">
     ```yml showLineNumbers
     inputs:
-        - curl:
-            src: "https://jsonplaceholder.typicode.com/posts"
-            fieldName: "posts"
+      - curl:
+          src: "https://jsonplaceholder.typicode.com/posts"
+          fieldName: "posts"
     preset:
-        mergeType: 1.0
+      mergeType: 1.0
     output:
-        path: "./jsonplaceholder.graphql"
-        format: "graphQL"
+      path: "./jsonplaceholder.graphql"
+      format: "graphQL"
     schema:
-        query: "Query"
+      query: "Query"
     ```
     </TabItem>
     </Tabs>
@@ -205,47 +207,47 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     <TabItem value="json" label="JSON Config Format">
     ```json showLineNumbers
     {
-        "inputs": [
-            {
-                "curl": {
-                    "src": "https://jsonplaceholder.typicode.com/posts/1",
-                    "fieldName": "post",
-                    "headers": {
-                        "Accept": "application/json",
-                        "secretToken": "{{.env.TOKEN}}"
-                    }
-                }
-            } 
-        ],
-        "preset": {
-            "mergeType": 1.0
-        },
-        "output": {
-            "path": "./jsonplaceholder.graphql",
-            "format": "graphQL"
-        },
-        "schema": {
-            "query": "Query"
-        }
+      "inputs":[
+          {
+            "curl":{
+              "src":"https://jsonplaceholder.typicode.com/posts/1",
+              "fieldName":"post",
+              "headers":{
+                "Accept":"application/json",
+                "secretToken":"{{.env.TOKEN}}"
+              }
+            }
+          }
+      ],
+      "preset":{
+        "mergeType":1.0
+      },
+      "output":{
+        "path":"./jsonplaceholder.graphql",
+        "format":"graphQL"
+      },
+      "schema":{
+        "query":"Query"
+      }
     }
     ```
     </TabItem>
     <TabItem value="yml" label="YML Config Format">
         ```yml showLineNumbers
         inputs:
-            - curl:
-                src: "https://jsonplaceholder.typicode.com/posts/1"
-                fieldName: "post"
-                headers:
-                    Accept: "application/json"
-                    secretToken: "{{.env.TOKEN}}"
+          - curl:
+              src: "https://jsonplaceholder.typicode.com/posts/1"
+              fieldName: "post"
+              headers:
+                Accept: "application/json"
+                secretToken: "{{.env.TOKEN}}"
         preset:
-            mergeType: 1.0
+          mergeType: 1.0
         output:
-            path: "./jsonplaceholder.graphql"
-            format: "graphQL"
+          path: "./jsonplaceholder.graphql"
+          format: "graphQL"
         schema:
-            query: "Query"
+          query: "Query"
         ```
     </TabItem>
     </Tabs>
@@ -306,39 +308,39 @@ Tailcall simplifies the process of generating GraphQL schemas from Proto files. 
     <Tabs>
     <TabItem value="json" label="JSON Config Format">
     ```json showLineNumbers
-      {
-          "inputs": [
-              {
-                  "proto": {
-                      "src": "./news.proto"
-                  }
-              }
-          ],
-          "preset": {
-              "mergeType": 1.0
-          },
-          "output": {
-              "path": "./jsonplaceholder.graphql",
-              "format": "graphQL"
-          },
-          "schema": {
-              "query": "Query"
+    {
+      "inputs":[
+        {
+          "proto":{
+              "src":"./news.proto"
           }
+        }
+      ],
+      "preset":{
+        "mergeType":1.0
+      },
+      "output":{
+        "path":"./jsonplaceholder.graphql",
+        "format":"graphQL"
+      },
+      "schema":{
+        "query":"Query"
       }
+    }
     ```
     </TabItem>
     <TabItem value="yml" label="YML Config Format">
    ```yml showLineNumbers
       inputs:
-          - proto:
-              src: "./news.proto"
+        - proto:
+          src: "./news.proto"
       preset:
-          mergeType: 1.0
+        mergeType: 1.0
       output:
-          path: "./jsonplaceholder.graphql"
-          format: "graphQL"
+        path: "./jsonplaceholder.graphql"
+        format: "graphQL"
       schema:
-          query: "Query"
+        query: "Query"
     ```
     </TabItem>
     </Tabs>
@@ -778,11 +780,11 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
   ```json showLineNumbers
   {
     "curl": {
-        "src": "https://jsonplaceholder.typicode.com/posts/1",
-        "fieldName": "post",
-        "headers": {
-            "secretToken": "{{.env.TOKEN}}"
-        }
+      "src": "https://jsonplaceholder.typicode.com/posts/1",
+      "fieldName": "post",
+      "headers": {
+        "secretToken": "{{.env.TOKEN}}"
+      }
     }
   }
   ```
@@ -829,9 +831,9 @@ curl:
   <TabItem value="json" label="JSON">
   ```json showLineNumbers
   {
-      "preset": {
-          "consolidateURL": 0.5
-      }
+    "preset": {
+      "consolidateURL": 0.5
+    }
   }
   ```
   </TabItem>
@@ -853,19 +855,19 @@ curl:
   {
       "inputs": [
           {
-              "curl": {
-                  "src": "https://jsonplaceholder.typicode.com/posts",
-                  "fieldName": "posts"
-              }
+            "curl": {
+              "src": "https://jsonplaceholder.typicode.com/posts",
+              "fieldName": "posts"
+            }
           },
           {
-              "proto": {
-                  "src": "./news.proto"
-              }
+            "proto": {
+              "src": "./news.proto"
+            }
           }
       ],
       "schema": {
-          "query": "Query"
+        "query": "Query"
       }
   }
   ```
