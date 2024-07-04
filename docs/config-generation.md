@@ -53,7 +53,7 @@ Our system supports generating configurations from various input sources, includ
     <TabItem value="yml" label="YML">
     ```yml showLineNumbers
     proto:
-        src: "./news.proto"
+      src: "./news.proto"
     ```
     </TabItem>
     </Tabs>
@@ -72,8 +72,8 @@ Our system supports generating configurations from various input sources, includ
     <TabItem value="yml" label="YML">
     ```yml showLineNumbers
     curl:
-        src: "https://jsonplaceholder.typicode.com/posts"
-        fieldName: "posts"
+      src: "https://jsonplaceholder.typicode.com/posts"
+      fieldName: "posts"
     ```
     </TabItem>
     </Tabs>
