@@ -59,7 +59,6 @@ async function start_publishing(config: Config) {
       }
     } catch (err) {
       console.error(err)
-      process.exit(0)
     }
   }
 }
