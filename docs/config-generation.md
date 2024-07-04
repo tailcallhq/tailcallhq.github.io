@@ -59,9 +59,11 @@ Our system supports generating configurations from various input sources, includ
   <Tabs>
   <TabItem value="json" label="JSON">
   ```json showLineNumbers
-      "proto": {
-          "src": "./news.proto"
-      }
+  {
+    "proto": {
+      "src": "./news.proto"
+    }
+  }
   ```
     </TabItem>
     <TabItem value="yml" label="YML">
@@ -256,7 +258,7 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **fieldName**: Assigns a descriptive name (`post` in this case) to uniquely identify the retrieved data.
     - **headers**: Optional section for specifying HTTP headers required for the API request.
       :::tip
-      Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from environment variables.
+      Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from [environment variables](environment-variables.md).
       :::
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
@@ -378,6 +380,8 @@ Tailcall simplifies the process of generating GraphQL schemas from Proto files. 
      news: [News] @grpc(method: "news.NewsService.GetNews")
    }
    ```
+
+  for more insights on how gPRC works with GraphQL, you can read this [GraphQL over gRPC](grpc.md) article.
 
 ### Hybrid Integration (REST + Proto)
 
@@ -744,7 +748,7 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
    ```
    </TabItem>
    </Tabs>
-3. **Headers**: Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from environment variables.
+3. **Headers**: Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from [environment variables](environment-variables.md).
    <Tabs>
    <TabItem value="json" label="JSON">
    ```json showLineNumbers
@@ -767,7 +771,7 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
 
 **Q. Can I use environment variables in my configuration?**
 
-**Ans:** Yes, you can use environment variables to securely reference sensitive information like access tokens. Here is an example:
+**Ans:** Yes, you can use [environment variables](environment-variables.md) to securely reference sensitive information like access tokens. Here is an example:
 
   <Tabs>
   <TabItem value="json" label="JSON">
@@ -796,7 +800,7 @@ curl:
 
 **Q. How do I merge similar types in the configuration?**
 
-**Ans:** Adjust the mergeType parameter in the preset section to control the merging of similar types. A threshold value between 0.0 and 1.0 determines if two types should be merged or not. if you to undestand this in detail then please head over to [preset](config-generation.md#understanding-presets) section. Here is an example:
+**Ans:** Adjust the [mergeType](config-generation.md#mergetype) parameter in the preset section to control the merging of similar types. A threshold value between 0.0 and 1.0 determines if two types should be merged or not. if you to undestand this in detail then please head over to [preset](config-generation.md#understanding-presets) section. Here is an example:
 <Tabs>
 <TabItem value="json" label="JSON">
 
@@ -819,7 +823,7 @@ curl:
 
 **Q. What if I have multiple REST endpoints with different base URLs?**
 
-**Ans:** Use the consolidateURL parameter to identify the most common base URL among multiple REST endpoints and it will automatically select the most common base url and add it to the @upstream directive. Here is an example:
+**Ans:** Use the [consolidateURL](config-generation.md#consolidateurl) parameter to identify the most common base URL among multiple REST endpoints and it will automatically select the most common base url and add it to the [@upstream](directives.md#upstream-directive) directive. Here is an example:
 
   <Tabs>
   <TabItem value="json" label="JSON">
