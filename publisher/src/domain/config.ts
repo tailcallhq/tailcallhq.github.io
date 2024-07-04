@@ -1,6 +1,5 @@
 import HashnodePublisher from "../integrations/hashnode_publisher"
 import Publisher from "./publisher"
-import "dotenv/config"
 
 export interface Config {
   posts_directory: string
