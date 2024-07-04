@@ -365,7 +365,7 @@ Tailcall simplifies the process of generating GraphQL schemas from Proto files. 
      query: Query
    }
 
-   type News {
+   type News @tag(id: "news.News") {
      id: Int
      title: String
      content: String
@@ -373,7 +373,7 @@ Tailcall simplifies the process of generating GraphQL schemas from Proto files. 
    }
 
    type Query {
-     news: [News]
+     news: [News] @grpc(method: "news.NewsService.GetNews")
    }
    ```
 
@@ -387,7 +387,7 @@ Here is an example configuration that demonstrates how to set up a hybrid integr
 <Tabs>
 <TabItem value="json" label="JSON Config Format">
 
-```json
+```json showLineNumbers
 {
   "inputs": [
     {
@@ -398,7 +398,7 @@ Here is an example configuration that demonstrates how to set up a hybrid integr
     },
     {
       "proto": {
-        "src": "../protobuf/news.proto"
+        "src": "./news.proto"
       }
     }
   ],
@@ -417,13 +417,13 @@ Here is an example configuration that demonstrates how to set up a hybrid integr
 
 </TabItem>
 <TabItem value="yml" label="YML Config Format">
-```yaml
+```yaml showLineNumbers
 inputs:
   - curl:
       src: "https://jsonplaceholder.typicode.com/posts"
       fieldName: "posts"
   - proto:
-      src: "../protobuf/news.proto"
+      src: "./news.proto"
 preset:
   mergeType: 1.0
 output:
@@ -457,6 +457,34 @@ Let's understand the above configuration file.
 - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
+
+```graphql showLineNumbers
+schema
+  @link(src: "./news.proto", type: Protobuf)
+  @upstream(baseURL: "https://jsonplaceholder.typicode.com")
+  @server {
+  query: Query
+}
+
+type News @tag(id: "news.News") {
+  id: Int
+  title: String
+  content: String
+  author: String
+}
+
+type Post {
+  body: String
+  id: Int
+  title: String
+  userId: Int
+}
+
+type Query {
+  posts: [Post] @http(path: "/posts")
+  news: [News] @grpc(method: "news.NewsService.GetNews")
+}
+```
 
 ## Advanced Features
 
