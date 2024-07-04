@@ -1,103 +1,94 @@
 import matter from "gray-matter"
-import {readFileSync} from "fs"
+import {readFileSync, readdirSync, writeFileSync} from "fs"
 import path from "path"
 import {Article, ArticleBuilder} from "./domain/article"
-import Publisher from "./domain/publisher"
-import HashnodePublisher from "./integrations/hashnode_publisher"
-import 'dotenv/config'
+import {buildConfig, Config} from "./domain/config"
 
-interface HashNodeConfig {
-  api_token?: string
-  publication_id?: string
-}
-
-interface Config {
-  post_title: string
-  posts_directory: string
-  hashnode: HashNodeConfig | null
+interface Post {
+  file_path: string
+  matter: matter.GrayMatterFile<string>
 }
 
 export function init(posts_directory: string) {
-  const args = process.argv.slice(2)
-
-  if (!args.length || args.length > 2) {
-    throw new Error("The arguments given are not correct")
-  }
-
-  if (args[0] == "post:") {
-    let post_title = args[1].trim()
-
-    if (!isValidPostTitle(post_title)) {
-      throw new Error("Post title is not valid")
-    }
-
-    let hashnode_token = process.env.HASHNODE_API_TOKEN
-    let hashnode_publication_id = process.env.HASHNODE_PUBLICATION_ID
-
-    let hashnode_enabled = hashnode_token !== undefined && hashnode_publication_id !== undefined
-
-    let config: Config = {
-      post_title,
-      posts_directory,
-      hashnode: null,
-    }
-
-    if (hashnode_enabled) {
-      let hashnode_config: HashNodeConfig = {
-        api_token: hashnode_token,
-        publication_id: hashnode_publication_id,
-      }
-      config["hashnode"] = hashnode_config
-    }
-
-    start_publishing(config)
-  }
-}
-
-function start_publishing(config: Config) {
-  if (!config.post_title) {
-    throw new Error("Must provide the title of the blog")
-  }
-
-  if (!config.posts_directory) {
+  if (!posts_directory) {
     throw new Error("Must provide the posts directory")
   }
 
-  const blog_content = readFileSync(path.join(config.posts_directory, `${config.post_title}.md`), "utf-8")
-  if (!blog_content) {
-    throw new Error("Couldn't find the content in the provided path")
-  }
+  let config = buildConfig(posts_directory)
+  start_publishing(config)
+}
 
-  const {data, content} = matter(blog_content)
-  let article: Article = new ArticleBuilder(data.title, data.slug, content)
-    .withSubtitle(data.subtitle)
-    .withCanonicalUrl(data.canonicalUrl)
-    .withSEO({title: data.seoTitle, description: data.seoDescription})
-    .withTags(data.tags)
-    .withCover(data.cover)
-    .build()
+async function start_publishing(config: Config) {
+  if (!config.publishers.length) return
+  let parsed_files: Array<Post> = getUnpublishedPosts(config)
 
-  const publishers: Publisher[] = []
-  if (config.hashnode) {
-    let {api_token, publication_id} = config.hashnode
-
-    if (!api_token) {
-      throw new Error("The api_token for hashnode must be present")
+  for (const parsed_file of parsed_files) {
+    let file_header = parsed_file.matter.data
+    const is_published = file_header.status == "PUBLISHED"
+    if (is_published) {
+      continue
     }
 
-    if (!publication_id) {
-      throw new Error("The publication_id for hashnode must be present")
+    let file_content = parsed_file.matter.content
+    let article: Article = new ArticleBuilder(file_header.title, file_header.slug, file_content)
+      .withSubtitle(file_header.subtitle)
+      .withCanonicalUrl(file_header.canonicalUrl)
+      .withSEO({title: file_header.seoTitle, description: file_header.seoDescription})
+      .withTags(file_header.tags)
+      .withCover(file_header.cover)
+      .build()
+
+    try {
+      for (let publisher of config.publishers) {
+        switch (file_header.status) {
+          case "DRAFT":
+            await publisher.publishDraft(article)
+            break
+
+          case "EDIT":
+            let content_id = publisher.getContentId(file_header)
+            await publisher.edit(content_id, article)
+            updatePost(parsed_file, "PUBLISHED")
+            break
+
+          default:
+            let post_id = await publisher.publish(article)
+            parsed_file.matter.data = publisher.addContentId(file_header, post_id)
+            updatePost(parsed_file, "PUBLISHED")
+        }
+      }
+    } catch (err) {
+      console.error(err)
+      process.exit(0)
     }
-
-    publishers.push(new HashnodePublisher(api_token, publication_id))
-  }
-
-  for (let publisher of publishers) {
-    publisher.publish(article)
   }
 }
 
-function isValidPostTitle(input: string) {
-  const pattern = /^[a-z](-?[a-z])*$/
-  return pattern.test(input)
+function getUnpublishedPosts(config: Config): Array<Post> {
+  let files = readdirSync(config.posts_directory)
+
+  let parsed_files: Array<Post> = []
+  for (const file of files) {
+    let file_path = path.join(config.posts_directory, file)
+    const blog_content = readFileSync(file_path, "utf-8")
+    let file_parsed: matter.GrayMatterFile<string> = matter(blog_content)
+    if (!file_parsed.data.status || file_parsed.data.status != "PUBLISHED") {
+      let parsed_file: Post = {
+        file_path,
+        matter: file_parsed,
+      }
+      parsed_files.push(parsed_file)
+    }
+  }
+  return parsed_files
+}
+
+function updatePost(parsed_file: Post, status: string): void {
+  let data = parsed_file.matter.data
+  const updatedFileContent = matter.stringify(parsed_file.matter.content, {
+    ...data,
+    status,
+  })
+
+  writeFileSync(parsed_file.file_path, updatedFileContent, "utf-8")
 }
