@@ -17,12 +17,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Check spelling
         uses: codespell-project/actions-codespell@v2
         with:
           ignore_words_file: .github/codespell-ignore
-          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock,*.excalidraw
+          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock,*.excalidraw,*.graphql,./blog-publisher/generated/graphql.ts
 
       - name: Install and Build 🔧
         run: |
@@ -40,7 +42,11 @@ jobs:
       - name: Get changed files
         id: changes
         run: |
-          echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^blog/')" >> $GITHUB_ENV
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "files=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '^blog/')" >> $GITHUB_ENV
+          else
+            echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^blog/')" >> $GITHUB_ENV
+          fi
 
       - name: Publish to Hashnode 📝
         if: github.ref == 'refs/heads/develop' && env.files != ''

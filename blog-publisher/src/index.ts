@@ -6,7 +6,7 @@ import { HASHNODE_PUBLICATION_ID } from "./utils/constants"
 const main = async () => {
   const changedFiles = process.argv[2].split("\n")
   for (const file of changedFiles) {
-    if (file.startsWith("blogs/")) {
+    if (file.startsWith("blog/")) {
       try {
         const filePath = path.join(__dirname, "../../", file)
 
