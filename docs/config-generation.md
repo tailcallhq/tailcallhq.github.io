@@ -293,7 +293,170 @@ type Query {
 
 ### Effortless Proto Integration
 
+Tailcall simplifies the process of generating GraphQL schemas from Proto files. By specifying the proto file path, Tailcall parses it and generates the corresponding GraphQL types and queries within minutes.
+
+1. **Proto File Integration**: In the following example, we demonstrate how to generate a GraphQL schema from a `news.proto` file.
+
+   This configuration allows Tailcall to parse the proto file, generate a GraphQL schema and save it to the output path provided in the configuration.
+
+    <Tabs>
+    <TabItem value="json" label="JSON Config Format">
+    ```json showLineNumbers
+      {
+          "inputs": [
+              {
+                  "proto": {
+                      "src": "./news.proto"
+                  }
+              }
+          ],
+          "preset": {
+              "mergeType": 1.0
+          },
+          "output": {
+              "path": "./jsonplaceholder.graphql",
+              "format": "graphQL"
+          },
+          "schema": {
+              "query": "Query"
+          }
+      }
+    ```
+    </TabItem>
+    <TabItem value="yml" label="YML Config Format">
+   ```yml showLineNumbers
+      inputs:
+          - proto:
+              src: "./news.proto"
+      preset:
+          mergeType: 1.0
+      output:
+          path: "./jsonplaceholder.graphql"
+          format: "graphQL"
+      schema:
+          query: "Query"
+    ```
+    </TabItem>
+    </Tabs>
+
+   Let's understand the above configuration file.
+
+   **Proto**: Defines the path to the proto file that the configuration interacts with.
+
+   - **src**: Specifies the path to the proto file (`./news.proto` in this example).
+
+   **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
+
+   - We've set [mergeType](config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
+
+     if you're interested in understanding preset's in detail head over to [preset](config-generation.md#understanding-presets) section.
+
+   **Output**: Specifies where and in what format the output data should be saved.
+
+   - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
+   - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
+
+   **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
+
+   ```graphql showLineNumbers title="Generated GraphQL Configuration"
+   schema
+     @link(src: "./news.proto", type: Protobuf)
+     @server {
+     query: Query
+   }
+
+   type News {
+     id: Int
+     title: String
+     content: String
+     author: String
+   }
+
+   type Query {
+     news: [News]
+   }
+   ```
+
 ### Hybrid Integration (REST + Proto)
+
+The Configuration Generator with Tailcall supports a hybrid integration of REST and Protocol Buffers (Proto) sources. This feature allows you to leverage the strengths of both REST APIs and Proto files to create a unified GraphQL schema. By integrating both sources, you can ensure that your GraphQL schema is comprehensive and up-to-date with your existing APIs and data definitions.
+
+#### Example Configuration
+
+Here is an example configuration that demonstrates how to set up a hybrid integration using a REST API and a Proto file:
+<Tabs>
+<TabItem value="json" label="JSON Config Format">
+
+```json
+{
+  "inputs": [
+    {
+      "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts",
+        "fieldName": "posts"
+      }
+    },
+    {
+      "proto": {
+        "src": "../protobuf/news.proto"
+      }
+    }
+  ],
+  "preset": {
+    "mergeType": 1.0
+  },
+  "output": {
+    "path": "./output.graphql",
+    "format": "graphQL"
+  },
+  "schema": {
+    "query": "Query"
+  }
+}
+```
+
+</TabItem>
+<TabItem value="yml" label="YML Config Format">
+```yaml
+inputs:
+  - curl:
+      src: "https://jsonplaceholder.typicode.com/posts"
+      fieldName: "posts"
+  - proto:
+      src: "../protobuf/news.proto"
+preset:
+  mergeType: 1.0
+output:
+  path: "./output.graphql"
+  format: "graphQL"
+schema:
+  query: "Query"
+```
+</TabItem>
+</Tabs>
+
+Let's understand the above configuration file.
+
+### Inputs
+
+- **curl** - section where we can specify the REST endpoint.
+  - _src:_ The URL of the REST API endpoint.
+  - _fieldName:_ The field name to use in the GraphQL schema for the REST data.
+- **proto** - section where we can specify the Proto File.
+  - _src:_ The path to the Proto file.
+
+**Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
+
+- We've set [mergeType](config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
+
+  if you're interested in understanding preset's in detail head over to [preset](config-generation.md#understanding-presets) section.
+
+**Output**: Specifies where and in what format the output data should be saved.
+
+- **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
+- **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
+
+**Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
 ## Advanced Features
 
