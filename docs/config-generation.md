@@ -49,6 +49,8 @@ Writing GraphQL schemas manually presents several challenges that can complicate
 
 These challenges highlight the need for automated tools, which streamline the process of generating GraphQL schemas, ensuring accuracy and efficiency while reducing the manual workload and error potential.
 
+For more insights on why manual GraphQL schema writing is becoming obsolete, you can read this [blog post by Tailcall](https://blog.tailcall.run/writing-a-graphql-backend-by-hand-is-long-gone).
+
 ## Input Sources
 
 Our system supports generating configurations from various input sources, including:
