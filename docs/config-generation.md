@@ -35,49 +35,6 @@ These challenges highlight the need for automated tools, which streamline the pr
 
 For more insights on why manual GraphQL schema writing is becoming obsolete, you can read this [blog post by Tailcall](https://blog.tailcall.run/writing-a-graphql-backend-by-hand-is-long-gone).
 
-## Input Sources
-
-Our system supports generating configurations from various input sources, including:
-
-- **Proto Files**: By specifying a proto file path, Tailcall can parse the file and generate corresponding GraphQL types and queries, enabling seamless migration from Protocol Buffers to GraphQL within minutes.
-  <Tabs>
-  <TabItem value="json" label="JSON">
-  ```json showLineNumbers
-  {
-    "proto": {
-      "src": "./news.proto"
-    }
-  }
-  ```
-    </TabItem>
-    <TabItem value="yml" label="YML">
-    ```yml showLineNumbers
-    proto:
-      src: "./news.proto"
-    ```
-    </TabItem>
-    </Tabs>
-- **URLs**: By specifying a URL, Tailcall can fetch the API response and generate corresponding GraphQL types and queries, allowing migration from REST to GraphQL within minutes.
-  <Tabs>
-  <TabItem value="json" label="JSON">
-  ```json showLineNumbers
-  {
-    "curl": {
-      "src": "https://jsonplaceholder.typicode.com/posts",
-      "fieldName": "posts"
-    }
-  }
-  ```
-    </TabItem>
-    <TabItem value="yml" label="YML">
-    ```yml showLineNumbers
-    curl:
-      src: "https://jsonplaceholder.typicode.com/posts"
-      fieldName: "posts"
-    ```
-    </TabItem>
-    </Tabs>
-
 ## Features
 
 <hr/>
