@@ -727,4 +727,119 @@ the closer the number to 1.0, you get the best type inference in graphQL playgro
    </TabItem>
    </Tabs>
 
-## FAQ
+## FAQ's
+
+**Q. Can I use environment variables in my configuration?**
+
+**Ans:** Yes, you can use environment variables to securely reference sensitive information like access tokens. Here is an example:
+
+  <Tabs>
+  <TabItem value="json" label="JSON">
+  ```json showLineNumbers
+  {
+    "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts/1",
+        "fieldName": "post",
+        "headers": {
+            "secretToken": "{{.env.TOKEN}}"
+        }
+    }
+  }
+  ```
+  </TabItem>
+  <TabItem value="yml" label="YML">
+```yml showLineNumbers
+curl:
+  src: "https://jsonplaceholder.typicode.com/posts/1"
+  fieldName: "post"
+  headers:
+      secretToken: "{{.env.TOKEN}}"
+  ```
+  </TabItem>
+  </Tabs>
+
+**Q. How do I merge similar types in the configuration?**
+
+**Ans:** Adjust the mergeType parameter in the preset section to control the merging of similar types. A threshold value between 0.0 and 1.0 determines if two types should be merged or not. if you to undestand this in detail then please head over to [preset](config-generation.md#understanding-presets) section. Here is an example:
+<Tabs>
+<TabItem value="json" label="JSON">
+
+```json showLineNumbers
+{
+  "preset": {
+    "mergeType": 0.9
+  }
+}
+```
+
+  </TabItem>
+  <TabItem value="yml" label="YML">
+  ```yml showLineNumbers
+  preset:
+      mergeType: 0.9
+  ```
+  </TabItem>
+  </Tabs>
+
+**Q. What if I have multiple REST endpoints with different base URLs?**
+
+**Ans:** Use the consolidateURL parameter to identify the most common base URL among multiple REST endpoints and it will automatically select the most common base url and add it to the @upstream directive. Here is an example:
+
+  <Tabs>
+  <TabItem value="json" label="JSON">
+  ```json showLineNumbers
+  {
+      "preset": {
+          "consolidateURL": 0.5
+      }
+  }
+  ```
+  </TabItem>
+  <TabItem value="yml" label="YML">
+  ```yml showLineNumbers
+  preset:
+      consolidateURL: 0.5
+  ```
+  </TabItem>
+  </Tabs>
+
+**Q. Can I specify multiple input sources in a single configuration?**
+
+**Ans:** Yes, you can specify multiple input sources, such as different REST endpoints or Proto files, in a single configuration. Here is an example:
+
+  <Tabs>
+  <TabItem value="json" label="JSON">
+  ```json showLineNumbers
+  {
+      "inputs": [
+          {
+              "curl": {
+                  "src": "https://jsonplaceholder.typicode.com/posts",
+                  "fieldName": "posts"
+              }
+          },
+          {
+              "proto": {
+                  "src": "./news.proto"
+              }
+          }
+      ],
+      "schema": {
+          "query": "Query"
+      }
+  }
+  ```
+  </TabItem>
+  <TabItem value="yml" label="YML">
+  ```yml showLineNumbers
+  inputs:
+      - curl:
+          src: "https://jsonplaceholder.typicode.com/posts"
+          fieldName: "posts"
+      - proto:
+          src: "./news.proto"
+  schema:
+      query: "Query"
+  ```
+  </TabItem>
+  </Tabs>
