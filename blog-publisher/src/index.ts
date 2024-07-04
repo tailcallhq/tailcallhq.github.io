@@ -1,7 +1,7 @@
 import path from "path"
 import {createDraft, findPostByTitle, updatePost} from "./utils/hashnode"
 import {addBaseUrlToImages, extractFrontMatterAndContent} from "./utils/markdown"
-import { HASHNODE_PUBLICATION_ID } from "./utils/constants"
+import {HASHNODE_PUBLICATION_ID} from "./utils/constants"
 
 const main = async () => {
   const changedFiles = process.argv[2].split("\n")
@@ -10,14 +10,14 @@ const main = async () => {
       try {
         const filePath = path.join(__dirname, "../../", file)
 
-        const { title, slug, tags, content } = extractFrontMatterAndContent(filePath)
+        const {title, slug, tags, content} = extractFrontMatterAndContent(filePath)
         const tagsArray = tags.map((tag) => ({name: tag}))
-  
+
         const processedMd = addBaseUrlToImages(content)
         const doesPostExist = await findPostByTitle(title)
-  
+
         if (doesPostExist) {
-          console.log(`Post ${title} exists, updating`);
+          console.log(`Post ${title} exists, updating`)
           return await updatePost({
             id: doesPostExist.id,
             title,
@@ -26,8 +26,8 @@ const main = async () => {
           })
         }
 
-        console.log(`Post not found, creating new post`);
-        
+        console.log(`Post not found, creating new post`)
+
         console.log({title, contentMarkdown: processedMd, slug, tags, publicationId: HASHNODE_PUBLICATION_ID})
 
         await createDraft({

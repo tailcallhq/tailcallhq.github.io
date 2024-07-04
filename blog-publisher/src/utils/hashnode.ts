@@ -49,11 +49,11 @@ const findPostByTitle = async (title: string) => {
 }
 
 const createDraft = async (input: CreateDraftInput) => {
-    const {data} = await client.mutate({
-        mutation: CreateDraftDocument,
-        variables: {
-            input,
-        },
+  const {data} = await client.mutate({
+    mutation: CreateDraftDocument,
+    variables: {
+      input,
+    },
   })
   return data
 }
@@ -68,25 +68,23 @@ const updatePost = async (input: UpdatePostInput) => {
   return data
 }
 
-
 const publishDraft = async (input: PublishDraftInput) => {
-    const {data} = await client.mutate({
-        mutation: PublishDraftDocument,
-        variables: {
-            input,
-        },
-    })
-    return data
+  const {data} = await client.mutate({
+    mutation: PublishDraftDocument,
+    variables: {
+      input,
+    },
+  })
+  return data
 }
 const publishPost = async (input: PublishPostInput) => {
-    const {data} = await client.mutate({
-        mutation: PublishPostDocument,
-        variables: {
-            input,
-        },
-    })
-    return data
+  const {data} = await client.mutate({
+    mutation: PublishPostDocument,
+    variables: {
+      input,
+    },
+  })
+  return data
 }
-
 
 export {createDraft, findPostByTitle, updatePost, publishDraft, publishPost}
