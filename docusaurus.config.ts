@@ -69,7 +69,6 @@ export default {
           // Remove this to remove the "edit this page" links.
           editUrl: `https://github.com/${organization}/${project}/tree/develop`,
         },
-        blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -98,7 +97,7 @@ export default {
         // {to: "/enterprise", label: "Enterprise", position: "left"},
         {to: "/docs", label: "Docs", position: "left"},
         {to: "/graphql", label: "GraphQL", position: "left"},
-        {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
+        {to: "/blog", label: "Blog", position: "left"},
         {
           href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
