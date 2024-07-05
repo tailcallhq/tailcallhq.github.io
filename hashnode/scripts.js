@@ -155,7 +155,7 @@ async function updatePost(input) {
 async function publish(metaData, blogContent, lastModified, skipLastModifiedCheck = false) {
   const parsedContent = await marked.parse(blogContent)
   const {success, post} = await fetchUserPostBySlug(metaData.slug)
-  const coverImage=  (metaData.image || metaData.coverImage || '').replace(pathRegex, `${githubBaseUrl}`);
+  const coverImage = (metaData.image || metaData.coverImage || "").replace(pathRegex, `${githubBaseUrl}`)
   console.log("coverImage=========>", coverImage)
   if (success && post) {
     if (!(lastModified && new Date(lastModified) > new Date(post.updatedAt)) && !skipLastModifiedCheck) {
@@ -176,7 +176,6 @@ async function publish(metaData, blogContent, lastModified, skipLastModifiedChec
       // Add any other fields you want to update
     }
 
-    
     const updatedPost = await updatePost(postInput)
     if (updatedPost) {
       console.log("Updated Post:", updatedPost)
