@@ -3,16 +3,23 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "graphql": "^16.9.0"
+    "@apollo/client": "^3.10.8",
+    "graphql": "^16.9.0",
+    "gray-matter": "^4.0.3"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/introspection": "4.0.3",
+    "@graphql-codegen/typescript": "4.0.9",
+    "@graphql-codegen/typescript-document-nodes": "4.0.9",
+    "@graphql-codegen/typescript-resolvers": "4.2.1",
     "typescript": "^5.5.3"
   }
 }

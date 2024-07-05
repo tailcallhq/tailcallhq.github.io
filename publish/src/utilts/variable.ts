@@ -1,0 +1,2 @@
+export const HASHNODE_API_TOKEN= process.env.HASHNODE_API_TOKEN!
+export const HASHNODE_PUBLICATION_ID = process.env.HASHNODE_PUBLICATION_ID!
