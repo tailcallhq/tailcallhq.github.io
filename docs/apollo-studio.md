@@ -3,6 +3,7 @@ title: Integrating Tailcall with Apollo Studio
 description: "Enhance your GraphQL server's efficiency by integrating Tailcall with Apollo Studio using our concise guide. Learn how to configure Tailcall to send vital usage metrics to Apollo Studio for advanced performance monitoring and optimization. Whether you're establishing a Monolith graph or improving an existing one, our instructions facilitate seamless integration. Set up for better insights and leverage Apollo Studio's features for a more responsive GraphQL server. Start optimizing today with our straightforward steps and explore Apollo Studio's free trial for new users."
 slug: integrate-apollo-studio-graphql-tailcall
 sidebar_label: Apollo Studio
+publish: true
 ---
 
 This guide illustrates how to configure `tailcall` to send usage metrics to [Apollo Studio](https://studio.apollographql.com).

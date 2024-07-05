@@ -4,6 +4,7 @@ sidebar_label: "Queries"
 description: "Unlock the full potential of GraphQL by mastering queries. Learn how to fetch data efficiently with detailed examples and best practices."
 slug: graphql-queries
 image: /images/graphql/graphql-queries.png
+publish: true
 ---
 
 ## Introduction to GraphQL Queries

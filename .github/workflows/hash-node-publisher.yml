@@ -1,0 +1,32 @@
+name: Deploy to Hashnode
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20" # Change this to your preferred Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script with GITHUB_TOKEN
+        run: node hashnode/scripts.js --skipLastModifiedCheck true --fileName '["N+1.md", "playground.md"]'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HASH_NODE_API_KEY: ${{ secrets.HASH_NODE_API_KEY }}
+          HASH_NODE_PUBLICATION_ID: ${{ secrets.HASH_NODE_PUBLICATION_ID }}
+          HASH_NODE_ENDPOINT: ${{ secrets.HASH_NODE_ENDPOINT }}
