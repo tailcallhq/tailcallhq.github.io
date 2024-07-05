@@ -3,6 +3,7 @@ title: Sequencing & Parallelism
 description: "Tailcall revolutionizes data access layer development by automating API call orchestration, ensuring optimal execution strategies through advanced sequencing and parallelism techniques."
 slug: graphql-data-access-parallel-vs-sequence
 sidebar_label: Sequence vs Parallel
+publish: true
 ---
 
 Building data access layers often involves meticulous orchestration of API calls, but Tailcall simplifies this process. By analyzing your defined schema, it automatically determines the optimal execution strategy, deciding when to sequence calls and when to run them in parallel. This allows you to focus on your core application logic, while Tailcall handles the optimization seamlessly. Now, let's get into some real-world examples to illustrate its functionality.

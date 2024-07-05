@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [closed]
     branches:
-      - main
+      - develop
 
 jobs:
   deploy:
@@ -18,13 +18,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "20" # Change this to your preferred Node.js version
-
+          node-version: "20"
       - name: Install dependencies
         run: npm install
 
-      - name: Run script with GITHUB_TOKEN
-        run: node hashnode/scripts.js --skipLastModifiedCheck true --fileName '["N+1.md", "playground.md"]'
+      - name: Run script the hashnode publisher script
+        run: |
+          node hashnode/scripts.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HASH_NODE_API_KEY: ${{ secrets.HASH_NODE_API_KEY }}

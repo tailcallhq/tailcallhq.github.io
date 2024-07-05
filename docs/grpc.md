@@ -4,6 +4,7 @@ sidebar_label: "GraphQL on gRPC"
 description: "Learn how gRPC and GraphQL boost microservices. Discover their benefits and how they work together for better APIs."
 slug: graphql-grpc-tailcall
 image: /images/docs/graphql_on_grpc.png
+publish: true
 ---
 
 <head>

@@ -34,10 +34,10 @@ const argv = yargs(hideBin(process.argv))
   })
   .help().argv
 
-const hashnodeApiKey = process.env.HASH_NODE_API_KEY || "d8deff01-f397-48d9-9b02-90e16daf98c12" // Replace with your actual key
+const hashnodeApiKey = process.env.HASH_NODE_API_KEY || "" // Replace with your actual key
 const blogPostsDir = path.join(__dirname, "../docs")
-const apiEndpoint = process.env.HASH_NODE_ENDPOINT || "https://gql.hashnode.com2/"
-const publicationId = process.env.PUBLICATION_ID || "6685759a459d4806eb134eb52"
+const apiEndpoint = process.env.HASH_NODE_ENDPOINT || "https://gql.hashnode.com/"
+const publicationId = process.env.HASH_NODE_PUBLICATION_ID || ""
 const githubBaseUrl = "https://raw.githubusercontent.com/tailcallhq/tailcallhq.github.io/develop/static/images/docs/"
 const pathRegex = /\.\.\/static\/images\/docs\//g
 
@@ -158,6 +158,7 @@ async function publish(metaData, blogContent, lastModified, skipLastModifiedChec
   if (success && post) {
     if (!(lastModified && new Date(lastModified) > new Date(post.updatedAt)) && !skipLastModifiedCheck) {
       // No need to update
+      console.log("skip the update", post.id)
       return
     }
     const postInput = {
@@ -222,7 +223,7 @@ async function publish(metaData, blogContent, lastModified, skipLastModifiedChec
     }
   } catch (error) {
     console.error(`Error publishing article ${metaData.title}: ${error.message}`)
-    if (_.get(response, "response.data")) {
+    if (_.get(error, "response.data")) {
       console.error(JSON.stringify(error.response.data, null, 2))
     }
   }
@@ -243,6 +244,14 @@ function toArray(filename) {
 
 async function start() {
   try {
+    if (!hashnodeApiKey) {
+      console.log("Please set HASH_NODE_API_KEY environment variable")
+      process.exit(1)
+    }
+    if (!publicationId) {
+      console.log("Please set HASH_NODE_PUBLICATION_ID environment variable")
+      process.exit(1)
+    }
     const skipLastModifiedCheck = argv.skipLastModifiedCheck
     const fileName = argv.fileName
     const files = fileName ? toArray(fileName) : fs.readdirSync(blogPostsDir)
@@ -260,8 +269,10 @@ async function start() {
       }
     }
     await Promise.all(promises, {concurrency: 5})
+    process.exit(0)
   } catch (err) {
     console.error(`Error reading or publishing the blog post: ${err.message}`)
+    process.exit(1)
   }
 }
 
