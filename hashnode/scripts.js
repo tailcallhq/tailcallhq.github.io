@@ -156,7 +156,6 @@ async function publish(metaData, blogContent, lastModified, skipLastModifiedChec
   const parsedContent = await marked.parse(blogContent)
   const {success, post} = await fetchUserPostBySlug(metaData.slug)
   const coverImage = (metaData.image || metaData.coverImage || "").replace(pathRegex, `${githubBaseUrl}`)
-  console.log("coverImage=========>", coverImage)
   if (success && post) {
     if (!(lastModified && new Date(lastModified) > new Date(post.updatedAt)) && !skipLastModifiedCheck) {
       // No need to update
