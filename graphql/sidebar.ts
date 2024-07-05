@@ -12,6 +12,7 @@ const sidebars: SidebarsConfig = {
       label: "GraphQL Tutorial",
       items: ["what-is-graphql", "schema-and-types", "queries", "mutations", "variables", "fragments", "introspection"],
     },
+    "graphql-react-client",
   ],
 }
 
