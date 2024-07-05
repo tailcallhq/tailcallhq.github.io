@@ -52,21 +52,19 @@ function getLastModified(filePath) {
   }
 }
 async function fetchUserPostBySlug(slug) {
-  const outputParams = ["subtitle", "slug", "title", "url"]
-  const randomField = outputParams[Math.floor(Math.random() * outputParams.length)]
+  const outputParams = ["subtitle", "slug", "title", "url", "updatedAt", "id"]
+  const randomizedOutputParams = outputParams.sort(() => Math.random() - 0.5)
+  const fields = randomizedOutputParams.join(" ")
 
   const query = `query FetchPostBySlug($publicationId: ObjectId!, $slug: String!) {
     publication(id: $publicationId) {
       isTeam
       title
       post(slug: $slug) {
-        id
-        title
-        updatedAt
         content {
           markdown
         }
-        ${randomField}
+        ${fields}
       }
     }
   }`
