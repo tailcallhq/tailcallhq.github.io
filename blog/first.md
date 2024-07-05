@@ -17,6 +17,7 @@ hide_table_of_contents: false
 ---
 
 Welcome to this blog. This blog is created with [**Docusaurus 2**](https://docusaurus.io/).
+![logger](../static/images/logging.png)
 
 <!-- truncate -->
 
