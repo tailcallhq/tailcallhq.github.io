@@ -298,6 +298,230 @@ Caching is essential for optimizing the performance and efficiency of data fetch
 
 ## Error Handling
 
+Proper error handling is crucial for creating robust GraphQL applications. This section provides a detailed discussion on error handling for each client, including code examples for different types of errors and guidance on displaying user-friendly error messages.
+
+### 1. Apollo Client
+
+Apollo Client provides detailed error information through the `error` property returned by the `useQuery` hook. It distinguishes between GraphQL errors and network errors.
+
+```tsx
+import { defineComponent } from 'vue';
+import { useQuery, gql } from '@vue/apollo-composable';
+
+const LAUNCHES_QUERY = gql`
+  {
+    launchesPast(limit: 10) {
+      id
+      mission_name
+    }
+  }
+`;
+
+export default defineComponent({
+  setup() {
+    const { result, loading, error } = useQuery(LAUNCHES_QUERY);
+
+    return { result, loading, error };
+  },
+  template: `
+    <div>
+      <div v-if="loading">Loading...</div>
+      <ErrorDisplay v-if="error" :error="error" />
+      <div v-else>
+        <!-- Render data -->
+      </div>
+    </div>
+  `,
+  components: {
+    ErrorDisplay
+  }
+});
+
+const ErrorDisplay = {
+  props: ['error'],
+  methods: {
+    getUserFriendlyErrorMessage(error) {
+      if (error.networkError) {
+        return "Unable to reach the server. Please check your internet connection and try again.";
+      }
+      if (error.graphQLErrors.length > 0) {
+        // You might want to customize this based on specific error codes or messages
+        return "There was an issue processing your request. Please try again later.";
+      }
+      return "An unexpected error occurred. Please try again.";
+    }
+  },
+  template: `
+    <div class="error-container">
+      <h2>Oops! Something went wrong</h2>
+      <p>{{ getUserFriendlyErrorMessage(error) }}</p>
+      <details v-if="process.env.NODE_ENV !== 'production'">
+        <summary>Technical Details</summary>
+        <div v-for="(graphQLError, index) in error.graphQLErrors" :key="index">
+          <p>GraphQL error: {{ graphQLError.message }}</p>
+          <p>Location: {{ JSON.stringify(graphQLError.locations) }}</p>
+          <p>Path: {{ JSON.stringify(graphQLError.path) }}</p>
+        </div>
+        <p v-if="error.networkError">Network error: {{ error.networkError.message }}</p>
+      </details>
+    </div>
+  `
+};
+```
+
+This example demonstrates how to:
+
+- Display a user-friendly error message based on the type of error.
+- Show technical details only in non-production environments.
+- Handle both GraphQL and network errors.
+
+### 2. Urql
+
+Urql provides error information through the error property in the result object.
+
+```jsx
+import { defineComponent } from 'vue';
+import { useQuery } from '@urql/vue';
+
+const LAUNCHES_QUERY = `
+  {
+    launchesPast(limit: 10) {
+      id
+      mission_name
+    }
+  }
+`;
+
+export default defineComponent({
+  setup() {
+    const { data, fetching, error } = useQuery({ query: LAUNCHES_QUERY });
+
+    return { data, fetching, error };
+  },
+  template: `
+    <div>
+      <div v-if="fetching">Loading...</div>
+      <ErrorDisplay v-if="error" :error="error" />
+      <div v-else>
+        <!-- Render data -->
+      </div>
+    </div>
+  `,
+  components: {
+    ErrorDisplay
+  }
+});
+
+const ErrorDisplay = {
+  props: ['error'],
+  methods: {
+    getUserFriendlyErrorMessage(error) {
+      if (error.networkError) {
+        return "Unable to reach the server. Please check your internet connection and try again.";
+      }
+      if (error.graphQLErrors.length > 0) {
+        return "There was an issue processing your request. Please try again later.";
+      }
+      return "An unexpected error occurred. Please try again.";
+    }
+  },
+  template: `
+    <div class="error-container">
+      <h2>Oops! Something went wrong</h2>
+      <p>{{ getUserFriendlyErrorMessage(error) }}</p>
+      <details v-if="process.env.NODE_ENV !== 'production'">
+        <summary>Technical Details</summary>
+        <div v-for="(graphQLError, index) in error.graphQLErrors" :key="index">
+          <p>GraphQL error: {{ graphQLError.message }}</p>
+          <p v-if="graphQLError.locations">Location: {{ JSON.stringify(graphQLError.locations) }}</p>
+          <p v-if="graphQLError.path">Path: {{ JSON.stringify(graphQLError.path) }}</p>
+        </div>
+        <p v-if="error.networkError">Network error: {{ error.networkError.message }}</p>
+      </details>
+    </div>
+  `
+};
+```
+
+### 3. Vue Query (applies to all Vue Query examples)
+
+Vue Query provides error information through the `error` property returned by the `useQuery` hook.
+
+When using Vue Query with GraphQL Request, you need to handle errors from both libraries. This approach requires more manual error handling but offers fine-grained control.
+
+```jsx
+import { defineComponent } from 'vue';
+import { request, gql } from 'graphql-request';
+import { useQuery } from 'vue-query';
+
+const endpoint = 'https://api.spacex.land/graphql/';
+const LAUNCHES_QUERY = gql`
+  {
+    launchesPast(limit: 10) {
+      id
+      mission_name
+    }
+  }
+`;
+
+export default defineComponent({
+  setup() {
+    const { data, isLoading, error } = useQuery('launches', async () => {
+      try {
+        return await request(endpoint, LAUNCHES_QUERY);
+      } catch (error) {
+        if (error.response) {
+          throw new Error(JSON.stringify(error.response.errors));
+        } else {
+        // Network error or other non-GraphQL error
+          throw new Error(`Network error: ${error.message}`);
+        }
+      }
+    });
+
+    return { data, isLoading, error };
+  },
+  template: `
+    <div>
+      <div v-if="isLoading">Loading...</div>
+      <ErrorDisplay v-if="error" :error="error" />
+      <div v-else>
+        <!-- Render data -->
+      </div>
+    </div>
+  `,
+  components: {
+    ErrorDisplay
+  }
+});
+
+const ErrorDisplay = {
+  props: ['error'],
+  methods: {
+    getUserFriendlyErrorMessage(error) {
+      try {
+        const parsedError = JSON.parse(error.message);
+        if (Array.isArray(parsedError)) {
+          return "There was an issue processing your request. Please try again later.";
+        }
+      } catch {
+        return "Unable to reach the server. Please check your internet connection and try again.";
+      }
+      return "An unexpected error occurred. Please try again.";
+    }
+  },
+  template: `
+    <div class="error-container">
+      <h2>Oops! Something went wrong</h2>
+      <p>{{ getUserFriendlyErrorMessage(error) }}</p>
+      <details v-if="process.env.NODE_ENV !== 'production'">
+        <summary>Technical Details</summary>
+        <pre>{{ error.message }}</pre>
+      </details>
+    </div>
+  `
+};
+```
 
 ## Common Issues and Resolutions
 
