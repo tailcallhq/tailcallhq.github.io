@@ -22,6 +22,7 @@ const sidebars: SidebarsConfig = {
       ],
     },
     "graphql-react-client",
+    "graphql-angular-client",
   ],
 }
 
