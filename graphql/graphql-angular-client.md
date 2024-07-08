@@ -329,7 +329,366 @@ Here’s a comparison table to help choose the right method based on specific ne
 
 ## Error Handling
 
-<!-- TODO -->
+Proper error handling is crucial for creating robust GraphQL applications. This section provides a detailed discussion on error handling for each client, including code examples for different types of errors and guidance on displaying user-friendly error messages.
+
+### 1. Apollo Client
+
+Apollo Client provides built-in error handling features and a clear distinction between GraphQL errors and network errors, allowing for fine-grained error handling.
+
+```tsx
+import { Injectable } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { gql } from 'graphql-tag';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
+const LAUNCHES_QUERY = gql`
+  {
+    launchesPast(limit: 10) {
+      id
+      mission_name
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class LaunchService {
+  constructor(private apollo: Apollo) {}
+
+  getLaunches() {
+    return this.apollo.watchQuery({
+      query: LAUNCHES_QUERY,
+    }).valueChanges.pipe(
+      catchError(error => {
+        console.error('Error fetching launches:', error);
+        return throwError(() => new Error('Error fetching launches: ' + error.message));
+      })
+    );
+  }
+}
+
+function ErrorDisplay({ error }) {
+  // Function to generate a user-friendly error message
+  const getUserFriendlyErrorMessage = (error) => {
+    if (error.networkError) {
+      return "Unable to reach the server. Please check your internet connection and try again.";
+    }
+    if (error.graphQLErrors.length > 0) {
+      // You might want to customize this based on specific error codes or messages
+      return "There was an issue processing your request. Please try again later.";
+    }
+    return "An unexpected error occurred. Please try again.";
+  }
+
+  return (
+    <div className="error-container">
+      <h2>Oops! Something went wrong</h2>
+      <p>{getUserFriendlyErrorMessage(error)}</p>
+      {process.env.NODE_ENV !== "production" && (
+        <details>
+          <summary>Technical Details</summary>
+          {error.graphQLErrors.map(({ message, locations, path }, index) => (
+            <div key={index}>
+              <p>GraphQL error: {message}</p>
+              <p>Location: {JSON.stringify(locations)}</p>
+              <p>Path: {JSON.stringify(path)}</p>
+            </div>
+          ))}
+          {error.networkError && (
+            <p>Network error: {error.networkError.message}</p>
+          )}
+        </details>
+      )}
+    </div>
+  )
+}
+```
+
+
+This Apollo Client example demonstrates how to:
+
+- Display a user-friendly error message based on the type of error
+- Show technical details only in non-production environments
+- Handle both GraphQL and network errors
+
+### 2. Urql
+
+Urql provides error information through the `error` property in the result object.
+
+```tsx
+import { Injectable } from '@angular/core';
+import { gql } from 'graphql-tag';
+import { useQuery } from 'urql';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
+const LAUNCHES_QUERY = gql`
+  {
+    launchesPast(limit: 10) {
+      id
+      mission_name
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class LaunchService {
+  constructor(private urqlService: UrqlService) {}
+
+  getLaunches() {
+    return this.urqlService.getClient().query(LAUNCHES_QUERY).toPromise().catch(error => {
+      console.error('Error fetching launches:', error);
+      return throwError(() => new Error('Error fetching launches: ' + error.message));
+    });
+  }
+}
+
+function ErrorDisplay({ error }) {
+  const getUserFriendlyErrorMessage = (error) => {
+    if (error.networkError) {
+      return "Unable to reach the server. Please check your internet connection and try again.";
+    }
+    if (error.graphQLErrors.length > 0) {
+      // Customize based on specific error types if needed
+      return "There was an issue processing your request. Please try again later.";
+    }
+    return "An unexpected error occurred. Please try again.";
+  }
+
+  return (
+    <div className="error-container">
+      <h2>Oops! Something went wrong</h2>
+      <p>{getUserFriendlyErrorMessage(error)}</p>
+      {process.env.NODE_ENV !== "production" && (
+        <details>
+          <summary>Technical Details</summary>
+          {error.graphQLErrors.map((graphQLError, index) => (
+            <div key={index}>
+              <p>GraphQL error: {graphQLError.message}</p>
+              {graphQLError.locations && (
+                <p>Location: {JSON.stringify(graphQLError.locations)}</p>
+              )}
+              {graphQLError.path && (
+                <p>Path: {JSON.stringify(graphQLError.path)}</p>
+              )}
+            </div>
+          ))}
+          {error.networkError && (
+            <p>Network error: {error.networkError.message}</p>
+          )}
+        </details>
+      )}
+    </div>
+  )
+}
+```
+These Urql example demonstrate how to:
+
+- Display a user-friendly error message based on the type of error.
+- Show technical details only in non-production environments.
+- Handle both GraphQL and network errors.
+
+### 3. Angular HttpClient (applies to all Angular HttpClient examples)
+
+Error handling with Angular HttpClient can be implemented using `RxJS operators`.
+
+#### GraphQL Request
+
+```tsx
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+const endpoint = 'https://api.spacex.land/graphql/';
+const LAUNCHES_QUERY = `
+  {
+    launchesPast(limit: 10) {
+      id
+      mission_name
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class GraphQLRequestService {
+  constructor(private http: HttpClient) {}
+
+  fetchLaunches(): Observable<any> {
+    return this.http.post(endpoint, { query: LAUNCHES_QUERY }).pipe(
+      catchError(error => {
+        console.error('Error fetching launches:', error);
+        return throwError(() => new Error('Error fetching launches: ' + error.message));
+      })
+    );
+  }
+}
+
+function ErrorDisplay({ error }) {
+  const getUserFriendlyErrorMessage = (error) => {
+    if (error.status === 0) {
+      return "Unable to reach the server. Please check your internet connection and try again.";
+    }
+    return "There was an issue processing your request. Please try again later.";
+  }
+
+  return (
+    <div className="error-container">
+      <h2>Oops! Something went wrong</h2>
+      <p>{getUserFriendlyErrorMessage(error)}</p>
+      {process.env.NODE_ENV !== "production" && (
+        <details>
+          <summary>Technical Details</summary>
+          <pre>{error.message}</pre>
+        </details>
+      )}
+    </div>
+  )
+}
+```
+
+#### Axios
+
+```tsx
+import { Injectable } from '@angular/core';
+import axios from 'axios';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+const endpoint = "https://api.spacex.land/graphql/"
+const LAUNCHES_QUERY = `
+  {
+    launchesPast(limit: 10) {
+      id
+      mission_name
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AxiosService {
+  constructor() {}
+
+  fetchLaunches(): Observable<any> {
+    return new Observable((observer) => {
+      axios
+        .post(endpoint, { query: LAUNCHES_QUERY })
+        .then((response) => {
+          observer.next(response.data);
+          observer.complete();
+        })
+        .catch((error) => {
+          console.error('Error fetching launches:', error);
+          observer.error(new Error('Error fetching launches: ' + error.message));
+        });
+    });
+  }
+}
+
+function ErrorDisplay({ error }) {
+  const getUserFriendlyErrorMessage = (error) => {
+    if (error.message.includes('Network Error')) {
+      return "Unable to reach the server. Please check your internet connection and try again.";
+    }
+    return "There was an issue processing your request. Please try again later.";
+  }
+
+  return (
+    <div className="error-container">
+      <h2>Oops! Something went wrong</h2>
+      <p>{getUserFriendlyErrorMessage(error)}</p>
+      {process.env.NODE_ENV !== "production" && (
+        <details>
+          <summary>Technical Details</summary>
+          <pre>{error.message}</pre>
+        </details>
+      )}
+    </div>
+  )
+}
+```
+
+#### Fetch API
+
+```tsx
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const endpoint = 'https://api.spacex.land/graphql/';
+const LAUNCHES_QUERY = `
+  {
+    launchesPast(limit: 10) {
+      id
+      mission_name
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchService {
+  constructor(private http: HttpClient) {}
+
+  fetchLaunches(): Observable<any> {
+    return new Observable((observer) => {
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: LAUNCHES_QUERY }),
+      })
+        .then((response) => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.json();
+        })
+        .then((result) => {
+          observer.next(result.data);
+          observer.complete();
+        })
+        .catch((error) => {
+          console.error('Error fetching launches:', error);
+          observer.error(new Error('Error fetching launches: ' + error.message));
+        });
+    });
+  }
+}
+
+function ErrorDisplay({ error }) {
+  const getUserFriendlyErrorMessage = (error) => {
+    if (error.message.includes('Network response was not ok')) {
+      return "Unable to reach the server. Please check your internet connection and try again.";
+    }
+    return "There was an issue processing your request. Please try again later.";
+  }
+
+  return (
+    <div className="error-container">
+      <h2>Oops! Something went wrong</h2>
+      <p>{getUserFriendlyErrorMessage(error)}</p>
+      {process.env.NODE_ENV !== "production" && (
+        <details>
+          <summary>Technical Details</summary>
+          <pre>{error.message}</pre>
+        </details>
+      )}
+    </div>
+  )
+}
+```
+These Angualr HttpClient(all combinations) examples demonstrate how to:
+
+- Display a user-friendly error message based on the type of error.
+- Show technical details only in non-production environments.
+- Handle both GraphQL and network errors.
 
 ## Common Issues and Resolutions
 
