@@ -5,12 +5,21 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Guides",
-      items: ["graphql", "graphql-vs-rest", "cto-guide", "problem-statement"],
+      items: ["graphql", "graphql-vs-rest", "graphql-react-client", "cto-guide", "problem-statement"],
     },
     {
       type: "category",
       label: "GraphQL Tutorial",
-      items: ["what-is-graphql", "schema-and-types", "queries", "mutations", "variables", "fragments", "introspection"],
+      items: [
+        "what-is-graphql",
+        "schema-and-types",
+        "queries",
+        "mutations",
+        "variables",
+        "fragments",
+        "introspection",
+        "directives",
+      ],
     },
   ],
 }
