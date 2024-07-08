@@ -300,34 +300,33 @@ Utilizes the browser's Fetch API with React Query for a minimalistic approach.
 
 Here’s a comparison table to help choose the right method based on specific needs:
 
+| Method                        | Bundle Size (minified + gzip)\* | Learning Curve | Caching Capabilities                    | Community Support | Additional Features                     |
+| ----------------------------- | ------------------------------- | -------------- | --------------------------------------- | ----------------- | --------------------------------------- |
+| Apollo Client                 | ~47.04 KB                       | Moderate       | Extensive (InMemoryCache, customizable) | High              | State management, optimistic UI updates |
+| Urql                          | ~2.18 KB                        | Low            | Moderate (Document caching)             | Moderate          | Extensible architecture                 |
+| React Query + GraphQL Request | ~13 KB + ~185.8 KB              | Low            | Basic (Managed by React Query)          | Growing           | Minimal overhead                        |
+| React Query + Axios           | ~13 KB + ~13.2 KB               | Low            | Basic (Managed by React Query)          | High              | Familiar HTTP handling                  |
+| React Query + Fetch API       | ~13 KB + ~152.4 KB              | Low            | Basic (Managed by React Query)          | Moderate          | Browser-native, minimal setup           |
 
-| Method                        | Bundle Size (minified + gzip)* | Learning Curve | Caching Capabilities                         | Community Support | Additional Features                     |
-| ----------------------------- | ----------------------------- | -------------- | ------------------------------------------- | ----------------- | --------------------------------------- |
-| Apollo Client                 | ~47.04 KB                      | Moderate       | Extensive (InMemoryCache, customizable)     | High              | State management, optimistic UI updates |
-| Urql                          | ~2.18 KB                       | Low            | Moderate (Document caching)                 | Moderate          | Extensible architecture                 |
-| React Query + GraphQL Request | ~13 KB + ~185.8 KB             | Low            | Basic (Managed by React Query)              | Growing           | Minimal overhead                        |
-| React Query + Axios           | ~13 KB + ~13.2 KB              | Low            | Basic (Managed by React Query)              | High              | Familiar HTTP handling                  |
-| React Query + Fetch API       | ~13 KB + ~152.4 KB             | Low            | Basic (Managed by React Query)              | Moderate          | Browser-native, minimal setup           |
-
-(*) culled from *bundlephobia.com*
+(*) culled from *bundlephobia.com\*
 
 ### Caching Capabilities
 
 1. **Apollo Client**:
-    - Normalized caching (stores entities by ID)
-    - Automatic cache updates
-    - Manual cache manipulation
-    - Persistence and rehydration
-    - Optimistic updates
+   - Normalized caching (stores entities by ID)
+   - Automatic cache updates
+   - Manual cache manipulation
+   - Persistence and rehydration
+   - Optimistic updates
 2. **Urql**:
-    - Document caching (stores full query responses)
-    - Customizable caching with exchangers
-    - Persistence support
+   - Document caching (stores full query responses)
+   - Customizable caching with exchangers
+   - Persistence support
 3. **React Query** (applies to all React Query combinations):
-    - Time-based caching
-    - Stale-while-revalidate strategy
-    - Manual cache manipulation
-    - Persistence and rehydration
+   - Time-based caching
+   - Stale-while-revalidate strategy
+   - Manual cache manipulation
+   - Persistence and rehydration
 
 ## Error Handling
 
@@ -338,7 +337,7 @@ Proper error handling is crucial for creating robust GraphQL applications. This 
 Apollo Client provides detailed error information through the `error` property returned by the `useQuery` hook. It distinguishes between GraphQL errors and network errors.
 
 ```jsx
-import { useQuery, gql } from "@apollo/client";
+import {useQuery, gql} from "@apollo/client"
 
 const LAUNCHES_QUERY = gql`
   {
@@ -347,53 +346,57 @@ const LAUNCHES_QUERY = gql`
       mission_name
     }
   }
-`;
+`
 
 function SpaceXLaunches() {
-  const { data, loading, error } = useQuery(LAUNCHES_QUERY);
+  const {data, loading, error} = useQuery(LAUNCHES_QUERY)
 
-  if (loading) return "Loading...";
+  if (loading) return "Loading..."
   if (error) {
-    return <ErrorDisplay error={error} />;
+    return <ErrorDisplay error={error} />
   }
 
   // Render data...
 }
 
-function ErrorDisplay({ error }) {
+function ErrorDisplay({error}) {
   // Function to generate a user-friendly error message
   const getUserFriendlyErrorMessage = (error) => {
     if (error.networkError) {
-      return "Unable to reach the server. Please check your internet connection and try again.";
+      return "Unable to reach the server. Please check your internet connection and try again."
     }
     if (error.graphQLErrors.length > 0) {
       // You might want to customize this based on specific error codes or messages
-      return "There was an issue processing your request. Please try again later.";
+      return "There was an issue processing your request. Please try again later."
     }
-    return "An unexpected error occurred. Please try again.";
-  };
+    return "An unexpected error occurred. Please try again."
+  }
 
   return (
     <div className="error-container">
       <h2>Oops! Something went wrong</h2>
       <p>{getUserFriendlyErrorMessage(error)}</p>
-      {process.env.NODE_ENV !== 'production' && (
+      {process.env.NODE_ENV !== "production" && (
         <details>
           <summary>Technical Details</summary>
-          {error.graphQLErrors.map(({ message, locations, path }, index) => (
-            <div key={index}>
-              <p>GraphQL error: {message}</p>
-              <p>Location: {JSON.stringify(locations)}</p>
-              <p>Path: {JSON.stringify(path)}</p>
-            </div>
-          ))}
+          {error.graphQLErrors.map(
+            ({message, locations, path}, index) => (
+              <div key={index}>
+                <p>GraphQL error: {message}</p>
+                <p>Location: {JSON.stringify(locations)}</p>
+                <p>Path: {JSON.stringify(path)}</p>
+              </div>
+            ),
+          )}
           {error.networkError && (
-            <p>Network error: {error.networkError.message}</p>
+            <p>
+              Network error: {error.networkError.message}
+            </p>
           )}
         </details>
       )}
     </div>
-  );
+  )
 }
 ```
 
@@ -408,7 +411,7 @@ This example demonstrates how to:
 Urql provides error information through the `error` property in the result object.
 
 ```tsx
-import { useQuery } from "urql";
+import {useQuery} from "urql"
 
 const LAUNCHES_QUERY = `
   {
@@ -417,57 +420,67 @@ const LAUNCHES_QUERY = `
       mission_name
     }
   }
-`;
+`
 
 function SpaceXLaunches() {
-  const [result] = useQuery({ query: LAUNCHES_QUERY });
-  const { data, fetching, error } = result;
+  const [result] = useQuery({query: LAUNCHES_QUERY})
+  const {data, fetching, error} = result
 
-  if (fetching) return "Loading...";
+  if (fetching) return "Loading..."
   if (error) {
-    return <ErrorDisplay error={error} />;
+    return <ErrorDisplay error={error} />
   }
 
   // Render data...
 }
 
-function ErrorDisplay({ error }) {
+function ErrorDisplay({error}) {
   const getUserFriendlyErrorMessage = (error) => {
     if (error.networkError) {
-      return "Unable to reach the server. Please check your internet connection and try again.";
+      return "Unable to reach the server. Please check your internet connection and try again."
     }
     if (error.graphQLErrors.length > 0) {
       // Customize based on specific error types if needed
-      return "There was an issue processing your request. Please try again later.";
+      return "There was an issue processing your request. Please try again later."
     }
-    return "An unexpected error occurred. Please try again.";
-  };
+    return "An unexpected error occurred. Please try again."
+  }
 
   return (
     <div className="error-container">
       <h2>Oops! Something went wrong</h2>
       <p>{getUserFriendlyErrorMessage(error)}</p>
-      {process.env.NODE_ENV !== 'production' && (
+      {process.env.NODE_ENV !== "production" && (
         <details>
           <summary>Technical Details</summary>
-          {error.graphQLErrors.map((graphQLError, index) => (
-            <div key={index}>
-              <p>GraphQL error: {graphQLError.message}</p>
-              {graphQLError.locations && (
-                <p>Location: {JSON.stringify(graphQLError.locations)}</p>
-              )}
-              {graphQLError.path && (
-                <p>Path: {JSON.stringify(graphQLError.path)}</p>
-              )}
-            </div>
-          ))}
+          {error.graphQLErrors.map(
+            (graphQLError, index) => (
+              <div key={index}>
+                <p>GraphQL error: {graphQLError.message}</p>
+                {graphQLError.locations && (
+                  <p>
+                    Location:{" "}
+                    {JSON.stringify(graphQLError.locations)}
+                  </p>
+                )}
+                {graphQLError.path && (
+                  <p>
+                    Path:{" "}
+                    {JSON.stringify(graphQLError.path)}
+                  </p>
+                )}
+              </div>
+            ),
+          )}
           {error.networkError && (
-            <p>Network error: {error.networkError.message}</p>
+            <p>
+              Network error: {error.networkError.message}
+            </p>
           )}
         </details>
       )}
     </div>
-  );
+  )
 }
 ```
 
@@ -478,10 +491,10 @@ React Query provides error information through the `error` property returned by 
 When using React Query with GraphQL Request, you need to handle errors from both libraries. This approach requires more manual error handling but offers fine-grained control.
 
 ```tsx
-import { useQuery } from "react-query";
-import { request, gql } from "graphql-request";
+import {useQuery} from "react-query"
+import {request, gql} from "graphql-request"
 
-const endpoint = "https://api.spacex.land/graphql/";
+const endpoint = "https://api.spacex.land/graphql/"
 const LAUNCHES_QUERY = gql`
   {
     launchesPast(limit: 10) {
@@ -489,58 +502,63 @@ const LAUNCHES_QUERY = gql`
       mission_name
     }
   }
-`;
+`
 
 function SpaceXLaunches() {
-  const { data, isLoading, error } = useQuery("launches", async () => {
-    try {
-      return await request(endpoint, LAUNCHES_QUERY);
-    } catch (error) {
-      // GraphQL Request wraps GraphQL errors in a ClientError
-      if (error.response) {
-        throw new Error(JSON.stringify(error.response.errors));
-      } else {
-        // Network error
-        throw new Error(`Network error: ${error.message}`);
+  const {data, isLoading, error} = useQuery(
+    "launches",
+    async () => {
+      try {
+        return await request(endpoint, LAUNCHES_QUERY)
+      } catch (error) {
+        // GraphQL Request wraps GraphQL errors in a ClientError
+        if (error.response) {
+          throw new Error(
+            JSON.stringify(error.response.errors),
+          )
+        } else {
+          // Network error
+          throw new Error(`Network error: ${error.message}`)
+        }
       }
-    }
-  });
+    },
+  )
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return "Loading..."
   if (error) {
-    return <ErrorDisplay error={error} />;
+    return <ErrorDisplay error={error} />
   }
 
   // Render data...
 }
 
-function ErrorDisplay({ error }) {
+function ErrorDisplay({error}) {
   const getUserFriendlyErrorMessage = (error) => {
     try {
-      const parsedError = JSON.parse(error.message);
+      const parsedError = JSON.parse(error.message)
       if (Array.isArray(parsedError)) {
         // GraphQL errors
-        return "There was an issue processing your request. Please try again later.";
+        return "There was an issue processing your request. Please try again later."
       }
     } catch {
       // Network error or other non-GraphQL error
-      return "Unable to reach the server. Please check your internet connection and try again.";
+      return "Unable to reach the server. Please check your internet connection and try again."
     }
-    return "An unexpected error occurred. Please try again.";
-  };
+    return "An unexpected error occurred. Please try again."
+  }
 
   return (
     <div className="error-container">
       <h2>Oops! Something went wrong</h2>
       <p>{getUserFriendlyErrorMessage(error)}</p>
-      {process.env.NODE_ENV !== 'production' && (
+      {process.env.NODE_ENV !== "production" && (
         <details>
           <summary>Technical Details</summary>
           <pre>{error.message}</pre>
         </details>
       )}
     </div>
-  );
+  )
 }
 ```
 
