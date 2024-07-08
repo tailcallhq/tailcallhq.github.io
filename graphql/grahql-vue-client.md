@@ -261,3 +261,17 @@ export default defineComponent({
   },
 });
 ```
+
+## Detailed Comparison Table
+
+Here’s a comparison table to help choose the right method based on specific needs:
+
+| Method                        | Bundle Size (minified + gzip)\* | Learning Curve | Caching Capabilities                    | Community Support | Additional Features                     |
+| ----------------------------- | ------------------------------- | -------------- | --------------------------------------- | ----------------- | --------------------------------------- |
+| Apollo Client                 | ~47.04 KB                       | Moderate       | Extensive (InMemoryCache, customizable) | High              | State management, optimistic UI updates |
+| Urql                          | ~2.18 KB                        | Low            | Moderate (Document caching)             | Moderate          | Extensible architecture                 |
+| Vue Query + GraphQL Request   | ~1 KB + ~185.8 KB               | Low            | Basic (Managed by Vue Query)            | Growing           | Minimal overhead                        |
+| Vue Query + Axios             | ~1 KB + ~13.2 KB                | Low            | Basic (Managed by Vue Query)            | High              | Familiar HTTP handling                  |
+| Vue Query + Fetch API         | ~1 KB + ~152.4 KB               | Low            | Basic (Managed by Vue Query)            | Moderate          | Browser-native, minimal setup           |
+
+(*) culled from *bundlephobia.com\*
