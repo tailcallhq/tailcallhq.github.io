@@ -10,7 +10,16 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "GraphQL Tutorial",
-      items: ["what-is-graphql", "schema-and-types", "queries", "mutations", "variables", "fragments", "introspection"],
+      items: [
+        "what-is-graphql",
+        "schema-and-types",
+        "queries",
+        "mutations",
+        "variables",
+        "fragments",
+        "introspection",
+        "directives",
+      ],
     },
     "graphql-react-client",
   ],
