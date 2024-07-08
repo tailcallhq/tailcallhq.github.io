@@ -302,11 +302,12 @@ Here’s a comparison table to help choose the right method based on specific ne
 | ----------------------------- | ------------------------------- | -------------- | --------------------------------------- | ----------------- | --------------------------------------- |
 | Apollo Client                 | ~47.04 KB                       | Moderate       | Extensive (InMemoryCache, customizable) | High              | State management, optimistic UI updates |
 | Urql                          | ~2.18 KB                        | Low            | Moderate (Document caching)             | Moderate          | Extensible architecture                 |
-| Angular HttpClient + GraphQL Request | ~ KB + ~ KB              | Low            | Basic                                   | Growing           | Minimal overhead                        |
-| Angular HttpClient + Axios           | ~ KB + ~ KB              | Low            | Basic                                   | High              | Familiar HTTP handling                  |
-| Angular HttpClient + Fetch API       | ~ KB + ~ KB              | Low            | Basic                                    | Moderate          | Browser-native, minimal setup           |
+| Angular HttpClient + GraphQL Request | ~ 816KB + ~53.8KB        | Low            | Basic                                   | Growing           | Minimal overhead                        |
+| Angular HttpClient + Axios           | ~ 816KB + ~13.2KB        | Low            | Basic                                   | High              | Familiar HTTP handling                  |
+| Angular HttpClient + Fetch API       | ~ 816KB + ~2.8KB         | Low            | Basic                                   | Moderate          | Browser-native, minimal setup           |
 
 (*) culled from *bundlephobia.com\*
+
 
 ### Caching Capabilities
 
