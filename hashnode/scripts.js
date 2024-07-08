@@ -267,8 +267,9 @@ async function start() {
       const filePath = path.join(blogPostsDir, file)
       let {data: metaData, content: blogContent} = matter.read(filePath)
       const lastModified = getLastModified(filePath) || null
-      //To publish the post you need to explicitly slug(should be unique) and publish(true)
-      if (metaData.publish && metaData.slug) {
+      //To publish the post you need to explicitly add slug(should be unique) and publish(true)
+      //for now remmoving thw metadata.publish considerign the markdowns which has slug
+      if (metaData.slug) {
         blogContent = blogContent.replace(pathRegex, `${githubBaseUrl}`)
         promises.push(publish(metaData, blogContent, lastModified, skipLastModifiedCheck))
       }
