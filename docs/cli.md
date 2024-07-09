@@ -101,7 +101,7 @@ This command prompts for file creation and configuration, creating the following
 
 The `gen` command in the TailCall CLI is designed to generate GraphQL configurations from various sources, such as protobuf files and REST endpoints.
 
-#### command usage:
+**usage:**
 
 ```bash
 tailcall gen path_to_configuration_file.json
