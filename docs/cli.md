@@ -234,8 +234,8 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
       </TabItem>
       <TabItem value="yml" label="YML">
       ```yml
-        - proto:
-      src: "./news.proto"
+      - proto:
+          src: "./news.proto"
       ```
       </TabItem>
     </Tabs>
