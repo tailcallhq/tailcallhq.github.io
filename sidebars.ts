@@ -26,6 +26,7 @@ const sidebars: SidebarsConfig = {
         "conventions",
         "execution-strategy",
         "watch-mode",
+        "what-is-grpc",
       ],
     },
     {
@@ -45,6 +46,7 @@ const sidebars: SidebarsConfig = {
         "environment-variables",
         "configuration",
         "config-generation",
+    
       ],
     },
     {type: "category", label: "Integrations", items: ["apollo-studio", "data-dog", "new-relic", "honey-comb"]},
