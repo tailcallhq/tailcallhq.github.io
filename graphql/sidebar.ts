@@ -1,11 +1,11 @@
-import {SidebarsConfig} from "@docusaurus/plugin-content-docs"
+import { SidebarsConfig } from "@docusaurus/plugin-content-docs"
 
 const sidebars: SidebarsConfig = {
   graphql: [
     {
       type: "category",
       label: "Guides",
-      items: ["graphql", "graphql-vs-rest", "graphql-react-client", "cto-guide", "problem-statement","graphql-vs-openapi"],
+      items: ["graphql", "graphql-vs-rest", "graphql-react-client", "cto-guide", "problem-statement", "graphql-vs-openapi"],
     },
     {
       type: "category",
