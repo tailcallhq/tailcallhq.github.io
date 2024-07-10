@@ -1,0 +1,100 @@
+---
+sidebar_label: 'GraphQL vs gRPC'
+description: 'gRPC is suited for server to server communication, while GraphQL is suited for client to server communication. Click here to learn more.'
+slug: '/graphql-vs-grpc'
+---
+
+<head>
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="GraphQL vs gRPC: Comprehensive Comparison for 2024" />
+  <meta name="twitter:site" content="tailcallhq" />
+  <title>GraphQL vs gRPC: Comprehensive Comparison for 2024</title>
+</head>
+
+<div style={{textAlign: 'center'}}>
+
+<img src="/images/graphql/graphql-vs-grpc.png" alt="Illustrative Image to depicting gRPC vs GraphQL Showdown" style={{maxWidth: '100%'}} />
+GraphQL vs gRPC
+</div>
+
+# Is GraphQL Better Than gRPC? GraphQL vs gRPC Comparison
+
+While REST has been a foundational architecture for API development, the emergence of gRPC and GraphQL introduces exciting, potent alternatives. gRPC, a high-performance framework optimized for distributed services, seamlessly connects diverse systems. On the other hand, GraphQL revolutionizes data fetching with its precise query abilities, ensuring clients receive exactly what they need. This article dives deeper into gRPC and GraphQL, comparing their unique capabilities and suggesting optimal scenarios for their deployment. Understanding their distinct advantages will empower you to make informed decisions about which technology suits your project's needs best.
+
+## What is gRPC?
+gRPC stands as a powerhouse in distributed computing, providing a robust schema-driven framework that streamlines service-to-service communication across diverse environments. As a language-agnostic implementation of the Remote Procedure Call (RPC) protocol, it supports high-performance, real-time data streaming and ensures consistent, strong typing with its integration of HTTP/2 and Protocol Buffers (Protobuf), making it an indispensable tool for developers aiming to build scalable, efficient systems.
+
+## How Does gRPC Work?
+The RPC in the name stands for Remote Procedure Call which clearly indicates the purpose of the framework. gRPC enables clients to call methods on a server as if they were local functions, abstracting the complexities of network communication.
+
+This is achieved through the use of Protobuf, a language-neutral, platform-neutral, extensible mechanism for serializing structured data, compared to GraphQL's JSON-based data format. Protobuf ensures that data is efficiently serialized into a binary format, reducing the size of messages and enhancing performance.
+
+Similar to GraphQL, gRPC has a way to define the structure of the data in file called `.proto` file. It acts as a contract between the client and the server, ensuring that both parties understand the structure of the data being exchanged. The default and the most popular Interface Definition Language (IDL) for gRPC is Protobuf aka Protocol buffers.
+
+Here is an example of a simple `.proto` file:
+
+```proto
+syntax = "proto3";
+
+package helloworld;
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+```
+These `.proto` files are then compiled into client and server code in the language of your choice, allowing you to easily integrate gRPC into your existing codebase.
+
+The framework also leverages HTTP/2 for transport, ensuring efficient, multiplexed communication between clients and servers.
+   #### TODO: Put a diagram explaining How it works here
+## What is GraphQL?
+GraphQL is a specification which defines query language for your API and a server-side runtime for executing queries using a type system you define for your data. It was developed by Facebook in 2012 and open-sourced in 2015. Since then, it has gained immense popularity due to its flexibility and efficiency in data fetching.
+Read more about [What is GraphQL and How it works?](what-is-graphql.md).
+
+## Comparison in Tabular format
+
+
+| Feature | gRPC | GraphQL |
+| --- | --- | --- |
+| **Message Format** | _ | _ |
+| **Data Fetching** | _ | _ |
+| **Real Time** | _ | _ |
+| **Type Safety** | _ | _ |
+| **Introspection** | _ | _ |
+| **Code gen** | _ | _ |
+| **Tooling and Browser Support** | _ | _ |
+| **Community** | _ | _ |
+| **Adoption** | _ | _ |
+| **Performance** | _ | _ |
+
+## When to Use gRPC?
+
+## When to Use GraphQL?
+
+
+## How to use Both Together?
+Explain How it can be used together and what are the benefits of using both together.
+Talk about Tailcalls gRPC support link to the [guide](/docs/graphql-grpc-tailcall)
+
+
+#### A architecture diagram showing how gRPC and GraphQL can be used together
+
+## Conclusion
+
+
+
+
+
+
+
+
+
+
+
