@@ -63,38 +63,223 @@ Read more about [What is GraphQL and How it works?](what-is-graphql.md).
 
 | Feature | gRPC | GraphQL |
 | --- | --- | --- |
-| **Message Format** | _ | _ |
-| **Data Fetching** | _ | _ |
-| **Real Time** | _ | _ |
-| **Type Safety** | _ | _ |
-| **Introspection** | _ | _ |
-| **Code gen** | _ | _ |
-| **Tooling and Browser Support** | _ | _ |
-| **Community** | _ | _ |
-| **Adoption** | _ | _ |
-| **Performance** | _ | _ |
+| **Message Format** | Binary(Protobuf) | JSON |
+| **Data Fetching** | Fixed structure, may need chained requests | Flexible, client-specified |
+| **Real Time** | Native support (bidirectional streaming) | Subscription mechanism |
+| **Type Safety** | Strong (Protobuf) | Strong (Schema-based) |
+| **Introspection** | No | Yes|
+| **Code gen** | Automatic from .proto files | Optional (via tools like Apollo) |
+| **Tooling and Browser Support** | Limited | Extensive |
+| **Community** | Growing | Large and active |
+| **Adoption** | High in microservices | High in web applications |
+| **Performance** | High | Moderate |
 
 ## When to Use gRPC?
 
+gRPC is well-suited for scenarios that necessitate high-performance communication between services, making it ideal for microservices architectures. These distributed architectures also benefit from gRPC’s language agnostic approach, as microservices are managed independently of one another and may be written in different programming languages. Additionally, gRPC’s comprehensive streaming support makes it an appealing choice for applications that require real-time data exchange.
+
+gRPC is ideal for the following scenarios:
+
+*Microservices Architecture:* Its high performance and strong typing make it perfect for communication between microservices.
+*Real-Time Communication:* Native support for bidirectional streaming is beneficial for real-time data exchange.
+*Low Latency Requirements:* The binary format and HTTP/2 usage ensure low latency communication.
+*Polyglot Environments:* Language-agnostic support makes it suitable for diverse tech stacks.
+
 ## When to Use GraphQL?
 
+GraphQL is designed for flexible data retrieval, which makes it a good fit for applications with complex data requirements, such as e-commerce platforms and content management systems. GraphQL is also well-suited for applications that have different frontend clients for multiple platforms (like web and iOS), where each one has different data requirements. Mobile applications, in particular, will benefit from GraphQL’s precise approach to data fetching, which optimizes data transfer on slow or unreliable network connections. Finally, GraphQL helps aggregate data from multiple sources behind its API—and merges them into one schema. This is especially important for legacy infrastructures or third-party APIs that have grown over time.
+
+GraphQL excels in the following situations:
+
+*Complex Queries:* When clients need to fetch complex, nested data structures.
+*Front-End Development*: Its flexibility and efficiency in data fetching reduce the number of requests and payload size.
+*Rapid Iteration:* Enables front-end teams to iterate quickly without backend changes.
+*Self-Documenting APIs:* Built-in introspection allows developers to explore APIs easily.
 
 ## How to use Both Together?
-Explain How it can be used together and what are the benefits of using both together.
-Talk about Tailcalls gRPC support link to the [guide](/docs/graphql-grpc-tailcall)
 
+GraphQL and gRPC are two advanced technologies that streamline communication between services in distributed architectures. While GraphQL optimizes data fetching and provides a flexible query language for APIs, gRPC facilitates efficient and type-safe RPC (Remote Procedure Call) communication over HTTP/2. This integration allows for high-performance data exchange between microservices, making it ideal for scalable and complex systems.
+
+#### Key Features:
+*GraphQL:* Enables clients to request specific data and reduce over-fetching issues.
+*gRPC:* Provides efficient binary serialization, HTTP/2 transport, and supports streaming, making it suitable for microservices and real-time applications.
+
+### Combining gRPC and GraphQL
+
+*Service-to-Service Communication with gRPC:* Use gRPC for backend microservices communication. gRPC’s high performance, strong typing, and language-agnostic features make it ideal for inter-service communication within a microservices architecture. Each microservice can efficiently interact with others, regardless of the programming languages used.
+
+*Client Interaction with GraphQL:* Use GraphQL as a gateway for client interactions. GraphQL allows clients to request exactly the data they need, reducing over-fetching and under-fetching. It can aggregate data from multiple gRPC services, presenting a unified and flexible API to the clients.
+
+*GraphQL Resolvers with gRPC:* Implement GraphQL resolvers that communicate with gRPC services. When a GraphQL query is received, the resolvers can call the appropriate gRPC services to fetch the required data. This setup combines the strong data-fetching capabilities of GraphQL with the efficient communication of gRPC.
+
+
+### Benefits of Using GraphQL and gRPC Together
+
+1.*Unified API Gateway:* GraphQL acts as a unified API gateway that clients can query to fetch data from multiple gRPC services in a single request, reducing network overhead.
+
+2.*Type Safety and Efficiency:* Protobuf ensures type safety and efficient data serialization, while gRPC’s HTTP/2 transport optimizes data transfer between services.
+
+3.*Dynamic Service Discovery:* Leveraging gRPC reflection, Tailcall enables clients to dynamically discover available services and methods at runtime, adapting to evolving service architectures.
+
+4.*Optimized Communication:* By using gRPC for backend microservices communication, you ensure high-performance and efficient data exchange between services. GraphQL serves as a flexible and efficient interface for client interactions, allowing precise data requests.
+
+5.*Flexibility:* GraphQL’s ability to aggregate data from multiple sources makes it easy to create a unified API for clients. This approach hides the complexity of multiple gRPC services behind a single, coherent GraphQL API.
+
+6.*Performance:* Combining gRPC’s high-performance communication with GraphQL’s flexible data fetching can optimize overall system performance. gRPC handles the heavy lifting in the backend, while GraphQL provides a streamlined and efficient API for clients.
+
+7.*Scalability:* This combination supports scalable architectures. gRPC handles the scaling of microservices efficiently, and GraphQL manages client-side requests without imposing additional load on the services.
+
+### Tailcall's gRPC Support
+
+Using Tailcall's GraphQL support for gRPC allows us to integrate the power of gRPC services into a GraphQL schema seamlessly. This integration leverages the high performance of gRPC with the flexibility and ease of use of GraphQL, providing a unified API interface for the clients. 
+
+Here's how we can set up and use Tailcall to integrate gRPC with GraphQL:
+
+#### Set Up a gRPC Service
+
+For this first we need to define our gRPC service using Protocol Buffers (Protobuf). This includes specifying the structure of messages and the services that perform the CRUD operations. Implement the gRPC service in your preferred language (e.g., Node.js, Python, Go).
+
+```proto
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package news;
+
+// Define message type for News with all its fields
+message News {
+    int32 id = 1;
+    string title = 2;
+    string body = 3;
+    string postImage = 4;
+}
+
+// Message with the id of a single news
+message NewsId {
+    int32 id = 1;
+}
+
+// List of IDs of news to get multiple responses
+message MultipleNewsId {
+    repeated NewsId ids = 1;
+}
+
+// List of all news
+message NewsList {
+   repeated News news = 1;
+}
+
+// NewsService defines read and write operations for news items
+service NewsService {
+    // GetAllNews retrieves all news items without any arguments
+    rpc GetAllNews (google.protobuf.Empty) returns (NewsList) {}
+
+    // GetNews fetches a single news item by its ID
+    rpc GetNews (NewsId) returns (News) {}
+
+    // GetMultipleNews retrieves multiple news items based on their IDs
+    rpc GetMultipleNews (MultipleNewsId) returns (NewsList) {}
+}
+```
+
+#### Implement gRPC Server
+
+Once we have our protobuf file defined, the next step is to implement the gRPC service. This example uses Node.js, but you can implement the service in any language that supports gRPC. Tailcall organization has a sample node.js service inside this [repo](https://github.com/tailcallhq/node-grpc) that you can pull to your local machine.
+
+```bash
+npm i
+npm start
+```
+
+#### GraphQL Configuration for GRPC
+
+Tailcall simplifies the integration of gRPC services into GraphQL schemas by providing directives (`@grpc`, `@upstream`) to link GraphQL operations with gRPC methods. Here’s how you can configure GraphQL to interact with the `NewsService:`
+
+```graphql
+# The GraphQL representation for News message type
+type News {
+  id: Int
+  title: String
+  body: String
+  postImage: String
+}
+
+# Input type that is used to fetch news data by its id
+input NewsInput {
+  id: Int
+}
+
+# Resolves multiple news entries
+type NewsData {
+  news: [News]!
+}
+```
+
+Next, we need to define queries in GraphQL schema that correspond to gRPC service methods:
+
+```graphql
+type Query {
+  news: NewsData!
+    @grpc(method: "news.news.NewsService.GetAllNews")
+    
+  newsById(news: NewsInput!): News!
+    @grpc(
+      method: "news.news.NewsService.GetNews"
+      body: "{..args.news}"
+    )
+}
+```
+
+The next step is to configuration of Tailcall directives. We can use Tailcall directives (`@server`, `@upstream`) to set up the GraphQL server and specify the gRPC service details:
+
+```graphql
+schema
+  @server(port: 8000)
+  @upstream(
+    baseURL: "http://localhost:50051"
+    httpCache: 42
+  )
+  @link(id: "news", src: "./news.proto", type: Protobuf) {
+  query: Query
+}
+```
+
+Now, run the Tailcall server with the GraphQL configuration file.
+```bash
+tailcall start ./app.graphql
+```
+
+And now you can go to the page http://127.0.0.1:8000/graphql and execute some GraphQL queries e.g.:
+
+```graphql
+{
+  news {
+    news {
+      id
+      title
+      body
+    }
+  }
+}
+
+{
+  newsById(news: {id: 2}) {
+    id
+    title
+    body
+  }
+}
+```
+You've successfully integrated a gRPC service with the Tailcall gateway! This tutorial demonstrates an easy and efficient process, showing how Tailcall supports advanced communication protocols like gRPC effortlessly.
+
+For a more detailed guide on integrating this gRPC service with Tailcall's GraphQL, refer to the official Tailcall documentation [graphql-grpc-guide](https://tailcall.run/docs/graphql-grpc-tailcall/).
 
 #### A architecture diagram showing how gRPC and GraphQL can be used together
 
+![A Sample Architecture diagram showing how gRPC and GraphQL can be used together (credits: cloudcraft.co)](/images/graphql/graphql-grpc-architecture.png)
+
 ## Conclusion
 
+Choosing between gRPC and GraphQL depends on the specific needs of your project. gRPC is ideal for high-performance, low-latency, and strongly-typed service-to-service communication. In contrast, GraphQL shines in client-server interactions, offering flexibility and efficiency in data fetching.
 
-
-
-
-
-
-
-
-
-
+Understanding the strengths and weaknesses of each can help you make informed decisions, potentially combining both to create a robust, scalable, and efficient system.
