@@ -29,10 +29,10 @@ jobs:
       - name: Install and Build 🔧
         run: |
           npm install
+          npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
           cd ./publish-hashnode
           npm run generate
           cd ..
-          npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
           npm run typecheck
           npm run build
 
