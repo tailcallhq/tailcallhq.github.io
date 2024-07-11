@@ -54,4 +54,6 @@ jobs:
           HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
           HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
         run: |
-          npx --yes tsx blog-publisher/src/index.ts "${{ env.files }}"
+          cd ./publish-hashnode 
+          npm run generate
+          npx --yes tsx ./src/index.ts "${{ env.files }}"

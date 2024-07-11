@@ -77,6 +77,7 @@ const publishDraft = async (input: PublishDraftInput) => {
   })
   return data
 }
+
 const publishPost = async (input: PublishPostInput) => {
   const {data} = await client.mutate({
     mutation: PublishPostDocument,
