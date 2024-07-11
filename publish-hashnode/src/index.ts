@@ -11,7 +11,7 @@ const main = async () => {
         const filePath = path.join(__dirname, "../../", file)
 
         const {frontMatter, content} = extractFrontMatterAndContent(filePath)
-        const {seo_title, seo_description, article_title, article_subtitle, slug} = frontMatter
+        const {seo_title, seo_description, article_title, article_subtitle, slug, canonical_url} = frontMatter
 
         const processedMd = addBaseUrlToImages(content)
         const doesPostExist = await findPostByTitle(article_title)
@@ -23,6 +23,7 @@ const main = async () => {
             title: article_title,
             subtitle: article_subtitle,
             slug: slug,
+            originalArticleURL: canonical_url ? canonical_url : null,
             metaTags: {
               description: seo_description,
               image: null,
@@ -38,6 +39,7 @@ const main = async () => {
           title: article_title,
           subtitle: article_subtitle,
           slug: slug,
+          originalArticleURL: canonical_url ? canonical_url : null,
           metaTags: {
             description: seo_description,
             image: null,

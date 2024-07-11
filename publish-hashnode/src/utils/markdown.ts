@@ -22,6 +22,7 @@ const extractFrontMatterAndContent = (filePath: string) => {
     seo_title: string
     seo_description: string
     slug: string
+    canonical_url?: string
   }
   return {frontMatter, content}
 }
