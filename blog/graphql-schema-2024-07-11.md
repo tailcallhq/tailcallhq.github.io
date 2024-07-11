@@ -1,20 +1,24 @@
 ---
-title: Welcome Docusaurus
+title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry
 authors:
-  - slorber
-  - yangshun
-  - name: Joel Marcey
-    title: Co-creator of Docusaurus 1
-    url: https://github.com/JoelMarcey
-    image_url: https://github.com/JoelMarcey.png
-tags: [docusaurus]
-description: This is my first post on Docusaurus.
-image: https://i.imgur.com/mErPwqL.png
-hide_table_of_contents: false
+  - name: Amit Singh
+    title: Head of Growth and Strategy @ Tailcall
+    url: https://github.com/amitksingh1490
+    image_url: https://avatars.githubusercontent.com/u/23661702?v=4
+tags: [GraphQL, API, Schema, Design, Best Practices]
+description: Learn how to design a robust, scalable GraphQL schema. Best practices and considerations to build a schema that can evolve with your application's needs.
+image: /images/graphql/graphql-schema-structure.png
+hide_table_of_contents: true
+slug: graphql-schema
 ---
-# Design a GraphQL Schema So Good, It'll Make REST APIs Cry
+
+![GraphQL Schema Structure](../static/images/graphql/graphql-schema-structure.png)
 
 Designing a robust, scalable GraphQL schema is critical for building production-ready APIs that can evolve with your application's needs. In this comprehensive guide, we'll walk through the process of crafting a GraphQL schema for a real-world application, highlighting best practices and considerations along the way.
+
+<!-- truncate -->
+
+If you're new to GraphQL Schema, check out our [GraphQL Schema Tutorial](https://tailcall.run/graphql/schemas-and-types/) to get up to speed with the basics.
 
 ## The Power of GraphQL Schemas
 
@@ -137,6 +141,7 @@ enum ApplicationStatus {
 ```
 
 We've now established the core relationships:
+
 - Companies have job listings and recruiters
 - Job listings belong to a company and have applications
 - Candidates have applications
@@ -154,7 +159,7 @@ type Query {
   company(id: ID!): Company
   jobListing(id: ID!): JobListing
   candidate(id: ID!): Candidate
-  
+
   # List operations
   companies: [Company!]!
   jobListings(filters: JobListingFilters): [JobListing!]!
@@ -183,30 +188,52 @@ Next, let's define some mutation operations to allow clients to modify data:
 ```graphql
 type Mutation {
   # Company mutations
-  createCompany(input: CreateCompanyInput!): CreateCompanyPayload!
-  updateCompany(id: ID!, input: UpdateCompanyInput!): UpdateCompanyPayload!
-  
+  createCompany(
+    input: CreateCompanyInput!
+  ): CreateCompanyPayload!
+  updateCompany(
+    id: ID!
+    input: UpdateCompanyInput!
+  ): UpdateCompanyPayload!
+
   # Job Listing mutations
-  createJobListing(input: CreateJobListingInput!): CreateJobListingPayload!
-  updateJobListing(id: ID!, input: UpdateJobListingInput!): UpdateJobListingPayload!
-  
+  createJobListing(
+    input: CreateJobListingInput!
+  ): CreateJobListingPayload!
+  updateJobListing(
+    id: ID!
+    input: UpdateJobListingInput!
+  ): UpdateJobListingPayload!
+
   # Candidate mutations
-  createCandidate(input: CreateCandidateInput!): CreateCandidatePayload!
-  updateCandidate(id: ID!, input: UpdateCandidateInput!): UpdateCandidatePayload!
-  
+  createCandidate(
+    input: CreateCandidateInput!
+  ): CreateCandidatePayload!
+  updateCandidate(
+    id: ID!
+    input: UpdateCandidateInput!
+  ): UpdateCandidatePayload!
+
   # Application mutations
-  submitApplication(input: SubmitApplicationInput!): SubmitApplicationPayload!
-  updateApplicationStatus(id: ID!, status: ApplicationStatus!): UpdateApplicationStatusPayload!
+  submitApplication(
+    input: SubmitApplicationInput!
+  ): SubmitApplicationPayload!
+  updateApplicationStatus(
+    id: ID!
+    status: ApplicationStatus!
+  ): UpdateApplicationStatusPayload!
 }
 
 # Input and Payload types for each mutation...
 ```
 
 Notice the pattern we're using for mutations:
+
 1. Each mutation has a corresponding input type
 2. Each mutation returns a payload type
 
 This structure offers several benefits:
+
 - Input types allow for easy addition of new fields in the future
 - Payload types can include both the modified entity and any errors or metadata
 - It provides a consistent structure across all mutations
@@ -248,7 +275,7 @@ In a production application, we need to consider authentication and authorizatio
 ```graphql
 type Mutation {
   # ... previous mutations
-  
+
   signup(input: SignupInput!): AuthPayload!
   login(input: LoginInput!): AuthPayload!
   logout: Boolean!
@@ -294,7 +321,7 @@ As our application grows, we'll need to implement pagination for our list querie
 ```graphql
 type Query {
   # ... other queries
-  
+
   jobListings(
     first: Int
     after: String
@@ -392,12 +419,12 @@ type Company implements Node & Timestamped {
   Unique identifier for the company.
   """
   id: ID!
-  
+
   """
   The name of the company.
   """
   name: String!
-  
+
   # ... other fields
 }
 ```
@@ -408,20 +435,11 @@ Good documentation helps both your team and API consumers understand the purpose
 
 To better understand the relationships in our schema, let's visualize the core types:
 
-```mermaid
-graph TD
-    Company --> JobListing
-    Company --> Recruiter
-    JobListing --> Application
-    Candidate --> Application
-    Application --> JobListing
-    Application --> Candidate
-    Recruiter --> Company
-    User --> Candidate
-    User --> Recruiter
-```
+![Diagram Illustrating Relationships between various types ](../static/images/blog/entity-relationships.png)
 
 This diagram illustrates the key relationships between our main entities, helping us ensure our schema accurately represents our domain.
+
+To visualize your schema, you can use tools like [GraphQL Voyager](https://graphql-kit.com/graphql-voyager/).
 
 ## Best Practices and Considerations
 

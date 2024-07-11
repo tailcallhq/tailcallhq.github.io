@@ -190,32 +190,27 @@ export default {
       },
     ],
     [
-      '@docusaurus/plugin-content-blog',
+      "@docusaurus/plugin-content-blog",
       {
-        path: 'blog',
+        path: "blog",
         // Simple use-case: string editUrl
         // editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
         // Advanced use-case: functional editUrl
         editUrl: ({locale, blogDirPath, blogPath, permalink}) =>
           `https://github.com/facebook/docusaurus/edit/main/website/${blogDirPath}/${blogPath}`,
         editLocalizedFiles: false,
-        blogTitle: 'Blog title',
-        blogDescription: 'Blog',
+        blogTitle: "Blog title",
+        blogDescription: "Blog",
         blogSidebarCount: 5,
-        blogSidebarTitle: 'All our posts',
-        routeBasePath: 'blog',
-        include: ['**/*.{md,mdx}'],
-        exclude: [
-          '**/_*.{js,jsx,ts,tsx,md,mdx}',
-          '**/_*/**',
-          '**/*.test.{js,jsx,ts,tsx}',
-          '**/__tests__/**',
-        ],
+        blogSidebarTitle: "All our posts",
+        routeBasePath: "blog",
+        include: ["**/*.{md,mdx}"],
+        exclude: ["**/_*.{js,jsx,ts,tsx,md,mdx}", "**/_*/**", "**/*.test.{js,jsx,ts,tsx}", "**/__tests__/**"],
         postsPerPage: 10,
-        blogListComponent: '@theme/BlogListPage',
-        blogPostComponent: '@theme/BlogPostPage',
-        blogTagsListComponent: '@theme/BlogTagsListPage',
-        blogTagsPostsComponent: '@theme/BlogTagsPostsPage',
+        blogListComponent: "@theme/BlogListPage",
+        blogPostComponent: "@theme/BlogPostPage",
+        blogTagsListComponent: "@theme/BlogTagsListPage",
+        blogTagsPostsComponent: "@theme/BlogTagsPostsPage",
         // remarkPlugins: [require('./my-remark-plugin')],
         rehypePlugins: [],
         beforeDefaultRemarkPlugins: [],
@@ -223,18 +218,18 @@ export default {
         truncateMarker: /<!--\s*(truncate)\s*-->/,
         showReadingTime: true,
         feedOptions: {
-          // type: 'article',
-          title: '',
-          description: '',
-          copyright: '',
+          type: "rss",
+          title: "Blog title",
+          description: "Blog",
+          copyright: "Copyright © 2024 Tailcall, Inc.",
           language: undefined,
           createFeedItems: async (params) => {
-            const {blogPosts, defaultCreateFeedItems, ...rest} = params;
+            const {blogPosts, defaultCreateFeedItems, ...rest} = params
             return defaultCreateFeedItems({
               // keep only the 10 most recent blog posts in the feed
               blogPosts: blogPosts.filter((item, index) => index < 10),
               ...rest,
-            });
+            })
           },
         },
       },
