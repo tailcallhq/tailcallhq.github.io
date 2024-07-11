@@ -1,6 +1,6 @@
 # Place to Submit Outlines for the Blog Ideas
 
-Welcome to the **Blog Outlines Submission** project! This repository is dedicated to collecting and organizing outlines for blog posts. If you have a great idea for a blog post and want to contribute, follow the guidelines below.
+This folder is dedicated to collecting and organizing outlines for blog posts. If you have a great idea for a blog post and want to contribute, follow the guidelines below.
 
 ## How to Submit an Outline
 
@@ -80,6 +80,7 @@ Welcome to the **Blog Outlines Submission** project! This repository is dedicate
 
 - Organize your blog post with appropriate headings and subheadings. This helps to structure the content logically.
 - Use markdown syntax for headings and subheadings:
+
   ```markdown
   # Main Heading
 
@@ -100,11 +101,13 @@ Welcome to the **Blog Outlines Submission** project! This repository is dedicate
 
 - If your blog post should include code snippets, provide placeholders for them.
 - Use triple backticks for code blocks:
+
   ````markdown
   ```language
   // Your code here
   ```
   ````
+
   ```
 
   ```
