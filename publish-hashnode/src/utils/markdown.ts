@@ -17,12 +17,13 @@ const extractFrontMatterAndContent = (filePath: string) => {
   const md = fs.readFileSync(filePath, "utf-8")
   const {data, content} = graymatter(md)
   const frontMatter = data as {
-    title: string
+    article_title: string
+    article_subtitle: string
+    seo_title: string
+    seo_description: string
     slug: string
-    tags: string[]
   }
-  const {title, slug, tags} = frontMatter
-  return {title, slug, tags, content}
+  return {frontMatter, content}
 }
 
 export {addBaseUrlToImages, extractFrontMatterAndContent}

@@ -10,30 +10,40 @@ const main = async () => {
       try {
         const filePath = path.join(__dirname, "../../", file)
 
-        const {title, slug, tags, content} = extractFrontMatterAndContent(filePath)
-        const tagsArray = tags.map((tag) => ({name: tag}))
+        const {frontMatter, content} = extractFrontMatterAndContent(filePath)
+        const {seo_title, seo_description, article_title, article_subtitle, slug} = frontMatter
 
         const processedMd = addBaseUrlToImages(content)
-        const doesPostExist = await findPostByTitle(title)
+        const doesPostExist = await findPostByTitle(article_title)
 
         if (doesPostExist) {
-          console.log(`Post ${title} exists, updating`)
+          console.log(`Post ${article_title} exists, updating`)
           return await updatePost({
             id: doesPostExist.id,
-            title,
+            title: article_title,
+            subtitle: article_subtitle,
+            slug: slug,
+            metaTags: {
+              description: seo_description,
+              image: null,
+              title: seo_title,
+            },
             contentMarkdown: processedMd,
-            slug,
           })
         }
 
         console.log(`Post not found, creating new post`)
 
-        console.log({title, contentMarkdown: processedMd, slug, tags, publicationId: HASHNODE_PUBLICATION_ID})
-
         await createDraft({
-          title,
+          title: article_title,
+          subtitle: article_subtitle,
+          slug: slug,
+          metaTags: {
+            description: seo_description,
+            image: null,
+            title: seo_title,
+          },
           contentMarkdown: processedMd,
-          slug,
           publicationId: HASHNODE_PUBLICATION_ID,
         })
       } catch (error) {
