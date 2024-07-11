@@ -16,9 +16,9 @@ gRPC is an open-source RPC (Remote Procedure Call) framework initially developed
 
 #### Importance in modern software architecture
 
-gRPC plays a crucial role in modernizing software architectures by providing efficient, high-performance communication channels. Due to it's low-latency, it is used by many well-known softwares like Kubernetes, CockroachDB and Netflix etc:
+gRPC plays a crucial role in modernizing software architectures by providing efficient, high-performance communication channels. Due to it's low-latency, it is used by many well-known software like Kubernetes, CockroachDB and Netflix etc:
 
-[snippet from Kuberenetes:](https://github.com/kubernetes/kubernetes/blob/0c8b3e5f305bf2bf56d47019199b81330d90c2c3/staging/src/k8s.io/kms/apis/v1beta1/api.proto#L29)
+[snippet from Kubernetes:](https://github.com/kubernetes/kubernetes/blob/0c8b3e5f305bf2bf56d47019199b81330d90c2c3/staging/src/k8s.io/kms/apis/v1beta1/api.proto#L29)
 
 ```protobuf
 
@@ -207,7 +207,7 @@ message HelloReply {
 
 #### Learning curve
 
-gRPC has a much steeper learning curve compared to the traditional REST, mainly due to some new conepts like HTTP/2 and Protobuf which require significant practice and experience.
+gRPC has a much steeper learning curve compared to the traditional REST, mainly due to some new concepts like HTTP/2 and Protobuf which require significant practice and experience.
 
 #### Debugging complexity
 
@@ -239,7 +239,7 @@ Secure your gRPC services by implementing authentication and encryption. Use Tra
 
 #### Performance Optimization Techniques
 
-There are several ways to optimize the performance of gRPC API to reduce response times and running cost. gRPX channels are expensive to make, and reusing them instead of remaking has a significant impact.
+gRPC API performance can be boosted in many ways. The channels are expensive to make, and reusing them instead of remaking has a significant impact.
 
 **_Example:_**
 
