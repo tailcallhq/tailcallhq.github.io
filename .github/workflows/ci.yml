@@ -17,17 +17,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Check spelling
         uses: codespell-project/actions-codespell@v2
         with:
           ignore_words_file: .github/codespell-ignore
-          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock,*.excalidraw
+          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock,*.excalidraw,*.graphql,./blog-publisher/generated/graphql.ts
 
       - name: Install and Build 🔧
         run: |
           npm install
           npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
+          cd ./publish-hashnode
+          npm run generate
+          cd ..
           npm run typecheck
           npm run build
 
@@ -36,3 +41,22 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
+
+      - name: Get changed files
+        id: changes
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "files=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '^blog/')" >> $GITHUB_ENV
+          else
+            echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^blog/')" >> $GITHUB_ENV
+          fi
+
+      - name: Publish to Hashnode 📝
+        if: github.ref == 'refs/heads/develop' && env.files != ''
+        env:
+          HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+        run: |
+          cd ./publish-hashnode 
+          npm run generate
+          npx --yes tsx ./src/index.ts "${{ env.files }}"

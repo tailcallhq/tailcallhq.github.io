@@ -1,0 +1,8 @@
+mutation CreateDraft($input: CreateDraftInput!) {
+  createDraft(input: $input) {
+    draft {
+      id
+      title
+    }
+  }
+}
