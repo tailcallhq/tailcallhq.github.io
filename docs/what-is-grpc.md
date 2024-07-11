@@ -38,6 +38,8 @@ service KeyManagementService {
 
 #### Brief history of RPC (Remote Procedure Call)
 
+![history](/images/docs/history.png)
+
 Request–response protocols date to early distributed computing in the late 1960s, theoretical proposals of remote procedure calls as the model of network operations date to the 1970s, and practical implementations date to the early 1980s.
 
 #### Transition from traditional RPC to gRPC
@@ -61,6 +63,8 @@ gRPC is a high-performance, language-neutral RPC framework. It uses Protobuf for
 - **HTTP/2:** Provides additional capabilities such as multiplexing, header compression, and server push, which are not as efficient and reliable in HTTP/1.1
 
 #### How gRPC works (step-by-step process)
+
+![step by step process](/images/docs/steps.png)
 
 gRPC (Remote Procedure Call) works using a straightforward yet powerful mechanism that facilitates communication between clients and servers in a distributed system.
 
@@ -101,7 +105,7 @@ message IPAddress {
 
 ### gRPC Service Methods
 
-![gRPC Bi-directional](/images/docs/grpc_bidi.png)
+![gRPC Methods](/images/docs/methods.png)
 
 - **Unary RPC**: This is the simplest form where the client sends a single request to the server and receives a single response:
 
@@ -162,7 +166,7 @@ These features collectively contribute to significant performance gains, making 
 
 #### Language-agnostic nature
 
-![gRPC Language Agnostic](/images/docs/grpc_lang.jpeg)
+![gRPC Language Agnostic](/images/docs/language_agnostic.png)
 
 gRPC uses Protocol Buffers (Protobuf) as its (IDL) for describing both the structure and the semantics of the messages sent between clients and servers. Protobuf is independent of programming languages, meaning you can define your API once using Protobuf and then generate code in various languages to interact with it. This allows seamless integration of sub-systems API specification, while also enhancing the DX.
 
@@ -206,6 +210,8 @@ message HelloReply {
 ### Challenges and Considerations
 
 #### Learning curve
+
+![learning curve](/images/docs/curve.png)
 
 gRPC has a much steeper learning curve compared to the traditional REST, mainly due to some new concepts like HTTP/2 and Protobuf which require significant practice and experience.
 
