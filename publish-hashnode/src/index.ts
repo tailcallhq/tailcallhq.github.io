@@ -48,7 +48,7 @@ const main = async () => {
           originalArticleURL: canonical_url ? canonical_url : null,
           ...(seo_title && {
             metaTags: {
-              description: seo_description,
+              description: description,
               image: null,
               title: seo_title,
             },
