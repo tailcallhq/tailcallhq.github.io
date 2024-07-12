@@ -11,14 +11,14 @@ hide_table_of_contents: true
 slug: unraveling-the-challenges-of-bff-federation
 ---
 
-![Cover Image for Unraveling the Challenges of BFF Federation](../static/images/blog/bff-cover.png)
-In our [previous](https://blog.tailcall.run/no-one-talks-about-api-orchestration) blog post, we discussed the challenges of API Orchestration and its often overlooked role in a microservices architecture. We explored how, while it serves as an abstraction for frontend apps and websites, this abstraction's performance is very sensitive to network latency and device performance thus directly impacting end-user experience. One proposed solution was to create a Backend for Frontend (BFF) layer, essentially moving the frontend abstraction to powerful servers within your VPC. Although this approach effectively addresses the user experience problem and simplifies the work of front-end engineers, it introduces a new set of challenges for the backend, leading to difficulties in scaling the monolithic solution. Here's what the BFF architecture looked like:
-
-<!-- truncate -->
 <head>
 <link rel="canonical" href="https://tailcall.hashnode.dev/unraveling-the-challenges-of-bff-federation"/>
 <title>Unraveling the Challenges of BFF Federation</title>
 </head>
+![Cover Image for Unraveling the Challenges of BFF Federation](../static/images/blog/bff-cover.png)
+In our [previous](https://blog.tailcall.run/no-one-talks-about-api-orchestration) blog post, we discussed the challenges of API Orchestration and its often overlooked role in a microservices architecture. We explored how, while it serves as an abstraction for frontend apps and websites, this abstraction's performance is very sensitive to network latency and device performance thus directly impacting end-user experience. One proposed solution was to create a Backend for Frontend (BFF) layer, essentially moving the frontend abstraction to powerful servers within your VPC. Although this approach effectively addresses the user experience problem and simplifies the work of front-end engineers, it introduces a new set of challenges for the backend, leading to difficulties in scaling the monolithic solution. Here's what the BFF architecture looked like:
+
+<!-- truncate -->
 
 ![Architecture Diagram for BFF](../static/images/blog/bff-architecture.png)
 
