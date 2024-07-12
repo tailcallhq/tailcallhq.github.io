@@ -39,11 +39,13 @@ C. Writing resolvers for subscriptions
 D. Client-side setup
 
 - Using Apollo Client
+
 (Diagram - Flowchart showing the process to setup GraphQL Subscriptions using Apollo Client)
 
 - Alternatives to Apollo Client
 
 D. Handling events and triggers
+
 (Diagram - Flowchart showing how events are setup and managed in GraphQL Subscriptions)
 
 ## GraphQL Subscriptions vs. Other Real-Time Solutions
@@ -89,9 +91,11 @@ D. Optimizing performance
 ## Real-World Applications and Examples
 
 A. Live data streams (e.g., stock prices, sports scores)
+
 (Diagram - Infographic showing streaming of live data like prices of stocks, sports scores)
 
 B. Collaborative tools (e.g., shared documents, chat applications)
+
 (Diagram - Image showing an application like shared document highlighting the updates of real-time data via GraphQL Subscriptions)
 
 C. IoT and real-time monitoring systems 
