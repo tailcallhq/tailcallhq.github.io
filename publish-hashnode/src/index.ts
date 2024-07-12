@@ -11,7 +11,7 @@ const main = async () => {
         const filePath = path.join(__dirname, "../../", file)
 
         const {frontMatter, content} = extractFrontMatterAndContent(filePath)
-        const {seo_title, seo_description, title, subtitle, slug, canonical_url, cover_image, coAuthors} = frontMatter
+        const {seo_title, description, title, subtitle, slug, canonical_url, cover_image, coAuthors} = frontMatter
 
         const processedMd = addBaseUrlToImages(content)
         const doesPostExist = await findPostByTitle(title)
@@ -27,7 +27,7 @@ const main = async () => {
             coAuthors: coAuthors,
             ...(seo_title && {
               metaTags: {
-                description: seo_description,
+                description: description,
                 image: null,
                 title: seo_title,
               },

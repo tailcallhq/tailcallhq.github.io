@@ -16,7 +16,7 @@ interface FrontMatter {
   title: string
   subtitle?: string
   seo_title?: string
-  seo_description?: string
+  description?: string
   image?: string
   canonical_url?: string
   slug: string
