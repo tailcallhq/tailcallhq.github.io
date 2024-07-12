@@ -1,5 +1,6 @@
 ---
 title: Writing a GraphQL Backend by Hand is Long Gone
+subtitle: Writing a GraphQL backend by hand doesn't scale beyond a point.
 authors:
   - name: Tushar Mathur
     title: CEO @ Tailcall | Love to talk about programming, scale, distributed systems and building high performance systems.
@@ -10,6 +11,7 @@ description: Writing a GraphQL backend by hand doesn't scale beyond a point.
 image: /images/blog/no-code-cover.png
 hide_table_of_contents: true
 slug: writing-a-graphql-backend-by-hand-is-long-gone
+canonical_url: https://tailcall.hashnode.dev/writing-a-graphql-backend-by-hand-is-long-gone
 ---
 
 ![Cover Image for Writing a GraphQL Backend by Hand is Long Gone](../static/images/blog/no-code-cover.png)

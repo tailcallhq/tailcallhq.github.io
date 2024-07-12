@@ -9,6 +9,7 @@ description: Understand what makes GraphQL different from REST and gRPC.
 image: /images/blog/gql-vs-rest-vs-grpc-cover.png
 hide_table_of_contents: true
 slug: graphql-vs-rest-vs-grpc
+canonical_url: https://tailcall.hashnode.dev/graphql-vs-rest-vs-grpc
 ---
 
 ![Cover Image for GraphQL vs REST vs gRPC - an unfair comparison](../static/images/blog/gql-vs-rest-vs-grpc-cover.png)
