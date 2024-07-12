@@ -12,16 +12,16 @@ hide_table_of_contents: true
 slug: no-one-talks-about-api-orchestration
 ---
 
-<head>
-<link rel="canonical" href="https://tailcall.hashnode.dev/no-one-talks-about-api-orchestration"/>
-<title>No one talks about API Orchestration</title>
-</head>
-
 ![bff-architecture.png](../static/images/blog/bff-architecture.png)
 
 #### _A Forsaken Piece Of Every Microservice Architecture_
 
 <!-- truncate -->
+
+<head>
+<link rel="canonical" href="https://tailcall.hashnode.dev/no-one-talks-about-api-orchestration"/>
+<title>No one talks about API Orchestration</title>
+</head>
 
 Being in the industry for many years, building and consuming microservices, I have realized that there is one problem that no one really talks about when it comes to microservices ie. API Orchestration. As engineers, we love our microservices, small independent components that are responsible for doing just one thing. The promise that was sold when I was a kid was you can build these small independent services and compose them together to build an app, very fast and reliably. It took me years to realize that the necessary tooling for "composing" just doesn't exist! There are tools for distributed tracing, observability, caching, discovery, etc. But to compose services to build a product is completely offloaded to front-end engineers! There were two things that were happening in the tech ecosystem:
 

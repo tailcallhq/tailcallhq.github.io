@@ -12,15 +12,15 @@ hide_table_of_contents: true
 slug: writing-a-graphql-backend-by-hand-is-long-gone
 ---
 
-<head>
-<link rel="canonical" href="https://tailcall.hashnode.dev/writing-a-graphql-backend-by-hand-is-long-gone"/>
-<title>Writing a GraphQL Backend by Hand is Long Gone</title>
-</head>
-
 ![Cover Image for Writing a GraphQL Backend by Hand is Long Gone](../static/images/blog/no-code-cover.png)
 Building a GraphQL backend by hand might seem like a noble pursuit, but the landscape of API development is evolving rapidly, and so are the challenges that come with it. Today, the process is often fraught with complexity, performance bottlenecks, security vulnerabilities, and reliability issues. Yet again, we had a developer expressing [frustration](https://bessey.dev/blog/2024/05/24/why-im-over-graphql/) about the issues with GraphQL and the reasons for leaving our mighty ship. I wish to dive deeper into these challenges and explore why the future points towards automated, high-performance solutions.
 
 <!-- truncate -->
+
+<head>
+<link rel="canonical" href="https://tailcall.hashnode.dev/writing-a-graphql-backend-by-hand-is-long-gone"/>
+<title>Writing a GraphQL Backend by Hand is Long Gone</title>
+</head>
 
 ## Complexity with GraphQL
 

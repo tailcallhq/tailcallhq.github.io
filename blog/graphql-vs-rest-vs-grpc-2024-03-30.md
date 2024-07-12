@@ -11,14 +11,14 @@ hide_table_of_contents: true
 slug: graphql-vs-rest-vs-grpc
 ---
 
+![Cover Image for GraphQL vs REST vs gRPC - an unfair comparison](../static/images/blog/gql-vs-rest-vs-grpc-cover.png)
+
+<!-- truncate -->
+
 <head>
 <link rel="canonical" href="https://tailcall.hashnode.dev/graphql-vs-rest-vs-grpc"/>
 <title>GraphQL vs REST vs gRPC - an unfair comparison</title>
 </head>
-
-![Cover Image for GraphQL vs REST vs gRPC - an unfair comparison](../static/images/blog/gql-vs-rest-vs-grpc-cover.png)
-
-<!-- truncate -->
 
 Since its inception, GraphQL has steadily gained popularity, often finding itself at the center of comparisons with other data query and manipulation languages such as REST and gRPC. The internet is replete with articles debating the merits and demerits of each, with some even questioning the viability of GraphQL. However, this discourse misses a crucial point: the unique strengths of GraphQL. This article aims to illuminate the distinct advantages GraphQL offers, particularly in addressing a common but complex challenge known as impedance mismatch.
 
