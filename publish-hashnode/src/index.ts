@@ -11,23 +11,27 @@ const main = async () => {
         const filePath = path.join(__dirname, "../../", file)
 
         const {frontMatter, content} = extractFrontMatterAndContent(filePath)
-        const {seo_title, seo_description, article_title, article_subtitle, slug, canonical_url} = frontMatter
+        const {seo_title, seo_description, title, subtitle, slug, canonical_url, cover_image, coAuthors} = frontMatter
 
         const processedMd = addBaseUrlToImages(content)
-        const doesPostExist = await findPostByTitle(article_title)
+        const doesPostExist = await findPostByTitle(title)
 
         if (doesPostExist) {
-          console.log(`Post ${article_title} exists, updating`)
+          console.log(`Post ${title} exists, updating`)
           return await updatePost({
             id: doesPostExist.id,
-            title: article_title,
-            subtitle: article_subtitle,
+            title: title,
+            subtitle: subtitle,
             slug: slug,
             originalArticleURL: canonical_url ? canonical_url : null,
+            coAuthors: coAuthors,
             metaTags: {
               description: seo_description,
               image: null,
               title: seo_title,
+            },
+            coverImageOptions: {
+              coverImageURL: cover_image,
             },
             contentMarkdown: processedMd,
           })
@@ -36,8 +40,8 @@ const main = async () => {
         console.log(`Post not found, creating new post`)
 
         await createDraft({
-          title: article_title,
-          subtitle: article_subtitle,
+          title: title,
+          subtitle: subtitle,
           slug: slug,
           originalArticleURL: canonical_url ? canonical_url : null,
           metaTags: {
@@ -45,6 +49,10 @@ const main = async () => {
             image: null,
             title: seo_title,
           },
+          coverImageOptions: {
+            coverImageURL: cover_image,
+          },
+          coAuthors: coAuthors,
           contentMarkdown: processedMd,
           publicationId: HASHNODE_PUBLICATION_ID,
         })
