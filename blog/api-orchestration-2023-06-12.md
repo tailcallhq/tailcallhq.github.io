@@ -1,6 +1,5 @@
 ---
 title: No one talks about API Orchestration
-subtitle: A Forsaken Piece Of Every Microservice Architecture
 authors:
   - name: Tushar Mathur
     title: CEO @ Tailcall | Love to talk about programming, scale, distributed systems and building high performance systems.
