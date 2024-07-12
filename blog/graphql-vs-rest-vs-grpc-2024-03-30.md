@@ -11,6 +11,11 @@ hide_table_of_contents: true
 slug: graphql-vs-rest-vs-grpc
 ---
 
+<head>
+<link rel="canonical" href="https://tailcall.hashnode.dev/graphql-vs-rest-vs-grpc"/>
+<title>GraphQL vs REST vs gRPC - an unfair comparison</title>
+</head>
+
 ![Cover Image for GraphQL vs REST vs gRPC - an unfair comparison](../static/images/blog/gql-vs-rest-vs-grpc-cover.png)
 
 <!-- truncate -->
