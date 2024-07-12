@@ -64,7 +64,7 @@ D. Custom Scalars for specific use cases (e.g., PhoneNumber, CreditCard)
 
 ## Advantages of Using Custom Scalars
 
-(Diagram - A visual comparison between using built-in Scalars vs custom Scalars)
+(Comparison chart - A visual comparison between using built-in Scalars vs custom Scalars)
 
 A. Enhanced data validation
 
