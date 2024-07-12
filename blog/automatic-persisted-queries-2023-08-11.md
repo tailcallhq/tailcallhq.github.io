@@ -12,6 +12,11 @@ slug: the-truth-about-scaling-automatic-persisted-queries
 canonical_url: https://tailcall.hashnode.dev/the-truth-about-scaling-automatic-persisted-queries
 ---
 
+<head>
+<link rel="canonical" href="https://tailcall.hashnode.dev/the-truth-about-scaling-automatic-persisted-queries"/>
+<title>The truth about scaling Automatic Persisted Queries</title>
+</head>
+
 ![Cover Image for The truth about scaling Automatic Persisted Queries](../static/images/blog/apq-cover.png)
 
 Persisted queries are often hailed as a solution to several challenges in GraphQL related to network performance, caching, and maintenance. However, they may not always be the silver bullet they appear to be. This post delves into the concept of persisted queries (PQ) and automatic persisted queries (APQ), highlighting the limitations and potential scaling issues that accompany these technologies.
