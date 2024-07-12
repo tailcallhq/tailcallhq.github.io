@@ -42,23 +42,20 @@ jobs:
         with:
           folder: build
 
-      - name: Get changed files
-        id: changes
-        run: |
-          echo "files<<EOF" >> $GITHUB_ENV
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '^blog/' || true
-          else
-            git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^blog/' || true
-          fi >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+      - name: Get changed markdown files
+        id: changed-markdown-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: |
+            blog/**.md
 
       - name: Publish to Hashnode 📝
-        if: github.ref == 'refs/heads/develop' && env.files != ''
+        if: github.ref == 'refs/heads/develop' && steps.changed-markdown-files.outputs.any_changed == 'true'
         env:
           HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
           HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+          CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
         run: |
           cd ./publish-hashnode 
           npm run generate
-          npx --yes tsx ./src/index.ts "${{ env.files }}"
+          npx --yes tsx ./src/index.ts "$CHANGED_FILES"
