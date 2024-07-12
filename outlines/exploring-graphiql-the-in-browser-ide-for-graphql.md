@@ -29,7 +29,7 @@ To access GraphiQL, you are not limited to the default in-browser method.
 
 ## Getting Started with the GraphiQL
 * Configuring GraphiQL
-* Connecting GraphiQL to your GraphQL server
+* Connecting GraphiQL to your Tailcall GraphQL server
 
 ## Exploring the GraphiQL Interface
 * Exploring the GraphiQL interface and understanding the functions of the various panes. The application is two-pane by default, but it becomes three when we access the Documentation Explorer.
