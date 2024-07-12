@@ -14,8 +14,6 @@ slug: no-one-talks-about-api-orchestration
 
 ![bff-architecture.png](../static/images/blog/bff-architecture.png)
 
-#### _A Forsaken Piece Of Every Microservice Architecture_
-
 <!-- truncate -->
 
 <head>
