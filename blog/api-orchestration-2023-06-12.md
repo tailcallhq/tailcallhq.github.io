@@ -10,8 +10,12 @@ authors:
 image: /images/blog/bff-architecture.png
 hide_table_of_contents: true
 slug: no-one-talks-about-api-orchestration
-canonical_url: https://tailcall.hashnode.dev/no-one-talks-about-api-orchestration
 ---
+
+<head>
+<link rel="canonical" href="https://tailcall.hashnode.dev/no-one-talks-about-api-orchestration"/>
+<title>No one talks about API Orchestration</title>
+</head>
 
 ![bff-architecture.png](../static/images/blog/bff-architecture.png)
 
