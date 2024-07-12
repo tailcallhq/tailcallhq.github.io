@@ -194,8 +194,8 @@ export default {
       {
         path: "blog",
         editLocalizedFiles: false,
-        blogTitle: "Blog title",
-        blogDescription: "Blog",
+        blogTitle: "Feed of Tailcall blogs",
+        blogDescription: "List of blog posts on Tailcall blog",
         blogSidebarCount: 5,
         blogSidebarTitle: "Recent Blog Posts",
         routeBasePath: "blog",
