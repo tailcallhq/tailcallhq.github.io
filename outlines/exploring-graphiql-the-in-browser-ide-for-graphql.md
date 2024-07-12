@@ -5,7 +5,7 @@
 **Aim:** This article aims to provide developers with an in-depth understanding of GraphiQL, its features, and how to effectively use it to interact with GraphQL APIs. It will cover the fundamentals, and practical applications for utilizing GraphiQL as an in-browser IDE for GraphQL.
 
 ## Introduction
-Why waste time and effort troubleshooting your GraphQL API directly in your application when there's a more efficient way? Imagine testing and perfecting your queries outside your app, ensuring they work flawlessly before implementation. Sounds ideal, right? With [GraphiQL](https://az.dev/swapi-graphql), you're saving time and gaining control over your development process, empowering you to work more confidently and effectively.
+Why waste time and effort troubleshooting your GraphQL API directly in your application when there's a more efficient way? Imagine testing and perfecting your queries outside your app, ensuring they work flawlessly before implementation. Sounds ideal, right? With [GraphiQL](https://github.com/graphql/graphiql), you're saving time and gaining control over your development process, empowering you to work more confidently and effectively.
 
 ## Prerequisites
 To follow along with this guide, you need:
