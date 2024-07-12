@@ -25,11 +25,13 @@ const main = async () => {
             slug: slug,
             originalArticleURL: canonical_url ? canonical_url : null,
             coAuthors: coAuthors,
-            metaTags: {
-              description: seo_description,
-              image: null,
-              title: seo_title,
-            },
+            ...(seo_title && {
+              metaTags: {
+                description: seo_description,
+                image: null,
+                title: seo_title,
+              },
+            }),
             coverImageOptions: {
               coverImageURL: cover_image,
             },
@@ -44,11 +46,13 @@ const main = async () => {
           subtitle: subtitle,
           slug: slug,
           originalArticleURL: canonical_url ? canonical_url : null,
-          metaTags: {
-            description: seo_description,
-            image: null,
-            title: seo_title,
-          },
+          ...(seo_title && {
+            metaTags: {
+              description: seo_description,
+              image: null,
+              title: seo_title,
+            },
+          }),
           coverImageOptions: {
             coverImageURL: cover_image,
           },
