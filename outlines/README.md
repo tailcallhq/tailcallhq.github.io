@@ -53,7 +53,7 @@ This folder is dedicated to collecting and organizing outlines for blog posts. I
 
 - Push the committed changes to your forked repository:
   ```sh
-  git push origin develop
+  git push origin main
   ```
 
 7. **Submit a Pull Request**
