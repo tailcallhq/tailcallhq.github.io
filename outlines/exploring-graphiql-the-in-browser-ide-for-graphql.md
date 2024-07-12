@@ -5,7 +5,7 @@
 **Aim:** This article aims to provide developers with an in-depth understanding of GraphiQL, its features, and how to effectively use it to interact with GraphQL APIs. It will cover the fundamentals, and practical applications for utilizing GraphiQL as an in-browser IDE for GraphQL.
 
 ## Introduction
-Why waste time and effort troubleshooting your GraphQL API directly in your application when there's a more efficient way? Imagine testing and perfecting your queries outside your app, ensuring they work flawlessly before implementation. Sounds ideal, right? With [GraphiQL](https://az.dev/swapi-graphql), you're saving time and gaining control over your development process, empowering you to work more confidently and effectively.
+Why waste time and effort troubleshooting your GraphQL API directly in your application when there's a more efficient way? Imagine testing and perfecting your queries outside your app, ensuring they work flawlessly before implementation. Sounds ideal, right? With [GraphiQL](https://github.com/graphql/graphiql), you're saving time and gaining control over your development process, empowering you to work more confidently and effectively.
 
 ## Prerequisites
 To follow along with this guide, you need:
@@ -22,26 +22,45 @@ To follow along with this guide, you need:
 
 ## Methods for accessing GraphiQL
 To access GraphiQL, you are not limited to the default in-browser method. 
-* Head to [https://graphql.org/swapi-graphql](https://graphql.org/swapi-graphql) by querying your search engine (browser) to access the GraphiQL online editor, which works with the Star Wars data, and it is publicly available for you to use
-* If you are using Gatsby, you can start the Gatsby development server by pasting this: `http://localhost:8000/___graphql` into your browser
-* Using Shopify via the [Shopify GraphiQl app](https://shopify-graphiql-app.shopifycloud.com/login)
-* Using your own API endpoint: just type your GraphQL server endpoint URL into your browser
+* Head to [https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql](https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql) by querying your search engine (browser) to access the GraphiQL online editor, which works with the Star Wars data, and it is publicly available for you to use
+* If you are using Gatsby, you can start the Gatsby development server by referencing this: (https://tailcall.run/docs/#starting-the-graphql-server)[https://tailcall.run/docs/#starting-the-graphql-server]
+* Using your own API endpoint: access this - [https://tailcall.run/playground/](https://tailcall.run/playground/)
 
 ## Getting Started with the GraphiQL
 * Configuring GraphiQL
-* Connecting GraphiQL to your GraphQL server
+* Connecting GraphiQL to your Tailcall GraphQL server
 
 ## Exploring the GraphiQL Interface
 * Exploring the GraphiQL interface and understanding the functions of the various panes. The application is two-pane by default, but it becomes three when we access the Documentation Explorer.
 * Explain each of the main parts in the GraphiQL interface: Query Editor, Variables Editor, Response pane, and Documentation Explorer.
+[add screenshot to display the interface of each of these 4 main interface parts]
 
 ## Key Features and Capabilities of GraphiQl
 Explain the various core features that GraphiQL provides.
 * Type-ahead and Auto Completion feature that is aware of the GraphQL type schema you are currently exploring. In addition, explain Context-awareness.
+```graphql
+# add a simple code that refernces the type-ahead feature
+```
+
+[Screenshot a live view of type-ahead feature in action]
 * Live syntax and validation error highlighting.
+```graphql
+"""
+add a simple code that references the live syntax and validation error
+"""
+```
+
+[Screenshot a live view of validation error highlighting]
 * Query history
+
+[Screenshot the history interface]
 * Fragments: This feature helps us maintain the Don’t Repeat Yourself (DRY) pattern when dealing with repetitive code in our query. Instead, you can easily merge fragments into a query.
+```
+# code that references fragments that can be merged to a query
+```
 * Documentation: GraphiQL generates documentation for your schema, making it easy to understand and explore.
+
+[Screenshot the documentation interface]
 
 ## Testing out the Interface
 Writing and executing Queries, mutations and Subscriptions
@@ -49,6 +68,7 @@ Writing and executing Queries, mutations and Subscriptions
 * Integrating Variables with Your Query
 * Utilising fragments to aid query construction
 * Executing/Testing the query: Sending requests and handling responses
+[take a screenshot and add code for each of the step above]
 
 ## Conclusion
 * Summary of what we discussed 
