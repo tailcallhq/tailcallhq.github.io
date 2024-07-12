@@ -46,9 +46,13 @@ jobs:
         id: changes
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "files=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '^blog/')" >> $GITHUB_ENV
+            echo "files<<EOF" >> $GITHUB_ENV
+            git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '^blog/' >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
           else
-            echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^blog/')" >> $GITHUB_ENV
+            echo "files<<EOF" >> $GITHUB_ENV
+            git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^blog/' >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
           fi
 
       - name: Publish to Hashnode 📝
