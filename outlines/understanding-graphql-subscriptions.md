@@ -48,7 +48,7 @@ D. Handling events and triggers
 
 ## GraphQL Subscriptions vs. Other Real-Time Solutions
 
-(Infogaphic - A comparison table highlighting differences considering data format, use cases, scalability, performance)
+(Infographic - A comparison table highlighting differences considering data format, use cases, scalability, performance)
 
 A. Comparison with REST + WebSockets 
 
