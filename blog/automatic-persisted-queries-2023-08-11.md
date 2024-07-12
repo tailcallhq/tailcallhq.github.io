@@ -9,8 +9,12 @@ authors:
     image: /images/blog/apq-cover.png
     hide_table_of_contents: true
     slug: the-truth-about-scaling-automatic-persisted-queries
-    canonical_url: https://tailcall.hashnode.dev/the-truth-about-scaling-automatic-persisted-queries
 ---
+
+<head>
+<link rel="canonical" href="https://tailcall.hashnode.dev/the-truth-about-scaling-automatic-persisted-queries"/>
+<title>The truth about scaling Automatic Persisted Queries</title>
+</head>
 
 ![Cover Image for The truth about scaling Automatic Persisted Queries](../static/images/blog/apq-cover.png)
 
