@@ -36,7 +36,7 @@ Choosing between GraphQL and OpenAPI? Buckle up, because this decision will stee
 
 #### Definition and Core Features
 
-Think of GraphQL as a master chef who takes your order (query) and prepares exactly what you want, without any extras. It's a flexible query language for APIs, allowing clients to request precise data and get exactly what they need. [Read More!"](graphql/what-is-graphql/)
+Think of GraphQL as a master chef who takes your order (query) and prepares exactly what you want, without any extras. It's a flexible query language for APIs, allowing clients to request precise data and get exactly what they need. [Read More!"](/graphql/what-is-graphql/)
 
 ### B. What is OpenAPI?
 
@@ -139,7 +139,7 @@ query {
 ```
 In this example, the schema defines User and Post types, their fields, and the relationships between them. The Query type includes operations for fetching users and posts, and the Mutation type includes operations for creating users and posts. The query fetches a specific user and their posts, as well as all posts and their authors.
 
-For a deeper dive into GraphQL schemas and types, you can explore [this resource](https://tailcall.run/graphql/schemas-and-types/).
+For a deeper dive into GraphQL schemas and types, you can explore [this resource](/graphql/schemas-and-types/).
 
 #### OpenAPI: Schema Validation
 
@@ -1014,7 +1014,7 @@ Migrating from a RESTful API to GraphQL can significantly enhance your applicati
 
 By following these steps and leveraging tools like Tailcall, you can transition from REST to GraphQL smoothly and efficiently. This migration will not only improve your API's flexibility but also provide a better experience for your developers and users.
 
-For more detailed guidance and best practices, visit [Tailcall's official documentation](https://tailcall.run/graphql/schemas-and-types/).
+For more detailed guidance and best practices, visit [Tailcall's official documentation](/graphql/schemas-and-types/).
 
 ## Conclusion
 
