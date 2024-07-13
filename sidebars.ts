@@ -36,7 +36,6 @@ const sidebars: SidebarsConfig = {
         "auth",
         "grpc",
         "scripting",
-        "what-is-grpc",
         "http2",
         "telemetry",
         "http-cache",
