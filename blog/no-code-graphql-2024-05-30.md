@@ -5,7 +5,7 @@ authors:
   - name: Tushar Mathur
     title: CEO @ Tailcall | Love to talk about programming, scale, distributed systems and building high performance systems.
     url: https://github.com/tusharmath
-    image_url: https://avatars.githubusercontent.com/u/194482?v=5
+    image_url: https://avatars.githubusercontent.com/u/194482?v=4
 tags: [GraphQL, Node.js, JavaScript]
 description: Writing a GraphQL backend by hand doesn't scale beyond a point.
 image: /images/blog/no-code-cover.png
