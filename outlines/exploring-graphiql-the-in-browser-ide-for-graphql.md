@@ -26,8 +26,8 @@ To follow along with this guide, you need:
 
 ## Accessing GraphiQL
 For this guide, accessing GraphiQL can be done using any of the methods below:
-* Simply head over to [https://tailcall.run/playground/](https://tailcall.run/playground/) or
-* After starting your [GraphQL server](https://tailcall.run/docs/#starting-the-graphql-server), head over to [https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql](https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql) 
+* Simply head over to [https://tailcall.run/playground/](https://tailcall.run/playground/) and give your graphql server url in input. Note, make sure your graphql server allows cors for Tailcall domain
+* After starting your [GraphQL server](https://tailcall.run/docs/#starting-the-graphql-server), head over to the GraphiQL playground link you get
 
 
 ## Exploring the GraphiQL Interface
