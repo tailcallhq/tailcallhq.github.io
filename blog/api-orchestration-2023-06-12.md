@@ -5,7 +5,7 @@ authors:
   - name: Tushar Mathur
     title: CEO @ Tailcall | Love to talk about programming, scale, distributed systems and building high performance systems.
     url: https://github.com/tusharmath
-    image_url: https://avatars.githubusercontent.com/u/194482?v=4
+    image_url: https://avatars.githubusercontent.com/u/194482?v=5
 description: A Forsaken Piece Of Every Microservice Architecture
 image: /images/blog/bff-architecture.png
 hide_table_of_contents: true
