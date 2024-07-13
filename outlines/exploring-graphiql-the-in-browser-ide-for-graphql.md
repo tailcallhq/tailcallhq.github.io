@@ -20,15 +20,15 @@ To follow along with this guide, you need:
 ## Why use GraphiQL?
 * Advantages/benefits of using GraphiQL (things like Improving your request, validating your improvements, and easily debugging requests running into problems)
 
-## Methods for accessing GraphiQL
-To access GraphiQL, you are not limited to the default in-browser method. 
-* Head to [https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql](https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql) by querying your search engine (browser) to access the GraphiQL online editor, which works with the Star Wars data, and it is publicly available for you to use
-* If you are using Gatsby, you can start the Gatsby development server by referencing this: (https://tailcall.run/docs/#starting-the-graphql-server)[https://tailcall.run/docs/#starting-the-graphql-server]
-* Using your own API endpoint: access this - [https://tailcall.run/playground/](https://tailcall.run/playground/)
-
 ## Getting Started with the GraphiQL
 * Configuring GraphiQL
 * Connecting GraphiQL to your Tailcall GraphQL server
+
+## Accessing GraphiQL
+For this guide, accessing GraphiQL can be done using any of the methods below:
+* Simply head over to [https://tailcall.run/playground/](https://tailcall.run/playground/) or
+* After starting your [GraphQL server](https://tailcall.run/docs/#starting-the-graphql-server), head over to [https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql](https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql) 
+
 
 ## Exploring the GraphiQL Interface
 * Exploring the GraphiQL interface and understanding the functions of the various panes. The application is two-pane by default, but it becomes three when we access the Documentation Explorer.
@@ -43,6 +43,7 @@ Explain the various core features that GraphiQL provides.
 ```
 
 [Screenshot a live view of type-ahead feature in action]
+
 * Live syntax and validation error highlighting.
 ```graphql
 """
@@ -51,13 +52,16 @@ add a simple code that references the live syntax and validation error
 ```
 
 [Screenshot a live view of validation error highlighting]
+
 * Query history
 
 [Screenshot the history interface]
+
 * Fragments: This feature helps us maintain the Don’t Repeat Yourself (DRY) pattern when dealing with repetitive code in our query. Instead, you can easily merge fragments into a query.
 ```
 # code that references fragments that can be merged to a query
 ```
+
 * Documentation: GraphiQL generates documentation for your schema, making it easy to understand and explore.
 
 [Screenshot the documentation interface]
