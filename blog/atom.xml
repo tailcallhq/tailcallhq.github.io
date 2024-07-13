@@ -211,7 +211,7 @@ When a gRPC client initiates a request to a gRPC server, it sends an HTTP/2 requ
 <h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="books-for-in-depth-learning">Books for in-depth learning<a class="hash-link" aria-label="Direct link to Books for in-depth learning" title="Direct link to Books for in-depth learning" href="https://tailcall.run/blog/what-is-grpc/#books-for-in-depth-learning">​</a></h4>
 <ul>
 <li><a href="https://www.oreilly.com/library/view/grpc-up-and/9781492058328/" target="_blank" rel="noopener noreferrer">gRPC: Up and Running</a></li>
-<li><a href="https://www.manning.com/books/grpc-microservices-in-go" target="_blank" rel="noopener noreferrer">gRPC Microservices in GO</a></li>
+<li><a href="https://www.manning.com/books/grpc-microservices-in-go" target="_blank" rel="noopener noreferrer">gRPC Microservices in Go</a></li>
 </ul>]]></content>
         <author>
             <name>Hunain Ahmed</name>
