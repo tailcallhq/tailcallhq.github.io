@@ -15,7 +15,7 @@ We'll not only cover the implementation details but also delve into error handli
 
 So, buckle up and get ready to supercharge your Angular applications with the power of GraphQL!
 
-_**NB**: We are not using the traditional NgModule-based Angular applications instead we will be using the newer standalone component approach; below is the version of angular cli version used thoughout the guide._
+_**NB**: We are not using the traditional NgModule-based Angular applications instead we will be using the newer standalone component approach; below is the version of angular cli version used throughout the guide._
 
 ```shell
     ng version
@@ -285,7 +285,7 @@ If Apollo Angular is the luxury sports car of GraphQL clients, then Axios is lik
 
 Before we hit the gas, let's get our Axios engine installed and tuned up:
 
-1. **Instalations**.
+1. **Installations**.
 
 First, rev up your terminal and run:
 
