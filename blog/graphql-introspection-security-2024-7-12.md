@@ -4,7 +4,7 @@ authors:
   - name: Amit Singh
     title: Head of Growth and Strategy @ Tailcall
     url: https://github.com/amitksingh1490
-    image_url: https://avatars.githubusercontent.com/u/23661702?v=4
+    image_url: https://avatars.githubusercontent.com/u/23661702?v=5
 tags: [GraphQL, Schema, Security, Introspection]
 description: Learn how attackers exploit GraphQL introspection and the battle-tested strategies to keep your data safe.
 hide_table_of_contents: true
