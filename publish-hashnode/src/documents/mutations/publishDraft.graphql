@@ -1,0 +1,11 @@
+mutation PublishDraft($input: PublishDraftInput!) {
+  publishDraft(input: $input) {
+    post {
+      id
+      slug
+      title
+      subtitle
+      publishedAt
+    }
+  }
+}

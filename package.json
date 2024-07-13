@@ -2,6 +2,9 @@
   "name": "my-website",
   "version": "0.0.0",
   "private": true,
+  "workspaces": [
+    "publish-hashnode"
+  ],
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -20,6 +23,7 @@
   "dependencies": {
     "@docusaurus/core": "3.4.0",
     "@docusaurus/plugin-client-redirects": "3.4.0",
+    "@docusaurus/plugin-content-blog": "^3.4.0",
     "@docusaurus/plugin-google-gtag": "^3.4.0",
     "@docusaurus/preset-classic": "3.4.0",
     "@mdx-js/react": "^3.0.1",
