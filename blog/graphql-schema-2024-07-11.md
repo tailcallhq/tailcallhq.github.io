@@ -4,7 +4,7 @@ authors:
   - name: Amit Singh
     title: Head of Growth and Strategy @ Tailcall
     url: https://github.com/amitksingh1490
-    image_url: https://avatars.githubusercontent.com/u/23661702?v=4
+    image_url: https://avatars.githubusercontent.com/u/23661702?v=5
 tags: [GraphQL, API, Schema, Design, Best Practices]
 description: Learn how to design a robust, scalable GraphQL schema. Best practices and considerations to build a schema that can evolve with your application's needs.
 image: /images/graphql/graphql-schema-structure.png
