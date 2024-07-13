@@ -51,6 +51,7 @@ _**NB**: We are not using the traditional NgModule-based Angular applications in
     typescript                      5.4.5
     zone.js                         0.14.7
 ```
+
 We'll be using a Tailcall backend that wraps the JSONPlaceholder API, providing a GraphQL interface to RESTful data.
 
 ### 🛠️ Project Setup
@@ -58,8 +59,8 @@ We'll be using a Tailcall backend that wraps the JSONPlaceholder API, providing 
 First, let's set up our Angular project:
 
 ```bash
-    ng new angular-graphql-tailcall-showcase
-    cd angular-graphql-tailcall-showcase
+ng new angular-graphql-tailcall-showcase
+cd angular-graphql-tailcall-showcase
 ```
 
 ### 🔧 Tailcall Backend Configuration
@@ -67,41 +68,44 @@ First, let's set up our Angular project:
 Create a tailcall directory in the project root and add a jsonplaceholder.graphql file:
 
 ```graphql
-    # File: tailcall/jsonplaceholder.graphql
+# File: tailcall/jsonplaceholder.graphql
 
-    schema
-    @server(port: 8000, hostname: "0.0.0.0")
-    @upstream(baseURL: "http://jsonplaceholder.typicode.com", httpCache: 42) {
-    query: Query
-    }
+schema
+  @server(port: 8000, hostname: "0.0.0.0")
+  @upstream(
+    baseURL: "http://jsonplaceholder.typicode.com"
+    httpCache: 42
+  ) {
+  query: Query
+}
 
-    type Query {
-    posts: [Post] @http(path: "/posts")
-    user(id: Int!): User @http(path: "/users/{{.args.id}}")
-    }
+type Query {
+  posts: [Post] @http(path: "/posts")
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+}
 
-    type User {
-    id: Int!
-    name: String!
-    username: String!
-    email: String!
-    phone: String
-    website: String
-    }
+type User {
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
+  phone: String
+  website: String
+}
 
-    type Post {
-    id: Int!
-    userId: Int!
-    title: String!
-    body: String!
-    user: User @http(path: "/users/{{.value.userId}}")
-    }
+type Post {
+  id: Int!
+  userId: Int!
+  title: String!
+  body: String!
+  user: User @http(path: "/users/{{.value.userId}}")
+}
 ```
 
 To start the Tailcall server, run:
 
 ```sh
-    tailcall start ./tailcall/jsonplaceholder.graphql
+tailcall start ./tailcall/jsonplaceholder.graphql
 ```
 
 ### 1. Apollo Angular - The Luxury Sports Car of GraphQL Clients
@@ -144,101 +148,115 @@ Before we can take Apollo for a spin, we need to get it set up in our garage (I 
    ```
 
 3. **Code Snippets**
-Now that we've got our Apollo rocket fueled up, let's see it in action! Here's a component that fetches a list of posts using Apollo in `src/app/apollo-angular/post-list.component.ts`:
+   Now that we've got our Apollo rocket fueled up, let's see it in action! Here's a component that fetches a list of posts using Apollo in `src/app/apollo-angular/post-list.component.ts`:
 
 ```typescript
-    import { Component, OnDestroy } from '@angular/core';
-    import { CommonModule } from '@angular/common';
-    import { Apollo, gql } from 'apollo-angular';
-    import { ChangeDetectorRef } from '@angular/core';
-    import { catchError, takeUntil, mergeMap } from 'rxjs/operators';
-    import { Subject, of, throwError } from 'rxjs';
+import {Component, OnDestroy} from "@angular/core"
+import {CommonModule} from "@angular/common"
+import {Apollo, gql} from "apollo-angular"
+import {ChangeDetectorRef} from "@angular/core"
+import {
+  catchError,
+  takeUntil,
+  mergeMap,
+} from "rxjs/operators"
+import {Subject, of, throwError} from "rxjs"
 
-    @Component({
-    selector: 'app-apollo-post-list',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
-        <h2>Posts (Apollo Angular)</h2>
-        <button (click)="fetchPosts()" [disabled]="loading">
-        {{ loading ? 'Loading...' : 'Load Posts' }}
-        </button>
-        <button (click)="triggerNetworkError()">Trigger Network Error</button>
-        <button (click)="triggerGraphQLError()">Trigger GraphQL Error</button>
-        <button (click)="triggerUnexpectedError()">Trigger Unexpected Error</button>
-        <ul *ngIf="!error">
-        <li *ngFor="let post of posts">{{ post.title }}</li>
-        </ul>
-        <div *ngIf="error" class="error-message">
-        {{ error }}
-        </div>
-    `,
-    styles: [`
-        .error-message {
+@Component({
+  selector: "app-apollo-post-list",
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <h2>Posts (Apollo Angular)</h2>
+    <button (click)="fetchPosts()" [disabled]="loading">
+      {{ loading ? "Loading..." : "Load Posts" }}
+    </button>
+    <button (click)="triggerNetworkError()">
+      Trigger Network Error
+    </button>
+    <button (click)="triggerGraphQLError()">
+      Trigger GraphQL Error
+    </button>
+    <button (click)="triggerUnexpectedError()">
+      Trigger Unexpected Error
+    </button>
+    <ul *ngIf="!error">
+      <li *ngFor="let post of posts">{{ post.title }}</li>
+    </ul>
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+  `,
+  styles: [
+    `
+      .error-message {
         color: red;
         margin-top: 10px;
-        }
-    `],
-    })
-    export class ApolloPostListComponent implements OnDestroy {
-    // ... (component properties and constructor)
+      }
+    `,
+  ],
+})
+export class ApolloPostListComponent implements OnDestroy {
+  // ... (component properties and constructor)
 
-    fetchPosts() {
-        this.loading = true;
-        this.error = null;
-        this.posts = [];
+  fetchPosts() {
+    this.loading = true
+    this.error = null
+    this.posts = []
 
-        let query = gql`
+    let query = gql`
         query GetPosts($limit: Int) {
             posts(limit: $limit) {
             id
             title
-            ${this.simulateGraphQLError ? 'nonExistentField' : ''}
+            ${this.simulateGraphQLError ? "nonExistentField" : ""}
             }
         }
-        `;
+        `
 
-        this.apollo
-        .watchQuery({
-            query: query,
-            variables: {
-            limit: 10,
-            },
-        })
-        .valueChanges.pipe(
-            takeUntil(this.unsubscribe$),
-            mergeMap((result) => {
-            if (this.simulateNetworkError) {
-                return throwError(() => new Error('Simulated network error'));
-            }
-            if (this.simulateUnexpectedError) {
-                throw new Error('Simulated unexpected error');
-            }
-            return of(result);
-            }),
-            catchError((error) => {
-            this.handleError(error);
-            return of(null);
-            })
-        )
-        .subscribe({
-            next: (result: any) => {
-            if (result) {
-                this.posts = result.data?.posts || [];
-            }
-            this.loading = false;
-            this.cdr.detectChanges();
-            },
-            error: (error) => this.handleError(error),
-            complete: () => {
-            this.loading = false;
-            this.cdr.detectChanges();
-            },
-        });
-    }
+    this.apollo
+      .watchQuery({
+        query: query,
+        variables: {
+          limit: 10,
+        },
+      })
+      .valueChanges.pipe(
+        takeUntil(this.unsubscribe$),
+        mergeMap((result) => {
+          if (this.simulateNetworkError) {
+            return throwError(
+              () => new Error("Simulated network error"),
+            )
+          }
+          if (this.simulateUnexpectedError) {
+            throw new Error("Simulated unexpected error")
+          }
+          return of(result)
+        }),
+        catchError((error) => {
+          this.handleError(error)
+          return of(null)
+        }),
+      )
+      .subscribe({
+        next: (result: any) => {
+          if (result) {
+            this.posts = result.data?.posts || []
+          }
+          this.loading = false
+          this.cdr.detectChanges()
+        },
+        error: (error) => this.handleError(error),
+        complete: () => {
+          this.loading = false
+          this.cdr.detectChanges()
+        },
+      })
+  }
 
-    // ... (error handling and simulation methods)
-    }
+  // ... (error handling and simulation methods)
+}
 ```
 
 Wow, would you look at that beauty? 😍 This component is like a finely tuned engine, ready to fetch your posts with the precision of a Swiss watch. Let's break down what's happening here:
@@ -276,7 +294,6 @@ This error handler is like having a built-in mechanic. Whether it's a network is
 
 And there you have it, folks! Apollo Angular - the smooth-riding, feature-packed, error-handling marvel of the GraphQL world. It's like driving a luxury car with a supercomputer onboard.
 
-
 ### 2. Axios - The Versatile Muscle Car of HTTP Clients
 
 If Apollo Angular is the luxury sports car of GraphQL clients, then Axios is like a classic muscle car - powerful, versatile, and ready to handle anything you throw at it. It might not have all the GraphQL-specific bells and whistles, but boy, can it perform!
@@ -289,9 +306,9 @@ Before we hit the gas, let's get our Axios engine installed and tuned up:
 
 First, rev up your terminal and run:
 
-  ```bash
-  npm install axios
-  ```
+```bash
+npm install axios
+```
 
 Unlike Apollo, Axios doesn't need any special configuration in your app.config.ts. It's more of a plug-and-play solution. Just import it where you need it, and you're good to go!
 
@@ -300,110 +317,124 @@ Unlike Apollo, Axios doesn't need any special configuration in your app.config.t
 Now, below we implement data fetching using axios in `src/app/axios-angular/post-list.component.ts`:
 
 ```typescript
-    import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-    import { CommonModule } from '@angular/common';
-    import axios, { AxiosInstance, AxiosError } from 'axios';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+} from "@angular/core"
+import {CommonModule} from "@angular/common"
+import axios, {AxiosInstance, AxiosError} from "axios"
 
-    @Component({
-    selector: 'app-axios-post-list',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
-        <h2>Posts (Axios Angular)</h2>
-        <button (click)="fetchPosts()" [disabled]="loading">
-        {{ loading ? 'Loading...' : 'Load Posts' }}
-        </button>
-        <button (click)="triggerNetworkError()">Trigger Network Error</button>
-        <button (click)="triggerGraphQLError()">Trigger GraphQL Error</button>
-        <button (click)="triggerUnexpectedError()">Trigger Unexpected Error</button>
-        <ul *ngIf="!error">
-        <li *ngFor="let post of posts">{{ post.title }}</li>
-        </ul>
-        <div *ngIf="error" class="error-message">
-        {{ error }}
-        </div>
-    `,
-    // ... (styles omitted for brevity)
+@Component({
+  selector: "app-axios-post-list",
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <h2>Posts (Axios Angular)</h2>
+    <button (click)="fetchPosts()" [disabled]="loading">
+      {{ loading ? "Loading..." : "Load Posts" }}
+    </button>
+    <button (click)="triggerNetworkError()">
+      Trigger Network Error
+    </button>
+    <button (click)="triggerGraphQLError()">
+      Trigger GraphQL Error
+    </button>
+    <button (click)="triggerUnexpectedError()">
+      Trigger Unexpected Error
+    </button>
+    <ul *ngIf="!error">
+      <li *ngFor="let post of posts">{{ post.title }}</li>
+    </ul>
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+  `,
+  // ... (styles omitted for brevity)
+})
+export class AxiosPostsListsComponent implements OnInit {
+  private client: AxiosInstance
+  posts: any[] = []
+  loading = false
+  error: string | null = null
+
+  // Error simulation flags
+  private simulateNetworkError = false
+  private simulateGraphQLError = false
+  private simulateUnexpectedError = false
+
+  constructor(private cdr: ChangeDetectorRef) {
+    this.client = axios.create({
+      baseURL: "/graphql",
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-    export class AxiosPostsListsComponent implements OnInit {
-    private client: AxiosInstance;
-    posts: any[] = [];
-    loading = false;
-    error: string | null = null;
+  }
 
-    // Error simulation flags
-    private simulateNetworkError = false;
-    private simulateGraphQLError = false;
-    private simulateUnexpectedError = false;
+  ngOnInit() {
+    // Add a request interceptor
+    this.client.interceptors.request.use(
+      (config) => {
+        if (this.simulateNetworkError) {
+          return Promise.reject(
+            new Error("Simulated network error"),
+          )
+        }
+        return config
+      },
+      (error) => Promise.reject(error),
+    )
+  }
 
-    constructor(private cdr: ChangeDetectorRef) {
-        this.client = axios.create({
-        baseURL: '/graphql',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        });
-    }
-
-    ngOnInit() {
-        // Add a request interceptor
-        this.client.interceptors.request.use(
-        (config) => {
-            if (this.simulateNetworkError) {
-            return Promise.reject(new Error('Simulated network error'));
-            }
-            return config;
-        },
-        (error) => Promise.reject(error)
-        );
-    }
-
-    private GET_DATA = `
+  private GET_DATA = `
         query GetPosts($limit: Int) {
         posts(limit: $limit) {
             id
             title
-            ${this.simulateGraphQLError ? 'nonExistentField' : ''}
+            ${this.simulateGraphQLError ? "nonExistentField" : ""}
         }
         }
-    `;
+    `
 
-    async query(queryString: string, variables: any = {}) {
-        try {
-        if (this.simulateUnexpectedError) {
-            throw new Error('Simulated unexpected error');
-        }
-        const response = await this.client.post('', {
-            query: queryString,
-            variables,
-        });
-        return response.data;
-        } catch (error) {
-        this.handleError(error);
-        throw error;
-        }
+  async query(queryString: string, variables: any = {}) {
+    try {
+      if (this.simulateUnexpectedError) {
+        throw new Error("Simulated unexpected error")
+      }
+      const response = await this.client.post("", {
+        query: queryString,
+        variables,
+      })
+      return response.data
+    } catch (error) {
+      this.handleError(error)
+      throw error
     }
+  }
 
-    async fetchPosts() {
-        this.loading = true;
-        this.error = null;
-        this.posts = [];
-        this.cdr.detectChanges();
+  async fetchPosts() {
+    this.loading = true
+    this.error = null
+    this.posts = []
+    this.cdr.detectChanges()
 
-        try {
-        const result = await this.query(this.GET_DATA, { limit: 10 });
-        this.posts = result.data.posts;
-        this.loading = false;
-        this.cdr.detectChanges();
-        } catch (error) {
-        // Error is already handled in query method
-        this.loading = false;
-        this.cdr.detectChanges();
-        }
+    try {
+      const result = await this.query(this.GET_DATA, {
+        limit: 10,
+      })
+      this.posts = result.data.posts
+      this.loading = false
+      this.cdr.detectChanges()
+    } catch (error) {
+      // Error is already handled in query method
+      this.loading = false
+      this.cdr.detectChanges()
     }
+  }
 
-    // ... (error handling and simulation methods omitted for brevity)
-    }
+  // ... (error handling and simulation methods omitted for brevity)
+}
 ```
 
 This Axios-powered component is revving up to fetch those posts faster than you can say "GraphQL"! Let's break down what's happening in this high-octane code:
@@ -462,111 +493,125 @@ Here's the beauty of the Fetch API - there's nothing to install! 🎉 It's like 
 #### 2. Code Snippets
 
 ```typescript
-    import { Component, ChangeDetectorRef } from '@angular/core';
-    import { CommonModule } from '@angular/common';
+import {Component, ChangeDetectorRef} from "@angular/core"
+import {CommonModule} from "@angular/common"
 
-    @Component({
-    selector: 'app-fetch-post-list',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
-        <h2>Posts (Fetch Angular)</h2>
-        <button (click)="fetchPosts()" [disabled]="loading">
-        {{ loading ? 'Loading...' : 'Load Posts' }}
-        </button>
-        <button (click)="triggerNetworkError()">Trigger Network Error</button>
-        <button (click)="triggerGraphQLError()">Trigger GraphQL Error</button>
-        <button (click)="triggerUnexpectedError()">Trigger Unexpected Error</button>
-        <ul *ngIf="!error">
-        <li *ngFor="let post of posts">{{ post.title }}</li>
-        </ul>
-        <div *ngIf="error" class="error-message">
-        {{ error }}
-        </div>
-    `,
-    // ... (styles omitted for brevity)
-    })
-    export class FetchPostListComponent {
-    private endpoint = '/graphql';
-    posts: any[] = [];
-    loading = false;
-    error: string | null = null;
+@Component({
+  selector: "app-fetch-post-list",
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <h2>Posts (Fetch Angular)</h2>
+    <button (click)="fetchPosts()" [disabled]="loading">
+      {{ loading ? "Loading..." : "Load Posts" }}
+    </button>
+    <button (click)="triggerNetworkError()">
+      Trigger Network Error
+    </button>
+    <button (click)="triggerGraphQLError()">
+      Trigger GraphQL Error
+    </button>
+    <button (click)="triggerUnexpectedError()">
+      Trigger Unexpected Error
+    </button>
+    <ul *ngIf="!error">
+      <li *ngFor="let post of posts">{{ post.title }}</li>
+    </ul>
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+  `,
+  // ... (styles omitted for brevity)
+})
+export class FetchPostListComponent {
+  private endpoint = "/graphql"
+  posts: any[] = []
+  loading = false
+  error: string | null = null
 
-    // Error simulation flags
-    private simulateNetworkError = false;
-    private simulateGraphQLError = false;
-    private simulateUnexpectedError = false;
+  // Error simulation flags
+  private simulateNetworkError = false
+  private simulateGraphQLError = false
+  private simulateUnexpectedError = false
 
-    constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
-    private GET_DATA = `
+  private GET_DATA = `
         query GetPosts($limit: Int) {
         posts(limit: $limit) {
             id
             title
-            ${this.simulateGraphQLError ? 'nonExistentField' : ''}
+            ${this.simulateGraphQLError ? "nonExistentField" : ""}
         }
         }
-    `;
+    `
 
-    async query(queryString: string, variables: any = {}) {
-        if (this.simulateNetworkError) {
-        throw new Error('Simulated network error');
-        }
-
-        if (this.simulateUnexpectedError) {
-        throw new Error('Simulated unexpected error');
-        }
-
-        try {
-        const response = await fetch(this.endpoint, {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-            query: queryString,
-            variables,
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-
-        if (result.errors) {
-            throw new Error(result.errors.map((e: any) => e.message).join(', '));
-        }
-
-        return result;
-        } catch (error) {
-        this.handleError(error);
-        throw error;
-        }
+  async query(queryString: string, variables: any = {}) {
+    if (this.simulateNetworkError) {
+      throw new Error("Simulated network error")
     }
 
-    async fetchPosts() {
-        this.loading = true;
-        this.error = null;
-        this.posts = [];
-        this.cdr.detectChanges();
-
-        try {
-        const result = await this.query(this.GET_DATA, { limit: 10 });
-        this.posts = result.data.posts;
-        this.loading = false;
-        this.cdr.detectChanges();
-        } catch (error) {
-        // Error is already handled in query method
-        this.loading = false;
-        this.cdr.detectChanges();
-        }
+    if (this.simulateUnexpectedError) {
+      throw new Error("Simulated unexpected error")
     }
 
-    // ... (error handling and simulation methods omitted for brevity)
+    try {
+      const response = await fetch(this.endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: queryString,
+          variables,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(
+          `HTTP error! status: ${response.status}`,
+        )
+      }
+
+      const result = await response.json()
+
+      if (result.errors) {
+        throw new Error(
+          result.errors
+            .map((e: any) => e.message)
+            .join(", "),
+        )
+      }
+
+      return result
+    } catch (error) {
+      this.handleError(error)
+      throw error
     }
+  }
+
+  async fetchPosts() {
+    this.loading = true
+    this.error = null
+    this.posts = []
+    this.cdr.detectChanges()
+
+    try {
+      const result = await this.query(this.GET_DATA, {
+        limit: 10,
+      })
+      this.posts = result.data.posts
+      this.loading = false
+      this.cdr.detectChanges()
+    } catch (error) {
+      // Error is already handled in query method
+      this.loading = false
+      this.cdr.detectChanges()
+    }
+  }
+
+  // ... (error handling and simulation methods omitted for brevity)
+}
 ```
 
 This Fetch-powered component is leaner than a greyhound and faster than a caffeinated cheetah! Let's break down what's happening in this high-speed code:
@@ -608,16 +653,15 @@ And there you have it, The Fetch API - the nimble, lightweight motorcycle of HTT
 
 Fetch shines when you need a lightweight, no-dependency solution that can handle both REST and GraphQL APIs. It's like having a motorcycle that's equally at home zipping through city traffic or cruising on the open highway. Plus, if you're looking to keep your project dependencies to a minimum, Fetch is your go-to ride.
 
-
 ### 4. GraphQL Request - The Precision-Engineered Sports Car
 
 If Apollo was our luxury sedan, Axios our muscle car, and Fetch our nimble motorcycle, then GraphQL Request is like a finely-tuned sports car. It's designed specifically for GraphQL, offering a perfect balance of simplicity and power. Let's see how this beauty handles our data-fetching curves!
 
 1. **Installation and Integration Steps**
-Before we hit the track, let's get our GraphQL Request engine installed:
+   Before we hit the track, let's get our GraphQL Request engine installed:
 
 ```bash
-    npm install graphql-request graphql
+npm install graphql-request graphql
 ```
 
 No special configuration needed in your app.config.ts. Just import it in your component, and you're ready to race!
@@ -627,86 +671,101 @@ No special configuration needed in your app.config.ts. Just import it in your co
 Now, let's pop the hood and examine our GraphQL Request-powered component:
 
 ```typescript
-    import { Component, ChangeDetectorRef } from '@angular/core';
-    import { CommonModule } from '@angular/common';
-    import { GraphQLClient, gql, ClientError } from 'graphql-request';
+import {Component, ChangeDetectorRef} from "@angular/core"
+import {CommonModule} from "@angular/common"
+import {
+  GraphQLClient,
+  gql,
+  ClientError,
+} from "graphql-request"
 
-    @Component({
-    selector: 'app-graphql-request-post-list',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
-        <h2>Posts (Graphql Request Angular)</h2>
-        <button (click)="fetchPosts()" [disabled]="loading">
-        {{ loading ? 'Loading...' : 'Load Posts' }}
-        </button>
-        <button (click)="triggerNetworkError()">Trigger Network Error</button>
-        <button (click)="triggerGraphQLError()">Trigger GraphQL Error</button>
-        <button (click)="triggerUnexpectedError()">Trigger Unexpected Error</button>
-        <ul *ngIf="!error">
-        <li *ngFor="let post of posts">{{ post.title }}</li>
-        </ul>
-        <div *ngIf="error" class="error-message">
-        {{ error }}
-        </div>
-    `,
-    // ... (styles omitted for brevity)
-    })
-    export class GraphqlRequestPostListComponent {
-    private client: GraphQLClient;
-    posts: any[] = [];
-    loading = false;
-    error: string | null = null;
+@Component({
+  selector: "app-graphql-request-post-list",
+  standalone: true,
+  imports: [CommonModule],
+  template: `
+    <h2>Posts (Graphql Request Angular)</h2>
+    <button (click)="fetchPosts()" [disabled]="loading">
+      {{ loading ? "Loading..." : "Load Posts" }}
+    </button>
+    <button (click)="triggerNetworkError()">
+      Trigger Network Error
+    </button>
+    <button (click)="triggerGraphQLError()">
+      Trigger GraphQL Error
+    </button>
+    <button (click)="triggerUnexpectedError()">
+      Trigger Unexpected Error
+    </button>
+    <ul *ngIf="!error">
+      <li *ngFor="let post of posts">{{ post.title }}</li>
+    </ul>
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+  `,
+  // ... (styles omitted for brevity)
+})
+export class GraphqlRequestPostListComponent {
+  private client: GraphQLClient
+  posts: any[] = []
+  loading = false
+  error: string | null = null
 
-    // Error simulation flags
-    private simulateNetworkError = false;
-    private simulateGraphQLError = false;
-    private simulateUnexpectedError = false;
+  // Error simulation flags
+  private simulateNetworkError = false
+  private simulateGraphQLError = false
+  private simulateUnexpectedError = false
 
-    constructor(private cdr: ChangeDetectorRef) {
-        this.client = new GraphQLClient('http://localhost:4200/graphql');
-    }
+  constructor(private cdr: ChangeDetectorRef) {
+    this.client = new GraphQLClient(
+      "http://localhost:4200/graphql",
+    )
+  }
 
-    private GET_DATA = gql`
+  private GET_DATA = gql`
         query GetPosts($limit: Int) {
         posts(limit: $limit) {
             id
             title
-            ${this.simulateGraphQLError ? 'nonExistentField' : ''}
+            ${this.simulateGraphQLError ? "nonExistentField" : ""}
         }
         }
-    `;
+    `
 
-    async fetchPosts() {
-        this.loading = true;
-        this.error = null;
-        this.posts = [];
-        this.cdr.detectChanges();
+  async fetchPosts() {
+    this.loading = true
+    this.error = null
+    this.posts = []
+    this.cdr.detectChanges()
 
-        try {
-        if (this.simulateNetworkError) {
-            throw new Error('Simulated network error');
-        }
+    try {
+      if (this.simulateNetworkError) {
+        throw new Error("Simulated network error")
+      }
 
-        if (this.simulateUnexpectedError) {
-            throw new Error('Simulated unexpected error');
-        }
+      if (this.simulateUnexpectedError) {
+        throw new Error("Simulated unexpected error")
+      }
 
-        const result: any = await this.client.request(this.GET_DATA, {
-            limit: 10,
-        });
-        this.posts = result.posts;
-        this.loading = false;
-        this.cdr.detectChanges();
-        } catch (error) {
-        this.handleError(error);
-        this.loading = false;
-        this.cdr.detectChanges();
-        }
+      const result: any = await this.client.request(
+        this.GET_DATA,
+        {
+          limit: 10,
+        },
+      )
+      this.posts = result.posts
+      this.loading = false
+      this.cdr.detectChanges()
+    } catch (error) {
+      this.handleError(error)
+      this.loading = false
+      this.cdr.detectChanges()
     }
+  }
 
-    // ... (error handling and simulation methods omitted for brevity)
-    }
+  // ... (error handling and simulation methods omitted for brevity)
+}
 ```
 
 Let's break down what's happening in this high-performance code:
@@ -746,7 +805,6 @@ Now, let's talk about the advanced traction control system of our GraphQL Reques
     }
 ```
 
-
 This error handler is like having the world's best traction control and stability management system. Whether you hit a patch of black ice (network error), take a corner too fast (GraphQL error), or encounter an unexpected obstacle (other errors), it's got you covered with user-friendly messages. It even distinguishes between different types of errors, giving you precise control over how to handle each situation.
 
 #### Wrapping Up GraphQL Request
@@ -761,8 +819,9 @@ GraphQL Request shines when you need a lightweight, GraphQL-specific solution th
 First things first, let's get our hands dirty with some installation magic. To bring Urql into your Angular project, you'll need to wave your command line wand and chant:
 
 ```bash
-    npm install @urql/core graphql
+npm install @urql/core graphql
 ```
+
 We need to set up our Urql client.
 
 #### Code Snippets and Explanation
@@ -770,27 +829,33 @@ We need to set up our Urql client.
 Let's break down our UrqlPostListComponent which you'll create following the same format above and solder structure:
 
 ```typescript
-    import { createClient, fetchExchange, cacheExchange, Client } from '@urql/core';
+import {
+  createClient,
+  fetchExchange,
+  cacheExchange,
+  Client,
+} from "@urql/core"
 
-    // ... other imports
+// ... other imports
 
-    export class UrqlPostListComponent {
-    client: Client;
+export class UrqlPostListComponent {
+  client: Client
 
-    constructor(private cdr: ChangeDetectorRef) {
-        this.client = createClient({
-        url: 'http://localhost:4200/graphql',
-        exchanges: [cacheExchange, fetchExchange],
-        });
-    }
+  constructor(private cdr: ChangeDetectorRef) {
+    this.client = createClient({
+      url: "http://localhost:4200/graphql",
+      exchanges: [cacheExchange, fetchExchange],
+    })
+  }
 
-    // ... rest of the component
-    }
+  // ... rest of the component
+}
 ```
 
 Here, we're setting up our Urql client faster than you can say "GraphQL". We're telling it where to find our GraphQL endpoint and which exchanges to use. Think of exchanges as middleware for your GraphQL requests - they're like bouncers at a club, deciding how to handle incoming and outgoing traffic.
 
 Now, let's look at how we're fetching posts:
+
 ```typescript
     getPostsQuery = gql`
     query GetPosts($limit: Int) {
@@ -830,6 +895,7 @@ Now, let's look at how we're fetching posts:
 This fetchPosts method is where the magic happens. We're using Urql's query method to fetch our posts, handling the result like a pro juggler. If there's an error, we toss it to our error handler. If it's successful, we update our posts faster than you can say "data fetched"!
 
 #### Error Handling
+
 Now, let's talk about error handling. In the world of APIs, errors are like unexpected plot twists in a movie - they keep things interesting, but you need to know how to handle them:
 
 ```typescript
@@ -873,18 +939,17 @@ Remember, in the world of GraphQL clients, there's no one-size-fits-all solution
 4. **Axios**: A promise-based HTTP client that can be used to send GraphQL queries.
 5. **Fetch API**: The native browser API for making HTTP requests, used here for GraphQL queries.
 
-
 ## Detailed Comparison Table
 
-| Method           | Bundle Size (minified + gzip)* | Learning Curve | Caching Capabilities                    | Community Support | Additional Features                     |
-|------------------|---------------------------------|----------------|----------------------------------------|-------------------|----------------------------------------|
-| Apollo Angular   | ~2kB                          | Moderate       | Extensive (InMemoryCache, customizable) | High              | State management, optimistic UI updates |
-| Urql             | ~10.2 KB                         | Low            | Moderate (Document caching)             | Moderate          | Extensible architecture, lightweight    |
-| GraphQL-Request  |  Unknown                         | Low            | None (Minimal client)                   | Moderate          | Simplicity, works in Node and browsers  |
-| Axios            | ~13.2 KB                        | Low            | None (HTTP client only)                 | High              | Familiar HTTP handling, interceptors    |
-| Fetch API        | 0 KB (Browser built-in)         | Low            | None (Native API)                       | High              | No additional dependency, widely supported |
+| Method          | Bundle Size (minified + gzip)\* | Learning Curve | Caching Capabilities                    | Community Support | Additional Features                        |
+| --------------- | ------------------------------- | -------------- | --------------------------------------- | ----------------- | ------------------------------------------ |
+| Apollo Angular  | ~2kB                            | Moderate       | Extensive (InMemoryCache, customizable) | High              | State management, optimistic UI updates    |
+| Urql            | ~10.2 KB                        | Low            | Moderate (Document caching)             | Moderate          | Extensible architecture, lightweight       |
+| GraphQL-Request | Unknown                         | Low            | None (Minimal client)                   | Moderate          | Simplicity, works in Node and browsers     |
+| Axios           | ~13.2 KB                        | Low            | None (HTTP client only)                 | High              | Familiar HTTP handling, interceptors       |
+| Fetch API       | 0 KB (Browser built-in)         | Low            | None (Native API)                       | High              | No additional dependency, widely supported |
 
-(*) Bundle sizes are approximate and may vary based on version and configuration. Values are culled from bundlephobia.com where available.
+(\*) Bundle sizes are approximate and may vary based on version and configuration. Values are culled from bundlephobia.com where available.
 
 ### Notes:
 
@@ -899,6 +964,7 @@ This table should help developers choose the right method based on their specifi
 ### Caching Capabilities
 
 1. **Apollo Angular**
+
    - Extensive caching capabilities through InMemoryCache
    - Normalization of data for efficient storage and retrieval
    - Customizable cache policies (cache-first, network-only, etc.)
@@ -907,6 +973,7 @@ This table should help developers choose the right method based on their specifi
    - Ability to manually update and read from the cache
 
 2. **Urql**
+
    - Document caching by default
    - Customizable caching through exchangeable cache implementations
    - Supports normalized caching with additional setup
@@ -914,11 +981,13 @@ This table should help developers choose the right method based on their specifi
    - Simpler caching model compared to Apollo, focusing on ease of use
 
 3. **GraphQL-Request**
+
    - No built-in caching mechanism
    - Requires manual implementation of caching if needed
    - Can be combined with external caching solutions or state management libraries
 
 4. **Axios**
+
    - No built-in GraphQL-specific caching
    - Can implement HTTP-level caching (e.g., using headers)
    - Requires manual implementation of application-level caching
@@ -934,19 +1003,20 @@ In summary, Apollo Angular offers the most robust out-of-the-box caching solutio
 
 When choosing an approach, consider your application's complexity, performance requirements, and willingness to manage caching manually versus leveraging built-in solutions.
 
-
 ## Common Issues and Resolutions
 
 1. **Apollo Angular**
 
    Issue: Cache inconsistencies after mutations
-   Resolution: 
+   Resolution:
+
    - Ensure proper cache updates in mutation's `update` function
    - Use `refetchQueries` option to refresh related queries
    - Implement `optimisticResponse` for immediate UI updates
 
    Issue: Over-fetching data
    Resolution:
+
    - Utilize fragments for reusable field selections
    - Implement proper query splitting for components
    - Use `@connection` directive for pagination to avoid refetching all data
@@ -955,12 +1025,14 @@ When choosing an approach, consider your application's complexity, performance r
 
    Issue: Stale data after mutations
    Resolution:
+
    - Use the `cache-and-network` request policy
    - Implement cache updates in mutation's `updates` option
    - Utilize the `refocusExchange` for automatic refetching on window focus
 
    Issue: Complex state management
    Resolution:
+
    - Combine Urql with external state management libraries like NgRx if needed
    - Leverage Urql's `useQuery` and `useMutation` hooks for simpler state handling
 
@@ -968,12 +1040,14 @@ When choosing an approach, consider your application's complexity, performance r
 
    Issue: Lack of automatic caching
    Resolution:
+
    - Implement manual caching using services or state management libraries
    - Use HTTP caching headers for basic caching needs
    - Consider switching to Apollo or Urql for more complex applications
 
    Issue: Error handling complexities
    Resolution:
+
    - Implement a centralized error handling service
    - Use TypeScript for better type checking and error prevention
    - Wrap GraphQL-Request calls in try-catch blocks for granular error handling
@@ -982,12 +1056,14 @@ When choosing an approach, consider your application's complexity, performance r
 
    Issue: Constructing complex GraphQL queries
    Resolution:
+
    - Use template literals for dynamic query construction
    - Implement a query builder utility for complex queries
    - Consider using a GraphQL-specific library for very complex schemas
 
    Issue: Handling GraphQL errors
    Resolution:
+
    - Check for `errors` array in the response body
    - Implement custom error classes for different GraphQL error types
    - Use interceptors for global error handling
@@ -996,12 +1072,14 @@ When choosing an approach, consider your application's complexity, performance r
 
    Issue: Verbose syntax for GraphQL operations
    Resolution:
+
    - Create utility functions to abstract common GraphQL operations
    - Use TypeScript interfaces for better type safety and autocompletion
    - Consider using a lightweight wrapper around Fetch for GraphQL specifics
 
    Issue: Limited built-in features
    Resolution:
+
    - Implement custom middleware for features like retries and caching
    - Use external libraries for advanced features (e.g., Observable support)
    - Create a custom Angular service to encapsulate Fetch API logic
@@ -1042,4 +1120,3 @@ Remember, there's no one-size-fits-all solution. The best approach is the one th
 Whichever path you choose, GraphQL's power in providing flexible, efficient data fetching can significantly enhance your Angular applications. By understanding these different approaches, you're now equipped to make an informed decision and leverage GraphQL to its full potential in your Angular projects.
 
 Happy coding, and may your GraphQL queries be ever efficient!
-
