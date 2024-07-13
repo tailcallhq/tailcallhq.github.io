@@ -11,14 +11,15 @@ const main = async () => {
         const filePath = path.join(__dirname, "../../", file)
 
         const {frontMatter, content} = extractFrontMatterAndContent(filePath)
-        const {seo_title, description, title, subtitle, slug, canonical_url, cover_image, coAuthors} = frontMatter
+        const {seo_title, description, title, subtitle, slug, canonical_url, cover_image, coAuthors, author} =
+          frontMatter
 
         const processedMd = addBaseUrlToImages(content)
         const doesPostExist = await findPostByTitle(title)
 
         if (doesPostExist) {
           console.log(`Post ${title} exists, updating`)
-          return await updatePost({
+          await updatePost({
             id: doesPostExist.id,
             title: title,
             subtitle: subtitle,
@@ -57,6 +58,7 @@ const main = async () => {
             coverImageURL: cover_image,
           },
           coAuthors: coAuthors,
+          draftOwner: author,
           contentMarkdown: processedMd,
           publicationId: HASHNODE_PUBLICATION_ID,
         })
