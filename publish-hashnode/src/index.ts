@@ -4,7 +4,7 @@ import {addBaseUrlToImages, extractFrontMatterAndContent} from "./utils/markdown
 import {HASHNODE_PUBLICATION_ID} from "./utils/constants"
 
 const main = async () => {
-  const changedFiles = process.argv[2].split("\n")
+  const changedFiles = process.argv[2].split(" ")
   for (const file of changedFiles) {
     if (file.startsWith("blog/")) {
       try {
