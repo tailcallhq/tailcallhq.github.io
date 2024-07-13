@@ -18,7 +18,7 @@ const main = async () => {
 
         if (doesPostExist) {
           console.log(`Post ${title} exists, updating`)
-          return await updatePost({
+          await updatePost({
             id: doesPostExist.id,
             title: title,
             subtitle: subtitle,
