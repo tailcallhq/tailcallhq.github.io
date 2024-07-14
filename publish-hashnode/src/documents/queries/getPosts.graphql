@@ -1,0 +1,17 @@
+query GetPosts($publicationId: ObjectId!, $first: Int!, $after: String) {
+  publication(id: $publicationId) {
+    posts(first: $first, after: $after) {
+      edges {
+        node {
+          id
+          title
+          slug
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}
