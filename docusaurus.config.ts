@@ -54,7 +54,7 @@ export default {
   presets: [
     [
       "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
+      /** @type {import("@docusaurus/preset-classic").Options} */
       {
         gtag: {
           trackingID: "G-JEP3QDWT0G",
@@ -76,7 +76,7 @@ export default {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
-          ignorePatterns: ["/blog/**"],
+          ignorePatterns: ["/blogs/**"],
         },
       },
     ],
@@ -98,7 +98,7 @@ export default {
         // {to: "/enterprise", label: "Enterprise", position: "left"},
         {to: "/docs", label: "Docs", position: "left"},
         {to: "/graphql", label: "GraphQL", position: "left"},
-        {to: "https://blog.tailcall.run/", label: "Blog", position: "left"},
+        {to: "/blog", label: "Blog", position: "left"},
         {
           href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
@@ -113,6 +113,7 @@ export default {
     prism: {
       theme: prismThemes.oneLight,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ["protobuf"],
     },
     colorMode: {
       disableSwitch: true,
@@ -187,6 +188,36 @@ export default {
             to: "/",
           },
         ],
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-blog",
+      {
+        path: "blog",
+        editLocalizedFiles: false,
+        blogTitle: "Feed of Tailcall blogs",
+        blogDescription: "List of blog posts on Tailcall blog",
+        blogSidebarCount: 5,
+        blogSidebarTitle: "Recent Blog Posts",
+        routeBasePath: "blog",
+        include: ["**/*.{md,mdx}"],
+        exclude: ["**/_*.{js,jsx,ts,tsx,md,mdx}", "**/_*/**", "**/*.test.{js,jsx,ts,tsx}", "**/__tests__/**"],
+        postsPerPage: 5,
+        blogListComponent: "@theme/BlogListPage",
+        blogPostComponent: "@theme/BlogPostPage",
+        blogTagsListComponent: "@theme/BlogTagsListPage",
+        blogTagsPostsComponent: "@theme/BlogTagsPostsPage",
+        rehypePlugins: [],
+        beforeDefaultRemarkPlugins: [],
+        beforeDefaultRehypePlugins: [],
+        truncateMarker: /<!--\s*(truncate)\s*-->/,
+        showReadingTime: true,
+        feedOptions: {
+          type: "atom",
+          title: "Blog title",
+          description: "Blog",
+          copyright: "Copyright © 2024 Tailcall, Inc.",
+        },
       },
     ],
 
