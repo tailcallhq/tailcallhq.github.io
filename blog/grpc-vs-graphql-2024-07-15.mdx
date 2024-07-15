@@ -1,0 +1,192 @@
+---
+title: "GraphQL vs gRPC: Which is Better?"
+sidebar_label: "gRPC vs graphQL"
+description: ""
+image: /images/graphql/graphql-vs-grpc.png
+authors:
+  - name: Hunain Ahmed
+    title: A freelance software developer, always working on something new and fascinating.
+    url: https://github.com/hunxjunedo
+    image_url: https://avatars.githubusercontent.com/u/89797440?v=4
+hide_table_of_contents: true
+slug: graphql-vs-grpc
+---
+
+![banner](/images/graphql/graphql-vs-grpc.png)
+
+
+While REST has been the go-to for API development, gRPC and GraphQL are stepping in as game-changing contenders. 
+
+<!-- truncate -->
+
+
+## Introduction
+
+gRPC, a high-performance champ for distributed services, effortlessly connects diverse systems. GraphQL, on the other hand, revolutionizes data fetching with pinpoint accuracy, giving clients just what they need. This article dives into the dynamic world of gRPC and GraphQL, comparing their standout features and showing you when to use each. Discover how these cutting-edge technologies can elevate your projects and help you make smarter API choices.
+
+## Overview of gRPC
+gRPC stands as a powerhouse in distributed computing, providing a robust schema-driven framework that streamlines service-to-service communication across diverse environments. It was open-sourced by Google in 2015. As a language-agnostic implementation of the Remote Procedure Call (RPC) protocol, it supports high-performance, real-time data streaming and ensures consistent, strong typing with its integration of HTTP/2 and Protocol Buffers (Protobuf), making it an indispensable tool for developers aiming to build scalable, efficient systems, which explains why its used by top tech companies like [Tesla, Netflix, Coinbase and Dropbox](https://theirstack.com/en/technology/grpc).
+![companies using grpc](/images/docs/stack-grpc.png)
+## How gRPC Operates
+The RPC in the name stands for Remote Procedure Call which clearly indicates the purpose of the framework. gRPC enables clients to call methods on a server as if they were local functions, abstracting the complexities of network communication. It makes it look like you are calling a function that's declared in another file in the same code-base.
+
+This is achieved through the use of Protobuf, a language-neutral, platform-neutral, extensible mechanism for serializing structured data. Protobuf ensures that data is efficiently serialized into a binary format, dramatically reducing the size of payloads.gRPC has a way to define the structure of the data in file called `.proto` file. It acts as a contract between the client and the server, ensuring that both parties understand the structure of the data being exchanged. 
+
+Here is an example of a simple `.proto` file:
+
+```protobuf
+syntax = "proto3";
+package helloworld;
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+message HelloRequest {
+  string name = 1;
+}
+message HelloReply {
+  string message = 1;
+}
+```
+These `.proto` files are then compiled into client and server code in the language of your choice, allowing you to easily integrate gRPC into your existing codebase.
+
+The framework also leverages HTTP/2 for transport, ensuring efficient, multiplexed communication between clients and servers.
+
+### Why HTTP/2 ?
+Before 2015, like other API frameworks, gRPC also used HTTP/1.1. However, due to the inherent limitations and inefficiencies of HTTP/1.1, the shift to HTTP/2 brought about numerous advantages for gRPC and similar technologies. Features like multiplexing, server push and header compression make [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2) the superior choice for modern API communication.
+
+Read more about [What is gRPC](https://tailcall.run/blog/what-is-grpc/).
+
+
+## Overview of GraphQL
+
+GraphQL is a powerful query language and runtime for APIs, developed by Facebook in 2012 and open-sourced in 2015. It provides a more efficient, powerful, and flexible alternative to traditional REST APIs. One of the standout features of GraphQL is its declarative data fetching. Clients can request exactly the data they need and nothing more, which reduces the common issues of over-fetching and under-fetching associated with REST APIs. Additionally, GraphQL operates with a single endpoint, unlike REST, which typically requires multiple endpoints for different resources. This simplifies the API structure and allows clients to query this single endpoint to retrieve the data they need. That is why it is the choice of tech majors like [Github, Meta, Shopify and Microsoft ](https://landscape.graphql.org/borderless-mode?grouping=category).
+![companies using graphql](/images/docs/stack-graphql.png)
+
+
+Read more about [What is GraphQL and How it works?](https://tailcall.run/graphql/).
+
+
+## Feature Comparison
+
+| Feature | gRPC | GraphQL |
+| --- | --- | --- |
+| **Message Format** | Binary | JSON |
+| **Data Fetching** | Fixed endpoints and methods | Flexible queries, specified by clients |
+| **Real-Time** | Supports streaming via server-side push | Supports real-time updates via subscriptions |
+| **Type Safety** | Strongly typed with Protocol Buffers | Strongly typed with schema definition |
+| **Introspection** | No built-in introspection | Built-in schema introspection |
+| **Code Generation** | Automatic code generation from .proto files | Code generation tools available, but not automatic |
+| **Tooling and Browser Support** | Limited browser support, requires proxies for web use | Strong tooling support, works natively in browsers |
+| **Community** | currently nascent | Growing rapidly, strong in web and mobile development |
+| **Adoption** | widely in microservices | mostly in mobile app development and [PWA](https://en.wikipedia.org/wiki/Progressive_web_app)s
+| **Performance** | High performance with low latency | Generally efficient, schemas defined correctly  |
+| **Debugging and Troubleshooting** | non-human-readable format, require tools for debugging. | JSON response is easier to read and debug  |
+## Scenarios for Using gRPC
+
+The most well-suited scenario for gRPC is communication between microservices, where high performance and efficiency are critical, and the need for flexibility is minimal. 
+### Scenario 1:  A social media app backend
+
+![sm app example](/images/docs/services.png)
+
+In this context, `media-scanner` analyzes media files, `media-tagger` generates tags based on the content of the media, `jobs-manager` handles task execution, and `followers-notifier` sends notifications to users. These services typically have specific, unchanging requirements for the data they process and exchange. gRPC's binary message format (Protocol Buffers) ensures efficient and fast communication, reducing overhead and latency.
+
+In such a scenario, there is no risk of over-fetching data because each service receives precisely the information it needs to perform its tasks, with no extra data included. This makes gRPC an ideal choice for inter-service communication in microservices architectures, where performance and efficiency are paramount.
+
+### Scenario 2: A movie streaming backend
+![movie app example](/images/docs/services2.png)
+
+Consider the backend of a movie-streaming app with services like `content-age-rater`, `relations-builder`, `subtitles-generator`, and `subtitles-translator`. These services rate movie content, establish related content links, generate subtitles, and translate them. Each service handles specific tasks with well-defined inputs and outputs, ensuring efficient data processing without unnecessary overhead. This structured approach minimizes data transfer inefficiencies, making gRPC an optimal choice for high-performance communication between these backend services.
+## Scenarios for Using GraphQL
+GraphQL excels in scenarios that demand precise data fetching and efficient API interactions, where flexibility is important and required depending on the frontend.
+
+
+
+### Scenario 1: Fetching Multiple Items
+
+GitHub leverages GraphQL to streamline how pull request (PR) details are fetched. With gRPC, you would need to define specific RPC methods for each data requirement, potentially leading to multiple round-trips to get related data like comments, commits, and changed files. For many use cases, only the first and last comments of a PR are initially necessary. GraphQL allows GitHub Mobile to fetch exactly these details with a single query, optimizing network resources and improving performance. This capability reduces over-fetching of data, providing only what's needed for the immediate context.
+
+```graphql
+query {
+  repository(owner: "username", name: "repository-name") {
+    pullRequest(number: 123) {
+      title
+      createdAt
+      updatedAt
+      author {
+        login
+        avatarUrl
+      }
+      comments(first: 2, orderBy: {field: CREATED_AT, direction: ASC}) {
+        nodes {
+          author {
+            login
+          }
+          body
+          createdAt
+        }
+      }
+    }
+  }
+}
+```
+
+Moreover, Instagram uses a similar technique to fetch just a few comments on a reel instead of all the comments. For instance, the comments that appear below the title of a reel without opening the comments section. It would be wasteful to fetch even 10 or 20 comments when only 5 are needed. This exemplifies why GraphQL is the best option in such scenarios.
+
+### Scenario 2: Ecommerce App
+![graphql fetch](/images/docs/fetch-graphql.png)
+
+Let's consider an ecommerce app featuring many products. On the `explore` page, users should only see essential details like a picture, name, and short description. On the product page, however, they will see additional details like `weight` and `other pictures`. Using gRPC, you would need to define separate RPC calls for each use case, which can be cumbersome and lead to redundant data being transferred. GraphQL allows this flexibility with ease, preventing over-fetching of data and streamlining development.
+
+GraphQL queries can be customized to fetch only the necessary details for each page:
+
+```graphql
+query {
+  products {
+    id
+    name
+    shortDescription
+    imageUrl
+  }
+}
+```
+
+For the product details page:
+
+```graphql
+query {
+  product(id: "product-id") {
+    id
+    name
+    description
+    weight
+    images {
+      url
+    }
+  }
+}
+```
+
+This approach ensures efficient data retrieval and optimal performance, showcasing the advantages of using GraphQL in dynamic content and ecommerce applications compared to gRPC.
+
+
+
+
+## Integrating gRPC and GraphQL
+![integrating both](/images/docs/integration.png)
+
+Consider a more complex scenario: a social media application with a backend that generates user feeds based on user activity. The frontend requires different types of data depending on the context; for instance, there may be distinct screens for blogs and videos. Fetching both types of feeds when only one is needed would be inefficient. This is where GraphQL proves advantageous, allowing the frontend to request exactly the data it needs, thus optimizing data retrieval and performance.
+
+On the backend, services like `feed-generator` and `logs-handler` are responsible for generating user feeds and compiling insights. These services typically require similar input consistently and necessitate minimal debugging once deployed in production. Given these requirements, and since there is no need for flexibility, gRPC is an ideal choice for backend communication due to its high performance and low latency.
+
+By integrating GraphQL on the frontend and gRPC on the backend, we can achieve a highly efficient and flexible architecture. GraphQL ensures that the frontend retrieves precisely the necessary data without over-fetching, while gRPC provides a robust and efficient communication protocol for backend services. Read this guide explaining the challenges and details associated with integrating gRPC and graphQL: [Building GraphQL over gRPC](/docs/graphql-grpc-tailcall) .
+
+
+## Conclusion
+In summary, both gRPC and graphQL offer performance-effeciant features, and work well in thier best-suiting scenarios.
+
+    GraphQL shines in scenarios where flexible, efficient data fetching is crucial. It is an excellent choice for web-apps and mobile apps due to its ability to reduce over-fetching and easier to debug.
+
+    gRPC, on the other hand, excels in high-performance, low-latency communication between microservices, where communication doesn't require flexibility. Its binary serialization ensures that that the payload size reduces to the minimum, absolutely boosting the performance.
+
+
+By understanding the strengths and use cases of GraphQL and gRPC, you can make informed decisions that will elevate your projects, ensuring your API architecture is both efficient and scalable. Whether you're building a social media platform, an ecommerce app, or a microservices ecosystem, choosing the right technology for the job is crucial. Embrace these powerful tools to innovate and thrive in today's fast-paced digital world.
