@@ -2,6 +2,13 @@
 title: GraphQL vs OpenAPI
 sidebar_label: GraphQL vs OpenAPI 
 description: "A Comprehensive Comparison for Modern API Development between GraphQL and OpenAPI"  
+tags: [GraphQL, API, OpenAPI]
+slug: graphqlvsopenapi
+authors:
+  - name: Shivam Chaudhary
+    title: Cloud and Infra Assosiate @Accenture
+    url: https://blog.shivamchaudhary.com
+    image_url: https://avatars.githubusercontent.com/u/68141773?v=4
 ---
 
 ## Overview of GraphQL and OpenAPI
@@ -352,7 +359,7 @@ In this snapshot of the GraphiQL interface, you can see the documentation tab op
 
 By using the introspection capabilities of GraphQL and tools like GraphiQL, developers can quickly get up to speed with the API and explore its capabilities interactively.
 
-![snapshot-graphiql](/images/graphql/snapshot-graphiql.png)
+![snapshot-graphiql](/images/blog/snapshot-graphiql.png)
 
 #### OpenAPI: Manual and Auto-Generated Options
 
@@ -406,7 +413,7 @@ With Swagger UI, this specification can be rendered into a fully interactive API
 
 Below, we have a snapshot of the Spotify OpenAPI documentation:
 
-![spotify-swagger](/images/graphql/snapshot-spotifyOpenAPI.png)
+![spotify-swagger](/images/blog/snapshot-spotifyOpenAPI.png)
 
 #### OpenAPI: Manual and Auto-Generated Options
 
