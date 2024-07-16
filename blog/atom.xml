@@ -131,7 +131,28 @@ When a gRPC client initiates a request to a gRPC server, it sends an HTTP/2 requ
 <h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="ecosystem-maturity">Ecosystem maturity<a class="hash-link" aria-label="Direct link to Ecosystem maturity" title="Direct link to Ecosystem maturity" href="https://tailcall.run/blog/what-is-grpc/#ecosystem-maturity">​</a></h3>
 <p>While gRPC has gained significant traction and support, its ecosystem is still maturing compared to REST. Some languages and frameworks may have limited or incomplete support for gRPC features. Additionally, there is less developer support on the internet, less browser-support and very few articles published which makes it challenging to learn especially for beginners.</p>
 <h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="browser-support-limitations">Browser support limitations<a class="hash-link" aria-label="Direct link to Browser support limitations" title="Direct link to Browser support limitations" href="https://tailcall.run/blog/what-is-grpc/#browser-support-limitations">​</a></h3>
-<p>gRPC's reliance on HTTP/2 poses challenges for browser-based applications. <a href="https://grpc.io/blog/state-of-grpc-web/" target="_blank" rel="noopener noreferrer">Traditional browsers do not natively support gRPC</a>, requiring workarounds such as gRPC-Web , which translates gRPC calls to HTTP/1.1 requests as no modern browser supports HTTP/2. Therefore the performance of gRPC on browsers may not be as good as it should be.</p>
+<p>Current browser limitations prevent direct implementation of the HTTP/2 gRPC specification. Browsers lack the necessary APIs to provide fine-grained control over requests. For instance:</p>
+<ol>
+<li>There's no way to enforce the use of HTTP/2.</li>
+<li>Even if HTTP/2 could be enforced, browsers can't access raw HTTP/2 frames.</li>
+</ol>
+<p>To address these limitations, the gRPC-Web specification was developed. It builds upon the HTTP/2 spec but introduces key differences:</p>
+<ol>
+<li>Support for both HTTP/1.1 and HTTP/2 protocols.</li>
+<li>A new method for handling gRPC trailers:<!-- -->
+<ul>
+<li>Trailers are sent at the very end of request/response bodies.</li>
+<li>A new bit in the gRPC message header indicates the presence of trailers.</li>
+</ul>
+</li>
+<li>Requirement of a proxy server:<!-- -->
+<ul>
+<li>This proxy translates between gRPC-Web requests and standard gRPC HTTP/2 responses.</li>
+<li>It's a mandatory component in the gRPC-Web architecture.</li>
+</ul>
+</li>
+</ol>
+<p>These adaptations allow gRPC-like functionality in web browsers while working within current browser constraints.</p>
 <p>gRPC is powerful for service to service communication, but it may not be the best choice for public APIs or browser-based applications where REST/GraphQL is more prevalent.</p>
 <div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>To seamlessly integrate the benefits of both gRPC and GraphQL, you can easily generate GraphQL from gRPC using Tailcall. Check out the documentation here:</p><ul>
 <li><a href="https://tailcall.run/docs/graphql-grpc-tailcall/" target="_blank" rel="noopener noreferrer">gRPC to GraphQL</a> .</li>
