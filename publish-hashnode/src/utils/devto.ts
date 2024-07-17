@@ -1,52 +1,91 @@
-import axios from "axios"
+import {
+  GetArticlesDocument,
+  PublishArticleInput,
+  PublishArticleDocument,
+  UpdateArticleInput,
+  UpdateArticleDocument,
+  CreateDraftDocument,
+  CreateDraftInput,
+  PublishDraftDocument,
+  PublishDraftInput,
+} from "../../generated/graphql"
+import {client} from "../client/client"
 import {DEVTO_API_KEY} from "./constants"
 
-interface Post {
-  title: string
-  body_markdown: string
-  published: boolean
-  description?: string
-  canonical_url?: string
-  cover_image?: string
-  tags?: string[]
-}
-
-// Function to find a post by title on Dev.to
-export const findDevToPostByTitle = async (title: string) => {
-  const response = await axios.get("https://dev.to/api/articles/me/published", {
-    headers: {
-      "api-key": DEVTO_API_KEY,
+const getArticles = async (publicationId: string, first: number, after?: string) => {
+  const {data, errors} = await client.query({
+    query: GetArticlesDocument,
+    variables: {
+      publicationId,
+      first,
+      after,
     },
   })
-  return response.data.find((post: {title: string}) => post.title === title)
+
+  if (errors) {
+    console.error(errors)
+  }
+
+  return data?.publication?.articles
 }
 
-// Function to create a new post on Dev.to
-export const createDevToPost = async (post: Post) => {
-  await axios.post(
-    "https://dev.to/api/articles",
-    {
-      article: post,
-    },
-    {
-      headers: {
-        "api-key": DEVTO_API_KEY,
-      },
-    },
-  )
+const findDevToArticleByTitle = async (title: string) => {
+  let cursor: string | null | undefined
+  const pageSize = 50
+
+  while (true) {
+    const result = await getArticles(DEVTO_API_KEY, pageSize, typeof cursor === "string" ? cursor : undefined)
+
+    if (!result) break
+
+    const article = result.edges.find((edge) => edge.node.title === title)
+    if (article) return article.node
+
+    if (!result.pageInfo.hasNextPage) break
+    cursor = result.pageInfo.endCursor
+  }
+
+  return null
 }
 
-// Function to update an existing post on Dev.to
-export const updateDevToPost = async (id: number, post: Post) => {
-  await axios.put(
-    `https://dev.to/api/articles/${id}`,
-    {
-      article: post,
+const createDevToDraft = async (input: CreateDraftInput) => {
+  const {data} = await client.mutate({
+    mutation: CreateDraftDocument,
+    variables: {
+      input,
     },
-    {
-      headers: {
-        "api-key": DEVTO_API_KEY,
-      },
-    },
-  )
+  })
+  return data
 }
+
+const updateDevToArticle = async (input: UpdateArticleInput) => {
+  const {data} = await client.mutate({
+    mutation: UpdateArticleDocument,
+    variables: {
+      input,
+    },
+  })
+  return data
+}
+
+const publishDevToDraft = async (input: PublishDraftInput) => {
+  const {data} = await client.mutate({
+    mutation: PublishDraftDocument,
+    variables: {
+      input,
+    },
+  })
+  return data
+}
+
+const publishDevToArticle = async (input: PublishArticleInput) => {
+  const {data} = await client.mutate({
+    mutation: PublishArticleDocument,
+    variables: {
+      input,
+    },
+  })
+  return data
+}
+
+export {createDevToDraft, findDevToArticleByTitle, updateDevToArticle, publishDevToDraft, publishDevToArticle}

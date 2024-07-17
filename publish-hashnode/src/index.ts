@@ -2,7 +2,7 @@ import path from "path"
 import {createDraft, findPostByTitle, updatePost} from "./utils/hashnode"
 import {addBaseUrlToImages, extractFrontMatterAndContent} from "./utils/markdown"
 import {HASHNODE_PUBLICATION_ID} from "./utils/constants"
-import {findDevToPostByTitle, createDevToPost, updateDevToPost} from "./utils/devto"
+import {createDevToDraft, findDevToArticleByTitle, updateDevToArticle} from "./utils/devto"
 
 const main = async () => {
   const changedFiles = process.argv[2].split(" ")
@@ -66,28 +66,50 @@ const main = async () => {
         }
 
         // Dev.to part
-        const doesPostExistOnDevTo = await findDevToPostByTitle(title)
+        const doesPostExistOnDevTo = await findDevToArticleByTitle(title)
 
         if (doesPostExistOnDevTo) {
           console.log(`Post ${title} exists on Dev.to, updating`)
-          await updateDevToPost(doesPostExistOnDevTo.id, {
+          await updateDevToArticle({
+            id: doesPostExistOnHashnode.id,
             title: title,
-            body_markdown: processedMd,
-            published: true,
-            description: description,
-            canonical_url: canonical_url,
-            cover_image: cover_image,
+            subtitle: subtitle,
+            slug: slug,
+            originalArticleURL: canonical_url ? canonical_url : null,
+            coAuthors: coAuthors,
+            ...(seo_title && {
+              metaTags: {
+                description: description,
+                image: null,
+                title: seo_title,
+              },
+            }),
+            coverImageOptions: {
+              coverImageURL: cover_image,
+            },
+            contentMarkdown: processedMd,
           })
         } else {
           console.log(`Post not found on Dev.to, creating new post`)
-          await createDevToPost({
+          await createDevToDraft({
             title: title,
-            body_markdown: processedMd,
-            published: true,
-            description: description,
-            canonical_url: canonical_url,
-            cover_image: cover_image,
-            tags: frontMatter.tags || [],
+            subtitle: subtitle,
+            slug: slug,
+            originalArticleURL: canonical_url ? canonical_url : null,
+            ...(seo_title && {
+              metaTags: {
+                description: description,
+                image: null,
+                title: seo_title,
+              },
+            }),
+            coverImageOptions: {
+              coverImageURL: cover_image,
+            },
+            coAuthors: coAuthors,
+            draftOwner: author,
+            contentMarkdown: processedMd,
+            publicationId: HASHNODE_PUBLICATION_ID,
           })
         }
       } catch (error) {
