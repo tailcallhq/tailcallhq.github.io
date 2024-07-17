@@ -285,7 +285,22 @@ While gRPC has gained significant traction and support, its ecosystem is still m
 
 ### Browser support limitations
 
-gRPC's reliance on HTTP/2 poses challenges for browser-based applications. [Traditional browsers do not natively support gRPC](https://grpc.io/blog/state-of-grpc-web/), requiring workarounds such as gRPC-Web , which translates gRPC calls to HTTP/1.1 requests as no modern browser supports HTTP/2. Therefore the performance of gRPC on browsers may not be as good as it should be.
+Current browser limitations prevent direct implementation of the HTTP/2 gRPC specification. Browsers lack the necessary APIs to provide fine-grained control over requests. For instance:
+
+1. There's no way to enforce the use of HTTP/2.
+2. Even if HTTP/2 could be enforced, browsers can't access raw HTTP/2 frames.
+
+To address these limitations, the gRPC-Web specification was developed. It builds upon the HTTP/2 spec but introduces key differences:
+
+1. Support for both HTTP/1.1 and HTTP/2 protocols.
+2. A new method for handling gRPC trailers:
+   - Trailers are sent at the very end of request/response bodies.
+   - A new bit in the gRPC message header indicates the presence of trailers.
+3. Requirement of a proxy server:
+   - This proxy translates between gRPC-Web requests and standard gRPC HTTP/2 responses.
+   - It's a mandatory component in the gRPC-Web architecture.
+
+These adaptations allow gRPC-like functionality in web browsers while working within current browser constraints.
 
 gRPC is powerful for service to service communication, but it may not be the best choice for public APIs or browser-based applications where REST/GraphQL is more prevalent.
 
