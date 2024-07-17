@@ -117,7 +117,7 @@ B. Anatomy of a Scalar Resolver Function
 
 C. Linking Scalars with Resolver functions
 
-##  Integrating with Apollo Client
+## Integrating with Apollo Client
 
 A. Introduction to Apollo Client
 
