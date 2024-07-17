@@ -38,7 +38,7 @@ A. Role of Scalar in defining Schemas
 
 B. Representation of Scalar in SDL
 
-- Incoporate Scalar in Schema
+- Incorporate Scalar in Schema
 
 C. Integrating Scalar types in GraphQL types
 
