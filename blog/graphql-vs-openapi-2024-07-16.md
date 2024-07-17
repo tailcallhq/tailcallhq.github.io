@@ -6,7 +6,7 @@ tags: [GraphQL, API, OpenAPI]
 slug: graphqlvsopenapi
 authors:
   - name: Shivam Chaudhary
-    title: Cloud and Infra Assosiate @Accenture
+    title: Cloud and Infra Associate @Accenture
     url: https://blog.shivamchaudhary.com
     image_url: https://avatars.githubusercontent.com/u/68141773?v=4
 ---
@@ -928,8 +928,8 @@ Exploring real-world case studies illustrates the practical benefits and challen
 
 2.  **OpenAPI:**
 
-    - **Case Study 1:** A Spanish banking giant utilized OpenAPI to build an open-source security product. By standardizing their API documentation and using OpenAPI's robust validation features, they enhanced security and compliance across their digital services. For more information, visit thier [website](https://www.bbva.com/en/bbva-launches-open-banking-business/).
-    - **Case Study 2:** A global agricultural solutions provider accelerated the development of their digital hub using OpenAPI. The clear structure and validation provided by OpenAPI ensured reliable data exchange and integration across their systems, streamlining operations and improving service delivery. See their implimentaion on their [website](https://developer.nutrien.com/apis).
+    - **Case Study 1:** A Spanish banking giant utilized OpenAPI to build an open-source security product. By standardizing their API documentation and using OpenAPI's robust validation features, they enhanced security and compliance across their digital services. For more information, visit their [website](https://www.bbva.com/en/bbva-launches-open-banking-business/).
+    - **Case Study 2:** A global agricultural solutions provider accelerated the development of their digital hub using OpenAPI. The clear structure and validation provided by OpenAPI ensured reliable data exchange and integration across their systems, streamlining operations and improving service delivery. See their implementation on their [website](https://developer.nutrien.com/apis).
 
 These case studies illustrate how companies from various industries have successfully implemented GraphQL and OpenAPI to enhance their operations, streamline development processes, and improve overall efficiency.
 
