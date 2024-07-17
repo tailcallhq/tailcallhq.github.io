@@ -12,6 +12,14 @@ C. Scalars as fundamental data types
 
 - Difference from non-scalar types
 
+## Evolution of GraphQL Scalars
+
+A. History of GraphQL Types
+
+B. Adoption from traditional types to GraphQL Scalars
+
+C. GraphQL's impact on modern API development
+
 ## Significance of GraphQL Scalars
 
 A. Importance of Scalars in GraphQL
