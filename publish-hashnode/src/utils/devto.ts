@@ -1,4 +1,4 @@
-import {DEVTO_API_KEY} from "./contents"
+import {DEVTO_API_KEY} from "./constants"
 import axios from "axios"
 
 interface UpdatePostInput {
