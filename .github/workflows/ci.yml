@@ -49,7 +49,7 @@ jobs:
           files: |
             blog/**/*.{md,mdx}
 
-      - name: Publish to Hashnode 📝
+      - name: Publish on Hashnode and Dev.to 📝
         if: github.ref == 'refs/heads/develop' && steps.changed-markdown-files.outputs.any_changed == 'true'
         env:
           HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
