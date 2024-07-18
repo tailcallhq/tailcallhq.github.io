@@ -61,4 +61,4 @@ jobs:
         run: |
           cd ./publish-externals
           npm run generate
-          npx --yes tsx ./src/index.ts "$CHANGED_FILES" 
+          npx --yes tsx ./src/index.ts "$CHANGED_FILES"
