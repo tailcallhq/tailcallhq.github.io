@@ -557,6 +557,6 @@ nav.menu {
   }
 }
 
-span.codeLineNumber_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Line-styles-module {
-  color: #b6b6b6;
+span.token-line.theme-code-block-highlighted-line.codeLine_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Line-styles-module {
+  background: #545454;
 }
