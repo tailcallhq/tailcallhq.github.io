@@ -1,4 +1,4 @@
-# Debugging GraphQL Queries with GraphiQL
+# Debugging GraphQl queries with GraphiQL
 
 **Target Audience:** Front-end, back-end, and full-stack developers, API integrators, technical leads, GraphQL beginners, and QA engineers who need to debug and optimise GraphQL queries using GraphiQL.
 
