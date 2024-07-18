@@ -1,7 +1,7 @@
 export const HASHNODE_PAT = process.env.HASHNODE_PAT!
 export const HASHNODE_PUBLICATION_ID = process.env.HASHNODE_PUBLICATION_ID!
 export const BASE_URL_ASSETS = "https://raw.githubusercontent.com/tailcallhq/tailcallhq.github.io/develop/"
-
+export const DEVTO_API_KEY = process.env.DEVTO_API_KEY!
 // hashnode author ids
 export const authorsMap = {
   tushar: "64814d2ae39007f9ec4374fe",

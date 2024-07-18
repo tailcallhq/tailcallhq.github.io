@@ -11,6 +11,61 @@ import {
 } from "../../generated/graphql"
 import {client} from "../client/client"
 import {HASHNODE_PUBLICATION_ID} from "./constants"
+import { addBaseUrlToImages } from "./markdown"
+
+const hashnodePostHandler = async (frontMatter: any, content: any) => {
+  const { title, subtitle, slug, canonical_url, seo_title, description, coAuthors, cover_image } = frontMatter
+  const processedMd = addBaseUrlToImages(content)
+  const existsOnHashnode = await findOnHashnode(title)
+  if (existsOnHashnode) {
+    console.log('post exists on hashnode, updating it ⏳')
+    await updatePost({
+      id: existsOnHashnode.id,
+      title: title,
+      subtitle: subtitle,
+      slug: slug,
+      originalArticleURL: canonical_url ? canonical_url : null,
+      coAuthors: coAuthors,
+      ...(seo_title && {
+        metaTags: {
+          description: description,
+          image: null,
+          title: seo_title,
+        },
+      }),
+      coverImageOptions: {
+        coverImageURL: cover_image,
+      },
+      contentMarkdown: processedMd,
+    })
+    console.log('updated on hashnode ✅')
+  }
+
+  console.log('post does not exist on hashnode, creating new ⏳ ')
+
+  await createDraft({
+    title: title,
+    subtitle: subtitle,
+    slug: slug,
+    originalArticleURL: canonical_url ? canonical_url : null,
+    ...(seo_title && {
+      metaTags: {
+        description: description,
+        image: null,
+        title: seo_title,
+      },
+    }),
+    coverImageOptions: {
+      coverImageURL: cover_image,
+    },
+    coAuthors: coAuthors,
+    contentMarkdown: processedMd,
+    // publishAs: '6697ec43b268f4c6823e916a',
+    publicationId: HASHNODE_PUBLICATION_ID,
+  })
+  console.log('published new post on hashnode ✅')
+
+}
 
 const getPosts = async (publicationId: string, first: number, after?: string) => {
   const {data, errors} = await client.query({
@@ -29,7 +84,7 @@ const getPosts = async (publicationId: string, first: number, after?: string) =>
   return data?.publication?.posts
 }
 
-const findPostByTitle = async (title: string) => {
+const findOnHashnode = async (title: string) => {
   let cursor: string | null | undefined
   const pageSize = 50
 
@@ -88,4 +143,4 @@ const publishPost = async (input: PublishPostInput) => {
   return data
 }
 
-export {createDraft, findPostByTitle, updatePost, publishDraft, publishPost}
+export {createDraft, findOnHashnode, hashnodePostHandler, updatePost, publishDraft, publishPost}
