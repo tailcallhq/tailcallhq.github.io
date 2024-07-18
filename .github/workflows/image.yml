@@ -1,0 +1,23 @@
+name: Optimize Images
+
+on: push
+
+jobs:
+  image_optimize:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Run optimizt
+        run: npx optimizt static/images
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Optimize Images
+          file_pattern: "static/images"
