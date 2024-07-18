@@ -28,34 +28,40 @@ interface UpdatePostInput {
 }
 
 interface CreateDraftInput {
+  title?: string
+  body_markdown?: string
+  published?: boolean
+  series?: string
+  main_image?: string
+  canonical_url?: string | null
+  description?: string
+  tags?: string[]
+  organization_id?: number
+
   coAuthors?: string[]
-  contentMarkdown?: string
   coverImageOptions?: {
     coverImageURL?: string
   }
   disableComments?: boolean
   draftOwner?: string
   metaTags?: {
-    description?: string
     image?: string | null
     title?: string
   }
-  originalArticleURL?: string | null
   publicationId: string
   publishAs?: string
-  publishedAt?: string // Assuming ISO8601 date-time format
-  seriesId?: string
   settings?: {
     enableTableOfContents?: boolean
   }
   slug?: string
   subtitle?: string
-  tags?: string[]
-  title?: string
 }
 
 const findDevToPostByTitle = async (title: string) => {
-  const response = await axios.get("https://dev.to/api/articles/me", {
+  const per_page = 50
+  let url = `https://dev.to/api/articles/me?per_page=${per_page}`
+
+  const response = await axios.get(url, {
     headers: {
       "api-key": DEVTO_API_KEY,
     },
