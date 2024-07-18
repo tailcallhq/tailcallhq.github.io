@@ -1,7 +1,8 @@
 import axios from "axios";
-import { DEVTO_API_KEY } from "./constants";
+import { DEVTO_API_KEY, DEVTO_ORG_ID, DEVTO_ORG_NAME } from "./constants";
 import { addBaseUrlToImages } from "./markdown";
 
+const isOrg = DEVTO_ORG_ID && DEVTO_ORG_NAME 
 const devtoPostHandler = async (frontMatter: any, content: any) => {
     const processedMd = addBaseUrlToImages(content)
     const { title, cover_image, canonical_url, description } = frontMatter
@@ -18,6 +19,7 @@ const devtoPostHandler = async (frontMatter: any, content: any) => {
             canonical_url: canonical_url || null,
             description: description,
             tags: description,
+            organization_id: isOrg ? DEVTO_ORG_ID : null
 
         })
     } else {
@@ -31,6 +33,7 @@ const devtoPostHandler = async (frontMatter: any, content: any) => {
             canonical_url: canonical_url || null,
             description: description,
             tags: description,
+            organization_id: isOrg ? DEVTO_ORG_ID : null
         })
 
     }
@@ -49,7 +52,8 @@ const findOnDevto = async (titleToSearch: string) => {
         let found: boolean | any;
         found = false
         while (true && !found) {
-            const response = await axios.get(`https://dev.to/api/articles/me/all?page=${page}&per_page=${per_page}`, devtoApiVars)
+            const url = isOrg ? `https://dev.to/api/organizations/{${DEVTO_ORG_NAME}}/articles` : `https://dev.to/api/articles/me/all`
+            const response = await axios.get(`${url}?page=${page}&per_page=${per_page}`, devtoApiVars)
             const articles = response.data
             if (!articles || articles.length === 0) {
                 //stop right here if no (more) articles

@@ -56,6 +56,8 @@ jobs:
           HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
           CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
           DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY}}
+          DEVTO_ORG_ID: ${{secrets.DEVTO_ORG_ID}}
+          DEVTO_ORG_NAME: ${{secrets.DEVTO_ORG_NAME}}
         run: |
           cd ./publish-externals
           npm run generate
