@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "workspaces": [
-    "publish-hashnode"
+    "publish-externals"
   ],
   "scripts": {
     "docusaurus": "docusaurus",
