@@ -1,16 +1,7 @@
 # Debugging GraphQl queries with GraphiQL
 
-**Target Audience:** Front-end, back-end, and full-stack developers, API integrators, technical leads, GraphQL beginners, and QA engineers who need to debug and optimise GraphQL queries using GraphiQL.
-
-**Aim:** This article aims to guide developers in effectively debugging GraphQL queries using GraphiQL. It explores key features of GraphiQL for query validation, introspection, and error handling. By improving query efficiency and accuracy, the article seeks to significantly enhance productivity and streamline the debugging process, providing practical examples and tips for mastering GraphQL query debugging with GraphiQL.
-
 ## Introduction
 GraphiQL is an interactive, in-browser GraphQL IDE that allows developers to test and debug their GraphQL queries. It provides a user-friendly interface to construct queries, view responses, and inspect the underlying GraphQL schema, making it easier to identify and fix issues with GraphQL queries during development.
-
-## Prerequisites
-To follow along with this guide, you need:
-- You must be familiar with the GraphiQL interface
-- A good understanding of GraphQl queries
 
 ## What is Debugging?
 - Understanding what debugging is and its importance concerning GraphQL queries

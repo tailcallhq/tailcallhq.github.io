@@ -39,7 +39,7 @@ For this guide, accessing GraphiQL can be done using any of the methods below:
 Explain the various core features that GraphiQL provides.
 * Type-ahead and Auto Completion feature that is aware of the GraphQL type schema you are currently exploring. In addition, explain Context-awareness.
 ```graphql
-# add a simple code that refernces the type-ahead feature
+# add a simple code that references the type-ahead feature
 ```
 
 [Screenshot a live view of type-ahead feature in action]
