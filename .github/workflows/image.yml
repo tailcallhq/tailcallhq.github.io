@@ -15,7 +15,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Run optimizt
-        run: npx optimizt static/images
+        run: npx @343dev/optimizt static/images
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
