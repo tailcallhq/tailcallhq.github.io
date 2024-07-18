@@ -1,5 +1,6 @@
 import {themes as prismThemes} from "prism-react-renderer"
 import type * as Preset from "@docusaurus/preset-classic"
+import prismTheme from "./src/theme/CodeBlock/theme"
 
 const title = "Tailcall"
 const organization = "tailcallhq"
@@ -111,7 +112,7 @@ export default {
       ],
     },
     prism: {
-      theme: prismThemes.oneLight,
+      theme: prismTheme,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ["protobuf"],
     },
