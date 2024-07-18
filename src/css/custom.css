@@ -109,6 +109,7 @@ input[type="radio"]:checked::before {
   font-weight: var(--ifm-font-weight-bold);
 }
 
+/* hide the default copy button */
 .buttonGroup_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module{
   display: none !important;
 }

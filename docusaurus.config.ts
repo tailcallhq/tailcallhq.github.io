@@ -112,7 +112,6 @@ export default {
     },
     prism: {
       theme: prismThemes.dracula,
-      darkTheme: prismThemes.dracula,
       additionalLanguages: ["protobuf"],
     },
     colorMode: {
