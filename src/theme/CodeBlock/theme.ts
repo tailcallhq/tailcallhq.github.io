@@ -1,19 +1,19 @@
-import { PrismTheme, themes } from "prism-react-renderer"
+import {PrismTheme, themes} from "prism-react-renderer"
 
 const baseTheme = themes.github
 const prismTheme = {
   ...baseTheme,
   plain: {
     ...baseTheme.plain,
-    color: '#fff',
-    backgroundColor: '#303037',
+    color: "#fff",
+    backgroundColor: "#303037",
   },
   styles: [
     ...baseTheme.styles,
     {
-      types: ['line-number'],
+      types: ["line-number"],
       style: {
-        color: '#5B5B60',
+        color: "#5B5B60",
       },
     },
     {
@@ -115,6 +115,5 @@ const prismTheme = {
     },
   ],
 } satisfies PrismTheme
-
 
 export default prismTheme
