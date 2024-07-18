@@ -111,7 +111,7 @@ export default {
       ],
     },
     prism: {
-      theme: prismThemes.oneLight,
+      theme: prismThemes.palenight,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ["protobuf"],
     },
