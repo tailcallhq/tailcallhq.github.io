@@ -18,9 +18,11 @@
     "format:check": "prettier --check '**/*.{graphql,yml,json,md,sh,ts,tsx,js}'",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
+    "optimize-images": "npx @343dev/optimizt static/images/docs static/images/graphql static/images/blog",
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@343dev/optimizt": "^7.0.2",
     "@docusaurus/core": "3.4.0",
     "@docusaurus/plugin-client-redirects": "3.4.0",
     "@docusaurus/plugin-content-blog": "^3.4.0",
@@ -43,6 +45,7 @@
     "react-hot-toast": "^2.4.1",
     "react-on-screen": "^2.1.1",
     "react-platform-js": "^0.0.1",
+    "sharp": "^0.33.4",
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {

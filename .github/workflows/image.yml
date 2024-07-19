@@ -14,10 +14,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Run optimizt
-        run: npx @343dev/optimizt static/images
+      - run: npm run optimize-images
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Optimize Images
+          commit_message: "[skip ci] optimize images"
           file_pattern: "static/images"
