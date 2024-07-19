@@ -18,7 +18,7 @@ GraphQL fragments enable the reuse of common fields across different queries and
 
 ### Improved Query Performance
 
-Using fragments can lead to optimized queries by minimizing the amount of data fetched and ensuring that only the necessary fields are requested. This can result in faster query responses and a more efficient use of network resources.
+Using fragments can lead to optimized queries by minimizing the amount of bytes sent in the query. This can result in faster query responses and a more efficient use of network resources.
 
 ### Consistent Data Fetching
 
