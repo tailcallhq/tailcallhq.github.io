@@ -557,6 +557,15 @@ nav.menu {
   }
 }
 
-span.token-line.theme-code-block-highlighted-line.codeLine_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Line-styles-module {
+span.token-line.theme-code-block-highlighted-line {
   background: #545454;
+}
+
+.clean-btn {
+  display: none !important;
+}
+
+.theme-code-block {
+  border-top-right-radius: 0!important;
+  border-top-left-radius: 0!important;
 }
