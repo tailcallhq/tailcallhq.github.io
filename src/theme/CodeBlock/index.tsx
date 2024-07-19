@@ -28,7 +28,7 @@ export default function CodeBlockWrapper(props: Props): JSX.Element {
                 Copied!
               </span>
             )}
-            <img src="/icons/basic/copy-icon.svg" alt="" className="w-4 h-4 cursor-pointer" />
+            <img src="/icons/basic/copy-icon.svg" alt="Copy Icon" className="w-4 h-4 cursor-pointer" />
           </button>
         </div>
       </div>
