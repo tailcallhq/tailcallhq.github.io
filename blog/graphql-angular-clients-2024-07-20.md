@@ -945,18 +945,6 @@ We've put together a complete set of working examples for everything we've cover
 [Explore the code on GitHub](https://github.com/onyedikachi-david/angular-graphql-multiapproach)
 :::
 
-#### Real-world Analogy
-
-If Apollo Client is like a fully-equipped Swiss Army knife, Urql is more like a sleek, modern multi-tool. It's streamlined, efficient, and gets the job done without unnecessary complexity. You know, like that one friend who always seems to have exactly what you need, no more, no less.
-So there you have it, folks! Urql in Angular: a match made in developer heaven. It's flexible, efficient, and handles errors like a boss. Whether you're building a small project or a complex application, Urql's got your back.
-Remember, in the world of GraphQL clients, there's no one-size-fits-all solution. It's all about finding the right tool for your specific needs. So go forth and GraphQL with confidence, knowing you've got Urql in your toolbelt!
-
-1. **Apollo Angular**: A comprehensive GraphQL client that provides robust features like caching and state management.
-2. **Urql**: A lightweight and flexible GraphQL client with a focus on simplicity and customization.
-3. **GraphQL-Request**: A minimal GraphQL client supporting Node and browsers.
-4. **Axios**: A promise-based HTTP client that can be used to send GraphQL queries.
-5. **Fetch API**: The native browser API for making HTTP requests, used here for GraphQL queries.
-
 ## Detailed Comparison Table
 
 | Method          | Bundle Size (minified + gzip)\* | Learning Curve | Caching Capabilities                    | Community Support | Additional Features                        |

@@ -561,10 +561,6 @@ span.token-line.theme-code-block-highlighted-line {
   background: #545454;
 }
 
-.clean-btn {
-  display: none !important;
-}
-
 .theme-code-block,
 pre.prism-code {
   border-top-right-radius: 0 !important;
@@ -575,4 +571,8 @@ pre.prism-code {
 
 [class*="codeBlockTitle"] {
   display: none;
+}
+
+div[class*="codeBlockContent"] div[class*="buttonGroup"] {
+  display: none !important;
 }
