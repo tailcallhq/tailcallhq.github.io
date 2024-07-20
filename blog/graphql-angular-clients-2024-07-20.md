@@ -1,13 +1,22 @@
 ---
-title: "GraphQL in Angular: 5 Best Approaches for Data Fetching"
-description: "Explore Apollo Angular, Urql, and other methods for efficient GraphQL integration in Angular applications, with detailed comparisons and error handling strategies."
+authors:
+  - name: David Onyedikachi
+    title: NodeJs-Golang Backend Developer, with experience in Python, Rust, and Solidity
+    url: https://github.com/onyedikachi-david
+    image_url: https://avatars.githubusercontent.com/u/51977119?v=4
+tags: [GraphQL, Angular, Apollo client]
+hide_table_of_contents: true
+title: "Apollo vs Urql vs Fetch: The Ultimate Showdown"
+description: "We pushed each method to its limits. Here's what we discovered."
 sidebar_label: "GraphQL with Angular"
 slug: graphql-angular-client
 ---
 
-## Introduction
+![Cover Image for Angular with GraphQL](../static/images/blog/angular-with-graphql.png)
 
 Angular developers often face the challenge of efficiently fetching and managing data from GraphQL APIs. This comprehensive guide dives into five powerful approaches for integrating GraphQL into your Angular applications. We'll explore everything from full-featured client libraries to lightweight solutions, using a practical example of fetching post data to demonstrate each method's strengths and nuances.
+
+<!-- truncate -->
 
 Our journey will take us through Apollo Angular, Urql, GraphQL-Request, Axios, and the native Fetch API, each offering unique advantages for different project needs. Whether you're building a small-scale application or a complex enterprise system, this guide will equip you with the knowledge to choose the best GraphQL integration method for your Angular project.
 
@@ -18,38 +27,38 @@ So, buckle up and get ready to supercharge your Angular applications with the po
 _**NB**: We are not using the traditional NgModule-based Angular applications instead we will be using the newer standalone component approach; below is the version of angular cli version used throughout the guide._
 
 ```shell
-    ng version
+ng version
 
     _                      _                 ____ _     ___
-    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
-    / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
-    / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
-    /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
-    |___/
+   / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+  / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+ / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+/_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
 
 
-    Angular CLI: 18.0.7
-    Node: 20.12.2
-    Package Manager: npm 10.5.0
-    OS: linux x64
 
-    Angular: 18.0.6
-    ... animations, common, compiler, compiler-cli, core, forms
-    ... platform-browser, platform-browser-dynamic, platform-server
-    ... router
+Angular CLI: 18.0.7
+Node: 20.12.2
+Package Manager: npm 10.5.0
+OS: linux x64
 
-    Package                         Version
-    ---------------------------------------------------------
-    @angular-devkit/architect       0.1800.7
-    @angular-devkit/build-angular   18.0.7
-    @angular-devkit/core            18.0.7
-    @angular-devkit/schematics      18.0.7
-    @angular/cli                    18.0.7
-    @angular/ssr                    18.0.7
-    @schematics/angular             18.0.7
-    rxjs                            7.8.1
-    typescript                      5.4.5
-    zone.js                         0.14.7
+Angular: 18.0.6
+... animations, common, compiler, compiler-cli, core, forms
+... platform-browser, platform-browser-dynamic, platform-server
+... router
+
+Package                         Version
+---------------------------------------------------------
+@angular-devkit/architect       0.1800.7
+@angular-devkit/build-angular   18.0.7
+@angular-devkit/core            18.0.7
+@angular-devkit/schematics      18.0.7
+@angular/cli                    18.0.7
+@angular/ssr                    18.0.7
+@schematics/angular             18.0.7
+rxjs                            7.8.1
+typescript                      5.4.5
+zone.js                         0.14.7
 ```
 
 We'll be using a Tailcall backend that wraps the JSONPlaceholder API, providing a GraphQL interface to RESTful data.
@@ -926,6 +935,15 @@ You might be wondering, "Why should I choose Urql over other options?" Well, let
 1. **Lightweight**: Urql is as light as a feather, which means your app won't feel like it's carrying extra baggage.
 2. **Flexible**: It's adaptable to various use cases, like a chameleon in the coding world.
 3. **Great Developer Experience**: With Urql, you'll feel like you're coding with a tailwind, not against a headwind.
+
+:::tip
+Want to see all this in action?
+Check out our GitHub repo!
+
+We've put together a complete set of working examples for everything we've covered in this article. It's the perfect companion to help you dive deeper into Angular and GraphQL.
+
+[Explore the code on GitHub](https://github.com/onyedikachi-david/angular-graphql-multiapproach)
+:::
 
 #### Real-world Analogy
 
