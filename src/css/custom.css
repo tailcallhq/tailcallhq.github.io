@@ -561,17 +561,18 @@ span.token-line.theme-code-block-highlighted-line {
   background: #545454;
 }
 
-.clean-btn {
-  display: none !important;
+.theme-code-block,
+pre.prism-code {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-right-radius: 1.5rem !important;
+  border-bottom-left-radius: 1.5rem !important;
 }
 
-.theme-code-block, pre.prism-code {
-  border-top-right-radius: 0!important;
-  border-top-left-radius: 0!important;
-  border-bottom-right-radius: 1.5rem!important;
-  border-bottom-left-radius: 1.5rem!important;
-}
-
-[class*='codeBlockTitle'] {
+[class*="codeBlockTitle"] {
   display: none;
+}
+
+div[class*="codeBlockContent"] div[class*="buttonGroup"] {
+  display: none !important;
 }
