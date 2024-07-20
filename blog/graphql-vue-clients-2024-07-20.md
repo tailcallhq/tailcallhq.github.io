@@ -1,9 +1,18 @@
 ---
+authors:
+  - name: David Onyedikachi
+    title: NodeJs-Golang Backend Developer, with experience in Python, Rust, and Solidity
+    url: https://github.com/onyedikachi-david
+    image_url: https://avatars.githubusercontent.com/u/51977119?v=4
+tags: [GraphQL, Vue, Apollo client]
+hide_table_of_contents: true
 title: "GraphQL in Vue: 5 Best Approaches for Data Fetching"
 description: "Explore Apollo Vue, Villus, and other methods for efficient GraphQL integration in Vue applications, with detailed comparisons and error handling strategies."
-sidebar_label: "GraphQL with Vue"
+sidebar_label: "GraphQL in Vue"
 slug: graphql-vue-client
+image: /image/blog/vue-with-graphql.png
 ---
+![Cover Image for Vue in GraphQL](../static/images/blog/vue-with-graphql.png)
 
 ## Introduction
 

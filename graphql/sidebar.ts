@@ -5,14 +5,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Guides",
-      items: [
-        "graphql",
-        "graphql-vs-rest",
-        "graphql-react-client",
-        "cto-guide",
-        "problem-statement",
-        "graphql-vue-clients",
-      ],
+      items: ["graphql", "graphql-vs-rest", "graphql-react-client", "cto-guide", "problem-statement"],
     },
     {
       type: "category",
