@@ -12,6 +12,7 @@ sidebar_label: "GraphQL in Vue"
 slug: graphql-vue-client
 image: /image/blog/vue-with-graphql.png
 ---
+
 ![Cover Image for Vue in GraphQL](../static/images/blog/vue-with-graphql.png)
 
 ## Introduction
