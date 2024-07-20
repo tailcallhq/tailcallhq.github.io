@@ -10,6 +10,7 @@ title: "Apollo vs Urql vs Fetch: The Ultimate Showdown"
 description: "We pushed each method to its limits. Here's what we discovered."
 sidebar_label: "GraphQL with Angular"
 slug: graphql-angular-client
+image: /images/blog/angular-with-graphql.png
 ---
 
 ![Cover Image for Angular with GraphQL](../static/images/blog/angular-with-graphql.png)
