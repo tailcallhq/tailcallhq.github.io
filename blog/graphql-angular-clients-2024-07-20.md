@@ -24,7 +24,9 @@ We'll not only cover the implementation details but also delve into error handli
 
 So, buckle up and get ready to supercharge your Angular applications with the power of GraphQL!
 
+:::note
 _**NB**: We are not using the traditional NgModule-based Angular applications instead we will be using the newer standalone component approach; below is the version of angular cli version used throughout the guide._
+:::
 
 ```shell
 ng version
