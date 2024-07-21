@@ -18,7 +18,6 @@ const hashnodePostHandler = async (frontMatter: any, content: any) => {
   const processedMd = addBaseUrlToImages(content)
   const existsOnHashnode = await findOnHashnode(title)
   if (existsOnHashnode) {
-    console.log("post exists on hashnode, updating it ⏳")
     await updatePost({
       id: existsOnHashnode.id,
       title: title,
@@ -38,10 +37,7 @@ const hashnodePostHandler = async (frontMatter: any, content: any) => {
       },
       contentMarkdown: processedMd,
     })
-    console.log("updated on hashnode ✅")
   }
-
-  console.log("post does not exist on hashnode, creating new ⏳ ")
 
   await createDraft({
     title: title,
@@ -63,7 +59,6 @@ const hashnodePostHandler = async (frontMatter: any, content: any) => {
     // publishAs: '6697ec43b268f4c6823e916a',
     publicationId: HASHNODE_PUBLICATION_ID,
   })
-  console.log("published new post on hashnode ✅")
 }
 
 const getPosts = async (publicationId: string, first: number, after?: string) => {

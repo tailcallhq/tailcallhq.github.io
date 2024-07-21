@@ -10,7 +10,6 @@ const devtoPostHandler = async (frontMatter: any, content: any) => {
   //first check if the post exists on dev.to
   const postExistsOnDevto = await findOnDevto(title)
   if (postExistsOnDevto) {
-    console.log("post exists on dev.to, updating it ⏳ ")
     //notice that the public parameter hasn't been specified / is false. this is to make sure even a published article becomes un-published when edited thru github
     await updatePostOnDevto(postExistsOnDevto.id, {
       title,
@@ -22,8 +21,6 @@ const devtoPostHandler = async (frontMatter: any, content: any) => {
       organization_id: isOrg ? DEVTO_ORG_ID : null,
     })
   } else {
-    console.log("post does not exist on dev.to, creating new ⏳")
-
     await publishPostOnDevto({
       title,
       body_markdown: processedMd,
@@ -70,7 +67,6 @@ const findOnDevto = async (titleToSearch: string) => {
 const publishPostOnDevto = async (article: any) => {
   try {
     await axios.post("https://dev.to/api/articles", {article}, devtoApiVars)
-    console.log("published new post on dev.to ✅ ")
   } catch {
     throw new Error("error: could not publish new article on dev.to ❌ ")
   }
@@ -79,7 +75,6 @@ const publishPostOnDevto = async (article: any) => {
 const updatePostOnDevto = async (id: number, article: any) => {
   try {
     await axios.put(`https://dev.to/api/articles/${id}`, {article}, devtoApiVars)
-    console.log("edited the post on dev.to ✅ ")
   } catch {
     throw new Error("error: could not edit the article on dev.to ❌ ")
   }
