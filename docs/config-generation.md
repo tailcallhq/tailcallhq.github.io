@@ -53,30 +53,33 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     <Tabs>
     <TabItem value="json" label="JSON Config Format">
+
     ```json showLineNumbers
     {
-      "inputs":[
-          {
-            "curl":{
-                "src":"https://jsonplaceholder.typicode.com/posts",
-                "fieldName":"posts"
-            }
+      "inputs": [
+        {
+          "curl": {
+            "src": "https://jsonplaceholder.typicode.com/posts",
+            "fieldName": "posts"
           }
+        }
       ],
-      "preset":{
-          "mergeType":1.0
+      "preset": {
+        "mergeType": 1.0
       },
-      "output":{
-          "path":"./jsonplaceholder.graphql",
-          "format":"graphQL"
+      "output": {
+        "path": "./jsonplaceholder.graphql",
+        "format": "graphQL"
       },
-      "schema":{
-          "query":"Query"
+      "schema": {
+        "query": "Query"
       }
     }
     ```
+
     </TabItem>
-     <TabItem value="yml" label="YML Config Format">
+    <TabItem value="yml" label="YML Config Format">
+
     ```yml showLineNumbers
     inputs:
       - curl:
@@ -90,6 +93,7 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     schema:
       query: "Query"
     ```
+
     </TabItem>
     </Tabs>
 
@@ -796,39 +800,44 @@ curl:
 
 **Answer:** Yes, you can specify multiple input sources, such as different REST endpoints or Proto files, in a single configuration. Here is an example:
 
-  <Tabs>
-  <TabItem value="json" label="JSON">
-  ```json showLineNumbers
-  {
-      "inputs": [
-          {
-            "curl": {
-              "src": "https://jsonplaceholder.typicode.com/posts",
-              "fieldName": "posts"
-            }
-          },
-          {
-            "proto": {
-              "src": "./news.proto"
-            }
-          }
-      ],
-      "schema": {
-        "query": "Query"
+<Tabs>
+<TabItem value="json" label="JSON">
+
+```json showLineNumbers
+{
+  "inputs": [
+    {
+      "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts",
+        "fieldName": "posts"
       }
+    },
+    {
+      "proto": {
+        "src": "./news.proto"
+      }
+    }
+  ],
+  "schema": {
+    "query": "Query"
   }
-  ```
-  </TabItem>
-  <TabItem value="yml" label="YML">
-  ```yml showLineNumbers
-  inputs:
-      - curl:
-          src: "https://jsonplaceholder.typicode.com/posts"
-          fieldName: "posts"
-      - proto:
-          src: "./news.proto"
-  schema:
-      query: "Query"
-  ```
-  </TabItem>
-  </Tabs>
+}
+```
+
+</TabItem>
+
+<TabItem value="yml" label="YML">
+
+```yml showLineNumbers
+inputs:
+  - curl:
+      src: "https://jsonplaceholder.typicode.com/posts"
+      fieldName: "posts"
+  - proto:
+      src: "./news.proto"
+schema:
+  query: "Query"
+```
+
+</TabItem>
+</Tabs>
