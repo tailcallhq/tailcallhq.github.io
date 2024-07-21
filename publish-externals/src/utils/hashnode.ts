@@ -137,4 +137,4 @@ const publishPost = async (input: PublishPostInput) => {
   return data
 }
 
-export {createDraft, findOnHashnode, hashnodePostHandler, updatePost, publishDraft, publishPost}
+export {createDraft, findOnHashnode, hashnodePostHandler as handler, updatePost, publishDraft, publishPost}

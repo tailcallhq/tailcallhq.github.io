@@ -80,4 +80,4 @@ const updatePostOnDevto = async (id: number, article: any) => {
   }
 }
 
-export {devtoPostHandler}
+export {devtoPostHandler as handler}

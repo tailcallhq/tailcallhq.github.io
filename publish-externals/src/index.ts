@@ -1,43 +1,37 @@
 import path from "path"
-import {hashnodePostHandler} from "./utils/hashnode"
+import * as hashnode from "./utils/hashnode"
 import {extractFrontMatterAndContent} from "./utils/markdown"
-import {devtoPostHandler} from "./utils/devto"
+import * as devTo from "./utils/devto"
+
+const ExternalPublications = [
+  {name: "Hashnode", handler: hashnode.handler},
+  {name: "Dev.to", handler: devTo.handler},
+]
 
 const main = async () => {
   const changedFiles = process.argv[2].split(" ")
+  const errors = []
   for (const file of changedFiles) {
     if (file.startsWith("blog/")) {
-      try {
-        const filePath = path.join(__dirname, "../../", file)
-
-        const {frontMatter, content} = extractFrontMatterAndContent(filePath)
-        //call both and execute simultaneously
-        const externalPublications = [
-          {name: "Hahsnode", handler: hashnodePostHandler},
-          {name: "Dev.to", handler: devtoPostHandler},
-        ]
-        const publishToExternalPublications = async (externalPublications: any, frontMatter: any, content: any) => {
-          const promises = externalPublications.map(async (publication: any) => {
-            const pubname = publication.name
-            console.log(`Publishing on ${pubname} ⏳`)
-            try {
-              await publication.handler(frontMatter, content)
-              console.log(`Published to ${pubname} ✅`)
-              return `Published to ${pubname}`
-            } catch (error) {
-              throw new Error(`Error: couldn't upload to ${pubname}`)
-            }
-          })
-
-          return Promise.all(promises)
+      const filePath = path.join(__dirname, "../../", file)
+      const {frontMatter, content} = extractFrontMatterAndContent(filePath)
+      for (let publication of ExternalPublications) {
+        console.log(`[${publication.name}] ${frontMatter.slug} ... publishing ⏳`)
+        try {
+          await publication.handler(frontMatter, content)
+          console.log(`[${publication.name}] Success ${frontMatter.slug} ... succeeded ✅`)
+        } catch (error) {
+          errors.push(error)
+          console.error(`[${publication.name}] Failure ${frontMatter.slug} ... failed 💀`)
         }
-
-        await publishToExternalPublications(externalPublications, frontMatter, content)
-      } catch (error) {
-        console.error(error)
       }
     }
   }
+
+  if (errors.length !== 0) {
+    console.error(errors)
+    throw new Error("Publishing failed because of one or more errors")
+  }
 }
 
-main().catch(console.error)
+main()
