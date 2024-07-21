@@ -1,50 +1,54 @@
 # Exploring GraphiQL: The In-Browser IDE for GraphQL
 
-**Target Audience:** This article is for all developers and testers who integrate or test GraphQL APIs, whether front-end developers, back-end developers, or QA testers. It's also for anyone else interested in the world of GraphQL APIs.
-
-**Aim:** This article aims to provide developers with an in-depth understanding of GraphiQL, its features, and how to effectively use it to interact with GraphQL APIs. It will cover the fundamentals, and practical applications for utilizing GraphiQL as an in-browser IDE for GraphQL.
-
 ## Introduction
-Why waste time and effort troubleshooting your GraphQL API directly in your application when there's a more efficient way? Imagine testing and perfecting your queries outside your app, ensuring they work flawlessly before implementation. Sounds ideal, right? With [GraphiQL](https://github.com/graphql/graphiql), you're saving time and gaining control over your development process, empowering you to work more confidently and effectively.
 
-## Prerequisites
-To follow along with this guide, you need:
-* Fundamental understanding of GraphQL 
-* Basic knowledge of schemas, queries, mutations, and resolvers. 
-* A web browser
-* A GraphQL API endpoint: This is how GraphiQL can communicate with a server to access the data. 
-
-## What is GraphiQL?
-* Definition and overview of GraphiQL
+A. Definition and overview of GraphiQL
 
 ## Why use GraphiQL?
-* Advantages/benefits of using GraphiQL (things like Improving your request, validating your improvements, and easily debugging requests running into problems)
 
-## Getting Started with the GraphiQL
-* Configuring GraphiQL
-* Connecting GraphiQL to your Tailcall GraphQL server
+A. Advantages/benefits of using GraphiQL
 
 ## Accessing GraphiQL
-For this guide, accessing GraphiQL can be done using any of the methods below:
-* Simply head over to [https://tailcall.run/playground/](https://tailcall.run/playground/) and give your graphql server url in input. Note, make sure your graphql server allows cors for Tailcall domain
-* After starting your [GraphQL server](https://tailcall.run/docs/#starting-the-graphql-server), head over to the GraphiQL playground link you get
 
+For this guide, accessing GraphiQL can be done using any of the methods below:
+
+A. Simply head over to [https://tailcall.run/playground/](https://tailcall.run/playground/) and give your graphql server url in input. Note, make sure your graphql server allows cors for Tailcall domain
+
+B. After starting your [GraphQL server](https://tailcall.run/docs/#starting-the-graphql-server), head over to the GraphiQL playground link you get
+
+## Setting up GraphiQL
+
+A. Configuring GraphiQL
+
+B. Connecting GraphiQL to your Tailcall GraphQL server
 
 ## Exploring the GraphiQL Interface
-* Exploring the GraphiQL interface and understanding the functions of the various panes. The application is two-pane by default, but it becomes three when we access the Documentation Explorer.
-* Explain each of the main parts in the GraphiQL interface: Query Editor, Variables Editor, Response pane, and Documentation Explorer.
+
+A. Exploring the GraphiQL interface and understanding the functions of the various panes.
+
+B. Explain each of the main parts in the GraphiQL interface
+
+- Query Editor
+- Variables Editor
+- Response pane
+- Documentation Explorer.
+
 [add screenshot to display the interface of each of these 4 main interface parts]
 
 ## Key Features and Capabilities of GraphiQl
+
 Explain the various core features that GraphiQL provides.
-* Type-ahead and Auto Completion feature that is aware of the GraphQL type schema you are currently exploring. In addition, explain Context-awareness.
+
+A. Type-ahead and Auto Completion feature
+
 ```graphql
 # add a simple code that references the type-ahead feature
 ```
 
 [Screenshot a live view of type-ahead feature in action]
 
-* Live syntax and validation error highlighting.
+B. Live syntax and validation error highlighting.
+
 ```graphql
 """
 add a simple code that references the live syntax and validation error
@@ -53,39 +57,131 @@ add a simple code that references the live syntax and validation error
 
 [Screenshot a live view of validation error highlighting]
 
-* Query history
+C. Query history
 
 [Screenshot the history interface]
 
-* Fragments: This feature helps us maintain the Don’t Repeat Yourself (DRY) pattern when dealing with repetitive code in our query. Instead, you can easily merge fragments into a query.
-```
+D. Fragments
+
+```graphql
 # code that references fragments that can be merged to a query
 ```
 
-* Documentation: GraphiQL generates documentation for your schema, making it easy to understand and explore.
+(Add a sample diagram showing the fragment part of the editor and how it is analysed)
+
+E. Documentation: GraphiQL generates documentation for your schema, making it easy to understand and explore.
 
 [Screenshot the documentation interface]
 
 ## Testing out the Interface
-Writing and executing Queries, mutations and Subscriptions
-* Writing the query
-* Integrating Variables with Your Query
-* Utilising fragments to aid query construction
-* Executing/Testing the query: Sending requests and handling responses
+
+A. Writing the query
+
+B. Integrating Variables with Your Query
+
+C. Utilising fragments to aid query construction
+
+D. Executing/Testing the query: Sending requests and handling responses
+
 [take a screenshot and add code for each of the step above]
 
+## Debugging GraphQL Queries with GraphiQL
+
+### Practical approach to debugging
+
+A. Setting up your GraphQL endpoint in the GraphiQl (add a link to this section in the exploring GraphiQL article). Launch GraphiQl and configure the endpoint.
+
+(add screenshot and codebase for setting up the GraphQl endpoint)
+
+B. Write your query in the Query editor pane
+
+```graphql
+# your query
+```
+
+C. Check for Syntax errors: GraphiQL will automatically validate your query and highlight any syntax errors in red as you type
+Example: missing curly braces
+
+```graphql
+# code sample with this error
+```
+
+(Screenshot of the error interface)
+
+D. Inspect your Schema: Use the Documentation Explorer pane to understand your schema's available types, fields, and arguments. Click on the types and fields to view their details
+
+(screenshot each of this interface)
+
+E. Test with variables: Add variables in the Variables Editor to make your query dynamic.
+
+```graphql
+# query showing the variable added
+```
+
+(screenshot the variable pane)
+
+F. Analysing the response
+
+- Inspect the response in the Result Pane to ensure you're getting the expected data
+
+```json
+// sample of successful response
+```
+
+- Explain an instance where there is an error and how users can use the error messages to identify the issues.
+
+```json
+// sample of an error response
+```
+
+### Debugging Strategies
+
+A. Errors that can lead to bugs in the Queries
+
+- Syntax
+
+(Add a screenshot of a query in the editor with a syntax error)
+
+- Type Mismatches
+
+(Add a screenshot of a query in the editor with a type mismatch error)
+
+- Field Resolution issues.
+
+(Add a diagram analysing the field resolution issue)
+
+B. Error Messages
+
+- Understanding and interpreting GraphQL error messages
+
+C. Network Tab in Developer Tools
+
+- Analyzing network requests and responses for additional insights.
+
+### Best Practices
+
+A. Writing clear and well-structured queries.
+
+B. Using modular queries, i.e. breaking down complex queries into smaller and manageable chunks.
+
+C. Implement thorough/consistent query testing strategies to detect errors early.
+
+D. Adding in-line comments in your Query
+
+## Alternatives to GraphiQL
+
+A. Explain that there are also alternatives to GraphiQL. There are other GraphQL playgrounds like Insomnia, Altair client and so on
+
+B. Add a table to compare GraphiQl to Altair Client and Insomnia
+
 ## Conclusion
-* Summary of what we discussed 
-* Final thoughts on the subject
+
+A. Summary of what we discussed
+
+B. Final thoughts on the subject
 
 ## Resources
-Additional materials to solidify readers' knowledge
-* [GraphiQL documentation](https://github.com/graphql/graphiql)
 
+A. Official GraphQL documentation
 
-
-
-
-
-
-
+B. Books and articles that can help readers
