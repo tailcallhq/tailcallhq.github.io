@@ -1,84 +1,87 @@
-import {defineConfig} from "@tailcallhq/tailcall"
+import {defineSchema, defineQuery, defineMutation} from "@tailcallhq/tailcall"
+import fetch from "node-fetch"
 
-export default defineConfig({
-  schema: {
-    typeDefs: `
-      schema @server @upstream(baseURL: "https://jsonplaceholder.typicode.com") {
-        query: Query
-      }
+const postToHashnode = async (title: string, content: string, publicationId: string, token: string) => {
+  const response = await fetch("https://api.hashnode.com", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      query: `
+        mutation {
+          createPublicationStory(input: {
+            title: "${title}",
+            contentMarkdown: "${content}",
+            publicationId: "${publicationId}"
+          }) {
+            success
+            message
+          }
+        }
+      `,
+    }),
+  })
 
-      type Address {
-        city: String
-        geo: Geo
-        street: String
-        suite: String
-        zipcode: String
-      }
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(`Hashnode Error: ${errorData.message}`)
+  }
 
-      type Company {
-        bs: String
-        catchPhrase: String
-        name: String
-      }
+  return response.json()
+}
 
-      type Geo {
-        lat: String
-        lng: String
-      }
+const postToDevto = async (title: string, content: string, apiKey: string) => {
+  const response = await fetch("https://dev.to/api/articles", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": apiKey,
+    },
+    body: JSON.stringify({
+      article: {
+        title: title,
+        body_markdown: content,
+      },
+    }),
+  })
 
-      type Photo {
-        albumId: Int
-        id: Int
-        thumbnailUrl: String
-        title: String
-        url: String
-      }
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(`Dev.to Error: ${errorData.message}`)
+  }
 
-      type Post {
-        body: String
-        id: Int
-        title: String
-        userId: Int
-      }
+  return response.json()
+}
 
-      type Comment {
-        body: String
-        email: String
-        id: Int
-        name: String
-        postId: Int
-      }
-
-      type Query {
-        comment(id: Int!): Comment @http(path: "/comments/{{.args.id}}")
-        comments: [Comment] @http(path: "/comments")
-        photo(id: Int!): Photo @http(path: "/photos/{{.args.id}}")
-        photos: [Photo] @http(path: "/photos")
-        post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
-        posts: [Post] @http(path: "/posts")
-        todo(id: Int!): Todo @http(path: "/todos/{{.args.id}}")
-        todos: [Todo] @http(path: "/todos")
-        user(id: Int!): User @http(path: "/users/{{.args.id}}")
-        users: [User] @http(path: "/users")
-      }
-
-      type Todo {
-        completed: Boolean
-        id: Int
-        title: String
-        userId: Int
-      }
-
-      type User {
-        address: Address
-        company: Company
-        email: String
-        id: Int
-        name: String
-        phone: String
-        username: String
-        website: String
-      }
-    `,
-  },
+const schema = defineSchema({
+  query: defineQuery({
+    // Define any queries if needed
+  }),
+  mutation: defineMutation({
+    publishPost: {
+      type: "String",
+      args: {
+        title: "String!",
+        content: "String!",
+        platform: "String!",
+        token: "String!",
+        publicationId: "String",
+      },
+      resolve: async (_: any, {title, content, platform, token, publicationId}: any) => {
+        if (platform === "hashnode") {
+          const result = await postToHashnode(title, content, publicationId, token)
+          return JSON.stringify(result)
+        } else if (platform === "devto") {
+          const result = await postToDevto(title, content, token)
+          return JSON.stringify(result)
+        } else {
+          throw new Error("Unsupported platform")
+        }
+      },
+    },
+  }),
 })
+
+export default schema

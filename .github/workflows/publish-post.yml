@@ -1,4 +1,4 @@
-name: Publish Posts
+name: CI
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  publish:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
