@@ -576,3 +576,8 @@ pre.prism-code {
 div[class*="codeBlockContent"] div[class*="buttonGroup"] {
   display: none !important;
 }
+
+
+span.token.tag.script.language-javascript {
+  color: #fff!important;
+}
