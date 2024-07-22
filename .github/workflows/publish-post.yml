@@ -1,0 +1,26 @@
+# .github/workflows/publish.yml
+name: Publish Posts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+    - name: Install dependencies
+      run: yarn install
+    - name: Validate Tailcall config
+      run: yarn tailcall:validate
+    - name: Publish Post
+      run: |
+        yarn start -- publishPostToHashnode --input '{"title": "Your Post Title", "body": "Your post body"}'
+        yarn start -- publishPostToDevTo --input '{"title": "Your Post Title", "body": "Your post body"}'
