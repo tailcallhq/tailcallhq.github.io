@@ -30,7 +30,7 @@ jobs:
         run: |
           npm install
           npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
-          cd ./publish-hashnode
+          cd ./publish-externals
           npm run generate
           cd ..
           npm run typecheck
@@ -49,13 +49,16 @@ jobs:
           files: |
             blog/**/*.{md,mdx}
 
-      - name: Publish to Hashnode 📝
+      - name: Publish to Hashnode and Dev.to 📝
         if: github.ref == 'refs/heads/develop' && steps.changed-markdown-files.outputs.any_changed == 'true'
         env:
           HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
           HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
           CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY}}
+          DEVTO_ORG_ID: ${{secrets.DEVTO_ORG_ID}}
+          DEVTO_ORG_NAME: ${{secrets.DEVTO_ORG_NAME}}
         run: |
-          cd ./publish-hashnode 
+          cd ./publish-externals
           npm run generate
           npx --yes tsx ./src/index.ts "$CHANGED_FILES"

@@ -1,5 +1,6 @@
 import {themes as prismThemes} from "prism-react-renderer"
 import type * as Preset from "@docusaurus/preset-classic"
+import prismTheme from "./src/theme/CodeBlock/theme"
 
 const title = "Tailcall"
 const organization = "tailcallhq"
@@ -111,9 +112,9 @@ export default {
       ],
     },
     prism: {
-      theme: prismThemes.oneLight,
+      theme: prismTheme,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ["protobuf"],
+      additionalLanguages: ["protobuf", "json"],
     },
     colorMode: {
       disableSwitch: true,
@@ -237,6 +238,16 @@ export default {
         highlightResult: true,
       },
     ],
+    // [
+    //   "@docusaurus/plugin-ideal-image",
+    //   {
+    //     // quality: 70,
+    //     // max: 1030, // max resized image's size.
+    //     // min: 640, // min resized image's size. if original is lower, use that size.
+    //     // steps: 2, // the max number of images generated between min and max (inclusive)
+    //     disableInDev: false,
+    //   },
+    // ], causing problem in layouts and image loads
     async function myPlugin() {
       return {
         name: "docusaurus-tailwindcss",
