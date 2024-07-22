@@ -12,5 +12,7 @@
     "strictPropertyInitialization": true, // Ensure class properties are initialized in the constructor
     "noImplicitThis": true, // Raise error on 'this' expressions with an implied 'any' type
     "alwaysStrict": true // Parse in strict mode and emit "use strict" for each source file
-  }
+  },
+  "include": ["src/**/*", "tailcall.config.ts"],
+  "exclude": ["node_modules", "build"]
 }

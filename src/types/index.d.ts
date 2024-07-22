@@ -116,3 +116,5 @@ type SidebarConfig = {
 
 declare module "docusaurus-lunr-search/src/theme/SearchBar"
 declare module "react-platform-js"
+declare module "@docusaurus/theme-classic"
+declare module "@docusaurus/module-type-aliases"

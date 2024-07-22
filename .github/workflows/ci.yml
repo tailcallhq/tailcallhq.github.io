@@ -1,64 +1,38 @@
 name: CI
 
 on:
-  repository_dispatch:
-    types: build-and-deploy
   push:
     branches:
-      - "**"
-  pull_request:
-    branches: [develop]
-    types: [opened, reopened, synchronize]
+      - main
 
 jobs:
-  build-and-deploy:
-    concurrency: ci-${{ github.ref }}
+  build_and_deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          fetch-depth: 0
+          node-version: "18.x"
 
-      - name: Check spelling
-        uses: codespell-project/actions-codespell@v2
-        with:
-          ignore_words_file: .github/codespell-ignore
-          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock,*.excalidraw,*.graphql,./blog-publisher/generated/graphql.ts
+      - name: Install dependencies
+        run: yarn install
 
-      - name: Install and Build 🔧
-        run: |
-          npm install
-          npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
-          cd ./publish-externals
-          npm run generate
-          cd ..
-          npm run typecheck
-          npm run build
+      - name: Build project
+        run: yarn build
 
-      - name: Deploy 🚀
-        if: github.ref == 'refs/heads/develop'
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build
-
-      - name: Get changed markdown files
-        id: changed-markdown-files
-        uses: tj-actions/changed-files@v44
-        with:
-          files: |
-            blog/**/*.{md,mdx}
-
-      - name: Publish to Hashnode and Dev.to 📝
-        if: github.ref == 'refs/heads/develop' && steps.changed-markdown-files.outputs.any_changed == 'true'
+      - name: Publish to Hashnode
+        run: yarn publish:hashnode
         env:
           HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
           HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
-          CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
-          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY}}
-          DEVTO_ORG_ID: ${{secrets.DEVTO_ORG_ID}}
-          DEVTO_ORG_NAME: ${{secrets.DEVTO_ORG_NAME}}
-        run: |
-          cd ./publish-externals
-          npm run generate
-          npx --yes tsx ./src/index.ts "$CHANGED_FILES"
+
+      - name: Publish to Dev.to
+        run: yarn publish:devto
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+          DEVTO_ORG_ID: ${{ secrets.DEVTO_ORG_ID }}
+          DEVTO_ORG_NAME: ${{ secrets.DEVTO_ORG_NAME }}
