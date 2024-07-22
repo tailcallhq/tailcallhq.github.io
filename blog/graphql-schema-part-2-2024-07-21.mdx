@@ -11,26 +11,26 @@ image: /images/graphql/graphql-schema-structure.png
 hide_table_of_contents: true
 slug: graphql-schema-part-2
 ---
-import Quiz from '../src/components/quiz/schema-quiz.tsx'
+
+import Quiz from "../src/components/quiz/schema-quiz.tsx"
 
 ![GraphQL Schema Structure](../static/images/graphql/graphql-schema-structure.png)
 
-In our [previous post](https://tailcall.run/blog/graphql-schema/),  scalable GraphQL schema is critical for building production-ready APIs that can evolve with your application's needs. In this post, we will dive deeper on how to Continuously evolve your schema to meet your application's changing requirements without Hard versioning.
+In our [previous post](https://tailcall.run/blog/graphql-schema/), scalable GraphQL schema is critical for building production-ready APIs that can evolve with your application's needs. In this post, we will dive deeper on how to Continuously evolve your schema to meet your application's changing requirements without Hard versioning.
 
 <!-- truncate -->
 
-You know that feeling when you're working on a project, and suddenly you realize your schema needs to change? Maybe you need to add a new field, modify an existing one, or even remove something entirely. It's enough to make any developer break out in a cold sweat, right? 
+You know that feeling when you're working on a project, and suddenly you realize your schema needs to change? Maybe you need to add a new field, modify an existing one, or even remove something entirely. It's enough to make any developer break out in a cold sweat, right?
 
 But fear not! I'm here to show you how to evolve your schema like a pro, keeping your API fresh and exciting without causing your clients to tear their hair out.
 
 ## The Good, The Bad, and The Ugly of Schema Changes
 
-
 Not all changes are created equal. In this section, we’ll analyze a few different types of changes and what makes them safe or unsafe.
 First things first, let's break down the types of changes we might make to our schema:
 
 1. **Safe Changes:** These are the golden children of schema evolution. You can make these changes anytime, and your clients won't even bat an eyelash. Adding new fields or types? Go for it!
-2. **Dangerous Changes:** These are the sneaky ones. They might not break anything outright, but they can cause subtle issues that'll have your clients scratching their heads. We'll need to tread carefully here.
+2. **Dangerous Changes:** These are the sneaky ones. They might not break anything outright, but they can cause subtle issues that'll have your clients scratching their heads. We'll need to proceed carefully here.
 3. **Breaking Changes:** The name says it all. These changes will send your clients' applications crashing down faster than you can say "GraphQL". We want to avoid these like the plague, but sometimes they're necessary. Don't worry, I'll show you how to handle them like a pro.
 
 ## Adding Without Breaking: The Art of Additive Changes
@@ -47,15 +47,19 @@ Adding optional arguments is generally safe - it's like offering your clients a 
 +   products(category: String, inStock: Boolean): [Product!]!
   }
 ```
+
 See what we did there? We added an optional `inStock` argument. Seems harmless, right?
 
 Let's dive deeper into why changing the behavior of a resolver when an optional argument isn't provided can be problematic:
+
 ```graphql
 type Query {
   products(category: String, inStock: Boolean): [Product!]!
 }
 ```
+
 Imagine you have clients that have been using this query:
+
 ```graphql
 query {
   products(category: "Electronics") {
@@ -64,13 +68,15 @@ query {
   }
 }
 ```
+
 If your resolver suddenly starts filtering out out-of-stock products when `inStock` isn't provided, these clients will unexpectedly receive fewer results. This could break their UI or data processing logic.
 
 Instead, maintain backwards compatibility by keeping the default behavior the same
 
 ### The Required Argument Trap
+
 Now, this is where things get spicy. Adding a required argument is almost always a breaking change. But fear not! There's a way out:
-  
+
 ```diff
   type Query {
 -   products(category: String): [Product!]!
@@ -79,7 +85,6 @@ Now, this is where things get spicy. Adding a required argument is almost always
 ```
 
 This change is breaking, but it doesn't have to be. You can provide a default value for the new argument to keep your existing clients happy.
-
 
 ```diff
 type Query {
@@ -91,11 +96,13 @@ type Query {
 See that `= POPULARITY`? That's your get-out-of-jail-free card. By providing a default value, you've made this addition safe. Existing clients will use the default, and new clients can take advantage of the sorting option.
 
 Let's expand on why providing a default value for new required arguments is so crucial:
+
 ```graphql
 type Query {
   products(category: String, sortBy: SortOption! = POPULARITY): [Product!]!
 }
 ```
+
 This approach offers several benefits:
 
 1. **Backward Compatibility**: Existing clients that don't include the sortBy argument will continue to work without modification.
@@ -104,13 +111,15 @@ This approach offers several benefits:
 4. **Flexibility**: You can change the default sorting in the future without breaking existing queries.
 
 :::tip
- Always provide a default value for new required arguments to avoid breaking changes.
+Always provide a default value for new required arguments to avoid breaking changes.
 :::
 
 ## The Interface and Union Twist
+
 Now, let's talk about some trickier additive changes that can catch you off guard if you're not careful.
 
 ### Adding New Interface Implementations
+
 Adding a new type that implements an existing interface might seem harmless, but it can cause some unexpected behavior. Check this out:
 
 ```graphql
@@ -156,6 +165,7 @@ query {
   }
 }
 ```
+
 Without proper type checking, clients might encounter these issues:
 
 1. **Runtime Errors:** If a client assumes all Node types have only a name field, they might try to access employees on a User or Team, causing errors.
@@ -167,28 +177,29 @@ To mitigate these issues:
 1. Use TypeScript or Flow on the client-side to catch type errors at compile-time.
 2. Implement exhaustive type checking in your client code:
 
-
 ```typescript
 function handleNode(node: Node) {
   switch (node.__typename) {
-    case 'User':
-      return handleUser(node);
-    case 'Team':
-      return handleTeam(node);
-    case 'Organization':
-      return handleOrganization(node);
+    case "User":
+      return handleUser(node)
+    case "Team":
+      return handleTeam(node)
+    case "Organization":
+      return handleOrganization(node)
     default:
-      const _exhaustiveCheck: never = node;
-      throw new Error(`Unhandled node type: ${(_exhaustiveCheck as any).__typename}`);
+      const _exhaustiveCheck: never = node
+      throw new Error(`Unhandled node type: ${(_exhaustiveCheck as any).__typename}`)
   }
 }
 ```
+
 This approach ensures that if a new type is added in the future, TypeScript will raise a compile-time error, prompting developers to update their code.
 
 ### The Union Expansion Conundrum
+
 Similar to interfaces, adding new members to a union can cause runtime surprises. Consider this:
 
-```diff 
+```diff
 -  union SearchResult = User | Post
 +  union SearchResult = User | Post | Comment
 ```
@@ -207,37 +218,39 @@ To handle this gracefully:
 
 1. Implement a fallback UI component for unknown types:
 
-    ```jsx
-    function SearchResultItem({ result }) {
-      switch (result.__typename) {
-        case 'User':
-          return <UserResult user={result} />;
-        case 'Post':
-          return <PostResult post={result} />;
-        case 'Comment':
-          return <CommentResult comment={result} />;
-        default:
-          return <UnknownResultType type={result.__typename} />;
-      }
-    }
-    ```
+   ```jsx
+   function SearchResultItem({result}) {
+     switch (result.__typename) {
+       case "User":
+         return <UserResult user={result} />
+       case "Post":
+         return <PostResult post={result} />
+       case "Comment":
+         return <CommentResult comment={result} />
+       default:
+         return <UnknownResultType type={result.__typename} />
+     }
+   }
+   ```
+
 2. Update analytics code to handle unknown types:
 
-    ```javascript
-    function trackSearchResult(result) {
-      switch (result.__typename) {
-        case 'User':
-        case 'Post':
-        case 'Comment':
-          analytics.track(`search_result_${result.__typename.toLowerCase()}`);
-          break;
-        default:
-          analytics.track('search_result_unknown', { type: result.__typename });
-      }
-    }
-    ```
+   ```javascript
+   function trackSearchResult(result) {
+     switch (result.__typename) {
+       case "User":
+       case "Post":
+       case "Comment":
+         analytics.track(`search_result_${result.__typename.toLowerCase()}`)
+         break
+       default:
+         analytics.track("search_result_unknown", {type: result.__typename})
+     }
+   }
+   ```
+
 3. Encourage clients to use introspection queries to stay updated on schema changes:
-  
+
 ```graphql
 query {
   __type(name: "SearchResult") {
@@ -248,9 +261,11 @@ query {
   }
 }
 ```
+
 By implementing these strategies, clients can gracefully handle new union members without breaking existing functionality.
 
 ### The Enum Evolution
+
 Adding new enum values seems innocent enough, but it can impact client-side logic. Let's look at an example:
 
 ```diff
@@ -265,21 +280,24 @@ Adding new enum values seems innocent enough, but it can impact client-side logi
 Clients that were using exhaustive switches might now have incomplete logic. Always communicate enum changes clearly to your API consumers.
 
 ## The Modification Minefield
-Now, let's talk about modifying existing parts of your schema. This is where things can get really hairy. For example, changing a field’s type or changing the name of a type is a big breaking change.
 
+Now, let's talk about modifying existing parts of your schema. This is where things can get really hairy. For example, changing a field’s type or changing the name of a type is a big breaking change.
 
 :::important
 Almost all modifications in place to a schema are **breaking**
 :::
 
 ### The Default Value Dilemma
+
 Changing default values might seem innocent, but it can cause some serious headaches. Consider this:
+
 ```diff
 type Query {
 -  products(category: String, showOutOfStock: Boolean = False): [Product!]!
 +  products(category: String, showOutOfStock: Boolean = True): [Product!]!
 }
 ```
+
 Changing the default value of an argument or input field is unlikely to be a breaking change in terms of the schema itself, but is very likely to cause issues at runtime if the default value affects the runtime behavior of the field.
 
 Avoid this change in general, but it may be possible to achieve if the behavior of the field does not change.
@@ -290,6 +308,7 @@ Changing the description of fields, types and any member is unlikely to cause an
 harm to clients. Clients should not depend on schema descriptions for runtime logic!
 
 ## The Subtraction Subterfuge
+
 Removing things from your schema is almost always a breaking change. If you remove a field, type, or argument, clients that depend on it will break. You can't just take things away without consequences.
 
 :::important
@@ -301,6 +320,7 @@ But sometimes, it's necessary. Here's how to do it without causing a riot.
 ### The Field Farewell
 
 Let's say we want to remove a field because it's causing performance issues. Here's the smart way to do it:
+
 1. Introduce a replacement
 1. Deprecate the old field
 1. Wait (patiently!)
@@ -334,7 +354,7 @@ is deprecated, use `allProducts` for products and `featuredProducts` to get prod
 ```
 
 If you need to make a change to an existing field, because arguments can’t be depre- cated just yet, you should indicate that the argument is deprecated through its description.
-  
+
 ```diff
 type Query {
 - products(first: Int!, featured: Boolean): String!
@@ -361,12 +381,12 @@ Sometimes, you need to remove an entire type from your schema. This is a major o
 
 1. First, deprecate all fields that return this type:
 
-    ```graphql
-    type Query {
-      oldUser(id: ID!): OldUser @deprecated(reason: "Use `user` query with new User type instead")
-      user(id: ID!): User
-    }
-    ```
+   ```graphql
+   type Query {
+     oldUser(id: ID!): OldUser @deprecated(reason: "Use `user` query with new User type instead")
+     user(id: ID!): User
+   }
+   ```
 
 2. If the type is part of a union or implements an interface, you'll need to be extra cautious. These can't be easily deprecated, so clear communication is key.
 3. Finally, after a long deprecation period and when usage has dropped to zero, you can remove the type entirely.
@@ -377,6 +397,7 @@ Removing a type is even trickier when it’s part of union types or implements i
 Your best bet in these cases are to either keep this type as part of unions and through interfaces or to communicate that change very carefully through descriptions and out of band communication like documentation and emails.
 
 ### Changing a Field Type
+
 Changing a field’s type is not a change we can make easily. Once again, approaching the change in an additive is often your best bet.
 
 ```diff
@@ -385,6 +406,7 @@ type User {
 + bestFriendObject: User!
 }
 ```
+
 As you might have noticed, the downside of additive changes is that often the best names are already taken. If wanted, you may remove the original field and reintroduce it under the new object at that point.
 
 ```diff
@@ -421,37 +443,39 @@ Remember, a great GraphQL schema is never truly finished – it's a living, brea
 
 Now that we've explored the intricacies of evolving GraphQL schemas, let's put your knowledge to the test! Can you correctly identify which changes are safe, dangerous, or breaking? Take the quiz below to find out!
 
-<Quiz questions= {[
-                   {
-                     id: 1,
-                     text: "Adding a new field to a GraphQL schema is a:",
-                     options: ["Safe change", "Dangerous change", "Breaking change"],
-                     correctAnswer: 0
-                   },
-                   {
-                     id: 2,
-                     text: "Removing a field from a GraphQL schema is a:",
-                     options: ["Safe change", "Dangerous change", "Breaking change"],
-                     correctAnswer: 2
-                   },
-                   {
-                     id: 3,
-                     text: "Adding a new required argument to an existing field without a default value is a:",
-                     options: ["Safe change", "Dangerous change", "Breaking change"],
-                     correctAnswer: 2
-                   },
-                   {
-                     id: 4,
-                     text: "Changing a field's return type from a specific type to a more general type (e.g., String to ID) is a:",
-                     options: ["Safe change", "Dangerous change", "Breaking change"],
-                     correctAnswer: 1
-                   },
-                   {
-                     id: 5,
-                     text: "Adding a new type that implements an existing interface is a:",
-                     options: ["Safe change", "Dangerous change", "Breaking change"],
-                     correctAnswer: 1
-                   }
-                 ]}/>
+<Quiz
+  questions={[
+    {
+      id: 1,
+      text: "Adding a new field to a GraphQL schema is a:",
+      options: ["Safe change", "Dangerous change", "Breaking change"],
+      correctAnswer: 0,
+    },
+    {
+      id: 2,
+      text: "Removing a field from a GraphQL schema is a:",
+      options: ["Safe change", "Dangerous change", "Breaking change"],
+      correctAnswer: 2,
+    },
+    {
+      id: 3,
+      text: "Adding a new required argument to an existing field without a default value is a:",
+      options: ["Safe change", "Dangerous change", "Breaking change"],
+      correctAnswer: 2,
+    },
+    {
+      id: 4,
+      text: "Changing a field's return type from a specific type to a more general type (e.g., String to ID) is a:",
+      options: ["Safe change", "Dangerous change", "Breaking change"],
+      correctAnswer: 1,
+    },
+    {
+      id: 5,
+      text: "Adding a new type that implements an existing interface is a:",
+      options: ["Safe change", "Dangerous change", "Breaking change"],
+      correctAnswer: 1,
+    },
+  ]}
+/>
 
 Remember, understanding the impact of schema changes is crucial for maintaining a robust and client-friendly GraphQL API. Keep practicing and always consider the potential consequences of your schema modifications!
