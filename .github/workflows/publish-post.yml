@@ -1,4 +1,3 @@
-
 name: Publish Posts
 
 on:
@@ -11,29 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
 
-    - name: Install dependencies
-      run: yarn install
+      - name: Install dependencies
+        run: yarn install
 
-    - name: Build project
-      run: yarn build
+      - name: Build project
+        run: yarn build
 
-    - name: Publish to Hashnode
-      run: yarn publish:hashnode
-      env:
-        HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
-        HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+      - name: Publish to Hashnode
+        run: yarn publish:hashnode
+        env:
+          HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
 
-    - name: Publish to Dev.to
-      run: yarn publish:devto
-      env:
-        DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
-        DEVTO_ORG_ID: ${{ secrets.DEVTO_ORG_ID }}
-        DEVTO_ORG_NAME: ${{ secrets.DEVTO_ORG_NAME }}
+      - name: Publish to Dev.to
+        run: yarn publish:devto
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+          DEVTO_ORG_ID: ${{ secrets.DEVTO_ORG_ID }}
+          DEVTO_ORG_NAME: ${{ secrets.DEVTO_ORG_NAME }}
