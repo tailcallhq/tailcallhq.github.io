@@ -1,0 +1,87 @@
+{
+    "schema": "schema @server @upstream(baseURL: \"https://jsonplaceholder.typicode.com\") {\n  query: Query\n}\n\ntype Address {\n  city: String\n  geo: Geo\n  street: String\n  suite: String\n  zipcode: String\n}\n\ntype Company {\n  bs: String\n  catchPhrase: String\n  name: String\n}\n\ntype Geo {\n  lat: String\n  lng: String\n}\n\ntype Photo {\n  albumId: Int\n  id: Int\n  thumbnailUrl: String\n  title: String\n  url: String\n}\n\ntype Post {\n  body: String\n  id: Int\n  title: String\n  userId: Int\n  user: User @call(path: \"/users/{{.args.userId}}\")\n}\n\ntype Comment {\n  body: String\n  email: String\n  id: Int\n  name: String\n  postId: Int\n  post: Post @call(path: \"/posts/{{.args.postId}}\")\n}\n\ntype Query {\n  comment(id: Int!): Comment @http(path: \"/comments/{{.args.id}}\")\n  comments: [Comment] @http(path: \"/comments\")\n  photo(id: Int!): Photo @http(path: \"/photos/{{.args.id}}\")\n  photos: [Photo] @http(path: \"/photos\")\n  post(id: Int!): Post @http(path: \"/posts/{{.args.id}}\")\n  posts: [Post] @http(path: \"/posts\")\n  todo(id: Int!): Todo @http(path: \"/todos/{{.args.id}}\")\n  todos: [Todo] @http(path: \"/todos\")\n  user(id: Int!): User @http(path: \"/users/{{.args.id}}\")\n  users: [User] @http(path: \"/users\")\n}\n\ntype Todo {\n  completed: Boolean\n  id: Int\n  title: String\n  userId: Int\n  user: User @call(path: \"/users/{{.args.userId}}\")\n}\n\ntype User {\n  address: Address\n  company: Company\n  email: String\n  id: Int\n  name: String\n  phone: String\n  username: String\n  website: String\n  posts: [Post] @call(path: \"/posts?userId={{.args.id}}\")\n  todos: [Todo] @call(path: \"/todos?userId={{.args.id}}\")\n}",
+    "types": {
+      "Address": {
+        "city": "String",
+        "geo": "Geo",
+        "street": "String",
+        "suite": "String",
+        "zipcode": "String"
+      },
+      "Company": {
+        "bs": "String",
+        "catchPhrase": "String",
+        "name": "String"
+      },
+      "Geo": {
+        "lat": "String",
+        "lng": "String"
+      },
+      "Photo": {
+        "albumId": "Int",
+        "id": "Int",
+        "thumbnailUrl": "String",
+        "title": "String",
+        "url": "String"
+      },
+      "Post": {
+        "body": "String",
+        "id": "Int",
+        "title": "String",
+        "userId": "Int",
+        "user": "User"
+      },
+      "Comment": {
+        "body": "String",
+        "email": "String",
+        "id": "Int",
+        "name": "String",
+        "postId": "Int",
+        "post": "Post"
+      },
+      "Query": {
+        "comment": "Comment",
+        "comments": "[Comment]",
+        "photo": "Photo",
+        "photos": "[Photo]",
+        "post": "Post",
+        "posts": "[Post]",
+        "todo": "Todo",
+        "todos": "[Todo]",
+        "user": "User",
+        "users": "[User]"
+      },
+      "Todo": {
+        "completed": "Boolean",
+        "id": "Int",
+        "title": "String",
+        "userId": "Int",
+        "user": "User"
+      },
+      "User": {
+        "address": "Address",
+        "company": "Company",
+        "email": "String",
+        "id": "Int",
+        "name": "String",
+        "phone": "String",
+        "username": "String",
+        "website": "String",
+        "posts": "[Post]",
+        "todos": "[Todo]"
+      }
+    },
+    "queries": {
+      "comment": "/comments/{{.args.id}}",
+      "comments": "/comments",
+      "photo": "/photos/{{.args.id}}",
+      "photos": "/photos",
+      "post": "/posts/{{.args.id}}",
+      "posts": "/posts",
+      "todo": "/todos/{{.args.id}}",
+      "todos": "/todos",
+      "user": "/users/{{.args.id}}",
+      "users": "/users"
+    }
+  }
+  
