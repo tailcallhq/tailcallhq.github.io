@@ -1,4 +1,4 @@
-import {themes as prismThemes} from "prism-react-renderer"
+import { themes as prismThemes } from "prism-react-renderer"
 import type * as Preset from "@docusaurus/preset-classic"
 import prismTheme from "./src/theme/CodeBlock/theme"
 
@@ -10,6 +10,7 @@ export default {
   title,
   trailingSlash: true,
   tagline: "GraphQL platform engineered for scale",
+  stylesheets: ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'],
   headTags: [
     {
       tagName: "script",
@@ -94,12 +95,12 @@ export default {
         height: "2.5rem",
       },
       items: [
-        {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
+        { to: "/", label: "Home", position: "left", activeBaseRegex: "^/$" },
         // {to: "/about", label: "About", position: "left"},
         // {to: "/enterprise", label: "Enterprise", position: "left"},
-        {to: "/docs", label: "Docs", position: "left"},
-        {to: "/graphql", label: "Learn", position: "left"},
-        {to: "/blog", label: "Blog", position: "left"},
+        { to: "/docs", label: "Docs", position: "left" },
+        { to: "/graphql", label: "Learn", position: "left" },
+        { to: "/blog", label: "Blog", position: "left" },
         {
           href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
@@ -251,7 +252,7 @@ export default {
     async function myPlugin() {
       return {
         name: "docusaurus-tailwindcss",
-        configurePostCss(postcssOptions: {[key: string]: any}) {
+        configurePostCss(postcssOptions: { [key: string]: any }) {
           // Appends TailwindCSS and AutoPrefixer.
           postcssOptions.plugins.push(require("tailwindcss"))
           postcssOptions.plugins.push(require("autoprefixer"))

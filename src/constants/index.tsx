@@ -5,6 +5,7 @@ export const tailCallBenchmarkUrl = "https://github.com/tailcallhq/graphql-bench
 export const tailCallBlogUrl = "https://blog.tailcall.run/"
 export const codeSandboxUrl = "https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
 export const zapierLink = "https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/"
+export const tailcallConfigSchema = "https://raw.githubusercontent.com/tailcallhq/tailcall/main/generated/.tailcallrc.schema.json"
 
 export const partnerImages: PartnerImage[] = [
   {
@@ -37,7 +38,7 @@ export const partnerImages: PartnerImage[] = [
   },
 ]
 
-const Highlight = ({text}: {text: string}) => (
+const Highlight = ({ text }: { text: string }) => (
   <>
     <span className="text-content-tiny font-bold sm:text-title-tiny lg:text-title-small bg-tailCall-yellow rounded-[4px] sm:rounded-md px-SPACE_01">
       {text}
@@ -380,7 +381,7 @@ export const pricingPlans: PricingPlans[] = [
 ]
 
 export const radioOptions: RadioOptions[] = [
-  {id: "1", name: "Evaluating", value: "evaluating"},
+  { id: "1", name: "Evaluating", value: "evaluating" },
   {
     id: "2",
     name: "Monolith",
