@@ -60,7 +60,7 @@
     "@typescript-eslint/parser": "^7.14.1",
     "docusaurus-plugin-remote-content": "^4.0.0",
     "eslint": "^8.56.0",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "prettier-plugin-sh": "^0.14.0",
     "tailcall": "^0.0.0",
     "typescript": "~5.5.2"
