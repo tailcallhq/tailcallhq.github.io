@@ -20,7 +20,7 @@ const TailcallConfigForm = () => {
 
     return (
         <div className="m-8 ">
-            <Form className="config-form" schema={schema} formContext={formContext} validator={validator} focusOnFirstError liveValidate/>
+            <Form className="config-form" schema={schema} formContext={formContext} validator={validator} focusOnFirstError liveValidate />
         </div>
     )
 }

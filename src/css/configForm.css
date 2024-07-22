@@ -2,4 +2,16 @@
     * {
         font-family: Space Grotesk, sans-serif !important;
     }
+
+    hr {
+        display: none;
+    }
+
+    h5 {
+        font-weight: 700;
+    }
+
+    /* *>.MuiGrid-item {
+        padding-top: 0px !important;
+    } */
 }
