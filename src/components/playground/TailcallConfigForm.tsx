@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Form from '@rjsf/core';
+import Form from '@rjsf/mui';
 import axios from "axios";
 import { tailcallConfigSchema } from "@site/src/constants";
 import validator from '@rjsf/validator-ajv8';
