@@ -35,6 +35,7 @@
         display: flex;
         align-items: center;
         margin-bottom: 8px;
+        font-size: 1.5rem;
       }
       
       .field-label-text {
@@ -44,10 +45,10 @@
       }
       
       .info-icon {
+        margin-top: 4px;
         margin-left: 4px;
       }
-      
-      .field-body {
-        /* Add any necessary styling for the field body */
+      .field-body>div{
+        width: 100%;
       }
 }
