@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import {Check, X, Frown} from "lucide-react"
+import {analyticsHandler} from "@site/src/utils"
 
 type Question = {
   id: number
@@ -26,6 +27,7 @@ const Quiz: React.FC<QuizProps> = ({questions, title}) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
 
   const handleAnswerClick = (selectedOption: number) => {
+    analyticsHandler(title, "Click", "Answer Clicked")
     setSelectedAnswer(selectedOption)
 
     if (selectedOption === questions[currentQuestion].correctAnswer) {
@@ -44,6 +46,7 @@ const Quiz: React.FC<QuizProps> = ({questions, title}) => {
   }
 
   const resetQuiz = () => {
+    analyticsHandler(title, "Click", "reset Clicked")
     setCurrentQuestion(0)
     setScore(0)
     setShowScore(false)
@@ -51,6 +54,7 @@ const Quiz: React.FC<QuizProps> = ({questions, title}) => {
   }
 
   const shareScore = (platform: "twitter" | "linkedin", score: number, questionsLength: number, title: string) => {
+    analyticsHandler(title, "score", "score shared")
     const text = `I scored ${score} out of ${questionsLength} on the ${title} Quiz! Test your knowledge too!`
     const url = document.location.href
     let shareUrl = ""
