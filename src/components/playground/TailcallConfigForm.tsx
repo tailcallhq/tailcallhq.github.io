@@ -92,28 +92,29 @@ const formContext = {
             </button>
           </div>
         </Form>
-  
-        <Modal
-          open={isModalOpen}
-          onClose={closeModal}
-          aria-labelledby="modal-title"
-          aria-describedby="modal-description"
-        >
-          <Box className="bg-white p-6 m-6 rounded-lg shadow-lg">
-            <h2 id="modal-title" className="text-xl font-bold mb-4">
-              Form Submitted Successfully
-            </h2>
-            <p id="modal-description">
-              Your form has been submitted successfully!
-            </p>
-            <button
-              onClick={closeModal}
-              className="mt-4 bg-black text-white py-2 px-4 rounded-lg"
+        <div className="modal-box">
+            <Modal
+            open={isModalOpen}
+            onClose={closeModal}
+            aria-labelledby="modal-title"
+            aria-describedby="modal-description"
             >
-              Close
-            </button>
-          </Box>
-        </Modal>
+                <Box className="bg-white p-6 m-6 rounded-lg shadow-lg">
+                    <h2 id="modal-title" className="text-xl font-bold mb-4">
+                    Form Submitted Successfully
+                    </h2>
+                    <p id="modal-description">
+                    Your form has been submitted successfully!
+                    </p>
+                    <button
+                    onClick={closeModal}
+                    className="mt-4 bg-black text-white py-2 px-4 rounded-lg"
+                    >
+                    Close
+                    </button>
+                </Box>
+            </Modal>
+        </div>
       </div>
     );
   };
