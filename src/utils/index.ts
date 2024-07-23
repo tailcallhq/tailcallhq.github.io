@@ -33,3 +33,15 @@ export const isValidURL = (url: string) => {
     return false
   }
 }
+
+export const downloadFile = (file: string, fileType: string, fileName: string) => {
+  const blobFile = new Blob([file], { type: fileType });
+  const url = URL.createObjectURL(blobFile);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}

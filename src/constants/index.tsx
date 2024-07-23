@@ -6,6 +6,7 @@ export const tailCallBlogUrl = "https://blog.tailcall.run/"
 export const codeSandboxUrl = "https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
 export const zapierLink = "https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/"
 export const tailcallConfigSchema = "https://raw.githubusercontent.com/tailcallhq/tailcall/main/generated/.tailcallrc.schema.json"
+export const configFileName = "tailcall_config";
 
 export const partnerImages: PartnerImage[] = [
   {
