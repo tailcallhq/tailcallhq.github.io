@@ -73,10 +73,6 @@ const TailcallConfigForm = () => {
     return null
   }
 
-  function ArrayFieldDescriptionTemplate() {
-    return null
-  }
-
   return (
     <div className="m-8">
       <Form
@@ -90,7 +86,7 @@ const TailcallConfigForm = () => {
         validator={validator}
         focusOnFirstError
         liveValidate
-        templates={{ FieldTemplate, TitleFieldTemplate, DescriptionFieldTemplate, ArrayFieldDescriptionTemplate }} // Use the custom FieldTemplate
+        templates={{ FieldTemplate, TitleFieldTemplate, DescriptionFieldTemplate }} // Use the custom FieldTemplate
       >
         <div className="flex items-center justify-center">
           <button type="submit" className="border-none py-5 px-8 rounded-lg bg-black text-white">
