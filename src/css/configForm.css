@@ -10,7 +10,10 @@
     h5 {
         font-weight: 700;
     }
-
+    button.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
     /* *>.MuiGrid-item {
         padding-top: 0px !important;
     } */

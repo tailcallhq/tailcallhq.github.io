@@ -16,6 +16,7 @@ const formContext = {
 const TailcallConfigForm = () => {
   const [schema, setSchema] = useState({})
   const [formData, setFormData] = useState({})
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   useEffect(() => {
     axios.get(`${tailcallConfigSchema}?v=${+new Date()}`).then((res) => setSchema(res.data))
@@ -23,10 +24,12 @@ const TailcallConfigForm = () => {
 
   const handleSubmit = ({formData}:any) => {
     console.log("Data submitted: ", formData)
+    setIsFormSubmitted(true)
   }
 
   const onFormDataChange = ({ formData }: any) => {
     setFormData(formData)
+    setIsFormSubmitted(false)
   }
 
   const downloadConfigJson = () => {
@@ -41,6 +44,7 @@ const TailcallConfigForm = () => {
 
   const handleError = (errors:any) => {
     console.log("Form errors: ", errors);
+    setIsFormSubmitted(false);
   };
 
   return (
@@ -58,14 +62,14 @@ const TailcallConfigForm = () => {
         liveValidate
       >
         <div className="flex items-center justify-center">
-          <button type='submit' className="bg-white border-none">
-            <LinkButton theme={Theme.Dark} title="Submit" />
+          <button type='submit' className="border-none py-5 px-8 rounded-lg bg-black text-white">
+            Submit
           </button>
-          <button type="button" onClick={downloadConfigJson} className="bg-white border-none">
-            <LinkButton theme={Theme.Dark} title="Download JSON Config" />
+          <button type="button" onClick={downloadConfigJson} className={`${isFormSubmitted?"bg-black text-white border-none":"opacity-50 cursor-not-allowed"} p-5 rounded-lg ml-3`} disabled={!isFormSubmitted}>
+            Download JSON Config
           </button>
-          <button type="button" onClick={downloadConfigYaml} className="bg-white border-none">
-            <LinkButton theme={Theme.Dark} title="Download YAML Config" />
+          <button type="button" onClick={downloadConfigYaml} className={`${isFormSubmitted?"bg-black text-white border-none":"opacity-50 cursor-not-allowed"} p-5 rounded-lg ml-3`} disabled={!isFormSubmitted}>
+            Download YAML Config
           </button>
         </div>
       </Form>
