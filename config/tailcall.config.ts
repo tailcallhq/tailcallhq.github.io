@@ -1,4 +1,4 @@
-import { TailcallConfig } from '@tailcallhq/tailcall';
+import {TailcallConfig} from "@tailcallhq/tailcall"
 
 const config: TailcallConfig = {
   schema: `
@@ -79,6 +79,6 @@ const config: TailcallConfig = {
       website: String
     }
   `,
-};
+}
 
-export default config;
+export default config
