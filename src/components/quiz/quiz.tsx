@@ -10,6 +10,7 @@ type Question = {
 
 type QuizProps = {
   questions: Question[]
+  title: string
 }
 
 const TwitterLogo = () => (
@@ -18,7 +19,7 @@ const TwitterLogo = () => (
   </svg>
 )
 
-const Quiz: React.FC<QuizProps> = ({questions}) => {
+const Quiz: React.FC<QuizProps> = ({questions, title}) => {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
   const [showScore, setShowScore] = useState(false)
@@ -49,8 +50,8 @@ const Quiz: React.FC<QuizProps> = ({questions}) => {
     setSelectedAnswer(null)
   }
 
-  const shareScore = (platform: "twitter" | "linkedin", score: number, questionsLength: number) => {
-    const text = `I scored ${score} out of ${questionsLength} on the GraphQL Schema Change Quiz! Test your knowledge too!`
+  const shareScore = (platform: "twitter" | "linkedin", score: number, questionsLength: number, title: string) => {
+    const text = `I scored ${score} out of ${questionsLength} on the ${title} Quiz! Test your knowledge too!`
     const url = document.location.href
     let shareUrl = ""
 
@@ -63,7 +64,7 @@ const Quiz: React.FC<QuizProps> = ({questions}) => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-gradient-to-r from-purple-100 to-blue-100 shadow-lg rounded-xl">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">GraphQL Schema Change Quiz</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">{title} Quiz!</h2>
       {showScore ? (
         <div className="text-center">
           <p className="text-2xl mb-4 font-semibold text-gray-700">
@@ -84,7 +85,7 @@ const Quiz: React.FC<QuizProps> = ({questions}) => {
           )}
           <div className="mt-6 space-y-3">
             <button
-              onClick={() => shareScore("twitter", score, questions.length)}
+              onClick={() => shareScore("twitter", score, questions.length, title)}
               className="w-full bg-black text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-800 transition-colors duration-300 shadow-md flex items-center justify-center"
             >
               <TwitterLogo /> Share on X (Twitter)
