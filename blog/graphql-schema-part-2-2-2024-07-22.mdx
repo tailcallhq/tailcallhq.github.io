@@ -1,0 +1,154 @@
+---
+title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 2.2
+authors:
+  - name: Amit Singh
+    title: Head of Growth and Strategy @ Tailcall
+    url: https://github.com/amitksingh1490
+    image_url: https://avatars.githubusercontent.com/u/23661702?v=5
+tags: [GraphQL, API, Schema, Design, Best Practices]
+description: Learn how to modify existing schema elements in GraphQL without causing disruptions.
+image: /images/graphql/graphql-schema-structure.png
+hide_table_of_contents: true
+slug: graphql-schema-part-2-2
+---
+
+import Quiz from "../src/components/quiz/quiz.tsx"
+
+![GraphQL Schema Structure](../static/images/graphql/graphql-schema-structure.png)
+
+## Modifying Without Breaking: Navigating the Modification Minefield
+
+In our [previous post](/blog/graphql-schema-part-2-1), we explored how to make additive changes to your GraphQL schema without causing disruptions. Now, we'll dive into the tricky territory of modifying existing schema elements.
+
+<!-- truncate -->
+
+## Recap of Additive Changes
+
+In [Part 2.1](/blog/graphql-schema-part-2-1), we discussed the importance of making additive changes to your GraphQL schema to expand its capabilities while maintaining backward compatibility. By adding new fields, types, and arguments, you can enhance your API without causing disruptions to existing clients. We also emphasized the importance of providing transition paths to ensure a smooth adoption process.
+
+### Safe, Dangerous, and Breaking Changes
+
+1. **Safe Changes:** Additive changes such as adding new fields or types that do not affect existing queries or functionality.
+2. **Dangerous Changes:** Modifications that might not break the schema immediately but can cause subtle issues, such as changing default values or making non-nullable fields nullable.
+3. **Breaking Changes:** Changes that will definitely break existing queries and require clients to update their code, such as removing fields or changing field types.
+
+## The Modification Minefield
+
+Now, let's talk about modifying existing parts of your schema. This is where things can get really hairy. For example, changing a field’s type or changing the name of a type is a big-breaking change.
+
+### The Default Value Dilemma
+
+Changing default values might seem innocent, but it can cause some serious headaches. Consider this:
+
+```diff
+type Query {
+-  products(category: String, showOutOfStock: Boolean = False): [Product!]!
++  products(category: String, showOutOfStock: Boolean = True): [Product!]!
+}
+```
+
+Changing the default value of an argument or input field is unlikely to be a breaking change in terms of the schema itself, but is very likely to cause issues at runtime if the default value affects the runtime behavior of the field.
+
+Avoid this change in general, but it may be possible to achieve if the behavior of the field does not change.
+
+### The Non-Null to Null Transformation
+
+This is one of the trickiest changes to make. You thought making a field non-null was a good idea, but now you need to change it back. Here's how to handle it:
+
+For scalar fields, you might be able to save your users from errors by returning the `default value` instead of null.
+
+For object types, sometimes it’s possible to use a `Default Object` when the result is null.
+
+This approach can help prevent null pointer exceptions on the client side.
+
+### Changing a Field Type
+
+Changing a field’s type is not a change we can make easily. Once again, approaching the change in an additive is often your best bet.
+
+```diff
+type User {
+  bestFriend: String! @deprecated(reason: “Use `bestFriendObject` instead.”)
++ bestFriendObject: User!
+}
+```
+
+As you might have noticed, the downside of additive changes is that often the best names are already taken. If wanted, you may remove the original field and reintroduce it under the new object at that point.
+
+```diff
+type User {
+- bestFriend: String! @deprecated(reason: “Use `bestFriendObject` instead.”)
+  bestFriendObject: User!
++ bestFriend: User!
+}
+```
+
+### Changing Description or Deprecation
+
+Changing the description of fields, types and any member is unlikely to cause any harm to clients. Clients should not depend on schema descriptions for runtime logic!
+
+## Quiz Time! 🎉
+
+<Quiz
+  title="GraphQL Schema Change"
+  questions={[
+    {
+      id: 1,
+      text: "Changing the default value of an argument is considered a:",
+      options: ["Safe change", "Dangerous change", "Breaking change", "Non-issue"],
+      correctAnswer: 1,
+    },
+    {
+      id: 2,
+      text: "When changing a field type from non-nullable to nullable, what should be considered to prevent client-side errors?",
+      options: [
+        "Updating the field's description",
+        "Implementing a fallback value in resolvers",
+        "Notifying clients via email",
+        "Adding a deprecation notice",
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 3,
+      text: "Which of the following changes is likely to cause the most disruption?",
+      options: [
+        "Changing a field's default value",
+        "Deprecating a field",
+        "Changing a field's type from String to ID",
+        "Adding a new optional argument",
+      ],
+      correctAnswer: 2,
+    },
+    {
+      id: 4,
+      text: "Modifying an existing field to be non-null is generally considered a:",
+      options: ["Safe change", "Dangerous change", "Breaking change", "Improvement"],
+      correctAnswer: 2,
+    },
+    {
+      id: 5,
+      text: "When changing a field's return type, what is the best approach to minimize client impact?",
+      options: [
+        "Immediately update the schema",
+        "Provide a new field with the updated type and deprecate the old one",
+        "Change the field type and notify clients afterward",
+        "Modify the resolver logic to handle both types",
+      ],
+      correctAnswer: 1,
+    },
+  ]}
+/>
+
+## Conclusion
+
+Modifying existing schema elements requires careful planning and execution to avoid breaking changes. By following the principles and strategies outlined in this article, you can confidently make necessary modifications while minimizing disruption to your clients.
+
+Remember these key takeaways:
+
+1. **Deprecate Cautiously**: Use deprecation notices, schema descriptions, and out-of-band communication to keep your clients informed about upcoming changes.
+2. **Provide Transition Paths**: When breaking changes are necessary, offer clear migration paths. This might involve introducing new fields alongside deprecated ones or providing new query structures that achieve the same results.
+3. **Leverage Schema Design Tools**: Use schema comparison tools like [GraphQL Editor](https://github.com/graphql-editor/graphql-editor).
+
+By treating your GraphQL schema as a product with its own lifecycle and evolution strategy, you can build APIs that are both powerful and adaptable. This approach allows you to innovate rapidly while providing a stable and reliable service to your clients.
+
+Stay tuned for the [next part](/blog/graphql-schema-part-2-3) of this series, where we will dive into removing schema elements and handling breaking changes!
