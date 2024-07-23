@@ -14,8 +14,6 @@
         opacity: 0.5;
         cursor: not-allowed;
     }
-    /* Add these styles to your configForm.css */
-
     .modal-box {
         position: absolute;
         top: 50%;
