@@ -556,3 +556,28 @@ nav.menu {
     box-shadow: none;
   }
 }
+
+span.token-line.theme-code-block-highlighted-line {
+  background: #545454;
+}
+
+.theme-code-block,
+pre.prism-code {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-right-radius: 1.5rem !important;
+  border-bottom-left-radius: 1.5rem !important;
+}
+
+[class*="codeBlockTitle"] {
+  display: none;
+}
+
+div[class*="codeBlockContent"] div[class*="buttonGroup"] {
+  display: none !important;
+}
+
+
+span.token.tag.script.language-javascript {
+  color: #fff!important;
+}
