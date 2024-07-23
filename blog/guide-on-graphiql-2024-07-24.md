@@ -73,7 +73,7 @@ Easily edit variables with autocomplete based on the ones declared in your query
 
 Check out the server's response here. It's super useful for handling lots of nested data, with built-in folding to keep things tidy and avoid getting lost in a sea of JSON.
 
-![resposne pane](/images/graphiql/response.png)
+![response pane](/images/graphiql/response.png)
 
 ## Setting Headers
 
