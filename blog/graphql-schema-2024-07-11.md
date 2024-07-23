@@ -488,4 +488,6 @@ By investing time in thoughtful schema design upfront, you'll create a solid fou
 
 Alright greatttt! You have successfully completed the first part of a very intricate series!! Pat yourslef and maybe high five your cat! Here are the links to the next blogs in the series that have already been published.
 
+![cat giving high five](../static/images/blog/cat-high-five-gif.webp)
+
 - [Next Part](/blog/graphql-schema-part-2-1)
