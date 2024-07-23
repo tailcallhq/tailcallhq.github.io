@@ -9,7 +9,7 @@ import {downloadFile} from "@site/src/utils"
 import Modal from "@mui/material/Modal"
 import Box from "@mui/material/Box"
 import FieldTemplate from "./FieldTemplate" // Import your custom FieldTemplate
-import {TitleFieldProps, UiSchema} from "@rjsf/utils"
+import {DescriptionFieldProps, TitleFieldProps, UiSchema} from "@rjsf/utils"
 
 const formContext = {
   className: "font-space-grotesk-imp",
@@ -69,8 +69,10 @@ const TailcallConfigForm = () => {
   function TitleFieldTemplate() {
     return null
   }
-  function DescriptionFieldTemplate() {
-    return null
+
+  function DescriptionFieldTemplate(props: DescriptionFieldProps) {
+    console.log(props)
+    return <span className="field-description">{props.description}</span>
   }
 
   return (
@@ -86,7 +88,7 @@ const TailcallConfigForm = () => {
         validator={validator}
         focusOnFirstError
         // liveValidate
-        // templates={{ TitleFieldTemplate, DescriptionFieldTemplate }} // Use the custom FieldTemplate
+        templates={{DescriptionFieldTemplate}} // Use the custom FieldTemplate
       >
         <div className="flex items-center justify-center">
           <button type="submit" className="border-none py-5 px-8 rounded-lg bg-black text-white">

@@ -1,6 +1,6 @@
 .config-form {
   border-radius: 10px;
-  border: 1px solid;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 16px;
 
   * {
@@ -56,5 +56,9 @@
 
   .field-body>div {
     width: 100%;
+  }
+
+  .field-description {
+    color: rgba(0, 0, 0, 0.6);
   }
 }
