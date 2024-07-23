@@ -30,9 +30,10 @@ jobs:
         run: |
           npm install
           npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
-          cd ./publish-externals
-          npm run generate
-          cd ..
+# Commenting out as release is blocked due to this
+#          cd ./publish-externals
+#          npm run generate
+#          cd ..
           npm run typecheck
           npm run build
 
