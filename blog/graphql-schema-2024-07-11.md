@@ -20,9 +20,14 @@ If you are thinking how we could possibly cover all of the lovely intricacies as
 
 Let's break our job into puzzle pieces. Let's start by simply creating designing a brand new schema!
 
-<!-- image of a puzzle piece -->
-
 <!-- truncate -->
+
+<div style={{textAlign: 'center', margin:'16px'}}>
+
+<img src="/images/blog/puzzle-graphql-schema-1.png" alt="puzzle piece to visualise the series" style={{maxWidth: '40%'}} />
+
+</div>
+
 
 If you're new to GraphQL Schema, check out our [GraphQL Schema Tutorial](https://tailcall.run/graphql/schemas-and-types/) to get up to speed with the basics.
 
