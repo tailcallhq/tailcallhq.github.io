@@ -18,13 +18,13 @@ import Quiz from "../src/components/quiz/quiz.tsx"
 
 ## Modifying Without Breaking: Navigating the Modification Minefield
 
-In our [previous post](https://tailcall.run/blog/graphql-schema-part-2-1), we explored how to make additive changes to your GraphQL schema without causing disruptions. Now, we'll dive into the tricky territory of modifying existing schema elements.
+In our [previous post](/blog/graphql-schema-part-2-1), we explored how to make additive changes to your GraphQL schema without causing disruptions. Now, we'll dive into the tricky territory of modifying existing schema elements.
 
 <!-- truncate -->
 
 ## Recap of Additive Changes
 
-In [Part 2.1](https://tailcall.run/blog/graphql-schema-part-2-1), we discussed the importance of making additive changes to your GraphQL schema to expand its capabilities while maintaining backward compatibility. By adding new fields, types, and arguments, you can enhance your API without causing disruptions to existing clients. We also emphasized the importance of providing transition paths to ensure a smooth adoption process.
+In [Part 2.1](/blog/graphql-schema-part-2-1), we discussed the importance of making additive changes to your GraphQL schema to expand its capabilities while maintaining backward compatibility. By adding new fields, types, and arguments, you can enhance your API without causing disruptions to existing clients. We also emphasized the importance of providing transition paths to ensure a smooth adoption process.
 
 ### Safe, Dangerous, and Breaking Changes
 
@@ -47,19 +47,19 @@ type Query {
 }
 ```
 
+Changing the default value of an argument or input field is unlikely to be a breaking change in terms of the schema itself, but is very likely to cause issues at runtime if the default value affects the runtime behavior of the field.
+
+Avoid this change in general, but it may be possible to achieve if the behavior of the field does not change.
+
 ### The Non-Null to Null Transformation
 
 This is one of the trickiest changes to make. You thought making a field non-null was a good idea, but now you need to change it back. Here's how to handle it:
 
-For scalar fields, you might be able to save your users from errors by returning the empty value instead of null.
+For scalar fields, you might be able to save your users from errors by returning the `default value` instead of null.
 
-For object types, sometimes it’s possible to use a “Empty Object” when the result is null.
+For object types, sometimes it’s possible to use a `Default Object` when the result is null.
 
 This approach can help prevent null pointer exceptions on the client side.
-
-Changing the default value of an argument or input field is unlikely to be a breaking change in terms of the schema itself, but is very likely to cause issues at runtime if the default value affects the runtime behavior of the field.
-
-Avoid this change in general, but it may be possible to achieve if the behavior of the field does not change.
 
 ### Changing a Field Type
 
@@ -150,4 +150,4 @@ Remember these key takeaways:
 
 By treating your GraphQL schema as a product with its own lifecycle and evolution strategy, you can build APIs that are both powerful and adaptable. This approach allows you to innovate rapidly while providing a stable and reliable service to your clients.
 
-Stay tuned for the next part of this series, where we will dive into removing schema elements and handling breaking changes!
+Stay tuned for the [next part](/blog/graphql-schema-part-2-3) of this series, where we will dive into removing schema elements and handling breaking changes!

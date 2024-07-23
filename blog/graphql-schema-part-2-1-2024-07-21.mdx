@@ -16,7 +16,7 @@ import Quiz from "../src/components/quiz/quiz.tsx"
 
 ![GraphQL Schema Structure](../static/images/graphql/graphql-schema-structure.png)
 
-In our [previous post](https://tailcall.run/blog/graphql-schema/), we learned scalable GraphQL schema is critical for building production-ready APIs that can evolve with your application's needs.
+In our [previous post](/blog/graphql-schema), we learned scalable GraphQL schema is critical for building production-ready APIs that can evolve with your application's needs.
 
 In this post, we will dive deeper on how to **continuously** evolve your schema to meet your application's changing requirements without hard-coded versioning.
 
@@ -135,12 +135,13 @@ type Team implements Node {
   name: String!
 }
 
-# New type
+# highlight-start
 type Organization implements Node {
   id: ID!
   name: String!
   employees: [User!]!
 }
+# highlight-end
 ```
 
 By adding the `Organization` type, we've expanded what could be returned by queries selecting for `Node`. This could break clients that aren't prepared to handle new types. Always encourage clients to use proper type checking.
@@ -340,4 +341,4 @@ Remember these key takeaways:
 
 By treating your GraphQL schema as a product with its own lifecycle and evolution strategy, you can build APIs that are both powerful and adaptable. This approach allows you to innovate rapidly while providing a stable and reliable service to your clients.
 
-Stay tuned for the next part of this series, where we will dive into removing schema elements and handling breaking changes!
+Stay tuned for the [next part](/blog/graphql-schema-part-2-2) of this series, where we will dive into removing schema elements and handling breaking changes!
