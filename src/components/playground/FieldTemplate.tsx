@@ -1,9 +1,9 @@
-import React from 'react';
-import { Tooltip, IconButton } from '@mui/material';
-import { InfoOutlined } from '@mui/icons-material';
+import React from "react"
+import {Tooltip, IconButton} from "@mui/material"
+import {InfoOutlined} from "@mui/icons-material"
 
-const FieldTemplate = (props:any) => {
-  const { id, label, required, description, children } = props;
+const FieldTemplate = (props: any) => {
+  const {id, label, required, description, children} = props
   console.log(props)
   return (
     <div className="field-template">
@@ -11,7 +11,7 @@ const FieldTemplate = (props:any) => {
         <div className="field-label">
           <label htmlFor={id} className="field-label-text">
             {label}
-            {required && '*'}
+            {required && "*"}
             {description?.props?.description && (
               <Tooltip title={description?.props?.description} arrow>
                 <IconButton size="small" className="info-icon">
@@ -24,7 +24,7 @@ const FieldTemplate = (props:any) => {
       )}
       <div className="field-body">{children}</div>
     </div>
-  );
-};
+  )
+}
 
-export default FieldTemplate;
+export default FieldTemplate
