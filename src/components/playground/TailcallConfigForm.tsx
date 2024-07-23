@@ -86,7 +86,7 @@ const TailcallConfigForm = () => {
         validator={validator}
         focusOnFirstError
         liveValidate
-        templates={{ FieldTemplate, TitleFieldTemplate, DescriptionFieldTemplate }} // Use the custom FieldTemplate
+      // templates={{ TitleFieldTemplate, DescriptionFieldTemplate }} // Use the custom FieldTemplate
       >
         <div className="flex items-center justify-center">
           <button type="submit" className="border-none py-5 px-8 rounded-lg bg-black text-white">
