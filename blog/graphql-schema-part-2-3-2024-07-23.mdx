@@ -22,6 +22,18 @@ In our [previous post](https://tailcall.run/blog/graphql-schema-part-2-2), we ex
 
 <!-- truncate -->
 
+## Recap of Additive Changes and Modifications
+
+In [Part 2.1](https://tailcall.run/blog/graphql-schema-part-2-1), we focused on additive changes, emphasizing the importance of expanding your schema's capabilities without disrupting existing clients. By adding new fields, types, and arguments, you can enhance your API while maintaining backward compatibility.
+
+In [Part 2.2](https://tailcall.run/blog/graphql-schema-part-2-2), we delved into modifying existing schema elements, discussing how to handle changes such as updating default values, transforming non-null fields to nullable, and changing field types. We highlighted the need for clear communication, providing transition paths, and leveraging schema design tools to minimize client disruptions.
+
+### Safe, Dangerous, and Breaking Changes
+
+1. **Safe Changes:** Additive changes such as adding new fields or types that do not affect existing queries or functionality.
+2. **Dangerous Changes:** Modifications that might not break the schema immediately but can cause subtle issues, such as changing default values or making non-nullable fields nullable.
+3. **Breaking Changes:** Changes that will definitely break existing queries and require clients to update their code, such as removing fields or changing field types.
+
 ## The Subtraction Subterfuge
 
 Removing things from your schema is almost always a breaking change. If you remove a field, type, or argument, clients that depend on it will break. You can't just take things away without consequences.

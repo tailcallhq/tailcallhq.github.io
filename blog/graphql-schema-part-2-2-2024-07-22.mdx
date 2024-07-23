@@ -22,6 +22,16 @@ In our [previous post](https://tailcall.run/blog/graphql-schema-part-2-1), we ex
 
 <!-- truncate -->
 
+## Recap of Additive Changes
+
+In [Part 2.1](https://tailcall.run/blog/graphql-schema-part-2-1), we discussed the importance of making additive changes to your GraphQL schema to expand its capabilities while maintaining backward compatibility. By adding new fields, types, and arguments, you can enhance your API without causing disruptions to existing clients. We also emphasized the importance of providing transition paths to ensure a smooth adoption process.
+
+### Safe, Dangerous, and Breaking Changes
+
+1. **Safe Changes:** Additive changes such as adding new fields or types that do not affect existing queries or functionality.
+2. **Dangerous Changes:** Modifications that might not break the schema immediately but can cause subtle issues, such as changing default values or making non-nullable fields nullable.
+3. **Breaking Changes:** Changes that will definitely break existing queries and require clients to update their code, such as removing fields or changing field types.
+
 ## The Modification Minefield
 
 Now, let's talk about modifying existing parts of your schema. This is where things can get really hairy. For example, changing a field’s type or changing the name of a type is a big breaking change.
