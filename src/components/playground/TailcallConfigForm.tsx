@@ -21,7 +21,7 @@ const TailcallConfigForm = () => {
     axios.get(`${tailcallConfigSchema}?v=${+new Date()}`).then((res) => setSchema(res.data))
   }, [])
 
-  const handleSubmit = () => {
+  const handleSubmit = ({formData}:any) => {
     console.log("Data submitted: ", formData)
   }
 
@@ -39,6 +39,10 @@ const TailcallConfigForm = () => {
     downloadFile(yamlString, "text/yaml", `${configFileName}.yml`)
   }
 
+  const handleError = (errors:any) => {
+    console.log("Form errors: ", errors);
+  };
+
   return (
     <div className="m-8 ">
       <Form
@@ -46,25 +50,23 @@ const TailcallConfigForm = () => {
         schema={schema}
         formData={formData}
         onChange={onFormDataChange}
+        onSubmit={handleSubmit}
+        onError={handleError}
         formContext={formContext}
         validator={validator}
         focusOnFirstError
         liveValidate
       >
         <div className="flex items-center justify-center">
-          <button type='submit' onClick={handleSubmit} className="bg-white border-none">
+          <button type='submit' className="bg-white border-none">
             <LinkButton theme={Theme.Dark} title="Submit" />
           </button>
-          {/* {isConfigValid && (
-            <> */}
           <button type="button" onClick={downloadConfigJson} className="bg-white border-none">
             <LinkButton theme={Theme.Dark} title="Download JSON Config" />
           </button>
           <button type="button" onClick={downloadConfigYaml} className="bg-white border-none">
             <LinkButton theme={Theme.Dark} title="Download YAML Config" />
           </button>
-          {/* </>
-          )} */}
         </div>
       </Form>
     </div>
