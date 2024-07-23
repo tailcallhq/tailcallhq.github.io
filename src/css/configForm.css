@@ -27,8 +27,27 @@
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-
-    /* *>.MuiGrid-item {
-        padding-top: 0px !important;
-    } */
+    .field-template {
+        margin-bottom: 16px;
+      }
+      
+      .field-label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      
+      .field-label-text {
+        display: flex;
+        align-items: center;
+        margin-right: 8px;
+      }
+      
+      .info-icon {
+        margin-left: 4px;
+      }
+      
+      .field-body {
+        /* Add any necessary styling for the field body */
+      }
 }

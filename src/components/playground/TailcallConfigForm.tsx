@@ -8,11 +8,8 @@ import "../../css/configForm.css";
 import { downloadFile } from "@site/src/utils";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { DescriptionFieldProps, RegistryWidgetsType, TitleFieldProps, WidgetProps } from "@rjsf/utils";
-import { FormControlLabel, IconButton, TextField, Tooltip } from "@mui/material";
-import { InfoOutlined } from "@mui/icons-material"
-import Checkbox from '@mui/material/Checkbox';
-
+import FieldTemplate from "./FieldTemplate"; // Import your custom FieldTemplate
+import { TitleFieldProps, UiSchema } from "@rjsf/utils";
 
 const formContext = {
   className: "font-space-grotesk-imp",
@@ -69,28 +66,16 @@ const TailcallConfigForm = () => {
     </button>
   );
 
-  const renderTooltip = (title: string) => {
-    return (
-      <Tooltip title={title}>
-        <IconButton>
-          <InfoOutlined />
-        </IconButton>
-      </Tooltip>
-    )
+  function TitleFieldTemplate() {
+    return null
+  }
+  function DescriptionFieldTemplate() {
+    return null
   }
 
-  // function TitleFieldTemplate(props: TitleFieldProps) {
-  //   const { id, required, title, schema } = props;
-  //   return (
-  //     <h2 id={id} className="font-bold">
-  //       <span>
-  //         {title}
-  //         {required && '*'}
-  //         {schema.description && renderTooltip(schema.description)}
-  //       </span>
-  //     </h2>
-  //   );
-  // }
+  function ArrayFieldDescriptionTemplate() {
+    return null
+  }
 
   return (
     <div className="m-8">
@@ -105,7 +90,7 @@ const TailcallConfigForm = () => {
         validator={validator}
         focusOnFirstError
         liveValidate
-      // templates={{ TitleFieldTemplate }}
+        templates={{ FieldTemplate, TitleFieldTemplate, DescriptionFieldTemplate, ArrayFieldDescriptionTemplate }} // Use the custom FieldTemplate
       >
         <div className="flex items-center justify-center">
           <button type="submit" className="border-none py-5 px-8 rounded-lg bg-black text-white">
