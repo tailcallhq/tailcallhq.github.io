@@ -7,13 +7,11 @@
         display: none;
     }
 
-    h5 {
-        font-weight: 700;
-    }
     button.disabled {
         opacity: 0.5;
         cursor: not-allowed;
     }
+
     .modal-box {
         position: absolute;
         top: 50%;
@@ -25,7 +23,7 @@
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-  
+
     /* *>.MuiGrid-item {
         padding-top: 0px !important;
     } */
