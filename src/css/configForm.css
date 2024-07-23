@@ -1,54 +1,60 @@
 .config-form {
-    * {
-        font-family: Space Grotesk, sans-serif !important;
-    }
+  border-radius: 10px;
+  border: 1px solid;
+  padding: 16px;
 
-    hr {
-        display: none;
-    }
+  * {
+    font-family: Space Grotesk, sans-serif !important;
+  }
 
-    h5 {
-        font-weight: 700;
-    }
+  hr {
+    display: none;
+  }
 
-    button.disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
+  h5 {
+    font-weight: 700;
+  }
 
-    .modal-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 400px;
-        background-color: white;
-        padding: 16px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    .field-template {
-        margin-bottom: 16px;
-      }
-      
-      .field-label {
-        display: flex;
-        align-items: center;
-        margin-bottom: 8px;
-        font-size: 1.5rem;
-      }
-      
-      .field-label-text {
-        display: flex;
-        align-items: center;
-        margin-right: 8px;
-      }
-      
-      .info-icon {
-        margin-top: 4px;
-        margin-left: 4px;
-      }
-      .field-body>div{
-        width: 100%;
-      }
+  button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .field-template {
+    margin-bottom: 16px;
+  }
+
+  .field-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+  }
+
+  .field-label-text {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+  }
+
+  .info-icon {
+    margin-top: 4px;
+    margin-left: 4px;
+  }
+
+  .field-body>div {
+    width: 100%;
+  }
 }
