@@ -9,7 +9,7 @@ import { downloadFile } from "@site/src/utils";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { DescriptionFieldProps, RegistryWidgetsType, TitleFieldProps, WidgetProps } from "@rjsf/utils";
-import { FormControlLabel, IconButton, Tooltip } from "@mui/material";
+import { FormControlLabel, IconButton, TextField, Tooltip } from "@mui/material";
 import { InfoOutlined } from "@mui/icons-material"
 import Checkbox from '@mui/material/Checkbox';
 
@@ -79,53 +79,18 @@ const TailcallConfigForm = () => {
     )
   }
 
-  function TitleFieldTemplate(props: TitleFieldProps) {
-    const { id, required, title, schema } = props;
-    return (
-      <h2 id={id} className="font-bold">
-        <span>
-          {title}
-          {required && '*'}
-          {schema.description && renderTooltip(schema.description)}
-        </span>
-      </h2>
-    );
-  }
-
-  function DescriptionFieldTemplate(props: DescriptionFieldProps) {
-    if (props.schema.type?.includes('array') || props.schema.type?.includes('object')) {
-      return null;
-    }
-    else {
-      return <h4>{props.description}</h4>
-    }
-  }
-
-  const CustomCheckbox = (props: WidgetProps) => {
-    const { id, value, disabled, readonly, label, onChange } = props;
-    const tooltipText = props.schema.description || label;
-
-    return (
-      <div>
-        <FormControlLabel
-          control={
-            <Checkbox
-              id={id}
-              checked={typeof value === "undefined" ? false : value}
-              disabled={disabled || readonly}
-              onChange={(event) => onChange(event.target.checked)}
-            />
-          }
-          label={label}
-        />
-        {renderTooltip(tooltipText)}
-      </div>
-    );
-  };
-
-  const widgets: RegistryWidgetsType = {
-    CheckboxWidget: CustomCheckbox,
-  };
+  // function TitleFieldTemplate(props: TitleFieldProps) {
+  //   const { id, required, title, schema } = props;
+  //   return (
+  //     <h2 id={id} className="font-bold">
+  //       <span>
+  //         {title}
+  //         {required && '*'}
+  //         {schema.description && renderTooltip(schema.description)}
+  //       </span>
+  //     </h2>
+  //   );
+  // }
 
   return (
     <div className="m-8">
@@ -140,8 +105,7 @@ const TailcallConfigForm = () => {
         validator={validator}
         focusOnFirstError
         liveValidate
-        templates={{ TitleFieldTemplate, DescriptionFieldTemplate }}
-        widgets={widgets}
+      // templates={{ TitleFieldTemplate }}
       >
         <div className="flex items-center justify-center">
           <button type="submit" className="border-none py-5 px-8 rounded-lg bg-black text-white">
