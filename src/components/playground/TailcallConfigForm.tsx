@@ -3,11 +3,9 @@ import Form from "@rjsf/mui";
 import jsYaml from "js-yaml";
 import axios from "axios";
 import { configFileName, tailcallConfigSchema } from "@site/src/constants";
-import { Theme } from "@site/src/constants";
 import validator from "@rjsf/validator-ajv8";
 import "../../css/configForm.css";
 import { downloadFile } from "@site/src/utils";
-import LinkButton from "../shared/LinkButton";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 
@@ -28,12 +26,12 @@ const TailcallConfigForm = () => {
   const handleSubmit = ({ formData }: any) => {
     console.log("Data submitted: ", formData);
     setIsFormSubmitted(true);
-    setIsModalOpen(true); // Show modal on successful submission
+    setIsModalOpen(true);
   };
 
   const onFormDataChange = ({ formData }: any) => {
     setFormData(formData);
-    setIsFormSubmitted(false); // Reset the submission status when the form data changes
+    setIsFormSubmitted(false);
   };
 
   const downloadConfigJson = () => {
