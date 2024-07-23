@@ -18,7 +18,7 @@ const TailcallConfigForm = () => {
     axios.get(`${tailcallConfigSchema}?v=${+new Date()}`).then((res) => setSchema(res.data))
   }, [])
 
-  const onSubmit = ({formData}: any) => {
+  const handleSubmit = ({formData}: any) => {
     console.log("Data submitted: ", formData)
     // downloadConfigJson(formData)
     // downloadConfigYaml(formData)
@@ -41,7 +41,7 @@ const TailcallConfigForm = () => {
         schema={schema}
         formContext={formContext}
         validator={validator}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
         focusOnFirstError
         liveValidate
       />
