@@ -51,7 +51,7 @@ const Quiz: React.FC<QuizProps> = ({questions}) => {
 
   const shareScore = (platform: "twitter" | "linkedin", score: number, questionsLength: number) => {
     const text = `I scored ${score} out of ${questionsLength} on the GraphQL Schema Change Quiz! Test your knowledge too!`
-    const url = "https://tailcall.run/blog/graphql-schema-part-2" // Replace with your actual blog post URL
+    const url = document.location.href
     let shareUrl = ""
 
     if (platform === "twitter") {
