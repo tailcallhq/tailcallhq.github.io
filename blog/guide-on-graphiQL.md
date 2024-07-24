@@ -119,6 +119,7 @@ A powerful HTTP client that supports GraphQL and REST.
 
 ### Altair
 ![Altair-logo](../static/images/blog/altair.png)
+
 An advanced GraphQL client that offers many features similar to GraphiQL.
 ## Conclusion
 
