@@ -80,6 +80,8 @@ GraphiQL's interface is user-friendly and consists of several key components:
 ### Query Editor
 The Query Editor is where you write your GraphQL queries.
 
+![query image](../static/images/blog/query%20image.png)
+
 ### Variables Editor
 The Variables Editor allows you to define and use variables in your queries.
 
