@@ -1,13 +1,12 @@
 ---
 title: "Exploring GraphiQL: The In-Browser IDE for GraphQL"
-author:
-  - name: Ansh Grover
-    title: 👨‍💻 Passionate web developer focused on JavaScript. Love learning new tech and improving code. Always exploring new ideas and contributing to open source. 🚀✨
-    url: https://github.com/Anshgrover23
-    image_url: https://avatars.githubusercontent.com/u/168731971?v=4
+author: "Ansh Grover"
+author_title: "👨‍💻Passionate web developer focused on JavaScript. Love learning new tech and improving code. Always exploring new ideas and contributing to open source.🚀✨"
+author_url: "https://github.com/Anshgrover23"
+author_image_url: "https://avatars.githubusercontent.com/u/168731971?v=4"
 hide_table_of_contents: true
 slug: exploring-graphiQL-IDE
-tags: [GraphQL, GraphiQL, IDE,guide-on-GraphQL]
+tags: [GraphQL, GraphiQL, IDE, guide-on-GraphQL]
 ---
 # Exploring GraphiQL: The In-Browser IDE for GraphQL
 
