@@ -50,7 +50,14 @@
     color: rgba(0, 0, 0, 0.6);
   }
 }
-
+#root__title{
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 234 46 / var(--tw-bg-opacity));
+  display: flex;
+  width: fit-content;
+  padding: 8px 10px;
+  border-radius: 1rem;
+}
 .config-success-modal-body {
   position: absolute;
   width: 55%;
