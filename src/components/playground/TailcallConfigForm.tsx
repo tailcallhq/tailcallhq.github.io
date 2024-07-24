@@ -11,8 +11,7 @@ import Box from "@mui/material/Box"
 import FieldTemplate from "./FieldTemplate" // Import your custom FieldTemplate
 import { DescriptionFieldProps, TitleFieldProps, UiSchema } from "@rjsf/utils"
 import { Download, Close } from "@mui/icons-material"
-import { IconButton } from "@mui/material"
-
+import { IconButton } from "@mui/material";
 const formContext = {
   className: "font-space-grotesk-imp",
 }
@@ -23,9 +22,32 @@ const TailcallConfigForm = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
+  const transformSchema = (schema: any) => {
+    const traverseAndTransform = (obj: any) => {
+      if (obj && typeof obj === 'object') {
+        Object.keys(obj).forEach((key) => {
+          if (obj[key] && typeof obj[key] === 'object') {
+            traverseAndTransform(obj[key])
+          } else if (key === 'format' && (obj[key] === 'uint16' || obj[key] === 'uint64' || obj[key] === 'uint')) {
+            obj.type = 'integer'
+            obj.minimum = 0
+            obj.maximum = obj[key] === 'uint16' ? 65535 : Number.MAX_SAFE_INTEGER
+            delete obj[key]
+          }
+        })
+      }
+    }
+
+    traverseAndTransform(schema)
+    return schema
+  }
+
   useEffect(() => {
-    axios.get(`${tailcallConfigSchema}?v=${+new Date()}`).then((res) => setSchema(res.data))
-  }, [])
+    axios.get(`${tailcallConfigSchema}?v=${+new Date()}`).then((res) => {
+      const transformedSchema = transformSchema(res.data);
+      setSchema(transformedSchema);
+    });
+  }, []);
 
   const handleSubmit = ({ formData }: any) => {
     setIsFormSubmitted(true)
