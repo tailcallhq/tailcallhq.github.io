@@ -10,6 +10,8 @@ import Modal from "@mui/material/Modal"
 import Box from "@mui/material/Box"
 import FieldTemplate from "./FieldTemplate" // Import your custom FieldTemplate
 import {DescriptionFieldProps, TitleFieldProps, UiSchema} from "@rjsf/utils"
+import {Download, Close} from "@mui/icons-material"
+import {IconButton} from "@mui/material"
 
 const formContext = {
   className: "font-space-grotesk-imp",
@@ -19,7 +21,7 @@ const TailcallConfigForm = () => {
   const [schema, setSchema] = useState({})
   const [formData, setFormData] = useState({})
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(true)
 
   useEffect(() => {
     axios.get(`${tailcallConfigSchema}?v=${+new Date()}`).then((res) => setSchema(res.data))
@@ -59,9 +61,10 @@ const TailcallConfigForm = () => {
     <button
       type="button"
       onClick={onClick}
-      className={`p-5 rounded-lg ml-3 ${isFormSubmitted ? "bg-black text-white border-none" : "opacity-50 cursor-not-allowed"}`}
+      className="mt-4 bg-white font-bold cursor-pointer py-2 px-4 rounded-lg download-button flex items-center"
       disabled={!isFormSubmitted}
     >
+      <Download className="mr-2" />
       {title}
     </button>
   )
@@ -94,29 +97,30 @@ const TailcallConfigForm = () => {
           <button type="submit" className="border-none py-5 px-8 rounded-lg bg-black text-white">
             Submit
           </button>
-          <DownloadButton onClick={downloadConfigJson} title="Download JSON Config" />
-          <DownloadButton onClick={downloadConfigYaml} title="Download YAML Config" />
         </div>
       </Form>
-      <div className="modal-box">
-        <Modal
-          open={isModalOpen}
-          onClose={closeModal}
-          aria-labelledby="modal-title"
-          aria-describedby="modal-description"
-        >
-          <Box className="bg-white p-6 m-6 rounded-lg shadow-lg">
-            <h2 id="modal-title" className="text-xl font-bold mb-4">
-              Form Submitted{" "}
-              <span className="bg-tailCall-yellow rounded-sm sm:rounded-xl px-SPACE_02">Successfully</span>
+      <Modal open={isModalOpen} onClose={closeModal} aria-labelledby="modal-title" aria-describedby="modal-description">
+        <Box className="bg-white p-6 m-6 rounded-lg shadow-lg config-success-modal-body">
+          <div className="flex items-center justify-end">
+            <h2 id="modal-title" className="text-xl font-bold">
+              Tailcall Configuration Generated{" "}
+              <span className="bg-tailCall-yellow rounded-sm sm:rounded-xl px-SPACE_02">Successfully</span> 🚀
             </h2>
-            <p id="modal-description">Your form has been submitted successfully!</p>
+            <IconButton aria-label="close" onClick={closeModal} className="absolute right-2">
+              <Close />
+            </IconButton>
+          </div>
+          <p id="modal-description">Download the Tailcall configuration using the below CTAs!</p>
+
+          <div className="flex items-center justify-around">
             <button onClick={closeModal} className="mt-4 bg-black text-white py-2 px-4 rounded-lg">
               Close
             </button>
-          </Box>
-        </Modal>
-      </div>
+            <DownloadButton onClick={downloadConfigJson} title="JSON Config" />
+            <DownloadButton onClick={downloadConfigYaml} title="YAML Config" />
+          </div>
+        </Box>
+      </Modal>
     </div>
   )
 }

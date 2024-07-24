@@ -20,18 +20,6 @@
     cursor: not-allowed;
   }
 
-  .modal-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    background-color: white;
-    padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
   .field-template {
     margin-bottom: 16px;
   }
@@ -61,4 +49,18 @@
   .field-description {
     color: rgba(0, 0, 0, 0.6);
   }
+}
+
+.config-success-modal-body {
+  position: absolute;
+  width: 55%;
+  margin: auto !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.download-button {
+  color: var(--ifm-color-gray-900) !important;
+  border: 2px solid var(--ifm-color-gray-900) !important;
 }
