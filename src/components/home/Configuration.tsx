@@ -387,9 +387,7 @@ types:
 
 const JSON_CONFIG = `
 {
-  "server": {
-    "port": 8000
-  },
+  "server": {},
   "upstream": {
     "baseURL": "https://jsonplaceholder.typicode.com"
   },
@@ -399,92 +397,73 @@ const JSON_CONFIG = `
   "types": {
     "Address": {
       "fields": {
-        "city": {"type": "String"},
-        "geo": {"type": "Geo"},
-        "street": {"type": "String"},
-        "suite": {"type": "String"},
-        "zipcode": {"type": "String"}
+        "city": { "type": "String" },
+        "geo": { "type": "Geo" },
+        "street": { "type": "String" },
+        "suite": { "type": "String" },
+        "zipcode": { "type": "String" }
       }
     },
     "Company": {
       "fields": {
-        "bs": {"type": "String"},
-        "catchPhrase": {"type": "String"},
-        "name": {"type": "String"}
+        "bs": { "type": "String" },
+        "catchPhrase": { "type": "String" },
+        "name": { "type": "String" }
       }
     },
     "Geo": {
       "fields": {
-        "lat": {"type": "String"},
-        "lng": {"type": "String"}
+        "lat": { "type": "String" },
+        "lng": { "type": "String" }
       }
     },
     "Photo": {
       "fields": {
-        "albumId": {"type": "Int"},
-        "id": {"type": "Int"},
-        "thumbnailUrl": {"type": "String"},
-        "title": {"type": "String"},
-        "url": {"type": "String"},
+        "albumId": { "type": "Int" },
+        "id": { "type": "Int" },
+        "thumbnailUrl": { "type": "String" },
+        "title": { "type": "String" },
+        "url": { "type": "String" },
         "album": {
           "type": "Album",
           "call": {
-            "steps": [
-              {
-                "query": "album",
-                "args": {"id": "{{.value.albumId}}"}
-              }
-            ]
+            "steps": [{ "query": "album", "args": { "id": "{{.value.albumId}}" } }]
           }
         }
       }
     },
     "Post": {
       "fields": {
-        "body": {"type": "String"},
-        "id": {"type": "Int"},
-        "title": {"type": "String"},
-        "userId": {"type": "Int"},
+        "body": { "type": "String" },
+        "id": { "type": "Int" },
+        "title": { "type": "String" },
+        "userId": { "type": "Int" },
         "user": {
           "type": "User",
           "call": {
-            "steps": [
-              {
-                "query": "user",
-                "args": {"id": "{{.value.userId}}"}
-              }
-            ]
+            "steps": [{ "query": "user", "args": { "id": "{{.value.userId}}" } }]
           }
         },
         "comments": {
           "type": "Comment",
           "list": true,
           "call": {
-            "steps": [
-              {
-                "query": "comments"
-              }
-            ]
+            "steps": [{ "query": "comments", "args": { "postId": "{{.value.id}}" } }]
           }
         }
       }
     },
     "Comment": {
       "fields": {
-        "body": {"type": "String"},
-        "email": {"type": "String"},
-        "id": {"type": "Int"},
-        "name": {"type": "String"},
-        "postId": {"type": "Int"},
+        "body": { "type": "String" },
+        "email": { "type": "String" },
+        "id": { "type": "Int" },
+        "name": { "type": "String" },
+        "postId": { "type": "Int" },
         "post": {
           "type": "Post",
           "call": {
-            "steps": [
-              {
-                "query": "post",
-                "args": {"id": "{{.value.postId}}"}
-              }
-            ]
+            "steps": [{ "query": "post", "args": { "id": "{{.value.postId}}" } }]
           }
         }
       }
@@ -493,144 +472,165 @@ const JSON_CONFIG = `
       "fields": {
         "album": {
           "type": "Album",
-          "args": {"id": "Int!"},
-          "http": {"path": "/albums/{{.args.id}}"}
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/albums/{{.args.id}}"
+          }
         },
         "albums": {
           "type": "Album",
           "list": true,
-          "http": {"path": "/albums"}
+          "http": {
+            "path": "/albums"
+          }
         },
         "comment": {
           "type": "Comment",
-          "args": {"id": "Int!"},
-          "http": {"path": "/comments/{{.args.id}}"}
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/comments/{{.args.id}}"
+          }
         },
         "comments": {
           "type": "Comment",
           "list": true,
-          "http": {"path": "/comments"}
+          "http": {
+            "path": "/comments"
+          }
         },
         "photo": {
           "type": "Photo",
-          "args": {"id": "Int!"},
-          "http": {"path": "/photos/{{.args.id}}"}
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/photos/{{.args.id}}"
+          }
         },
         "photos": {
           "type": "Photo",
           "list": true,
-          "http": {"path": "/photos"}
+          "http": {
+            "path": "/photos"
+          }
         },
         "post": {
           "type": "Post",
-          "args": {"id": "Int!"},
-          "http": {"path": "/posts/{{.args.id}}"}
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/posts/{{.args.id}}"
+          }
         },
         "posts": {
           "type": "Post",
           "list": true,
-          "http": {"path": "/posts"}
+          "http": {
+            "path": "/posts"
+          }
         },
         "todo": {
           "type": "Todo",
-          "args": {"id": "Int!"},
-          "http": {"path": "/todos/{{.args.id}}"}
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/todos/{{.args.id}}"
+          }
         },
         "todos": {
           "type": "Todo",
           "list": true,
-          "http": {"path": "/todos"}
+          "http": {
+            "path": "/todos"
+          }
         },
         "user": {
           "type": "User",
-          "args": {"id": "Int!"},
-          "http": {"path": "/users/{{.args.id}}"}
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/users/{{.args.id}}"
+          }
         },
         "users": {
           "type": "User",
           "list": true,
-          "http": {"path": "/users"}
+          "http": {
+            "path": "/users"
+          }
         }
       }
     },
     "Todo": {
       "fields": {
-        "completed": {"type": "Boolean"},
-        "id": {"type": "Int"},
-        "title": {"type": "String"},
-        "userId": {"type": "Int"},
+        "completed": { "type": "Boolean" },
+        "id": { "type": "Int" },
+        "title": { "type": "String" },
+        "userId": { "type": "Int" },
         "user": {
           "type": "User",
           "call": {
-            "steps": [
-              {
-                "query": "user",
-                "args": {"id": "{{.value.userId}}"}
-              }
-            ]
+            "steps": [{ "query": "user", "args": { "id": "{{.value.userId}}" } }]
           }
         }
       }
     },
     "User": {
       "fields": {
-        "address": {"type": "Address"},
-        "company": {"type": "Company"},
-        "email": {"type": "String"},
-        "id": {"type": "Int"},
-        "name": {"type": "String"},
-        "phone": {"type": "String"},
-        "username": {"type": "String"},
-        "website": {"type": "String"},
+        "address": { "type": "Address" },
+        "company": { "type": "Company" },
+        "email": { "type": "String" },
+        "id": { "type": "Int" },
+        "name": { "type": "String" },
+        "phone": { "type": "String" },
+        "username": { "type": "String" },
+        "website": { "type": "String" },
         "posts": {
           "type": "Post",
           "list": true,
           "call": {
-            "steps": [
-              {
-                "query": "posts"
-              }
-            ]
+            "steps": [{ "query": "posts", "args": { "userId": "{{.value.id}}" } }]
           }
         },
         "todos": {
           "type": "Todo",
           "list": true,
           "call": {
-            "steps": [
-              {
-                "query": "todos"
-              }
-            ]
+            "steps": [{ "query": "todos", "args": { "userId": "{{.value.id}}" } }]
+          }
+        },
+        "albums": {
+          "type": "Album",
+          "list": true,
+          "call": {
+            "steps": [{ "query": "albums", "args": { "userId": "{{.value.id}}" } }]
           }
         }
       }
     },
     "Album": {
       "fields": {
-        "id": {"type": "Int"},
-        "title": {"type": "String"},
-        "userId": {"type": "Int"},
+        "id": { "type": "Int" },
+        "title": { "type": "String" },
+        "userId": { "type": "Int" },
         "user": {
           "type": "User",
           "call": {
-            "steps": [
-              {
-                "query": "user",
-                "args": {"id": "{{.value.userId}}"}
-              }
-            ]
+            "steps": [{ "query": "user", "args": { "id": "{{.value.userId}}" } }]
           }
         },
         "photos": {
           "type": "Photo",
           "list": true,
           "call": {
-            "steps": [
-              {
-                "query": "photos"
-              }
-            ]
+            "steps": [{ "query": "photos", "args": { "albumId": "{{.value.id}}" } }]
           }
         }
       }
