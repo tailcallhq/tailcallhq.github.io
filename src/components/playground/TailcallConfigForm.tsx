@@ -28,7 +28,6 @@ const TailcallConfigForm = () => {
   }, [])
 
   const handleSubmit = ({ formData }: any) => {
-    console.log("Data submitted: ", formData)
     setIsFormSubmitted(true)
     setIsModalOpen(true)
   }
@@ -53,7 +52,6 @@ const TailcallConfigForm = () => {
   }
 
   const handleError = (errors: any) => {
-    console.log("Form errors: ", errors)
     setIsFormSubmitted(false)
   }
 
@@ -74,7 +72,6 @@ const TailcallConfigForm = () => {
   )
 
   function DescriptionFieldTemplate(props: DescriptionFieldProps) {
-    console.log(props)
     return <span className="field-description">{props.description}</span>
   }
 
