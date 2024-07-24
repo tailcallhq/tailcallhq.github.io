@@ -9,7 +9,7 @@
     <icon>https://tailcall.run/images/favicon.ico</icon>
     <rights>Copyright © 2024 Tailcall, Inc.</rights>
     <entry>
-        <title type="html"><![CDATA[Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 2.3]]></title>
+        <title type="html"><![CDATA[Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 4]]></title>
         <id>https://tailcall.run/blog/graphql-schema-part-2-3/</id>
         <link href="https://tailcall.run/blog/graphql-schema-part-2-3/"/>
         <updated>2024-07-23T00:00:00.000Z</updated>
@@ -18,8 +18,8 @@
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="removing-without-breaking-the-subtraction-subterfuge">Removing Without Breaking: The Subtraction Subterfuge<a class="hash-link" aria-label="Direct link to Removing Without Breaking: The Subtraction Subterfuge" title="Direct link to Removing Without Breaking: The Subtraction Subterfuge" href="https://tailcall.run/blog/graphql-schema-part-2-3/#removing-without-breaking-the-subtraction-subterfuge">​</a></h2>
 <p>In our <a href="https://tailcall.run/blog/graphql-schema-part-2-2/">previous post</a>, we explored how to modify existing schema elements without causing disruptions. Now, we'll tackle the most challenging part: removing schema elements and handling breaking changes.</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="recap-of-additive-changes-and-modifications">Recap of Additive Changes and Modifications<a class="hash-link" aria-label="Direct link to Recap of Additive Changes and Modifications" title="Direct link to Recap of Additive Changes and Modifications" href="https://tailcall.run/blog/graphql-schema-part-2-3/#recap-of-additive-changes-and-modifications">​</a></h2>
-<p>In <a href="https://tailcall.run/blog/graphql-schema-part-2-1/">Part 2.1</a>, we focused on additive changes, emphasizing the importance of expanding your schema's capabilities without disrupting existing clients. By adding new fields, types, and arguments, you can enhance your API while maintaining backward compatibility.</p>
-<p>In <a href="https://tailcall.run/blog/graphql-schema-part-2-2/">Part 2.2</a>, we delved into modifying existing schema elements, discussing how to handle changes such as updating default values, transforming non-null fields to nullable, and changing field types. We highlighted the need for clear communication, providing transition paths, and leveraging schema design tools to minimize client disruptions.</p>
+<p>In <a href="https://tailcall.run/blog/graphql-schema-part-2-1/">Part 2</a>, we focused on additive changes, emphasizing the importance of expanding your schema's capabilities without disrupting existing clients. By adding new fields, types, and arguments, you can enhance your API while maintaining backward compatibility.</p>
+<p>In <a href="https://tailcall.run/blog/graphql-schema-part-2-2/">Part 3</a>, we delved into modifying existing schema elements, discussing how to handle changes such as updating default values, transforming non-null fields to nullable, and changing field types. We highlighted the need for clear communication, providing transition paths, and leveraging schema design tools to minimize client disruptions.</p>
 <h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="safe-dangerous-and-breaking-changes">Safe, Dangerous, and Breaking Changes<a class="hash-link" aria-label="Direct link to Safe, Dangerous, and Breaking Changes" title="Direct link to Safe, Dangerous, and Breaking Changes" href="https://tailcall.run/blog/graphql-schema-part-2-3/#safe-dangerous-and-breaking-changes">​</a></h3>
 <ol>
 <li><strong>Safe Changes:</strong> Additive changes such as adding new fields or types that do not affect existing queries or functionality.</li>
@@ -83,7 +83,7 @@
         <category label="Best Practices" term="Best Practices"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 2.2]]></title>
+        <title type="html"><![CDATA[Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 3]]></title>
         <id>https://tailcall.run/blog/graphql-schema-part-2-2/</id>
         <link href="https://tailcall.run/blog/graphql-schema-part-2-2/"/>
         <updated>2024-07-22T00:00:00.000Z</updated>
@@ -92,7 +92,7 @@
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="modifying-without-breaking-navigating-the-modification-minefield">Modifying Without Breaking: Navigating the Modification Minefield<a class="hash-link" aria-label="Direct link to Modifying Without Breaking: Navigating the Modification Minefield" title="Direct link to Modifying Without Breaking: Navigating the Modification Minefield" href="https://tailcall.run/blog/graphql-schema-part-2-2/#modifying-without-breaking-navigating-the-modification-minefield">​</a></h2>
 <p>In our <a href="https://tailcall.run/blog/graphql-schema-part-2-1/">previous post</a>, we explored how to make additive changes to your GraphQL schema without causing disruptions. Now, we'll dive into the tricky territory of modifying existing schema elements.</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="recap-of-additive-changes">Recap of Additive Changes<a class="hash-link" aria-label="Direct link to Recap of Additive Changes" title="Direct link to Recap of Additive Changes" href="https://tailcall.run/blog/graphql-schema-part-2-2/#recap-of-additive-changes">​</a></h2>
-<p>In <a href="https://tailcall.run/blog/graphql-schema-part-2-1/">Part 2.1</a>, we discussed the importance of making additive changes to your GraphQL schema to expand its capabilities while maintaining backward compatibility. By adding new fields, types, and arguments, you can enhance your API without causing disruptions to existing clients. We also emphasized the importance of providing transition paths to ensure a smooth adoption process.</p>
+<p>In <a href="https://tailcall.run/blog/graphql-schema-part-2-1/">Part 2</a>, we discussed the importance of making additive changes to your GraphQL schema to expand its capabilities while maintaining backward compatibility. By adding new fields, types, and arguments, you can enhance your API without causing disruptions to existing clients. We also emphasized the importance of providing transition paths to ensure a smooth adoption process.</p>
 <h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="safe-dangerous-and-breaking-changes">Safe, Dangerous, and Breaking Changes<a class="hash-link" aria-label="Direct link to Safe, Dangerous, and Breaking Changes" title="Direct link to Safe, Dangerous, and Breaking Changes" href="https://tailcall.run/blog/graphql-schema-part-2-2/#safe-dangerous-and-breaking-changes">​</a></h3>
 <ol>
 <li><strong>Safe Changes:</strong> Additive changes such as adding new fields or types that do not affect existing queries or functionality.</li>
@@ -141,7 +141,7 @@
         <category label="Best Practices" term="Best Practices"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 2.1]]></title>
+        <title type="html"><![CDATA[Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 2]]></title>
         <id>https://tailcall.run/blog/graphql-schema-part-2-1/</id>
         <link href="https://tailcall.run/blog/graphql-schema-part-2-1/"/>
         <updated>2024-07-21T00:00:00.000Z</updated>
@@ -915,7 +915,7 @@ GraphQL has taken the API world by storm, offering developers a flexible and pow
         <category label="Introspection" term="Introspection"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Design a GraphQL Schema So Good, It'll Make REST APIs Cry]]></title>
+        <title type="html"><![CDATA[Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 1]]></title>
         <id>https://tailcall.run/blog/graphql-schema/</id>
         <link href="https://tailcall.run/blog/graphql-schema/"/>
         <updated>2024-07-11T00:00:00.000Z</updated>
