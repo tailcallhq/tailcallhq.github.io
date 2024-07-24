@@ -94,7 +94,7 @@ const TailcallConfigForm = () => {
         templates={{DescriptionFieldTemplate}} // Use the custom FieldTemplate
       >
         <div className="flex items-center justify-center">
-          <button type="submit" className="border-none py-5 px-8 rounded-lg bg-black text-white">
+          <button type="submit" className="border-none py-3 px-8 rounded-md bg-black text-white">
             Submit
           </button>
         </div>
