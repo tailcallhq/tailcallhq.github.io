@@ -21,7 +21,7 @@ const TailcallConfigForm = () => {
   const [schema, setSchema] = useState({})
   const [formData, setFormData] = useState({})
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     axios.get(`${tailcallConfigSchema}?v=${+new Date()}`).then((res) => setSchema(res.data))
@@ -32,7 +32,7 @@ const TailcallConfigForm = () => {
     setIsFormSubmitted(true)
     setIsModalOpen(true)
   }
-
+  
   const onFormDataChange = ({formData}: any) => {
     setFormData(formData)
     setIsFormSubmitted(false)
@@ -61,7 +61,7 @@ const TailcallConfigForm = () => {
     <button
       type="button"
       onClick={onClick}
-      className="mt-4 bg-white font-bold cursor-pointer py-2 px-4 rounded-lg download-button flex items-center"
+      className="mt-4 w-[100%] justify-center bg-white font-bold cursor-pointer py-2 px-4 rounded-lg download-button flex items-center"
       disabled={!isFormSubmitted}
     >
       <Download className="mr-2" />
@@ -101,23 +101,23 @@ const TailcallConfigForm = () => {
       </Form>
       <Modal open={isModalOpen} onClose={closeModal} aria-labelledby="modal-title" aria-describedby="modal-description">
         <Box className="bg-white p-6 m-6 rounded-lg shadow-lg config-success-modal-body">
-          <div className="flex items-center justify-end">
-            <h2 id="modal-title" className="text-xl font-bold">
+          <div className="flex justify-between items-center">
+            <div id="modal-title" className=" text-title-medium font-bold">
               Tailcall Configuration Generated{" "}
               <span className="bg-tailCall-yellow rounded-sm sm:rounded-xl px-SPACE_02">Successfully</span> 🚀
-            </h2>
+            </div>
             <IconButton aria-label="close" onClick={closeModal} className="absolute right-2">
               <Close />
             </IconButton>
           </div>
-          <p id="modal-description">Download the Tailcall configuration using the below CTAs!</p>
 
-          <div className="flex items-center justify-around">
-            <button onClick={closeModal} className="mt-4 bg-black text-white py-2 px-4 rounded-lg">
-              Close
-            </button>
-            <DownloadButton onClick={downloadConfigJson} title="JSON Config" />
-            <DownloadButton onClick={downloadConfigYaml} title="YAML Config" />
+          <div className="cursor-pointer ml-auto mr-auto mt-4 flex items-center justify-around">
+            <div className="w-[48%]">
+              <DownloadButton onClick={downloadConfigJson} title="JSON Config" />
+            </div>
+            <div className="w-[48%]">
+              <DownloadButton onClick={downloadConfigYaml} title="YAML Config" />
+            </div>
           </div>
         </Box>
       </Modal>
