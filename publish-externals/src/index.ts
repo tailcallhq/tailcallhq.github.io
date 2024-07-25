@@ -43,14 +43,14 @@ const publish = async (file: string) => {
       if (inSnapshot !== -1) {
         blogs[inSnapshot].published = true
         blogs[inSnapshot].lastUpdatePublished = true
-        blogs[inSnapshot].lastUpdatePublishedAt = new Date().toUTCString()
+        blogs[inSnapshot].lastSuccessfulPublishedAt = new Date().toUTCString()
         await writeSnapshot(blogs)
       } else {
         blogs.push({
           blogName: file,
           published: true,
           lastUpdatePublished: true,
-          lastUpdatePublishedAt: new Date().toUTCString(),
+          lastSuccessfulPublishedAt: new Date().toUTCString(),
         })
         await writeSnapshot(blogs)
       }
