@@ -10,17 +10,17 @@ const Customer = () => {
                 <div className="flex flex-row items-center justify-center mb-SPACE_12">
                     <Heading
                         as="h5"
-                        className="text-title-large sm:text-display-tiny lg:text-display-medium"
+                        className="text-title-large sm:text-display-tiny lg:text-display-medium flex flex-col items-center md:flex-row"
                     >
-                        Our Customers {" "}
-                        <span className='bg-tailCall-yellow rounded-lg text-black px-SPACE_01'>love us!</span>
+                        <span>Our Customers {" "}</span>
+                        <span className='bg-tailCall-yellow rounded-lg text-black px-SPACE_01 ml-SPACE_02'>love us!</span>
                     </Heading>
                 </div>
-                <div className='flex md:flex-row md:space-x-SPACE_02'>
+                <div className='flex flex-col space-y-SPACE_02 md:flex-row md:space-x-SPACE_02'>
                     {
                         customerFeedbacks.map((feedback) => {
                             return (
-                                <CustomerFeedbackCard key={feedback.id} classNames={feedback.id === 2 ? '!relative -top-6' : ""} citation={feedback.citation} designation={feedback.designation} />
+                                <CustomerFeedbackCard key={feedback.id} classNames={feedback.id === 2 ? "md:!relative md:-top-6" : ""} citation={feedback.citation} designation={feedback.designation} />
                             )
                         })
                     }
