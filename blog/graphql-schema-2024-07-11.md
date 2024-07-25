@@ -486,7 +486,7 @@ The TechTalent example we've explored here demonstrates many real-world consider
 
 By investing time in thoughtful schema design upfront, you'll create a solid foundation for your GraphQL API, enabling efficient development and a great experience for your API consumers.
 
-Alright greatttt! You have successfully completed the first part of a very intricate series!! Pat yourslef and maybe high five your cat! Here are the links to the next blogs in the series that have already been published.
+Alright greatttt! You have successfully completed the first part of a very intricate series!! Pat yourself and maybe high five your cat! Here are the links to the next blogs in the series that have already been published.
 
 ![cat giving high five](../static/images/blog/cat-high-five-gif.webp)
 
