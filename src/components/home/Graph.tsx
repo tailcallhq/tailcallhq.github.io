@@ -64,7 +64,7 @@ const Graph = (): JSX.Element => {
         </div>
 
         <ChooseTailcall />
-        <div className="mt-10">
+        {/* <div className="mt-10">
           <div className="flex justify-between w-[90%] ml-auto mr-auto">
             <div className="border border-solid border-tailCall-border-dark-300 flex items-center w-fit p-3 m-2 rounded-md">
               <span className="mr-2">
@@ -202,7 +202,7 @@ const Graph = (): JSX.Element => {
               Compile time tracks
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )
