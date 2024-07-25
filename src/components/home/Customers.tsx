@@ -16,7 +16,7 @@ const Customer = () => {
                         <span className='bg-tailCall-yellow rounded-lg text-black px-SPACE_01 ml-SPACE_02'>love us!</span>
                     </Heading>
                 </div>
-                <div className='flex flex-col space-y-SPACE_06 md:flex-row md:space-x-SPACE_02'>
+                <div className='flex flex-col space-y-SPACE_06 md:flex-row md:space-x-SPACE_02 md:space-y-0'>
                     {
                         customerFeedbacks.map((feedback) => {
                             return (
