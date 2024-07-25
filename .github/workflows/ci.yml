@@ -65,5 +65,5 @@ jobs:
         with:
           branch: develop
           commit_author: Author <actions@github.com>
-          commit_message: "update auto publish blogs snapshot"
+          commit_message: "Update snapshot"
 
