@@ -1,5 +1,5 @@
 ---
-title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 2.1
+title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 2
 authors:
   - name: Amit Singh
     title: Head of Growth and Strategy @ Tailcall
@@ -14,9 +14,63 @@ slug: graphql-schema-part-2-1
 
 import Quiz from "../src/components/quiz/quiz.tsx"
 
-![GraphQL Schema Structure](../static/images/graphql/graphql-schema-structure.png)
+## What Do You Already Know? 🧠💫
 
-If you are here that means you either know how to design your own schemas from scratch and are ready to play with it or you are coming here from our previous post where we introduced to the world of GraphQL schemas. Either way we are so proud of the inquisitive coder in you to be able to wander through the alleys of the million articles to land here! 
+<Quiz
+  title="GraphQL Schema Change"
+  questions={[
+    {
+      id: 1,
+      text: "Adding a new field to a GraphQL schema is generally a:",
+      options: ["Safe change", "Dangerous change", "Breaking change", "Requires deprecation"],
+      correctAnswer: 0,
+    },
+    {
+      id: 2,
+      text: "What is a potential issue when adding a new optional argument to a resolver?",
+      options: [
+        "It requires clients to update their queries",
+        "It can change the default behavior if not handled properly",
+        "It always breaks existing queries",
+        "It is not allowed in GraphQL",
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 3,
+      text: "Which strategy can make adding a required argument safe?",
+      options: [
+        "Introducing a new field",
+        "Providing a default value",
+        "Deprecating the old argument",
+        "Using introspection queries",
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 4,
+      text: "What is a common risk when adding a new type to an existing interface?",
+      options: [
+        "Clients will receive runtime errors if not properly type-checked",
+        "The schema becomes invalid",
+        "Existing types get overridden",
+        "It forces all clients to update immediately",
+      ],
+      correctAnswer: 0,
+    },
+    {
+      id: 5,
+      text: "What should clients implement to handle new union members?",
+      options: [
+        "Fallback UI components for unknown types",
+        "Always use non-null fields",
+        "Deprecation notices",
+        "Schema descriptions",
+      ],
+      correctAnswer: 0,
+    },
+  ]}
+/>
 
 Before you dive into another intricacy of GraphQL we love talking about here are a few notes and if we may dare, tl,dr of the article.
 This is a multiple part series and we keep expanding on it from time to time.
@@ -283,63 +337,6 @@ switch (order.status) {
 }
 ```
 
-## Quiz Time! 🎉
-
-<Quiz
-  questions={[
-    {
-      id: 1,
-      text: "Adding a new field to a GraphQL schema is generally a:",
-      options: ["Safe change", "Dangerous change", "Breaking change", "Requires deprecation"],
-      correctAnswer: 0,
-    },
-    {
-      id: 2,
-      text: "What is a potential issue when adding a new optional argument to a resolver?",
-      options: [
-        "It requires clients to update their queries",
-        "It can change the default behavior if not handled properly",
-        "It always breaks existing queries",
-        "It is not allowed in GraphQL",
-      ],
-      correctAnswer: 1,
-    },
-    {
-      id: 3,
-      text: "Which strategy can make adding a required argument safe?",
-      options: [
-        "Introducing a new field",
-        "Providing a default value",
-        "Deprecating the old argument",
-        "Using introspection queries",
-      ],
-      correctAnswer: 1,
-    },
-    {
-      id: 4,
-      text: "What is a common risk when adding a new type to an existing interface?",
-      options: [
-        "Clients will receive runtime errors if not properly type-checked",
-        "The schema becomes invalid",
-        "Existing types get overridden",
-        "It forces all clients to update immediately",
-      ],
-      correctAnswer: 0,
-    },
-    {
-      id: 5,
-      text: "What should clients implement to handle new union members?",
-      options: [
-        "Fallback UI components for unknown types",
-        "Always use non-null fields",
-        "Deprecation notices",
-        "Schema descriptions",
-      ],
-      correctAnswer: 0,
-    },
-  ]}
-/>
-
 ## Conclusion
 
 Evolving a GraphQL schema through additive changes allows you to expand your API's capabilities while maintaining backward compatibility. By following the principles and strategies outlined in this article, you can confidently add new fields, types, and arguments without causing disruptions to your clients.
@@ -352,11 +349,9 @@ Remember these key takeaways:
 
 By treating your GraphQL schema as a product with its own lifecycle and evolution strategy, you can build APIs that are both powerful and adaptable. This approach allows you to innovate rapidly while providing a stable and reliable service to your clients.
 
-
 Alright awesome you all! You have successfully completed the second part of our series!! Pat yourself and you know, maybe high five your cat! Here are the links to the next blogs in the series that have already been published.
 
 ![cat giving high five](../static/images/blog/cat-high-five-gif.webp)
 
 - [Next Part](/blog/graphql-schema-part-2-2)
-Here we will dive into removing schema elements and handling breaking changes!
-
+  Here we will dive into removing schema elements and handling breaking changes!
