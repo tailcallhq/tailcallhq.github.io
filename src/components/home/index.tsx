@@ -18,7 +18,6 @@ const HomePage = (): JSX.Element => {
       <Configuration />
       <Customer />
       <LegacyGateway />
-      <Partners />
       <Graph />
       {/* <Playground /> */}
       <Discover />
