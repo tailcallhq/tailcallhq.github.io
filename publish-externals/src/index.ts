@@ -12,7 +12,7 @@ const ExternalPublications = [
 
 const main = async () => {
   const changedFiles = process.argv[2].split(" ")
-  const blogs = snapshot.blogs || []
+  const blogs = snapshot.snapshot || []
 
   // publish changed files
   for (const file of changedFiles) {
@@ -30,7 +30,7 @@ const main = async () => {
 }
 
 const publish = async (file: string) => {
-  const blogs = snapshot.blogs || []
+  const blogs = snapshot.snapshot || []
   const errors = []
   const filePath = path.join(__dirname, "../../", `blog/${file}`)
   const {frontMatter, content} = extractFrontMatterAndContent(filePath)
