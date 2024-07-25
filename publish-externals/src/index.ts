@@ -63,8 +63,6 @@ const publish = async (file: string) => {
   if (errors.length !== 0) {
     // Update fields and if blog does not exist in snapshot, add it
     const inSnapshot = blogs.findIndex((blog) => blog.blogName === file)
-    console.log(inSnapshot)
-    console.log(blogs)
     if (inSnapshot !== -1) {
       blogs[inSnapshot].lastUpdatePublished = false
       await writeSnapshot(blogs)
