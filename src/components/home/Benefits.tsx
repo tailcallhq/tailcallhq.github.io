@@ -4,9 +4,9 @@ import Heading from "@theme/Heading"
 import SolutionGraphic from "@site/static/animations/solution-graphic.json"
 import SectionTitle from "../shared/SectionTitle"
 import LottieContainer from "./LottieContainer.tsxsrc/components/home/LottieContainer"
-import { benefits } from "@site/src/constants"
+import {benefits} from "@site/src/constants"
 import Partners from "./Partners"
-import { ArrowBigRight, ArrowRight } from "lucide-react"
+import {ArrowBigRight, ArrowRight} from "lucide-react"
 
 const LegacyGateway = (): JSX.Element => {
   return (
@@ -32,13 +32,18 @@ const LegacyGateway = (): JSX.Element => {
               <img src={item.image} alt="Image Describing Why Tailcall" className="max-w-[72px] sm:max-w-[110px]" />
             </div>
             <div>
-              <p className="text-title-small text-white sm:text-title-large mt-SPACE_04 mb-SPACE_02 sm:mb-0">{item.title} <span className="h-16 w-16 md:text-gray-400 group-hover:text-white"><ArrowRight/></span></p>
+              <p className="text-title-small text-white sm:text-title-large mt-SPACE_04 mb-SPACE_02 sm:mb-0">
+                {item.title}{" "}
+                <span className="h-16 w-16 md:text-gray-400 group-hover:text-white">
+                  <ArrowRight />
+                </span>
+              </p>
               <p className="text-content-tiny sm:text-content-small text-tailCall-light-600">{item.description}</p>
             </div>
           </div>
         ))}
       </div>
-      <Partners/>
+      <Partners />
     </section>
   )
 }

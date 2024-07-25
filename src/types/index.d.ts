@@ -122,9 +122,9 @@ type SidebarConfig = {
 }
 
 type CustomerFeedback = {
-  id: number,
-  citation: string,
-  designation: string,
+  id: number
+  citation: string
+  designation: string
 }
 
 declare module "docusaurus-lunr-search/src/theme/SearchBar"

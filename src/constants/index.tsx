@@ -37,7 +37,7 @@ export const partnerImages: PartnerImage[] = [
   },
 ]
 
-const Highlight = ({ text }: { text: string }) => (
+const Highlight = ({text}: {text: string}) => (
   <>
     <span className="text-content-tiny font-bold sm:text-title-tiny lg:text-title-small bg-tailCall-yellow rounded-[4px] sm:rounded-md px-SPACE_01">
       {text}
@@ -227,43 +227,50 @@ export const benefits: Benefits[] = [
   {
     id: 1,
     title: "Secure",
-    description: "Tailcaill has been validated against a comprehensive database of GraphQL vulnerabilities. Rest easy knowing your GraphQL backends are secure.",
+    description:
+      "Tailcaill has been validated against a comprehensive database of GraphQL vulnerabilities. Rest easy knowing your GraphQL backends are secure.",
     image: require("@site/static/images/home/secure-icon.png").default,
   },
   {
     id: 2,
     title: "High-Performance",
-    description: "Tailcall performs ahead-of-time optimizations based on analysis of the schema and data dependencies. Deploy GraphQL without compromises.",
+    description:
+      "Tailcall performs ahead-of-time optimizations based on analysis of the schema and data dependencies. Deploy GraphQL without compromises.",
     image: require("@site/static/images/home/performance.png").default,
   },
   {
     id: 3,
     title: "Statically Verified",
-    description: "Tailcall statically verifies that GraphQL schemas match resolvers and warns about N + 1 issues. Deploy new APIs with confidence.",
+    description:
+      "Tailcall statically verifies that GraphQL schemas match resolvers and warns about N + 1 issues. Deploy new APIs with confidence.",
     image: require("@site/static/images/home/statically-verified-icon.png").default,
   },
   {
     id: 4,
     title: "Simple",
-    description: "Tailcall frees you from implementing batching, caching, error propagation, cancellation, and tuning. Enjoy designing the perfect GraphQL schema.",
+    description:
+      "Tailcall frees you from implementing batching, caching, error propagation, cancellation, and tuning. Enjoy designing the perfect GraphQL schema.",
     image: require("@site/static/images/home/simple-icon.png").default,
   },
   {
     id: 5,
     title: "Customizable",
-    description: "Write custom Javascript to customize any aspect of your GraphQL backend. Leverage this escape hatch to satisfy any requirement.",
+    description:
+      "Write custom Javascript to customize any aspect of your GraphQL backend. Leverage this escape hatch to satisfy any requirement.",
     image: require("@site/static/images/home/customizable-icon.png").default,
   },
   {
     id: 6,
     title: "Plug & Play",
-    description: "Engineered to stay out of your way, shipping as a single executable with no dependencies or requirements. Get started quickly and easily.",
+    description:
+      "Engineered to stay out of your way, shipping as a single executable with no dependencies or requirements. Get started quickly and easily.",
     image: require("@site/static/images/home/plug-play-icon.png").default,
   },
   {
     id: 7,
     title: "Open Source",
-    description: "Tailcall is developed and released under the Apache 2 open source license, the gold standard for OSS. Embrace a vendor-neutral solution.",
+    description:
+      "Tailcall is developed and released under the Apache 2 open source license, the gold standard for OSS. Embrace a vendor-neutral solution.",
     image: require("@site/static/images/home/open-source-icon.png").default,
   },
 ]
@@ -425,7 +432,7 @@ export const pricingPlans: PricingPlans[] = [
 ]
 
 export const radioOptions: RadioOptions[] = [
-  { id: "1", name: "Evaluating", value: "evaluating" },
+  {id: "1", name: "Evaluating", value: "evaluating"},
   {
     id: "2",
     name: "Monolith",
@@ -454,17 +461,16 @@ export const customerFeedbacks: CustomerFeedback[] = [
   {
     id: 1,
     citation: `“We saved so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!”`,
-    designation: `Sr. Frontend Engineer - Big Co. Inc.`
+    designation: `Sr. Frontend Engineer - Big Co. Inc.`,
   },
   {
     id: 2,
     citation: `“We saved so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!”`,
-    designation: `Sr. Frontend Engineer - Big Co. Inc.`
+    designation: `Sr. Frontend Engineer - Big Co. Inc.`,
   },
   {
     id: 3,
     citation: `“We saved so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!”`,
-    designation: `Sr. Frontend Engineer - Big Co. Inc.`
-  }
+    designation: `Sr. Frontend Engineer - Big Co. Inc.`,
+  },
 ]
-
