@@ -37,7 +37,7 @@ export const partnerImages: PartnerImage[] = [
   },
 ]
 
-const Highlight = ({text}: {text: string}) => (
+const Highlight = ({ text }: { text: string }) => (
   <>
     <span className="text-content-tiny font-bold sm:text-title-tiny lg:text-title-small bg-tailCall-yellow rounded-[4px] sm:rounded-md px-SPACE_01">
       {text}
@@ -425,7 +425,7 @@ export const pricingPlans: PricingPlans[] = [
 ]
 
 export const radioOptions: RadioOptions[] = [
-  {id: "1", name: "Evaluating", value: "evaluating"},
+  { id: "1", name: "Evaluating", value: "evaluating" },
   {
     id: "2",
     name: "Monolith",
@@ -449,3 +449,22 @@ export enum Theme {
   Dark = "dark",
   Gray = "gray",
 }
+
+export const customerFeedbacks: CustomerFeedback[] = [
+  {
+    id: 1,
+    citation: `“We saved so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!”`,
+    designation: `Sr. Frontend Engineer - Big Co. Inc.`
+  },
+  {
+    id: 2,
+    citation: `“We saved so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!”`,
+    designation: `Sr. Frontend Engineer - Big Co. Inc.`
+  },
+  {
+    id: 3,
+    citation: `“We saved so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!”`,
+    designation: `Sr. Frontend Engineer - Big Co. Inc.`
+  }
+]
+

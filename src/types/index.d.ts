@@ -121,5 +121,11 @@ type SidebarConfig = {
   hiddenSidebarContainer: boolean
 }
 
+type CustomerFeedback = {
+  id: number,
+  citation: string,
+  designation: string,
+}
+
 declare module "docusaurus-lunr-search/src/theme/SearchBar"
 declare module "react-platform-js"
