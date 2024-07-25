@@ -58,3 +58,12 @@ jobs:
           cd ./publish-externals
           npm run generate
           npx --yes tsx ./src/index.ts "$CHANGED_FILES"
+
+      - name: Commit and push changes (on develop)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: test/optimise_ci
+          commit_author: Author <actions@github.com>
+          commit_message: "update auto publish blogs snapshot"
+
