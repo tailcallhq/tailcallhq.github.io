@@ -41,14 +41,18 @@ const publish = async (file: string) => {
       // Update fields and if blog does not exist in snapshot, add it
       const inSnapshot = blogs.findIndex((blog) => blog.blogName === file)
       if (inSnapshot !== -1) {
-        blogs[inSnapshot].published = true
-        blogs[inSnapshot].lastUpdatePublished = true
-        blogs[inSnapshot].lastSuccessfulPublishedAt = new Date().toUTCString()
-        await writeSnapshot(blogs)
+        // ensure only to publish to platforms mentioned in snapshot
+        if (blogs[inSnapshot].platforms.includes(publication.name)) {
+          blogs[inSnapshot].published = true
+          blogs[inSnapshot].lastUpdatePublished = true
+          blogs[inSnapshot].lastSuccessfulPublishedAt = new Date().toUTCString()
+          await writeSnapshot(blogs)
+        }
       } else {
         blogs.push({
           blogName: file,
           published: true,
+          platforms: ["Hashnode", "Dev.to"],
           lastUpdatePublished: true,
           lastSuccessfulPublishedAt: new Date().toUTCString(),
         })
@@ -69,6 +73,7 @@ const publish = async (file: string) => {
     } else {
       blogs.push({
         blogName: file,
+        platforms: ["Hashnode", "Dev.to"],
         published: false,
         lastUpdatePublished: false,
       })
