@@ -171,6 +171,6 @@ In case GraphiQL doesn’t quite work out for you and you want to try another ID
 
 Wrapping up, we discussed how GraphiQL is an absolute life-saver, especially when you have a server with hundreds of queries returning hundreds of fields of response data. It also makes it super easy to set up a GraphQL playground, like the Tailcall Playground.
 
-It's relieving and exciting to see new open-source projects being launched that make our lives as programmers much easier. Tailcall absolutely boosts server speed and performance, GraphiQL is a total blessing for servers in the development stage, and [Hygraph](https://hygraph.com/) is the go-to for developing CMS quickly.
+It's relieving and exciting to see new open-source projects being launched that make our lives as programmers much easier. Tailcall absolutely boosts server speed and performance, GraphiQL is a total blessing for testing servers in the development stage, and [Voyager](https://graphql-kit.com/graphql-voyager/) is the ultimate tool to graphically view and edit your complex schemas.
 
-Happy coding, and may your queries always be clean and your responses always be quick! 🚀
+Happy coding, and may your queries always be clean and your responses always be quick, see you in the next one! 🚀
