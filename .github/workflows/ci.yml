@@ -46,18 +46,18 @@ jobs:
             blog/**/*.{md,mdx}
 
       - name: Publish to Hashnode and Dev.to 📝
-        if: github.ref == 'refs/heads/develop' && steps.changed-markdown-files.outputs.any_changed == 'true'
+        if: github.ref == 'refs/heads/develop'
         env:
           HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
           HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
-          CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+          ADDED_FILES: ${{ steps.changed-markdown-files.outputs.added_files }}
           DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY}}
           DEVTO_ORG_ID: ${{secrets.DEVTO_ORG_ID}}
           DEVTO_ORG_NAME: ${{secrets.DEVTO_ORG_NAME}}
         run: |
           cd ./publish-externals
           npm run generate
-          npx --yes tsx ./src/index.ts "$CHANGED_FILES"
+          npx --yes tsx ./src/index.ts "$ADDED_FILES"
 
       - name: Commit and push changes (on develop)
         if: github.event_name == 'push' && github.ref == 'refs/heads/develop'

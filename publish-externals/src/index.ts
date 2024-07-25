@@ -4,94 +4,116 @@ import {extractFrontMatterAndContent} from "./utils/markdown"
 import * as devTo from "./utils/devto"
 import snapshot from "../snapshot.json"
 import fs from "fs"
+import {createHash} from "crypto"
 
-const ExternalPublications = [
+interface Blog {
+  file: string
+  platforms: {
+    [platform: string]: {
+      published: boolean
+      lastUpdatePublished: boolean
+      lastSuccessfulPublishedAt?: string
+    }
+  }
+  hash?: string
+}
+
+interface ExternalPublication {
+  name: string
+  handler: (frontMatter: FrontMatter, content: string) => Promise<void>
+}
+
+interface FrontMatter {
+  slug: string
+}
+
+const ExternalPublications: ExternalPublication[] = [
   {name: "Hashnode", handler: hashnode.handler},
   {name: "Dev.to", handler: devTo.handler},
 ]
 
+const errors = []
+
 const main = async () => {
-  const changedFiles = process.argv[2].split(" ")
-  const blogs = snapshot.snapshot || []
+  const addedFilesArg = process.argv[2]
+  const addedFiles = addedFilesArg ? addedFilesArg.split(" ") : []
+  const blogs: {[key: string]: Blog} = snapshot.blogs || {}
 
-  // publish changed files
-  for (const file of changedFiles) {
-    if (file.startsWith("blog/")) {
-      await publish(file.replace("blog/", ""))
-    }
+  if (addedFiles.length === 0 && Object.keys(blogs).length === 0) {
+    console.log("No changes detected. Exiting.")
+    return
   }
 
-  // publish blogs/updates which were not published before
-  for (const blog of blogs) {
-    if (!blog.lastUpdatePublished || !blog.published) {
-      await publish(blog.blogName)
-    }
-  }
-}
-
-const publish = async (file: string) => {
-  const blogs = snapshot.snapshot || []
-  const errors = []
-  const filePath = path.join(__dirname, "../../", `blog/${file}`)
-  const {frontMatter, content} = extractFrontMatterAndContent(filePath)
-  for (let publication of ExternalPublications) {
-    console.log(`[${publication.name}] ${frontMatter.slug} ... publishing ⏳`)
-    try {
-      await publication.handler(frontMatter, content)
-      // Update fields and if blog does not exist in snapshot, add it
-      const inSnapshot = blogs.findIndex((blog) => blog.blogName === file)
-      if (inSnapshot !== -1) {
-        // ensure only to publish to platforms mentioned in snapshot
-        if (blogs[inSnapshot].platforms.includes(publication.name)) {
-          blogs[inSnapshot].published = true
-          blogs[inSnapshot].lastUpdatePublished = true
-          blogs[inSnapshot].lastSuccessfulPublishedAt = new Date().toUTCString()
-          await writeSnapshot(blogs)
-        }
-      } else {
-        blogs.push({
-          blogName: file,
-          published: true,
-          platforms: ["Hashnode", "Dev.to"],
-          lastUpdatePublished: true,
-          lastSuccessfulPublishedAt: new Date().toUTCString(),
-        })
-        await writeSnapshot(blogs)
-      }
-      console.log(`[${publication.name}] Success ${frontMatter.slug} ... succeeded ✅`)
-    } catch (error) {
-      errors.push(error)
-      console.error(`[${publication.name}] Failure ${frontMatter.slug} ... failed 💀`)
-    }
-  }
-  if (errors.length !== 0) {
-    // Update fields and if blog does not exist in snapshot, add it
-    const inSnapshot = blogs.findIndex((blog) => blog.blogName === file)
-    if (inSnapshot !== -1) {
-      blogs[inSnapshot].lastUpdatePublished = false
-      await writeSnapshot(blogs)
-    } else {
-      blogs.push({
-        blogName: file,
-        platforms: ["Hashnode", "Dev.to"],
-        published: false,
-        lastUpdatePublished: false,
-      })
-      await writeSnapshot(blogs)
-    }
-
-    console.error(errors)
-    throw new Error("Publishing failed because of one or more errors")
-  }
-}
-
-const writeSnapshot = async (snapshot: any) => {
   try {
-    fs.writeFileSync(path.join(__dirname, "../", "snapshot.json"), JSON.stringify({snapshot}, null, 2), (err) => {
-      if (err) {
-        console.error(err)
+    for (let publication of ExternalPublications) {
+      for (const file of addedFiles) {
+        if (file.startsWith("blog/")) {
+          await publish(file, blogs, publication)
+        }
       }
-    })
+
+      for (const slug in blogs) {
+        const file = blogs[slug].file
+        if (!addedFiles.includes(file)) {
+          const {content} = extractFrontMatterAndContent(path.join(__dirname, "../../", file))
+          const contentHash = createHash("sha256").update(content).digest("hex")
+
+          if (!blogs[slug].hash || blogs[slug].hash !== contentHash) {
+            await publish(file, blogs, publication)
+          }
+        }
+      }
+    }
+  } finally {
+    await writeSnapshot(blogs)
+    if (errors.length > 0) {
+      throw new Error("Publishing failed because of one or more errors")
+    }
+  }
+}
+
+const publish = async (file: string, blogs: {[key: string]: Blog}, publication: ExternalPublication) => {
+  const filePath = path.join(__dirname, "../../", file)
+  const {frontMatter, content} = extractFrontMatterAndContent(filePath)
+  const platform = publication.name
+  const contentHash = createHash("sha256").update(content).digest("hex")
+  const slug = frontMatter.slug
+
+  console.log(`[${platform}] ${frontMatter.slug} ... publishing ⏳`)
+  try {
+    await publication.handler(frontMatter, content)
+
+    blogs[slug] = blogs[slug] || {
+      file,
+      platforms: {},
+    }
+    blogs[slug].platforms[platform] = {
+      published: true,
+      lastUpdatePublished: true,
+      lastSuccessfulPublishedAt: new Date().toUTCString(),
+    }
+    blogs[slug].hash = contentHash
+
+    console.log(`[${platform}] Success ${frontMatter.slug} ... succeeded ✅`)
+  } catch (error) {
+    console.error(`[${platform}] Failure ${frontMatter.slug} ... failed 💀`)
+
+    blogs[slug] = blogs[slug] || {
+      file,
+      platforms: {},
+    }
+    blogs[slug].platforms[platform] = {
+      published: blogs[slug].platforms[platform]?.published || false,
+      lastUpdatePublished: false,
+    }
+    console.log(blogs[slug])
+    errors.push(error)
+  }
+}
+
+const writeSnapshot = async (blogs: {[key: string]: Blog}) => {
+  try {
+    fs.writeFileSync(path.join(__dirname, "../", "snapshot.json"), JSON.stringify({blogs}, null, 2))
   } catch (err) {
     console.error(err)
   }
