@@ -10,7 +10,7 @@ import { ArrowBigRight, ArrowRight } from "lucide-react"
 
 const LegacyGateway = (): JSX.Element => {
   return (
-    <section className="w-full md:pt-20 p-10 lg:px-SPACE_16 bg-[#1C1D1F]">
+    <section className="w-full md:pt-20 p-10 lg:px-SPACE_16 bg-[#1C1D1F] grid-background">
       <div>
         <SectionTitle title="Benefits" />
         <div className=" h-fit sm:flex-row sm:items-center sm:space-x-SPACE_10 lg:space-x-SPACE_20">
