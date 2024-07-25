@@ -1,3 +1,11 @@
+type Benefit = {
+  id: number
+  title: string
+  href: string
+  description: string
+  image: string
+}
+
 type PartnerImage = {
   // id: number
   name: string

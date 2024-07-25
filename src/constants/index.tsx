@@ -6,6 +6,67 @@ export const tailCallBlogUrl = "https://blog.tailcall.run/"
 export const codeSandboxUrl = "https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
 export const zapierLink = "https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/"
 
+//added benefits array to map through in Benefits component
+//icon for each benefit is added in image/home folder even thou they are named icons
+export const benefits: Benefit[] = [
+  {
+    id: 1,
+    title: "Secure",
+    href: "/",
+    description:
+      "Tailcaill has been validated against a comprehensive database of GraphQL vulnerabilities. Rest easy knowing your GraphQL backends are secure.",
+    image: require("@site/static/images/home/secure-icon.png").default,
+  },
+  {
+    id: 2,
+    title: "High-Performance",
+    href: "/",
+    description:
+      "Tailcall performs ahead-of-time optimizations based on analysis of the schema and data dependencies. Deploy GraphQL without compromises.",
+    image: require("@site/static/images/home/performance.png").default,
+  },
+  {
+    id: 3,
+    title: "Statically Verified",
+    href: "/",
+    description:
+      "Tailcall statically verifies that GraphQL schemas match resolvers and warns about N + 1 issues. Deploy new APIs with confidence.",
+    image: require("@site/static/images/home/statically-verified-icon.png").default,
+  },
+  {
+    id: 4,
+    title: "Simple",
+    href: "/",
+    description:
+      "Tailcall frees you from implementing batching, caching, error propagation, cancellation, and tuning. Enjoy designing the perfect GraphQL schema.",
+    image: require("@site/static/images/home/simple-icon.png").default,
+  },
+  {
+    id: 5,
+    title: "Customizable",
+    href: "/",
+    description:
+      "Write custom Javascript to customize any aspect of your GraphQL backend. Leverage this escape hatch to satisfy any requirement.",
+    image: require("@site/static/images/home/customizable-icon.png").default,
+  },
+  {
+    id: 6,
+    title: "Plug & Play",
+    href: "/",
+    description:
+      "Engineered to stay out of your way, shipping as a single executable with no dependencies or requirements. Get started quickly and easily.",
+    image: require("@site/static/images/home/plug-play-icon.png").default,
+  },
+  {
+    id: 7,
+    title: "Open Source",
+    href: "/",
+    description:
+      "Tailcall is developed and released under the Apache 2 open source license, the gold standard for OSS. Embrace a vendor-neutral solution.",
+    image: require("@site/static/images/home/open-source-icon.png").default,
+  },
+]
+
 export const partnerImages: PartnerImage[] = [
   {
     name: "Digital Ocean",
