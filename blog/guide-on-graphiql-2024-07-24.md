@@ -89,75 +89,7 @@ Check out the server's response here. It's super useful for handling lots of nes
 }
 ```
 
-3. Run Your Query
-
-## Best Practices
-
-### Write Clear and Well-Structured Queries
-
-Keep your queries easy to read and understand. Clean queries make your life (and your future self's) way easier.
-
-**Not Cool**:
-
-```graphql
-{
-  user(id: 1) {
-    id
-    name
-    email
-    friends {
-      id
-      name
-      posts {
-        id
-        title
-        content
-        comments {
-          id
-          text
-        }
-      }
-    }
-  }
-}
-```
-
-**Totally Awesome**:
-
-```graphql
-{
-  user(id: 1) {
-    id
-    name
-    email
-    friends {
-      id
-      name
-      posts {
-        id
-        title
-        content
-        comments {
-          id
-          text
-        }
-      }
-    }
-  }
-}
-```
-
-### Use Modular Queries
-
-Break down those monster queries into smaller, bite-sized pieces. It makes your code look slick and easy to handle.
-
-### Implement Thorough/Consistent Query Testing
-
-Test your queries regularly to catch bugs early. Reliable queries make for a happy developer.
-
-### Add In-Line Comments
-
-Drop some comments in your queries to explain what’s going on, it will make life much easier. Future you (and your teammates) will thank you!
+3. Run Your Query!
 
 ## Alternatives
 
