@@ -17,7 +17,10 @@ const Configuration = (): JSX.Element => {
         </p>
         <div>
           <h5>More</h5>
-          <p className="text-content-small sm:text-content-medium mb-SPACE_11">To dive deeper into TailCall checkout our <Link href="/docs">docs</Link> for detailed tutorials. Ideal for devs at any level, it's packed with advanced tips, powerful operators and best practices.</p>
+          <p className="text-content-small sm:text-content-medium mb-SPACE_11">
+            To dive deeper into TailCall checkout our <Link href="/docs">docs</Link> for detailed tutorials. Ideal for
+            devs at any level, it's packed with advanced tips, powerful operators and best practices.
+          </p>
         </div>
       </div>
       <div>
