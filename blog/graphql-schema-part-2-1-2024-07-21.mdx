@@ -7,20 +7,76 @@ authors:
     image_url: https://avatars.githubusercontent.com/u/23661702?v=5
 tags: [GraphQL, API, Schema, Design, Best Practices]
 description: Learn how to make additive changes to your GraphQL schema without causing disruptions.
-image: /images/graphql/graphql-schema-structure.png
+image: /images/blog/quiz-part4.png
 hide_table_of_contents: true
 slug: graphql-schema-part-2-1
 ---
 
 import Quiz from "../src/components/quiz/quiz.tsx"
 
-![GraphQL Schema Structure](../static/images/graphql/graphql-schema-structure.png)
+## What Do You Already Know? 🧠💫
+
+<Quiz
+  title="GraphQL Schema Change"
+  questions={[
+    {
+      id: 1,
+      text: "Adding a new field to a GraphQL schema is generally a:",
+      options: ["Safe change", "Dangerous change", "Breaking change", "Requires deprecation"],
+      correctAnswer: 0,
+    },
+    {
+      id: 2,
+      text: "What is a potential issue when adding a new optional argument to a resolver?",
+      options: [
+        "It requires clients to update their queries",
+        "It can change the default behavior if not handled properly",
+        "It always breaks existing queries",
+        "It is not allowed in GraphQL",
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 3,
+      text: "Which strategy can make adding a required argument safe?",
+      options: [
+        "Introducing a new field",
+        "Providing a default value",
+        "Deprecating the old argument",
+        "Using introspection queries",
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 4,
+      text: "What is a common risk when adding a new type to an existing interface?",
+      options: [
+        "Clients will receive runtime errors if not properly type-checked",
+        "The schema becomes invalid",
+        "Existing types get overridden",
+        "It forces all clients to update immediately",
+      ],
+      correctAnswer: 0,
+    },
+    {
+      id: 5,
+      text: "What should clients implement to handle new union members?",
+      options: [
+        "Fallback UI components for unknown types",
+        "Always use non-null fields",
+        "Deprecation notices",
+        "Schema descriptions",
+      ],
+      correctAnswer: 0,
+    },
+  ]}
+/>
 
 In our [previous post](/blog/graphql-schema), we learned scalable GraphQL schema is critical for building production-ready APIs that can evolve with your application's needs.
 
-In this post, we will dive deeper into how to **continuously** evolve your schema to meet your application's changing requirements without hard-coded versioning.
-
 <!-- truncate -->
+
+In this post, we will dive deeper into how to **continuously** evolve your schema to meet your application's changing requirements without hard-coded versioning.
 
 ## Adding Without Breaking: The Art of Additive Changes
 
@@ -271,64 +327,6 @@ switch (order.status) {
     return "Order status unknown"
 }
 ```
-
-## Quiz Time! 🎉
-
-<Quiz
-  title="GraphQL Schema Change"
-  questions={[
-    {
-      id: 1,
-      text: "Adding a new field to a GraphQL schema is generally a:",
-      options: ["Safe change", "Dangerous change", "Breaking change", "Requires deprecation"],
-      correctAnswer: 0,
-    },
-    {
-      id: 2,
-      text: "What is a potential issue when adding a new optional argument to a resolver?",
-      options: [
-        "It requires clients to update their queries",
-        "It can change the default behavior if not handled properly",
-        "It always breaks existing queries",
-        "It is not allowed in GraphQL",
-      ],
-      correctAnswer: 1,
-    },
-    {
-      id: 3,
-      text: "Which strategy can make adding a required argument safe?",
-      options: [
-        "Introducing a new field",
-        "Providing a default value",
-        "Deprecating the old argument",
-        "Using introspection queries",
-      ],
-      correctAnswer: 1,
-    },
-    {
-      id: 4,
-      text: "What is a common risk when adding a new type to an existing interface?",
-      options: [
-        "Clients will receive runtime errors if not properly type-checked",
-        "The schema becomes invalid",
-        "Existing types get overridden",
-        "It forces all clients to update immediately",
-      ],
-      correctAnswer: 0,
-    },
-    {
-      id: 5,
-      text: "What should clients implement to handle new union members?",
-      options: [
-        "Fallback UI components for unknown types",
-        "Always use non-null fields",
-        "Deprecation notices",
-        "Schema descriptions",
-      ],
-      correctAnswer: 0,
-    },
-  ]}
-/>
 
 ## Conclusion
 
