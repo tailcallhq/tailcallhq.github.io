@@ -15,15 +15,25 @@ tags: [GraphQL, GraphiQL, IDE, debugging]
 
 ![banner](/images/graphiql/graphiql.png)
 
-Meet GraphiQL, a true life-saver for testing, debugging and having fun with you graphQL server.
+Meet GraphiQL, a true life-saver for testing, debugging and having fun with your graphQL server.
 
 <!-- truncate -->
 
 ## Introduction
 
-GraphQL development can be a hassle, especially when you need to set up an entire environment just to check if an endpoint is working. The process can be tedious, requiring server configuration, route setup, and writing test queries—all before you even start interacting with your data. This is where GraphiQL comes in, simplifying the whole process and making it way more manageable.
+Imagine you’re diving into GraphQL development and find yourself bogged down with setting up an entire environment just to see if an endpoint is functioning. It’s like preparing a full feast just to taste a single dish—server configurations, route setups, test queries, and more before you even get to interact with your data. Sounds overwhelming, right?
+
+Enter **GraphiQL**, your development superhero. It swoops in to simplify the mess, turning that complicated setup into a breeze. Instead of juggling all those configurations, GraphiQL lets you quickly test and explore your endpoints with ease. It’s like having a magic wand that instantly brings your GraphQL queries to life, making development smoother and way more fun!
 
 ## Why Use GraphiQL?
+
+If you are here, you either know GraphQL too well and are looking for solutions to some GraphQL idiosyncrasy, or you have stumbled here while trying to learn more about GraphQL. If you are new to the GraphQL world, here’s some resources to help you get started with GraphQL:
+
+- [Guide To GraphQL](https://www.tailcall.run/graphql/)
+
+- [Designing GraphQL Schemas](https://www.tailcall.run/blog/graphql-schema/)
+
+- [Securing GraphQL Apis](https://www.tailcall.run/blog/graphql-introspection-security/)
 
 GraphiQL lets you test out server endpoints without setting up a whole environment. It shines on documentation websites, saving you from writing a playground from scratch, which can be a real time-saver.
 
@@ -85,7 +95,7 @@ Check out the server's response here. It's super useful for handling lots of nes
 
 ```json
 {
-  "Authorization": "Token myGhToken"
+  "Authorization": "token myghtoken"
 }
 ```
 
@@ -95,6 +105,13 @@ Check out the server's response here. It's super useful for handling lots of nes
 
 In case GraphiQL doesn’t quite work out for you and you want to try another IDE, here are some options:
 
+Introspection with Postman
+![introspection with postman](/images/graphiql/postman2.png)
+
+Querying with Postman
+
+![querying with postman](/images/graphiql/postman1.png)
+
 - **[Postman](https://learning.postman.com/docs/sending-requests/graphql/graphql-overview/)**
 - **[Insomnia](https://docs.insomnia.rest/insomnia/graphql-queries)**
 - **[Altair Client](https://altairgraphql.dev/)**
@@ -102,7 +119,10 @@ In case GraphiQL doesn’t quite work out for you and you want to try another ID
 ## Conclusion
 
 Wrapping up, we discussed how GraphiQL is an absolute life-saver, especially when you have a server with hundreds of queries returning hundreds of fields of response data. It also makes it super easy to set up a GraphQL playground, like the Tailcall Playground.
+It’s relieving and exciting to see new open-source projects being launched that make our lives as programmers much easier:
 
-It's relieving and exciting to see new open-source projects being launched that make our lives as programmers much easier. Tailcall absolutely boosts server speed and performance, GraphiQL is a total blessing for testing servers in the development stage, and [Voyager](https://graphql-kit.com/graphql-voyager/) is the ultimate tool to graphically view and edit your complex schemas.
+- Tailcall absolutely boosts server speed and performance
+- GraphiQL is a total blessing for testing servers in the development stage
+- Voyager is the ultimate tool to graphically view and edit your complex schemas.
 
 Happy coding, and may your queries always be clean and your responses always be quick, see you in the next one! 🚀
