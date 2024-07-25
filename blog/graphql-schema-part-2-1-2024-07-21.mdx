@@ -16,6 +16,17 @@ import Quiz from "../src/components/quiz/quiz.tsx"
 
 ![GraphQL Schema Structure](../static/images/graphql/graphql-schema-structure.png)
 
+If you are here that means you either know how to design your own schemas from scratch and are ready to play with it or you are coming here from our previous post where we introduced to the world of GraphQL schemas. Either way we are so proud of the inquisitive coder in you to be able to wander through the alleys of the million articles to land here! 
+
+Before you dive into another intricacy of GraphQL we love talking about here are a few notes and if we may dare, tl,dr of the article.
+This is a multiple part series and we keep expanding on it from time to time.
+
+TL;DR: Adding Without Breaking: The Art of Additive Changes
+
+- Safe Changes: Adding fields/types is generally safe but watch for edge cases like changing resolver behavior with optional arguments.
+- Breaking Changes: Adding required arguments or new enum values can break clients; use default values and advise clients on handling new cases.
+- Complex Types: Adding new implementations to interfaces or members to unions can cause runtime errors; ensure clients implement exhaustive type checks.
+
 In our [previous post](/blog/graphql-schema), we learned scalable GraphQL schema is critical for building production-ready APIs that can evolve with your application's needs.
 
 In this post, we will dive deeper on how to **continuously** evolve your schema to meet your application's changing requirements without hard-coded versioning.
@@ -341,4 +352,11 @@ Remember these key takeaways:
 
 By treating your GraphQL schema as a product with its own lifecycle and evolution strategy, you can build APIs that are both powerful and adaptable. This approach allows you to innovate rapidly while providing a stable and reliable service to your clients.
 
-Stay tuned for the [next part](/blog/graphql-schema-part-2-2) of this series, where we will dive into removing schema elements and handling breaking changes!
+
+Alright awesome you all! You have successfully completed the second part of our series!! Pat yourself and you know, maybe high five your cat! Here are the links to the next blogs in the series that have already been published.
+
+![cat giving high five](../static/images/blog/cat-high-five-gif.webp)
+
+- [Next Part](/blog/graphql-schema-part-2-2)
+Here we will dive into removing schema elements and handling breaking changes!
+
