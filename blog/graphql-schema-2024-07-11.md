@@ -1,5 +1,5 @@
 ---
-title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry
+title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 1
 authors:
   - name: Amit Singh
     title: Head of Growth and Strategy @ Tailcall
