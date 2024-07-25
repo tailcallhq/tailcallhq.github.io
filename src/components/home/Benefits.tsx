@@ -6,6 +6,7 @@ import SectionTitle from "../shared/SectionTitle"
 import LottieContainer from "./LottieContainer.tsxsrc/components/home/LottieContainer"
 import { benefits } from "@site/src/constants"
 import Partners from "./Partners"
+import { ArrowBigRight, ArrowRight } from "lucide-react"
 
 const LegacyGateway = (): JSX.Element => {
   return (
@@ -24,14 +25,14 @@ const LegacyGateway = (): JSX.Element => {
       <div className="flex w-[100%] flex-wrap items-center justify-center">
         {benefits.map((item) => (
           <div
-            className="border border-solid border-tailCall-border-dark-300 w-[40%]  rounded-3xl px-10 py-2 flex items-center justify-between m-4"
+            className="border border-solid border-tailCall-border-dark-300 w-[40%]  rounded-3xl px-10 py-2 flex items-center justify-between m-4 hover:border-[#FDEA2E]"
             key={item.id}
           >
             <div className="h-16 w-16 sm:w-full sm:h-full">
               <img src={item.image} alt="Image Describing Why Tailcall" className="max-w-[72px] sm:max-w-[110px]" />
             </div>
             <div>
-              <p className="text-title-small text-white sm:text-title-large mt-SPACE_04 mb-SPACE_02 sm:mb-0">{item.title}</p>
+              <p className="text-title-small text-white sm:text-title-large mt-SPACE_04 mb-SPACE_02 sm:mb-0">{item.title} <span className="h-16 w-16 "><ArrowRight/></span></p>
               <p className="text-content-tiny sm:text-content-small text-tailCall-light-600">{item.description}</p>
             </div>
           </div>
