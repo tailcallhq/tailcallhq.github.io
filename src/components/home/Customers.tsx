@@ -7,7 +7,7 @@ const Customer = () => {
     return (
         <section className="customer-container !bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 lg:px-SPACE_16 !bg-center !bg-contain">
             <div className="mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto pt-SPACE_20 pb-SPACE_10">
-                <div className="flex flex-row items-center justify-center mb-SPACE_04">
+                <div className="flex flex-row items-center justify-center mb-SPACE_12">
                     <Heading
                         as="h5"
                         className="text-title-large sm:text-display-tiny lg:text-display-medium"
@@ -20,7 +20,7 @@ const Customer = () => {
                     {
                         customerFeedbacks.map((feedback) => {
                             return (
-                                <CustomerFeedbackCard key={feedback.id} citation={feedback.citation} designation={feedback.designation} />
+                                <CustomerFeedbackCard key={feedback.id} classNames={feedback.id === 2 ? '!relative -top-6' : ""} citation={feedback.citation} designation={feedback.designation} />
                             )
                         })
                     }
