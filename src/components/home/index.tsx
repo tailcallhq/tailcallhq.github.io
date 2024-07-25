@@ -15,10 +15,8 @@ const HomePage = (): JSX.Element => {
     <div className="">
       <Banner />
       <Configuration />
-      <Partners />
       <LegacyGateway />
-      <Features />
-      <MoreFeatures />
+      <Partners />
       <Graph />
       {/* <Playground /> */}
       <Discover />
