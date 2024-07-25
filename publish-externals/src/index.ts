@@ -38,8 +38,8 @@ const publish = async (file: string) => {
     console.log(`[${publication.name}] ${frontMatter.slug} ... publishing ⏳`)
     try {
       await publication.handler(frontMatter, content)
-      const inSnapshot = blogs.findIndex((blog) => blog.blogName === file)
       // Update fields and if blog does not exist in snapshot, add it
+      const inSnapshot = blogs.findIndex((blog) => blog.blogName === file)
       if (inSnapshot !== -1) {
         blogs[inSnapshot].published = true
         blogs[inSnapshot].lastUpdatePublished = true
