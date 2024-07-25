@@ -67,7 +67,7 @@ const Quiz: React.FC<QuizProps> = ({questions, title}) => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-gradient-to-r from-purple-100 to-blue-100 shadow-lg rounded-xl">
+    <div className="max-w-2xl mx-auto p-6 bg-gradient-to-r from-purple-100 to-blue-100 shadow--md rounded-xl margin--lg">
       <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">{title} Quiz!</h2>
       {showScore ? (
         <div className="text-center">
