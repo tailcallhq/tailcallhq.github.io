@@ -10,7 +10,7 @@ type BenefitProp = {
 }
 const Benefit = ({benefit}: BenefitProp): JSX.Element => {
   return (
-    <div className="group lg:basis-[calc(50%-24px)] border border-solid bg-tailCall-dark-400 z-20 border-tailCall-border-dark-300 hover:border-tailCall-yellow hover:shadow-[0_14px_24px_0_rgba(250,234,90,0.1)] w-full rounded-3xl p-SPACE_04 lg:p-SPACE_08 flex flex-col lg:flex-row gap-y-SPACE_04 gap-x-SPACE_08">
+    <div className="group lg:basis-[calc(50%-24px)] border border-solid bg-tailCall-dark-400  border-tailCall-border-dark-300 hover:border-tailCall-yellow hover:shadow-[0_14px_24px_0_rgba(250,234,90,0.1)] w-full rounded-3xl p-SPACE_04 lg:p-SPACE_08 flex flex-col lg:flex-row gap-y-SPACE_04 gap-x-SPACE_08">
       {/* Image container */}
       <div>
         <img
@@ -33,10 +33,12 @@ const Benefit = ({benefit}: BenefitProp): JSX.Element => {
 }
 const Benefits = (): JSX.Element => {
   return (
-    <section className="bg-tailCall-dark-400 w-full relative lg:px-SPACE_16 text-tailCall-light-100 py-4 sm:py-10 lg:py-16 overflow-hidden">
-      {/* Background image */}
-      <img src={require("@site/static/images/home/grid-dark.png").default} alt="" className="absolute h-full" />
-
+    <section
+      style={{
+        backgroundImage: `url(${require("@site/static/images/home/grid-dark.png").default})`,
+      }}
+      className="bg-tailCall-dark-400 w-full lg:px-SPACE_16 bg-repeat-y text-tailCall-light-100 py-4 sm:py-10 lg:py-16"
+    >
       {/* Container for section content */}
       <div className="max-w-7xl space-y-SPACE_04 md:space-y-SPACE_10 lg:space-y-SPACE_20 mx-SPACE_04 sm:m-SPACE_10 lg:mx-auto lg:my-SPACE_20">
         <div>
