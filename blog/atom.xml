@@ -99,6 +99,99 @@ The Cast:</p>
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Exploring GraphiQL: The In-Browser IDE for GraphQL]]></title>
+        <id>https://tailcall.run/blog/exploring-graphiql/</id>
+        <link href="https://tailcall.run/blog/exploring-graphiql/"/>
+        <updated>2024-07-24T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="Cover image for Exploring GraphiQL" src="https://tailcall.run/assets/images/graphiql-cover-71abff26fb609338e484764a06108987.png" width="2920" height="1382" class="img_ev3q"></p>
+<p>Meet GraphiQL, a true life-saver for testing, debugging and having fun with your graphQL server.</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="introduction">Introduction<a class="hash-link" aria-label="Direct link to Introduction" title="Direct link to Introduction" href="https://tailcall.run/blog/exploring-graphiql/#introduction">​</a></h2>
+<p>Imagine you’re diving into GraphQL development and find yourself bogged down with setting up an entire environment just to see if an endpoint is functioning. It’s like preparing a full feast just to taste a single dish—server configurations, route setups, test queries, and more before you even get to interact with your data. Sounds overwhelming, right?</p>
+<p>Enter <strong>GraphiQL</strong>, your development superhero. It swoops in to simplify the mess, turning that complicated setup into a breeze. Instead of juggling all those configurations, GraphiQL lets you quickly test and explore your endpoints with ease. It’s like having a magic wand that instantly brings your GraphQL queries to life, making development smoother and way more fun!</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="why-use-graphiql">Why Use GraphiQL?<a class="hash-link" aria-label="Direct link to Why Use GraphiQL?" title="Direct link to Why Use GraphiQL?" href="https://tailcall.run/blog/exploring-graphiql/#why-use-graphiql">​</a></h2>
+<p>If you are here, you either know GraphQL too well and are looking for solutions to some GraphQL idiosyncrasy, or you have stumbled here while trying to learn more about GraphQL. If you are new to the GraphQL world, here’s some resources to help you get started with GraphQL:</p>
+<ul>
+<li>
+<p><a href="https://www.tailcall.run/graphql/" target="_blank" rel="noopener noreferrer">Guide To GraphQL</a></p>
+</li>
+<li>
+<p><a href="https://www.tailcall.run/blog/graphql-schema/" target="_blank" rel="noopener noreferrer">Designing GraphQL Schemas</a></p>
+</li>
+<li>
+<p><a href="https://www.tailcall.run/blog/graphql-introspection-security/" target="_blank" rel="noopener noreferrer">Securing GraphQL Apis</a></p>
+</li>
+</ul>
+<p>GraphiQL lets you test out server endpoints without setting up a whole environment. It shines on documentation websites, saving you from writing a playground from scratch, which can be a real time-saver.</p>
+<p><img decoding="async" loading="lazy" alt="A gif showing color-coding and auto-suggest/complete" src="https://tailcall.run/assets/images/qry-ab63ce46df21a2fde56da1e741c68dc3.png" width="485" height="354" class="img_ev3q"></p>
+<ul>
+<li><strong>Interactive Interface</strong>: Provides a user-friendly interface to interact with your server. Features like auto-complete and syntax-highlighting help you write queries without needing to write the whole thing by hand.</li>
+<li><strong>Real-time Feedback</strong>: Receive immediate responses and see results on the go, making debugging much faster.</li>
+<li><strong>Built-in Documentation Explorer</strong>: No more switching tabs looking for documentation; the built-in explorer lets you see and interact with queries, types, and mutations all in one place.</li>
+<li><strong>History Tracking</strong>: Access previous queries and results, making it easy to repeat, refine, and learn from past requests.</li>
+<li><strong>Customizable</strong>: Tailor the GraphiQL setup to match your style. Adjust colors and options to blend with your website. For more information, see <a href="https://graphiql-test.netlify.app/typedoc/modules/graphiql.html#customize" target="_blank" rel="noopener noreferrer">Customization</a>.</li>
+</ul>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="accessing-graphiql">Accessing GraphiQL<a class="hash-link" aria-label="Direct link to Accessing GraphiQL" title="Direct link to Accessing GraphiQL" href="https://tailcall.run/blog/exploring-graphiql/#accessing-graphiql">​</a></h2>
+<p>You can access GraphiQL using either of these methods:</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="directly-through-tailcall-playground">Directly through Tailcall Playground<a class="hash-link" aria-label="Direct link to Directly through Tailcall Playground" title="Direct link to Directly through Tailcall Playground" href="https://tailcall.run/blog/exploring-graphiql/#directly-through-tailcall-playground">​</a></h3>
+<p>If you have a running GraphQL server and want to interact with it graphically, use <a href="https://tailcall.run/playground/" target="_blank" rel="noopener noreferrer">Tailcall Playground</a>. Open the playground and enter the root endpoint of your server:</p>
+<p><img decoding="async" loading="lazy" alt="screenshot showing docs loading and endpoint entered" src="https://tailcall.run/assets/images/docs-0e82e45a5d672972c0872ec7a533d22b.png" width="396" height="511" class="img_ev3q"></p>
+<p><strong>Note:</strong> Ensure your server's CORS policy allows requests from the Tailcall domain.</p>
+<p>Once you enter the endpoint, the schema is automatically loaded, and you are good to go.</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="by-starting-the-graphql-server-with-tailcall">By Starting the GraphQL Server with Tailcall<a class="hash-link" aria-label="Direct link to By Starting the GraphQL Server with Tailcall" title="Direct link to By Starting the GraphQL Server with Tailcall" href="https://tailcall.run/blog/exploring-graphiql/#by-starting-the-graphql-server-with-tailcall">​</a></h3>
+<p>Or, if you use Tailcall for your GraphQL server, the playground URL is provided once you <a href="https://tailcall.run/docs/#starting-the-graphql-server" target="_blank" rel="noopener noreferrer">start the server</a>:</p>
+<p><img decoding="async" loading="lazy" alt="screenshot showing the output in console" src="https://tailcall.run/assets/images/logoutput-c2bf8b173a6c2bc1059a4536ebb05b66.png" width="784" height="58" class="img_ev3q"></p>
+<p>Simply click on the link, and it will open the Tailcall Playground with the endpoint already set up.</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="exploring-the-graphiql-interface">Exploring the GraphiQL Interface<a class="hash-link" aria-label="Direct link to Exploring the GraphiQL Interface" title="Direct link to Exploring the GraphiQL Interface" href="https://tailcall.run/blog/exploring-graphiql/#exploring-the-graphiql-interface">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="query-editor">Query Editor<a class="hash-link" aria-label="Direct link to Query Editor" title="Direct link to Query Editor" href="https://tailcall.run/blog/exploring-graphiql/#query-editor">​</a></h3>
+<p>Packed with handy features like autocomplete, syntax highlighting, error detection, and code folding, this editor keeps your code neat and saves you tons of time.</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="variables-editor">Variables Editor<a class="hash-link" aria-label="Direct link to Variables Editor" title="Direct link to Variables Editor" href="https://tailcall.run/blog/exploring-graphiql/#variables-editor">​</a></h3>
+<p>Easily edit variables with autocomplete based on the ones declared in your query—no more tedious copy-pasting of long variable names in complex queries.</p>
+<p><img decoding="async" loading="lazy" alt="vars screenshot" src="https://tailcall.run/assets/images/vars-3cd1fd55119c93ecd79a86e65791384a.png" width="475" height="191" class="img_ev3q"></p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="response-pane">Response Pane<a class="hash-link" aria-label="Direct link to Response Pane" title="Direct link to Response Pane" href="https://tailcall.run/blog/exploring-graphiql/#response-pane">​</a></h3>
+<p>Check out the server's response here. It's super useful for handling lots of nested data, with built-in folding to keep things tidy and avoid getting lost in a sea of JSON.</p>
+<p><img decoding="async" loading="lazy" alt="response pane" src="https://tailcall.run/assets/images/response-54405067183065357dfe0f38fa66d4a5.png" width="496" height="530" class="img_ev3q"></p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="setting-headers">Setting Headers<a class="hash-link" aria-label="Direct link to Setting Headers" title="Direct link to Setting Headers" href="https://tailcall.run/blog/exploring-graphiql/#setting-headers">​</a></h2>
+<ol>
+<li>Access the Headers Panel right beside the variables panel at the bottom</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="headers screenshot" src="https://tailcall.run/assets/images/header-90a3161e206d372e6b2c3017d966c448.png" width="482" height="202" class="img_ev3q"></p>
+<ol start="2">
+<li>Add Custom Headers</li>
+</ol>
+<div class="rounded-3xl overflow-hidden"><div class="bg-[#35353A] p-4 flex justify-between items-center"><span class="text-white text-xs font-space-mono"></span><div class="relative"><button aria-label="Copy code" class="flex flex-row items-center bg-transparent appearance-none border-none"><img src="https://tailcall.run/icons/basic/copy-icon.svg" alt="Copy Icon" class="w-4 h-4 cursor-pointer hover:opacity-80 transition-opacity duration-150"></button></div></div><div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#fff;--prism-background-color:#303037"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#fff;background-color:#303037"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#fff"><span class="token punctuation" style="color:#fff">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#fff"><span class="token plain">  </span><span class="token property" style="color:#C586C0">"Authorization"</span><span class="token operator" style="color:#8DFFF8">:</span><span class="token plain"> </span><span class="token string" style="color:#FDB869">"token myghtoken"</span><span class="token plain"></span><br></span><span class="token-line" style="color:#fff"><span class="token plain"></span><span class="token punctuation" style="color:#fff">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div>
+<ol start="3">
+<li>Run Your Query!</li>
+</ol>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="alternatives">Alternatives<a class="hash-link" aria-label="Direct link to Alternatives" title="Direct link to Alternatives" href="https://tailcall.run/blog/exploring-graphiql/#alternatives">​</a></h2>
+<p>In case GraphiQL doesn’t quite work out for you and you want to try another IDE, here are some options:</p>
+<p>Introspection with Postman
+<img decoding="async" loading="lazy" alt="introspection with postman" src="https://tailcall.run/assets/images/postman2-d9c1f5ffddd789dc39ec9f85a66ec75b.png" width="1243" height="323" class="img_ev3q"></p>
+<p>Querying with Postman</p>
+<p><img decoding="async" loading="lazy" alt="querying with postman" src="https://tailcall.run/assets/images/postman1-8e64d3aef781fbebb5af0a2485839e4a.png" width="1232" height="485" class="img_ev3q"></p>
+<ul>
+<li><strong><a href="https://learning.postman.com/docs/sending-requests/graphql/graphql-overview/" target="_blank" rel="noopener noreferrer">Postman</a></strong></li>
+<li><strong><a href="https://docs.insomnia.rest/insomnia/graphql-queries" target="_blank" rel="noopener noreferrer">Insomnia</a></strong></li>
+<li><strong><a href="https://altairgraphql.dev/" target="_blank" rel="noopener noreferrer">Altair Client</a></strong></li>
+</ul>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="conclusion">Conclusion<a class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" href="https://tailcall.run/blog/exploring-graphiql/#conclusion">​</a></h2>
+<p>Wrapping up, we discussed how GraphiQL is an absolute life-saver, especially when you have a server with hundreds of queries returning hundreds of fields of response data. It also makes it super easy to set up a GraphQL playground, like the Tailcall Playground.
+It’s relieving and exciting to see new open-source projects being launched that make our lives as programmers much easier:</p>
+<ul>
+<li>Tailcall absolutely boosts server speed and performance</li>
+<li>GraphiQL is a total blessing for testing servers in the development stage</li>
+<li>Voyager is the ultimate tool to graphically view and edit your complex schemas.</li>
+</ul>
+<p>Happy coding, and may your queries always be clean and your responses always be quick, see you in the next one! 🚀</p>]]></content>
+        <author>
+            <name>Hunain Ahmed</name>
+            <uri>https://github.com/hunxjunedo</uri>
+        </author>
+        <category label="GraphQL" term="GraphQL"/>
+        <category label="GraphiQL" term="GraphiQL"/>
+        <category label="IDE" term="IDE"/>
+        <category label="debugging" term="debugging"/>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 4]]></title>
         <id>https://tailcall.run/blog/graphql-schema-part-2-3/</id>
         <link href="https://tailcall.run/blog/graphql-schema-part-2-3/"/>
