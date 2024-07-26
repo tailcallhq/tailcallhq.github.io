@@ -46,7 +46,7 @@ const findOnDevto = async (titleToSearch: string) => {
     found = false
     while (true && !found) {
       const url = isOrg
-        ? `https://dev.to/api/organizations/{${DEVTO_ORG_NAME}}/articles`
+        ? `https://dev.to/api/organizations/${DEVTO_ORG_NAME}/articles`
         : `https://dev.to/api/articles/me/all`
       const response = await axios.get(`${url}?page=${page}&per_page=${per_page}`, devtoApiVars)
       const articles = response.data
