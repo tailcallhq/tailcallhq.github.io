@@ -9,10 +9,10 @@ type CustomerFeedbackCardProps = {
 const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({ classNames, citation, designation }) => {
     return (
         <div
-            className={`${classNames} customer-feedback-card flex flex-col items-center justify-end bg-tailCall-dark-600 tailcall-light-100 text-white py-SPACE_06 md:py-SPACE_03 px-SPACE_06 border-b-0 rounded-bl-none rounded-br-none text-center text-content-small`}
+            className={`${classNames} customer-feedback-card flex flex-col items-center justify-end bg-tailCall-dark-600 tailcall-light-100 text-white py-SPACE_06 px-SPACE_06 text-center text-content-small gap-y-SPACE_08`}
         >
             <span>{citation}</span>
-            <span className="mt-SPACE_04 text-content-tiny">{designation}</span>
+            <span className="text-content-tiny">{designation}</span>
         </div>
     )
 }

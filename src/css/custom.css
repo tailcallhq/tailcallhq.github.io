@@ -467,13 +467,14 @@ nav.menu {
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: 50px 50px; /* Adjust the grid size as needed */
+  background-size: 50px 50px;
+  /* Adjust the grid size as needed */
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
   z-index: 0;
 }
 
-.grid-background > * {
+.grid-background>* {
   position: relative;
   z-index: 1;
 }
@@ -609,9 +610,11 @@ span.token.tag.script.language-javascript {
 }
 
 .customer-feedback-card {
-  background: linear-gradient(180deg, #232426 0%, #121315 100%);
-  border: 2px solid;
-  border-image: linear-gradient(180deg, #555656 0%, #121315 100%);
-  border-image-slice: 1;
-  color: rgba(231, 231, 231, 1);
+  border: 2px solid transparent;
+  border-bottom: none;
+  border-radius: 0.75rem;
+  background-image: linear-gradient(180deg, #232426 0%, #121315 100%),
+    linear-gradient(180deg, #555656 0%, #121315 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
