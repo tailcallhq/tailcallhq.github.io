@@ -1,7 +1,7 @@
 import React from "react"
 import Heading from "@theme/Heading"
 import CustomerFeedbackCard from "./CustomerFeedbackCard"
-import { customerFeedbacks } from "@site/src/constants"
+import {customerFeedbacks} from "@site/src/constants"
 
 const Customer = () => {
   return (

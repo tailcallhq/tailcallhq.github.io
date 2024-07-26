@@ -6,7 +6,7 @@ import {partnerImages} from "@site/src/constants"
 
 const Partners = (): JSX.Element => {
   return (
-    <section className="mt-SPACE_08">
+    <section className="md:mt-SPACE_16 mt-space_08">
       <div className="text-content-small font-bold sm:text-title-tiny lg:text-title-small text-tailCall-light-500 text-center space-x-1">
         <GreaterThanUnderscoreIcon className="h-4 w-6" />
         <span>Partners where you can deploy</span>

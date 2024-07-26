@@ -18,7 +18,7 @@ const LegacyGateway = (): JSX.Element => {
           </Heading>
         </div>
       </div>
-      <BenefitsCard/>
+      <BenefitsCard />
       <Partners />
     </section>
   )
