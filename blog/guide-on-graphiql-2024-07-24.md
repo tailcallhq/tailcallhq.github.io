@@ -2,18 +2,18 @@
 title: "Exploring GraphiQL: The In-Browser IDE for GraphQL"
 sidebar_label: "What is gRPC"
 description: ""
-image: /images/docs/grpc_logo.png
+image: /images/graphql/graphiql-cover.png
 authors:
   - name: Hunain Ahmed
     title: A freelance software developer, always working on something new and fascinating.
     url: https://github.com/hunxjunedo
     image_url: https://avatars.githubusercontent.com/u/89797440?v=4
 hide_table_of_contents: true
-slug: exploring-graphqli
+slug: exploring-graphiql
 tags: [GraphQL, GraphiQL, IDE, debugging]
 ---
 
-![banner](/images/graphiql/graphiql.png)
+![Cover image for Exploring GraphiQL](../static/images/graphql/graphiql-cover.png)
 
 Meet GraphiQL, a true life-saver for testing, debugging and having fun with your graphQL server.
 
