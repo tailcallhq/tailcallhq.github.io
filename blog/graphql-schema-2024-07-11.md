@@ -1,5 +1,5 @@
 ---
-title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry
+title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 1
 authors:
   - name: Amit Singh
     title: Head of Growth and Strategy @ Tailcall
@@ -16,7 +16,17 @@ slug: graphql-schema
 
 Designing a robust, scalable GraphQL schema is critical for building production-ready APIs that can evolve with your application's needs. In this comprehensive guide, we'll walk through the process of crafting a GraphQL schema for a real-world application, highlighting best practices and considerations along the way.
 
+If you are thinking how we could possibly cover all of the lovely intricacies associated with this topic in one go, you are right, we can't and so we are not! We have created an amazing series to take you through the nuances of working with GraphQL schemas.
+
+Let's break our job into puzzle pieces. Let's start by simply creating designing a brand new schema!
+
 <!-- truncate -->
+
+<div style={{textAlign: 'center', margin:'16px'}}>
+
+<img src="/images/blog/puzzle-graphql-schema-1.png" alt="puzzle piece to visualise the series" style={{maxWidth: '40%'}} />
+
+</div>
 
 If you're new to GraphQL Schema, check out our [GraphQL Schema Tutorial](https://tailcall.run/graphql/schemas-and-types/) to get up to speed with the basics.
 
@@ -474,3 +484,9 @@ Remember, your schema is a living document. As your application evolves, so too 
 The TechTalent example we've explored here demonstrates many real-world considerations, but every application will have its unique requirements. Always design with your specific use cases in mind, and don't be afraid to iterate as you learn more about how your API is used in practice.
 
 By investing time in thoughtful schema design upfront, you'll create a solid foundation for your GraphQL API, enabling efficient development and a great experience for your API consumers.
+
+Alright greatttt! You have successfully completed the first part of a very intricate series!! Pat yourslef and maybe high five your cat! Here are the links to the next blogs in the series that have already been published.
+
+![cat giving high five](../static/images/blog/cat-high-five-gif.webp)
+
+- [Next Part](/blog/graphql-schema-part-2-1)
