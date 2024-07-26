@@ -190,25 +190,16 @@ In GraphQL, you can fetch the same data with a single query:
 
 ### Use GraphQL if:
 
-- You need to reduce the number of API calls.
-- Your application requires complex querying capabilities.
-- You want to minimize over-fetching and under-fetching.
-- You have multiple data sources to integrate.
+- You need to reduce the number of API calls without creating new REST APIs for different data compositions.
+- You have various frontend clients with different data requirements.
+- Your application has a rich user interface that changes frequently.
+- You want to expose your API to third-party developers for building external applications.
 
 ### Use REST if:
 
 - You are building simple APIs with well-defined endpoints.
 - Your application has low complexity and data interrelations.
 - You prefer the simplicity and familiarity of REST.
-
-## Implementing Both GraphQL and REST in a Single Application
-
-It’s possible to use both GraphQL and REST within the same application, leveraging their respective strengths. Here’s how you can achieve this:
-
-1. **Analyze Existing RESTful API**: Understand the current data model and endpoint structure.
-2. **Define GraphQL Schema**: Write a schema that represents the data model and required operations.
-3. **Create Resolvers**: Develop resolver functions to fetch data from REST endpoints or other data sources. In Tailcall resolvers can be defined using the `@http`, `@grpc`, `@graphql` and `@expr` directive. Check out the [Tailcall GraphQL Directives](/docs/tailcall-dsl-graphql-custom-directives/) for more information.
-4. **Integrate**: Set up a GraphQL server alongside your RESTful services, allowing clients to query data through both APIs.
 
 ## Summary of Differences: REST vs GraphQL
 
@@ -229,6 +220,12 @@ It’s possible to use both GraphQL and REST within the same application, levera
 | **Use Cases**             | Best for simple, well-defined data structures and public APIs          | Ideal for complex, interrelated data, and real-time applications |
 | **Scalability**           | Inherently scalable due to statelessness and simplicity                | Requires careful management of queries and resolvers             |
 
+## GraphQL complements REST
+
+While GraphQL offers an excellent developer experience for frontend developers, it should primarily be used for composing data from multiple sources. REST/RPC APIs remain the best choice for implementing your business logic. Additionally, you should not hand-write your GraphQL layer. Instead, you can use [Tailcall](/docs/graphql-configuration-generation-with-tailcall/#effortless-rest-integration) to automatically convert your REST APIs to GraphQL.
+
+If you want to know why we think this way, you can read more about it in the article [Writing a GraphQL Backend by Hand is Long Gone](https://tailcall.run/blog/writing-a-graphql-backend-by-hand-is-long-gone/).
+
 ## Conclusion
 
 REST is ideal for simple data sources with well-defined resources, using multiple endpoints in the form of URLs. GraphQL excels in handling large, complex, and interrelated data sources with a single URL endpoint, providing flexibility and efficiency.
@@ -236,8 +233,6 @@ REST is ideal for simple data sources with well-defined resources, using multipl
 Choosing between GraphQL and REST depends on the specific needs of your application. While REST offers simplicity and scalability, GraphQL provides unparalleled flexibility and efficiency for complex and dynamic data needs. For many applications, using a hybrid approach that leverages the strengths of both technologies might be the most effective strategy.
 
 Understanding the differences between GraphQL and REST, along with their appropriate use cases, allows you to make informed decisions that optimize both the development process and the end-user experience. By considering the structure of your data, the nature of your client applications, and the specific requirements of your use cases, you can select the API design that best fits your needs.
-
-## Call to Action
 
 Explore both GraphQL and REST by implementing them in small projects or integrating them into different parts of a larger system. Experience firsthand how each handles real-world data scenarios to better understand their operational benefits and limitations. This hands-on approach will provide deeper insights into their practical applications and help you make more informed decisions about which technology to adopt for various aspects of your projects.
 

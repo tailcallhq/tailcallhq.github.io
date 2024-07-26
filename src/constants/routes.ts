@@ -5,5 +5,6 @@ export const pageLinks = {
   pricing: "/pricing",
   // about: "/about",
   contact: "/contact",
+  contributors: "/docs/contribution-guidelines",
   // enterprise: "/enterprise",
 }
