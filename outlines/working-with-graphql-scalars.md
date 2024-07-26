@@ -18,7 +18,7 @@ A. History of GraphQL Types
 
 B. Adoption from traditional types to GraphQL Scalars
 
-C. GraphQL's impact on modern API development
+C. Impact of Scalars on Modern API Development
 
 ## Significance of GraphQL Scalars
 
@@ -28,37 +28,37 @@ A. Importance of Scalars in GraphQL
 
 B. Role in data representation
 
-C. Manipulation of data using Scalars
+C. Data Manipulation Using Scalars
 
-(Example - showing how scalar enables data manipulation)
+(Example - Examples of Scalar-enabled Data Manipulation)
 
-## Using Scalar in Schema
+## Defining Scalar in Schema
 
-A. Role of Scalar in defining Schemas
+A. Role of Scalars in Schema Definition
 
-B. Representation of Scalar in SDL
+B. Representation of Scalar in SDL (Schema Definition Language)
 
-- Incorporate Scalar in Schema
+- Incorporating Scalar in Schema
 
-C. Integrating Scalar types in GraphQL types
+C. Integrating Scalar types in GraphQL Types
 
-- Specifying scalar types for fields
+- Specifying scalar Types for Fields
 
 ## Implementing Scalars in Queries and Mutations
 
-A. Retrieving data using Scalar types
+A. Retrieving Data Using Scalar Types
 
-- Process to retrieve specific data (step-by-step)
+- Step-by-Step Guide to Data Retrieval
 
-  (Example - Showing the retrieval of data in query)
+  (Example - Querying Data with Scalars)
 
-  (Diagram - Flowchart demonstrating the process to retrieve data in query)
+  (Diagram - Flowchart of Data Retrieval Process)
 
-B. Using Scalars in Mutations
+B. Using Scalars in Mutation Operations
 
-- Use of Scalars in Mutation Operations
+- Utilizing Scalars in Mutations
 
-  (Diagram - Illustrating the use of scalar types to form mutations)
+  (Diagram - Illustrating the use of scalar types in mutations)
 
 C. Multiple Mutation Operations using Scalar
 
@@ -66,45 +66,41 @@ C. Multiple Mutation Operations using Scalar
 
 A. Overview of Scalar types in GraphQL
 
-B. Handing basic data values
+B. HaHandling Basic Data Values
 
-C. Detailed examination of Scalar types
+C. Detailed Examination of Scalar types
 
-- Default types
+- Default Types
 
-- Custom types
+- Custom Types
 
 - Mixed Scalar Types
 
-- Streamline data handling in GraphQL APIs
+- Streamline Data Handling in GraphQL APIs
 
 ## Default Scalar types
 
-A. Default Scalar types in GraphQL
+A. Default Scalar Types in GraphQL
 
-- String
-- Int
-- Float
-- Boolean
-- ID
+- String, Int, Float, Boolean, ID
 
-B. Data representation using default types
+B. Data representation Using Default Types
 
-(Examples - To show how default scalar types represent data effectively)
+(Examples - TEffective Data Representation with Default Scalars)
 
 ## Custom Scalar types
 
-A. Overview of Custom Scalar types
+A. Overview of Custom Scalar Types
 
-B. Importance of Custom Scalar types
+B. Importance of Custom Scalar Types
 
-C. Defining and Implementing Custom types
+C. Defining and Implementing Custom Types
 
 - Custom Scalars provided by Tailcall
 
 ## Default VS Custom Scalar types
 
-A. Comparison between Default vs Custom types
+A. Comparison between Default vs Custom Types
 
 - Data Representation
 - Flexibility
@@ -123,7 +119,7 @@ B. Anatomy of a Scalar Resolver Function
 
 - Validation
 
-C. Linking Scalars with Resolver functions
+C. Linking Scalars with Resolver Functions
 
 ## Integrating with Apollo Client
 
@@ -139,11 +135,11 @@ C. Mutating Scalars with Apollo Client
 
 A. Popular libraries for GraphQL scalar (graph-scalar, graphql-java, graphql-upload)
 
-B. GraphQL code generator tool
+B. GraphQL code Generator Tools
 
 C. GraphQL Codegen Server Preset
 
-## Benefits of using Scalar types
+## Benefits of using Scalar Types
 
 A. Efficient Data Transfer
 
@@ -155,32 +151,30 @@ D. Compatibility and Interoperability
 
 ## Best Practices for Scalars
 
-A. Discussing best practices for scalar types
+A. Custom scalars for specialised data types
 
-- Custom scalars for specialised data types
+B. Versioning and Compatibility
 
-- Versioning and Compatibility
+C. Handling errors
 
-- Handling errors
-
-- Using Default Scalars
+D. Using Default Scalars
 
 ## Validation and Error Handling
 
 A. Validation in GraphQL Scalars
 
-B. Techniques to validate scalar inputs
+B. Techniques to Validating Scalar Inputs
 
-C. Custom error message
+C. Custom Error Messages
 
-## Upcoming upgrades in Scalars
+## Future of GraphQL Scalars
 
-A. Potential improvements and extensions
+A. Potential Improvements and Extensions
 
-B. Future trends in Custom Scalar types
+B. Future Trends in Custom Scalar types
 
 ## Conclusion
 
-A. Summarizing key points we have covered in this whole blog
+A. Recap of Key Features and Benefits of GraphQL Scalars
 
-B. Recap of using Scalars and Resolver Functions with Apollo Client in projects
+B. Summary of Using Scalars and Resolver Functions with Apollo Client in Projects
