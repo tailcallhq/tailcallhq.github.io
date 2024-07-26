@@ -8,7 +8,7 @@ const BenefitsCard = (): JSX.Element => {
       <div className="md:flex md:flex-wrap justify-center gap-10 w-[100%]">
         {benefits.map((item) => (
           <div
-            className="group border border-solid border-tailCall-border-dark-300 rounded-3xl md:w-[40%] lg:w-[45%] md:px-10 px-4 py-2 pt-4 md:flex benefits-drop-shadow hover:border-[#FDEA2E]"
+            className="group border border-solid border-tailCall-border-dark-300 rounded-3xl md:w-[40%] lg:w-[45%] md:px-10 px-4 py-2 pt-4 lg:flex benefits-drop-shadow hover:border-[#FDEA2E] md:mb-0 mb-6"
             key={item.id}
           >
             <div className="mr-4 md:mt-4">
