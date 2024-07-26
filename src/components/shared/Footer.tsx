@@ -33,6 +33,12 @@ const Footer = (): JSX.Element => {
         >
           Blog
         </Link>
+        <Link
+          href={pageLinks.contributors}
+          className="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline"
+        >
+          Contributors
+        </Link>
       </div>
 
       <div className="flex flex-col-reverse sm:flex-row items-center gap-y-SPACE_04 sm:justify-between w-[100%] max-w-7xl sm:mt-SPACE_10 z-10">
