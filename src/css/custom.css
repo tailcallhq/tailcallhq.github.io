@@ -23,7 +23,6 @@
   --ifm-content-link-font-size: 0.875rem;
   --ifm-search-input-font-size: 0.9rem;
   --ifm-search-desc-font-size: 14px;
-  --ifm-global-radius: 1rem;
 
   /* Color Tokens */
   --ifm-color-brand: #fdea2e;
@@ -47,7 +46,7 @@
   /* Code Settings */
   --ifm-font-family-monospace: "Space Mono";
   --ifm-code-background: rgb(246, 247, 248);
-  --ifm-code-border-radius: 0;
+  --ifm-code-border-radius: var(--ifm-global-radius);
   --ifm-code-font-size: 0.9eem;
   --ifm-code-padding-horizontal: 0.1em;
   --ifm-code-padding-vertical: 0em;
@@ -107,10 +106,6 @@ input[type="radio"]:checked::before {
   background: transparent;
   color: var(--ifm-color-gray-900);
   font-weight: var(--ifm-font-weight-bold);
-}
-
-.buttonGroup_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module{
-  display: none !important;
 }
 
 .menu__list {
