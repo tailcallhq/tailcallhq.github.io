@@ -1,6 +1,6 @@
-import React from "react";
-import { benefits } from "@site/src/constants";
-import { ArrowRight } from "lucide-react";
+import React from "react"
+import {benefits} from "@site/src/constants"
+import {ArrowRight} from "lucide-react"
 
 const BenefitsCard = (): JSX.Element => {
   return (
@@ -25,15 +25,13 @@ const BenefitsCard = (): JSX.Element => {
                   <ArrowRight />
                 </span>
               </p>
-              <p className="text-content-tiny sm:text-content-small text-tailCall-light-600">
-                {item.description}
-              </p>
+              <p className="text-content-tiny sm:text-content-small text-tailCall-light-600">{item.description}</p>
             </div>
           </div>
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BenefitsCard;
+export default BenefitsCard
