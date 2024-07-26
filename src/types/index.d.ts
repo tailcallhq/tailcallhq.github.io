@@ -1,3 +1,11 @@
+type Testimonial = {
+  id: number
+  title: React.JSX.Element
+  review: string
+  customerName: string
+  designation: string
+}
+
 type Benefit = {
   id: number
   title: string

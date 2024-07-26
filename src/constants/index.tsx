@@ -6,6 +6,37 @@ export const tailCallBlogUrl = "https://blog.tailcall.run/"
 export const codeSandboxUrl = "https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
 export const zapierLink = "https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/"
 
+export const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    title: <>Loved by Front-end</>,
+    review:
+      "I stopped writing orchestration code, and now I get low-latency GraphQL APIs quickly, which let me ship low-latency apps.",
+    customerName: "John Doe",
+    designation: "Sr. Frontend Engineer - Big Co. Inc",
+  },
+  {
+    id: 2,
+    title: (
+      <>
+        Loved by <span className="text-tailCall-yellow">Backend</span>
+      </>
+    ),
+    review:
+      "I save so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!",
+    customerName: "John Doe",
+    designation: "Sr. Backend Engineer - Big Co. Inc",
+  },
+  {
+    id: 3,
+    title: <>Loved by Ops</>,
+    review:
+      "I get the telemetry I need to monitor our GraphQL APIs with a runtime that's easy to scale, which doesn't surprise me in production.",
+    customerName: "John Doe",
+    designation: "Sr. Frontend Engineer - Big Co. Inc",
+  },
+]
+
 //added benefits array to map through in Benefits component
 //icon for each benefit is added in image/home folder even thou they are named icons
 export const benefits: Benefit[] = [
