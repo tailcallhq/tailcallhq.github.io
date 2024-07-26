@@ -33,3 +33,7 @@ export const isValidURL = (url: string) => {
     return false
   }
 }
+
+export const isFirstVersion = () => {
+  return false
+}

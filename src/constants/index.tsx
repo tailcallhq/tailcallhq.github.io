@@ -460,17 +460,23 @@ export enum Theme {
 export const customerFeedbacks: CustomerFeedback[] = [
   {
     id: 1,
-    citation: `“We saved so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!”`,
+    citation: `I stopped writing orchestration code, and now I get low-latency GraphQL APIs quickly, which let me ship low-latency apps.`,
     designation: `Sr. Frontend Engineer - Big Co. Inc.`,
+    name: "John Doe",
+    department: "Front-end",
   },
   {
     id: 2,
-    citation: `“We saved so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!”`,
-    designation: `Sr. Frontend Engineer - Big Co. Inc.`,
+    citation: `I save so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!`,
+    designation: `Sr. Backend Engineer - Big Co. Inc.`,
+    name: "John Doe",
+    department: "Backend",
   },
   {
     id: 3,
-    citation: `“We saved so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!”`,
+    citation: `I get the telemetry I need to monitor our GraphQL APIs  with a runtime that’s easy to scale, which doesn’t surprise me in production.`,
     designation: `Sr. Frontend Engineer - Big Co. Inc.`,
+    name: "John Doe",
+    department: "Ops",
   },
 ]

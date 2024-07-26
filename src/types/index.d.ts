@@ -125,6 +125,8 @@ type CustomerFeedback = {
   id: number
   citation: string
   designation: string
+  name?: string
+  department?: string
 }
 
 declare module "docusaurus-lunr-search/src/theme/SearchBar"

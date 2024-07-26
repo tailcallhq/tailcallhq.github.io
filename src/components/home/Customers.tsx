@@ -21,9 +21,11 @@ const Customer = () => {
             return (
               <CustomerFeedbackCard
                 key={feedback.id}
-                classNames={feedback.id === 2 ? "md:!relative md:-top-6" : ""}
+                isCenterCard={feedback.id === 2}
                 citation={feedback.citation}
                 designation={feedback.designation}
+                name={feedback?.name}
+                department={feedback?.department}
               />
             )
           })}
