@@ -471,8 +471,8 @@ nav.menu {
   height: 100%;
   background-size: 50px 50px;
   /* Adjust the grid size as needed */
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   z-index: 0;
 }
 
