@@ -882,7 +882,7 @@ type Mutation {
 
 ### query
 
-Represents the API call's query parameters, either as a static object or with dynamic parameters using Mustache templates. These parameters append to the URL. The `key` parameter is optional. If it is not present TailCall uses the last item from `batchPath` parameter of `@http` directive to derive the `key` parameter, so remember to adjust the order of the items accordingly.
+Represents the API call's query parameters, either as a static object or with dynamic parameters using Mustache templates. These parameters append to the URL. The `key` parameter of `query` is optional. If it is not present TailCall uses the last item from `batchKey` parameter of `@http` directive to derive the `key` parameter, so remember to adjust the order of the items accordingly.
 
 ```graphql showLineNumbers
 type Query {
