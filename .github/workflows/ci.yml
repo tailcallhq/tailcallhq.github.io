@@ -46,7 +46,6 @@ jobs:
             blog/**/*.{md,mdx}
 
       - name: Publish to Hashnode and Dev.to 📝
-        if: github.ref == 'refs/heads/develop'
         env:
           HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
           HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
@@ -57,7 +56,11 @@ jobs:
         run: |
           cd ./publish-externals
           npm run generate
-          npx --yes tsx ./src/index.ts "$ADDED_FILES"
+          if [ "$GITHUB_REF" == "refs/heads/develop" ]; then
+            npx --yes tsx ./src/index.ts --publish "$ADDED_FILES"
+          else
+            npx --yes tsx ./src/index.ts "$ADDED_FILES"
+          fi
 
       - name: Commit and push changes (on develop)
         if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
@@ -66,4 +69,3 @@ jobs:
           branch: develop
           commit_author: Author <actions@github.com>
           commit_message: "[ci skip] update snapshot"
-
