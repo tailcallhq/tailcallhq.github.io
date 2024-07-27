@@ -1,7 +1,7 @@
-import React from "react";
-import Heading from "@theme/Heading";
-import CustomerFeedbackCard from "./CustomerFeedbackCard";
-import { customerFeedbacks } from "@site/src/constants";
+import React from "react"
+import Heading from "@theme/Heading"
+import CustomerFeedbackCard from "./CustomerFeedbackCard"
+import {customerFeedbacks} from "@site/src/constants"
 
 const Customer = () => (
   <section className="customer-container !bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 lg:px-SPACE_16 !bg-contain md:!bg-center">
@@ -12,9 +12,7 @@ const Customer = () => (
           className="text-title-large sm:text-display-tiny lg:text-display-medium flex flex-col items-center md:flex-row"
         >
           <span>Our Customers</span>
-          <span className="bg-tailCall-yellow rounded-lg text-black px-SPACE_01 ml-SPACE_02">
-            love us!
-          </span>
+          <span className="bg-tailCall-yellow rounded-lg text-black px-SPACE_01 ml-SPACE_02">love us!</span>
         </Heading>
       </div>
       <div className="flex flex-col space-y-SPACE_10 md:flex-row md:space-x-SPACE_02 md:space-y-0 mt-SPACE_18">
@@ -31,6 +29,6 @@ const Customer = () => (
       </div>
     </div>
   </section>
-);
+)
 
-export default Customer;
+export default Customer

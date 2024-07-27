@@ -124,7 +124,7 @@ export default {
     tableOfContents: {},
   } satisfies Preset.ThemeConfig,
   plugins: [
-    'docusaurus-plugin-dotenv',
+    "docusaurus-plugin-dotenv",
     [
       "@docusaurus/plugin-client-redirects",
       {
