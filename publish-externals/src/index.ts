@@ -35,17 +35,17 @@ const ExternalPublications: ExternalPublication[] = [
 const main = async () => {
   const args = process.argv.slice(2)
   const hasPublishFlag = args.includes("--publish")
-  const addedFilesArg = args.filter((arg) => arg !== "--publish")[0]
-  const addedFiles = addedFilesArg ? addedFilesArg.split(" ") : []
+  const currentFiles = fs.readdirSync(path.join(__dirname, "../../blog/"))
   const blogs: {[key: string]: Blog} = snapshot.blogs || {}
   let toPublish = 0
 
   try {
     for (let publication of ExternalPublications) {
-      for (const file of addedFiles) {
+      for (let file of currentFiles) {
+        file = `blog/${file}`
         const {frontMatter} = extractFrontMatterAndContent(path.join(__dirname, "../../", file))
         const slug = frontMatter.slug
-        if (file.startsWith("blog/")) {
+        if (!blogs[slug]) {
           console.log("Publishing new blog", slug)
           toPublish++
           hasPublishFlag && (await publish(file, blogs, publication))
@@ -54,19 +54,17 @@ const main = async () => {
 
       for (const slug in blogs) {
         const file = blogs[slug].file
-        if (!addedFiles.includes(file)) {
-          const {content} = extractFrontMatterAndContent(path.join(__dirname, "../../", file))
-          const contentHash = createHash("sha256").update(content).digest("hex")
+        const {content} = extractFrontMatterAndContent(path.join(__dirname, "../../", file))
+        const contentHash = createHash("sha256").update(content).digest("hex")
 
-          if (!blogs[slug].hash) {
-            console.log("Publishing new blog from snapshot", slug)
-            toPublish++
-            hasPublishFlag && (await publish(file, blogs, publication))
-          } else if (blogs[slug].hash !== contentHash) {
-            console.log("Publishing updated blog", slug)
-            toPublish++
-            hasPublishFlag && (await publish(file, blogs, publication))
-          }
+        if (!blogs[slug].hash) {
+          console.log("Publishing new blog from snapshot", slug)
+          toPublish++
+          hasPublishFlag && (await publish(file, blogs, publication))
+        } else if (blogs[slug].hash !== contentHash) {
+          console.log("Publishing updated blog", slug)
+          toPublish++
+          hasPublishFlag && (await publish(file, blogs, publication))
         }
       }
     }
