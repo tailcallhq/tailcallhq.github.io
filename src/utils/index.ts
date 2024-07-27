@@ -35,6 +35,6 @@ export const isValidURL = (url: string) => {
   }
 }
 
-export const isFirstVersion = () => {
-  return IS_VERSION_ONE_ENABLED
+export const isAnonFeedbackEnabled = () => {
+  return process.env.ANONYMOUS_CUSTOMER_FEEDBACKS === "true"
 }

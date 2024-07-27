@@ -1,5 +1,5 @@
 import React from "react"
-import {isFirstVersion} from "@site/src/utils/index"
+import {isAnonFeedbackEnabled} from "@site/src/utils/index"
 
 type CustomerFeedbackCardProps = {
   classNames?: string
@@ -24,7 +24,7 @@ const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
         isCenterCard && "md:!relative md:-top-10"
       }`}
     >
-      {isFirstVersion() && department && (
+      {!isAnonFeedbackEnabled() && department && (
         <>
           <span
             className={`text-content-small sm:text-content-medium lg:text-content-large !font-bold !text-title-large`}
@@ -36,7 +36,7 @@ const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
       )}
       <span className="text-content-small sm:text-content-medium">{`“${citation}”`}</span>
       <span className="flex flex-col">
-        {isFirstVersion() && name && (
+        {!isAnonFeedbackEnabled() && name && (
           <span className="text-content-small sm:text-content-medium lg:text-content-large !font-bold">{name}</span>
         )}
         <span className="text-content-tiny sm:text-content-small">{designation}</span>
