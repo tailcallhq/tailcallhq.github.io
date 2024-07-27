@@ -174,11 +174,11 @@ A. Readability Concerns
 
 B. Versioning and Compatibility issues
 
-- Managing schema evolution
+- Schema evolution, Backward Compatibility, Deprecation
 
 C. Tooling limitations
 
-- Overcoming current limitations in GraphQL tools
+- Overcoming current limitations in GraphQL tools (Apollo Client, GraphQL Shield, GraphQL Mesh)
 
 D. Debugging Complex Queries
 
@@ -207,8 +207,6 @@ D. Client Requirements Optimization
 A. Effective Testing Strategies
 
 - Writing comprehensive test cases for queries with Aliases
-
-- Flowchart depicting the testing process
 
 B. Utilizing Testing Tools
 
