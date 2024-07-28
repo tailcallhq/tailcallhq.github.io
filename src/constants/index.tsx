@@ -231,6 +231,7 @@ export const benefits: Benefits[] = [
     description:
       "Tailcaill has been validated against a comprehensive database of GraphQL vulnerabilities. Rest easy knowing your GraphQL backends are secure.",
     image: require("@site/static/images/home/secure-icon.png").default,
+    redirection_url: "/docs/field-level-access-control-graphql-authentication/",
   },
   {
     id: 2,
@@ -238,6 +239,7 @@ export const benefits: Benefits[] = [
     description:
       "Tailcall performs ahead-of-time optimizations based on analysis of the schema and data dependencies. Deploy GraphQL without compromises.",
     image: require("@site/static/images/home/performance.png").default,
+    redirection_url: "https://github.com/tailcallhq/graphql-benchmarks",
   },
   {
     id: 3,
@@ -245,6 +247,7 @@ export const benefits: Benefits[] = [
     description:
       "Tailcall statically verifies that GraphQL schemas match resolvers and warns about N + 1 issues. Deploy new APIs with confidence.",
     image: require("@site/static/images/home/statically-verified-icon.png").default,
+    redirection_url: "/docs/graphql-n-plus-one-problem-solved-tailcall/",
   },
   {
     id: 4,
@@ -252,6 +255,7 @@ export const benefits: Benefits[] = [
     description:
       "Tailcall frees you from implementing batching, caching, error propagation, cancellation, and tuning. Enjoy designing the perfect GraphQL schema.",
     image: require("@site/static/images/home/simple-icon.png").default,
+    redirection_url: "/docs/tailcall-dsl-graphql-custom-directives/",
   },
   {
     id: 5,
@@ -259,6 +263,7 @@ export const benefits: Benefits[] = [
     description:
       "Write custom Javascript to customize any aspect of your GraphQL backend. Leverage this escape hatch to satisfy any requirement.",
     image: require("@site/static/images/home/customizable-icon.png").default,
+    redirection_url: "/docs/graphql-javascript-customization/",
   },
   {
     id: 6,
@@ -266,6 +271,7 @@ export const benefits: Benefits[] = [
     description:
       "Engineered to stay out of your way, shipping as a single executable with no dependencies or requirements. Get started quickly and easily.",
     image: require("@site/static/images/home/plug-play-icon.png").default,
+    redirection_url: "/docs/",
   },
   {
     id: 7,
@@ -273,6 +279,7 @@ export const benefits: Benefits[] = [
     description:
       "Tailcall is developed and released under the Apache 2 open source license, the gold standard for OSS. Embrace a vendor-neutral solution.",
     image: require("@site/static/images/home/open-source-icon.png").default,
+    redirection_url: "https://github.com/tailcallhq/tailcall",
   },
 ]
 

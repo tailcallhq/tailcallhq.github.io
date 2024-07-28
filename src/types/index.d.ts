@@ -36,6 +36,7 @@ type Benefits = {
   title: string
   description: string
   image: string
+  redirection_url: string
 }
 
 type EnterpriseFeature = {
