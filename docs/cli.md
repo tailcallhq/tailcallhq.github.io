@@ -274,7 +274,7 @@ The config generator provides a set of tuning parameters that can make the gener
   "preset": {
     "mergeType": {
       "threshold": 1.0,
-      "mergeUnknownTypes": true
+      "mergeUnknownTypes": true,
     },
     "consolidateURL": 0.5,
   },
@@ -320,30 +320,30 @@ preset:
    }
    ```
 
-    With the setting `mergeUnknownTypes` set to `true`, it will merge types like the following.   
+   With the setting `mergeUnknownTypes` set to `true`, it will merge types like the following.  
     The types T1 and T2 are not exactly similar, one difference is `firstName` is known in T1 but not in T2. This setting allows you to merge these two types as shown in M1:
-    ```graphql {14} showLineNumbers title="Merging type T1 and T2 into M1"
-    # BEFORE
-    type T1 {
-      id: ID
-      firstName: String
-      lastName: String
-    }
 
-    type T2 {
-      id: ID
-      firstName: JSON
-      lastName: String
-    }
+   ```graphql {14} showLineNumbers title="Merging type T1 and T2 into M1"
+   # BEFORE
+   type T1 {
+     id: ID
+     firstName: String
+     lastName: String
+   }
 
-    # AFTER: T1 and T2 are merged into M1.
-    type M1 {
-      id: ID
-      firstName: JSON
-      lastName: String
-    }
-    ```
+   type T2 {
+     id: ID
+     firstName: JSON
+     lastName: String
+   }
 
+   # AFTER: T1 and T2 are merged into M1.
+   type M1 {
+     id: ID
+     firstName: JSON
+     lastName: String
+   }
+   ```
 
 2. **consolidateURL:** The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
 
