@@ -139,7 +139,10 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
     "query": "Query"
   },
   "preset": {
-    "mergeType": 1,
+    "mergeType": {
+      "threshold": 1.0,
+      "mergeUnknownTypes": true
+    },    
     "consolidateURL": 0.5
   }
 }
@@ -165,7 +168,9 @@ output:
 schema:
   query: "Query"
 preset:
-  mergeType: 1
+  mergeType:
+    threshold: 1.0
+    mergeUnknownTypes: true
   consolidateURL: 0.5
 ```
 
@@ -267,7 +272,10 @@ The config generator provides a set of tuning parameters that can make the gener
 ```jsonc title="Presets with default values"
 {
   "preset": {
-    "mergeType": 1,
+    "mergeType": {
+      "threshold": 1.0,
+      "mergeUnknownTypes": true
+    },
     "consolidateURL": 0.5,
   },
 }
@@ -278,13 +286,15 @@ The config generator provides a set of tuning parameters that can make the gener
 <TabItem value="yml" label="YML">
 ```ymlc title="Presets with default values"
 preset:
-    mergeType: 1
-    consolidateURL: 0.5
+  mergeType:
+    threshold: 1.0
+    mergeUnknownTypes: true
+  consolidateURL: 0.5
 ```
 </TabItem>
 </Tabs>
 
-1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`.
+1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a `threshold` value between `0.0` and `1.0` to determine if two types should be merged or not, and an optional `mergeUnknownTypes` setting which allows types to be merged if their field names are the same but their output types are `unknown`. The default `threshold is 1.0` and the default `mergeUnknownTypes is false`.
 
    For example, the following types `T1` and `T2` are exactly similar, and with a threshold value of `1.0`, they can be merged into a single type called `M1`:
 
@@ -309,6 +319,31 @@ preset:
      lastName: String
    }
    ```
+
+    With the setting `mergeUnknownTypes` set to `true`, it will merge types like the following.   
+    The types T1 and T2 are not exactly similar, one difference is `firstName` is known in T1 but not in T2. This setting allows you to merge these two types as shown in M1:
+    ```graphql {14} showLineNumbers title="Merging type T1 and T2 into M1"
+    # BEFORE
+    type T1 {
+      id: ID
+      firstName: String
+      lastName: String
+    }
+
+    type T2 {
+      id: ID
+      firstName: JSON
+      lastName: String
+    }
+
+    # AFTER: T1 and T2 are merged into M1.
+    type M1 {
+      id: ID
+      firstName: JSON
+      lastName: String
+    }
+    ```
+
 
 2. **consolidateURL:** The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
 
