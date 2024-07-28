@@ -656,6 +656,7 @@ Let's understand how each of the parameter works.
       )
   }
   ```
+
 - #### unwrapSingleFieldTypes:
 
   This setting instructs Tailcall to flatten out types with single field.
