@@ -201,7 +201,7 @@ type Mutation {
 
   # Create a new album
   createAlbum(input: AlbumInput!): Album @http(method: "POST", path: "/albums", body: "{{.args.input}}")
-  # Update an exixting album
+  # Update an existing album
   updateAlbum(id: Int!, input: AlbumInput!): Album @http(method: "PUT", path: "/albums/{{.args.id}}", body: "{{.args.input}}")
   # Delete an album
   deleteAlbum(id: Int!): Boolean @http(method: "DELETE", path: "/albums/{{.args.id}}")
