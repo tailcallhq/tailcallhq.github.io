@@ -24,7 +24,7 @@ B. Session-based Authentication
 
 ## Important Concepts for GraphQl Authentication
 
-Before exploring how authentication works, readers need to understand some terms adn how they work.
+Before exploring how authentication works, readers need to understand some terms and how they work.
 
 ### Authentication Middleware
 
@@ -44,7 +44,7 @@ C. Protecting Sensitive Data
 
 ### GraphQL Schema
 
-Here, you can add a link to a blog on TailCall or Documentation that explains thi.
+Here, you can add a link to a blog on TailCall or Documentation that explains this.
 
 A. Defining Authenticated Fields and Types
 
