@@ -21,16 +21,16 @@ const Configuration = (): JSX.Element => {
         <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
 
         <Tabs>
-          {CodeTabItem({ code: GRAPHQL_CONFIG, language: "graphql" })}
-          {CodeTabItem({ code: YML_CONFIG, language: "yaml" })}
-          {CodeTabItem({ code: JSON_CONFIG, language: "json" })}
+          {CodeTabItem({code: GRAPHQL_CONFIG, language: "graphql"})}
+          {CodeTabItem({code: YML_CONFIG, language: "yaml"})}
+          {CodeTabItem({code: JSON_CONFIG, language: "json"})}
         </Tabs>
       </div>
     </section>
   )
 }
 
-const CodeTabItem = ({ code, language }: { code: string; language: "json" | "yaml" | "graphql" }) => (
+const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" | "graphql"}) => (
   <TabItem value={language} label={language}>
     <CodeBlock
       language={language}
