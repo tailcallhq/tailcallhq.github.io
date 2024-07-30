@@ -21,16 +21,16 @@ const Configuration = (): JSX.Element => {
         <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
 
         <Tabs>
-          {CodeTabItem({code: GRAPHQL_CONFIG, language: "graphql"})}
-          {CodeTabItem({code: YML_CONFIG, language: "yaml"})}
-          {CodeTabItem({code: JSON_CONFIG, language: "json"})}
+          {CodeTabItem({ code: GRAPHQL_CONFIG, language: "graphql" })}
+          {CodeTabItem({ code: YML_CONFIG, language: "yaml" })}
+          {CodeTabItem({ code: JSON_CONFIG, language: "json" })}
         </Tabs>
       </div>
     </section>
   )
 }
 
-const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" | "graphql"}) => (
+const CodeTabItem = ({ code, language }: { code: string; language: "json" | "yaml" | "graphql" }) => (
   <TabItem value={language} label={language}>
     <CodeBlock
       language={language}
@@ -45,595 +45,184 @@ const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" 
 
 export default Configuration
 
-const GRAPHQL_CONFIG = `schema 
-@server @upstream(baseURL: "https://jsonplaceholder.typicode.com") {
+const GRAPHQL_CONFIG = `schema
+  @server(port: 8000)
+  @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
   query: Query
 }
-
-type Address {
-  city: String
-  geo: Geo
-  street: String
-  suite: String
-  zipcode: String
-}
-
-type Company {
-  bs: String
-  catchPhrase: String
-  name: String
-}
-
-type Geo {
-  lat: String
-  lng: String
-}
-
-type Photo {
-  albumId: Int
-  id: Int
-  thumbnailUrl: String
-  title: String
-  url: String
-  album: Album @call(steps: [{query: "album", args: {id: "{{.value.albumId}}"}}])
-}
-
-type Post {
-  body: String
-  id: Int
-  title: String
-  userId: Int
-  user: User @call(steps: [{query: "user", args: {id: "{{.value.userId}}"}}])
-  comments: [Comment] @call(steps: [{query: "comments"}])
-}
-
-type Comment {
-  body: String
-  email: String
-  id: Int
-  name: String
-  postId: Int
-  post: Post @call(steps: [{query: "post", args: {id: "{{.value.postId}}"}}])
-}
-
 type Query {
-  album(id: Int!): Album @http(path: "/albums/{{.args.id}}")
-  albums: [Album] @http(path: "/albums")
-  comment(id: Int!): Comment @http(path: "/comments/{{.args.id}}")
-  comments: [Comment] @http(path: "/comments")
-  photo(id: Int!): Photo @http(path: "/photos/{{.args.id}}")
-  photos: [Photo] @http(path: "/photos")
-  post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
-  posts: [Post] @http(path: "/posts")
-  todo(id: Int!): Todo @http(path: "/todos/{{.args.id}}")
-  todos: [Todo] @http(path: "/todos")
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
   users: [User] @http(path: "/users")
+  posts: [Post] @http(path: "/posts")
 }
-
-type Todo {
-  completed: Boolean
-  id: Int
-  title: String
-  userId: Int
-  user: User @call(steps: [{query: "user", args: {id: "{{.value.userId}}"}}])
-}
-
 type User {
-  address: Address
-  company: Company
-  email: String
-  id: Int
-  name: String
-  phone: String
-  username: String
-  website: String
-  posts: [Post] @call(steps: [{query: "posts"}])
-  todos: [Todo] @call(steps: [{query: "todos"}])
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
 }
-
-type Album {
-  id: Int
-  title: String
-  userId: Int
-  user: User @call(steps: [{query: "user", args: {id: "{{.value.userId}}"}}])
-  photos: [Photo] @call(steps: [{query: "photos"}])
+type Post {
+  id: Int!
+  title: String!
+  body: String!
+  userId: Int!
+  # Expand a post with user information
+  user: User @http(path: "/users/{{.value.userId}}")
 }
 `
-
 const YML_CONFIG = `server:
   port: 8000
 upstream:
-  baseURL: https://jsonplaceholder.typicode.com
+  baseURL: http://jsonplaceholder.typicode.com
 schema:
   query: Query
 types:
-  Address:
-    fields:
-      city:
-        type: String
-      geo:
-        type: Geo
-      street:
-        type: String
-      suite:
-        type: String
-      zipcode:
-        type: String
-  Company:
-    fields:
-      bs:
-        type: String
-      catchPhrase:
-        type: String
-      name:
-        type: String
-  Geo:
-    fields:
-      lat:
-        type: String
-      lng:
-        type: String
-  Photo:
-    fields:
-      albumId:
-        type: Int
-      id:
-        type: Int
-      thumbnailUrl:
-        type: String
-      title:
-        type: String
-      url:
-        type: String
-      album:
-        type: Album
-        call:
-          steps:
-            - query: album
-              args:
-                id: "{{.value.albumId}}"
   Post:
     fields:
       body:
         type: String
+        required: true
+        cache: null
       id:
         type: Int
+        required: true
+        cache: null
       title:
         type: String
-      userId:
-        type: Int
+        required: true
+        cache: null
       user:
         type: User
-        call:
-          steps:
-            - query: user
-              args:
-                id: "{{.value.userId}}"
-      comments:
-        type: Comment
-        list: true
-        call:
-          steps:
-            - query: comments
-  Comment:
-    fields:
-      body:
-        type: String
-      email:
-        type: String
-      id:
+        http:
+          path: /users/{{.value.userId}}
+        cache: null
+      userId:
         type: Int
-      name:
-        type: String
-      postId:
-        type: Int
-      post:
-        type: Post
-        call:
-          steps:
-            - query: post
-              args:
-                id: "{{.value.postId}}"
+        required: true
+        cache: null
+    cache: null
   Query:
     fields:
-      album:
-        type: Album
-        args:
-          id:
-            type: Int
-            required: true
-        http:
-          path: /albums/{{.args.id}}
-      albums:
-        type: Album
-        list: true
-        http:
-          path: /albums
-      comment:
-        type: Comment
-        args:
-          id:
-            type: Int
-            required: true
-        http:
-          path: /comments/{{.args.id}}
-      comments:
-        type: Comment
-        list: true
-        http:
-          path: /comments
-      photo:
-        type: Photo
-        args:
-          id:
-            type: Int
-            required: true
-        http:
-          path: /photos/{{.args.id}}
-      photos:
-        type: Photo
-        list: true
-        http:
-          path: /photos
-      post:
-        type: Post
-        args:
-          id:
-            type: Int
-            required: true
-        http:
-          path: /posts/{{.args.id}}
       posts:
         type: Post
         list: true
         http:
           path: /posts
-      todo:
-        type: Todo
-        args:
-          id:
-            type: Int
-            required: true
-        http:
-          path: /todos/{{.args.id}}
-      todos:
-        type: Todo
-        list: true
-        http:
-          path: /todos
-      user:
-        type: User
-        args:
-          id:
-            type: Int
-            required: true
-        http:
-          path: /users/{{.args.id}}
+        cache: null
       users:
         type: User
         list: true
         http:
           path: /users
-  Todo:
-    fields:
-      completed:
-        type: Boolean
-      id:
-        type: Int
-      title:
-        type: String
-      userId:
-        type: Int
-      user:
-        type: User
-        call:
-          steps:
-            - query: user
-              args:
-                id: "{{.value.userId}}"
+        cache: null
+    cache: null
   User:
     fields:
-      address:
-        type: Address
-      company:
-        type: Company
       email:
         type: String
+        required: true
+        cache: null
       id:
         type: Int
+        required: true
+        cache: null
       name:
         type: String
-      phone:
-        type: String
+        required: true
+        cache: null
       username:
         type: String
-      website:
-        type: String
-      posts:
-        type: Post
-        list: true
-        call:
-          steps:
-            - query: posts
-      todos:
-        type: Todo
-        list: true
-        call:
-          steps:
-            - query: todos
-  Album:
-    fields:
-      id:
-        type: Int
-      title:
-        type: String
-      userId:
-        type: Int
-      user:
-        type: User
-        call:
-          steps:
-            - query: user
-              args:
-                id: "{{.value.userId}}"
-      photos:
-        type: Photo
-        list: true
-        call:
-          steps:
-            - query: photos
+        required: true
+        cache: null
+    cache: null
 `
-
-const JSON_CONFIG = `
-{
-  "server": {},
+const JSON_CONFIG = `{
+  "server": {
+    "port": 8000
+  },
   "upstream": {
-    "baseURL": "https://jsonplaceholder.typicode.com"
+    "baseURL": "http://jsonplaceholder.typicode.com"
   },
   "schema": {
     "query": "Query"
   },
   "types": {
-    "Address": {
-      "fields": {
-        "city": { "type": "String" },
-        "geo": { "type": "Geo" },
-        "street": { "type": "String" },
-        "suite": { "type": "String" },
-        "zipcode": { "type": "String" }
-      }
-    },
-    "Company": {
-      "fields": {
-        "bs": { "type": "String" },
-        "catchPhrase": { "type": "String" },
-        "name": { "type": "String" }
-      }
-    },
-    "Geo": {
-      "fields": {
-        "lat": { "type": "String" },
-        "lng": { "type": "String" }
-      }
-    },
-    "Photo": {
-      "fields": {
-        "albumId": { "type": "Int" },
-        "id": { "type": "Int" },
-        "thumbnailUrl": { "type": "String" },
-        "title": { "type": "String" },
-        "url": { "type": "String" },
-        "album": {
-          "type": "Album",
-          "call": {
-            "steps": [{ "query": "album", "args": { "id": "{{.value.albumId}}" } }]
-          }
-        }
-      }
-    },
     "Post": {
       "fields": {
-        "body": { "type": "String" },
-        "id": { "type": "Int" },
-        "title": { "type": "String" },
-        "userId": { "type": "Int" },
+        "body": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
+        "id": {
+          "type": "Int",
+          "required": true,
+          "cache": null
+        },
+        "title": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
         "user": {
           "type": "User",
-          "call": {
-            "steps": [{ "query": "user", "args": { "id": "{{.value.userId}}" } }]
-          }
+          "http": {
+            "path": "/users/{{.value.userId}}"
+          },
+          "cache": null
         },
-        "comments": {
-          "type": "Comment",
-          "list": true,
-          "call": {
-            "steps": [{ "query": "comments", "args": { "postId": "{{.value.id}}" } }]
-          }
+        "userId": {
+          "type": "Int",
+          "required": true,
+          "cache": null
         }
-      }
-    },
-    "Comment": {
-      "fields": {
-        "body": { "type": "String" },
-        "email": { "type": "String" },
-        "id": { "type": "Int" },
-        "name": { "type": "String" },
-        "postId": { "type": "Int" },
-        "post": {
-          "type": "Post",
-          "call": {
-            "steps": [{ "query": "post", "args": { "id": "{{.value.postId}}" } }]
-          }
-        }
-      }
+      },
+      "cache": null
     },
     "Query": {
       "fields": {
-        "album": {
-          "type": "Album",
-          "args": {
-            "id": { "type": "Int", "required": true }
-          },
-          "http": {
-            "path": "/albums/{{.args.id}}"
-          }
-        },
-        "albums": {
-          "type": "Album",
-          "list": true,
-          "http": {
-            "path": "/albums"
-          }
-        },
-        "comment": {
-          "type": "Comment",
-          "args": {
-            "id": { "type": "Int", "required": true }
-          },
-          "http": {
-            "path": "/comments/{{.args.id}}"
-          }
-        },
-        "comments": {
-          "type": "Comment",
-          "list": true,
-          "http": {
-            "path": "/comments"
-          }
-        },
-        "photo": {
-          "type": "Photo",
-          "args": {
-            "id": { "type": "Int", "required": true }
-          },
-          "http": {
-            "path": "/photos/{{.args.id}}"
-          }
-        },
-        "photos": {
-          "type": "Photo",
-          "list": true,
-          "http": {
-            "path": "/photos"
-          }
-        },
-        "post": {
-          "type": "Post",
-          "args": {
-            "id": { "type": "Int", "required": true }
-          },
-          "http": {
-            "path": "/posts/{{.args.id}}"
-          }
-        },
         "posts": {
           "type": "Post",
           "list": true,
           "http": {
             "path": "/posts"
-          }
-        },
-        "todo": {
-          "type": "Todo",
-          "args": {
-            "id": { "type": "Int", "required": true }
           },
-          "http": {
-            "path": "/todos/{{.args.id}}"
-          }
-        },
-        "todos": {
-          "type": "Todo",
-          "list": true,
-          "http": {
-            "path": "/todos"
-          }
-        },
-        "user": {
-          "type": "User",
-          "args": {
-            "id": { "type": "Int", "required": true }
-          },
-          "http": {
-            "path": "/users/{{.args.id}}"
-          }
+          "cache": null
         },
         "users": {
           "type": "User",
           "list": true,
           "http": {
             "path": "/users"
-          }
+          },
+          "cache": null
         }
-      }
-    },
-    "Todo": {
-      "fields": {
-        "completed": { "type": "Boolean" },
-        "id": { "type": "Int" },
-        "title": { "type": "String" },
-        "userId": { "type": "Int" },
-        "user": {
-          "type": "User",
-          "call": {
-            "steps": [{ "query": "user", "args": { "id": "{{.value.userId}}" } }]
-          }
-        }
-      }
+      },
+      "cache": null
     },
     "User": {
       "fields": {
-        "address": { "type": "Address" },
-        "company": { "type": "Company" },
-        "email": { "type": "String" },
-        "id": { "type": "Int" },
-        "name": { "type": "String" },
-        "phone": { "type": "String" },
-        "username": { "type": "String" },
-        "website": { "type": "String" },
-        "posts": {
-          "type": "Post",
-          "list": true,
-          "call": {
-            "steps": [{ "query": "posts", "args": { "userId": "{{.value.id}}" } }]
-          }
+        "email": {
+          "type": "String",
+          "required": true,
+          "cache": null
         },
-        "todos": {
-          "type": "Todo",
-          "list": true,
-          "call": {
-            "steps": [{ "query": "todos", "args": { "userId": "{{.value.id}}" } }]
-          }
+        "id": {
+          "type": "Int",
+          "required": true,
+          "cache": null
         },
-        "albums": {
-          "type": "Album",
-          "list": true,
-          "call": {
-            "steps": [{ "query": "albums", "args": { "userId": "{{.value.id}}" } }]
-          }
+        "name": {
+          "type": "String",
+          "required": true,
+          "cache": null
+        },
+        "username": {
+          "type": "String",
+          "required": true,
+          "cache": null
         }
-      }
-    },
-    "Album": {
-      "fields": {
-        "id": { "type": "Int" },
-        "title": { "type": "String" },
-        "userId": { "type": "Int" },
-        "user": {
-          "type": "User",
-          "call": {
-            "steps": [{ "query": "user", "args": { "id": "{{.value.userId}}" } }]
-          }
-        },
-        "photos": {
-          "type": "Photo",
-          "list": true,
-          "call": {
-            "steps": [{ "query": "photos", "args": { "albumId": "{{.value.id}}" } }]
-          }
-        }
-      }
+      },
+      "cache": null
     }
   }
 }

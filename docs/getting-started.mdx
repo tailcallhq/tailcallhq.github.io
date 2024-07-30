@@ -130,49 +130,290 @@ The command will ask you a few questions and based on your input bootstrap a new
 
 ## Writing a GraphQL Configuration
 
-For our first example, we are going to compose a GraphQL schema from the REST APIs at <a href="https://jsonplaceholder.typicode.com" target="_blank">https://jsonplaceholder.typicode.com</a>, a free online REST API with some fake data.
-We will use the API at `/users` to get a list of users, and `/users/:id/posts` to get the posts for each user, and compose them into a single GraphQL schema.
+For our first example, we are going to compose a GraphQL schema from the REST APIs at <a href="https://jsonplaceholder.typicode.com" target="_blank">https://jsonplaceholder.typicode.com</a>, a free online REST API with some fake data. 
+We will use multiple endpoints to gather various types of data, such as users, posts, comments, albums, photos, and todos. By doing so, we will compose them into a single, unified GraphQL schema. 
+This approach allows us to fetch and manipulate data in a more structured and flexible way compared to traditional REST APIs.
 
 We can use the following formats to define our GraphQL schema: `.graphql`, `.yml`, `.json`.
 
 Create one of the following files and paste the contents into it.
 
+
 <Tabs>
 <TabItem value="graphql" label="graphql">
 
 ```graphql showLineNumbers
-schema
+# Define the schema with upstream configuration and server settings
+schema 
   # Specify server configuration: Start GraphQL server at 0.0.0.0:8000
   @server(port: 8000)
-  # Specify a base url for all http requests
-
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+  # Specify a base URL for all HTTP requests
+  @upstream(baseURL: "https://jsonplaceholder.typicode.com") {
   query: Query
+  mutation: Mutation
 }
 
+# Define the Query type with various fields
 type Query {
-  # Specify the http path for the users query
+  # Fetch a post by ID
+  post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
+  # Fetch all posts by a specific user
+  postsFromUser(userId: Int!): [Post] @http(path: "/posts?userId={{.args.userId}}")
+  # Fetch a comment by ID
+  comment(id: Int!): Comment @http(path: "/comments/{{.args.id}}")
+  # Fetch all comments on a specific post
+  commentsFromPost(postId: Int!): [Comment] @http(path: "/comments?postId={{.args.postId}}")
+  # Fetch an album by ID
+  album(id: Int!): Album @http(path: "/albums/{{.args.id}}")
+  # Fetch all albums by a specific user
+  albumsFromUser(userId: Int!): [Album] @http(path: "/albums?userId={{.args.userId}}")
+  # Fetch a photo by ID
+  photo(id: Int!): Photo @http(path: "/photos/{{.args.id}}")
+  # Fetch all photos in a specific album
+  photosFromAlbum(albumId: Int!): [Photo] @http(path: "/photos?albumId={{.args.albumId}}")
+  # Fetch a todo by ID
+  todo(id: Int!): Todo @http(path: "/todos/{{.args.id}}")
+  # Fetch all todos by a specific user
+  todosFromUser(userId: Int!): [Todo] @http(path: "/todos?userId={{.args.userId}}")
+  # Fetch a user by ID
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  # Fetch all users
   users: [User] @http(path: "/users")
 }
 
-# Create a user type with the fields returned by the users api
+# Define the Mutation type with various fields for creating, updating, and deleting resources
+type Mutation {
+  # Create a new post
+  createPost(input: PostInput!): Post @http(method: "POST", path: "/posts", body: "{{.args.input}}")
+  # Update an existing post
+  updatePost(id: Int!, input: PostInput!): Post @http(method: "PUT", path: "/posts/{{.args.id}}", body: "{{.args.input}}")
+  # Patch (partially update) an existing post
+  patchPost(id: Int!, input: PartialPostInput!): Post @http(method: "PATCH", path: "/posts/{{.args.id}}", body: "{{.args.input}}")
+  # Delete a post
+  deletePost(id: Int!): Boolean @http(method: "DELETE", path: "/posts/{{.args.id}}")
 
+  # Create a new comment
+  createComment(input: CommentInput!): Comment @http(method: "POST", path: "/comments", body: "{{.args.input}}")
+  # Update an existing comment
+  updateComment(id: Int!, input: CommentInput!): Comment @http(method: "PUT", path: "/comments/{{.args.id}}", body: "{{.args.input}}")
+  # Delete a comment
+  deleteComment(id: Int!): Boolean @http(method: "DELETE", path: "/comments/{{.args.id}}")
+
+  # Create a new album
+  createAlbum(input: AlbumInput!): Album @http(method: "POST", path: "/albums", body: "{{.args.input}}")
+  # Update an exixting album
+  updateAlbum(id: Int!, input: AlbumInput!): Album @http(method: "PUT", path: "/albums/{{.args.id}}", body: "{{.args.input}}")
+  # Delete an album
+  deleteAlbum(id: Int!): Boolean @http(method: "DELETE", path: "/albums/{{.args.id}}")
+
+  # Create a new photo
+  createPhoto(input: PhotoInput!): Photo @http(method: "POST", path: "/photos", body: "{{.args.input}}")
+  # Update an existing photo
+  updatePhoto(id: Int!, input: PhotoInput!): Photo @http(method: "PUT", path: "/photos/{{.args.id}}", body: "{{.args.input}}")
+  # Delete a photo
+  deletePhoto(id: Int!): Boolean @http(method: "DELETE", path: "/photos/{{.args.id}}")
+
+  # Create a new todo
+  createTodo(input: TodoInput!): Todo @http(method: "POST", path: "/todos", body: "{{.args.input}}")
+  # Update an existing todo
+  updateTodo(id: Int!, input: TodoInput!): Todo @http(method: "PUT", path: "/todos/{{.args.id}}", body: "{{.args.input}}")
+  # Delete a todo
+  deleteTodo(id: Int!): Boolean @http(method: "DELETE", path: "/todos/{{.args.id}}")
+
+  # Create a new user
+  createUser(input: UserInput!): User @http(method: "POST", path: "/users", body: "{{.args.input}}")
+  # Update an existing user
+  updateUser(id: Int!, input: UserInput!): User @http(method: "PUT", path: "/users/{{.args.id}}", body: "{{.args.input}}")
+  # Delete a user
+  deleteUser(id: Int!): Boolean @http(method: "DELETE", path: "/users/{{.args.id}}")
+}
+
+# Define the Post type with its fields and related queries
+type Post {
+  id: Int!
+  userId: Int!
+  title: String!
+  body: String!
+  # Fetch the user who created the post
+  user: User @call(steps: [{query: "user", args: {id: "{{.value.userId}}"}}])
+  # Fetch all comments on the post
+  comments: [Comment] @call(steps: [{query: "commentsFromPost", args: {postId: "{{.value.id}}"}}])
+}
+
+# Define the Comment type with its fields and related queries
+type Comment {
+  id: Int!
+  postId: Int!
+  name: String!
+  email: String!
+  body: String!
+  # Fetch the post to which the comment belongs
+  post: Post @call(steps: [{query: "post", args: {id: "{{.value.postId}}"}}])
+}
+
+# Define the Album type with its fields and related queries
+type Album {
+  id: Int!
+  userId: Int!
+  title: String!
+  # Fetch the user who created the album
+  user: User @call(steps: [{query: "user", args: {id: "{{.value.userId}}"}}])
+  # Fetch all photos in the album
+  photos: [Photo] @call(steps: [{query: "photosFromAlbum", args: {albumId: "{{.value.id}}"}}])
+}
+
+# Define the Photo type with its fields and related queries
+type Photo {
+  id: Int!
+  albumId: Int!
+  title: String!
+  url: String!
+  thumbnailUrl: String!
+  # Fetch the album to which the photo belongs
+  album: Album @call(steps: [{query: "album", args: {id: "{{.value.albumId}}"}}])
+}
+
+# Define the Todo type with its fields and related queries
+type Todo {
+  id: Int!
+  userId: Int!
+  title: String!
+  completed: Boolean!
+  # Fetch the user who created the todo
+  user: User @call(steps: [{query: "user", args: {id: "{{.value.userId}}"}}])
+}
+
+# Define the User type with its fields and related queries
 type User {
   id: Int!
   name: String!
   username: String!
   email: String!
-
-  # Extend the user type with the posts field
-  # Use the current user's id to construct the path
-  posts: [Post] @http(path: "/users/{{.value.id}}/posts")
+  address: Address
+  phone: String
+  website: String
+  company: Company
+  # Fetch all posts by the user
+  posts: [Post] @call(steps: [{query: "postsFromUser", args: {userId: "{{.value.id}}"}}])
+  # Fetch all albums by the user
+  albums: [Album] @call(steps: [{query: "albumsFromUser", args: {userId: "{{.value.id}}"}}])
+  # Fetch all todos by the user
+  todos: [Todo] @call(steps: [{query: "todosFromUser", args: {userId: "{{.value.id}}"}}])
 }
 
-# Create a post type with the fields returned by the posts api
-type Post {
-  id: Int!
+# Define the Address type with its fields
+type Address {
+  street: String
+  suite: String
+  city: String
+  zipcode: String
+  geo: Geo
+}
+
+# Define the Geo type with its fields
+type Geo {
+  lat: String
+  lng: String
+}
+
+# Define the Company type with its fields
+type Company {
+  name: String
+  catchPhrase: String
+  bs: String
+}
+
+# Define the input type for creating a post
+input PostInput {
+  userId: Int!
   title: String!
   body: String!
+}
+
+# Define the input type for partially updating a post
+input PartialPostInput {
+  userId: Int
+  title: String
+  body: String
+}
+
+# Define the input type for creating a comment
+input CommentInput {
+  postId: Int!
+  name: String!
+  email: String!
+  body: String!
+}
+
+# Define the input type for creating an album
+input AlbumInput {
+  userId: Int!
+  title: String!
+}
+
+# Define the input type for creating a photo
+input PhotoInput {
+  albumId: Int!
+  title: String!
+  url: String!
+  thumbnailUrl: String!
+}
+
+# Define the input type for creating a todo
+input TodoInput {
+  userId: Int!
+  title: String!
+  completed: Boolean!
+}
+
+# Define the input type for creating a user
+input UserInput {
+  name: String!
+  username: String!
+  email: String!
+  address: AddressInput
+  phone: String
+  website: String
+  company: CompanyInput
+}
+
+# Define the input type for the address field
+input AddressInput {
+  street: String
+  suite: String
+  city: String
+  zipcode: String
+  geo: GeoInput
+}
+
+# Define the input type for the geo field
+input GeoInput {
+  lat: String
+  lng: String
+}
+
+# Define the input type for the company field
+input CompanyInput {
+  name: String
+  catchPhrase: String
+  bs: String
+}
+
+# Define a complex query type for fetching user data along with posts and comments
+type ComplexQuery {
+  userWithPostsAndComments(userId: Int!): UserWithPostsAndComments
+    @call(steps: [
+      {query: "user", args: {id: "{{.args.userId}}"}},
+      {query: "postsFromUser", args: {userId: "{{.value.id}}"}},
+      {query: "commentsFromPost", args: {postId: "{{.value.posts.0.id}}"}}
+    ])
+}
+
+# Define the UserWithPostsAndComments type with fields for user, posts, and comments
+type UserWithPostsAndComments {
+  user: User
+  posts: [Post]
+  comments: [Comment]
 }
 ```
 
@@ -185,17 +426,378 @@ server:
   queryValidation: false
   hostname: "0.0.0.0"
 upstream:
-  baseURL: "http://jsonplaceholder.typicode.com"
+  baseURL: https://jsonplaceholder.typicode.com
   httpCache: 42
 schema:
   query: Query
+  mutation: Mutation
 types:
+  Query:
+    fields:
+      post:
+        type: Post
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          path: /posts/{{.args.id}}
+      postsFromUser:
+        type: Post
+        list: true
+        args:
+          userId:
+            type: Int
+            required: true
+        http:
+          path: /posts?userId={{.args.userId}}
+      comment:
+        type: Comment
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          path: /comments/{{.args.id}}
+      commentsFromPost:
+        type: Comment
+        list: true
+        args:
+          postId:
+            type: Int
+            required: true
+        http:
+          path: /comments?postId={{.args.postId}}
+      album:
+        type: Album
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          path: /albums/{{.args.id}}
+      albumsFromUser:
+        type: Album
+        list: true
+        args:
+          userId:
+            type: Int
+            required: true
+        http:
+          path: /albums?userId={{.args.userId}}
+      photo:
+        type: Photo
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          path: /photos/{{.args.id}}
+      photosFromAlbum:
+        type: Photo
+        list: true
+        args:
+          albumId:
+            type: Int
+            required: true
+        http:
+          path: /photos?albumId={{.args.albumId}}
+      todo:
+        type: Todo
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          path: /todos/{{.args.id}}
+      todosFromUser:
+        type: Todo
+        list: true
+        args:
+          userId:
+            type: Int
+            required: true
+        http:
+          path: /todos?userId={{.args.userId}}
+      user:
+        type: User
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          path: /users/{{.args.id}}
+      users:
+        type: User
+        list: true
+        http:
+          path: /users
+  Mutation:
+    fields:
+      createPost:
+        type: Post
+        args:
+          input:
+            type: PostInput
+            required: true
+        http:
+          method: POST
+          path: /posts
+          body: "{{.args.input}}"
+      updatePost:
+        type: Post
+        args:
+          id:
+            type: Int
+            required: true
+          input:
+            type: PostInput
+            required: true
+        http:
+          method: PUT
+          path: /posts/{{.args.id}}
+          body: "{{.args.input}}"
+      patchPost:
+        type: Post
+        args:
+          id:
+            type: Int
+            required: true
+          input:
+            type: PartialPostInput
+            required: true
+        http:
+          method: PATCH
+          path: /posts/{{.args.id}}
+          body: "{{.args.input}}"
+      deletePost:
+        type: Boolean
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          method: DELETE
+          path: /posts/{{.args.id}}
+      createComment:
+        type: Comment
+        args:
+          input:
+            type: CommentInput
+            required: true
+        http:
+          method: POST
+          path: /comments
+          body: "{{.args.input}}"
+      updateComment:
+        type: Comment
+        args:
+          id:
+            type: Int
+            required: true
+          input:
+            type: CommentInput
+            required: true
+        http:
+          method: PUT
+          path: /comments/{{.args.id}}
+          body: "{{.args.input}}"
+      deleteComment:
+        type: Boolean
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          method: DELETE
+          path: /comments/{{.args.id}}
+      createAlbum:
+        type: Album
+        args:
+          input:
+            type: AlbumInput
+            required: true
+        http:
+          method: POST
+          path: /albums
+          body: "{{.args.input}}"
+      updateAlbum:
+        type: Album
+        args:
+          id:
+            type: Int
+            required: true
+          input:
+            type: AlbumInput
+            required: true
+        http:
+          method: PUT
+          path: /albums/{{.args.id}}
+          body: "{{.args.input}}"
+      deleteAlbum:
+        type: Boolean
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          method: DELETE
+          path: /albums/{{.args.id}}
+      createPhoto:
+        type: Photo
+        args:
+          input:
+            type: PhotoInput
+            required: true
+        http:
+          method: POST
+          path: /photos
+          body: "{{.args.input}}"
+      updatePhoto:
+        type: Photo
+        args:
+          id:
+            type: Int
+            required: true
+          input:
+            type: PhotoInput
+            required: true
+        http:
+          method: PUT
+          path: /photos/{{.args.id}}
+          body: "{{.args.input}}"
+      deletePhoto:
+        type: Boolean
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          method: DELETE
+          path: /photos/{{.args.id}}
+      createTodo:
+        type: Todo
+        args:
+          input:
+            type: TodoInput
+            required: true
+        http:
+          method: POST
+          path: /todos
+          body: "{{.args.input}}"
+      updateTodo:
+        type: Todo
+        args:
+          id:
+            type: Int
+            required: true
+          input:
+            type: TodoInput
+            required: true
+        http:
+          method: PUT
+          path: /todos/{{.args.id}}
+          body: "{{.args.input}}"
+      deleteTodo:
+        type: Boolean
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          method: DELETE
+          path: /todos/{{.args.id}}
+      createUser:
+        type: User
+        args:
+          input:
+            type: UserInput
+            required: true
+        http:
+          method: POST
+          path: /users
+          body: "{{.args.input}}"
+      updateUser:
+        type: User
+        args:
+          id:
+            type: Int
+            required: true
+          input:
+            type: UserInput
+            required: true
+        http:
+          method: PUT
+          path: /users/{{.args.id}}
+          body: "{{.args.input}}"
+      deleteUser:
+        type: Boolean
+        args:
+          id:
+            type: Int
+            required: true
+        http:
+          method: DELETE
+          path: /users/{{.args.id}}
   Post:
     fields:
+      id:
+        type: Int
+        required: true
+      userId:
+        type: Int
+        required: true
+      title:
+        type: String
+        required: true
       body:
         type: String
         required: true
+      user:
+        type: User
+        call:
+          steps:
+            - query: user
+              args:
+                id: "{{.value.userId}}"
+      comments:
+        type: Comment
+        list: true
+        call:
+          steps:
+            - query: commentsFromPost
+              args:
+                postId: "{{.value.id}}"
+  Comment:
+    fields:
       id:
+        type: Int
+        required: true
+      postId:
+        type: Int
+        required: true
+      name:
+        type: String
+        required: true
+      email:
+        type: String
+        required: true
+      body:
+        type: String
+        required: true
+      post:
+        type: Post
+        call:
+          steps:
+            - query: post
+              args:
+                id: "{{.value.postId}}"
+  Album:
+    fields:
+      id:
+        type: Int
+        required: true
+      userId:
         type: Int
         required: true
       title:
@@ -203,36 +805,276 @@ types:
         required: true
       user:
         type: User
-        http:
-          path: /users/{{.value.userId}}
+        call:
+          steps:
+            - query: user
+              args:
+                id: "{{.value.userId}}"
+      photos:
+        type: Photo
+        list: true
+        call:
+          steps:
+            - query: photosFromAlbum
+              args:
+                albumId: "{{.value.id}}"
+  Photo:
+    fields:
+      id:
+        type: Int
+        required: true
+      albumId:
+        type: Int
+        required: true
+      title:
+        type: String
+        required: true
+      url:
+        type: String
+        required: true
+      thumbnailUrl:
+        type: String
+        required: true
+      album:
+        type: Album
+        call:
+          steps:
+            - query: album
+              args:
+                id: "{{.value.albumId}}"
+  Todo:
+    fields:
+      id:
+        type: Int
+        required: true
       userId:
         type: Int
         required: true
-  Query:
-    fields:
-      posts:
-        type: Post
-        list: true
-        http:
-          path: /posts
-  User:
-    fields:
-      email:
+      title:
         type: String
         required: true
+      completed:
+        type: Boolean
+        required: true
+      user:
+        type: User
+        call:
+          steps:
+            - query: user
+              args:
+                id: "{{.value.userId}}"
+  User:
+    fields:
       id:
         type: Int
         required: true
       name:
         type: String
         required: true
-      phone:
-        type: String
       username:
         type: String
         required: true
+      email:
+        type: String
+        required: true
+      address:
+        type: Address
+      phone:
+        type: String
       website:
         type: String
+      company:
+        type: Company
+      posts:
+        type: Post
+        list: true
+        call:
+          steps:
+            - query: postsFromUser
+              args:
+                userId: "{{.value.id}}"
+      albums:
+        type: Album
+        list: true
+        call:
+          steps:
+            - query: albumsFromUser
+              args:
+                userId: "{{.value.id}}"
+      todos:
+        type: Todo
+        list: true
+        call:
+          steps:
+            - query: todosFromUser
+              args:
+                userId: "{{.value.id}}"
+  Address:
+    fields:
+      street:
+        type: String
+      suite:
+        type: String
+      city:
+        type: String
+      zipcode:
+        type: String
+      geo:
+        type: Geo
+  Geo:
+    fields:
+      lat:
+        type: String
+      lng:
+        type: String
+  Company:
+    fields:
+      name:
+        type: String
+      catchPhrase:
+        type: String
+      bs:
+        type: String
+  PostInput:
+    fields:
+      userId:
+        type: Int
+        required: true
+      title:
+        type: String
+        required: true
+      body:
+        type: String
+        required: true
+  PartialPostInput:
+    fields:
+      userId:
+        type: Int
+      title:
+        type: String
+      body:
+        type: String
+  CommentInput:
+    fields:
+      postId:
+        type: Int
+        required: true
+      name:
+        type: String
+        required: true
+      email:
+        type: String
+        required: true
+      body:
+        type: String
+        required: true
+  AlbumInput:
+    fields:
+      userId:
+        type: Int
+        required: true
+      title:
+        type: String
+        required: true
+  PhotoInput:
+    fields:
+      albumId:
+        type: Int
+        required: true
+      title:
+        type: String
+        required: true
+      url:
+        type: String
+        required: true
+      thumbnailUrl:
+        type: String
+        required: true
+  TodoInput:
+    fields:
+      userId:
+        type: Int
+        required: true
+      title:
+        type: String
+        required: true
+      completed:
+        type: Boolean
+        required: true
+  UserInput:
+    fields:
+      name:
+        type: String
+        required: true
+      username:
+        type: String
+        required: true
+      email:
+        type: String
+        required: true
+      address:
+        type: AddressInput
+      phone:
+        type: String
+      website:
+        type: String
+      company:
+        type: CompanyInput
+  AddressInput:
+    fields:
+      street:
+        type: String
+      suite:
+        type: String
+      city:
+        type: String
+      zipcode:
+        type: String
+      geo:
+        type: GeoInput
+  GeoInput:
+    fields:
+      lat:
+        type: String
+      lng:
+        type: String
+  CompanyInput:
+    fields:
+      name:
+        type: String
+      catchPhrase:
+        type: String
+      bs:
+        type: String
+  ComplexQuery:
+    fields:
+      userWithPostsAndComments:
+        type: UserWithPostsAndComments
+        args:
+          userId:
+            type: Int
+            required: true
+        call:
+          steps:
+            - query: user
+              args:
+                id: "{{.args.userId}}"
+            - query: postsFromUser
+              args:
+                userId: "{{.value.id}}"
+            - query: commentsFromPost
+              args:
+                postId: "{{.value.posts.0.id}}"
+  UserWithPostsAndComments:
+    fields:
+      user:
+        type: User
+      posts:
+        type: Post
+        list: true
+      comments:
+        type: Comment
+        list: true
 ```
 
 </TabItem>
@@ -246,74 +1088,622 @@ types:
     "hostname": "0.0.0.0"
   },
   "upstream": {
-    "baseURL": "http://jsonplaceholder.typicode.com",
+    "baseURL": "https://jsonplaceholder.typicode.com",
     "httpCache": 42
   },
   "schema": {
-    "query": "Query"
+    "query": "Query",
+    "mutation": "Mutation"
   },
   "types": {
-    "Post": {
+    "Query": {
       "fields": {
-        "body": {
-          "type": "String",
-          "required": true
+        "post": {
+          "type": "Post",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/posts/{{.args.id}}"
+          }
         },
-        "id": {
-          "type": "Int",
-          "required": true
+        "postsFromUser": {
+          "type": "Post",
+          "list": true,
+          "args": {
+            "userId": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/posts?userId={{.args.userId}}"
+          }
         },
-        "title": {
-          "type": "String",
-          "required": true
+        "comment": {
+          "type": "Comment",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/comments/{{.args.id}}"
+          }
+        },
+        "commentsFromPost": {
+          "type": "Comment",
+          "list": true,
+          "args": {
+            "postId": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/comments?postId={{.args.postId}}"
+          }
+        },
+        "album": {
+          "type": "Album",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/albums/{{.args.id}}"
+          }
+        },
+        "albumsFromUser": {
+          "type": "Album",
+          "list": true,
+          "args": {
+            "userId": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/albums?userId={{.args.userId}}"
+          }
+        },
+        "photo": {
+          "type": "Photo",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/photos/{{.args.id}}"
+          }
+        },
+        "photosFromAlbum": {
+          "type": "Photo",
+          "list": true,
+          "args": {
+            "albumId": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/photos?albumId={{.args.albumId}}"
+          }
+        },
+        "todo": {
+          "type": "Todo",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/todos/{{.args.id}}"
+          }
+        },
+        "todosFromUser": {
+          "type": "Todo",
+          "list": true,
+          "args": {
+            "userId": { "type": "Int", "required": true }
+          },
+          "http": {
+            "path": "/todos?userId={{.args.userId}}"
+          }
         },
         "user": {
           "type": "User",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
           "http": {
-            "path": "/users/{{.value.userId}}"
+            "path": "/users/{{.args.id}}"
           }
         },
-        "userId": {
-          "type": "Int",
-          "required": true
+        "users": {
+          "type": "User",
+          "list": true,
+          "http": {
+            "path": "/users"
+          }
         }
       }
     },
-    "Query": {
+    "Mutation": {
       "fields": {
-        "posts": {
+        "createPost": {
           "type": "Post",
-          "list": true,
+          "args": {
+            "input": { "type": "PostInput", "required": true }
+          },
           "http": {
-            "path": "/posts"
+            "method": "POST",
+            "path": "/posts",
+            "body": "{{.args.input}}"
+          }
+        },
+        "updatePost": {
+          "type": "Post",
+          "args": {
+            "id": { "type": "Int", "required": true },
+            "input": { "type": "PostInput", "required": true }
+          },
+          "http": {
+            "method": "PUT",
+            "path": "/posts/{{.args.id}}",
+            "body": "{{.args.input}}"
+          }
+        },
+        "patchPost": {
+          "type": "Post",
+          "args": {
+            "id": { "type": "Int", "required": true },
+            "input": { "type": "PartialPostInput", "required": true }
+          },
+          "http": {
+            "method": "PATCH",
+            "path": "/posts/{{.args.id}}",
+            "body": "{{.args.input}}"
+          }
+        },
+        "deletePost": {
+          "type": "Boolean",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "method": "DELETE",
+            "path": "/posts/{{.args.id}}"
+          }
+        },
+        "createComment": {
+          "type": "Comment",
+          "args": {
+            "input": { "type": "CommentInput", "required": true }
+          },
+          "http": {
+            "method": "POST",
+            "path": "/comments",
+            "body": "{{.args.input}}"
+          }
+        },
+        "updateComment": {
+          "type": "Comment",
+          "args": {
+            "id": { "type": "Int", "required": true },
+            "input": { "type": "CommentInput", "required": true }
+          },
+          "http": {
+            "method": "PUT",
+            "path": "/comments/{{.args.id}}",
+            "body": "{{.args.input}}"
+          }
+        },
+        "deleteComment": {
+          "type": "Boolean",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "method": "DELETE",
+            "path": "/comments/{{.args.id}}"
+          }
+        },
+        "createAlbum": {
+          "type": "Album",
+          "args": {
+            "input": { "type": "AlbumInput", "required": true }
+          },
+          "http": {
+            "method": "POST",
+            "path": "/albums",
+            "body": "{{.args.input}}"
+          }
+        },
+        "updateAlbum": {
+          "type": "Album",
+          "args": {
+            "id": { "type": "Int", "required": true },
+            "input": { "type": "AlbumInput", "required": true }
+          },
+          "http": {
+            "method": "PUT",
+            "path": "/albums/{{.args.id}}",
+            "body": "{{.args.input}}"
+          }
+        },
+        "deleteAlbum": {
+          "type": "Boolean",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "method": "DELETE",
+            "path": "/albums/{{.args.id}}"
+          }
+        },
+        "createPhoto": {
+          "type": "Photo",
+          "args": {
+            "input": { "type": "PhotoInput", "required": true }
+          },
+          "http": {
+            "method": "POST",
+            "path": "/photos",
+            "body": "{{.args.input}}"
+          }
+        },
+        "updatePhoto": {
+          "type": "Photo",
+          "args": {
+            "id": { "type": "Int", "required": true },
+            "input": { "type": "PhotoInput", "required": true }
+          },
+          "http": {
+            "method": "PUT",
+            "path": "/photos/{{.args.id}}",
+            "body": "{{.args.input}}"
+          }
+        },
+        "deletePhoto": {
+          "type": "Boolean",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "method": "DELETE",
+            "path": "/photos/{{.args.id}}"
+          }
+        },
+        "createTodo": {
+          "type": "Todo",
+          "args": {
+            "input": { "type": "TodoInput", "required": true }
+          },
+          "http": {
+            "method": "POST",
+            "path": "/todos",
+            "body": "{{.args.input}}"
+          }
+        },
+        "updateTodo": {
+          "type": "Todo",
+          "args": {
+            "id": { "type": "Int", "required": true },
+            "input": { "type": "TodoInput", "required": true }
+          },
+          "http": {
+            "method": "PUT",
+            "path": "/todos/{{.args.id}}",
+            "body": "{{.args.input}}"
+          }
+        },
+        "deleteTodo": {
+          "type": "Boolean",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "method": "DELETE",
+            "path": "/todos/{{.args.id}}"
+          }
+        },
+        "createUser": {
+          "type": "User",
+          "args": {
+            "input": { "type": "UserInput", "required": true }
+          },
+          "http": {
+            "method": "POST",
+            "path": "/users",
+            "body": "{{.args.input}}"
+          }
+        },
+        "updateUser": {
+          "type": "User",
+          "args": {
+            "id": { "type": "Int", "required": true },
+            "input": { "type": "UserInput", "required": true }
+          },
+          "http": {
+            "method": "PUT",
+            "path": "/users/{{.args.id}}",
+            "body": "{{.args.input}}"
+          }
+        },
+        "deleteUser": {
+          "type": "Boolean",
+          "args": {
+            "id": { "type": "Int", "required": true }
+          },
+          "http": {
+            "method": "DELETE",
+            "path": "/users/{{.args.id}}"
+          }
+        }
+      }
+    },
+    "Post": {
+      "fields": {
+        "id": { "type": "Int", "required": true },
+        "userId": { "type": "Int", "required": true },
+        "title": { "type": "String", "required": true },
+        "body": { "type": "String", "required": true },
+        "user": {
+          "type": "User",
+          "call": {
+            "steps": [
+              { "query": "user", "args": { "id": "{{.value.userId}}" } }
+            ]
+          }
+        },
+        "comments": {
+          "type": "Comment",
+          "list": true,
+          "call": {
+            "steps": [
+              {
+                "query": "commentsFromPost",
+                "args": { "postId": "{{.value.id}}" }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Comment": {
+      "fields": {
+        "id": { "type": "Int", "required": true },
+        "postId": { "type": "Int", "required": true },
+        "name": { "type": "String", "required": true },
+        "email": { "type": "String", "required": true },
+        "body": { "type": "String", "required": true },
+        "post": {
+          "type": "Post",
+          "call": {
+            "steps": [
+              { "query": "post", "args": { "id": "{{.value.postId}}" } }
+            ]
+          }
+        }
+      }
+    },
+    "Album": {
+      "fields": {
+        "id": { "type": "Int", "required": true },
+        "userId": { "type": "Int", "required": true },
+        "title": { "type": "String", "required": true },
+        "user": {
+          "type": "User",
+          "call": {
+            "steps": [
+              { "query": "user", "args": { "id": "{{.value.userId}}" } }
+            ]
+          }
+        },
+        "photos": {
+          "type": "Photo",
+          "list": true,
+          "call": {
+            "steps": [
+              {
+                "query": "photosFromAlbum",
+                "args": { "albumId": "{{.value.id}}" }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "Photo": {
+      "fields": {
+        "id": { "type": "Int", "required": true },
+        "albumId": { "type": "Int", "required": true },
+        "title": { "type": "String", "required": true },
+        "url": { "type": "String", "required": true },
+        "thumbnailUrl": { "type": "String", "required": true },
+        "album": {
+          "type": "Album",
+          "call": {
+            "steps": [
+              { "query": "album", "args": { "id": "{{.value.albumId}}" } }
+            ]
+          }
+        }
+      }
+    },
+    "Todo": {
+      "fields": {
+        "id": { "type": "Int", "required": true },
+        "userId": { "type": "Int", "required": true },
+        "title": { "type": "String", "required": true },
+        "completed": { "type": "Boolean", "required": true },
+        "user": {
+          "type": "User",
+          "call": {
+            "steps": [
+              { "query": "user", "args": { "id": "{{.value.userId}}" } }
+            ]
           }
         }
       }
     },
     "User": {
       "fields": {
-        "email": {
-          "type": "String",
-          "required": true
+        "id": { "type": "Int", "required": true },
+        "name": { "type": "String", "required": true },
+        "username": { "type": "String", "required": true },
+        "email": { "type": "String", "required": true },
+        "address": { "type": "Address" },
+        "phone": { "type": "String" },
+        "website": { "type": "String" },
+        "company": { "type": "Company" },
+        "posts": {
+          "type": "Post",
+          "list": true,
+          "call": {
+            "steps": [
+              {
+                "query": "postsFromUser",
+                "args": { "userId": "{{.value.id}}" }
+              }
+            ]
+          }
         },
-        "id": {
-          "type": "Int",
-          "required": true
+        "albums": {
+          "type": "Album",
+          "list": true,
+          "call": {
+            "steps": [
+              {
+                "query": "albumsFromUser",
+                "args": { "userId": "{{.value.id}}" }
+              }
+            ]
+          }
         },
-        "name": {
-          "type": "String",
-          "required": true
-        },
-        "phone": {
-          "type": "String"
-        },
-        "username": {
-          "type": "String",
-          "required": true
-        },
-        "website": {
-          "type": "String"
+        "todos": {
+          "type": "Todo",
+          "list": true,
+          "call": {
+            "steps": [
+              {
+                "query": "todosFromUser",
+                "args": { "userId": "{{.value.id}}" }
+              }
+            ]
+          }
         }
+      }
+    },
+    "Address": {
+      "fields": {
+        "street": { "type": "String" },
+        "suite": { "type": "String" },
+        "city": { "type": "String" },
+        "zipcode": { "type": "String" },
+        "geo": { "type": "Geo" }
+      }
+    },
+    "Geo": {
+      "fields": {
+        "lat": { "type": "String" },
+        "lng": { "type": "String" }
+      }
+    },
+    "Company": {
+      "fields": {
+        "name": { "type": "String" },
+        "catchPhrase": { "type": "String" },
+        "bs": { "type": "String" }
+      }
+    },
+    "PostInput": {
+      "fields": {
+        "userId": { "type": "Int", "required": true },
+        "title": { "type": "String", "required": true },
+        "body": { "type": "String", "required": true }
+      }
+    },
+    "PartialPostInput": {
+      "fields": {
+        "userId": { "type": "Int" },
+        "title": { "type": "String" },
+        "body": { "type": "String" }
+      }
+    },
+    "CommentInput": {
+      "fields": {
+        "postId": { "type": "Int", "required": true },
+        "name": { "type": "String", "required": true },
+        "email": { "type": "String", "required": true },
+        "body": { "type": "String", "required": true }
+      }
+    },
+    "AlbumInput": {
+      "fields": {
+        "userId": { "type": "Int", "required": true },
+        "title": { "type": "String", "required": true }
+      }
+    },
+    "PhotoInput": {
+      "fields": {
+        "albumId": { "type": "Int", "required": true },
+        "title": { "type": "String", "required": true },
+        "url": { "type": "String", "required": true },
+        "thumbnailUrl": { "type": "String", "required": true }
+      }
+    },
+    "TodoInput": {
+      "fields": {
+        "userId": { "type": "Int", "required": true },
+        "title": { "type": "String", "required": true },
+        "completed": { "type": "Boolean", "required": true }
+      }
+    },
+    "UserInput": {
+      "fields": {
+        "name": { "type": "String", "required": true },
+        "username": { "type": "String", "required": true },
+        "email": { "type": "String", "required": true },
+        "address": { "type": "AddressInput" },
+        "phone": { "type": "String" },
+        "website": { "type": "String" },
+        "company": { "type": "CompanyInput" }
+      }
+    },
+    "AddressInput": {
+      "fields": {
+        "street": { "type": "String" },
+        "suite": { "type": "String" },
+        "city": { "type": "String" },
+        "zipcode": { "type": "String" },
+        "geo": { "type": "GeoInput" }
+      }
+    },
+    "GeoInput": {
+      "fields": {
+        "lat": { "type": "String" },
+        "lng": { "type": "String" }
+      }
+    },
+    "CompanyInput": {
+      "fields": {
+        "name": { "type": "String" },
+        "catchPhrase": { "type": "String" },
+        "bs": { "type": "String" }
+      }
+    },
+    "ComplexQuery": {
+      "fields": {
+        "userWithPostsAndComments": {
+          "type": "UserWithPostsAndComments",
+          "args": {
+            "userId": { "type": "Int", "required": true }
+          },
+          "call": {
+            "steps": [
+              { "query": "user", "args": { "id": "{{.args.userId}}" } },
+              {
+                "query": "postsFromUser",
+                "args": { "userId": "{{.value.id}}" }
+              },
+              {
+                "query": "commentsFromPost",
+                "args": { "postId": "{{.value.posts.0.id}}" }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "UserWithPostsAndComments": {
+      "fields": {
+        "user": { "type": "User" },
+        "posts": { "type": "Post", "list": true },
+        "comments": { "type": "Comment", "list": true }
       }
     }
   }
