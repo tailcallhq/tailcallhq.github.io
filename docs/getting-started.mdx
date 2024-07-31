@@ -139,6 +139,16 @@ We can use the following formats to define our GraphQL schema: `.graphql`, `.yml
 Create one of the following files and paste the contents into it.
 
 
+:::note
+The @call directive is used to chain multiple queries together. 
+It allows the result of one query to be used as an argument for another query.
+For example, in the Post type, the @call directive fetches the user who created the post 
+by using the userId from the post as an argument for the user query.
+The steps attribute is an array of query steps that are executed sequentially.
+Each step specifies a query to be called and the arguments to be passed to it.
+The `{{.value}}` placeholder is used to reference the result of the previous step in the chain.
+:::
+
 <Tabs>
 <TabItem value="graphql" label="graphql">
 
