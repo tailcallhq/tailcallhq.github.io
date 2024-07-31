@@ -8,12 +8,10 @@ import "../../css/configForm.css"
 import {downloadFile} from "@site/src/utils"
 import Modal from "@mui/material/Modal"
 import Box from "@mui/material/Box"
-import FieldTemplate from "./FieldTemplate" // Import your custom FieldTemplate
-import {DescriptionFieldProps, ObjectFieldTemplateProps, TitleFieldProps, UiSchema} from "@rjsf/utils"
-import {Download, Close, Add} from "@mui/icons-material"
+import {UiSchema} from "@rjsf/utils"
+import {Download, Close} from "@mui/icons-material"
 import {IconButton} from "@mui/material"
-import {Accordion, AccordionSummary, AccordionDetails, Typography} from "@mui/material"
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
+import {DescriptionFieldTemplate, ObjectFieldTemplate} from "./templates"
 
 const formContext = {
   className: "font-space-grotesk-imp",
@@ -96,47 +94,6 @@ const TailcallConfigForm = () => {
     </button>
   )
 
-  function DescriptionFieldTemplate(props: DescriptionFieldProps) {
-    return <span className="field-description">{props.description}</span>
-  }
-
-  function ObjectFieldTemplate(props: ObjectFieldTemplateProps) {
-    const handleAddClick = () => {
-      if (props.onAddClick) {
-        props.onAddClick(props.schema)()
-      }
-    }
-
-    return (
-      <div>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls={`${props.title}-content`}
-            id={`${props.title}-header`}
-          >
-            <Typography>{props.title}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div>
-              {props.description && <Typography>{props.description}</Typography>}
-              {props.properties.map((element) => (
-                <div className="property-wrapper" key={element.name}>
-                  {element.content}
-                </div>
-              ))}
-              {props.schema.additionalProperties && (
-                <IconButton onClick={handleAddClick}>
-                  <Add fontSize="small" />
-                </IconButton>
-              )}
-            </div>
-          </AccordionDetails>
-        </Accordion>
-      </div>
-    )
-  }
-
   return (
     <div className="m-8">
       <Form
@@ -150,7 +107,7 @@ const TailcallConfigForm = () => {
         validator={validator}
         focusOnFirstError
         uiSchema={uiSchema}
-        templates={{DescriptionFieldTemplate, ObjectFieldTemplate}} // Use the custom templates
+        templates={{DescriptionFieldTemplate, ObjectFieldTemplate}}
       >
         <div className="flex items-center justify-center">
           <button type="submit" className="border-none py-3 px-8 rounded-md bg-black text-white">

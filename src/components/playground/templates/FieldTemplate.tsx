@@ -2,7 +2,7 @@ import React from "react"
 import {Tooltip, IconButton} from "@mui/material"
 import {InfoOutlined} from "@mui/icons-material"
 
-const FieldTemplate = (props: any) => {
+export const FieldTemplate = (props: any) => {
   const {id, label, required, description, children} = props
   console.log(props)
   return (
@@ -26,5 +26,3 @@ const FieldTemplate = (props: any) => {
     </div>
   )
 }
-
-export default FieldTemplate
