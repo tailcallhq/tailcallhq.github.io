@@ -10,6 +10,9 @@ on:
     branches: [develop]
     types: [opened, reopened, synchronize]
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }}
@@ -38,23 +41,26 @@ jobs:
         with:
           folder: build
 
-      - name: Get changed markdown files
-        id: changed-markdown-files
-        uses: tj-actions/changed-files@v44
-        with:
-          files: |
-            blog/**/*.{md,mdx}
-
       - name: Publish to Hashnode and Dev.to 📝
-        if: github.ref == 'refs/heads/develop' && steps.changed-markdown-files.outputs.any_changed == 'true'
         env:
           HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
           HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
-          CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
           DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY}}
           DEVTO_ORG_ID: ${{secrets.DEVTO_ORG_ID}}
           DEVTO_ORG_NAME: ${{secrets.DEVTO_ORG_NAME}}
         run: |
           cd ./publish-externals
           npm run generate
-          npx --yes tsx ./src/index.ts "$CHANGED_FILES"
+          if [ "$GITHUB_REF" == "refs/heads/develop" ]; then
+            npx --yes tsx ./src/index.ts --publish
+          else
+            npx --yes tsx ./src/index.ts
+          fi
+
+      - name: Commit and push changes (on develop)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: develop
+          commit_author: Author <actions@github.com>
+          commit_message: "[ci skip] update snapshot"
