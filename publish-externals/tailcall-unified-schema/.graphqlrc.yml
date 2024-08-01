@@ -1,2 +1,2 @@
 schema:
-- ./.tailcallrc.graphql
+  - ./.tailcallrc.graphql
