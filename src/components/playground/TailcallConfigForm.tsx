@@ -11,7 +11,7 @@ import Box from "@mui/material/Box"
 import {UiSchema} from "@rjsf/utils"
 import {Download, Close} from "@mui/icons-material"
 import {IconButton} from "@mui/material"
-import {DescriptionFieldTemplate, ObjectFieldTemplate} from "./templates"
+import {DescriptionFieldTemplate, ObjectFieldTemplate, ArrayFieldTemplate} from "./templates"
 
 const formContext = {
   className: "font-space-grotesk-imp",
@@ -107,7 +107,7 @@ const TailcallConfigForm = () => {
         validator={validator}
         focusOnFirstError
         uiSchema={uiSchema}
-        templates={{DescriptionFieldTemplate, ObjectFieldTemplate}}
+        templates={{DescriptionFieldTemplate, ObjectFieldTemplate, ArrayFieldTemplate}}
       >
         <div className="flex items-center justify-center">
           <button type="submit" className="border-none py-3 px-8 rounded-md bg-black text-white">
