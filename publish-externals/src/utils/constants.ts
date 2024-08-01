@@ -4,6 +4,7 @@ export const BASE_URL_ASSETS = "https://raw.githubusercontent.com/tailcallhq/tai
 export const DEVTO_API_KEY = process.env.DEVTO_API_KEY!
 export const DEVTO_ORG_NAME = process.env.DEVTO_ORG_NAME
 export const DEVTO_ORG_ID = process.env.DEVTO_ORG_ID
+export const TAILCALL_ENDPOINT = process.env.TAILCALL_ENDPOINT
 
 // hashnode author ids
 export const authorsMap = {

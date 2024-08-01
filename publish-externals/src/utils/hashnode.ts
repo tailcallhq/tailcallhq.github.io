@@ -1,140 +1,123 @@
-import {
-  GetPostsDocument,
-  PublishPostInput,
-  PublishPostDocument,
-  UpdatePostInput,
-  UpdatePostDocument,
-  CreateDraftDocument,
-  CreateDraftInput,
-  PublishDraftDocument,
-  PublishDraftInput,
-} from "../../generated/graphql"
-import {client} from "../client/client"
-import {HASHNODE_PUBLICATION_ID} from "./constants"
+import {GraphQLClient} from "graphql-request"
 import {addBaseUrlToImages} from "./markdown"
+import {HASHNODE_PUBLICATION_ID, TAILCALL_ENDPOINT} from "./constants"
 
-const hashnodePostHandler = async (frontMatter: any, content: any) => {
-  const {title, subtitle, slug, canonical_url, seo_title, description, coAuthors, cover_image} = frontMatter
+const client = new GraphQLClient(TAILCALL_ENDPOINT)
+
+export async function hashnodePostHandler(frontMatter: any, content: string) {
   const processedMd = addBaseUrlToImages(content)
-  const existsOnHashnode = await findOnHashnode(title)
-  if (existsOnHashnode) {
-    await updatePost({
-      id: existsOnHashnode.id,
-      title: title,
-      subtitle: subtitle,
-      slug: slug,
-      originalArticleURL: canonical_url ? canonical_url : null,
-      coAuthors: coAuthors,
-      ...(seo_title && {
-        metaTags: {
-          description: description,
-          image: null,
-          title: seo_title,
-        },
-      }),
-      coverImageOptions: {
-        coverImageURL: cover_image,
+  const existingPost = await findOnHashnode(frontMatter.title)
+
+  if (existingPost) {
+    return await updateHashnodePost(existingPost.id, frontMatter, processedMd)
+  } else {
+    const draft = await createHashnodeDraft(frontMatter, processedMd)
+    return await publishHashnodePost(draft.id)
+  }
+}
+
+async function findOnHashnode(title: string) {
+  const response: any = await client.request(
+    `
+    query($publicationId: ID!, $first: Int!, $after: String) {
+      hashnodePosts(publicationId: $publicationId, first: $first, after: $after) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+    `,
+    {
+      publicationId: HASHNODE_PUBLICATION_ID,
+      first: 50,
+    },
+  )
+
+  const post = response.hashnodePosts.edges.find((edge) => edge.node.title === title)
+  return post ? post.node : null
+}
+
+async function createHashnodeDraft(frontMatter: any, content: string) {
+  const response: any = await client.request(
+    `
+    mutation($input: HashnodeCreateDraftInput!) {
+      createHashnodeDraft(input: $input) {
+        draft {
+          id
+          title
+          slug
+        }
+      }
+    }
+    `,
+    {
+      input: {
+        title: frontMatter.title,
+        subtitle: frontMatter.subtitle,
+        slug: frontMatter.slug,
+        contentMarkdown: content,
+        tags: frontMatter.tags,
+        coverImageOptions: frontMatter.cover_image ? {coverImageURL: frontMatter.cover_image} : undefined,
+        publicationId: HASHNODE_PUBLICATION_ID,
       },
-      contentMarkdown: processedMd,
-    })
-  }
+    },
+  )
+  return response.createHashnodeDraft.draft
+}
 
-  await createDraft({
-    title: title,
-    subtitle: subtitle,
-    slug: slug,
-    originalArticleURL: canonical_url ? canonical_url : null,
-    ...(seo_title && {
-      metaTags: {
-        description: description,
-        image: null,
-        title: seo_title,
+async function updateHashnodePost(id: string, frontMatter: any, content: string) {
+  const response: any = await client.request(
+    `
+    mutation($input: HashnodeUpdatePostInput!) {
+      updateHashnodePost(input: $input) {
+        post {
+          id
+          title
+          slug
+        }
+      }
+    }
+    `,
+    {
+      input: {
+        id,
+        title: frontMatter.title,
+        subtitle: frontMatter.subtitle,
+        slug: frontMatter.slug,
+        contentMarkdown: content,
+        tags: frontMatter.tags,
+        coverImageOptions: frontMatter.cover_image ? {coverImageURL: frontMatter.cover_image} : undefined,
       },
-    }),
-    coverImageOptions: {
-      coverImageURL: cover_image,
     },
-    coAuthors: coAuthors,
-    contentMarkdown: processedMd,
-    // publishAs: '6697ec43b268f4c6823e916a',
-    publicationId: HASHNODE_PUBLICATION_ID,
-  })
+  )
+  return response.updateHashnodePost.post
 }
 
-const getPosts = async (publicationId: string, first: number, after?: string) => {
-  const {data, errors} = await client.query({
-    query: GetPostsDocument,
-    variables: {
-      publicationId,
-      first,
-      after,
+async function publishHashnodePost(postId: string) {
+  const response: any = await client.request(
+    `
+    mutation($input: HashnodePublishPostInput!) {
+      publishHashnodePost(input: $input) {
+        post {
+          id
+          title
+          slug
+        }
+      }
+    }
+    `,
+    {
+      input: {
+        postId,
+      },
     },
-  })
-
-  if (errors) {
-    console.error(errors)
-  }
-
-  return data?.publication?.posts
+  )
+  return response.publishHashnodePost.post
 }
-
-const findOnHashnode = async (title: string) => {
-  let cursor: string | null | undefined
-  const pageSize = 50
-
-  while (true) {
-    const result = await getPosts(HASHNODE_PUBLICATION_ID, pageSize, typeof cursor === "string" ? cursor : undefined)
-
-    if (!result) break
-
-    const post = result.edges.find((edge) => edge.node.title === title)
-    if (post) return post.node
-
-    if (!result.pageInfo.hasNextPage) break
-    cursor = result.pageInfo.endCursor
-  }
-
-  return null
-}
-
-const createDraft = async (input: CreateDraftInput) => {
-  const {data} = await client.mutate({
-    mutation: CreateDraftDocument,
-    variables: {
-      input,
-    },
-  })
-  return data
-}
-
-const updatePost = async (input: UpdatePostInput) => {
-  const {data} = await client.mutate({
-    mutation: UpdatePostDocument,
-    variables: {
-      input,
-    },
-  })
-  return data
-}
-
-const publishDraft = async (input: PublishDraftInput) => {
-  const {data} = await client.mutate({
-    mutation: PublishDraftDocument,
-    variables: {
-      input,
-    },
-  })
-  return data
-}
-
-const publishPost = async (input: PublishPostInput) => {
-  const {data} = await client.mutate({
-    mutation: PublishPostDocument,
-    variables: {
-      input,
-    },
-  })
-  return data
-}
-
-export {createDraft, findOnHashnode, hashnodePostHandler as handler, updatePost, publishDraft, publishPost}

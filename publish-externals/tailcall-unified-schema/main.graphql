@@ -1,0 +1,222 @@
+schema @server(port: 8000) @upstream(baseURL: "https://api.hashnode.com") {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  hashnodePosts(
+    publicationId: ID!
+    first: Int!
+    after: String
+  ): HashnodePostConnection!
+    @http(
+      method: POST
+      path: "/graphql"
+      body: """
+      {
+        "query": "query($publicationId: ObjectId!, $first: Int!, $after: String) { publication(id: $publicationId) { posts(first: $first, after: $after) { edges { node { id title } } pageInfo { hasNextPage endCursor } } } }",
+        "variables": { "publicationId": {{.args.publicationId}}, "first": {{.args.first}}, "after": {{.args.after}} }
+      }
+      """
+    )
+    @transform(get: "publication.posts")
+
+  devToArticles(
+    username: String!
+    page: Int!
+    per_page: Int!
+  ): [DevToArticle!]!
+    @http(
+      method: GET
+      baseURL: "https://dev.to"
+      path: "/api/articles?username={{.args.username}}&page={{.args.page}}&per_page={{.args.per_page}}"
+    )
+}
+
+type Mutation {
+  createHashnodeDraft(
+    input: HashnodeCreateDraftInput!
+  ): HashnodeCreateDraftResponse!
+    @http(
+      method: POST
+      path: "/graphql"
+      body: """
+      {
+        "query": "mutation($input: CreateDraftInput!) { createDraft(input: $input) { draft { id title slug } } }",
+        "variables": { "input": {{toJson .args.input}} }
+      }
+      """
+    )
+    @transform(get: "createDraft")
+
+  updateHashnodePost(
+    input: HashnodeUpdatePostInput!
+  ): HashnodeUpdatePostResponse!
+    @http(
+      method: POST
+      path: "/graphql"
+      body: """
+      {
+        "query": "mutation($input: UpdatePostInput!) { updatePost(input: $input) { post { id title slug } } }",
+        "variables": { "input": {{toJson .args.input}} }
+      }
+      """
+    )
+    @transform(get: "updatePost")
+
+  publishHashnodePost(
+    input: HashnodePublishPostInput!
+  ): HashnodePublishPostResponse!
+    @http(
+      method: POST
+      path: "/graphql"
+      body: """
+      {
+        "query": "mutation($input: PublishPostInput!) { publishPost(input: $input) { post { id title slug } } }",
+        "variables": { "input": {{toJson .args.input}} }
+      }
+      """
+    )
+    @transform(get: "publishPost")
+
+  publishToDevTo(input: DevToPublishInput!): DevToPublishResponse!
+    @http(
+      method: POST
+      baseURL: "https://dev.to"
+      path: "/api/articles"
+      headers: [
+        { key: "Content-Type", value: "application/json" }
+        { key: "api-key", value: "{{env.DEVTO_API_KEY}}" }
+      ]
+      body: """
+      {{toJson .args.input.article}}
+      """
+    )
+
+  updateDevToArticle(
+    id: ID!
+    article: DevToArticleInput!
+  ): DevToUpdateArticleResponse!
+    @http(
+      method: PUT
+      baseURL: "https://dev.to"
+      path: "/api/articles/{{args.id}}"
+      headers: [{ key: "api-key", value: "{{env.DEVTO_API_KEY}}" }]
+      body: """
+      {
+        "article": {{toJson args.article}}
+      }
+      """
+    )
+}
+
+type HashnodePostConnection {
+  edges: [HashnodePostEdge!]!
+  pageInfo: PageInfo!
+}
+
+type HashnodePostEdge {
+  node: HashnodePost!
+}
+
+type HashnodePost {
+  id: ID!
+  title: String!
+  slug: String
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  endCursor: String
+}
+
+type DevToArticle {
+  id: ID!
+  title: String!
+  description: String
+  published: Boolean
+  tags: [String!]
+  series: String
+  canonical_url: String
+  body_markdown: String
+}
+
+input HashnodeCreateDraftInput {
+  title: String!
+  subtitle: String
+  slug: String
+  contentMarkdown: String!
+  tags: [String!]
+  coverImageOptions: CoverImageOptions
+  publicationId: String!
+}
+
+input HashnodeUpdatePostInput {
+  id: ID!
+  title: String
+  subtitle: String
+  slug: String
+  contentMarkdown: String
+  tags: [String!]
+  coverImageOptions: CoverImageOptions
+}
+
+input HashnodePublishPostInput {
+  postId: ID!
+  publishedAt: String
+}
+
+input CoverImageOptions {
+  coverImageURL: String
+}
+
+type HashnodeCreateDraftResponse {
+  draft: HashnodePost!
+}
+
+type HashnodeUpdatePostResponse {
+  post: HashnodePost!
+}
+
+type HashnodePublishPostResponse {
+  post: HashnodePost!
+}
+
+input DevToPublishInput {
+  article: DevToArticleInput!
+}
+
+input DevToArticleInput {
+  title: String!
+  body_markdown: String!
+  published: Boolean
+  tags: [String!]
+  series: String
+  canonical_url: String
+  description: String
+  organization_id: Int
+}
+
+input DevToUpdateArticleInput {
+  id: ID!
+  article: DevToArticleInput!
+}
+
+type DevToPublishResponse {
+  id: ID!
+  title: String!
+  description: String
+  readable_publish_date: String
+  url: String!
+  published: Boolean
+  tags: [String!]
+}
+
+type DevToUpdateArticleResponse {
+  id: ID!
+  title: String!
+  description: String
+  url: String!
+  published: Boolean
+  tags: [String!]
+}

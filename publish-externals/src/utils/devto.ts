@@ -1,83 +1,98 @@
-import axios from "axios"
-import {DEVTO_API_KEY, DEVTO_ORG_ID, DEVTO_ORG_NAME} from "./constants"
+import {GraphQLClient} from "graphql-request"
 import {addBaseUrlToImages} from "./markdown"
+import {DEVTO_ORG_ID, DEVTO_ORG_NAME, TAILCALL_ENDPOINT} from "./constants"
 
-const isOrg = DEVTO_ORG_ID && DEVTO_ORG_NAME
-const devtoPostHandler = async (frontMatter: any, content: any) => {
+const client = new GraphQLClient(TAILCALL_ENDPOINT)
+
+export async function devtoPostHandler(frontMatter: any, content: string) {
   const processedMd = addBaseUrlToImages(content)
-  const {title, cover_image, canonical_url, description} = frontMatter
+  const existingPost = await findOnDevTo(frontMatter.title)
 
-  //first check if the post exists on dev.to
-  const postExistsOnDevto = await findOnDevto(title)
-  if (postExistsOnDevto) {
-    //notice that the public parameter hasn't been specified / is false. this is to make sure even a published article becomes un-published when edited thru github
-    await updatePostOnDevto(postExistsOnDevto.id, {
-      title,
-      body_markdown: processedMd,
-      main_image: cover_image,
-      canonical_url: canonical_url || null,
-      description: description,
-      tags: description,
-      organization_id: isOrg ? DEVTO_ORG_ID : null,
-    })
+  if (existingPost) {
+    return await updateDevToPost(existingPost.id, frontMatter, processedMd)
   } else {
-    await publishPostOnDevto({
-      title,
-      body_markdown: processedMd,
-      main_image: cover_image,
-      canonical_url: canonical_url || null,
-      description: description,
-      tags: description,
-      organization_id: isOrg ? DEVTO_ORG_ID : null,
-    })
+    return await publishDevToPost(frontMatter, processedMd)
   }
 }
-const devtoApiVars = {
-  headers: {
-    "api-key": DEVTO_API_KEY,
-  },
-}
 
-const findOnDevto = async (titleToSearch: string) => {
-  try {
-    let page = 1
-    let per_page = 50
-    let found: boolean | any
-    found = false
-    while (true && !found) {
-      const url = isOrg
-        ? `https://dev.to/api/organizations/{${DEVTO_ORG_NAME}}/articles`
-        : `https://dev.to/api/articles/me/all`
-      const response = await axios.get(`${url}?page=${page}&per_page=${per_page}`, devtoApiVars)
-      const articles = response.data
-      if (!articles || articles.length === 0) {
-        //stop right here if no (more) articles
-        break
+async function findOnDevTo(title: string) {
+  const response: any = await client.request(
+    `
+    query($username: String!, $page: Int!, $per_page: Int!) {
+      devToArticles(username: $username, page: $page, per_page: $per_page) {
+        id
+        title
       }
-      found = articles.find(({title}: {title: string}) => title === titleToSearch) || false
-      //move to next page if not found
-      page++
     }
-    return found
-  } catch {
-    throw new Error("error, could not check for existing articles on dev.to ❌ ")
-  }
+    `,
+    {
+      username: DEVTO_ORG_NAME || "me",
+      page: 1,
+      per_page: 50,
+    },
+  )
+
+  return response.devToArticles.find((article) => article.title === title)
 }
 
-const publishPostOnDevto = async (article: any) => {
-  try {
-    await axios.post("https://dev.to/api/articles", {article}, devtoApiVars)
-  } catch {
-    throw new Error("error: could not publish new article on dev.to ❌ ")
-  }
+async function publishDevToPost(frontMatter: any, content: string) {
+  const response: any = await client.request(
+    `
+    mutation($input: DevToPublishInput!) {
+      publishToDevTo(input: $input) {
+        id
+        title
+        url
+        published
+        tags
+      }
+    }
+    `,
+    {
+      input: {
+        article: {
+          title: frontMatter.title,
+          body_markdown: content,
+          published: true,
+          tags: frontMatter.tags,
+          series: frontMatter.series,
+          canonical_url: frontMatter.canonical_url,
+          description: frontMatter.description,
+          organization_id: DEVTO_ORG_ID ? parseInt(DEVTO_ORG_ID) : undefined,
+        },
+      },
+    },
+  )
+  return response.publishToDevTo
 }
 
-const updatePostOnDevto = async (id: number, article: any) => {
-  try {
-    await axios.put(`https://dev.to/api/articles/${id}`, {article}, devtoApiVars)
-  } catch {
-    throw new Error("error: could not edit the article on dev.to ❌ ")
-  }
+async function updateDevToPost(id: string, frontMatter: any, content: string) {
+  const response: any = await client.request(
+    `
+    mutation($input: DevToUpdateArticleInput!) {
+      updateDevToArticle(input: $input) {
+        id
+        title
+        url
+        published
+        tags
+      }
+    }
+    `,
+    {
+      input: {
+        id,
+        article: {
+          title: frontMatter.title,
+          body_markdown: content,
+          published: true,
+          tags: frontMatter.tags,
+          series: frontMatter.series,
+          canonical_url: frontMatter.canonical_url,
+          description: frontMatter.description,
+        },
+      },
+    },
+  )
+  return response.updateDevToArticle
 }
-
-export {devtoPostHandler as handler}
