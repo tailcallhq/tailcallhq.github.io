@@ -57,6 +57,45 @@
   .MuiCheckbox-root {
     padding: 0 !important;
   }
+
+  .form-heading {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  .collapse-head {
+    font-size: 24px;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  .collapse-field-head{
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    transition: margin 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.87);
+    /* padding: 6px 16px; */
+    border-radius: 5px;
+    padding: 0 12px;
+  }
+  .collapse-field{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .red-remove{
+    color: rgb(182, 5, 5);
+  }
+  .red-remove:hover{
+    background-color: rgb(253, 244, 244);
+  }
+  .add-container{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .title-description{
+    width: 100%;
+  }
 }
 
 #root__title {

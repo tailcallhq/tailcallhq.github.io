@@ -112,10 +112,11 @@ const TailcallConfigForm = () => {
         validator={validator}
         focusOnFirstError
         uiSchema={uiSchema}
+        showErrorList="bottom"
         templates={{DescriptionFieldTemplate, ObjectFieldTemplate, ArrayFieldTemplate}}
         widgets={widgets}
       >
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center mb-10">
           <button type="submit" className="border-none py-3 px-8 rounded-md bg-black text-white">
             Submit
           </button>
