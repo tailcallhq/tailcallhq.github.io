@@ -1,13 +1,13 @@
 import React from "react"
-import { ObjectFieldTemplateProps } from "@rjsf/utils"
-import { IconButton } from "@mui/material"
-import { Add } from "@mui/icons-material"
+import {ObjectFieldTemplateProps} from "@rjsf/utils"
+import {IconButton} from "@mui/material"
+import {Add} from "@mui/icons-material"
 export const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const handleAddClick = (e:any) => {
-    e.stopPropagation();
-    e.preventDefault();
+  const handleAddClick = (e: any) => {
+    e.stopPropagation()
+    e.preventDefault()
     if (props.onAddClick) {
       props.onAddClick(props.schema)()
     }
@@ -24,7 +24,6 @@ export const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
             </div>
           ))}
         </div>
-        
       </div>
     )
   }
@@ -50,18 +49,24 @@ export const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
         <div className="collapse-field-head">
           <div className="collapse-field" onClick={toggleAccordion}>
             <h5 className="text-lg collapse-head">{props.title}</h5>
-            <svg className={`w-5 h-5 transform ${isOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              className={`w-5 h-5 transform ${isOpen ? "rotate-180" : ""}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </div>
           {isOpen && <div className="p-2">{getObjectFieldBody()}</div>}
           <div>
-          {isOpen && props.schema.additionalProperties && (
-            <IconButton className="add-btn" onClick={handleAddClick}>
-              <Add fontSize="small" />
-            </IconButton>
-          )}
-        </div>
+            {isOpen && props.schema.additionalProperties && (
+              <IconButton className="add-btn" onClick={handleAddClick}>
+                <Add fontSize="small" />
+              </IconButton>
+            )}
+          </div>
         </div>
       ) : (
         getRootObjectContent()
