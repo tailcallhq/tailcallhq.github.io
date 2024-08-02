@@ -23,3 +23,4 @@ yarn-error.log*
 .idea/
 src/*/*.json
 .vscode/
+.gitpod.yml
