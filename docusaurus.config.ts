@@ -214,10 +214,8 @@ export default {
         truncateMarker: /<!--\s*(truncate)\s*-->/,
         showReadingTime: true,
         feedOptions: {
-          type: "atom",
-          title: "Blog title",
-          description: "Blog",
-          copyright: "Copyright © 2024 Tailcall, Inc.",
+          type: "all",
+          copyright: `Copyright © ${new Date().getFullYear()} Tailcall, Inc.`,
         },
       },
     ],
