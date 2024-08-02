@@ -169,7 +169,7 @@ This configuration creates an Apollo Client instance with a default in-memory ca
 
 Apollo Client provides the `useQuery` composable for executing GraphQL queries. Here's an example of fetching a list of posts:
 
-```vue
+```html
 <script setup lang="ts">
 import {useQuery} from "@vue/apollo-composable"
 import gql from "graphql-tag"
@@ -237,7 +237,7 @@ This example demonstrates:
 
 Apollo Client supports GraphQL mutations with optimistic updates for responsive UIs:
 
-```vue
+```html
 <script setup lang="ts">
 import {useMutation} from "@vue/apollo-composable"
 import gql from "graphql-tag"
@@ -406,7 +406,7 @@ To optimize performance when using Apollo Client with Vue:
 
 1. **Implement pagination** for large datasets:
 
-   ```vue
+   ```html
    <script setup lang="ts">
    import {useQuery} from "@vue/apollo-composable"
    import gql from "graphql-tag"
@@ -529,7 +529,7 @@ This configuration creates an URQL client and integrates it with Vue's plugin sy
 
 URQL provides a `useQuery` composable for executing GraphQL queries. Here's an example of fetching a list of posts:
 
-```vue
+```html
 <script setup lang="ts">
 import {useQuery} from "@urql/vue"
 import {ref, watch} from "vue"
@@ -591,7 +591,7 @@ This example demonstrates how to:
 
 URQL also supports GraphQL mutations for modifying data. Here's an example of creating a new post:
 
-```vue
+```html
 <script setup lang="ts">
 import {useMutation} from "@urql/vue"
 import {ref} from "vue"
@@ -739,7 +739,7 @@ To optimize performance when using URQL with Vue:
 
 2. **Implement pagination** for large datasets:
 
-   ```vue
+   ```html
    <script setup lang="ts">
    import {useQuery} from "@urql/vue"
    import {ref, computed} from "vue"
@@ -820,7 +820,7 @@ One of the key advantages of the Fetch API is its built-in availability in moder
 
 Let's start by setting up a basic Vue component that uses the Fetch API to query a GraphQL endpoint.
 
-```vue
+```html
 <template>
   <div class="fetch-example">
     <h2>Fetch API Example</h2>
@@ -1001,7 +1001,7 @@ That's it! Axios is now ready to use, providing a smooth and easy setup process.
 
 Here's how you can use Axios to fetch data from a GraphQL endpoint in a Vue component:
 
-```vue
+```html
 <script setup lang="ts">
 import {ref} from "vue"
 import axios from "axios"
@@ -1190,7 +1190,7 @@ app.mount("#app")
 
 Here's how to use Villus to fetch data from a GraphQL endpoint in a Vue component:
 
-```vue
+```html
 <script setup lang="ts">
 import {useQuery} from "villus"
 import {ref} from "vue"
