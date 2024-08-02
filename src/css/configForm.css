@@ -53,6 +53,10 @@
     letter-spacing: 0.03333em;
     color: rgba(0, 0, 0, 0.6);
   }
+
+  .MuiCheckbox-root {
+    padding: 0 !important;
+  }
 }
 
 #root__title {

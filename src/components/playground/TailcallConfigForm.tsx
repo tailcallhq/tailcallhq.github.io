@@ -8,10 +8,11 @@ import "../../css/configForm.css"
 import {downloadFile} from "@site/src/utils"
 import Modal from "@mui/material/Modal"
 import Box from "@mui/material/Box"
-import {UiSchema} from "@rjsf/utils"
+import {UiSchema, RegistryWidgetsType} from "@rjsf/utils"
 import {Download, Close} from "@mui/icons-material"
 import {IconButton} from "@mui/material"
 import {DescriptionFieldTemplate, ObjectFieldTemplate, ArrayFieldTemplate} from "./templates"
+import {Checkbox} from "./widgets"
 
 const formContext = {
   className: "font-space-grotesk-imp",
@@ -22,6 +23,10 @@ const TailcallConfigForm = () => {
   const [formData, setFormData] = useState({})
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const widgets: RegistryWidgetsType = {
+    CheckboxWidget: Checkbox,
+  }
 
   const transformSchema = (schema: any) => {
     const traverseAndTransform = (obj: any) => {
@@ -108,6 +113,7 @@ const TailcallConfigForm = () => {
         focusOnFirstError
         uiSchema={uiSchema}
         templates={{DescriptionFieldTemplate, ObjectFieldTemplate, ArrayFieldTemplate}}
+        widgets={widgets}
       >
         <div className="flex items-center justify-center">
           <button type="submit" className="border-none py-3 px-8 rounded-md bg-black text-white">
