@@ -171,43 +171,43 @@ Apollo Client provides the `useQuery` composable for executing GraphQL queries. 
 
 ```html
 <script setup lang="ts">
-import {useQuery} from "@vue/apollo-composable"
-import gql from "graphql-tag"
-import {computed} from "vue"
+  import {useQuery} from "@vue/apollo-composable"
+  import gql from "graphql-tag"
+  import {computed} from "vue"
 
-interface Post {
-  id: number
-  title: string
-  body: string
-  user: {
-    name: string
-  }
-}
-
-const GET_POSTS = gql`
-  query GetPosts($limit: Int!) {
-    posts(limit: $limit) {
-      id
-      title
-      body
-      user {
-        name
-      }
+  interface Post {
+    id: number
+    title: string
+    body: string
+    user: {
+      name: string
     }
   }
-`
 
-const {result, loading, error, refetch} = useQuery<{
-  posts: Post[]
-}>(GET_POSTS, {
-  limit: 10,
-})
+  const GET_POSTS = gql`
+    query GetPosts($limit: Int!) {
+      posts(limit: $limit) {
+        id
+        title
+        body
+        user {
+          name
+        }
+      }
+    }
+  `
 
-const posts = computed(() => result.value?.posts || [])
+  const {result, loading, error, refetch} = useQuery<{
+    posts: Post[]
+  }>(GET_POSTS, {
+    limit: 10,
+  })
 
-const fetchPosts = () => {
-  refetch()
-}
+  const posts = computed(() => result.value?.posts || [])
+
+  const fetchPosts = () => {
+    refetch()
+  }
 </script>
 
 <template>
@@ -239,58 +239,58 @@ Apollo Client supports GraphQL mutations with optimistic updates for responsive 
 
 ```html
 <script setup lang="ts">
-import {useMutation} from "@vue/apollo-composable"
-import gql from "graphql-tag"
-import {ref} from "vue"
+  import {useMutation} from "@vue/apollo-composable"
+  import gql from "graphql-tag"
+  import {ref} from "vue"
 
-const CREATE_POST = gql`
-  mutation CreatePost($title: String!, $body: String!) {
-    createPost(input: {title: $title, body: $body}) {
-      id
-      title
-      body
+  const CREATE_POST = gql`
+    mutation CreatePost($title: String!, $body: String!) {
+      createPost(input: {title: $title, body: $body}) {
+        id
+        title
+        body
+      }
     }
-  }
-`
+  `
 
-const {
-  mutate: createPost,
-  loading,
-  error,
-} = useMutation(CREATE_POST)
+  const {
+    mutate: createPost,
+    loading,
+    error,
+  } = useMutation(CREATE_POST)
 
-const title = ref("")
-const body = ref("")
+  const title = ref("")
+  const body = ref("")
 
-const submitPost = async () => {
-  try {
-    const {data} = await createPost(
-      {
-        title: title.value,
-        body: body.value,
-      },
-      {
-        optimisticResponse: {
-          createPost: {
-            __typename: "Post",
-            id: "temp-id",
-            title: title.value,
-            body: body.value,
+  const submitPost = async () => {
+    try {
+      const {data} = await createPost(
+        {
+          title: title.value,
+          body: body.value,
+        },
+        {
+          optimisticResponse: {
+            createPost: {
+              __typename: "Post",
+              id: "temp-id",
+              title: title.value,
+              body: body.value,
+            },
+          },
+          update: (cache, {data}) => {
+            // Update cache logic here
           },
         },
-        update: (cache, {data}) => {
-          // Update cache logic here
-        },
-      },
-    )
-    console.log("Post created:", data.createPost)
-    // Reset form
-    title.value = ""
-    body.value = ""
-  } catch (e) {
-    console.error("Error creating post:", e)
+      )
+      console.log("Post created:", data.createPost)
+      // Reset form
+      title.value = ""
+      body.value = ""
+    } catch (e) {
+      console.error("Error creating post:", e)
+    }
   }
-}
 </script>
 
 <template>
@@ -408,41 +408,41 @@ To optimize performance when using Apollo Client with Vue:
 
    ```html
    <script setup lang="ts">
-   import {useQuery} from "@vue/apollo-composable"
-   import gql from "graphql-tag"
-   import {ref, computed} from "vue"
+     import {useQuery} from "@vue/apollo-composable"
+     import gql from "graphql-tag"
+     import {ref, computed} from "vue"
 
-   const GET_POSTS = gql`
-     query GetPosts($offset: Int!, $limit: Int!) {
-       posts(offset: $offset, limit: $limit) {
-         id
-         title
+     const GET_POSTS = gql`
+       query GetPosts($offset: Int!, $limit: Int!) {
+         posts(offset: $offset, limit: $limit) {
+           id
+           title
+         }
        }
-     }
-   `
+     `
 
-   const limit = ref(10)
-   const offset = ref(0)
+     const limit = ref(10)
+     const offset = ref(0)
 
-   const {result, loading, fetchMore} = useQuery(
-     GET_POSTS,
-     () => ({
-       offset: offset.value,
-       limit: limit.value,
-     }),
-   )
-
-   const posts = computed(() => result.value?.posts || [])
-
-   const loadMore = () => {
-     offset.value += limit.value
-     fetchMore({
-       variables: {
+     const {result, loading, fetchMore} = useQuery(
+       GET_POSTS,
+       () => ({
          offset: offset.value,
          limit: limit.value,
-       },
-     })
-   }
+       }),
+     )
+
+     const posts = computed(() => result.value?.posts || [])
+
+     const loadMore = () => {
+       offset.value += limit.value
+       fetchMore({
+         variables: {
+           offset: offset.value,
+           limit: limit.value,
+         },
+       })
+     }
    </script>
    ```
 
@@ -531,10 +531,10 @@ URQL provides a `useQuery` composable for executing GraphQL queries. Here's an e
 
 ```html
 <script setup lang="ts">
-import {useQuery} from "@urql/vue"
-import {ref, watch} from "vue"
+  import {useQuery} from "@urql/vue"
+  import {ref, watch} from "vue"
 
-const postsQuery = `
+  const postsQuery = `
   query GetPosts {
     posts {
       id
@@ -547,21 +547,21 @@ const postsQuery = `
   }
 `
 
-const {executeQuery, fetching, error, data} = useQuery({
-  query: postsQuery,
-  pause: true, // Start paused to allow manual execution
-})
+  const {executeQuery, fetching, error, data} = useQuery({
+    query: postsQuery,
+    pause: true, // Start paused to allow manual execution
+  })
 
-const posts = ref([])
-const fetchPosts = () => {
-  executeQuery()
-}
-
-watch(data, (newData) => {
-  if (newData) {
-    posts.value = newData.posts
+  const posts = ref([])
+  const fetchPosts = () => {
+    executeQuery()
   }
-})
+
+  watch(data, (newData) => {
+    if (newData) {
+      posts.value = newData.posts
+    }
+  })
 </script>
 
 <template>
@@ -593,10 +593,10 @@ URQL also supports GraphQL mutations for modifying data. Here's an example of cr
 
 ```html
 <script setup lang="ts">
-import {useMutation} from "@urql/vue"
-import {ref} from "vue"
+  import {useMutation} from "@urql/vue"
+  import {ref} from "vue"
 
-const createPostMutation = `
+  const createPostMutation = `
   mutation CreatePost($title: String!, $body: String!) {
     createPost(input: { title: $title, body: $body }) {
       id
@@ -606,25 +606,25 @@ const createPostMutation = `
   }
 `
 
-const {executeMutation, fetching, error} = useMutation(
-  createPostMutation,
-)
+  const {executeMutation, fetching, error} = useMutation(
+    createPostMutation,
+  )
 
-const title = ref("")
-const body = ref("")
+  const title = ref("")
+  const body = ref("")
 
-const createPost = async () => {
-  const result = await executeMutation({
-    title: title.value,
-    body: body.value,
-  })
-  if (result.data) {
-    console.log("Post created:", result.data.createPost)
-    // Reset form or update local state
-    title.value = ""
-    body.value = ""
+  const createPost = async () => {
+    const result = await executeMutation({
+      title: title.value,
+      body: body.value,
+    })
+    if (result.data) {
+      console.log("Post created:", result.data.createPost)
+      // Reset form or update local state
+      title.value = ""
+      body.value = ""
+    }
   }
-}
 </script>
 
 <template>
@@ -741,10 +741,10 @@ To optimize performance when using URQL with Vue:
 
    ```html
    <script setup lang="ts">
-   import {useQuery} from "@urql/vue"
-   import {ref, computed} from "vue"
+     import {useQuery} from "@urql/vue"
+     import {ref, computed} from "vue"
 
-   const postsQuery = `
+     const postsQuery = `
      query GetPosts($limit: Int!, $offset: Int!) {
        posts(limit: $limit, offset: $offset) {
          id
@@ -753,20 +753,20 @@ To optimize performance when using URQL with Vue:
      }
    `
 
-   const limit = ref(10)
-   const offset = ref(0)
+     const limit = ref(10)
+     const offset = ref(0)
 
-   const {data, fetching, error} = useQuery({
-     query: postsQuery,
-     variables: computed(() => ({
-       limit: limit.value,
-       offset: offset.value,
-     })),
-   })
+     const {data, fetching, error} = useQuery({
+       query: postsQuery,
+       variables: computed(() => ({
+         limit: limit.value,
+         offset: offset.value,
+       })),
+     })
 
-   const loadMore = () => {
-     offset.value += limit.value
-   }
+     const loadMore = () => {
+       offset.value += limit.value
+     }
    </script>
    ```
 
@@ -845,35 +845,35 @@ Let's start by setting up a basic Vue component that uses the Fetch API to query
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue"
+  import {ref} from "vue"
 
-interface Post {
-  id: number
-  title: string
-  body: string
-  user: {
-    name: string
+  interface Post {
+    id: number
+    title: string
+    body: string
+    user: {
+      name: string
+    }
   }
-}
 
-const posts = ref<Post[]>([])
-const loading = ref(false)
-const networkError = ref<string | null>(null)
-const graphqlError = ref<string | null>(null)
-const unexpectedError = ref<string | null>(null)
+  const posts = ref<Post[]>([])
+  const loading = ref(false)
+  const networkError = ref<string | null>(null)
+  const graphqlError = ref<string | null>(null)
+  const unexpectedError = ref<string | null>(null)
 
-const fetchPosts = async () => {
-  loading.value = true
-  networkError.value = null
-  graphqlError.value = null
-  unexpectedError.value = null
+  const fetchPosts = async () => {
+    loading.value = true
+    networkError.value = null
+    graphqlError.value = null
+    unexpectedError.value = null
 
-  try {
-    const response = await fetch("/graphql", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-        query: `
+    try {
+      const response = await fetch("/graphql", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          query: `
         query GetPosts {
           posts {
             id
@@ -885,31 +885,31 @@ const fetchPosts = async () => {
           }
         }
       `,
-      }),
-    })
-    if (!response.ok) {
-      throw new Error(
-        `HTTP error! status: ${response.status}`,
-      )
+        }),
+      })
+      if (!response.ok) {
+        throw new Error(
+          `HTTP error! status: ${response.status}`,
+        )
+      }
+      const result = await response.json()
+      if (result.errors && result.errors.length > 0) {
+        graphqlError.value = result.errors
+          .map((e: any) => e.message)
+          .join(", ")
+      } else {
+        posts.value = result.data.posts.slice(0, 4)
+      }
+    } catch (err: any) {
+      if (err.message.startsWith("HTTP error!")) {
+        networkError.value = err.message
+      } else {
+        unexpectedError.value = err.message
+      }
+    } finally {
+      loading.value = false
     }
-    const result = await response.json()
-    if (result.errors && result.errors.length > 0) {
-      graphqlError.value = result.errors
-        .map((e: any) => e.message)
-        .join(", ")
-    } else {
-      posts.value = result.data.posts.slice(0, 4)
-    }
-  } catch (err: any) {
-    if (err.message.startsWith("HTTP error!")) {
-      networkError.value = err.message
-    } else {
-      unexpectedError.value = err.message
-    }
-  } finally {
-    loading.value = false
   }
-}
 </script>
 ```
 
@@ -1003,33 +1003,33 @@ Here's how you can use Axios to fetch data from a GraphQL endpoint in a Vue comp
 
 ```html
 <script setup lang="ts">
-import {ref} from "vue"
-import axios from "axios"
+  import {ref} from "vue"
+  import axios from "axios"
 
-interface Post {
-  id: number
-  title: string
-  body: string
-  user: {
-    name: string
+  interface Post {
+    id: number
+    title: string
+    body: string
+    user: {
+      name: string
+    }
   }
-}
 
-const posts = ref<Post[]>([])
-const loading = ref(false)
-const networkError = ref<string | null>(null)
-const graphqlError = ref<string | null>(null)
-const unexpectedError = ref<string | null>(null)
+  const posts = ref<Post[]>([])
+  const loading = ref(false)
+  const networkError = ref<string | null>(null)
+  const graphqlError = ref<string | null>(null)
+  const unexpectedError = ref<string | null>(null)
 
-const fetchPosts = async () => {
-  loading.value = true
-  networkError.value = null
-  graphqlError.value = null
-  unexpectedError.value = null
+  const fetchPosts = async () => {
+    loading.value = true
+    networkError.value = null
+    graphqlError.value = null
+    unexpectedError.value = null
 
-  try {
-    const response = await axios.post("/graphql", {
-      query: `
+    try {
+      const response = await axios.post("/graphql", {
+        query: `
         query GetPosts {
           posts {
             id
@@ -1041,30 +1041,30 @@ const fetchPosts = async () => {
           }
         }
       `,
-    })
-    if (response.status !== 200) {
-      throw new Error(
-        `HTTP error! status: ${response.status}`,
-      )
+      })
+      if (response.status !== 200) {
+        throw new Error(
+          `HTTP error! status: ${response.status}`,
+        )
+      }
+      const result = response.data
+      if (result.errors && result.errors.length > 0) {
+        graphqlError.value = result.errors
+          .map((e: any) => e.message)
+          .join(", ")
+      } else {
+        posts.value = result.data.posts.slice(0, 4)
+      }
+    } catch (err: any) {
+      if (err.response) {
+        networkError.value = `HTTP error! status: ${err.response.status}`
+      } else {
+        unexpectedError.value = err.message
+      }
+    } finally {
+      loading.value = false
     }
-    const result = response.data
-    if (result.errors && result.errors.length > 0) {
-      graphqlError.value = result.errors
-        .map((e: any) => e.message)
-        .join(", ")
-    } else {
-      posts.value = result.data.posts.slice(0, 4)
-    }
-  } catch (err: any) {
-    if (err.response) {
-      networkError.value = `HTTP error! status: ${err.response.status}`
-    } else {
-      unexpectedError.value = err.message
-    }
-  } finally {
-    loading.value = false
   }
-}
 </script>
 
 <template>
@@ -1192,30 +1192,30 @@ Here's how to use Villus to fetch data from a GraphQL endpoint in a Vue componen
 
 ```html
 <script setup lang="ts">
-import {useQuery} from "villus"
-import {ref} from "vue"
+  import {useQuery} from "villus"
+  import {ref} from "vue"
 
-interface Post {
-  id: number
-  title: string
-  body: string
-  user: {
-    name: string
+  interface Post {
+    id: number
+    title: string
+    body: string
+    user: {
+      name: string
+    }
   }
-}
 
-interface QueryResult {
-  posts: Post[]
-}
+  interface QueryResult {
+    posts: Post[]
+  }
 
-const posts = ref<Post[]>([])
-const loading = ref(false)
-const networkError = ref<string | null>(null)
-const graphqlError = ref<string | null>(null)
-const unexpectedError = ref<string | null>(null)
+  const posts = ref<Post[]>([])
+  const loading = ref(false)
+  const networkError = ref<string | null>(null)
+  const graphqlError = ref<string | null>(null)
+  const unexpectedError = ref<string | null>(null)
 
-const query = useQuery<QueryResult>({
-  query: `
+  const query = useQuery<QueryResult>({
+    query: `
     query GetPosts {
       posts {
         id
@@ -1227,39 +1227,39 @@ const query = useQuery<QueryResult>({
       }
     }
   `,
-  paused: true,
-})
+    paused: true,
+  })
 
-const fetchPosts = async () => {
-  loading.value = true
-  networkError.value = null
-  graphqlError.value = null
-  unexpectedError.value = null
+  const fetchPosts = async () => {
+    loading.value = true
+    networkError.value = null
+    graphqlError.value = null
+    unexpectedError.value = null
 
-  try {
-    const result = await query.execute()
-    if (result.error) {
-      throw result.error
+    try {
+      const result = await query.execute()
+      if (result.error) {
+        throw result.error
+      }
+      if (result.data && result.data.posts) {
+        posts.value = result.data.posts.slice(0, 4)
+      } else {
+        throw new Error("Posts not found in query result")
+      }
+    } catch (e: any) {
+      if (e.message.startsWith("Network Error")) {
+        networkError.value = e.message
+      } else if (e.graphQLErrors) {
+        graphqlError.value = e.graphQLErrors
+          .map((err: any) => err.message)
+          .join(", ")
+      } else {
+        unexpectedError.value = e.message
+      }
+    } finally {
+      loading.value = false
     }
-    if (result.data && result.data.posts) {
-      posts.value = result.data.posts.slice(0, 4)
-    } else {
-      throw new Error("Posts not found in query result")
-    }
-  } catch (e: any) {
-    if (e.message.startsWith("Network Error")) {
-      networkError.value = e.message
-    } else if (e.graphQLErrors) {
-      graphqlError.value = e.graphQLErrors
-        .map((err: any) => err.message)
-        .join(", ")
-    } else {
-      unexpectedError.value = e.message
-    }
-  } finally {
-    loading.value = false
   }
-}
 </script>
 
 <template>
