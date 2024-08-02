@@ -15,11 +15,9 @@ image: /image/blog/vue-with-graphql.png
 
 ![Cover Image for Vue in GraphQL](../static/images/blog/vue-with-graphql.png)
 
-## Introduction
-
-### GraphQL in Vue: 5 Best Approaches for Data Fetching
-
 Are you tired of wrestling with complex data fetching logic in your Vue applications? If you've ever felt like you're battling an octopus to retrieve the data you need, then GraphQL is here to be your data fetching hero!
+
+<!-- truncate -->
 
 GraphQL empowers you to take control of your data requests in Vue.js, ensuring you receive only the specific data your application requires. This translates to cleaner code, faster performance, and a more delightful developer experience.
 
@@ -29,7 +27,7 @@ Whether you're a GraphQL novice or a seasoned pro, this blog post caters to all 
 
 Ready to elevate your Vue development experience? Let's dive in!
 
-### 🛠️ Project Setup
+## 🛠️ Project Setup
 
 Let's start by setting up our Vue project with Vite, which provides a faster and leaner development experience:
 
@@ -111,13 +109,11 @@ With this setup, we're ready to dive into the exciting world of GraphQL in Vue! 
 
 Alright, let's dive into our first approach: Apollo Client! 🚀
 
-## Approach 1: Apollo Client - The Swiss Army Knife of GraphQL
+## Apollo Client - The Swiss Army Knife of GraphQL
 
 Apollo Client stands out in the GraphQL ecosystem due to its comprehensive feature set, including intelligent caching, real-time updates, and optimistic UI rendering. For Vue developers working on data-intensive applications, Apollo Client provides a sophisticated approach to state management and data fetching.
 
-## 1. Setting Up Apollo Client in a Vue.js Project
-
-### Installation
+### 1. Setting Up Apollo Client in a Vue.js Project
 
 Begin by installing the necessary packages:
 
@@ -125,7 +121,7 @@ Begin by installing the necessary packages:
 npm install @apollo/client @vue/apollo-composable graphql
 ```
 
-### Configuration
+#### Configuration
 
 Set up Apollo Client in your Vue application:
 
@@ -169,15 +165,15 @@ app.mount("#app")
 
 This configuration creates an Apollo Client instance with a default in-memory cache and provides it to the entire Vue application.
 
-## 2. Executing Queries with Apollo Client
+### 2. Executing Queries with Apollo Client
 
 Apollo Client provides the `useQuery` composable for executing GraphQL queries. Here's an example of fetching a list of posts:
 
-```typescript
+```vue
 <script setup lang="ts">
-import { useQuery } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
-import { computed } from 'vue'
+import {useQuery} from "@vue/apollo-composable"
+import gql from "graphql-tag"
+import {computed} from "vue"
 
 interface Post {
   id: number
@@ -201,7 +197,9 @@ const GET_POSTS = gql`
   }
 `
 
-const { result, loading, error, refetch } = useQuery<{ posts: Post[] }>(GET_POSTS, {
+const {result, loading, error, refetch} = useQuery<{
+  posts: Post[]
+}>(GET_POSTS, {
   limit: 10,
 })
 
@@ -214,7 +212,9 @@ const fetchPosts = () => {
 
 <template>
   <div>
-    <button @click="fetchPosts" :disabled="loading">Fetch Posts</button>
+    <button @click="fetchPosts" :disabled="loading">
+      Fetch Posts
+    </button>
     <div v-if="loading">Loading...</div>
     <ul v-else-if="posts.length">
       <li v-for="post in posts" :key="post.id">
@@ -233,19 +233,19 @@ This example demonstrates:
 3. Handling loading, error, and success states
 4. Implementing a refetch mechanism for manual query execution
 
-## 3. Mutations and Optimistic Updates
+### 3. Mutations and Optimistic Updates
 
 Apollo Client supports GraphQL mutations with optimistic updates for responsive UIs:
 
-```typescript
+```vue
 <script setup lang="ts">
-import { useMutation } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
-import { ref } from 'vue'
+import {useMutation} from "@vue/apollo-composable"
+import gql from "graphql-tag"
+import {ref} from "vue"
 
 const CREATE_POST = gql`
   mutation CreatePost($title: String!, $body: String!) {
-    createPost(input: { title: $title, body: $body }) {
+    createPost(input: {title: $title, body: $body}) {
       id
       title
       body
@@ -253,35 +253,42 @@ const CREATE_POST = gql`
   }
 `
 
-const { mutate: createPost, loading, error } = useMutation(CREATE_POST)
+const {
+  mutate: createPost,
+  loading,
+  error,
+} = useMutation(CREATE_POST)
 
-const title = ref('')
-const body = ref('')
+const title = ref("")
+const body = ref("")
 
 const submitPost = async () => {
   try {
-    const { data } = await createPost({
-      title: title.value,
-      body: body.value,
-    }, {
-      optimisticResponse: {
-        createPost: {
-          __typename: 'Post',
-          id: 'temp-id',
-          title: title.value,
-          body: body.value,
+    const {data} = await createPost(
+      {
+        title: title.value,
+        body: body.value,
+      },
+      {
+        optimisticResponse: {
+          createPost: {
+            __typename: "Post",
+            id: "temp-id",
+            title: title.value,
+            body: body.value,
+          },
+        },
+        update: (cache, {data}) => {
+          // Update cache logic here
         },
       },
-      update: (cache, { data }) => {
-        // Update cache logic here
-      },
-    })
-    console.log('Post created:', data.createPost)
+    )
+    console.log("Post created:", data.createPost)
     // Reset form
-    title.value = ''
-    body.value = ''
+    title.value = ""
+    body.value = ""
   } catch (e) {
-    console.error('Error creating post:', e)
+    console.error("Error creating post:", e)
   }
 }
 </script>
@@ -289,8 +296,14 @@ const submitPost = async () => {
 <template>
   <form @submit.prevent="submitPost">
     <input v-model="title" placeholder="Title" required />
-    <textarea v-model="body" placeholder="Body" required></textarea>
-    <button type="submit" :disabled="loading">Create Post</button>
+    <textarea
+      v-model="body"
+      placeholder="Body"
+      required
+    ></textarea>
+    <button type="submit" :disabled="loading">
+      Create Post
+    </button>
     <div v-if="error">Error: {{ error.message }}</div>
   </form>
 </template>
@@ -303,7 +316,7 @@ This example showcases:
 3. Implementing optimistic updates for immediate UI feedback
 4. Handling form submission and mutation execution
 
-## 4. Advanced Apollo Client Features
+### 4. Advanced Apollo Client Features
 
 ### Caching and Normalization
 
@@ -344,7 +357,7 @@ This setup demonstrates:
 2. Computed fields based on reactive variables
 3. Using reactive variables for local state management
 
-### Error Handling and Retry Logic
+#### Error Handling and Retry Logic
 
 Implement robust error handling and retry logic:
 
@@ -387,76 +400,79 @@ const link = ApolloLink.from([
 
 This configuration adds comprehensive error logging and automatic retry for failed requests.
 
-## 5. Performance Optimization
+### 5. Performance Optimization
 
 To optimize performance when using Apollo Client with Vue:
 
 1. **Implement pagination** for large datasets:
 
-```typescript
-<script setup lang="ts">
-import { useQuery } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
-import { ref, computed } from 'vue'
+   ```vue
+   <script setup lang="ts">
+   import {useQuery} from "@vue/apollo-composable"
+   import gql from "graphql-tag"
+   import {ref, computed} from "vue"
 
-const GET_POSTS = gql`
-  query GetPosts($offset: Int!, $limit: Int!) {
-    posts(offset: $offset, limit: $limit) {
-      id
-      title
-    }
-  }
-`
+   const GET_POSTS = gql`
+     query GetPosts($offset: Int!, $limit: Int!) {
+       posts(offset: $offset, limit: $limit) {
+         id
+         title
+       }
+     }
+   `
 
-const limit = ref(10)
-const offset = ref(0)
+   const limit = ref(10)
+   const offset = ref(0)
 
-const { result, loading, fetchMore } = useQuery(GET_POSTS, () => ({
-  offset: offset.value,
-  limit: limit.value,
-}))
+   const {result, loading, fetchMore} = useQuery(
+     GET_POSTS,
+     () => ({
+       offset: offset.value,
+       limit: limit.value,
+     }),
+   )
 
-const posts = computed(() => result.value?.posts || [])
+   const posts = computed(() => result.value?.posts || [])
 
-const loadMore = () => {
-  offset.value += limit.value
-  fetchMore({
-    variables: {
-      offset: offset.value,
-      limit: limit.value,
-    },
-  })
-}
-</script>
-```
+   const loadMore = () => {
+     offset.value += limit.value
+     fetchMore({
+       variables: {
+         offset: offset.value,
+         limit: limit.value,
+       },
+     })
+   }
+   </script>
+   ```
 
 2. **Use fragments** for reusable query parts:
 
-```typescript
-import gql from "graphql-tag"
+   ```typescript
+   import gql from "graphql-tag"
 
-export const POST_FRAGMENT = gql`
-  fragment PostDetails on Post {
-    id
-    title
-    body
-    createdAt
-  }
-`
+   export const POST_FRAGMENT = gql`
+     fragment PostDetails on Post {
+       id
+       title
+       body
+       createdAt
+     }
+   `
 
-export const GET_POSTS = gql`
-  ${POST_FRAGMENT}
-  query GetPosts {
-    posts {
-      ...PostDetails
-    }
-  }
-`
-```
+   export const GET_POSTS = gql`
+     ${POST_FRAGMENT}
+     query GetPosts {
+       posts {
+         ...PostDetails
+       }
+     }
+   `
+   ```
 
 3. **Leverage Apollo Client DevTools** for performance monitoring and cache inspection.
 
-## Conclusion
+### Conclusion
 
 Apollo Client provides a powerful and flexible solution for integrating GraphQL into Vue.js applications. Its advanced features like normalized caching, optimistic updates, and comprehensive error handling make it an excellent choice for complex, data-intensive applications.
 
@@ -468,7 +484,7 @@ Key takeaways:
 - Advanced features like custom cache policies and reactive variables offer fine-grained control over data management
 - Performance optimization techniques such as pagination and fragments are crucial for scalable applications
 
-## Approach 2: URQL - A Lightweight GraphQL Client for Modern Web Development
+## URQL - A Lightweight GraphQL Client for Modern Web Development
 
 URQL stands out for its simplicity and modularity, making it an excellent choice for Vue.js projects that require GraphQL integration without the overhead of more complex libraries. Its lightweight nature contributes to faster load times and improved performance, especially in resource-constrained environments.
 
@@ -479,9 +495,9 @@ URQL stands out for its simplicity and modularity, making it an excellent choice
 - Easy to extend with custom exchanges
 - First-class TypeScript support
 
-## 2. Setting Up URQL in a Vue.js Project
+### 2. Setting Up URQL in a Vue.js Project
 
-### Installation
+#### Installation
 
 Begin by installing URQL and its Vue integration:
 
@@ -489,7 +505,7 @@ Begin by installing URQL and its Vue integration:
 npm install @urql/vue graphql
 ```
 
-### Configuration
+#### Configuration
 
 Set up the URQL client in your Vue application:
 
@@ -509,14 +525,14 @@ app.mount("#app")
 
 This configuration creates an URQL client and integrates it with Vue's plugin system, making it available throughout your application.
 
-## 3. Executing Queries with URQL
+### 3. Executing Queries with URQL
 
 URQL provides a `useQuery` composable for executing GraphQL queries. Here's an example of fetching a list of posts:
 
-```typescript
+```vue
 <script setup lang="ts">
-import { useQuery } from '@urql/vue'
-import { ref, watch } from 'vue'
+import {useQuery} from "@urql/vue"
+import {ref, watch} from "vue"
 
 const postsQuery = `
   query GetPosts {
@@ -531,9 +547,9 @@ const postsQuery = `
   }
 `
 
-const { executeQuery, fetching, error, data } = useQuery({
+const {executeQuery, fetching, error, data} = useQuery({
   query: postsQuery,
-  pause: true // Start paused to allow manual execution
+  pause: true, // Start paused to allow manual execution
 })
 
 const posts = ref([])
@@ -550,7 +566,9 @@ watch(data, (newData) => {
 
 <template>
   <div>
-    <button @click="fetchPosts" :disabled="fetching">Fetch Posts</button>
+    <button @click="fetchPosts" :disabled="fetching">
+      Fetch Posts
+    </button>
     <div v-if="fetching">Loading...</div>
     <ul v-else-if="posts.length">
       <li v-for="post in posts" :key="post.id">
@@ -569,14 +587,14 @@ This example demonstrates how to:
 3. Handle loading, error, and success states
 4. Manually trigger the query execution
 
-## 4. Mutations and State Updates
+### 4. Mutations and State Updates
 
 URQL also supports GraphQL mutations for modifying data. Here's an example of creating a new post:
 
-```typescript
+```vue
 <script setup lang="ts">
-import { useMutation } from '@urql/vue'
-import { ref } from 'vue'
+import {useMutation} from "@urql/vue"
+import {ref} from "vue"
 
 const createPostMutation = `
   mutation CreatePost($title: String!, $body: String!) {
@@ -588,18 +606,23 @@ const createPostMutation = `
   }
 `
 
-const { executeMutation, fetching, error } = useMutation(createPostMutation)
+const {executeMutation, fetching, error} = useMutation(
+  createPostMutation,
+)
 
-const title = ref('')
-const body = ref('')
+const title = ref("")
+const body = ref("")
 
 const createPost = async () => {
-  const result = await executeMutation({ title: title.value, body: body.value })
+  const result = await executeMutation({
+    title: title.value,
+    body: body.value,
+  })
   if (result.data) {
-    console.log('Post created:', result.data.createPost)
+    console.log("Post created:", result.data.createPost)
     // Reset form or update local state
-    title.value = ''
-    body.value = ''
+    title.value = ""
+    body.value = ""
   }
 }
 </script>
@@ -607,8 +630,14 @@ const createPost = async () => {
 <template>
   <form @submit.prevent="createPost">
     <input v-model="title" placeholder="Title" required />
-    <textarea v-model="body" placeholder="Body" required></textarea>
-    <button type="submit" :disabled="fetching">Create Post</button>
+    <textarea
+      v-model="body"
+      placeholder="Body"
+      required
+    ></textarea>
+    <button type="submit" :disabled="fetching">
+      Create Post
+    </button>
     <div v-if="error">Error: {{ error.message }}</div>
   </form>
 </template>
@@ -621,9 +650,9 @@ This example showcases:
 3. Handling form submission and mutation execution
 4. Managing loading and error states for the mutation
 
-## 5. Advanced URQL Features and Best Practices
+### 5. Advanced URQL Features and Best Practices
 
-### Caching and Normalization
+#### Caching and Normalization
 
 URQL provides a document cache by default, but for more complex applications, you might want to use the normalized cache:
 
@@ -660,7 +689,7 @@ const client = createClient({
 
 This setup enables more efficient caching and automatic updates for related queries when mutations occur.
 
-### Error Handling and Retry Logic
+#### Error Handling and Retry Logic
 
 Implement robust error handling and retry logic:
 
@@ -684,83 +713,86 @@ const client = createClient({
 
 This configuration adds automatic retry for network errors or GraphQL errors, improving the resilience of your application.
 
-## 6. Performance Optimization
+### 6. Performance Optimization
 
 To optimize performance when using URQL with Vue:
 
 1. **Leverage server-side rendering (SSR)** for initial data loading:
 
-```typescript
-import {createClient, ssrExchange} from "@urql/vue"
+   ```typescript
+   import {createClient, ssrExchange} from "@urql/vue"
 
-const ssr = ssrExchange({
-  isClient: typeof window !== "undefined",
-})
+   const ssr = ssrExchange({
+     isClient: typeof window !== "undefined",
+   })
 
-const client = createClient({
-  url: "https://your-graphql-endpoint.com/graphql",
-  exchanges: [
-    dedupExchange,
-    cacheExchange,
-    ssr,
-    fetchExchange,
-  ],
-})
-```
+   const client = createClient({
+     url: "https://your-graphql-endpoint.com/graphql",
+     exchanges: [
+       dedupExchange,
+       cacheExchange,
+       ssr,
+       fetchExchange,
+     ],
+   })
+   ```
 
 2. **Implement pagination** for large datasets:
 
-```typescript
-<script setup lang="ts">
-import { useQuery } from '@urql/vue'
-import { ref, computed } from 'vue'
+   ```vue
+   <script setup lang="ts">
+   import {useQuery} from "@urql/vue"
+   import {ref, computed} from "vue"
 
-const postsQuery = `
-  query GetPosts($limit: Int!, $offset: Int!) {
-    posts(limit: $limit, offset: $offset) {
-      id
-      title
-    }
-  }
-`
+   const postsQuery = `
+     query GetPosts($limit: Int!, $offset: Int!) {
+       posts(limit: $limit, offset: $offset) {
+         id
+         title
+       }
+     }
+   `
 
-const limit = ref(10)
-const offset = ref(0)
+   const limit = ref(10)
+   const offset = ref(0)
 
-const { data, fetching, error } = useQuery({
-  query: postsQuery,
-  variables: computed(() => ({ limit: limit.value, offset: offset.value })),
-})
+   const {data, fetching, error} = useQuery({
+     query: postsQuery,
+     variables: computed(() => ({
+       limit: limit.value,
+       offset: offset.value,
+     })),
+   })
 
-const loadMore = () => {
-  offset.value += limit.value
-}
-</script>
-```
+   const loadMore = () => {
+     offset.value += limit.value
+   }
+   </script>
+   ```
 
 3. **Use fragments** for reusable query parts:
 
-```typescript
-const PostFragment = `
-  fragment PostDetails on Post {
-    id
-    title
-    body
-    createdAt
-  }
-`
+   ```typescript
+   const PostFragment = `
+     fragment PostDetails on Post {
+       id
+       title
+       body
+       createdAt
+     }
+   `
 
-const postsQuery = `
-  ${PostFragment}
-  query GetPosts {
-    posts {
-      ...PostDetails
-    }
-  }
-`
-```
+   const postsQuery = `
+     ${PostFragment}
+     query GetPosts {
+       posts {
+         ...PostDetails
+       }
+     }
+   `
+   ```
 
-## Conclusion
+### Conclusion
 
 URQL provides a lightweight yet powerful solution for integrating GraphQL into Vue.js applications. Its simplicity, coupled with advanced features like normalized caching and SSR support, makes it an excellent choice for developers seeking efficiency and flexibility. By following the best practices and optimization techniques outlined in this tutorial, you can build performant, scalable Vue applications with GraphQL.
 
@@ -774,36 +806,46 @@ Key takeaways:
 
 As you implement URQL in your Vue projects, remember to stay updated with the latest developments in both URQL and the GraphQL ecosystem to leverage new features and best practices as they emerge.
 
-## Approach 3: Fetch API - The DIY Dynamo
+## Fetch API - The DIY Dynamo
 
 In modern web development, effective data fetching is a cornerstone for building dynamic and responsive applications. While powerful libraries like Apollo and URQL offer extensive features for GraphQL integration, there are situations where a more hands-on approach is desirable. Enter the Fetch API: a versatile, built-in tool for making network requests, allowing developers to craft their GraphQL interactions from the ground up. This tutorial will guide you through using the Fetch API for GraphQL data fetching in Vue.js, providing a deep understanding of the process and its practical applications.
 
-## Step-by-Step Instructions
+### Step-by-Step Instructions
 
-### Installation and Integration Steps
+#### Installation and Integration Steps
 
 One of the key advantages of the Fetch API is its built-in availability in modern browsers. This means no additional package installations are required, simplifying the setup process.
 
-### Code Snippets
+#### Code Snippets
 
 Let's start by setting up a basic Vue component that uses the Fetch API to query a GraphQL endpoint.
 
-```typescript
+```vue
 <template>
   <div class="fetch-example">
     <h2>Fetch API Example</h2>
-    <button @click="fetchPosts" :disabled="loading">Fetch Posts</button>
-    <div v-if="networkError" class="error">Network Error: {{ networkError }}</div>
-    <div v-if="graphqlError" class="error">GraphQL Error: {{ graphqlError }}</div>
-    <div v-if="unexpectedError" class="error">Unexpected Error: {{ unexpectedError }}</div>
+    <button @click="fetchPosts" :disabled="loading">
+      Fetch Posts
+    </button>
+    <div v-if="networkError" class="error">
+      Network Error: {{ networkError }}
+    </div>
+    <div v-if="graphqlError" class="error">
+      GraphQL Error: {{ graphqlError }}
+    </div>
+    <div v-if="unexpectedError" class="error">
+      Unexpected Error: {{ unexpectedError }}
+    </div>
     <ul>
-      <li v-for="post in posts" :key="post.id">{{ post.title }} by {{ post.user.name }}</li>
+      <li v-for="post in posts" :key="post.id">
+        {{ post.title }} by {{ post.user.name }}
+      </li>
     </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from "vue"
 
 interface Post {
   id: number
@@ -827,9 +869,9 @@ const fetchPosts = async () => {
   unexpectedError.value = null
 
   try {
-    const response = await fetch('/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("/graphql", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         query: `
         query GetPosts {
@@ -842,20 +884,24 @@ const fetchPosts = async () => {
             }
           }
         }
-      `
-      })
+      `,
+      }),
     })
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+      throw new Error(
+        `HTTP error! status: ${response.status}`,
+      )
     }
     const result = await response.json()
     if (result.errors && result.errors.length > 0) {
-      graphqlError.value = result.errors.map((e: any) => e.message).join(', ')
+      graphqlError.value = result.errors
+        .map((e: any) => e.message)
+        .join(", ")
     } else {
       posts.value = result.data.posts.slice(0, 4)
     }
   } catch (err: any) {
-    if (err.message.startsWith('HTTP error!')) {
+    if (err.message.startsWith("HTTP error!")) {
       networkError.value = err.message
     } else {
       unexpectedError.value = err.message
@@ -867,7 +913,7 @@ const fetchPosts = async () => {
 </script>
 ```
 
-### Error Handling
+#### Error Handling
 
 Handling errors effectively is crucial in any data-fetching scenario. The above code includes a robust error-handling system that categorizes errors into network errors, GraphQL errors, and unexpected errors.
 
@@ -937,7 +983,7 @@ This approach ensures that your application can gracefully handle and display er
 
 The Fetch API serves as a powerful tool for developers looking to craft their GraphQL solutions with precision and control. While it may not offer the convenience and features of dedicated GraphQL clients, it provides a lightweight and versatile alternative. By following best practices and understanding potential challenges, developers can effectively leverage the Fetch API for various professional development scenarios, gaining valuable insights and experience in the process.
 
-## Approach 4: Axios - The Smooth Operator
+## Axios - The Smooth Operator
 
 In the world of HTTP clients, Axios is like a sous chef in your kitchen, handling the tedious tasks and ensuring your GraphQL requests are prepared with finesse. Unlike the Fetch API, Axios simplifies and streamlines data fetching, making it an attractive option for developers seeking efficiency without sacrificing control. Let's dive into how Axios can enhance your Vue.js application with smooth and efficient GraphQL data fetching.
 
@@ -955,10 +1001,10 @@ That's it! Axios is now ready to use, providing a smooth and easy setup process.
 
 Here's how you can use Axios to fetch data from a GraphQL endpoint in a Vue component:
 
-```typescript
+```vue
 <script setup lang="ts">
-import { ref } from 'vue'
-import axios from 'axios'
+import {ref} from "vue"
+import axios from "axios"
 
 interface Post {
   id: number
@@ -982,7 +1028,7 @@ const fetchPosts = async () => {
   unexpectedError.value = null
 
   try {
-    const response = await axios.post('/graphql', {
+    const response = await axios.post("/graphql", {
       query: `
         query GetPosts {
           posts {
@@ -994,14 +1040,18 @@ const fetchPosts = async () => {
             }
           }
         }
-      `
+      `,
     })
     if (response.status !== 200) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+      throw new Error(
+        `HTTP error! status: ${response.status}`,
+      )
     }
     const result = response.data
     if (result.errors && result.errors.length > 0) {
-      graphqlError.value = result.errors.map((e: any) => e.message).join(', ')
+      graphqlError.value = result.errors
+        .map((e: any) => e.message)
+        .join(", ")
     } else {
       posts.value = result.data.posts.slice(0, 4)
     }
@@ -1020,12 +1070,22 @@ const fetchPosts = async () => {
 <template>
   <div class="axios-example">
     <h2>Axios API Example</h2>
-    <button @click="fetchPosts" :disabled="loading">Fetch Posts</button>
-    <div v-if="networkError" class="error">Network Error: {{ networkError }}</div>
-    <div v-if="graphqlError" class="error">GraphQL Error: {{ graphqlError }}</div>
-    <div v-if="unexpectedError" class="error">Unexpected Error: {{ unexpectedError }}</div>
+    <button @click="fetchPosts" :disabled="loading">
+      Fetch Posts
+    </button>
+    <div v-if="networkError" class="error">
+      Network Error: {{ networkError }}
+    </div>
+    <div v-if="graphqlError" class="error">
+      GraphQL Error: {{ graphqlError }}
+    </div>
+    <div v-if="unexpectedError" class="error">
+      Unexpected Error: {{ unexpectedError }}
+    </div>
     <ul>
-      <li v-for="post in posts" :key="post.id">{{ post.title }} by {{ post.user.name }}</li>
+      <li v-for="post in posts" :key="post.id">
+        {{ post.title }} by {{ post.user.name }}
+      </li>
     </ul>
   </div>
 </template>
@@ -1096,7 +1156,7 @@ Axios stands out as a versatile and efficient tool for handling GraphQL requests
 
 Stay tuned as we continue our journey through the world of GraphQL data fetching in Vue.js. Our final approach will bring everything together, providing the ultimate guide to mastering GraphQL in your Vue applications.
 
-## Approach 5: Villus - The Vue-Native Virtuoso
+## Villus - The Vue-Native Virtuoso
 
 For the grand finale of our GraphQL journey, let's introduce Villus! 🎭 If our previous approaches were a warm-up, Villus is the show-stopping final act. It's a Vue-native GraphQL client that makes your data fetching seamless and elegant, tailored perfectly for Vue.js applications.
 
@@ -1130,10 +1190,10 @@ app.mount("#app")
 
 Here's how to use Villus to fetch data from a GraphQL endpoint in a Vue component:
 
-```typescript
+```vue
 <script setup lang="ts">
-import { useQuery } from 'villus'
-import { ref } from 'vue'
+import {useQuery} from "villus"
+import {ref} from "vue"
 
 interface Post {
   id: number
@@ -1167,7 +1227,7 @@ const query = useQuery<QueryResult>({
       }
     }
   `,
-  paused: true
+  paused: true,
 })
 
 const fetchPosts = async () => {
@@ -1184,13 +1244,15 @@ const fetchPosts = async () => {
     if (result.data && result.data.posts) {
       posts.value = result.data.posts.slice(0, 4)
     } else {
-      throw new Error('Posts not found in query result')
+      throw new Error("Posts not found in query result")
     }
   } catch (e: any) {
-    if (e.message.startsWith('Network Error')) {
+    if (e.message.startsWith("Network Error")) {
       networkError.value = e.message
     } else if (e.graphQLErrors) {
-      graphqlError.value = e.graphQLErrors.map((err: any) => err.message).join(', ')
+      graphqlError.value = e.graphQLErrors
+        .map((err: any) => err.message)
+        .join(", ")
     } else {
       unexpectedError.value = e.message
     }
@@ -1203,12 +1265,22 @@ const fetchPosts = async () => {
 <template>
   <div class="container">
     <h2>Villus Example</h2>
-    <button @click="fetchPosts" :disabled="loading">Fetch Posts</button>
-    <div v-if="networkError" class="error">Network Error: {{ networkError }}</div>
-    <div v-if="graphqlError" class="error">GraphQL Error: {{ graphqlError }}</div>
-    <div v-if="unexpectedError" class="error">Unexpected Error: {{ unexpectedError }}</div>
+    <button @click="fetchPosts" :disabled="loading">
+      Fetch Posts
+    </button>
+    <div v-if="networkError" class="error">
+      Network Error: {{ networkError }}
+    </div>
+    <div v-if="graphqlError" class="error">
+      GraphQL Error: {{ graphqlError }}
+    </div>
+    <div v-if="unexpectedError" class="error">
+      Unexpected Error: {{ unexpectedError }}
+    </div>
     <ul>
-      <li v-for="post in posts" :key="post.id">{{ post.title }} by {{ post.user.name }}</li>
+      <li v-for="post in posts" :key="post.id">
+        {{ post.title }} by {{ post.user.name }}
+      </li>
     </ul>
   </div>
 </template>
@@ -1421,6 +1493,10 @@ We've journeyed through the land of GraphQL in Vue, exploring five fantastic app
 3. Fetch API: The DIY dynamo
 4. Axios: The smooth operator
 5. Villus: The Vue-native virtuoso
+
+:::tip Examples and Resources
+Code snippets used in this article can be found in the [GitHub repository](https://github.com/onyedikachi-david/vue-graphql-multiapproach). Feel free to explore, experiment, and adapt them to your projects!
+:::
 
 Each approach has its own strengths, like instruments in an orchestra. The choice depends on your project's needs, your team's expertise, and the symphony you want to create.
 
