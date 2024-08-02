@@ -12,13 +12,11 @@ import Playground from "./Playground"
 import Customer from "./Customers"
 
 const HomePage = (): JSX.Element => {
-  console.log(process.env.TESTIMONIALS);
-  
   return (
     <div className="">
       <Banner />
       <Configuration />
-      { process.env.TESTIMONIALS!=="OFF" && <Customer /> }
+      {process.env.TESTIMONIALS !== "OFF" && <Customer />}
       <LegacyGateway />
       <Graph />
       {/* <Playground /> */}
