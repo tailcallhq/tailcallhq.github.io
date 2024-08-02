@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://tailcall.run/blog/</id>
-    <title>Blog title</title>
+    <title>Tailcall Blog</title>
     <updated>2024-07-31T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tailcall.run/blog/"/>
-    <subtitle>Blog</subtitle>
+    <subtitle>Tailcall Blog</subtitle>
     <icon>https://tailcall.run/images/favicon.ico</icon>
     <rights>Copyright © 2024 Tailcall, Inc.</rights>
     <entry>
