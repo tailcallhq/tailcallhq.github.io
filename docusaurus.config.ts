@@ -85,7 +85,7 @@ export default {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "icons/companies/taicall.svg",
+    image: "/images/tc-og-2.png",
     navbar: {
       hideOnScroll: true,
       logo: {
