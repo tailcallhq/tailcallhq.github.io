@@ -950,17 +950,18 @@ We've put together a complete set of working examples for everything we've cover
 
 ## Detailed Comparison Table
 
-| Method          | Bundle Size (minified + gzip)\* | Learning Curve | Caching Capabilities                    | Community Support | Additional Features                        |
-| --------------- | ------------------------------- | -------------- | --------------------------------------- | ----------------- | ------------------------------------------ |
-| Apollo Angular¹ | 258 KB                          | Moderate       | Extensive (InMemoryCache, customizable) | High              | State management, optimistic UI updates    |
-| Urql²           | 17 KB                           | Low            | Moderate (Document and normalized caching) | Moderate       | Extensible architecture, lightweight, plugin system |
-| GraphQL-Request³| 58.6 KB                         | Low            | None (Minimal client)                   | Moderate          | Simplicity, works in Node and browsers     |
-| Axios⁴          | 24 KB                           | Low            | None (HTTP client only)                 | High              | Familiar HTTP handling, interceptors       |
-| Fetch API       | 0 KB (Browser built-in)         | Low            | None (Native API)                       | High              | No additional dependency, widely supported |
+| Method           | Bundle Size (minified + gzip)\* | Learning Curve | Caching Capabilities                       | Community Support | Additional Features                                 |
+| ---------------- | ------------------------------- | -------------- | ------------------------------------------ | ----------------- | --------------------------------------------------- |
+| Apollo Angular¹  | 258 KB                          | Moderate       | Extensive (InMemoryCache, customizable)    | High              | State management, optimistic UI updates             |
+| Urql²            | 17 KB                           | Low            | Moderate (Document and normalized caching) | Moderate          | Extensible architecture, lightweight, plugin system |
+| GraphQL-Request³ | 58.6 KB                         | Low            | None (Minimal client)                      | Moderate          | Simplicity, works in Node and browsers              |
+| Axios⁴           | 24 KB                           | Low            | None (HTTP client only)                    | High              | Familiar HTTP handling, interceptors                |
+| Fetch API        | 0 KB (Browser built-in)         | Low            | None (Native API)                          | High              | No additional dependency, widely supported          |
 
 (\*) Bundle sizes are based on bundlejs.com calculations using the provided export statements, with minification and gzip compression applied.
 
 **Notes:**
+
 1. Apollo Angular's bundle size (258 KB gzipped) is significantly larger than other options, which may impact initial load times for applications.
 2. Urql offers a much smaller bundle size (17 KB gzipped) while still providing both document caching and normalized caching through its plugin architecture.
 3. GraphQL-Request, despite being a minimal client, has a larger bundle size (58.6 KB gzipped) than expected, which might be due to including the full GraphQL parser.
@@ -969,6 +970,7 @@ We've put together a complete set of working examples for everything we've cover
 6. Bundle sizes for critical path libraries can significantly impact performance. Consider lazy-loading or code-splitting strategies when using larger libraries like Apollo Angular.
 
 **Bundle Size References:**
+
 1. Apollo Angular: [bundlejs.com link](https://bundlejs.com/?q=apollo-angular%2Capollo-angular%2Fhttp%2C%40apollo%2Fclient%2Fcore&treeshake=%5B%7B+APOLLO_OPTIONS%2CApolloModule+%7D%5D%2C%5B%7B+HttpLink+%7D%5D%2C%5B%7B+InMemoryCache+%7D%5D)
 2. Urql: [bundlejs.com link](https://bundlejs.com/?q=urql%2C%40urql%2Fcore&treeshake=%5B%7B+createClient%2CProvider%2CuseQuery%2CuseMutation+%7D%5D%2C%5B%7B+cacheExchange%2CfetchExchange+%7D%5D)
 3. GraphQL-Request: [bundlejs.com link](https://bundlejs.com/?q=graphql-request&treeshake=%5B%7B+GraphQLClient%2Cgql+%7D%5D)
