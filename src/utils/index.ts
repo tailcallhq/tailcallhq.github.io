@@ -36,5 +36,5 @@ export const isValidURL = (url: string) => {
 }
 
 export const isAnonFeedbackEnabled = () => {
-  return process.env.ANONYMOUS_CUSTOMER_FEEDBACKS === "true"
+  return process.env.TESTIMONIALS === "ANON"
 }
