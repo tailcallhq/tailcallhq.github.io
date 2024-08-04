@@ -481,74 +481,18 @@ nav.menu {
   z-index: 1;
 }
 
-/* Add this CSS to your styles file or inside a <style> tag */
-
-.grid-background-footer {
-  position: relative;
-  overflow: hidden; /* Ensure content doesn't overflow */
+.grid-background-footer{
+  background: black;
+  background-image: 
+    radial-gradient(circle at center, rgba(0, 0, 0, 0) 70%, black 60%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at top, rgba(0, 0, 0, 0) 70%, black 70%),
+    radial-gradient(circle at bottom, rgba(0, 0, 0, 0) 70%, black 70%);
+  background-size: 100% 100%, 60px 30px, 60px 30px, 100% 100%, 100% 100%;
+  background-repeat: no-repeat, repeat, repeat, no-repeat, no-repeat;
+  margin: 0;
 }
-
-.grid-background-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.08) 1px,
-      transparent 1px,
-      transparent 35px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.08) 1px,
-      transparent 1px,
-      transparent 30px
-    );
-  z-index: 0; /* Ensure the grid is behind the content */
-}
-
-.grid-background-footer::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 1),
-    rgba(0, 0, 0, 0) 100px
-  ),
-  linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1),
-    rgba(0, 0, 0, 0) 100px
-  ),
-  linear-gradient(
-    to right,
-    rgba(0, 0, 0, 1),
-    rgba(0, 0, 0, 0) 100px
-  ),
-  linear-gradient(
-    to left,
-    rgba(0, 0, 0, 1),
-    rgba(0, 0, 0, 0) 100px
-  );
-  z-index: 1; /* Ensure the fade effect is on top of the grid */
-}
-
-.footer-content {
-  position: relative;
-  z-index: 2; /* Ensure the content is on top of both the grid and the fade */
-}
-
-
 
 @media (max-width: 996px) {
   .grid-bg-section {
