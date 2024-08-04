@@ -50,7 +50,7 @@ While starting, Tailcall automatically performs these validations and one of our
 
 Our algorithm uses a cache to store the results of previous traversals. The cache is used to avoid re-traversing the same path multiple times. It's essentially memoization however is super critical if you have a huge configuration that you'd want to validate.
 
-### 2. Chunking
+### 2. Chunk Data Structure
 
 Our algorithm uses a special chunk data structure to store and manipulate the query paths. The chunk data structure is implemented as an enum with three variants:
 
