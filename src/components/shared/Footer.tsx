@@ -7,7 +7,7 @@ import {pageLinks} from "@site/src/constants/routes"
 const Footer = (): JSX.Element => {
   const year = new Date().getFullYear()
   return (
-    <footer className="bg-tailCall-dark-700 pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04 grid-background">
+    <footer className="bg-[#1C1D1F] grid-background pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04">
       <TailcallLogo className="w-[120px] h-10" />
       <div className="text-content-tiny sm:text-title-small space-x-SPACE_06 text-tailCall-light-500 z-10">
         <Link
