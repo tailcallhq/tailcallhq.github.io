@@ -8,11 +8,7 @@ const Footer = (): JSX.Element => {
   const year = new Date().getFullYear()
   return (
     <footer className="bg-tailCall-dark-700 pt-SPACE_10 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04">
-      <img
-        src={require("@site/static/images/about/grid-dark.png").default}
-        alt="grid background"
-        className="absolute inset-0 w-full h-full"
-      />
+      <div className="fading-grid"></div>
       <TailcallLogo className="w-[120px] h-10" />
       <div className="text-content-tiny sm:text-title-small space-x-SPACE_06 text-tailCall-light-500 z-10">
         <Link
