@@ -1,8 +1,6 @@
 import React from "react"
 // @site/src/utils/index.ts
 
-import config, {TestimonialDisplay} from "@site/src/constants/config"
-
 type CustomerFeedbackCardProps = {
   classNames?: string
   citation: string
@@ -10,6 +8,7 @@ type CustomerFeedbackCardProps = {
   name?: string
   department?: string
   isCenterCard: boolean
+  display: string
 }
 
 const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
@@ -19,6 +18,7 @@ const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
   name,
   department,
   isCenterCard,
+  display,
 }) => {
   return (
     <div
@@ -26,11 +26,9 @@ const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
         isCenterCard && "md:!relative md:-top-10"
       }`}
     >
-      {config.testimonials === TestimonialDisplay.Show && department && (
+      {display === "Show" && department && (
         <>
-          <span
-            className={`text-content-small sm:text-content-medium lg:text-content-large !font-bold !text-title-large`}
-          >
+          <span className={`sm:text-content-medium lg:text-content-large !font-bold !text-title-large`}>
             {`Loved by `}
             <span className={isCenterCard ? `text-tailCall-yellow` : ""}>{department}</span>
           </span>
@@ -38,7 +36,7 @@ const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
       )}
       <span className="text-content-small sm:text-content-medium">{`“${citation}”`}</span>
       <span className="flex flex-col">
-        {config.testimonials === TestimonialDisplay.Show && name && (
+        {display === "Show" && name && (
           <span className="text-content-small sm:text-content-medium lg:text-content-large !font-bold">{name}</span>
         )}
         <span className="text-content-tiny sm:text-content-small">{designation}</span>

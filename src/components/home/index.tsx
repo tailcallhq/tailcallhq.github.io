@@ -7,13 +7,12 @@ import Discover from "../shared/Discover"
 import Configuration from "./Configuration"
 import Playground from "./Playground"
 import Testimonials from "./Testimonials"
-import config, {TestimonialDisplay} from "@site/src/constants/config"
 const HomePage = (): JSX.Element => {
   return (
     <div className="">
       <Banner />
       <Configuration />
-      {config.testimonials !== TestimonialDisplay.Hide && <Testimonials />}
+      <Testimonials />
       <Benefits />
       <Graph />
       {/* <Playground /> */}
