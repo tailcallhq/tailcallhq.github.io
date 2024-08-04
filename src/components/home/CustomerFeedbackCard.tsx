@@ -1,14 +1,16 @@
 import React from "react"
-import {isAnonFeedbackEnabled} from "@site/src/utils/index"
+// @site/src/utils/index.ts
+
+import config, {TestimonialDisplay} from "@site/src/constants/config";
 
 type CustomerFeedbackCardProps = {
-  classNames?: string
-  citation: string
-  designation: string
-  name?: string
-  department?: string
-  isCenterCard: boolean
-}
+  classNames?: string;
+  citation: string;
+  designation: string;
+  name?: string;
+  department?: string;
+  isCenterCard: boolean;
+};
 
 const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
   classNames,
@@ -24,7 +26,7 @@ const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
         isCenterCard && "md:!relative md:-top-10"
       }`}
     >
-      {!isAnonFeedbackEnabled() && department && (
+      {config.testimonials === TestimonialDisplay.Show && department && (
         <>
           <span
             className={`text-content-small sm:text-content-medium lg:text-content-large !font-bold !text-title-large`}
@@ -36,13 +38,13 @@ const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
       )}
       <span className="text-content-small sm:text-content-medium">{`“${citation}”`}</span>
       <span className="flex flex-col">
-        {!isAnonFeedbackEnabled() && name && (
+        {config.testimonials === TestimonialDisplay.Show && name && (
           <span className="text-content-small sm:text-content-medium lg:text-content-large !font-bold">{name}</span>
         )}
         <span className="text-content-tiny sm:text-content-small">{designation}</span>
       </span>
     </div>
-  )
-}
+  );
+};
 
-export default CustomerFeedbackCard
+export default CustomerFeedbackCard;

@@ -33,7 +33,3 @@ export const isValidURL = (url: string) => {
     return false
   }
 }
-
-export const isAnonFeedbackEnabled = () => {
-  return process.env.TESTIMONIALS === "ANON"
-}
