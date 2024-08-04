@@ -9,11 +9,11 @@ description: A deep dive into the implementation details of the N+1 tracker
 slug: tailcall-n+1-identification-algorithm
 ---
 
-As a developer working with GraphQL, you're likely familiar with the concept of N+1 issues, if not you should definitely check out our [N+1 guide](../docs/N+1.md).
+As a developer working with GraphQL, you're likely familiar with the concept of N+1 issues, if not you should definitely check out our [N+1 guide](/docs/graphql-n-plus-one-problem-solved-tailcall).
 
 To summarize they occur when a GraphQL resolver is called multiple times for a single GraphQL request, leading a large set of requests upstream and overall a slower query execution. In this blog post, we'll dive into how Tailcall specifically identifies N+1 issues in GraphQL, and explore the algorithm and data structures used to detect these issues.
 
-![Actual Usage Image](../static/images/blog/n+1-image-terminal.png)
+![Actual Usage Image](/images/blog/n+1-image-terminal.png)
 
 ## High-Level Working
 
@@ -21,7 +21,7 @@ Unlike a traditional GraphQL implementation where the resolvers are written by h
 
 ## The Algorithm
 
-Tailcall reads your [configuration](../docs/configuration.mdx), parses it, and internally stores it in an efficient graph data-structure that resembles a `HashMap`. This allows `O(1)` access to a GraphQL type which represented as a node by its name. Once the graph data-structure is ready we make it go through a series of validators, one of them being the **N+1 tracker**.
+Tailcall reads your [configuration](/docs/tailcall-graphql-configuration-format-conversion), parses it, and internally stores it in an efficient graph data-structure that resembles a `HashMap`. This allows `O(1)` access to a GraphQL type which represented as a node by its name. Once the graph data-structure is ready we make it go through a series of validators, one of them being the **N+1 tracker**.
 
 :::tip
 To see the actual implementation you can check out the [tracker.rs](https://github.com/tailcallhq/tailcall/blob/main/src/core/config/npo/tracker.rs) implementation.
@@ -31,7 +31,7 @@ We essentially use a Depth-First Search (DFS) algorithm starting at the root que
 
 1. Initialize a to variables to track the currently traversed path and visited fields so that we can avoid cycles.
 2. Start at the root query and begin traversing the graph data structure.
-3. For each field in the current node, check if it has a resolver and is not batched. We know if the node contains a resolver if that node has a [`@http`](../docs/directives.md#http-directive) or a [`@grpc`](../docs/directives.md#grpc-directive).
+3. For each field in the current node, check if it has a resolver and is not batched. We know if the node contains a resolver if that node has a [`@http`](/docs/tailcall-dsl-graphql-custom-directives#http-directive) or a [`@grpc`](/docs/tailcall-dsl-graphql-custom-directives#grpc-directive).
 
 :::important
 Tailcall supports powerful batching primitives and if a field uses a Batch API, then that resolver is whitelisted and dropped from the list of potential N+1 candidates.
@@ -108,7 +108,7 @@ You can clearly see that we don't actually perform an append or a concat operati
 
 Lastly to ensure that we are always correct and no N+1 issues go unidentified we perform tests with actual configurations.
 
-![Source Code Screenshot](../static/images/blog/github-npo-screenshot.png)
+![Source Code Screenshot](/images/blog/github-npo-screenshot.png)
 
 Hopefully, this gives some insight on how Tailcall identifies N+1 issues in your GraphQL configuration.
 
