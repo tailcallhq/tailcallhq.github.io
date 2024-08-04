@@ -484,15 +484,16 @@ nav.menu {
 .grid-background-footer {
   position: relative;
   background: black;
-  background-image: 
-    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, black 50%),
+  background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, black 50%),
     linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px); 
-  background-size: 100% 100%, 65px 30px, 65px 30px;
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    65px 30px,
+    65px 30px;
   background-repeat: no-repeat, repeat, repeat, no-repeat, no-repeat;
   margin: 0;
 }
-
 
 @media (max-width: 996px) {
   .grid-bg-section {
