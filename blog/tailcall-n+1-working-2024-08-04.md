@@ -15,6 +15,8 @@ To summarize they occur when a GraphQL resolver is called multiple times for a s
 
 ![Actual Usage Image](/images/blog/n+1-image-terminal.png)
 
+<!-- truncate -->
+
 ## High-Level Working
 
 Unlike a traditional GraphQL implementation where the resolvers are written by hand Tailcall encourages developers to take a configuration-driven approach. This has many benefits and we have talked about them in our previous [blog](./no-code-graphql-2024-05-30.md). One of the main advantages of not handwriting is the ability to introspect and optimize. This means a configuration file can be parsed, validated and semantically analyzed to identify issues such as N+1 very precisely. With code, that's written in a general-purpose language if you wish to perform semantic analysis automatically you will need to depend on some sort of LLM solution and still it won't be as precise (at least today).
