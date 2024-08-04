@@ -13,7 +13,7 @@ const Partners = (): JSX.Element => {
     <section className="md:mt-SPACE_16 mt-space_08 cursor-pointer" onClick={handleClick}>
       <div className="text-content-small font-bold sm:text-title-tiny lg:text-title-small text-tailCall-light-500 text-center space-x-1">
         <GreaterThanUnderscoreIcon className="h-4 w-6" />
-        <span>Partners where you can deploy</span>
+        <span>Deploy Anywhere</span>
       </div>
       <Marquee autoFill>
         <div className="hidden sm:flex space-x-SPACE_16 mt-SPACE_10 overflow-hidden">
