@@ -29,15 +29,15 @@ const ChooseTailcall = (): JSX.Element => {
           </div>
         ))}
       </div>
-      <div className="flex flex-col lg:flex-row py-10 gap-y-SPACE_10 gap-x-SPACE_03 flex-wrap lg:items-center justify-center">
+      <div className="flex py-10 gap-y-SPACE_04 gap-x-SPACE_04 md:gap-y-SPACE_06 md:gap-x-SPACE_06 flex-wrap md:items-center md:justify-center">
         {tailcallFeatures.map((item) => (
           <div
-            className="flex p-6 border border-solid border-tailCall-border-dark-300 rounded-3xl items-center justify-center cursor-pointer"
+            className="flex w-fit p-6 border border-solid border-tailCall-border-dark-300 rounded-3xl md:items-center md:justify-center cursor-pointer"
             key={item.id}
             onClick={() => handleClick(item.redirection_url)}
           >
             <img src={item.image} alt={`${item.title} Image`} height={24} width={24} />
-            <span className="text-content-tiny text-bold ml-2">{item.title}</span>
+            <span className="text-content-tiny sm:text-content-small text-bold ml-2">{item.title}</span>
           </div>
         ))}
       </div>
