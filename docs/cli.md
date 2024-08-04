@@ -9,6 +9,8 @@ sidebar_label: Command Line
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
+<!-- ❕❕❕ Don't forget to update Fig auto complete spec upon adding of new sub-commands or modifying existing ones. https://fig.io/docs/getting-started -->
+
 The TailCall CLI (Command Line Interface) allows developers to manage and optimize GraphQL configurations directly from the command line.
 
 ## check
