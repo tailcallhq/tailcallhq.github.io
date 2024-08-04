@@ -630,6 +630,7 @@ span.token.tag.script.language-javascript {
   bottom: 0;
   background: radial-gradient(closest-side, transparent 70%, black 100%);
   pointer-events: none;
+}
 .customer-container {
   background: url("../../static/images/home/bg-map.png") no-repeat;
 }
