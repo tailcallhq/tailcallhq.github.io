@@ -114,4 +114,3 @@ Hopefully, this gives some insight on how Tailcall identifies N+1 issues in your
 
 - If you think we can make our N+1 detection faster or better in some other way please help us improve by [contributing](https://github.com/tailcallhq/tailcall) 🙏
 - If you find this interesting please spread the word 🙌
-
