@@ -223,6 +223,65 @@ export const chooseTailcall: ChooseTailcall[] = [
   },
 ]
 
+export const benefits: Benefits[] = [
+  {
+    id: 1,
+    title: "Secure",
+    description:
+      "Tailcaill has been validated against a comprehensive database of GraphQL vulnerabilities. Rest easy knowing your GraphQL backends are secure.",
+    image: require("@site/static/images/home/secure-icon.png").default,
+    redirection_url: "/docs/field-level-access-control-graphql-authentication/",
+  },
+  {
+    id: 2,
+    title: "High-Performance",
+    description:
+      "Tailcall performs ahead-of-time optimizations based on analysis of the schema and data dependencies. Deploy GraphQL without compromises.",
+    image: require("@site/static/images/home/performance.png").default,
+    redirection_url: "https://github.com/tailcallhq/graphql-benchmarks",
+  },
+  {
+    id: 3,
+    title: "Statically Verified",
+    description:
+      "Tailcall statically verifies that GraphQL schemas match resolvers and warns about N + 1 issues. Deploy new APIs with confidence.",
+    image: require("@site/static/images/home/statically-verified-icon.png").default,
+    redirection_url: "/docs/graphql-n-plus-one-problem-solved-tailcall/",
+  },
+  {
+    id: 4,
+    title: "Simple",
+    description:
+      "Tailcall simplifies GraphQL with a powerful configuration generator that can get thousands of APIs integrated in minutes. Configure with ease and deploy with confidence, knowing that complexities like batching, caching, error propagation and other forms of tuning are handled for you.",
+    image: require("@site/static/images/home/simple-icon.png").default,
+    redirection_url: "/docs/tailcall-dsl-graphql-custom-directives/",
+  },
+  {
+    id: 5,
+    title: "Customizable",
+    description:
+      "Write custom Javascript to customize any aspect of your GraphQL backend. Leverage this escape hatch to satisfy any requirement.",
+    image: require("@site/static/images/home/customizable-icon.png").default,
+    redirection_url: "/docs/graphql-javascript-customization/",
+  },
+  {
+    id: 6,
+    title: "Plug & Play",
+    description:
+      "Engineered to stay out of your way, shipping as a single executable with no dependencies or requirements. Get started quickly and easily.",
+    image: require("@site/static/images/home/plug-play-icon.png").default,
+    redirection_url: "/docs/",
+  },
+  {
+    id: 7,
+    title: "Open Source",
+    description:
+      "Tailcall is developed and released under the Apache 2 open source license, the gold standard for OSS. Embrace a vendor-neutral solution.",
+    image: require("@site/static/images/home/open-source-icon.png").default,
+    redirection_url: "https://github.com/tailcallhq/tailcall",
+  },
+]
+
 export const enterpriseFeatures: EnterpriseFeature[] = [
   {
     id: 1,
@@ -404,3 +463,27 @@ export enum Theme {
   Dark = "dark",
   Gray = "gray",
 }
+
+export const customerFeedbacks: CustomerFeedback[] = [
+  {
+    id: 1,
+    citation: `I stopped writing orchestration code, and now I get low-latency GraphQL APIs quickly, which let me ship low-latency apps.`,
+    designation: `Sr. Frontend Engineer - Big Co. Inc.`,
+    name: "John Doe",
+    department: "Front-end",
+  },
+  {
+    id: 2,
+    citation: `I save so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!`,
+    designation: `Sr. Backend Engineer - Big Co. Inc.`,
+    name: "John Doe",
+    department: "Backend",
+  },
+  {
+    id: 3,
+    citation: `I get the telemetry I need to monitor our GraphQL APIs  with a runtime that’s easy to scale, which doesn’t surprise me in production.`,
+    designation: `Sr. Frontend Engineer - Big Co. Inc.`,
+    name: "John Doe",
+    department: "Ops",
+  },
+]

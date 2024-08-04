@@ -24,7 +24,7 @@ const Founder = ({founder}: Founder): JSX.Element => {
 
       <div className="flex flex-col space-y-SPACE_02 items-start">
         <span className="text-content-small font-bold sm:text-title-small">{founder.name}</span>
-        <span className="text-content-tiny sm:text-content-small text-tailCall-dark-100">{founder.title}</span>
+        <span className="text-content-tiny sm:text-content-small text-tailCall-dark-500">{founder.title}</span>
         {/* <div className="flex items-center gap-x-SPACE_05">
           {founder.socialLinks.map((social) => (
             <SocialIcon key={social.id} social={social} />
