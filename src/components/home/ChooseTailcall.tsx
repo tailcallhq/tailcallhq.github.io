@@ -1,9 +1,10 @@
 import React from "react"
-import {chooseTailcall} from "@site/src/constants"
+import { chooseTailcall, tailcallFeatures, Theme } from "@site/src/constants"
+import LinkButton from "../shared/LinkButton"
 
 const ChooseTailcall = (): JSX.Element => {
   return (
-    <>
+    <div className="flex flex-col items-center justify-center">
       <p className="text-title-large max-w-lg mx-auto sm:text-display-tiny lg:text-display-medium text-center my-SPACE_14 sm:mb-SPACE_16 sm:my-32">
         More reasons to choose tailcall.
       </p>
@@ -24,7 +25,19 @@ const ChooseTailcall = (): JSX.Element => {
           </div>
         ))}
       </div>
-    </>
+      <div className="flex flex-col lg:flex-row py-10 gap-y-SPACE_10 gap-x-SPACE_03 flex-wrap items-center justify-center">
+        {tailcallFeatures.map((item) => (
+          <div
+            className="flex p-6 border border-solid border-tailCall-border-dark-300 rounded-3xl items-center justify-center cursor-pointer"
+            key={item.id}
+          >
+            <img src={item.image} alt={`${item.title} Image`} height={24} width={24} />
+            <span className="text-content-tiny text-bold ml-2">{item.title}</span>
+          </div>
+        ))}
+      </div>
+      <LinkButton theme={Theme.Gray} onClick={() => console.log('hey')} title="View More" />
+    </div>
   )
 }
 

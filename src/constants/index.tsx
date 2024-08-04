@@ -37,7 +37,7 @@ export const partnerImages: PartnerImage[] = [
   },
 ]
 
-const Highlight = ({text}: {text: string}) => (
+const Highlight = ({ text }: { text: string }) => (
   <>
     <span className="text-content-tiny font-bold sm:text-title-tiny lg:text-title-small bg-tailCall-yellow rounded-[4px] sm:rounded-md px-SPACE_01">
       {text}
@@ -220,6 +220,49 @@ export const chooseTailcall: ChooseTailcall[] = [
     title: "Scale Fearlessly",
     description: "Leverage built-in best practices that guarantee robustness at any scale.",
     image: require("@site/static/images/home/scale.png").default,
+  },
+]
+
+export const tailcallFeatures: TailcallFeatures[] = [
+  {
+    id: 1,
+    title: "Powerful Batching Primitive",
+    image: require("@site/static/images/choose-tailcall/rocket.png").default,
+  },
+  {
+    id: 2,
+    title: "Extensions with plugins and JS support",
+    image: require("@site/static/images/choose-tailcall/grid.png").default,
+  },
+  {
+    id: 3,
+    title: "Field based Authentication & Authorisation",
+    image: require("@site/static/images/choose-tailcall/shield-tick.png").default,
+  },
+  {
+    id: 4,
+    title: "Protocol agnostic",
+    image: require("@site/static/images/choose-tailcall/check-done.png").default,
+  },
+  {
+    id: 5,
+    title: "Performance",
+    image: require("@site/static/images/choose-tailcall/line-chart-up.png").default,
+  },
+  {
+    id: 6,
+    title: "Security",
+    image: require("@site/static/images/choose-tailcall/lock.png").default,
+  },
+  {
+    id: 7,
+    title: "Edge Compatible",
+    image: require("@site/static/images/choose-tailcall/puzzle-piece.png").default,
+  },
+  {
+    id: 8,
+    title: "Compile time tracks",
+    image: require("@site/static/images/choose-tailcall/clock-stopwatch.png").default,
   },
 ]
 
@@ -439,7 +482,7 @@ export const pricingPlans: PricingPlans[] = [
 ]
 
 export const radioOptions: RadioOptions[] = [
-  {id: "1", name: "Evaluating", value: "evaluating"},
+  { id: "1", name: "Evaluating", value: "evaluating" },
   {
     id: "2",
     name: "Monolith",

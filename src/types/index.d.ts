@@ -31,6 +31,12 @@ type ChooseTailcall = {
   image: string
 }
 
+type TailcallFeatures = {
+  id: number
+  title: string
+  image: string
+}
+
 type Benefits = {
   id: number
   title: string
