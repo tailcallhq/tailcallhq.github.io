@@ -31,6 +31,14 @@ type ChooseTailcall = {
   image: string
 }
 
+type Benefits = {
+  id: number
+  title: string
+  description: string
+  image: string
+  redirection_url: string
+}
+
 type EnterpriseFeature = {
   id: number
   logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
@@ -112,6 +120,14 @@ type SidebarItem = {
 type SidebarConfig = {
   sidebar: SidebarItem[]
   hiddenSidebarContainer: boolean
+}
+
+type CustomerFeedback = {
+  id: number
+  citation: string
+  designation: string
+  name?: string
+  department?: string
 }
 
 declare module "docusaurus-lunr-search/src/theme/SearchBar"
