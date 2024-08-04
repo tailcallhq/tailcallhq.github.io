@@ -3,7 +3,7 @@ import Heading from "@theme/Heading"
 import CustomerFeedbackCard from "./CustomerFeedbackCard"
 import {customerFeedbacks} from "@site/src/constants"
 
-const Customer = () => (
+const Testimonials = () => (
   <section className="customer-container !bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 lg:px-SPACE_16 !bg-contain md:!bg-center">
     <div className="sm:max-w-7xl mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto sm:py-SPACE_20 py-SPACE_20 md:pt-SPACE_40 md:pb-SPACE_20">
       <div className="flex flex-row items-center justify-center">
@@ -31,4 +31,4 @@ const Customer = () => (
   </section>
 )
 
-export default Customer
+export default Testimonials
