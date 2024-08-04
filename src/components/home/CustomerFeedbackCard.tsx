@@ -1,16 +1,16 @@
 import React from "react"
 // @site/src/utils/index.ts
 
-import config, {TestimonialDisplay} from "@site/src/constants/config";
+import config, {TestimonialDisplay} from "@site/src/constants/config"
 
 type CustomerFeedbackCardProps = {
-  classNames?: string;
-  citation: string;
-  designation: string;
-  name?: string;
-  department?: string;
-  isCenterCard: boolean;
-};
+  classNames?: string
+  citation: string
+  designation: string
+  name?: string
+  department?: string
+  isCenterCard: boolean
+}
 
 const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
   classNames,
@@ -44,7 +44,7 @@ const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
         <span className="text-content-tiny sm:text-content-small">{designation}</span>
       </span>
     </div>
-  );
-};
+  )
+}
 
-export default CustomerFeedbackCard;
+export default CustomerFeedbackCard
