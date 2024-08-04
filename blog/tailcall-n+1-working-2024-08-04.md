@@ -46,7 +46,7 @@ Tailcall supports powerful batching primitives and if a field uses a Batch API, 
 
 While starting, Tailcall automatically performs these validations and one of our users complained that it would take around 5 minutes to start the server for their configuration which was around 10,000 lines. The thing is finding N+1 issues is a complex dynamic-programming problem. All this while our team has been focused on [benchmarking](https://github.com/tailcallhq/graphql-benchmarks) and optimizing the runtime performance of the server. This was the first time perhaps that we were surprised to see such a degradation in performance. We quickly realized that this a dynamic programming problem and there are certain tricks to make such algorithms efficient for us it was basically two things —
 
-### 1. Memorization
+### 1. Memoization
 
 Our algorithm uses a cache to store the results of previous traversals. The cache is used to avoid re-traversing the same path multiple times. It's essentially memoization however is super critical if you have a huge configuration that you'd want to validate.
 
