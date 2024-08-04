@@ -13,6 +13,8 @@ As a developer working with GraphQL, you're likely familiar with the concept of 
 
 To summarize they occur when a GraphQL resolver is called multiple times for a single GraphQL request, leading a large set of requests upstream and overall a slower query execution. In this blog post, we'll dive into how Tailcall specifically identifies N+1 issues in GraphQL, and explore the algorithm and data structures used to detect these issues.
 
+![Actual Usage Image](../static/images/blog/n+1-image-terminal.png)
+
 ## High-Level Working
 
 Unlike a traditional GraphQL implementation where the resolvers are written by hand Tailcall encourages developers to take a configuration-driven approach. This has many benefits and we have talked about them in our previous [blog](./no-code-graphql-2024-05-30.md). One of the main advantages of not handwriting is the ability to introspect and optimize. This means a configuration file can be parsed, validated and semantically analyzed to identify issues such as N+1 very precisely. With code, that's written in a general-purpose language if you wish to perform semantic analysis automatically you will need to depend on some sort of LLM solution and still it won't be as precise (at least today).
@@ -106,7 +108,9 @@ You can clearly see that we don't actually perform an append or a concat operati
 
 Lastly to ensure that we are always correct and no N+1 issues go unidentified we perform tests with actual configurations.
 
+![Source Code Screenshot](../static/images/blog/github-npo-screenshot.png)
+
 Hopefully, this gives some insight on how Tailcall identifies N+1 issues in your GraphQL configuration.
 
+- If you think we can make our N+1 detection faster or better in some other way please help us improve by [contributing](https://github.com/tailcallhq/tailcall) 🙏
 - If you find this interesting please spread the word 🙌
-- If you think we can make it faster or better please [contribute](https://github.com/tailcallhq/tailcall)
