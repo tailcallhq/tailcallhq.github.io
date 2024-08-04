@@ -252,7 +252,7 @@ export const benefits: Benefits[] = [
     id: 4,
     title: "Simple",
     description:
-      "Tailcall frees you from implementing batching, caching, error propagation, cancellation, and tuning. Enjoy designing the perfect GraphQL schema.",
+      "Tailcall simplifies GraphQL with a powerful configuration generator that can get thousands of APIs integrated in minutes. Configure with ease and deploy with confidence, knowing that complexities like batching, caching, error propagation and other forms of tuning are handled for you.",
     image: require("@site/static/images/home/simple-icon.png").default,
     redirection_url: "/docs/tailcall-dsl-graphql-custom-directives/",
   },
