@@ -1,5 +1,4 @@
 import ReactGA from "react-ga4"
-import {IS_VERSION_ONE_ENABLED} from "../constants/index"
 
 // Function to handle analytics events
 export const analyticsHandler = (category: string, action: string, label: string): void => {
