@@ -69,8 +69,8 @@ async function publishDevToPost(frontMatter: any, content: string) {
 async function updateDevToPost(id: string, frontMatter: any, content: string) {
   const response: any = await client.request(
     `
-    mutation($input: DevToUpdateArticleInput!) {
-      updateDevToArticle(input: $input) {
+    mutation($id: ID!, $article: DevToArticleInput!) {
+      updateDevToArticle(id: $id, article: $article) {
         id
         title
         url
@@ -80,17 +80,15 @@ async function updateDevToPost(id: string, frontMatter: any, content: string) {
     }
     `,
     {
-      input: {
-        id,
-        article: {
-          title: frontMatter.title,
-          body_markdown: content,
-          published: true,
-          tags: frontMatter.tags,
-          series: frontMatter.series,
-          canonical_url: frontMatter.canonical_url,
-          description: frontMatter.description,
-        },
+      id,
+      article: {
+        title: frontMatter.title,
+        body_markdown: content,
+        published: true,
+        tags: frontMatter.tags,
+        series: frontMatter.series,
+        canonical_url: frontMatter.canonical_url,
+        description: frontMatter.description,
       },
     },
   )
