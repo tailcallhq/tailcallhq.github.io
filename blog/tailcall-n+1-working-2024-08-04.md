@@ -17,7 +17,9 @@ To summarize they occur when a GraphQL resolver is called multiple times for a s
 
 ## High-Level Working
 
-Unlike a traditional GraphQL implementation where the resolvers are written by hand Tailcall encourages developers to take a configuration-driven approach. This has many benefits and we have talked about them in our previous [blog](./no-code-graphql-2024-05-30.md). One of the main advantages of not handwriting is the ability to introspect and optimize. This means a configuration file can be parsed, validated and semantically analyzed to identify issues such as N+1 very precisely. With code, that's written in a general-purpose language if you wish to perform semantic analysis automatically you will need to depend on some sort of LLM solution and still it won't be as precise (at least today).
+Unlike a traditional GraphQL implementation where the resolvers are written by hand, Tailcall encourages developers to take a configuration-driven approach. This has many benefits and we have talked about them in our previous [blog](./no-code-graphql-2024-05-30.md). Advantage of not handwriting is the ability to introspect and optimize. This means a configuration file can be parsed, validated and semantically analyzed to identify issues such as N+1 very precisely. With code, that's written in a general-purpose language, if you wish to perform semantic analysis automatically you will need to depend on some sort of LLM solution and still it won't be as precise (at least today).
+
+**Configuration driven Resolver => ! Handwritten = Automatic Semantic Analysis => Precise N+1 Issue Detection**
 
 ## The Algorithm
 
@@ -27,14 +29,18 @@ Tailcall reads your [configuration](../docs/configuration.mdx), parses it, and i
 To see the actual implementation you can check out the [tracker.rs](https://github.com/tailcallhq/tailcall/blob/main/src/core/config/npo/tracker.rs) implementation.
 :::
 
-We essentially use a Depth-First Search (DFS) algorithm starting at the root query and traversing all the connected nodes. The algorithm works as follows:
+We essentially use a Depth-First Search (DFS) algorithm starting at the root query and traversing all the connected nodes. 
+
+![DFS Meme](../static/images/blog/dfs.jpg)
+
+The algorithm works as follows:
 
 1. Initialize a to variables to track the currently traversed path and visited fields so that we can avoid cycles.
 2. Start at the root query and begin traversing the graph data structure.
 3. For each field in the current node, check if it has a resolver and is not batched. We know if the node contains a resolver if that node has a [`@http`](../docs/directives.md#http-directive) or a [`@grpc`](../docs/directives.md#grpc-directive).
 
 :::important
-Tailcall supports powerful batching primitives and if a field uses a Batch API, then that resolver is whitelisted and dropped from the list of potential N+1 candidates.
+Tailcall supports powerful batching primitives. If a field uses a Batch API, then that resolver is whitelisted and dropped from the list of potential N+1 candidates.
 :::
 
 4. If the field has a resolver and is not batched, and the current path contains a list, then the current path is added to the result.
@@ -113,4 +119,9 @@ Lastly to ensure that we are always correct and no N+1 issues go unidentified we
 Hopefully, this gives some insight on how Tailcall identifies N+1 issues in your GraphQL configuration.
 
 - If you think we can make our N+1 detection faster or better in some other way please help us improve by [contributing](https://github.com/tailcallhq/tailcall) 🙏
-- If you find this interesting please spread the word 🙌
+- If you find this interesting please [spread the word](https://x.com/tailcallhq) 🙌
+- We love hanging out with developers and seeing what they are upto! If you have a question or just want to come say hi, join our [discord](https://discord.gg/Hy42fFWQ) to tune into some serious developer funn!
+
+Until next time!
+
+![Until next time](../static/images/blog/until-next-time.webp)
