@@ -496,10 +496,9 @@ nav.menu {
   transform: translate(-50%, -50%);
   background-size: 50px 20px;
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 100%, black 100%);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 10%, 
-  rgba(0, 0, 0, 0) 50%);
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 50%);
   z-index: 0;
 }
 
