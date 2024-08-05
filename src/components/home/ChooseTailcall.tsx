@@ -1,13 +1,18 @@
 import React from "react"
 import {chooseTailcall} from "@site/src/constants"
 import MoreFeatures from "./MoreFeatures"
+import Heading from "@theme/Heading"
+
+//text-title-large max-w-lg mx-auto
+//lg:text-display-medium
 
 const ChooseTailcall = (): JSX.Element => {
   return (
     <>
-      <p className="text-title-large max-w-lg mx-auto sm:text-display-tiny lg:text-display-medium text-center my-SPACE_14 sm:mb-SPACE_16 sm:my-32">
-        More reasons to choose tailcall.
+      <p className=" text-title-large text-center mt-SPACE_14 mb-SPACE_08 lg:text-display-medium lg:mt-[172px] lg:mb-SPACE_16">
+        More reasons to <span className="block lg:inline"> choose tailcall</span>
       </p>
+
       <div className="flex flex-col lg:flex-row space-y-SPACE_06 items-center justify-between lg:space-x-SPACE_06 lg:space-y-0">
         {chooseTailcall.map((item) => (
           <div

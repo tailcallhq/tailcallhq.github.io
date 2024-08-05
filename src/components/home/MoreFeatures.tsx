@@ -1,6 +1,4 @@
 import React from "react"
-import Heading from "@theme/Heading"
-
 import {Theme, moreFeatures} from "@site/src/constants"
 import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
