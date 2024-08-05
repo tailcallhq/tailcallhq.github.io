@@ -32,7 +32,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           npm install
-          npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
+          npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js,css}"
           npm run build
 
       - name: Deploy 🚀
