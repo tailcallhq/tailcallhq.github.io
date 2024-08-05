@@ -114,17 +114,17 @@ export const features: Feature[] = [
 export const moreFeatures: MoreFeatures[] = [
   {
     id: 1,
-    title: "Ahead of Time Optimizations",
+    title: "Powerful Batching Primitive",
     logo: require("@site/static/icons/basic/rocket-icon.svg").default,
   },
   {
     id: 2,
-    title: "Composable Orchestration Primitives",
+    title: "Extensions with plugins and JS support",
     logo: require("@site/static/icons/basic/extension.svg").default,
   },
   {
     id: 3,
-    title: "Macro Resiliency Capabilities",
+    title: "Field based Authentication & Authorisation",
     logo: require("@site/static/icons/basic/shield.svg").default,
   },
   {
@@ -134,7 +134,7 @@ export const moreFeatures: MoreFeatures[] = [
   },
   {
     id: 5,
-    title: "High Performance",
+    title: "Performance",
     logo: require("@site/static/icons/basic/line-chart-up.svg").default,
   },
   {
@@ -152,26 +152,26 @@ export const moreFeatures: MoreFeatures[] = [
     title: "Compile time Checks",
     logo: require("@site/static/icons/basic/clock.svg").default,
   },
-  {
-    id: 9,
-    logo: require("@site/static/icons/basic/adaptive.svg").default,
-    title: "Adaptive performance improvements",
-  },
+  // {
+  //   id: 9,
+  //   logo: require("@site/static/icons/basic/adaptive.svg").default,
+  //   title: "Adaptive performance improvements",
+  // },
   // {
   //   id: 10,
   //   logo: require("@site/static/icons/basic/rate-limit.svg").default,
   //   title: "Global rate limiting",
   // },
-  {
-    id: 11,
-    logo: require("@site/static/icons/basic/insight.svg").default,
-    title: "Telemetry",
-  },
-  {
-    id: 12,
-    logo: require("@site/static/icons/basic/connect.svg").default,
-    title: "Scripting Flexibility",
-  },
+  // {
+  //   id: 11,
+  //   logo: require("@site/static/icons/basic/insight.svg").default,
+  //   title: "Telemetry",
+  // },
+  // {
+  //   id: 12,
+  //   logo: require("@site/static/icons/basic/connect.svg").default,
+  //   title: "Scripting Flexibility",
+  // },
 ]
 
 export const socials: Social[] = [

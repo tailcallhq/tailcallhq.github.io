@@ -1,5 +1,6 @@
 import React from "react"
 import {chooseTailcall} from "@site/src/constants"
+import MoreFeatures from "./MoreFeatures"
 
 const ChooseTailcall = (): JSX.Element => {
   return (
@@ -24,6 +25,8 @@ const ChooseTailcall = (): JSX.Element => {
           </div>
         ))}
       </div>
+
+      <MoreFeatures />
     </>
   )
 }
