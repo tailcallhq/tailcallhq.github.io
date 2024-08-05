@@ -6,11 +6,6 @@ import LinkButton from "../shared/LinkButton"
 import {analyticsHandler} from "@site/src/utils"
 import {pageLinks} from "@site/src/constants/routes"
 
-//#232426 -icon color
-//#CECECF link border color
-//text-tailCall-light-300 , border-tailCall-border-light-200 mt-6
-//shadow-[0px_3px_12px_0px_#000]
-
 type MoreFeaturesProps = {
   feature: MoreFeatures
 }
