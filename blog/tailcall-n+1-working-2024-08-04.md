@@ -115,26 +115,21 @@ It's simple, expressive and doesn't expose the guts of how data will be queried,
 
 Tailcall reads your [configuration](/docs/tailcall-graphql-configuration-format-conversion), parses it, and internally stores it in an efficient graph data-structure that resembles a `HashMap`. This allows `O(1)` access to a GraphQL type which represented as a node by its name. Once the graph data-structure is ready we make it go through a series of validators, one of them being the **N+1 tracker**.
 
-:::tip
-To see the actual implementation you can check out the [tracker.rs](https://github.com/tailcallhq/tailcall/blob/main/src/core/config/npo/tracker.rs) implementation.
-:::
-
 Now, here's where it gets fascinating. We use a Depth-First Search (DFS) algorithm, starting at the root query and traversing all the connected nodes. Let me walk you through this cool process:
 
 1. Initialize two variables to track the currently traversed `path` and `visited` fields so that we can avoid cycles.
 2. Start at the root query and begin traversing the graph data structure.
-3. For each field in the current node, check if it has a resolver and is not batched. We know if the node contains a resolver if that node has a [`@http`](/docs/tailcall-dsl-graphql-custom-directives#http-directive) or a [`@grpc`](/docs/tailcall-dsl-graphql-custom-directives#grpc-directive).
-
-   :::important
-   Tailcall supports powerful batching primitives and if a field uses a Batch API, then that resolver is whitelisted and dropped from the list of potential N+1 candidates.
-   :::
-
+3. For each field in the current node, check if it has a resolver and is not batched. We know if the node contains a resolver if that node has a [`@http`](/docs/tailcall-dsl-graphql-custom-directives#http-directive) or a [`@grpc`](/docs/tailcall-dsl-graphql-custom-directives#grpc-directive). Tailcall supports powerful batching primitives and if a field uses a Batch API, then that resolver is whitelisted and dropped from the list of potential N+1 candidates.
 4. If the field has a resolver and is not batched, and the current path contains a list, then the current path is added to the result.
 5. Otherwise, we recursively traverse the graph data structure, updating the current path and visited fields as necessary.
 6. If a cycle is detected, return the cached result instead of re-traversing the path.
 7. Once the traversal is complete, return the result, which represents the identified N+1 issues.
 
 This algorithm allows Tailcall to efficiently identify potential N+1 issues across your entire GraphQL schema, even in complex, deeply nested structures.
+
+:::tip
+To see the actual implementation you can check out the [tracker.rs](https://github.com/tailcallhq/tailcall/blob/main/src/core/config/npo/tracker.rs) implementation.
+:::
 
 ## Performance
 
