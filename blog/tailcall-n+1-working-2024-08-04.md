@@ -7,15 +7,17 @@ authors:
     image_url: https://avatars.githubusercontent.com/u/194482?v=4
 description: A deep dive into the implementation details of the N+1 tracker
 slug: tailcall-n+1-identification-algorithm
+image: /images/blog/n+1-identification-cover.png
 ---
 
+![Cover image for N+1 Identification in GraphQL](../static/images/blog/n+1-identification-cover.png)
 As a developer working with GraphQL, you're likely familiar with the concept of N+1 issues, if not you should definitely check out our [N+1 guide](/docs/graphql-n-plus-one-problem-solved-tailcall).
+
+<!-- truncate -->
 
 To summarize they occur when a GraphQL resolver is called multiple times for a single GraphQL request, leading a large set of requests upstream and overall a slower query execution. In this blog post, we'll dive into how Tailcall specifically identifies N+1 issues in GraphQL, and explore the algorithm and data structures used to detect these issues.
 
 ![Actual Usage Image](/images/blog/n+1-image-terminal.png)
-
-<!-- truncate -->
 
 ## High-Level Working
 
