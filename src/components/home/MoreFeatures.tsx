@@ -9,6 +9,7 @@ import {pageLinks} from "@site/src/constants/routes"
 //#232426 -icon color
 //#CECECF link border color
 //text-tailCall-light-300 , border-tailCall-border-light-200 mt-6
+//shadow-[0px_3px_12px_0px_#000]
 
 type MoreFeaturesProps = {
   feature: MoreFeatures
@@ -16,8 +17,8 @@ type MoreFeaturesProps = {
 
 const FeatureBox = ({feature}: MoreFeaturesProps) => {
   return (
-    <div className=" border-solid  border-tailCall-border-dark-300 flex gap-x-4 mb-4  py-3 px-4  rounded-lg     ">
-      <feature.logo className="  w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8    " />
+    <div className=" border-2  border-solid   border-tailCall-border-dark-300 flex items-center gap-x-4 mb-4  py-3 px-4  rounded-lg lg:rounded-[16px] lg:text-title-tiny text-[#E7E7E7] lg:p-[17px] shadow-[0px_3px_10px_0px_#000]   ">
+      <feature.logo className="  w-6 h-6 sm:w-7 sm:h-7 lg:w-6 lg:h-6    " />
 
       <span className="mt-0">{feature.title}</span>
     </div>
@@ -27,8 +28,8 @@ const FeatureBox = ({feature}: MoreFeaturesProps) => {
 const MoreFeatures = (): JSX.Element => {
   return (
     <section className="w-full  mb-SPACE_08 sm:mb-SPACE_20   ">
-      <div className="max-w-7xl mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto  ">
-        <div className=" p-x-16 p-y-12 pt-2  flex flex-wrap gap-x-4  mt-6  ">
+      <div className="max-w-7xl mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto   ">
+        <div className=" p-x-16 p-y-12 pt-2  flex flex-wrap lg:justify-center gap-x-4 lg:gap-x-6 lg:gap-y-6   mt-6  ">
           {moreFeatures.map((feature: MoreFeatures) => (
             <FeatureBox feature={feature} key={feature.id} />
           ))}
