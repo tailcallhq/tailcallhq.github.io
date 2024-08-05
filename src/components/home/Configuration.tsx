@@ -13,9 +13,15 @@ const Configuration = (): JSX.Element => {
           Get <span className="rounded-lg px-SPACE_02 bg-tailCall-yellow">Started</span>
         </Heading>
         <p className="text-content-small sm:text-content-medium mb-SPACE_11">
-          Setup Tailcall via npm to build a high-performance <b>GraphQL API</b> on top of existing REST endpoints.
-          Checkout our <Link href="/docs">docs</Link> for detailed tutorials and guides.
+          Setup the Tailcall instantly via npm and unlock the power of high-performance API orchestration.
         </p>
+        <div>
+          <h5>More</h5>
+          <p className="text-content-small sm:text-content-medium mb-SPACE_11">
+            To dive deeper into TailCall checkout our <Link href="/docs">docs</Link> for detailed tutorials. Ideal for
+            devs at any level, it's packed with advanced tips, powerful operators and best practices.
+          </p>
+        </div>
       </div>
       <div>
         <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
