@@ -7,15 +7,17 @@ authors:
     image_url: https://avatars.githubusercontent.com/u/194482?v=4
 description: A deep dive into the implementation details of the N+1 tracker
 slug: tailcall-n+1-identification-algorithm
+image: /images/blog/n+1-identification-cover.png
 ---
 
+![Cover image for N+1 Identification in GraphQL](../static/images/blog/n+1-identification-cover.png)
 As a developer working with GraphQL, you're likely familiar with the concept of N+1 issues, if not you should definitely check out our [N+1 guide](/docs/graphql-n-plus-one-problem-solved-tailcall).
+
+<!-- truncate -->
 
 To summarize they occur when a GraphQL resolver is called multiple times for a single GraphQL request, leading a large set of requests upstream and overall a slower query execution. In this blog post, we'll dive into how Tailcall specifically identifies N+1 issues in GraphQL, and explore the algorithm and data structures used to detect these issues.
 
 ![Actual Usage Image](/images/blog/n+1-image-terminal.png)
-
-<!-- truncate -->
 
 ## High-Level Working
 
@@ -31,7 +33,7 @@ To see the actual implementation you can check out the [tracker.rs](https://gith
 
 We essentially use a Depth-First Search (DFS) algorithm starting at the root query and traversing all the connected nodes. The algorithm works as follows:
 
-1. Initialize a to variables to track the currently traversed path and visited fields so that we can avoid cycles.
+1. Initialize two variables to track the currently traversed `path` and `visited` fields so that we can avoid cycles.
 2. Start at the root query and begin traversing the graph data structure.
 3. For each field in the current node, check if it has a resolver and is not batched. We know if the node contains a resolver if that node has a [`@http`](/docs/tailcall-dsl-graphql-custom-directives#http-directive) or a [`@grpc`](/docs/tailcall-dsl-graphql-custom-directives#grpc-directive).
 
@@ -54,7 +56,7 @@ Our algorithm uses a cache to store the results of previous traversals. The cach
 
 ### 2. Chunk Data Structure
 
-Our algorithm uses a special chunk data structure to store and manipulate the query paths. The chunk data structure is implemented as an enum with three variants:
+Our algorithm uses a special yet simple data structure that we like to call "Chunk". It is used to store and manipulate the query paths. The chunk data structure is implemented as an enum with three variants:
 
 ```rust
 enum Chunk<A> {
@@ -103,8 +105,9 @@ The chunk data structure has the following properties:
 - `O(1)` complexity for append and concat operations.
 - Uses Reference Counting instead of Boxing to make cloning faster.
 - Can be converted to a vector of references to the elements in the chunk.
+- Allocates no heap of its own.
 
-You can clearly see that we don't actually perform an append or a concat operation instead we store a representation of that operation. This reduces the overall compute required especially while performing the concat operation.
+You can clearly see that we don't actually perform an append or a concat operation instead we store a representation of that operation. This is a significant optimization because while performing the DFS, we create a lot of temporary query paths. However with the chunk data structure we don't need to allocate any memory on the heap or perform any form of wasted computation for paths that don't produce an N+1 query.
 
 ## Conclusion
 
