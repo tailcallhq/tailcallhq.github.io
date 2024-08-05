@@ -6,5 +6,5 @@ export const pageLinks = {
   // about: "/about",
   contact: "/contact",
   contributors: "/docs/contribution-guidelines",
-  // enterprise: "/enterprise",
+  enterprise: "/enterprise",
 }
