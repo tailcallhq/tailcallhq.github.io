@@ -633,17 +633,17 @@ span.token.tag.script.language-javascript {
   height: 100%;
   background: repeating-linear-gradient(
       0deg,
-      rgba(255, 255, 255, 0.07),
-      rgba(255, 255, 255, 0.07) 1px,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.08) 0.5px,
       transparent 1px,
-      transparent 30px
+      transparent 27px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.07),
-      rgba(255, 255, 255, 0.07) 1px,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.08) 0.5px,
       transparent 1px,
-      transparent 100px
+      transparent 70px
     );
   z-index: 0;
 }
