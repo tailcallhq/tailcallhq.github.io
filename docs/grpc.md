@@ -311,6 +311,11 @@ gRPC reflection is a potent feature enabling clients to dynamically discover ser
    }
    ```
 
+### Can I Automatically Generate GraphQL Schema from `.proto`?
+
+Of course, you can! Tailcall CLI provides a command called `tailcall gen` that can generate a GraphQL config from a proto file. This command can help you to quickly generate a GraphQL config from a `proto`file. You can find more information about
+[Tailcall Config auto generation](/docs/graphql-configuration-generation-with-tailcall/#effortless-grpc-integration).
+
 ## Conclusion
 
 Well done on integrating a gRPC service with the Tailcall gateway! This tutorial has demonstrated the straightforward and efficient process, showcasing Tailcall's compatibility with advanced communication protocols like gRPC.
