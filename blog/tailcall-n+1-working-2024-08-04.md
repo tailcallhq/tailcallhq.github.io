@@ -17,8 +17,6 @@ As a developer working with GraphQL, you're likely familiar with the concept of 
 
 To summarize, they occur when a GraphQL resolver is called multiple times for a single GraphQL request, leading to a large set of requests upstream and overall slower query execution. In this blog post, we'll dive into how Tailcall specifically identifies N+1 issues in GraphQL, and explore the algorithm and data structures used to detect these issues.
 
-![Actual Usage Image](../static/images/blog/n+1-image-terminal.png)
-
 ## High-Level Working
 
 Unlike a traditional GraphQL implementation where the resolvers are written by hand, Tailcall encourages developers to take a configuration-driven approach. This has many benefits, and we have talked about them in our previous [blog](./no-code-graphql-2024-05-30.md).
@@ -107,7 +105,7 @@ type User {
 }
 ```
 
-It's simple, expressive and doesn't expose the guts of how data will be queried, batched, deduped, parsed etc. Sure, configurations take away flexibility from writing anything but in return it liberates you from a ton of such nitty gritties of building a robust software system. The above configuration file can be parsed, validated and semantically analyzed accurately to identify issues such as N+1 very precisely using the [check] command as follows:
+It's simple, expressive and doesn't expose the guts of how data will be queried, batched, deduped, parsed etc. Sure, configurations take away flexibility from writing anything but in return it liberates you from a ton of such nitty gritties of building a robust software system. The above configuration file can be parsed, validated and semantically analyzed accurately to identify issues such as N+1 very precisely using the [check](/docs/tailcall-graphql-cli/#check) command as follows:
 
 ![Actual Usage Image](../static/images/blog/n+1-image-terminal.png)
 
