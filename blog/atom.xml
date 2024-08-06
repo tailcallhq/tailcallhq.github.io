@@ -14,7 +14,7 @@
         <link href="https://tailcall.run/blog/tailcall-n+1-identification-algorithm/"/>
         <updated>2024-08-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[A deep dive into the implementation details of the N+1 tracker]]></summary>
-        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="Cover image for N+1 Identification in GraphQL" src="https://tailcall.run/assets/images/n+1-identification-cover-492c26b063c444312d4224d722dd0cf6.png" width="1289" height="630" class="img_ev3q">
+        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="Cover image for N+1 Identification in GraphQL" src="https://tailcall.run/assets/images/n+1-identification-cover-241da07c59da29191d39dcb00abc9dec.png" width="1520" height="800" class="img_ev3q">
 As a developer working with GraphQL, you're likely familiar with the concept of N+1 issues. If not, you're in for a treat - check out our <a href="https://tailcall.run/docs/graphql-n-plus-one-problem-solved-tailcall/">N+1 guide!</a></p>
 <p>To summarize, they occur when a GraphQL resolver is called multiple times for a single GraphQL request, leading to a large set of requests upstream and overall slower query execution. In this blog post, we'll dive into how Tailcall specifically identifies N+1 issues in GraphQL, and explore the algorithm and data structures used to detect these issues.</p>
 <p><img decoding="async" loading="lazy" alt="Actual Usage Image" src="https://tailcall.run/assets/images/n+1-image-terminal-2bfbafada99d3c089f9d703c60855bef.png" width="3232" height="984" class="img_ev3q"></p>
