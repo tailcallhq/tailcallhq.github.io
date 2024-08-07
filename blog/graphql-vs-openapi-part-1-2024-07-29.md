@@ -13,7 +13,6 @@ authors:
     image_url: https://avatars.githubusercontent.com/u/68141773?v=4
 ---
 
-![OpenAPI vs GraphQL](../static/images/blog/openapi-vs-graphql-part1.png)
 In today's ever-evolving technological landscape, APIs play a crucial role in enabling software systems to communicate with each other. Among the myriad of API specifications available, GraphQL and OpenAPI stand out as prominent choices, each offering unique advantages and addressing different needs.
 
 <!-- truncate -->
