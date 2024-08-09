@@ -60,7 +60,6 @@ As a developer working with GraphQL, you're likely familiar with the concept of 
 <li><code>O(1)</code> complexity for append and concat operations.</li>
 <li>Uses Reference Counting instead of Boxing to make cloning faster.</li>
 <li>Can be converted to a vector of references to the elements in the chunk.</li>
-<li>Allocates ZERO heap of its own.</li>
 </ul>
 <p>You can clearly see that we don't actually perform an append or a concat operation instead we store a representation of that operation. This is a significant optimization because while performing the DFS, we create a lot of temporary query paths. However with the chunk data structure we don't need to allocate any additional memory on the heap or perform any form of wasted computation for paths that don't produce an N+1 query.</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="conclusion">Conclusion<a class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" href="https://tailcall.run/blog/tailcall-n+1-identification-algorithm/#conclusion">​</a></h2>
