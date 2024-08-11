@@ -11,7 +11,7 @@ const BenefitsCard = (): JSX.Element => {
             href={item.redirection_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group border border-solid border-tailCall-border-dark-300 rounded-3xl md:w-[40%] lg:w-[45%] md:px-10 px-4 py-2 pt-4 lg:flex benefits-drop-shadow hover:border-[#FDEA2E] md:mb-0 mb-6 cursor-pointer"
+            className="group border border-solid border-tailCall-border-dark-300 rounded-3xl md:w-[40%] lg:w-[45%] md:px-10 px-4 py-2 pt-4 lg:flex benefits-drop-shadow hover:border-[#FDEA2E] md:mb-0 mb-6 cursor-pointer no-decor"
             key={item.id}
           >
             <div className="mr-4 md:mt-4">
