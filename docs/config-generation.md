@@ -657,6 +657,38 @@ Let's understand how each of the parameter works.
   }
   ```
 
+- #### unwrapSingleFieldTypes:
+
+  This setting instructs Tailcall to flatten out types with single field.
+
+  for example:
+
+  ```graphql showLineNumbers
+  type Query {
+    foo: Foo
+  }
+
+  # Type with only one field
+  type Foo {
+    bar: Bar
+  }
+
+  # Type with only one field
+  type Bar {
+    a: Int
+  }
+  ```
+
+  After setting `unwrapSingleFieldTypes` to true:
+
+  ```graphql showLineNumbers
+  type Query {
+    foo: Int
+  }
+  ```
+
+  This helps in flattening out types into single field.
+
 ## Recommended Configuration Parameters
 
 When setting up your configuration file for GraphQL generation with Tailcall, consider these key parameters to optimize and customize your setup:

@@ -85,7 +85,7 @@ export default {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "icons/companies/taicall.svg",
+    image: "/images/tc-og-2.png",
     navbar: {
       hideOnScroll: true,
       logo: {
@@ -114,7 +114,7 @@ export default {
     prism: {
       theme: prismTheme,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ["protobuf", "json"],
+      additionalLanguages: ["protobuf", "json", "diff"],
     },
     colorMode: {
       disableSwitch: true,
@@ -198,12 +198,12 @@ export default {
         editLocalizedFiles: false,
         blogTitle: "Feed of Tailcall blogs",
         blogDescription: "List of blog posts on Tailcall blog",
-        blogSidebarCount: 5,
+        blogSidebarCount: 10,
         blogSidebarTitle: "Recent Blog Posts",
         routeBasePath: "blog",
         include: ["**/*.{md,mdx}"],
         exclude: ["**/_*.{js,jsx,ts,tsx,md,mdx}", "**/_*/**", "**/*.test.{js,jsx,ts,tsx}", "**/__tests__/**"],
-        postsPerPage: 5,
+        postsPerPage: 10,
         blogListComponent: "@theme/BlogListPage",
         blogPostComponent: "@theme/BlogPostPage",
         blogTagsListComponent: "@theme/BlogTagsListPage",
@@ -214,10 +214,8 @@ export default {
         truncateMarker: /<!--\s*(truncate)\s*-->/,
         showReadingTime: true,
         feedOptions: {
-          type: "atom",
-          title: "Blog title",
-          description: "Blog",
-          copyright: "Copyright © 2024 Tailcall, Inc.",
+          type: "all",
+          copyright: `Copyright © ${new Date().getFullYear()} Tailcall, Inc.`,
         },
       },
     ],
