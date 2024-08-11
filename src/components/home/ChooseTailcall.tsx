@@ -20,7 +20,7 @@ const ChooseTailcall = (): JSX.Element => {
             </div>
 
             <div>
-              <p className="text-title-small sm:text-title-large mt-SPACE_10 mb-SPACE_02 sm:mb-0">{item.title}</p>
+              <p className="text-title-small sm:text-title-large mt-SPACE_10 mb-SPACE_03">{item.title}</p>
               <p className="text-content-tiny sm:text-content-small text-tailCall-light-600">{item.description}</p>
             </div>
           </div>
