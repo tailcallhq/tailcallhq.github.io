@@ -1,0 +1,19 @@
+name: PR Naming Convention Check
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  check-name:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, '🙋 Bounty claim')
+    steps:
+      - name: Check PR Title
+        id: check_title
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          if [[ ! "$PR_TITLE" =~ ^\[ISSUE_[0-9]+\]\ .+ ]]; then
+            echo "PR title does not follow the naming convention [ISSUE_NUMBER] <description>"
+            exit 1
+          fi

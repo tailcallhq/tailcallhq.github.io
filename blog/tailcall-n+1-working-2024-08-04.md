@@ -188,7 +188,6 @@ The chunk data structure has the following properties:
 - `O(1)` complexity for append and concat operations.
 - Uses Reference Counting instead of Boxing to make cloning faster.
 - Can be converted to a vector of references to the elements in the chunk.
-- Allocates ZERO heap of its own.
 
 You can clearly see that we don't actually perform an append or a concat operation instead we store a representation of that operation. This is a significant optimization because while performing the DFS, we create a lot of temporary query paths. However with the chunk data structure we don't need to allocate any additional memory on the heap or perform any form of wasted computation for paths that don't produce an N+1 query.
 
