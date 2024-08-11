@@ -228,7 +228,7 @@ export const tailcallFeatures: TailcallFeatures[] = [
     id: 1,
     title: "Powerful Batching Primitive",
     image: require("@site/static/images/choose-tailcall/rocket.png").default,
-    redirection_url: "/docs/graphql-grpc-tailcall/#batching",
+    redirection_url: "/docs/graphql-n-plus-one-problem-solved-tailcall/#using-batch-apis",
   },
   {
     id: 2,
@@ -268,9 +268,9 @@ export const tailcallFeatures: TailcallFeatures[] = [
   },
   {
     id: 8,
-    title: "Compile time tracks",
+    title: "Compile time checks",
     image: require("@site/static/images/choose-tailcall/clock-stopwatch.png").default,
-    redirection_url: "/docs/tailcall-graphql-configuration-format-conversion/",
+    redirection_url: "/docs/tailcall-graphql-cli/#check",
   },
 ]
 
