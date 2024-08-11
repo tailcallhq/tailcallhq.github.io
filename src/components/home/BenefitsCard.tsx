@@ -3,18 +3,16 @@ import {benefits} from "@site/src/constants"
 import {ArrowRight} from "lucide-react"
 
 const BenefitsCard = (): JSX.Element => {
-  const handleClick = (url: string) => {
-    window.open(url, "_blank")
-  }
-
   return (
     <div className="mt-16 md:mb-0 mb-10">
       <div className="md:flex md:flex-wrap justify-center gap-10 w-[100%]">
         {benefits.map((item) => (
-          <div
+          <a
+            href={item.redirection_url}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group border border-solid border-tailCall-border-dark-300 rounded-3xl md:w-[40%] lg:w-[45%] md:px-10 px-4 py-2 pt-4 lg:flex benefits-drop-shadow hover:border-[#FDEA2E] md:mb-0 mb-6 cursor-pointer"
             key={item.id}
-            onClick={() => handleClick(item.redirection_url)}
           >
             <div className="mr-4 md:mt-4">
               <img
@@ -32,7 +30,7 @@ const BenefitsCard = (): JSX.Element => {
               </p>
               <p className="text-content-tiny sm:text-content-small text-tailCall-light-600">{item.description}</p>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
