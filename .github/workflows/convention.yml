@@ -2,7 +2,7 @@ name: PR Naming Convention Check
 
 on:
   pull_request:
-    types: [opened, edited]
+    types: [opened, edited, reopened, synchronize]
 
 jobs:
   check-name:
