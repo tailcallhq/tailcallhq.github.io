@@ -1,6 +1,7 @@
 import React from "react"
 import {chooseTailcall, tailcallFeatures, Theme} from "@site/src/constants"
 import LinkButton from "../shared/LinkButton"
+import Link from "@docusaurus/Link"
 
 const ChooseTailcall = (): JSX.Element => {
   return (
@@ -27,15 +28,14 @@ const ChooseTailcall = (): JSX.Element => {
       </div>
       <div className="flex py-10 gap-y-SPACE_04 gap-x-SPACE_04 md:gap-y-SPACE_06 md:gap-x-SPACE_06 flex-wrap md:items-center md:justify-center">
         {tailcallFeatures.map((item) => (
-          <a
+          <Link
+            to={item.redirection_url}
             className="flex w-fit p-6 border border-solid border-tailCall-border-dark-300 rounded-3xl md:items-center md:justify-center cursor-pointer hover:no-underline text-tailCall-light-100 hover:text-tailCall-light-100 hover:border-[#FDEA2E] benefits-drop-shadow"
             key={item.id}
-            href={item.redirection_url}
-            target="_blank"
           >
             <img src={item.image} alt={`${item.title} Image`} height={24} width={24} />
             <span className="text-content-tiny sm:text-content-small text-bold ml-2">{item.title}</span>
-          </a>
+          </Link>
         ))}
       </div>
       <LinkButton theme={Theme.Gray} href={"/docs/graphql-configuration-generation-with-tailcall/"} title="View More" />
