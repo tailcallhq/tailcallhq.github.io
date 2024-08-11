@@ -12,7 +12,7 @@ const ChooseTailcall = (): JSX.Element => {
       <div className="flex flex-col lg:flex-row space-y-SPACE_06 items-center justify-between lg:space-x-SPACE_06 lg:space-y-0">
         {chooseTailcall.map((item) => (
           <div
-            className="border border-solid border-tailCall-border-dark-300 w-full lg:min-h-[358px] lg:max-w-md rounded-3xl p-SPACE_04 flex flex-col items-start justify-between"
+            className="border-2 border-solid border-tailCall-border-dark-300 w-full lg:min-h-[358px] lg:max-w-md rounded-3xl p-SPACE_04 flex flex-col items-start justify-between hover:border-[#FDEA2E] benefits-drop-shadow"
             key={item.id}
           >
             <div className="h-16 w-16 sm:w-full sm:h-full">
@@ -30,15 +30,20 @@ const ChooseTailcall = (): JSX.Element => {
         {tailcallFeatures.map((item) => (
           <Link
             to={item.redirection_url}
-            className="flex w-fit p-6 border border-solid border-tailCall-border-dark-300 rounded-3xl md:items-center md:justify-center cursor-pointer hover:no-underline text-tailCall-light-100 hover:text-tailCall-light-100 hover:border-[#FDEA2E] benefits-drop-shadow"
+            className="flex w-fit p-6 border-2 border-solid border-tailCall-border-dark-300 rounded-xl md:items-center md:justify-center cursor-pointer hover:no-underline text-tailCall-light-300 hover:text-tailCall-light-300 hover:border-[#FDEA2E] benefits-drop-shadow"
             key={item.id}
           >
             <img src={item.image} alt={`${item.title} Image`} height={24} width={24} />
-            <span className="text-content-tiny sm:text-content-small text-bold ml-2">{item.title}</span>
+            <span className="text-content-small lg:text-title-tiny ml-2">{item.title}</span>
           </Link>
         ))}
       </div>
-      <LinkButton theme={Theme.Gray} href={"/docs/graphql-configuration-generation-with-tailcall/"} title="View More" />
+      <LinkButton
+        width={"medium"}
+        theme={Theme.Gray}
+        href={"/docs/graphql-configuration-generation-with-tailcall/"}
+        title="View More"
+      />
     </div>
   )
 }
