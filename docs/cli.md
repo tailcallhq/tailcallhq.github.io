@@ -144,7 +144,8 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
     "mergeType": 1,
     "consolidateURL": 0.5,
     "treeShake": true,
-    "unwrapSingleFieldTypes": true
+    "unwrapSingleFieldTypes": true,
+    "inferTypeNames": true
   }
 }
 ```
@@ -173,6 +174,7 @@ preset:
   consolidateURL: 0.5
   treeShake: true
   unwrapSingleFieldTypes: true
+  inferTypeNames: true
 ```
 
 </TabItem>
@@ -277,6 +279,7 @@ The config generator provides a set of tuning parameters that can make the gener
     "consolidateURL": 0.5,
     "treeShake": true,
     "unwrapSingleFieldTypes": true,
+    "inferTypeNames": true,
   },
 }
 ```
@@ -290,6 +293,7 @@ preset:
     consolidateURL: 0.5
     treeShake: true
     unwrapSingleFieldTypes: true
+    inferTypeNames: true
 ```
 </TabItem>
 </Tabs>
@@ -439,3 +443,49 @@ preset:
    ```
 
    This helps in flattening out types into single field.
+
+5. **inferTypeNames:** This setting enables the automatic inference of type names based on field names within the GraphQL schema. The inferTypeNames setting aims to enhance type naming consistency and readability by suggesting meaningful type names derived from the field names.
+
+   ```graphql title="Before enabling inferTypeNames setting"
+   type T1 {
+     id: ID
+     name: String
+     email: String
+     post: [T2]
+   }
+
+   type T2 {
+     id: ID
+     title: String
+     body: String
+   }
+
+   type Query {
+     users: [T1] @http(path: "/users")
+   }
+   ```
+
+   - **Type T1:** T1 is used as the output type for the `user` field in the Query type. We recognize that T1 is associated with users in the users field of Query. Therefore, it infers that T1 should be named `User` to indicate that it represents user data.
+
+   - **Type T2:** T2 is used as the output type for the `post` field within T1. We recognize that T2 is associated with posts in the post field of User. Therefore, it infers that T2 should be named `Post` to indicate that it represents post data.
+
+   ```graphql title="After enabling inferTypeNames setting"
+   type User {
+     id: ID
+     name: String
+     email: String
+     post: [Post]
+   }
+
+   type Post {
+     id: ID
+     title: String
+     body: String
+   }
+
+   type Query {
+     user: User @http(path: "/users")
+   }
+   ```
+
+   By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, enhancing overall readability and understanding.
