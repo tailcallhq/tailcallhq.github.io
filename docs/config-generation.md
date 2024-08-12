@@ -251,7 +251,7 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
-    **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
+    **Schema**: Specifies the operation type. In this example, it's a `Mutation` operation with the name `Mutation`.
 
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
 schema @server @upstream {
@@ -281,6 +281,12 @@ type Post {
   userId: Int
 }
 ```
+
+:::info
+
+This flexible configuration approach allows you to adapt Tailcall for various HTTP methods by modifying key sections like `method`, `body`, `isMutation` and `headers`. Tailcall will handle generating the appropriate GraphQL schema based on the provided API interactions.
+
+:::
 
 ### Effortless gRPC Integration
 
