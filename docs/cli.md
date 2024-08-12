@@ -213,32 +213,37 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
 
     1. **src (Required):** The URL of the REST endpoint. In this example, it points to a specific post on `jsonplaceholder.typicode.com`.
     2. **fieldName (Required):** A unique name that should be used as the field name, which is then used in the operation type. In the example below, it's set to `post`.
+       :::important
+       Ensure that each field name is **unique** across the entire configuration to prevent overwriting previous definitions.
+       :::
     3. **headers (Optional):** Users can specify the required headers to make the HTTP request in the headers section.
-    4. **body (Optional):** Users can specify the required request body in order to make the HTTP request.
-    5. **method (Optional):** Users can specify the http method.
-    6. **isMutation (Optional):** Users can specify operation type of request, if set to true it'll be treated as Mutation in final GraphQL configuration.
-
-
        :::info
        Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, see the following configuration where AUTH_TOKEN is referenced from the environment like `{{.env.AUTH_TOKEN}}`.
        :::
 
-      <Tabs>
-      <TabItem value="json" label="JSON">
-      ```json
-      {
-        "curl": {
-          "src": "https://jsonplaceholder.typicode.com/posts/1",
-          "fieldName": "post",
-          "headers": {
-            "Authorization": "Bearer {{.env.AUTH_TOKEN}}"
-          }
+    4. **body (Optional):** Users can specify the required request body in order to make the HTTP request.
+    5. **method (Optional):** Users can specify the http method.
+    6. **isMutation (Optional):** Users can specify operation type of request, if set to true it'll be treated as Mutation in final GraphQL configuration.
+
+    **1. Query Operation:** In order to mark the request to be of `Query` Operation Type, mark the `isMutation` setting to `false` or leave it. we by-default mark the request to be of `Query` type if `isMutation` is not specified.
+    <Tabs>
+    <TabItem value="json" label="JSON">
+
+    ```json title="sample input example for generating Query type"
+    {
+      "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts/1",
+        "fieldName": "post",
+        "headers": {
+          "Authorization": "Bearer {{.env.AUTH_TOKEN}}"
         }
       }
-      ```
+    }
+    ```
+
       </TabItem>
       <TabItem value="yml" label="YML">
-      ```yml
+      ```yml title="sample input example for generating Query type"
       - curl:
           src: "https://jsonplaceholder.typicode.com/posts/1"
           fieldName: "post"
@@ -252,16 +257,71 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
 
     For the above input configuration, the following field will be generated in the operation type:
 
-    ```graphql {2} showLineNumbers
+    ```graphql {2} showLineNumbers title="Generated Configuration"
     type Query {
       # field name is taken from the above JSON config
       post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
     }
     ```
 
-    :::important
-    Ensure that each field name is **unique** across the entire configuration to prevent overwriting previous definitions.
-    :::
+    **2. Mutation Operation:** In order to mark the request to be of `Mutation` Operation Type, mark the `isMutation` setting to `true` and provide the request body, method and headers required to make the Http request.
+    <Tabs>
+    <TabItem value="json" label="JSON">
+
+    ```json title="sample input example for generating Mutation type"
+    {
+      "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts",
+        "method": "POST",
+        "body": {
+          "title": "Tailcall - Modern GraphQL Runtime",
+          "body": "Tailcall - Modern GraphQL Runtime",
+          "userId": 1
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        "is_mutation": true,
+        "fieldName": "createPost"
+      }
+    }
+    ```
+
+      </TabItem>
+      <TabItem value="yml" label="YML">
+      ```yml title="sample input example for generating Mutation type"
+      - curl:
+          src: "https://jsonplaceholder.typicode.com/posts"
+          method: "POST"
+          body:
+            title: "Tailcall - Modern GraphQL Runtime"
+            body: "Tailcall - Modern GraphQL Runtime"
+            userId: 1
+          headers:
+            Content-Type: "application/json"
+            Accept: "application/json"
+          is_mutation: true
+          fieldName: "createPost"
+      ```
+      </TabItem>
+      </Tabs>
+
+    For the above input configuration, the following field will be generated in the operation type:
+
+    ```graphql {2} showLineNumbers title="Generated Configuration"
+    input PostInput {
+      title: String
+      body: String
+      userId: ID
+    }
+
+    type Mutation {
+      # field name is taken from the above JSON config
+      createPost(createPostInput: PostInput!): Post
+        @http(path: "/posts/{{arg.p1}}", method: "POST")
+    }
+    ```
 
 2.  **Proto:** For protobuf files, specify the path to the proto file (`src`).
 
