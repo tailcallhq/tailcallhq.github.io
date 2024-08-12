@@ -449,8 +449,7 @@ type Query {
 
 ### Understanding Presets
 
-This entire section is optional and we use best defaults to generate the configuration but you can override these parameter through preset section present in configuration like shown in following.
-if you feel generated GraphQL configuration is good enough then feel free to skip this section.
+This section is optional and can be used to optimize your configuration by applying various transformers that improve the configuration, such as adding meaningful names to types, merging duplicate types, removing unused types, and more. If you find that the generated GraphQL configuration is sufficient for your needs, you can skip this section.
 
 The config generator provides a set of tuning parameters that can make the generated configurations more readable by reducing duplication and making configuration more readable. This can be configured using the `preset` section present in configuration.
 
