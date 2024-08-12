@@ -231,14 +231,25 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     **Input**: Defines the API endpoints that the configuration interacts with. Each input specifies:
 
     - **src**: Specifies the endpoint URL (https://jsonplaceholder.typicode.com/posts in this example).
-    - **fieldName**: Assigns a descriptive name (`createPost` in this case) to uniquely identify the retrieved data.
-    - **headers**: Optional section for specifying HTTP headers required for the API request.
+    - **fieldName**: A unique name that should be used as the field name, which is then used in the operation type. In the example above, it's set to `createPost`.
+
+      :::important
+
+      Ensure that each **field name** is unique across the entire configuration to prevent overwriting previous definitions.
+
+      :::
+
+    - **headers**: Users can specify the required headers to make the HTTP request in the headers section.
+
       :::tip
       Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from [environment variables](environment-variables.md).
       :::
-    - **body**: Specifies the request body to be sent with the POST request.
-    - **isMutation**: if set to `true`, marks the request to be of `Mutation` operation type and appropriate `Mutation` type will be generated in resultant configuration.
-    - **method**: Specifies the HTTP method to be used (`POST` in this case).
+
+    - **body**: This property allows you to specify the request body for methods like POST or PUT. If the endpoint requires a payload, include it here.
+
+    - **method**: Specify the HTTP method for the request (e.g. GET, POST, PUT, DEL). If not provided, the default method is `GET`. in above example, it's set to `POST`.
+
+    - **isMutation**: This flag indicates whether the request should be treated as a GraphQL Mutation. Set `isMutation` to `true` to configure the request as a `Mutation`. If not specified or set to false, the request will be treated as a `Query by default`. in above example it's set to true.
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 
