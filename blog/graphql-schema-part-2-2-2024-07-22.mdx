@@ -1,5 +1,5 @@
 ---
-title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 2.2
+title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 3
 authors:
   - name: Amit Singh
     title: Head of Growth and Strategy @ Tailcall
@@ -14,17 +14,68 @@ slug: graphql-schema-part-2-2
 
 import Quiz from "../src/components/quiz/quiz.tsx"
 
-![GraphQL Schema Structure](../static/images/graphql/graphql-schema-structure.png)
+## What Do You Already Know? 🧠💫
+
+<Quiz
+  title="GraphQL Schema Change"
+  questions={[
+    {
+      id: 1,
+      text: "Changing the default value of an argument is considered a:",
+      options: ["Safe change", "Dangerous change", "Breaking change", "Non-issue"],
+      correctAnswer: 1,
+    },
+    {
+      id: 2,
+      text: "When changing a field type from non-nullable to nullable, what should be considered to prevent client-side errors?",
+      options: [
+        "Updating the field's description",
+        "Implementing a fallback value in resolvers",
+        "Notifying clients via email",
+        "Adding a deprecation notice",
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 3,
+      text: "Which of the following changes is likely to cause the most disruption?",
+      options: [
+        "Changing a field's default value",
+        "Deprecating a field",
+        "Changing a field's type from String to ID",
+        "Adding a new optional argument",
+      ],
+      correctAnswer: 2,
+    },
+    {
+      id: 4,
+      text: "Modifying an existing field to be non-null is generally considered a:",
+      options: ["Safe change", "Dangerous change", "Breaking change", "Improvement"],
+      correctAnswer: 2,
+    },
+    {
+      id: 5,
+      text: "When changing a field's return type, what is the best approach to minimize client impact?",
+      options: [
+        "Immediately update the schema",
+        "Provide a new field with the updated type and deprecate the old one",
+        "Change the field type and notify clients afterward",
+        "Modify the resolver logic to handle both types",
+      ],
+      correctAnswer: 1,
+    },
+  ]}
+/>
+
+<!-- truncate -->
 
 ## Modifying Without Breaking: Navigating the Modification Minefield
 
 In our [previous post](/blog/graphql-schema-part-2-1), we explored how to make additive changes to your GraphQL schema without causing disruptions. Now, we'll dive into the tricky territory of modifying existing schema elements.
 
-<!-- truncate -->
-
 ## Recap of Additive Changes
 
-In [Part 2.1](/blog/graphql-schema-part-2-1), we discussed the importance of making additive changes to your GraphQL schema to expand its capabilities while maintaining backward compatibility. By adding new fields, types, and arguments, you can enhance your API without causing disruptions to existing clients. We also emphasized the importance of providing transition paths to ensure a smooth adoption process.
+In [Part 2](/blog/graphql-schema-part-2-1), we discussed the importance of making additive changes to your GraphQL schema to expand its capabilities while maintaining backward compatibility. By adding new fields, types, and arguments, you can enhance your API without causing disruptions to existing clients. We also emphasized the importance of providing transition paths to ensure a smooth adoption process.
 
 ### Safe, Dangerous, and Breaking Changes
 
@@ -85,59 +136,6 @@ type User {
 ### Changing Description or Deprecation
 
 Changing the description of fields, types and any member is unlikely to cause any harm to clients. Clients should not depend on schema descriptions for runtime logic!
-
-## Quiz Time! 🎉
-
-<Quiz
-  title="GraphQL Schema Change"
-  questions={[
-    {
-      id: 1,
-      text: "Changing the default value of an argument is considered a:",
-      options: ["Safe change", "Dangerous change", "Breaking change", "Non-issue"],
-      correctAnswer: 1,
-    },
-    {
-      id: 2,
-      text: "When changing a field type from non-nullable to nullable, what should be considered to prevent client-side errors?",
-      options: [
-        "Updating the field's description",
-        "Implementing a fallback value in resolvers",
-        "Notifying clients via email",
-        "Adding a deprecation notice",
-      ],
-      correctAnswer: 1,
-    },
-    {
-      id: 3,
-      text: "Which of the following changes is likely to cause the most disruption?",
-      options: [
-        "Changing a field's default value",
-        "Deprecating a field",
-        "Changing a field's type from String to ID",
-        "Adding a new optional argument",
-      ],
-      correctAnswer: 2,
-    },
-    {
-      id: 4,
-      text: "Modifying an existing field to be non-null is generally considered a:",
-      options: ["Safe change", "Dangerous change", "Breaking change", "Improvement"],
-      correctAnswer: 2,
-    },
-    {
-      id: 5,
-      text: "When changing a field's return type, what is the best approach to minimize client impact?",
-      options: [
-        "Immediately update the schema",
-        "Provide a new field with the updated type and deprecate the old one",
-        "Change the field type and notify clients afterward",
-        "Modify the resolver logic to handle both types",
-      ],
-      correctAnswer: 1,
-    },
-  ]}
-/>
 
 ## Conclusion
 

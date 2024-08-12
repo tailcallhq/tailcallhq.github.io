@@ -950,6 +950,7 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 ### batchKey
 
+
 Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](./N+1.md) for more details. The `key` parameter of `query` is optional. If it is not present TailCall uses the last item from `batchKey` parameter of `@http` directive to derive the `key` parameter, so remember to adjust the order of the items accordingly.
 
 ```graphql showLineNumbers

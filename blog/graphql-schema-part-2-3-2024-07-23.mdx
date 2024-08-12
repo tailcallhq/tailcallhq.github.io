@@ -1,5 +1,5 @@
 ---
-title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 2.3
+title: Design a GraphQL Schema So Good, It'll Make REST APIs Cry - Part 4
 authors:
   - name: Amit Singh
     title: Head of Growth and Strategy @ Tailcall
@@ -7,26 +7,97 @@ authors:
     image_url: https://avatars.githubusercontent.com/u/23661702?v=5
 tags: [GraphQL, API, Schema, Design, Best Practices]
 description: Learn how to remove schema elements without causing disruptions. Strategies to handle breaking changes and maintain backward compatibility.
-image: /images/graphql/graphql-schema-structure.png
+image: /images/blog/quiz-part4.png
 hide_table_of_contents: true
 slug: graphql-schema-part-2-3
 ---
 
 import Quiz from "../src/components/quiz/quiz.tsx"
 
-![GraphQL Schema Structure](../static/images/graphql/graphql-schema-structure.png)
+## What Do You Already Know? 🧠💫
+
+<Quiz
+  title="GraphQL Schema Change"
+  questions={[
+    {
+      id: 1,
+      text: "What is a critical consideration before removing a field from a GraphQL schema?",
+      options: [
+        "Ensuring the field is no longer in use by any clients",
+        "Providing a detailed explanation in the schema documentation",
+        "Immediately notifying all clients via email",
+        "Replacing the field with a temporary placeholder",
+      ],
+      correctAnswer: 0,
+    },
+    {
+      id: 2,
+      text: "Why is it recommended to deprecate a field before removing it?",
+      options: [
+        "To avoid immediate schema validation errors",
+        "To provide clients with time to migrate to the new schema",
+        "To enhance schema performance temporarily",
+        "To test the removal process in a staging environment",
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 3,
+      text: "What is the best practice for handling arguments that cannot be deprecated directly in GraphQL?",
+      options: [
+        "Removing the argument immediately and updating the resolver",
+        "Indicating the deprecation through the argument's description",
+        "Notifying clients to ignore the argument",
+        "Using schema validation to enforce the change",
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 4,
+      text: "What is a key risk when removing a type that is part of a union or implements an interface?",
+      options: [
+        "It will cause performance degradation",
+        "It cannot be documented properly",
+        "It may break queries that rely on the type",
+        "It requires changing the schema version",
+      ],
+      correctAnswer: 2,
+    },
+    {
+      id: 5,
+      text: "How can you minimize disruption when removing an argument from a GraphQL query?",
+      options: [
+        "Immediately notify all clients",
+        "Provide a new query or field that does not use the argument",
+        "Deprecate the entire query",
+        "Change the schema version",
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: 8,
+      text: "What is the primary goal of providing a deprecation period before removing a schema element?",
+      options: [
+        "To test the impact of the removal on server performance",
+        "To allow clients sufficient time to adjust their queries",
+        "To prepare the documentation for the change",
+        "To gradually phase out old schema versions",
+      ],
+      correctAnswer: 1,
+    },
+  ]}
+/>
+<!-- truncate -->
 
 ## Removing Without Breaking: The Subtraction Subterfuge
 
 In our [previous post](/blog/graphql-schema-part-2-2), we explored how to modify existing schema elements without causing disruptions. Now, we'll tackle the most challenging part: removing schema elements and handling breaking changes.
 
-<!-- truncate -->
-
 ## Recap of Additive Changes and Modifications
 
-In [Part 2.1](/blog/graphql-schema-part-2-1), we focused on additive changes, emphasizing the importance of expanding your schema's capabilities without disrupting existing clients. By adding new fields, types, and arguments, you can enhance your API while maintaining backward compatibility.
+In [Part 2](/blog/graphql-schema-part-2-1), we focused on additive changes, emphasizing the importance of expanding your schema's capabilities without disrupting existing clients. By adding new fields, types, and arguments, you can enhance your API while maintaining backward compatibility.
 
-In [Part 2.2](/blog/graphql-schema-part-2-2), we delved into modifying existing schema elements, discussing how to handle changes such as updating default values, transforming non-null fields to nullable, and changing field types. We highlighted the need for clear communication, providing transition paths, and leveraging schema design tools to minimize client disruptions.
+In [Part 3](/blog/graphql-schema-part-2-2), we delved into modifying existing schema elements, discussing how to handle changes such as updating default values, transforming non-null fields to nullable, and changing field types. We highlighted the need for clear communication, providing transition paths, and leveraging schema design tools to minimize client disruptions.
 
 ### Safe, Dangerous, and Breaking Changes
 
@@ -107,80 +178,6 @@ type Query {
 Note that you might want to deprecate using that type within your codebase to avoid developers to use that User type for new fields. Removing a type is even trickier when it’s part of union types or implements interfaces. Once again, union members and interface implementations cannot be marked as deprecated. This means that fields like node may stop working correctly if the type you’re removing was reachable through that field.
 
 Your best bet in these cases are to either keep this type as part of unions and through interfaces or to communicate that change very carefully through descriptions and out of band communication like documentation and emails.
-
-## Quiz Time! 🎉
-
-<Quiz
-  title="GraphQL Schema Change"
-  questions={[
-    {
-      id: 1,
-      text: "What is a critical consideration before removing a field from a GraphQL schema?",
-      options: [
-        "Ensuring the field is no longer in use by any clients",
-        "Providing a detailed explanation in the schema documentation",
-        "Immediately notifying all clients via email",
-        "Replacing the field with a temporary placeholder",
-      ],
-      correctAnswer: 0,
-    },
-    {
-      id: 2,
-      text: "Why is it recommended to deprecate a field before removing it?",
-      options: [
-        "To avoid immediate schema validation errors",
-        "To provide clients with time to migrate to the new schema",
-        "To enhance schema performance temporarily",
-        "To test the removal process in a staging environment",
-      ],
-      correctAnswer: 1,
-    },
-    {
-      id: 3,
-      text: "What is the best practice for handling arguments that cannot be deprecated directly in GraphQL?",
-      options: [
-        "Removing the argument immediately and updating the resolver",
-        "Indicating the deprecation through the argument's description",
-        "Notifying clients to ignore the argument",
-        "Using schema validation to enforce the change",
-      ],
-      correctAnswer: 1,
-    },
-    {
-      id: 4,
-      text: "What is a key risk when removing a type that is part of a union or implements an interface?",
-      options: [
-        "It will cause performance degradation",
-        "It cannot be documented properly",
-        "It may break queries that rely on the type",
-        "It requires changing the schema version",
-      ],
-      correctAnswer: 2,
-    },
-    {
-      id: 5,
-      text: "How can you minimize disruption when removing an argument from a GraphQL query?",
-      options: [
-        "Immediately notify all clients",
-        "Provide a new query or field that does not use the argument",
-        "Deprecate the entire query",
-        "Change the schema version",
-      ],
-      correctAnswer: 1,
-    },
-    {
-      id: 8,
-      text: "What is the primary goal of providing a deprecation period before removing a schema element?",
-      options: [
-        "To test the impact of the removal on server performance",
-        "To allow clients sufficient time to adjust their queries",
-        "To prepare the documentation for the change",
-        "To gradually phase out old schema versions",
-      ],
-      correctAnswer: 1,
-    },
-  ]}
-/>
 
 ## Conclusion
 
