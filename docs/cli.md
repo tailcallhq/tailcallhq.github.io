@@ -127,6 +127,23 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
         }
       }
     },
+     {
+      "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts",
+        "method": "POST",
+        "body": {
+          "title": "Tailcall - Modern GraphQL Runtime",
+          "body": "Tailcall - Modern GraphQL Runtime",
+          "userId": 1
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        "is_mutation": true,
+        "fieldName": "createPost"
+      }
+    },
     {
       "proto": {
         "src": "./news.proto"
@@ -138,7 +155,8 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
     "format": "graphQL"
   },
   "schema": {
-    "query": "Query"
+    "query": "Query",
+    "mutation": "Mutation"
   },
   "preset": {
     "mergeType": 1,
@@ -159,6 +177,18 @@ inputs:
         Content-Type: "application/json"
         Accept: "application/json"
         Authorization: "Bearer {{.env.AUTH_TOKEN}}"
+  - curl:
+      src: "https://jsonplaceholder.typicode.com/posts"
+      method: "POST"
+      body:
+        title: "Tailcall - Modern GraphQL Runtime"
+        body: "Tailcall - Modern GraphQL Runtime"
+        userId: 1
+      headers:
+        Content-Type: "application/json"
+        Accept: "application/json"
+      is_mutation: true
+      fieldName: "createPost"
   - proto:
       src: "./news.proto"
 output:
@@ -166,6 +196,7 @@ output:
   format: "graphQL"
 schema:
   query: "Query"
+  mutation: "Mutation"
 preset:
   mergeType: 1
   consolidateURL: 0.5
@@ -183,6 +214,10 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     1. **src (Required):** The URL of the REST endpoint. In this example, it points to a specific post on `jsonplaceholder.typicode.com`.
     2. **fieldName (Required):** A unique name that should be used as the field name, which is then used in the operation type. In the example below, it's set to `post`.
     3. **headers (Optional):** Users can specify the required headers to make the HTTP request in the headers section.
+    4. **body (Optional):** Users can specify the required request body in order to make the HTTP request.
+    5. **method (Optional):** Users can specify the http method.
+    6. **isMutation (Optional):** Users can specify operation type of request, if set to true it'll be treated as Mutation in final GraphQL configuration.
+
 
        :::info
        Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, see the following configuration where AUTH_TOKEN is referenced from the environment like `{{.env.AUTH_TOKEN}}`.
