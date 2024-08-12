@@ -461,7 +461,8 @@ The config generator provides a set of tuning parameters that can make the gener
     "mergeType": 0.8,
     "consolidateURL": 0.8,
     "treeShake": true,
-    "unwrapSingleFieldTypes": true
+    "unwrapSingleFieldTypes": true,
+    "inferTypeNames": true,
   }
 }
 ```
@@ -473,6 +474,7 @@ preset:
   consolidateURL: 0.8
   treeShake: true
   unwrapSingleFieldTypes: true
+  inferTypeNames: true
 ```
 </TabItem>
 </Tabs>
@@ -732,6 +734,61 @@ Let's understand how each of the parameter works.
     a: Int
   }
   ```
+
+  <hr />
+
+- #### inferTypeNames:
+
+  This setting enables the automatic inference of type names based on field names within the GraphQL schema. The inferTypeNames setting aims to enhance type naming consistency and readability by suggesting meaningful type names derived from the field names.
+
+  **Q. How It Works**
+
+  1. **Generates Type Names**: Creates type names from field names using pluralization and other heuristics.
+  2. **Updates Configuration**: Replaces existing type names with the inferred names and updates all references.
+
+  ```graphql title="Before enabling inferTypeNames setting"
+  type T1 {
+    id: ID
+    name: String
+    email: String
+    post: [T2]
+  }
+
+  type T2 {
+    id: ID
+    title: String
+    body: String
+  }
+
+  type Query {
+    users: [T1] @http(path: "/users")
+  }
+  ```
+
+- **Type T1:** T1 is used as the output type for the `user` field in the Query type. We recognize that T1 is associated with users in the users field of Query. Therefore, it infers that T1 should be named `User` to indicate that it represents user data.
+
+- **Type T2:** T2 is used as the output type for the `post` field within T1. We recognize that T2 is associated with posts in the post field of User. Therefore, it infers that T2 should be named `Post` to indicate that it represents post data.
+
+  ```graphql title="After enabling inferTypeNames setting"
+  type User {
+    id: ID
+    name: String
+    email: String
+    post: [Post]
+  }
+
+  type Post {
+    id: ID
+    title: String
+    body: String
+  }
+
+  type Query {
+    user: User @http(path: "/users")
+  }
+  ```
+
+  By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, enhancing overall readability and understanding.
 
 ## Recommended Configuration Parameters
 
