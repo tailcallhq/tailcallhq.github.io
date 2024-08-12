@@ -460,7 +460,9 @@ The config generator provides a set of tuning parameters that can make the gener
 {
    "preset": {
     "mergeType": 0.8,
-    "consolidateURL": 0.8
+    "consolidateURL": 0.8,
+    "treeShake": true,
+    "unwrapSingleFieldTypes": true
   }
 }
 ```
@@ -470,6 +472,8 @@ The config generator provides a set of tuning parameters that can make the gener
 preset:
   mergeType: 0.8
   consolidateURL: 0.8
+  treeShake: true
+  unwrapSingleFieldTypes: true
 ```
 </TabItem>
 </Tabs>
@@ -657,6 +661,8 @@ Let's understand how each of the parameter works.
   }
   ```
 
+  <hr />
+
 - #### unwrapSingleFieldTypes:
 
   This setting instructs Tailcall to flatten out types with single field.
@@ -688,6 +694,45 @@ Let's understand how each of the parameter works.
   ```
 
   This helps in flattening out types into single field.
+
+  <hr />
+
+- #### treeShake:
+
+  This setting removes unused types from the configuration. When enabled, any type that is defined in the configuration but not referenced anywhere else (e.g., as a field type, union member, or interface implementation) will be removed. This helps to keep the configuration clean and free from unnecessary definitions.
+
+  ```graphql showLineNumbers title="Before applying treeShake, the configuration might look like this."
+  type Query {
+    foo: Foo
+  }
+
+  type Foo {
+    bar: Bar
+  }
+
+  # Type not used anywhere else
+  type UnusedType {
+    baz: String
+  }
+
+  type Bar {
+    a: Int
+  }
+  ```
+
+  ```graphql showLineNumbers title="After enabling treeShake, the UnusedType will be removed."
+  type Query {
+    foo: Foo
+  }
+
+  type Foo {
+    bar: Bar
+  }
+
+  type Bar {
+    a: Int
+  }
+  ```
 
 ## Recommended Configuration Parameters
 
