@@ -142,8 +142,9 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
   },
   "preset": {
     "mergeType": 1,
-    "consolidateURL": 0.5
-    "treeShake": true
+    "consolidateURL": 0.5,
+    "treeShake": true,
+    "unwrapSingleFieldTypes": true
   }
 }
 ```
@@ -171,6 +172,7 @@ preset:
   mergeType: 1
   consolidateURL: 0.5
   treeShake: true
+  unwrapSingleFieldTypes: true
 ```
 
 </TabItem>
@@ -274,6 +276,7 @@ The config generator provides a set of tuning parameters that can make the gener
     "mergeType": 1,
     "consolidateURL": 0.5,
     "treeShake": true,
+    "unwrapSingleFieldTypes": true,
   },
 }
 ```
@@ -286,6 +289,7 @@ preset:
     mergeType: 1
     consolidateURL: 0.5
     treeShake: true
+    unwrapSingleFieldTypes: true
 ```
 </TabItem>
 </Tabs>
@@ -409,3 +413,29 @@ preset:
      a: Int
    }
    ```
+
+4. **unwrapSingleFieldTypes:** This setting instructs Tailcall to flatten out types with single field.
+
+   ```graphql showLineNumbers title="Before applying the setting"
+   type Query {
+     foo: Foo
+   }
+
+   # Type with only one field
+   type Foo {
+     bar: Bar
+   }
+
+   # Type with only one field
+   type Bar {
+     a: Int
+   }
+   ```
+
+   ```graphql showLineNumbers title="After applying setting"
+   type Query {
+     foo: Int
+   }
+   ```
+
+   This helps in flattening out types into single field.
