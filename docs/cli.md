@@ -273,7 +273,7 @@ The config generator provides a set of tuning parameters that can make the gener
   "preset": {
     "mergeType": 1,
     "consolidateURL": 0.5,
-    "treeShake": true
+    "treeShake": true,
   },
 }
 ```
@@ -374,37 +374,38 @@ preset:
        )
    }
    ```
+
 3. **treeShake:** This setting removes unused types from the configuration. When enabled, any type that is defined in the configuration but not referenced anywhere else (e.g., as a field type, union member, or interface implementation) will be removed. This helps to keep the configuration clean and free from unnecessary definitions.
 
-    ```graphql showLineNumbers title="Before applying treeShake, the configuration might look like this."
-    type Query {
-      foo: Foo
-    }
+   ```graphql showLineNumbers title="Before applying treeShake, the configuration might look like this."
+   type Query {
+     foo: Foo
+   }
 
-    type Foo {
-      bar: Bar
-    }
+   type Foo {
+     bar: Bar
+   }
 
-    # Type not used anywhere else
-    type UnusedType {
-      baz: String
-    }
+   # Type not used anywhere else
+   type UnusedType {
+     baz: String
+   }
 
-    type Bar {
-      a: Int
-    }
-    ```
+   type Bar {
+     a: Int
+   }
+   ```
 
-    ```graphql showLineNumbers title="After enabling treeShake, the UnusedType will be removed."
-    type Query {
-      foo: Foo
-    }
+   ```graphql showLineNumbers title="After enabling treeShake, the UnusedType will be removed."
+   type Query {
+     foo: Foo
+   }
 
-    type Foo {
-      bar: Bar
-    }
+   type Foo {
+     bar: Bar
+   }
 
-    type Bar {
-      a: Int
-    }
-    ```
+   type Bar {
+     a: Int
+   }
+   ```
