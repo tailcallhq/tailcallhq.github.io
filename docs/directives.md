@@ -882,7 +882,10 @@ type Mutation {
 
 ### query
 
-Represents the API call's query parameters, either as a static object or with dynamic parameters using Mustache templates. These parameters append to the URL. The `key` parameter of `query` is optional. If it is not present TailCall uses the last item from `batchKey` parameter of `@http` directive to derive the `key` parameter, so remember to adjust the order of the items accordingly.
+Represents the API call's query parameters, either as a static object or with dynamic parameters using Mustache templates. These parameters append to the URL.
+:::important
+When `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query key, so remember to adjust the order of the items accordingly.
+:::
 
 ```graphql showLineNumbers
 type Query {
@@ -951,7 +954,10 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 ### batchKey
 
 
-Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](./N+1.md) for more details. The `key` parameter of `query` is optional. If it is not present TailCall uses the last item from `batchKey` parameter of `@http` directive to derive the `key` parameter, so remember to adjust the order of the items accordingly.
+Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](./N+1.md) for more details.
+:::important
+When `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query key, so remember to adjust the order of the items accordingly.
+:::
 
 ```graphql showLineNumbers
 type Post {
