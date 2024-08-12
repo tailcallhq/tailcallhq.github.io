@@ -140,7 +140,7 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        "is_mutation": true,
+        "isMutation": true,
         "fieldName": "createPost"
       }
     },
@@ -187,7 +187,7 @@ inputs:
       headers:
         Content-Type: "application/json"
         Accept: "application/json"
-      is_mutation: true
+      isMutation: true
       fieldName: "createPost"
   - proto:
       src: "./news.proto"
@@ -221,11 +221,12 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
        Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, see the following configuration where AUTH_TOKEN is referenced from the environment like `{{.env.AUTH_TOKEN}}`.
        :::
 
-    4. **body (Optional):** Users can specify the required request body in order to make the HTTP request.
-    5. **method (Optional):** Users can specify the http method.
-    6. **isMutation (Optional):** Users can specify operation type of request, if set to true it'll be treated as Mutation in final GraphQL configuration.
+    4. **body (Optional):** This property allows you to specify the request body for methods like POST or PUT. If the endpoint requires a payload, include it here.
+    5. **method (Optional):** Specify the HTTP method for the request (e.g. GET, POST, PUT, DEL). If not provided, the default method is `GET`.
+    6. **isMutation (Optional):** This flag indicates whether the request should be treated as a GraphQL Mutation. Set `isMutation` to `true` to configure the request as a `Mutation`. If not specified or set to false, the request will be treated as a `Query by default`.
 
-    **1. Query Operation:** In order to mark the request to be of `Query` Operation Type, mark the `isMutation` setting to `false` or leave it. we by-default mark the request to be of `Query` type if `isMutation` is not specified.
+    **1. Query Operation:** To define a GraphQL Query, either omit the isMutation property or set it to false. By default, if isMutation is not provided, the request will be configured as a Query.
+
     <Tabs>
     <TabItem value="json" label="JSON">
 
@@ -264,7 +265,8 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     }
     ```
 
-    **2. Mutation Operation:** In order to mark the request to be of `Mutation` Operation Type, mark the `isMutation` setting to `true` and provide the request body, method and headers required to make the Http request.
+    **2. Mutation Operation:** To define a GraphQL Mutation, set `isMutation` to `true` and provide the necessary` request body, method, isMutation and headers.`
+
     <Tabs>
     <TabItem value="json" label="JSON">
 
@@ -282,7 +284,7 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        "is_mutation": true,
+        "isMutation": true,
         "fieldName": "createPost"
       }
     }
@@ -301,7 +303,7 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
           headers:
             Content-Type: "application/json"
             Accept: "application/json"
-          is_mutation: true
+          isMutation: true
           fieldName: "createPost"
       ```
       </TabItem>
