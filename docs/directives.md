@@ -884,6 +884,10 @@ type Mutation {
 
 Represents the API call's query parameters, either as a static object or with dynamic parameters using Mustache templates. These parameters append to the URL.
 
+:::important
+When `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query key, so remember to adjust the order of the items accordingly.
+:::
+
 ```graphql showLineNumbers
 type Query {
   userPosts(id: ID!): [Post]
@@ -952,8 +956,9 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 
 Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](./N+1.md) for more details.
+
 :::important
-The `batchKey` setting is used to instruct Tailcall how to group items together. The first item from `query` is used to drive the batching operator, while the last item from `batchKey` is used to instruct which field is the ID of an object. In case that the returned result is a nested property `batchKey` can be used as a path to extract and group the items for the returned result.
+When `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query key, so remember to adjust the order of the items accordingly. Whereas, the last item from `batchKey` is used to instruct which field is the ID of an object. In case that the returned result is a nested property `batchKey` can be used as a path to extract and group the items for the returned result.
 :::
 
 ```graphql showLineNumbers
