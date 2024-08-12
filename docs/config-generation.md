@@ -765,9 +765,11 @@ Let's understand how each of the parameter works.
   }
   ```
 
-- **Type T1:** T1 is used as the output type for the `user` field in the Query type. We recognize that T1 is associated with users in the users field of Query. Therefore, it infers that T1 should be named `User` to indicate that it represents user data.
+  **How Type Names Are Inferred:**
 
-- **Type T2:** T2 is used as the output type for the `post` field within T1. We recognize that T2 is associated with posts in the post field of User. Therefore, it infers that T2 should be named `Post` to indicate that it represents post data.
+  - **User**: Derived from T1, since T1 is linked to user data through the users field in the Query type. The new name User clearly indicates the type represents user information.
+
+  - **Post**: Derived from T2, since T2 is linked to post data through the post field within User. The new name Post clearly indicates the type represents post information.
 
   ```graphql title="After enabling inferTypeNames setting"
   type User {
@@ -788,7 +790,13 @@ Let's understand how each of the parameter works.
   }
   ```
 
-  By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, enhancing overall readability and understanding.
+  By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, making it easier to understand and maintain.
+
+  **Additional Considerations:**
+
+  - **Priority Handling:** Types directly associated with root operations are given higher priority during inference. For example, if `T2` were associated with a root query or mutation type, it might have a higher priority for inference compared to other types.
+
+  - **Pluralization Rules:** The inferred type names are converted to singular form to align with typical GraphQL naming conventions. For instance, a type derived from a plural field name like `comments` would be singularized to `Comment`.
 
 ## Recommended Configuration Parameters
 
