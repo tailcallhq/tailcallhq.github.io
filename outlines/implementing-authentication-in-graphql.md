@@ -60,7 +60,7 @@ A. Client-Side Authentication
 
 B. Server-Side Authentication
 
-```grapql
+```graphql
 # code snippet to explain Client side Authntication
 ```
 
