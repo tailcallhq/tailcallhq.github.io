@@ -954,7 +954,6 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 ### batchKey
 
-
 Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](./N+1.md) for more details.
 
 :::important
