@@ -49,7 +49,7 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
 1.  **Simple GET Request:** In the following example, we demonstrate how to generate a GraphQL schema from `https://jsonplaceholder.typicode.com/posts` endpoint.
 
-    This configuration allows Tailcall to fetch data from the specified endpoint, generate a GraphQL schema and save it to output path provided in configuration.
+    This configuration allows Tailcall to fetch data from the specified endpoint and generate a GraphQL schema and save it to output path provided in configuration.
 
     <Tabs>
     <TabItem value="json" label="JSON Config Format">
@@ -60,7 +60,11 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
         {
           "curl": {
             "src": "https://jsonplaceholder.typicode.com/posts",
-            "fieldName": "posts"
+            "fieldName": "posts",
+            "headers": {
+              "Accept": "application/json",
+              "secretToken": "{{.env.TOKEN}}"
+            }
           }
         }
       ],
@@ -85,6 +89,9 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
       - curl:
           src: "https://jsonplaceholder.typicode.com/posts"
           fieldName: "posts"
+          headers:
+            Accept: "application/json"
+            secretToken: "{{.env.TOKEN}}"
     preset:
       mergeType: 1.0
     output:
@@ -108,6 +115,11 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
       Ensure that each **field name** is unique across the entire configuration to prevent overwriting previous definitions.
 
+      :::
+
+    - **headers**: Optional section for specifying HTTP headers required for the API request.
+      :::tip
+      Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from [environment variables](environment-variables.md).
       :::
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
@@ -146,37 +158,44 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     <hr />
 
-2.  **GET Request with Headers**
+2.  **Simple Post Request**
 
-    In the following example, we demonstrate how to generate a GraphQL schema from `https://jsonplaceholder.typicode.com/posts/1` endpoint which requires some headers in order to produce the response.
+    In the following example, we demonstrate how to generate a GraphQL schema from `https://jsonplaceholder.typicode.com/posts` endpoint which requires some request body in order to produce the response.
 
-    This configuration allows Tailcall to fetch data from the specified endpoint with provided headers, generate a GraphQL schema and save it to output path provided in configuration.
+    This configuration allows Tailcall to make a POST request to the upstream API and retrieve the response to generate a GraphQL schema, which is then saved to the output path specified in the configuration.
 
     <Tabs>
     <TabItem value="json" label="JSON Config Format">
     ```json showLineNumbers
     {
       "inputs":[
-          {
-            "curl":{
-              "src":"https://jsonplaceholder.typicode.com/posts/1",
-              "fieldName":"post",
-              "headers":{
-                "Accept":"application/json",
-                "secretToken":"{{.env.TOKEN}}"
-              }
-            }
+        {
+          "curl": {
+            "src": "https://jsonplaceholder.typicode.com/posts",
+            "method": "POST",
+            "body": {
+              "title": "Tailcall - Modern GraphQL Runtime",
+              "body": "Tailcall - Modern GraphQL Runtime",
+              "userId": 1
+            },
+            "headers": {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            "isMutation": true,
+            "fieldName": "createPost"
           }
+        }
       ],
-      "preset":{
-        "mergeType":1.0
+       "preset": {
+        "mergeType": 1.0
       },
       "output":{
         "path":"./jsonplaceholder.graphql",
         "format":"graphQL"
       },
       "schema":{
-        "query":"Query"
+        "mutation":"Mutation"
       }
     }
     ```
@@ -186,10 +205,16 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
         inputs:
           - curl:
               src: "https://jsonplaceholder.typicode.com/posts/1"
-              fieldName: "post"
+              fieldName: "createPost"
+              method: "POST"
+              isMutation: true
+              body:
+                title: "Tailcall - Modern GraphQL Runtime"
+                body: "Tailcall - Modern GraphQL Runtime"
+                userId: 1
               headers:
                 Accept: "application/json"
-                secretToken: "{{.env.TOKEN}}"
+                Content-Type: "application/json"
         preset:
           mergeType: 1.0
         output:
@@ -205,12 +230,26 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     **Input**: Defines the API endpoints that the configuration interacts with. Each input specifies:
 
-    - **src**: Specifies the endpoint URL (https://jsonplaceholder.typicode.com/posts/1 in this example).
-    - **fieldName**: Assigns a descriptive name (`post` in this case) to uniquely identify the retrieved data.
-    - **headers**: Optional section for specifying HTTP headers required for the API request.
+    - **src**: Specifies the endpoint URL (https://jsonplaceholder.typicode.com/posts in this example).
+    - **fieldName**: A unique name that should be used as the field name, which is then used in the operation type. In the example above, it's set to `createPost`.
+
+      :::important
+
+      Ensure that each **field name** is unique across the entire configuration to prevent overwriting previous definitions.
+
+      :::
+
+    - **headers**: Users can specify the required headers to make the HTTP request in the headers section.
+
       :::tip
       Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from [environment variables](environment-variables.md).
       :::
+
+    - **body**: This property allows you to specify the request body for methods like POST or PUT. If the endpoint requires a payload, include it here.
+
+    - **method**: Specify the HTTP method for the request (e.g. GET, POST, PUT, DEL). If not provided, the default method is `GET`. in above example, it's set to `POST`.
+
+    - **isMutation**: This flag indicates whether the request should be treated as a GraphQL Mutation. Set `isMutation` to `true` to configure the request as a `Mutation`. If not specified or set to false, the request will be treated as a `Query by default`. in above example it's set to true.
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 
@@ -223,15 +262,27 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
-    **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
+    **Schema**: Specifies the operation type. In this example, it's a `Mutation` operation with the name `Mutation`.
 
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
-schema
-  @server
-  @upstream(
-    baseURL: "https://jsonplaceholder.typicode.com"
-  ) {
-  query: Query
+schema @server @upstream {
+  mutation: Mutation
+}
+
+input PostInput {
+  body: String
+  title: String
+  userId: Int
+}
+
+type Mutation {
+  createPost(createPostInput: PostInput): Post
+    @http(
+      baseURL: "https://jsonplaceholder.typicode.com"
+      body: "{{.args.createPostInput}}"
+      method: "POST"
+      path: "/posts"
+    )
 }
 
 type Post {
@@ -240,11 +291,13 @@ type Post {
   title: String
   userId: Int
 }
-
-type Query {
-  post(p1: Int!): Post @http(path: "/posts/{{.args.p1}}")
-}
 ```
+
+:::info
+
+This flexible configuration approach allows you to adapt Tailcall for various HTTP methods by modifying key sections like `method`, `body`, `isMutation` and `headers`. Tailcall will handle generating the appropriate GraphQL schema based on the provided API interactions.
+
+:::
 
 ### Effortless gRPC Integration
 

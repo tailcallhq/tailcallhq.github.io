@@ -129,6 +129,23 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
       }
     },
     {
+      "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts",
+        "method": "POST",
+        "body": {
+          "title": "Tailcall - Modern GraphQL Runtime",
+          "body": "Tailcall - Modern GraphQL Runtime",
+          "userId": 1
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        "isMutation": true,
+        "fieldName": "createPost"
+      }
+    },
+    {
       "proto": {
         "src": "./news.proto"
       }
@@ -139,7 +156,8 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
     "format": "graphQL"
   },
   "schema": {
-    "query": "Query"
+    "query": "Query",
+    "mutation": "Mutation"
   },
   "preset": {
     "mergeType": 1,
@@ -164,6 +182,18 @@ inputs:
         Content-Type: "application/json"
         Accept: "application/json"
         Authorization: "Bearer {{.env.AUTH_TOKEN}}"
+  - curl:
+      src: "https://jsonplaceholder.typicode.com/posts"
+      method: "POST"
+      body:
+        title: "Tailcall - Modern GraphQL Runtime"
+        body: "Tailcall - Modern GraphQL Runtime"
+        userId: 1
+      headers:
+        Content-Type: "application/json"
+        Accept: "application/json"
+      isMutation: true
+      fieldName: "createPost"
   - proto:
       src: "./news.proto"
 output:
@@ -171,6 +201,7 @@ output:
   format: "graphQL"
 schema:
   query: "Query"
+  mutation: "Mutation"
 preset:
   mergeType: 1
   consolidateURL: 0.5
@@ -190,28 +221,38 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
 
     1. **src (Required):** The URL of the REST endpoint. In this example, it points to a specific post on `jsonplaceholder.typicode.com`.
     2. **fieldName (Required):** A unique name that should be used as the field name, which is then used in the operation type. In the example below, it's set to `post`.
+       :::important
+       Ensure that each field name is **unique** across the entire configuration to prevent overwriting previous definitions.
+       :::
     3. **headers (Optional):** Users can specify the required headers to make the HTTP request in the headers section.
-
        :::info
        Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, see the following configuration where AUTH_TOKEN is referenced from the environment like `{{.env.AUTH_TOKEN}}`.
        :::
 
-      <Tabs>
-      <TabItem value="json" label="JSON">
-      ```json
-      {
-        "curl": {
-          "src": "https://jsonplaceholder.typicode.com/posts/1",
-          "fieldName": "post",
-          "headers": {
-            "Authorization": "Bearer {{.env.AUTH_TOKEN}}"
-          }
+    4. **body (Optional):** This property allows you to specify the request body for methods like POST or PUT. If the endpoint requires a payload, include it here.
+    5. **method (Optional):** Specify the HTTP method for the request (e.g. GET, POST, PUT, DEL). If not provided, the default method is `GET`.
+    6. **isMutation (Optional):** This flag indicates whether the request should be treated as a GraphQL Mutation. Set `isMutation` to `true` to configure the request as a `Mutation`. If not specified or set to false, the request will be treated as a `Query by default`.
+
+2.  **Query Operation:** To define a GraphQL Query, either omit the isMutation property or set it to false. By default, if isMutation is not provided, the request will be configured as a Query.
+
+    <Tabs>
+    <TabItem value="json" label="JSON">
+
+    ```json title="sample input example for generating Query type"
+    {
+      "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts/1",
+        "fieldName": "post",
+        "headers": {
+          "Authorization": "Bearer {{.env.AUTH_TOKEN}}"
         }
       }
-      ```
+    }
+    ```
+
       </TabItem>
       <TabItem value="yml" label="YML">
-      ```yml
+      ```yml title="sample input example for generating Query type"
       - curl:
           src: "https://jsonplaceholder.typicode.com/posts/1"
           fieldName: "post"
@@ -225,18 +266,74 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
 
     For the above input configuration, the following field will be generated in the operation type:
 
-    ```graphql {2} showLineNumbers
+    ```graphql {2} showLineNumbers title="Generated Configuration"
     type Query {
       # field name is taken from the above JSON config
       post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
     }
     ```
 
-    :::important
-    Ensure that each field name is **unique** across the entire configuration to prevent overwriting previous definitions.
-    :::
+3.  **Mutation Operation:** To define a GraphQL Mutation, set `isMutation` to `true` and provide the necessary` request body, method, isMutation and headers.`
 
-2.  **Proto:** For protobuf files, specify the path to the proto file (`src`).
+    <Tabs>
+    <TabItem value="json" label="JSON">
+
+    ```json title="sample input example for generating Mutation type"
+    {
+      "curl": {
+        "src": "https://jsonplaceholder.typicode.com/posts",
+        "method": "POST",
+        "body": {
+          "title": "Tailcall - Modern GraphQL Runtime",
+          "body": "Tailcall - Modern GraphQL Runtime",
+          "userId": 1
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        "isMutation": true,
+        "fieldName": "createPost"
+      }
+    }
+    ```
+
+      </TabItem>
+      <TabItem value="yml" label="YML">
+      ```yml title="sample input example for generating Mutation type"
+      - curl:
+          src: "https://jsonplaceholder.typicode.com/posts"
+          method: "POST"
+          body:
+            title: "Tailcall - Modern GraphQL Runtime"
+            body: "Tailcall - Modern GraphQL Runtime"
+            userId: 1
+          headers:
+            Content-Type: "application/json"
+            Accept: "application/json"
+          isMutation: true
+          fieldName: "createPost"
+      ```
+      </TabItem>
+      </Tabs>
+
+    For the above input configuration, the following field will be generated in the operation type:
+
+    ```graphql {2} showLineNumbers title="Generated Configuration"
+    input PostInput {
+      title: String
+      body: String
+      userId: ID
+    }
+
+    type Mutation {
+      # field name is taken from the above JSON config
+      createPost(createPostInput: PostInput!): Post
+        @http(path: "/posts/{{arg.p1}}", method: "POST")
+    }
+    ```
+
+4.  **Proto:** For protobuf files, specify the path to the proto file (`src`).
 
     <Tabs>
       <TabItem value="json" label="JSON">
