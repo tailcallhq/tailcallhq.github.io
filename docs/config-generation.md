@@ -502,8 +502,7 @@ type Query {
 
 ### Understanding Presets
 
-This entire section is optional and we use best defaults to generate the configuration but you can override these parameter through preset section present in configuration like shown in following.
-if you feel generated GraphQL configuration is good enough then feel free to skip this section.
+This section is optional and can be used to generate a more optimized configuration by applying various transformers that improve the config generation process, such as automatically inferring meaningful names of the types, merging duplicate types, removing unused types, and more. If you find that the generated GraphQL configuration is sufficient for your needs, you can skip this section.
 
 The config generator provides a set of tuning parameters that can make the generated configurations more readable by reducing duplication and making configuration more readable. This can be configured using the `preset` section present in configuration.
 
@@ -513,7 +512,10 @@ The config generator provides a set of tuning parameters that can make the gener
 {
    "preset": {
     "mergeType": 0.8,
-    "consolidateURL": 0.8
+    "consolidateURL": 0.8,
+    "treeShake": true,
+    "unwrapSingleFieldTypes": true,
+    "inferTypeNames": true,
   }
 }
 ```
@@ -523,6 +525,9 @@ The config generator provides a set of tuning parameters that can make the gener
 preset:
   mergeType: 0.8
   consolidateURL: 0.8
+  treeShake: true
+  unwrapSingleFieldTypes: true
+  inferTypeNames: true
 ```
 </TabItem>
 </Tabs>
@@ -710,6 +715,8 @@ Let's understand how each of the parameter works.
   }
   ```
 
+  <hr />
+
 - #### unwrapSingleFieldTypes:
 
   This setting instructs Tailcall to flatten out types with single field.
@@ -741,6 +748,108 @@ Let's understand how each of the parameter works.
   ```
 
   This helps in flattening out types into single field.
+
+  <hr />
+
+- #### treeShake:
+
+  This setting removes unused types from the configuration. When enabled, any type that is defined in the configuration but not referenced anywhere else (e.g., as a field type, union member, or interface implementation) will be removed. This helps to keep the configuration clean and free from unnecessary definitions.
+
+  ```graphql showLineNumbers title="Before applying treeShake, the configuration might look like this."
+  type Query {
+    foo: Foo
+  }
+
+  type Foo {
+    bar: Bar
+  }
+
+  # Type not used anywhere else
+  type UnusedType {
+    baz: String
+  }
+
+  type Bar {
+    a: Int
+  }
+  ```
+
+  ```graphql showLineNumbers title="After enabling treeShake, the UnusedType will be removed."
+  type Query {
+    foo: Foo
+  }
+
+  type Foo {
+    bar: Bar
+  }
+
+  type Bar {
+    a: Int
+  }
+  ```
+
+  <hr />
+
+- #### inferTypeNames:
+
+  This setting enables the automatic inference of type names based on field names within the GraphQL schema. The inferTypeNames setting aims to enhance type naming consistency and readability by suggesting meaningful type names derived from the field names.
+
+  **Q. How It Works**
+
+  1. **Generates Type Names**: Creates type names from field names using pluralization and other heuristics.
+  2. **Updates Configuration**: Replaces existing type names with the inferred names and updates all references.
+
+  ```graphql title="Before enabling inferTypeNames setting"
+  type T1 {
+    id: ID
+    name: String
+    email: String
+    post: [T2]
+  }
+
+  type T2 {
+    id: ID
+    title: String
+    body: String
+  }
+
+  type Query {
+    users: [T1] @http(path: "/users")
+  }
+  ```
+
+  **How Type Names Are Inferred:**
+
+  - **User**: Derived from T1, since T1 is linked to user data through the users field in the Query type. The new name User clearly indicates the type represents user information.
+
+  - **Post**: Derived from T2, since T2 is linked to post data through the post field within User. The new name Post clearly indicates the type represents post information.
+
+  ```graphql title="After enabling inferTypeNames setting"
+  type User {
+    id: ID
+    name: String
+    email: String
+    post: [Post]
+  }
+
+  type Post {
+    id: ID
+    title: String
+    body: String
+  }
+
+  type Query {
+    user: User @http(path: "/users")
+  }
+  ```
+
+  By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, making it easier to understand and maintain.
+
+  **Additional Considerations:**
+
+  - **Priority Handling:** Types directly associated with root operations are given higher priority during inference. For example, if `T2` were associated with a root query or mutation type, it might have a higher priority for inference compared to other types.
+
+  - **Pluralization Rules:** The inferred type names are converted to singular form to align with typical GraphQL naming conventions. For instance, a type derived from a plural field name like `comments` would be singularized to `Comment`.
 
 ## Recommended Configuration Parameters
 
