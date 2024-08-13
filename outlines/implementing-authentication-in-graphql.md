@@ -88,7 +88,7 @@ Explanation of Schema Parts
 
 C. Creating/Implementing Resolvers
 
-D. Server-Side Implementation (Apollo Server and JWT)
+D. Server-Side Implementation (Tailcall Server and JWT)
 
 ```graphql
 # code snippet for Server-side implementation
