@@ -45,7 +45,7 @@ const main = async () => {
         file = `blog/${file}`
         const {frontMatter} = extractFrontMatterAndContent(path.join(__dirname, "../../", file))
         const slug = frontMatter.slug
-        if (!blogs[slug]) {
+        if (!blogs[slug] || !blogs[slug].platforms[publication.name]) {
           console.log("Publishing new blog", slug)
           toPublish++
           hasPublishFlag && (await publish(file, blogs, publication))

@@ -56,7 +56,7 @@ const prismTheme = {
     {
       types: ["script"],
       style: {
-        color: "#24292E",
+        color: "#fff",
       },
     },
     {
