@@ -64,6 +64,7 @@ module.exports = {
         SPACE_18: "72px",
         SPACE_19: "76px",
         SPACE_20: "80px",
+        SPACE_21: "160px",
       },
     },
     fontFamily: {
