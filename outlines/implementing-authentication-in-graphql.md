@@ -54,7 +54,7 @@ B. Using Directives for Authorization
 
 A. Client-Side Authentication
 
-```grapql
+```graphql
 # code snippet to explain Client side Authntication
 ```
 
