@@ -113,6 +113,7 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
 
 <Tabs>
 <TabItem value="json" label="JSON">
+
 ```json
 {
   "inputs": [
@@ -151,6 +152,7 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
 ```
 
 </TabItem>
+
 <TabItem value="yml" label="YML">
 
 ```yaml
@@ -272,22 +274,22 @@ The config generator provides a set of tuning parameters that can make the gener
 <Tabs>
 <TabItem value="json" label="JSON">
 
-```jsonc title="Presets with default values"
+```json title="Presets with default values"
 {
   "preset": {
     "mergeType": 1,
     "consolidateURL": 0.5,
     "treeShake": true,
     "unwrapSingleFieldTypes": true,
-    "inferTypeNames": true,
-  },
+    "inferTypeNames": true
+  }
 }
 ```
 
 </TabItem>
 
 <TabItem value="yml" label="YML">
-```ymlc title="Presets with default values"
+```yml title="Presets with default values"
 preset:
     mergeType: 1
     consolidateURL: 0.5
@@ -444,7 +446,7 @@ preset:
 
    This helps in flattening out types into single field.
 
-5. **inferTypeNames:** This setting enables the automatic inference of type names based on field names within the GraphQL schema. The inferTypeNames setting aims to enhance type naming consistency and readability by suggesting meaningful type names derived from the field names.
+5. **inferTypeNames:** This setting enables the automatic inference of type names based on their schema and it's usage. For it to work reliably it depends on an external secure AI agent.
 
    ```graphql title="Before enabling inferTypeNames setting"
    type T1 {
