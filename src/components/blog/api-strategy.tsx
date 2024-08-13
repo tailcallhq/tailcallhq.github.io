@@ -112,7 +112,7 @@ const APIStrategyQuiz: React.FC = () => {
   const score = calculateScore()
   const resultData = getResultData(score)
 
-  const progressPercentage = ((currentQuestion + 1) / questions.length) * 100
+  const progressPercentage = (currentQuestion / questions.length) * 100
 
   return (
     <div
