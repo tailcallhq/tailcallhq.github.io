@@ -462,6 +462,7 @@ export enum Theme {
   Light = "light",
   Dark = "dark",
   Gray = "gray",
+  Tailcall = "tailcall",
 }
 
 export const customerFeedbacks: CustomerFeedback[] = [
