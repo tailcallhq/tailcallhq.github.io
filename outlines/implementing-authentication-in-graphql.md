@@ -154,6 +154,5 @@ A. Summary of Key Points
 
 ## Resources
 
-A. Apollo Official Documentation
 
 B. GraphQL Official Documentation
