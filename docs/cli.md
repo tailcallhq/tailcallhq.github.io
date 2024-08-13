@@ -128,7 +128,7 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
         }
       }
     },
-     {
+    {
       "curl": {
         "src": "https://jsonplaceholder.typicode.com/posts",
         "method": "POST",
