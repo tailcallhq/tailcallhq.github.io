@@ -14,8 +14,6 @@ slug: api-strategy
 import APIStrategyQuiz from '../src/components/blog/api-strategy.tsx';
 import CallToAction from '../src/components/blog/call-to-action.tsx';
 
-![Cover for API Strategy](../static/images/blog/api-strategy.png)
-
 Buckle up, folks! We're diving into the exciting world of APIs - the unsung heroes powering our digital universe. If you're not on the API bandwagon yet, you're missing out on the rocket fuel that's propelling businesses into the stratosphere. Let's explore why a killer API strategy isn't just nice to have - it's your ticket to innovation, efficiency, and explosive growth.
 
 <!-- truncate -->
