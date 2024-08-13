@@ -1,0 +1,30 @@
+name: PR Title Validation
+
+on:
+  # pull_request_target is ok until we do not checkout and build external code
+  # TODO: maybe it is not required after all https://github.com/amannn/action-semantic-pull-request/issues/219
+  pull_request_target:
+    types: [opened, reopened, synchronize, edited]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  title-check:
+    name: Check PR Title
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: PR Title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Bounty PR Title
+        if: contains(github.event.pull_request.labels.*.name, '🙋 Bounty claim')
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          requireScope: true
+          scopes: \d+

@@ -5,8 +5,12 @@ import GreaterThanUnderscoreIcon from "@site/static/icons/basic/gt-undescore-gra
 import {partnerImages} from "@site/src/constants"
 
 const Partners = (): JSX.Element => {
+  const handleClick = () => {
+    window.open("/docs/deploy-graphql-github-actions/", "_blank")
+  }
+
   return (
-    <section className="mt-SPACE_08">
+    <section className="md:mt-SPACE_16 mt-space_08 cursor-pointer" onClick={handleClick}>
       <div className="text-content-small font-bold sm:text-title-tiny lg:text-title-small text-tailCall-light-500 text-center space-x-1">
         <GreaterThanUnderscoreIcon className="h-4 w-6" />
         <span>Deploy Anywhere</span>
