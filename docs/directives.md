@@ -985,11 +985,36 @@ For defining a request middleware globally for all requests, refer to the [upstr
 
 ```graphql showLineNumbers
 type Query {
-  userPosts(id: ID!): [Post]
+  posts: [Post] @http(path: "/posts")
+}
+type Post {
+  id: Int!
+  name: String!
+  userId: Int
+  user: User
     @http(
-      path: "/posts"
-      query: [{key: "userId", value: "{{.args.id}}"}]
-      onRequest: "someFunctionName"
+      path: "/users"
+      query: [{key: "user_id", value: "{{.value.userId}}"}]
+    )
+}
+```
+
+In this example, if `userId` is null or empty, those parameters will be omitted from the request URL.
+
+### skipEmpty
+
+The skipEmpty option allows you to skip query parameters that have null or empty values. When skipEmpty is set to true, any keys with null or empty values will be excluded from the generated URL, preventing them from being sent in the request.
+
+```graphql showLineNumbers
+type Query {
+  users(filter: UserFilter): [User]
+    @http(
+      path: "/users"
+      query: [
+        {key: "name", value: "{{.args.filter.name}}"}
+        {key: "age", value: "{{.args.filter.age}}"}
+      ]
+      skipEmpty: true
     )
 }
 ```
