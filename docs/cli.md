@@ -225,7 +225,7 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     5. **method (Optional):** Specify the HTTP method for the request (e.g. GET, POST, PUT, DEL). If not provided, the default method is `GET`.
     6. **isMutation (Optional):** This flag indicates whether the request should be treated as a GraphQL Mutation. Set `isMutation` to `true` to configure the request as a `Mutation`. If not specified or set to false, the request will be treated as a `Query by default`.
 
-    **1. Query Operation:** To define a GraphQL Query, either omit the isMutation property or set it to false. By default, if isMutation is not provided, the request will be configured as a Query.
+2.  **Query Operation:** To define a GraphQL Query, either omit the isMutation property or set it to false. By default, if isMutation is not provided, the request will be configured as a Query.
 
     <Tabs>
     <TabItem value="json" label="JSON">
@@ -265,7 +265,7 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     }
     ```
 
-    **2. Mutation Operation:** To define a GraphQL Mutation, set `isMutation` to `true` and provide the necessary` request body, method, isMutation and headers.`
+3.  **Mutation Operation:** To define a GraphQL Mutation, set `isMutation` to `true` and provide the necessary` request body, method, isMutation and headers.`
 
     <Tabs>
     <TabItem value="json" label="JSON">
@@ -325,7 +325,7 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     }
     ```
 
-2.  **Proto:** For protobuf files, specify the path to the proto file (`src`).
+4.  **Proto:** For protobuf files, specify the path to the proto file (`src`).
 
     <Tabs>
       <TabItem value="json" label="JSON">
