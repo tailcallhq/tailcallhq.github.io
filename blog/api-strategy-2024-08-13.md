@@ -68,7 +68,7 @@ There are many tools available in the market to help with API strategy, such as 
 
 ### API Composition: A Critical Aspect of API Strategy
 
-API composition is a critical aspect of API strategy. How do you compose your APIs? Do you use an API gateway or a different tool? How do you prevent the N+1 problem when composing APIs using an API gateway? How do you handle the failure of one of the APIs in the composition? How do you handle caching in the composition? These are just a few of the questions that need to be addressed in your API strategy.
+API composition is a critical aspect of API strategy. How do you compose your APIs? Do you use an API gateway or a different tool? How do you prevent the [N+1 problem](/docs/graphql-n-plus-one-problem-solved-tailcall/#what-is-the-n1-problem) when composing APIs using an API gateway? How do you handle the failure of one of the APIs in the composition? How do you handle caching in the composition? These are just a few of the questions that need to be addressed in your API strategy.
 
 ### Access Control: A Key Consideration
 
