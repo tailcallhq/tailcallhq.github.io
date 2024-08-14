@@ -49,7 +49,7 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
 1.  **Simple GET Request:** In the following example, we demonstrate how to generate a GraphQL schema from `https://jsonplaceholder.typicode.com/posts` endpoint.
 
-    This configuration allows Tailcall to fetch data from the specified endpoint, generate a GraphQL schema and save it to output path provided in configuration.
+    This configuration allows Tailcall to fetch data from the specified endpoint and generate a GraphQL schema and save it to output path provided in configuration.
 
     <Tabs>
     <TabItem value="json" label="JSON Config Format">
@@ -60,7 +60,11 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
         {
           "curl": {
             "src": "https://jsonplaceholder.typicode.com/posts",
-            "fieldName": "posts"
+            "fieldName": "posts",
+            "headers": {
+              "Accept": "application/json",
+              "secretToken": "{{.env.TOKEN}}"
+            }
           }
         }
       ],
@@ -85,6 +89,9 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
       - curl:
           src: "https://jsonplaceholder.typicode.com/posts"
           fieldName: "posts"
+          headers:
+            Accept: "application/json"
+            secretToken: "{{.env.TOKEN}}"
     preset:
       mergeType: 1.0
     output:
@@ -108,6 +115,11 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
       Ensure that each **field name** is unique across the entire configuration to prevent overwriting previous definitions.
 
+      :::
+
+    - **headers**: Optional section for specifying HTTP headers required for the API request.
+      :::tip
+      Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from [environment variables](environment-variables.md).
       :::
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
@@ -146,37 +158,44 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     <hr />
 
-2.  **GET Request with Headers**
+2.  **Simple Post Request**
 
-    In the following example, we demonstrate how to generate a GraphQL schema from `https://jsonplaceholder.typicode.com/posts/1` endpoint which requires some headers in order to produce the response.
+    In the following example, we demonstrate how to generate a GraphQL schema from `https://jsonplaceholder.typicode.com/posts` endpoint which requires some request body in order to produce the response.
 
-    This configuration allows Tailcall to fetch data from the specified endpoint with provided headers, generate a GraphQL schema and save it to output path provided in configuration.
+    This configuration allows Tailcall to make a POST request to the upstream API and retrieve the response to generate a GraphQL schema, which is then saved to the output path specified in the configuration.
 
     <Tabs>
     <TabItem value="json" label="JSON Config Format">
     ```json showLineNumbers
     {
       "inputs":[
-          {
-            "curl":{
-              "src":"https://jsonplaceholder.typicode.com/posts/1",
-              "fieldName":"post",
-              "headers":{
-                "Accept":"application/json",
-                "secretToken":"{{.env.TOKEN}}"
-              }
-            }
+        {
+          "curl": {
+            "src": "https://jsonplaceholder.typicode.com/posts",
+            "method": "POST",
+            "body": {
+              "title": "Tailcall - Modern GraphQL Runtime",
+              "body": "Tailcall - Modern GraphQL Runtime",
+              "userId": 1
+            },
+            "headers": {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            "isMutation": true,
+            "fieldName": "createPost"
           }
+        }
       ],
-      "preset":{
-        "mergeType":1.0
+       "preset": {
+        "mergeType": 1.0
       },
       "output":{
         "path":"./jsonplaceholder.graphql",
         "format":"graphQL"
       },
       "schema":{
-        "query":"Query"
+        "mutation":"Mutation"
       }
     }
     ```
@@ -186,10 +205,16 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
         inputs:
           - curl:
               src: "https://jsonplaceholder.typicode.com/posts/1"
-              fieldName: "post"
+              fieldName: "createPost"
+              method: "POST"
+              isMutation: true
+              body:
+                title: "Tailcall - Modern GraphQL Runtime"
+                body: "Tailcall - Modern GraphQL Runtime"
+                userId: 1
               headers:
                 Accept: "application/json"
-                secretToken: "{{.env.TOKEN}}"
+                Content-Type: "application/json"
         preset:
           mergeType: 1.0
         output:
@@ -205,12 +230,26 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     **Input**: Defines the API endpoints that the configuration interacts with. Each input specifies:
 
-    - **src**: Specifies the endpoint URL (https://jsonplaceholder.typicode.com/posts/1 in this example).
-    - **fieldName**: Assigns a descriptive name (`post` in this case) to uniquely identify the retrieved data.
-    - **headers**: Optional section for specifying HTTP headers required for the API request.
+    - **src**: Specifies the endpoint URL (https://jsonplaceholder.typicode.com/posts in this example).
+    - **fieldName**: A unique name that should be used as the field name, which is then used in the operation type. In the example above, it's set to `createPost`.
+
+      :::important
+
+      Ensure that each **field name** is unique across the entire configuration to prevent overwriting previous definitions.
+
+      :::
+
+    - **headers**: Users can specify the required headers to make the HTTP request in the headers section.
+
       :::tip
       Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from [environment variables](environment-variables.md).
       :::
+
+    - **body**: This property allows you to specify the request body for methods like POST or PUT. If the endpoint requires a payload, include it here.
+
+    - **method**: Specify the HTTP method for the request (e.g. GET, POST, PUT, DEL). If not provided, the default method is `GET`. in above example, it's set to `POST`.
+
+    - **isMutation**: This flag indicates whether the request should be treated as a GraphQL Mutation. Set `isMutation` to `true` to configure the request as a `Mutation`. If not specified or set to false, the request will be treated as a `Query by default`. in above example it's set to true.
 
     **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 
@@ -223,15 +262,27 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
-    **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
+    **Schema**: Specifies the operation type. In this example, it's a `Mutation` operation with the name `Mutation`.
 
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
-schema
-  @server
-  @upstream(
-    baseURL: "https://jsonplaceholder.typicode.com"
-  ) {
-  query: Query
+schema @server @upstream {
+  mutation: Mutation
+}
+
+input PostInput {
+  body: String
+  title: String
+  userId: Int
+}
+
+type Mutation {
+  createPost(createPostInput: PostInput): Post
+    @http(
+      baseURL: "https://jsonplaceholder.typicode.com"
+      body: "{{.args.createPostInput}}"
+      method: "POST"
+      path: "/posts"
+    )
 }
 
 type Post {
@@ -240,11 +291,13 @@ type Post {
   title: String
   userId: Int
 }
-
-type Query {
-  post(p1: Int!): Post @http(path: "/posts/{{.args.p1}}")
-}
 ```
+
+:::info
+
+This flexible configuration approach allows you to adapt Tailcall for various HTTP methods by modifying key sections like `method`, `body`, `isMutation` and `headers`. Tailcall will handle generating the appropriate GraphQL schema based on the provided API interactions.
+
+:::
 
 ### Effortless gRPC Integration
 
@@ -449,8 +502,7 @@ type Query {
 
 ### Understanding Presets
 
-This entire section is optional and we use best defaults to generate the configuration but you can override these parameter through preset section present in configuration like shown in following.
-if you feel generated GraphQL configuration is good enough then feel free to skip this section.
+This section is optional and can be used to generate a more optimized configuration by applying various transformers that improve the config generation process, such as automatically inferring meaningful names of the types, merging duplicate types, removing unused types, and more. If you find that the generated GraphQL configuration is sufficient for your needs, you can skip this section.
 
 The config generator provides a set of tuning parameters that can make the generated configurations more readable by reducing duplication and making configuration more readable. This can be configured using the `preset` section present in configuration.
 
@@ -460,7 +512,10 @@ The config generator provides a set of tuning parameters that can make the gener
 {
    "preset": {
     "mergeType": 0.8,
-    "consolidateURL": 0.8
+    "consolidateURL": 0.8,
+    "treeShake": true,
+    "unwrapSingleFieldTypes": true,
+    "inferTypeNames": true,
   }
 }
 ```
@@ -470,6 +525,9 @@ The config generator provides a set of tuning parameters that can make the gener
 preset:
   mergeType: 0.8
   consolidateURL: 0.8
+  treeShake: true
+  unwrapSingleFieldTypes: true
+  inferTypeNames: true
 ```
 </TabItem>
 </Tabs>
@@ -657,6 +715,8 @@ Let's understand how each of the parameter works.
   }
   ```
 
+  <hr />
+
 - #### unwrapSingleFieldTypes:
 
   This setting instructs Tailcall to flatten out types with single field.
@@ -688,6 +748,108 @@ Let's understand how each of the parameter works.
   ```
 
   This helps in flattening out types into single field.
+
+  <hr />
+
+- #### treeShake:
+
+  This setting removes unused types from the configuration. When enabled, any type that is defined in the configuration but not referenced anywhere else (e.g., as a field type, union member, or interface implementation) will be removed. This helps to keep the configuration clean and free from unnecessary definitions.
+
+  ```graphql showLineNumbers title="Before applying treeShake, the configuration might look like this."
+  type Query {
+    foo: Foo
+  }
+
+  type Foo {
+    bar: Bar
+  }
+
+  # Type not used anywhere else
+  type UnusedType {
+    baz: String
+  }
+
+  type Bar {
+    a: Int
+  }
+  ```
+
+  ```graphql showLineNumbers title="After enabling treeShake, the UnusedType will be removed."
+  type Query {
+    foo: Foo
+  }
+
+  type Foo {
+    bar: Bar
+  }
+
+  type Bar {
+    a: Int
+  }
+  ```
+
+  <hr />
+
+- #### inferTypeNames:
+
+  This setting enables the automatic inference of type names based on field names within the GraphQL schema. The inferTypeNames setting aims to enhance type naming consistency and readability by suggesting meaningful type names derived from the field names.
+
+  **Q. How It Works**
+
+  1. **Generates Type Names**: Creates type names from field names using pluralization and other heuristics.
+  2. **Updates Configuration**: Replaces existing type names with the inferred names and updates all references.
+
+  ```graphql title="Before enabling inferTypeNames setting"
+  type T1 {
+    id: ID
+    name: String
+    email: String
+    post: [T2]
+  }
+
+  type T2 {
+    id: ID
+    title: String
+    body: String
+  }
+
+  type Query {
+    users: [T1] @http(path: "/users")
+  }
+  ```
+
+  **How Type Names Are Inferred:**
+
+  - **User**: Derived from T1, since T1 is linked to user data through the users field in the Query type. The new name User clearly indicates the type represents user information.
+
+  - **Post**: Derived from T2, since T2 is linked to post data through the post field within User. The new name Post clearly indicates the type represents post information.
+
+  ```graphql title="After enabling inferTypeNames setting"
+  type User {
+    id: ID
+    name: String
+    email: String
+    post: [Post]
+  }
+
+  type Post {
+    id: ID
+    title: String
+    body: String
+  }
+
+  type Query {
+    user: User @http(path: "/users")
+  }
+  ```
+
+  By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, making it easier to understand and maintain.
+
+  **Additional Considerations:**
+
+  - **Priority Handling:** Types directly associated with root operations are given higher priority during inference. For example, if `T2` were associated with a root query or mutation type, it might have a higher priority for inference compared to other types.
+
+  - **Pluralization Rules:** The inferred type names are converted to singular form to align with typical GraphQL naming conventions. For instance, a type derived from a plural field name like `comments` would be singularized to `Comment`.
 
 ## Recommended Configuration Parameters
 

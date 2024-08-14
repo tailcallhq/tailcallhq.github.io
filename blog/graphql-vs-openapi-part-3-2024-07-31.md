@@ -13,8 +13,6 @@ authors:
     image_url: https://avatars.githubusercontent.com/u/68141773?v=4
 ---
 
-![OpenAPI vs GraphQL](../static/images/blog/openapi-vs-graphql-part3.png)
-
 Welcome to Part 3 of our API comparison series! So far, we've discussed the basics and compared the performance and flexibility of GraphQL and OpenAPI. In this installment, we will focus on exploring their security features, tooling support, and future prospects.
 
 <!-- truncate -->
