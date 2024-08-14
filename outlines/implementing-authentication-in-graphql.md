@@ -154,5 +154,4 @@ A. Summary of Key Points
 
 ## Resources
 
-
-B. GraphQL Official Documentation
+A. GraphQL Official Documentation
