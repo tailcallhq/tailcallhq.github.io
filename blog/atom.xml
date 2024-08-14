@@ -2,12 +2,99 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://tailcall.run/blog/</id>
     <title>Tailcall Blog</title>
-    <updated>2024-08-04T00:00:00.000Z</updated>
+    <updated>2024-08-13T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://tailcall.run/blog/"/>
     <subtitle>Tailcall Blog</subtitle>
     <icon>https://tailcall.run/images/favicon.ico</icon>
     <rights>Copyright © 2024 Tailcall, Inc.</rights>
+    <entry>
+        <title type="html"><![CDATA[API Strategy: Driving Innovation and Growth in Modern Business]]></title>
+        <id>https://tailcall.run/blog/api-strategy/</id>
+        <link href="https://tailcall.run/blog/api-strategy/"/>
+        <updated>2024-08-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how a well-defined API strategy can drive innovation, improve efficiency, and create new opportunities for growth in modern businesses.]]></summary>
+        <content type="html"><![CDATA[<p>As I reflect on the evolution of APIs, I am reminded of <strong>Jeff Bezos' famous 2002 mandate</strong> to his IT organization at Amazon.</p>
+<p>The CEO's directive to expose data and functionality through service interfaces, and to design these interfaces to be externalizable, was a game-changer.</p>
+<p><img decoding="async" loading="lazy" alt="Jeff Bezos&amp;#39; mandate" src="https://tailcall.run/assets/images/bezos_api_mandate-bce9e9b3f0a893a6dc975dc47c2cec33.png" width="2272" height="1172" class="img_ev3q"></p>
+<p>Fast-forward to today, and APIs have become the backbone of modern business, with even the smallest companies having hundreds of APIs.</p>
+<p>However, the landscape has shifted dramatically. Having good APIs is no longer enough; we need a strategy for APIs.
+Having good APIs is indeed a crucial starting point, but it's only the beginning. A well-designed API can provide a solid foundation for your business, but without a comprehensive strategy, you risk missing out on opportunities for growth, innovation, and efficiency.</p>
+<p>A strategy for APIs involves considering the entire API lifecycle, from design and development to deployment, management, and maintenance. It requires a deep understanding of your business goals, target audience, and the role APIs play in achieving those goals.</p>
+<p>In 2024, API strategy needs to be defined at the sub-API level, not just at the company level. This is where the rubber meets the road, and businesses must adapt to stay ahead of the curve.</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="what-is-an-api-strategy">What is an API Strategy?<a class="hash-link" aria-label="Direct link to What is an API Strategy?" title="Direct link to What is an API Strategy?" href="https://tailcall.run/blog/api-strategy/#what-is-an-api-strategy">​</a></h2>
+<p>An API strategy is an outline of the steps needed to design, develop, and manage APIs effectively. It's no longer just about having good APIs; it's about ensuring they are secure, scalable, and reliable. It's about making sure developers are more productive and machine utilization is more efficient. In essence, API strategy is about abstracting cross-cutting concerns from business logic.
+Abstracting cross-cutting concerns from business logic is a critical aspect of API strategy. Cross-cutting concerns refer to functionalities that are essential to the operation of your API but are not directly related to the business logic. Examples of cross-cutting concerns include:</p>
+<ul>
+<li><strong>Security</strong>: authentication, authorization, and encryption</li>
+<li><strong>Monitoring</strong>: logging, analytics, and error tracking</li>
+<li><strong>Scalability</strong>: rate limiting, caching, and load balancing</li>
+</ul>
+<p>By abstracting these concerns from business logic, you can decouple them from the core functionality of your API, making it easier to maintain, update, and scale your API without affecting the underlying business logic.</p>
+<p>For instance, if you're building an e-commerce API, you might abstract security concerns by implementing OAuth 2.0 authentication and authorization. This would allow you to focus on the business logic of processing orders, managing inventory, and handling payments, while ensuring that security is handled separately.</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="why-do-you-need-an-api-strategy">Why Do You Need an API Strategy?<a class="hash-link" aria-label="Direct link to Why Do You Need an API Strategy?" title="Direct link to Why Do You Need an API Strategy?" href="https://tailcall.run/blog/api-strategy/#why-do-you-need-an-api-strategy">​</a></h2>
+<p>The importance of an API strategy cannot be overstated. Without one, you risk exposing your business to security vulnerabilities, scalability issues, and reliability problems. A well-defined API strategy helps you address critical concerns such as:</p>
+<ul>
+<li>Cross-functional collaboration</li>
+<li>Rate limiting</li>
+<li>Circuit breaking</li>
+<li>Caching</li>
+<li>Routing</li>
+<li>Composition</li>
+<li>Access control</li>
+<li>Authentication</li>
+<li>Versioning</li>
+<li>Logging</li>
+<li>Monitoring</li>
+<li>Documentation</li>
+</ul>
+<p>Having a strategy in place ensures that you're not just documenting your APIs, but also managing them effectively, securing them, scaling them, monitoring them, and making sure they're reliable.</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="the-role-of-tools-in-api-strategy">The Role of Tools in API Strategy<a class="hash-link" aria-label="Direct link to The Role of Tools in API Strategy" title="Direct link to The Role of Tools in API Strategy" href="https://tailcall.run/blog/api-strategy/#the-role-of-tools-in-api-strategy">​</a></h2>
+<p>There are many tools available in the market to help with API strategy, such as API gateways and Swagger. An API gateway can help with rate limiting, caching, routing, access control, authentication, authorization, logging, and monitoring. Swagger can assist with documentation. However, are these tools enough? Are they capable of addressing all the challenges that come with API strategy? Let's discuss.</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="api-composition-a-critical-aspect-of-api-strategy">API Composition: A Critical Aspect of API Strategy<a class="hash-link" aria-label="Direct link to API Composition: A Critical Aspect of API Strategy" title="Direct link to API Composition: A Critical Aspect of API Strategy" href="https://tailcall.run/blog/api-strategy/#api-composition-a-critical-aspect-of-api-strategy">​</a></h3>
+<p>API composition is a critical aspect of API strategy. How do you compose your APIs? Do you use an API gateway or a different tool? How do you prevent the <a href="https://tailcall.run/docs/graphql-n-plus-one-problem-solved-tailcall/#what-is-the-n1-problem">N+1 problem</a> when composing APIs using an API gateway? How do you handle the failure of one of the APIs in the composition? How do you handle caching in the composition? These are just a few of the questions that need to be addressed in your API strategy.</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="access-control-a-key-consideration">Access Control: A Key Consideration<a class="hash-link" aria-label="Direct link to Access Control: A Key Consideration" title="Direct link to Access Control: A Key Consideration" href="https://tailcall.run/blog/api-strategy/#access-control-a-key-consideration">​</a></h3>
+<p>Access control is another key consideration in API strategy. Can you create an API and use it as both a public API and an admin API, restricting access to fields based on user role? The answer is no, not without a well-defined API strategy.</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="a-solution-to-api-strategy-challenges">A Solution to API Strategy Challenges<a class="hash-link" aria-label="Direct link to A Solution to API Strategy Challenges" title="Direct link to A Solution to API Strategy Challenges" href="https://tailcall.run/blog/api-strategy/#a-solution-to-api-strategy-challenges">​</a></h2>
+<p>For having a well-defined API strategy, you need a set of tools that can help you with the above points. Such a solution should have first-class support for:</p>
+<ul>
+<li><strong>API Composition:</strong> Easily compose APIs to create complex workflows and integrations.</li>
+<li><strong>Access Control:</strong> Implement fine-grained access control to restrict access to APIs and resources based on user roles and permissions.</li>
+<li><strong>Rate Limiting:</strong> Enforce rate limits to prevent abuse and ensure fair usage of your APIs.</li>
+<li><strong>Circuit Breaking:</strong> Detect and prevent cascading failures in your API ecosystem.</li>
+<li><strong>Caching:</strong> Improve performance and reduce latency with intelligent caching mechanisms.</li>
+<li><strong>Routing:</strong> Route API requests efficiently and securely to the right backend services.</li>
+<li><strong>Authentication and Authorization:</strong> Implement robust authentication and authorization mechanisms to ensure secure access to your APIs.</li>
+<li><strong>Versioning:</strong> Manage multiple versions of your APIs and ensure backward compatibility.</li>
+<li><strong>Logging and Monitoring:</strong> Gain visibility into API performance and behavior with real-time logging and monitoring.</li>
+<li><strong>Documentation:</strong> Generate accurate and up-to-date documentation for your APIs.</li>
+</ul>
+<p>A good solution should also:</p>
+<ul>
+<li><strong>Introspect and detect problems:</strong> Analyze your configurations to identify potential issues and provide recommendations for improvement.</li>
+<li><strong>Transfer type safety:</strong> Ensure that your API configurations are type-safe and consistent with your code.</li>
+<li><strong>Provide access control to the sub-API level:</strong> Restrict access to specific fields in the APIs based on user roles and permissions.</li>
+</ul>
+<p>By using such a solution, you can overcome the challenges of API strategy and create a robust, scalable, and secure API ecosystem that drives innovation and growth in your business.</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="conclusion">Conclusion<a class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" href="https://tailcall.run/blog/api-strategy/#conclusion">​</a></h2>
+<p>In conclusion, API strategy is no longer a nice-to-have; it's a must-have for businesses that want to stay ahead of the curve. By defining a clear API strategy, businesses can drive innovation, improve efficiency, and create new opportunities for growth. At Tailcall, we're committed to helping businesses achieve their API goals with our GraphQL solution.</p>
+<p><strong>Take the First Step Towards a Well-Defined API Strategy</strong></p>
+<p>If you're struggling to define your API strategy, take the first step today. Assess your current API landscape, identify areas for improvement, and start building a strategy that works for your business. Remember, A well-defined API strategy is essential for driving innovation and growth in modern business because it enables companies to:</p>
+<ul>
+<li><strong>Unlock New Revenue Streams</strong>: By providing APIs that offer value to external developers, businesses can create new revenue streams through API-based partnerships and monetization models.</li>
+<li><strong>Enhance Customer Experience</strong>: APIs can provide real-time data and services that enhance customer experience, leading to increased loyalty and retention.</li>
+<li><strong>Foster Innovation</strong>: APIs can enable innovation by providing access to new data, services, and capabilities, allowing businesses to create new products and services that drive growth.</li>
+<li><strong>Improve Operational Efficiency</strong>: A well-defined API strategy can help businesses streamline their operations, reduce costs, and improve efficiency, freeing up resources to focus on innovation and growth.</li>
+</ul>
+<p>By having a well-defined API strategy, businesses can create a solid foundation for innovation and growth, enabling them to stay ahead of the competition and achieve their goals.</p>
+<p><strong>Ready to Take Your API Strategy to the Next Level?</strong></p>
+<p>Contact us today to learn more about how Tailcall can help you overcome API strategy challenges and drive innovation and growth in your business.</p>
+<section class="flex flex-col justify-center px-4 py-4 max-w-3xl mx-auto"><div class="relative flex flex-col max-md:space-y-6 md:flex-row md:items-center p-8 bg-neutral-900 rounded-2xl overflow-hidden max-md:p-6"><svg xmlns="http://www.w3.org/2000/svg" width="740" height="190" fill="none" viewBox="0 0 740 190" class="absolute inset-0 w-full h-full object-cover opacity-5 z-0 max-w-none max-h-none"><g fill="#CECECF"><path d="M51.336 186.568q-12.906 0-21.071-7.902-7.902-8.165-7.902-21.598V83.32h-32.66V55.927h32.66V15.365H55.55v40.562h35.821V83.32h-35.82v67.954q0 7.9 7.374 7.901h25.286v27.393zM151.438 190.255q-13.96 0-25.022-4.741-11.062-5.004-17.647-14.223-6.321-9.481-6.321-22.915 0-13.432 6.321-22.388 6.585-9.218 17.911-13.696 11.589-4.74 26.339-4.741h35.82v-7.375q0-9.218-5.794-15.013-5.795-6.058-18.437-6.058-12.38 0-18.438 5.795-6.057 5.53-7.901 14.486l-30.553-10.272q3.16-10.008 10.008-18.174 7.112-8.428 18.701-13.433 11.852-5.267 28.709-5.267 25.812 0 40.826 12.906 15.013 12.905 15.013 37.401v48.727q0 7.9 7.375 7.901h10.535v27.393h-22.124q-9.746 0-16.067-4.741t-6.321-12.643v-.263h-5.005q-1.053 3.16-4.741 8.428-3.687 5.004-11.589 8.955t-21.598 3.951m5.795-26.865q13.96 0 22.651-7.639 8.955-7.9 8.955-20.807v-2.634h-33.45q-9.219 0-14.486 3.951t-5.268 11.062 5.531 11.589q5.53 4.478 16.067 4.478M252.612 186.568V55.928h33.187v130.64zm16.594-145.917q-8.955 0-15.277-5.795-6.057-5.794-6.058-15.277 0-9.48 6.058-15.276 6.322-5.795 15.277-5.795 9.219 0 15.276 5.795 6.058 5.794 6.058 15.277 0 9.48-6.058 15.276t-15.276 5.795M312.039 186.568V2.196h33.187v184.372zM432.836 190.255q-18.964 0-34.504-7.901-15.276-7.902-24.232-22.915t-8.955-36.348v-3.687q0-21.335 8.955-36.348t24.232-22.915q15.54-7.9 34.504-7.901 18.7 0 32.134 6.584 13.433 6.585 21.597 18.174 8.429 11.326 11.063 25.812l-32.134 6.848q-1.053-7.9-4.741-14.223-3.687-6.321-10.535-10.008-6.585-3.688-16.594-3.688-10.008 0-18.174 4.478-7.901 4.214-12.642 12.906-4.478 8.429-4.478 20.807v2.634q0 12.38 4.478 21.071 4.74 8.428 12.642 12.906 8.166 4.215 18.174 4.215 15.013 0 22.652-7.639 7.901-7.9 10.008-20.544l32.134 7.638q-3.425 13.96-11.853 25.549-8.164 11.327-21.597 17.91-13.434 6.585-32.134 6.585M555.822 190.255q-13.96 0-25.022-4.741-11.062-5.004-17.647-14.223-6.321-9.481-6.321-22.915 0-13.432 6.321-22.388 6.585-9.218 17.911-13.696 11.589-4.74 26.338-4.741h35.821v-7.375q0-9.218-5.794-15.013-5.795-6.058-18.437-6.058-12.38 0-18.438 5.795-6.057 5.53-7.901 14.486L512.1 89.114q3.16-10.008 10.008-18.174 7.112-8.428 18.701-13.433 11.853-5.267 28.709-5.267 25.812 0 40.826 12.906 15.013 12.905 15.013 37.401v48.727q0 7.9 7.375 7.901h10.535v27.393h-22.124q-9.746 0-16.067-4.741-6.322-4.741-6.322-12.643v-.263h-5.004q-1.053 3.16-4.741 8.428-3.687 5.004-11.589 8.955t-21.598 3.951m5.795-26.865q13.96 0 22.651-7.639 8.955-7.9 8.955-20.807v-2.634h-33.45q-9.22 0-14.486 3.951-5.268 3.95-5.268 11.062t5.531 11.589q5.53 4.478 16.067 4.478M656.996 186.568V2.196h33.187v184.372zM716.423 186.568V2.196h33.187v184.372z"></path></g></svg><div class="relative z-10 flex flex-col flex-1 space-y-2.5 text-center max-md:text-left md:text-left"><h2 class="text-3xl font-bold leading-tight text-white sm:text-4xl">Discover future of GraphQL</h2><p class="text-base leading-relaxed text-zinc-400 sm:text-lg">Try Tailcall today</p></div><div class="relative z-10 mt-6 max-md:w-full max-md:flex max-md:justify-center md:mt-0 md:ml-6 md:flex-shrink-0"><a class="group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-SPACE_03 hover:no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-SPACE_06 py-SPACE_03 sm:px-SPACE_08 lg:px-SPACE_10 sm:py-SPACE_04 lg:py-SPACE_05 w-fit bg-yellow-300 border border-solid text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500" href="https://tailcall.run/docs/"><span class="z-20"> <!-- -->Get Started</span></a></div></div></section>]]></content>
+        <author>
+            <name>Amit Singh</name>
+            <uri>https://github.com/amitksingh1490</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[How Tailcall statically identifies N+1 issues in GraphQL]]></title>
         <id>https://tailcall.run/blog/tailcall-n+1-identification-algorithm/</id>
@@ -2593,79 +2680,6 @@ When a gRPC client initiates a request to a gRPC server, it sends an HTTP/2 requ
 <p>While GraphQL Federation has the potential to solve some issues of traditional BFF architecture, it brings in its own set of challenges. Therefore, it's important to evaluate these considerations based on the specific requirements and constraints of your project before deciding to implement this architecture.</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="we-are-onto-something">We are onto something<a class="hash-link" aria-label="Direct link to We are onto something" title="Direct link to We are onto something" href="https://tailcall.run/blog/unraveling-the-challenges-of-bff-federation/#we-are-onto-something">​</a></h2>
 <p>When examining the underlying issue, the debate essentially revolves around microservices and monoliths. Undoubtedly, the federated solution offers better scalability compared to a monolithic architecture; however, it also introduces a myriad of distinct challenges related to maintenance and costs that warrant careful consideration. This is not the end of the discussion, as client requests pass through CDNs and the Gateway before reaching the router, and we have yet to explore those components of the infrastructure. In the following sections, we will delve into these components and further investigate how they interact, as well as delve deeper into GraphQL.</p>]]></content>
-        <author>
-            <name>Tushar Mathur</name>
-            <uri>https://github.com/tusharmath</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[No one talks about API Orchestration]]></title>
-        <id>https://tailcall.run/blog/no-one-talks-about-api-orchestration/</id>
-        <link href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/"/>
-        <updated>2023-06-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[A Forsaken Piece Of Every Microservice Architecture]]></summary>
-        <content type="html"><![CDATA[
-<p>Being in the industry for many years, building and consuming microservices, I have realized that there is one problem that no one really talks about when it comes to microservices ie. API Orchestration. As engineers, we love our microservices, small independent components that are responsible for doing just one thing. The promise that was sold when I was a kid was you can build these small independent services and compose them together to build an app, very fast and reliably. It took me years to realize that the necessary tooling for "composing" just doesn't exist! There are tools for distributed tracing, observability, caching, discovery, etc. But to compose services to build a product is completely offloaded to front-end engineers! There were two things that were happening in the tech ecosystem:</p>
-<ol>
-<li>
-<p><strong>Rich User Interfaces:</strong> Responsive websites that worked on desktop and mobile are dead. To build a successful B2C business, you need to build for all three platforms viz. Android, iOS, and Web (Desktop/PWA). The applications need to look slick, rich in information, and have snappy response times. Development on multiple platforms requires a nuanced understanding of the stack and a lot of duplication of code.</p>
-</li>
-<li>
-<p><strong>Microservice Proliferation:</strong> Companies these days bootstrap themselves on microservices instead of monoliths. This is because the tooling to build microservices has gotten a lot better, and reusable components are available either in open-source or as a SAAS solution. This allows developers to focus on their core business logic and move fast.</p>
-</li>
-</ol>
-<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="microservice">Microservice<a class="hash-link" aria-label="Direct link to Microservice" title="Direct link to Microservice" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#microservice">​</a></h2>
-<p>Microservices architecture is a design pattern in which a large application is built as a suite of modular services, each of which runs its process and communicates with other services through well-defined interfaces, typically using a lightweight messaging protocol. This approach has several benefits over a monolithic architecture, including improved scalability, resilience, and maintainability. In a microservices architecture, each service has a specific role and is independently deployable, so developers can work on different services in parallel and deploy them independently of each other. This can make the development process more agile and allow for faster deployment of new features.</p>
-<p><img decoding="async" loading="lazy" alt="Microservices Architecture" src="https://tailcall.run/assets/images/microservices-architecture-373858c0bdbfd396116ac4ffe4280f9d.png" width="3010" height="2260" class="img_ev3q"></p>
-<p>An API gateway is a server that acts as a single point of entry for certain types of requests. It can receive requests from the client, route them to the appropriate backend service, and then return the response from the backend service to the client. An API gateway can also perform tasks such as authentication, rate limiting, and caching. This makes it a useful component in a microservices architecture, where each service has its API and the API gateway acts as the "front door" for clients to access the services.</p>
-<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="api-composition">API Composition<a class="hash-link" aria-label="Direct link to API Composition" title="Direct link to API Composition" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#api-composition">​</a></h2>
-<p>API composition refers to the process of combining multiple APIs to create a new API or a new functionality. This can be done by sending requests to multiple APIs and combining the results, or by creating a new API that acts as a façade for the underlying APIs.</p>
-<blockquote>
-<p>💡 API Composition is also known as API Orchestration. This is however vastly different from Microservice Orchestration.</p>
-</blockquote>
-<p>For example, consider a scenario where a client application wants to display a user's profile information and recent posts on a social media platform. In this case, the client can send two separate requests to two different APIs: one to retrieve the user's profile information, and another to retrieve their recent posts. The client can then combine the results from these two APIs to create a single response that contains all the required information. This new response can be considered as the output of the composed API.</p>
-<p>To build a rich user interface, API composition is necessary on the client side. One of the main challenges with API composition on the client side is that it can lead to increased complexity in the client application. This is because the client needs to handle the process of sending requests to multiple APIs and combining the results, which can add to the overall size and complexity of the client code.</p>
-<p>Another challenge with API composition on the client side is that it can result in reduced performance and increased latency. This is because the client needs to make multiple separate requests to different APIs, which can take more time and result in a slower response from the composed API.</p>
-<p>In addition, API composition on the client side can also lead to increased security risks. This is because the client needs to handle sensitive information, such as API keys and authentication credentials, which can be vulnerable to attacks if not properly secured. The client doesn't have access to powerful CPUs or a reliable network either. This makes the composition problem even more challenging to implement and manage. It is therefore often more efficient and effective to perform API composition on the server side instead.</p>
-<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="backend-for-frontend">Backend For Frontend<a class="hash-link" aria-label="Direct link to Backend For Frontend" title="Direct link to Backend For Frontend" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#backend-for-frontend">​</a></h2>
-<p>A BFF layer can help to solve the challenges of API composition by providing a separate backend service that is optimized for each specific frontend client. This can enable the BFF to perform API composition on behalf of the client, which can help to improve the performance and reliability of the composed API. The BFF layer typically sits as a separate component in the overall architecture, between the frontend client and the microservices. It can communicate with both the frontend client and the microservices using well-defined interfaces and protocols, such as REST or gRPC.</p>
-<p>The BFF can take advantage of a powerful CPU and access to a fast network to improve the performance and reliability of the composed API. It can also provide added flexibility and control over the composition process. This can make it a useful tool for developers who want to create new APIs by combining the functionality of multiple underlying APIs.</p>
-<p><img decoding="async" loading="lazy" alt="BFF Architecture" src="https://tailcall.run/assets/images/bff-architecture-0959791cdd1670dccdb85324b4a9319f.png" width="3616" height="2224" class="img_ev3q"></p>
-<p>BFFs truly solve the problems mentioned above to a great extent, however they introduce new set of challenges viz.</p>
-<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="highly-specialized">Highly Specialized<a class="hash-link" aria-label="Direct link to Highly Specialized" title="Direct link to Highly Specialized" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#highly-specialized">​</a></h3>
-<p>One of the challenges with using a BFF layer is that it is a highly specialized solution that requires a significant amount of hand-written code. Unlike an API gateway, there is no standard BFF solution that can be deployed out-of-the-box, and each BFF implementation must be custom-tailored to the specific requirements of the frontend client. This lack of standardization and reusability can make the BFF solution more complex and difficult to maintain.</p>
-<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="fragile">Fragile<a class="hash-link" aria-label="Direct link to Fragile" title="Direct link to Fragile" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#fragile">​</a></h3>
-<p>Another challenge with using a BFF layer is that it can be fragile and susceptible to failure. The BFF solution is dependent on the developers to follow best practices and handle all error scenarios, and if these steps are not taken, the solution can be prone to bugs and performance issues. Additionally, the BFF solution must be thoroughly tested, including performance testing, unit testing, and integration testing, to ensure that it is reliable and performs well in production. This can require significant effort and expertise, and if these steps are not properly followed, the BFF solution can be fragile and prone to failure. Also, it's worth mentioning that a BFF layer is an entry point to all your backend, it going down basically means nothing is accessible for the user so this layer needs to be robust and resilient to exceptions.</p>
-<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="performance">Performance<a class="hash-link" aria-label="Direct link to Performance" title="Direct link to Performance" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#performance">​</a></h3>
-<p>Because BFF layers are typically custom-written for each use case, it can be difficult to predict the performance impact of a small code change. Issues such as unoptimized algorithms, inefficient caching, and unnecessary downstream requests can go unnoticed and only be discovered very late in the development cycle. Typically companies perform thorough benchmarking and load testing before anything goes live. This results in a very high time to market even for minor changes.</p>
-<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="monolith">Monolith<a class="hash-link" aria-label="Direct link to Monolith" title="Direct link to Monolith" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#monolith">​</a></h3>
-<p>Eventually, this layer turns out to be a big monolith touching every service in your backend. The layer contains a lot of handwritten spaghetti code that's hard to maintain. Onboarding new engineers also becomes harder and upgrading libraries or architecture gets costlier. Any tiny change requires a full-fledged deployment on your infrastructure.</p>
-<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="canary-support-or-lack-thereof">Canary Support (or lack thereof)<a class="hash-link" aria-label="Direct link to Canary Support (or lack thereof)" title="Direct link to Canary Support (or lack thereof)" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#canary-support-or-lack-thereof">​</a></h3>
-<p>Every change that happens in the backend requires the deployment of the BFF layer. In fact, any feature that is built on the client also requires changes on the BFF layer. Such frequent changes can not be exposed to 100% of users because the reliability and performance of this system are unknown. A common way to solve this problem is to use <a href="https://www.redhat.com/en/topics/devops/what-is-blue-green-deployment" target="_blank" rel="noopener noreferrer">blue-green</a> deployments. This requires additional infrastructure and complex routing mechanisms. First-class support to do canary releases is very important and should be part of a modern BFF layer, however, most companies rely on DevOps for its support.</p>
-<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="coupled-release">Coupled Release<a class="hash-link" aria-label="Direct link to Coupled Release" title="Direct link to Coupled Release" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#coupled-release">​</a></h3>
-<p>BFF layers can't be deployed independently since they act as a bridge between the clients and the services. Generally, the services need to go live first, and they need to make sure that the change is compatible with the current version of the BFF layer running in production. The interesting problem is in case there is a bug in the microservice and it needs to be reverted, even the BFF layer needs to be reverted. This kind of coupling makes it operationally very expensive to manage.</p>
-<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="organizational-friction">Organizational Friction<a class="hash-link" aria-label="Direct link to Organizational Friction" title="Direct link to Organizational Friction" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#organizational-friction">​</a></h3>
-<p>The Backends for Frontends (BFF) pattern is designed to create a tailor-made backend service for each user interface (e.g., desktop, mobile, etc.), with the aim of simplifying the client-side and improving the user experience.</p>
-<p>However, in practice, this architecture sometimes creates friction within the organization, particularly when BFFs are developed and maintained by the backend team. Here are a few reasons why:</p>
-<ol>
-<li>
-<p><strong>Communication and Responsiveness:</strong> As the backend team is typically in charge of the BFF, front-end teams often have to wait for them to make necessary changes. This slows down the development process, especially when backlogs are high or priorities differ.</p>
-</li>
-<li>
-<p><strong>Different Skillsets:</strong> Backend and frontend developers often specialize in different programming languages and paradigms. If the backend team is in charge of the BFF, they might not be as comfortable or efficient at dealing with issues that are more closely related to the frontend.</p>
-</li>
-<li>
-<p><strong>Lack of Ownership:</strong> Frontend teams often feel that they lack ownership and control over the part of the system that directly impacts their work. This leads to decreased motivation and productivity.</p>
-</li>
-</ol>
-<p>One potential solution to these issues is to shift the ownership of the BFFs to the front-end teams. Since these teams are the primary consumers of the BFFs, they could be better placed to design, implement, and maintain them. This would not only empower the front-end teams but also free up backend teams to focus on their core responsibilities.</p>
-<p>However, this solution is not without its own challenges. For one, front-end teams would need to upskill to handle their new responsibilities. Also, the organization would need to ensure that there are clear lines of communication between the front-end and backend teams, so that any changes to shared resources can be coordinated effectively.</p>
-<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="legacy-gateway">Legacy Gateway<a class="hash-link" aria-label="Direct link to Legacy Gateway" title="Direct link to Legacy Gateway" href="https://tailcall.run/blog/no-one-talks-about-api-orchestration/#legacy-gateway">​</a></h3>
-<p>BFF layers often end up implementing some of the cross-cutting concerns of an API gateway such as rate limiting, authentication, throttling, etc. This makes its purpose quite confusing in the sense that do we need an API gateway if we are using a BFF layer. Moreover, it's not very clear if we use an API gateway with a BFF layer, where should we place it? Should we place it between the clients and the BFF layer or the BFF layer and the service mesh? These are subjective decisions that each company ends up making as there is no standard way of doing this. However, it's worth mentioning that legacy gateways do introduce a gap that's being attempted to be filled by a BFF layer.</p>
-<blockquote>
-<p>BFF, Presentation Layer, Facade, Middleware, UI Layer, Orchestration Layer, API Adapter — Are all different nomenclatures used for the same thing.</p>
-</blockquote>
-<p>To summarize, BFFs do indeed address the issues of API orchestration to a significant extent; however, they also present a new set of challenges for organizations to tackle. Clearly, there is more to the story. In our <a href="https://blog.tailcall.run/unraveling-the-challenges-of-bff-federation" target="_blank" rel="noopener noreferrer">next blog post</a>, we will discuss some of the solutions that large organizations with unlimited budgets have implemented to overcome this problem. So, please subscribe if you haven't already.</p>]]></content>
         <author>
             <name>Tushar Mathur</name>
             <uri>https://github.com/tusharmath</uri>
