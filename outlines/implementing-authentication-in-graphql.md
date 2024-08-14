@@ -130,13 +130,11 @@ C. Rate Limiting
 
 A. Authentication Packages
 
-- Apollo server packages
-
-- GraphQL packages
+- Tailcall server package
 
 B. Monitoring and Observability
 
-- Tools used for tracing, logging, and performance monitoring
+- Using Tailcall for tracing, logging, and performance monitoring
 
 ## Best Practices
 
