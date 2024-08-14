@@ -48,6 +48,10 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
           "border-2 border-solid border-tailCall-light-100 text-tailCall-light-100 bg-transparent hover:text-tailCall-light-100",
         gridClasses: "hidden",
       },
+      [Theme.Tailcall]: {
+        classes: "bg-yellow-300 border border-solid text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
+        gridClasses: "",
+      },
     }
 
     return themes[theme] || {classes: "", styles: "", gridClasses: ""}
