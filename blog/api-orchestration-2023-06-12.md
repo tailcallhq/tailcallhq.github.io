@@ -13,8 +13,6 @@ slug: no-one-talks-about-api-orchestration
 canonical_url: https://tailcall.hashnode.dev/no-one-talks-about-api-orchestration
 ---
 
-![bff-architecture.png](../static/images/blog/bff-architecture.png)
-
 <!-- truncate -->
 
 <head>
