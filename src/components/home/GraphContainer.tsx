@@ -43,7 +43,7 @@ const GraphContainer = ({
   }, [])
 
   return (
-    <div className="border-2 border-solid border-tailCall-border-dark-300 benefits-drop-shadow hover:border-[#FDEA2E] h-[300px] lg:h-[400px] w-[95%] sm:w-[680px] rounded-3xl sm:rounded-[32px] flex flex-col relative overflow-hidden">
+    <div className="border-2 border-solid border-tailCall-border-dark-300 h-[300px] lg:h-[400px] w-[95%] sm:w-[680px] rounded-3xl sm:rounded-[32px] flex flex-col relative overflow-hidden">
       <div className="flex flex-col px-SPACE_06 py-SPACE_04 lg:px-SPACE_12 lg:py-SPACE_08 z-10">
         <span className="text-content-small sm:text-content-medium text-tailCall-light-100">{metricTitle}</span>
 

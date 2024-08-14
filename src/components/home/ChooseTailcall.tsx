@@ -12,7 +12,7 @@ const ChooseTailcall = (): JSX.Element => {
       <div className="flex flex-col lg:flex-row space-y-SPACE_06 items-center justify-between lg:space-x-SPACE_06 lg:space-y-0">
         {chooseTailcall.map((item) => (
           <div
-            className="border-2 border-solid border-tailCall-border-dark-300 w-full lg:min-h-[358px] lg:max-w-md rounded-3xl p-SPACE_04 flex flex-col items-start justify-between hover:border-[#FDEA2E] benefits-drop-shadow"
+            className="border-2 border-solid border-tailCall-border-dark-300 w-full lg:min-h-[358px] lg:max-w-md rounded-3xl p-SPACE_04 flex flex-col items-start justify-between"
             key={item.id}
           >
             <div className="h-16 w-16 sm:w-full sm:h-full">
