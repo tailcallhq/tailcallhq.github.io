@@ -608,7 +608,12 @@ span.token.tag.script.language-javascript {
 
 .customer-container {
   background: url("../../static/images/home/bg-map.png") no-repeat;
-  background-size: 100% 100% !important;
+}
+
+@media (min-width: 768px) {
+  .customer-container {
+    background-size: 100% 100% !important;
+  }
 }
 
 .customer-feedback-card {
