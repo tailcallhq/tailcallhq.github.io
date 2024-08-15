@@ -882,17 +882,33 @@ type Mutation {
 
 ### query
 
-Represents the API call's query parameters, either as a static object or with dynamic parameters using Mustache templates. These parameters append to the URL. Keep in mind that when `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query parameter, so remember to adjust the order of the items accordingly.
+Represents the API call's query parameters, either as a static object or with dynamic parameters using Mustache templates. These parameters append to the URL.
 
 ```graphql showLineNumbers
 type Query {
   userPosts(id: ID!): [Post]
     @http(
       path: "/posts"
-      query: [{key: "userId", value: "{{.args.id}}"}]
+      query: [
+        {
+          key: "userId"
+          value: "{{.args.id}}"
+          skipEmpty: false
+        }
+      ]
     )
 }
 ```
+
+The `query` field and be further configured using the following fields:
+
+1. **key** : Represents the name of the query parameter.
+2. **value** : A string literal or a mustache template representing the value of query parameter.
+3. **skipEmpty** : When set to `true` the query parameter is skipped if the value of the parameter is null, defaults to false.
+
+:::important
+When `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query key, so remember to adjust the order of the items accordingly.
+:::
 
 ### body
 
@@ -950,7 +966,11 @@ In this scenario, the `User-Name` header's value will dynamically adjust accordi
 
 ### batchKey
 
-Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](./N+1.md) for more details. When `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query parameter, so remember to adjust the order of the items accordingly.
+Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](./N+1.md) for more details.
+
+:::important
+When `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query key, so remember to adjust the order of the items accordingly. Whereas, the last item from `batchKey` is used to instruct which field is the ID of an object. In case that the returned result is a nested property `batchKey` can be used as a path to extract and group the items for the returned result.
+:::
 
 ```graphql showLineNumbers
 type Post {
@@ -959,13 +979,13 @@ type Post {
   user: User
     @http(
       path: "/users"
-      query: [{key: "id", value: "{{.value.userId}}"}]
-      batchKey: ["id"]
+      query: [{key: "user_id", value: "{{.value.userId}}"}]
+      batchKey: ["users", "id"]
     )
 }
 ```
 
-- `query: {key: "id", value: "{{.value.userId}}"}]`: Instructs TailCall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?id=1&id=2&id=3...id=10`, consolidating requests into one.
+- `query: {key: "user_id", value: "{{.value.userId}}"}]`: Instructs TailCall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?user_id=1&user_id=2&user_id=3...user_id=10`, consolidating requests into one.
 
 ### onRequest
 

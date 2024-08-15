@@ -12,8 +12,6 @@ hide_table_of_contents: true
 slug: graphql-schema
 ---
 
-![GraphQL Schema Structure](../static/images/graphql/graphql-schema-structure.png)
-
 Designing a robust, scalable GraphQL schema is critical for building production-ready APIs that can evolve with your application's needs. In this comprehensive guide, we'll walk through the process of crafting a GraphQL schema for a real-world application, highlighting best practices and considerations along the way.
 
 If you are thinking how we could possibly cover all of the lovely intricacies associated with this topic in one go, you are right, we can't and so we are not! We have created an amazing series to take you through the nuances of working with GraphQL schemas.

@@ -13,8 +13,6 @@ slug: exploring-graphiql
 tags: [GraphQL, GraphiQL, IDE, debugging]
 ---
 
-![Cover image for Exploring GraphiQL](../static/images/graphql/graphiql-cover.png)
-
 Meet GraphiQL, a true life-saver for testing, debugging and having fun with your graphQL server.
 
 <!-- truncate -->

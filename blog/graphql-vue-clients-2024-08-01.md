@@ -10,10 +10,8 @@ title: "GraphQL in Vue: 5 Best Approaches for Data Fetching"
 description: "Unleash the power of GraphQL in your Vue applications! Explore the top 5 methods for seamless data fetching, including in-depth comparisons and error handling strategies."
 sidebar_label: "GraphQL in Vue"
 slug: graphql-vue-client
-image: /image/blog/vue-with-graphql.png
+image: /images/blog/vue-with-graphql.png
 ---
-
-![Cover Image for Vue in GraphQL](../static/images/blog/vue-with-graphql.png)
 
 Are you tired of wrestling with complex data fetching logic in your Vue applications? If you've ever felt like you're battling an octopus to retrieve the data you need, then GraphQL is here to be your data fetching hero!
 

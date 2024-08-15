@@ -1,17 +1,17 @@
 import React from "react"
 import {benefits} from "@site/src/constants"
 import {ArrowRight} from "lucide-react"
+import Link from "@docusaurus/Link"
 
 const BenefitsCard = (): JSX.Element => {
   return (
     <div className="mt-16 md:mb-0 mb-10">
       <div className="md:flex md:flex-wrap justify-center gap-10 w-[100%]">
         {benefits.map((item) => (
-          <a
-            className="group border border-solid border-tailCall-border-dark-300 rounded-3xl md:w-[40%] lg:w-[45%] md:px-10 px-4 py-2 pt-4 lg:flex benefits-drop-shadow hover:border-[#FDEA2E] md:mb-0 mb-6 cursor-pointer hover:no-underline"
+          <Link
+            className="group border-2 border-solid border-tailCall-border-dark-300 rounded-3xl md:w-[40%] lg:w-[45%] md:px-10 px-4 py-2 pt-4 lg:flex benefits-drop-shadow hover:border-[#FDEA2E] md:mb-0 mb-6 cursor-pointer hover:no-underline flex flex-col lg:flex-row"
             key={item.id}
             href={item.redirection_url}
-            target="_blank"
           >
             <div className="mr-4 md:mt-4">
               <img
@@ -29,7 +29,7 @@ const BenefitsCard = (): JSX.Element => {
               </p>
               <p className="text-content-tiny sm:text-content-small text-tailCall-light-600">{item.description}</p>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </div>

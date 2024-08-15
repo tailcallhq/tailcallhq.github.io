@@ -11,7 +11,7 @@ const Discover = (): JSX.Element => {
   return (
     <section>
       <div className="bg-tailCall-yellow relative flex items-center justify-center h-[208px] sm:h-[452px]">
-        <BgTailcall className="sm:w-[90%] w-full absolute -bottom-36 sm:-bottom-10 lg:-bottom-SPA16" />
+        <BgTailcall />
 
         <div className="flex flex-col items-center absolute max-w-3xl space-y-SPACE_04 sm:space-y-SPACE_06">
           <Heading as="h5" className="text-title-semi-large sm:text-display-medium text-center mb-0">

@@ -10,7 +10,6 @@ slug: tailcall-n+1-identification-algorithm
 image: /images/blog/n+1-identification-cover.png
 ---
 
-![Cover image for N+1 Identification in GraphQL](../static/images/blog/n+1-identification-cover.png)
 As a developer working with GraphQL, you're likely familiar with the concept of N+1 issues. If not, you're in for a treat - check out our [N+1 guide!](/docs/graphql-n-plus-one-problem-solved-tailcall)
 
 <!-- truncate -->
