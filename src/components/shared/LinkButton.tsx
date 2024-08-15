@@ -58,7 +58,7 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
   }
 
   const renderBackgroundElements = (buttonTheme: Theme) => {
-    if (buttonTheme === Theme.Dark) {
+    if (buttonTheme === Theme.Dark || buttonTheme === Theme.Gray) {
       return (
         <>
           {/* Dark theme background */}
@@ -96,7 +96,7 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
       {renderBackgroundElements(theme)}
 
       {/* Render Icon if provided */}
-      {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white" />}
+      {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white z-[1]" />}
 
       {/* Render title if provided */}
       {title && <span className="z-20"> {title}</span>}

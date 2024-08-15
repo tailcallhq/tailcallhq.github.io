@@ -26,7 +26,7 @@ const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
         isCenterCard && "md:!relative md:-top-10"
       }`}
     >
-      {display === "Show" && department && (
+      {department && (
         <>
           <span className={`sm:text-content-medium lg:text-content-large !font-bold !text-title-large`}>
             {`Loved by `}
@@ -37,9 +37,11 @@ const CustomerFeedbackCard: React.FC<CustomerFeedbackCardProps> = ({
       <span className="text-content-small sm:text-content-medium">{`“${citation}”`}</span>
       <span className="flex flex-col">
         {display === "Show" && name && (
-          <span className="text-content-small sm:text-content-medium lg:text-content-large !font-bold">{name}</span>
+          <>
+            <span className="text-content-tiny sm:text-content-small">{designation}</span>
+            <span className="text-content-small sm:text-content-medium lg:text-content-large !font-bold">{name}</span>
+          </>
         )}
-        <span className="text-content-tiny sm:text-content-small">{designation}</span>
       </span>
     </div>
   )
