@@ -6,7 +6,7 @@ import Link from "@docusaurus/Link"
 const BenefitsCard = (): JSX.Element => {
   return (
     <div className="mt-16 md:mb-0 mb-10">
-      <div className="md:flex md:flex-wrap justify-center gap-10 w-[100%]">
+      <div className="md:flex md:flex-wrap justify-start gap-10 w-[100%]">
         {benefits.map((item) => (
           <Link
             className="group border-2 border-solid border-tailCall-border-dark-300 rounded-3xl md:w-[40%] lg:w-[45%] md:px-10 px-4 py-2 pt-4 lg:flex benefits-drop-shadow hover:border-[#FDEA2E] md:mb-0 mb-6 cursor-pointer hover:no-underline flex flex-col lg:flex-row"
