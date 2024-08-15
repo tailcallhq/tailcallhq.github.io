@@ -9,9 +9,9 @@ tags: [GraphQL, Schema, Security, Introspection]
 description: Learn how attackers exploit GraphQL introspection and the battle-tested strategies to keep your data safe.
 hide_table_of_contents: true
 slug: graphql-introspection-security
+image: /images/blog/introspection-issues.png
 ---
 
-![GraphQL Introspection Security Issues](../static/images/blog/introspection-issues.png)
 GraphQL has taken the API world by storm, offering developers a flexible and powerful way to interact with backend systems. But with great power comes great responsibility—especially when it comes to security.
 
 <!-- truncate -->

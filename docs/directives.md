@@ -884,19 +884,31 @@ type Mutation {
 
 Represents the API call's query parameters, either as a static object or with dynamic parameters using Mustache templates. These parameters append to the URL.
 
-:::important
-When `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query key, so remember to adjust the order of the items accordingly.
-:::
-
 ```graphql showLineNumbers
 type Query {
   userPosts(id: ID!): [Post]
     @http(
       path: "/posts"
-      query: [{key: "userId", value: "{{.args.id}}"}]
+      query: [
+        {
+          key: "userId"
+          value: "{{.args.id}}"
+          skipEmpty: false
+        }
+      ]
     )
 }
 ```
+
+The `query` field and be further configured using the following fields:
+
+1. **key** : Represents the name of the query parameter.
+2. **value** : A string literal or a mustache template representing the value of query parameter.
+3. **skipEmpty** : When set to `true` the query parameter is skipped if the value of the parameter is null, defaults to false.
+
+:::important
+When `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query key, so remember to adjust the order of the items accordingly.
+:::
 
 ### body
 
