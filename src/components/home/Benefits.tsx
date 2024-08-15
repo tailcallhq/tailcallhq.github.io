@@ -6,8 +6,8 @@ import BenefitsCard from "./BenefitsCard"
 
 const Benefits = (): JSX.Element => {
   return (
-    <section className="w-full pt-20 p-6 md:pb-20  lg:px-SPACE_16 bg-[#1C1D1F] grid-background">
-      <div className="sm:max-w-7xl mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto  py-SPACE_08 sm:py-SPACE_20">
+    <section className="w-full pt-20 p-6 md:pb-20 bg-[#1C1D1F] grid-background">
+      <div className="lg:px-SPACE_16 sm:max-w-7xl mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto  py-SPACE_08 sm:py-SPACE_20">
         <div>
           <SectionTitle title="Benefits" />
           <div className=" h-fit sm:flex-row sm:items-center sm:space-x-SPACE_10 lg:space-x-SPACE_20">
@@ -20,8 +20,8 @@ const Benefits = (): JSX.Element => {
           </div>
         </div>
         <BenefitsCard />
-        <Partners />
       </div>
+      <Partners />
     </section>
   )
 }
