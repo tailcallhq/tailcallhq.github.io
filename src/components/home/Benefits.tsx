@@ -10,7 +10,7 @@ const Benefits = (): JSX.Element => {
       <div className="sm:max-w-7xl mx-SPACE_04 sm:mx-SPACE_10 lg:mx-auto  py-SPACE_08 sm:py-SPACE_20">
         <div className="ml-10">
           <SectionTitle title="Benefits" />
-          <div className=" h-fit sm:flex-row sm:items-center sm:space-x-SPACE_10 lg:space-x-SPACE_20 ">
+          <div className=" h-fit sm:flex-row sm:items-center sm:space-x-SPACE_10 lg:space-x-SPACE_20">
             <Heading
               as="h3"
               className="text-title-large sm:text-display-tiny lg:text-display-small text-white md:w-[65%]"
