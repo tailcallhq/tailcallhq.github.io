@@ -223,6 +223,57 @@ export const chooseTailcall: ChooseTailcall[] = [
   },
 ]
 
+export const tailcallFeatures: TailcallFeatures[] = [
+  {
+    id: 1,
+    title: "Powerful Batching Primitive",
+    image: require("@site/static/images/choose-tailcall/rocket.png").default,
+    redirection_url: "/docs/graphql-n-plus-one-problem-solved-tailcall/#using-batch-apis",
+  },
+  {
+    id: 2,
+    title: "Extensions with plugins and JS support",
+    image: require("@site/static/images/choose-tailcall/grid.png").default,
+    redirection_url: "/docs/graphql-javascript-customization/",
+  },
+  {
+    id: 3,
+    title: "Field based Authentication & Authorisation",
+    image: require("@site/static/images/choose-tailcall/shield-tick.png").default,
+    redirection_url: "/docs/field-level-access-control-graphql-authentication/",
+  },
+  {
+    id: 4,
+    title: "Protocol agnostic",
+    image: require("@site/static/images/choose-tailcall/check-done.png").default,
+    redirection_url: "/docs/graphql-grpc-tailcall/",
+  },
+  {
+    id: 5,
+    title: "Performance",
+    image: require("@site/static/images/choose-tailcall/line-chart-up.png").default,
+    redirection_url: "https://github.com/tailcallhq/graphql-benchmarks",
+  },
+  {
+    id: 6,
+    title: "Security",
+    image: require("@site/static/images/choose-tailcall/lock.png").default,
+    redirection_url: "/docs/field-level-access-control-graphql-authentication/",
+  },
+  {
+    id: 7,
+    title: "Edge Compatible",
+    image: require("@site/static/images/choose-tailcall/puzzle-piece.png").default,
+    redirection_url: "/docs/deploy-graphql-github-actions/",
+  },
+  {
+    id: 8,
+    title: "Compile time checks",
+    image: require("@site/static/images/choose-tailcall/clock-stopwatch.png").default,
+    redirection_url: "/docs/tailcall-graphql-cli/#check",
+  },
+]
+
 export const benefits: Benefits[] = [
   {
     id: 1,
