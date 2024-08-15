@@ -7,11 +7,12 @@ import {analyticsHandler} from "@site/src/utils"
 import {Theme, codeSandboxUrl} from "@site/src/constants"
 import {pageLinks} from "@site/src/constants/routes"
 import Link from "@docusaurus/Link"
+import Container from "../shared/Container"
 
 const Banner = (): JSX.Element => {
   return (
     <main>
-      <div className="flex flex-col sm:items-center sm:text-center w-full mt-SPACE_06 px-SPACE_04 sm:mt-SPACE_20">
+      <Container className="flex flex-col sm:items-center sm:text-center w-full !pb-0">
         <div className="h-full 2xl:min-h-0">
           <Heading
             as="h1"
@@ -55,9 +56,8 @@ const Banner = (): JSX.Element => {
             />
           </div>
         </div>
-
-        <HeroImage className="object-contain h-full sm:h-full w-full mt-SPACE_10 max-w-7xl" />
-      </div>
+      </Container>
+      <HeroImage className="object-contain h-full sm:h-full w-full mt-SPACE_10 max-w-7xl" />
     </main>
   )
 }

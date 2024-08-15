@@ -10,7 +10,7 @@ const Partners = (): JSX.Element => {
   }
 
   return (
-    <section className="md:mt-SPACE_16 mt-space_08 cursor-pointer" onClick={handleClick}>
+    <section className="px-10 md:px-0 cursor-pointer" onClick={handleClick}>
       <div className="text-content-small font-bold sm:text-title-tiny lg:text-title-small text-tailCall-light-500 text-center space-x-1">
         <GreaterThanUnderscoreIcon className="h-4 w-6" />
         <span>Deploy Anywhere</span>
