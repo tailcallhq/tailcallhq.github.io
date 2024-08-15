@@ -9,11 +9,11 @@ const BenefitsCard = (): JSX.Element => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
         {benefits.map((item) => (
           <Link
-            className="group border-2 border-solid border-tailCall-border-dark-300 rounded-3xl p-6 flex items-start hover:border-[#FDEA2E] cursor-pointer hover:no-underline benefits-drop-shadow"
+            className="group border-2 border-solid border-tailCall-border-dark-300 rounded-3xl p-6 flex flex-col md:flex-row items-start hover:border-[#FDEA2E] cursor-pointer hover:no-underline benefits-drop-shadow"
             key={item.id}
             href={item.redirection_url}
           >
-            <div className="flex-shrink-0 mr-6">
+            <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
               <img src={item.image} alt="Image Describing Why Tailcall" className="w-16 h-16 object-contain" />
             </div>
             <div className="flex-grow">
