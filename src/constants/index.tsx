@@ -516,24 +516,24 @@ export enum Theme {
   Tailcall = "tailcall",
 }
 
-export const customerFeedbacks: CustomerFeedback[] = [
+export const testimonials: CustomerFeedback[] = [
   {
     id: 1,
-    citation: `I stopped writing orchestration code, and now I get low-latency GraphQL APIs quickly, which let me ship low-latency apps.`,
-    designation: `Sr. Frontend Engineer - Big Co. Inc.`,
+    citation: `Having a completely open-source GraphQL solution under my control is a dream. I can customize everything to fit our exact needs, with full transparency and flexibility. No more blocking on backend teams—I can iterate and build and deploy the frontend faster than ever before.`,
+    designation: `Sr. Frontend Engineer`,
     name: "John Doe",
     department: "Front-end",
   },
   {
     id: 2,
-    citation: `I save so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!`,
+    citation: `I love that I no longer have to wrangle with GraphQL for the frontend teams. It saves me a ton of time, reduces complexity, and lets me focus on what I do best—optimizing our microservices. The clear separation of concerns has made collaboration smoother, and now with Tailcall's static verification, I can expose APIs with even more confidence.`,
     designation: `Sr. Backend Engineer - Big Co. Inc.`,
     name: "John Doe",
     department: "Backend",
   },
   {
     id: 3,
-    citation: `I get the telemetry I need to monitor our GraphQL APIs  with a runtime that’s easy to scale, which doesn’t surprise me in production.`,
+    citation: `Switching to a battle-tested, open-source GraphQL solution has been a game-changer. It’s rock-solid, easy to manage, and scales effortlessly. I no longer worry about security gaps, and the faster iteration cycle means I can focus on bigger challenges. It's like having a superpower in my toolkit!`,
     designation: `Sr. Frontend Engineer - Big Co. Inc.`,
     name: "John Doe",
     department: "Ops",
