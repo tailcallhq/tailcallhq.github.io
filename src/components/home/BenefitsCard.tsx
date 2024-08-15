@@ -2,14 +2,20 @@ import React from "react"
 import {benefits} from "@site/src/constants"
 import {ArrowRight} from "lucide-react"
 import Link from "@docusaurus/Link"
+import clsx from "clsx"
 
 const BenefitsCard = (): JSX.Element => {
   return (
     <div className="mt-16 mb-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
-        {benefits.map((item) => (
+        {benefits.map((item, index) => (
           <Link
-            className="group border-2 border-solid border-tailCall-border-dark-300 rounded-3xl p-6 flex flex-col md:flex-row items-start hover:border-[#FDEA2E] cursor-pointer hover:no-underline benefits-drop-shadow"
+            className={clsx(
+              "group border-2 border-solid border-tailCall-border-dark-300 rounded-3xl p-6 flex flex-col md:flex-row items-start hover:border-[#FDEA2E] cursor-pointer hover:no-underline benefits-drop-shadow",
+              benefits.length % 2 !== 0 &&
+                index === benefits.length - 1 &&
+                "md:col-span-2 md:max-w-[calc(50%-20px)] md:mx-auto",
+            )}
             key={item.id}
             href={item.redirection_url}
           >
