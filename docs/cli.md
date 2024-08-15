@@ -215,13 +215,6 @@ preset:
 </TabItem>
 </Tabs>
 
-### Secret
-
-The `secret` section in the configuration allows you to provide an API key which is then used by AI, for enhancing GraphQL schema. This API key enables the AI to automatically add more meaningful type and argument names, making your GraphQL configurations more readable, intuitive, and easier to maintain.
-:::info
-Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, you can write secret as `{{.env.TAILCALL_SECRET}}`, where TAILCALL_SECRET is referenced from the running environment.
-:::
-
 ### Inputs
 
 The `inputs` section specifies the sources from which the GraphQL configuration should be generated. Each source can be either a REST endpoint or a protobuf file.
@@ -597,3 +590,11 @@ preset:
    ```
 
    By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, enhancing overall readability and understanding.
+
+### Secret
+
+The `secret` section in the configuration allows you to provide an API key which is then used by the AI agent, for enhancing GraphQL schema. Tailcall leverages the power of AI agents for improving the quality of configuration files by suggesting better names for types and fields etc.
+
+:::info
+Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, you can write secret as `{{.env.TAILCALL_SECRET}}`, where TAILCALL_SECRET is referenced from the running environment.
+:::
