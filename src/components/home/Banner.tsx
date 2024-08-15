@@ -11,7 +11,7 @@ import Container from "../shared/Container"
 
 const Banner = (): JSX.Element => {
   return (
-    <main>
+    <main className="grid justify-center">
       <Container className="flex flex-col sm:items-center sm:text-center w-full !pb-0">
         <div className="h-full 2xl:min-h-0">
           <Heading
@@ -57,7 +57,7 @@ const Banner = (): JSX.Element => {
           </div>
         </div>
       </Container>
-      <HeroImage className="object-contain h-full sm:h-full w-full mt-SPACE_10 max-w-7xl" />
+      <HeroImage className="object-contain h-full sm:h-full w-full mt-8 max-w-7xl" />
     </main>
   )
 }
