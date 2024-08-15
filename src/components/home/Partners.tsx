@@ -16,7 +16,7 @@ const Partners = (): JSX.Element => {
         <span>Deploy Anywhere</span>
       </div>
       <Marquee autoFill>
-        <div className="hidden sm:flex space-x-SPACE_16 mt-SPACE_10 overflow-hidden">
+        <div className="hidden sm:flex mt-SPACE_10 overflow-hidden">
           {partnerImages.map((partner, index) => (
             <div key={index} className="h-20">
               <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
