@@ -116,6 +116,7 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
 
 ```json
 {
+  "secret": "API_KEY",
   "inputs": [
     {
       "curl": {
@@ -174,6 +175,7 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
 <TabItem value="yml" label="YML">
 
 ```yaml
+secret: "API_KEY"
 inputs:
   - curl:
       src: "https://jsonplaceholder.typicode.com/posts/1"
@@ -588,3 +590,11 @@ preset:
    ```
 
    By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, enhancing overall readability and understanding.
+
+### Secret
+
+The `secret` section in the configuration allows you to provide an API key which is then used by the AI agent, for enhancing GraphQL schema. Tailcall leverages the power of AI agents for improving the quality of configuration files by suggesting better names for types and fields etc.
+
+:::info
+Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, you can write secret as `{{.env.TAILCALL_SECRET}}`, where TAILCALL_SECRET is referenced from the running environment.
+:::
