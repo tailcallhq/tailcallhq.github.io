@@ -15,7 +15,7 @@ const Partners = (): JSX.Element => {
         <GreaterThanUnderscoreIcon className="h-4 w-6" />
         <span>Deploy Anywhere</span>
       </div>
-      <Marquee autoFill>
+      <Marquee autoFill className="w-full">
         <div className="hidden sm:flex space-x-SPACE_16 mt-SPACE_10 overflow-hidden">
           {partnerImages.map((partner, index) => (
             <div key={index} className="h-20">
