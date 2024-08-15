@@ -1,3 +1,4 @@
+
 import React from "react"
 import Marquee from "react-fast-marquee"
 
@@ -15,15 +16,17 @@ const Partners = (): JSX.Element => {
         <GreaterThanUnderscoreIcon className="h-4 w-6" />
         <span>Deploy Anywhere</span>
       </div>
-      <Marquee autoFill>
-        <div className="hidden sm:flex space-x-SPACE_16 mt-SPACE_10 overflow-hidden">
-          {partnerImages.map((partner, index) => (
-            <div key={index} className="h-20">
-              <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
-            </div>
-          ))}
-        </div>
-      </Marquee>
+      <div className="overflow-hidden w-screen relative left-[50%] right-[50%] ml-[-50vw] mr-[-50vw]">
+        <Marquee autoFill>
+          <div className="hidden sm:flex space-x-SPACE_16 mt-SPACE_10 overflow-hidden">
+            {partnerImages.map((partner, index) => (
+              <div key={index} className="h-20">
+                <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
+              </div>
+            ))}
+          </div>
+        </Marquee>
+      </div>
       <div className="sm:hidden flex items-center justify-around flex-wrap mt-SPACE_06 space-y-SPACE_02">
         {partnerImages.map((partner, index) => (
           <div key={index} className="h-20">
