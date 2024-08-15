@@ -24,7 +24,7 @@ const Testimonials = () => {
   }
 
   return (
-    <Container className="customer-container !bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 !bg-contain md:!bg-center">
+    <Container className="customer-container !bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 !bg-contain md:!bg-center py-16 md:py-40">
       <div className="flex flex-row items-center justify-center">
         <Heading
           as="h5"
