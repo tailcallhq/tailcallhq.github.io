@@ -17,7 +17,7 @@ const BenefitsCard = (): JSX.Element => {
               <img
                 src={item.image}
                 alt="Image Describing Why Tailcall"
-                className="max-w-[72px] lg:w-[64px] sm:max-w-[110px]"
+                className="w-[64px] sm:w-[72px] md:w-[110px] lg:w-[64px]"
               />
             </div>
             <div className="mt-4 flex flex-col">
