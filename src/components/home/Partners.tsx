@@ -15,7 +15,7 @@ const Partners = (): JSX.Element => {
         <GreaterThanUnderscoreIcon className="h-4 w-6" />
         <span>Deploy Anywhere</span>
       </div>
-      <Marquee autoFill className="w-full">
+      <Marquee autoFill>
         <div className="hidden sm:flex space-x-SPACE_16 mt-SPACE_10 overflow-hidden">
           {partnerImages.map((partner, index) => (
             <div key={index} className="h-20">
@@ -24,7 +24,7 @@ const Partners = (): JSX.Element => {
           ))}
         </div>
       </Marquee>
-      <div className="sm:hidden flex items-center justify-around flex-wrap mt-SPACE_06 space-y-SPACE_02">
+      <div className="sm:hidden flex items-center justify-around flex-wrap mt-SPACE_06 space-y-SPACE_02 px-12">
         {partnerImages.map((partner, index) => (
           <div key={index} className="h-20">
             <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
