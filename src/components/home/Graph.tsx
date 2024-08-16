@@ -9,11 +9,11 @@ import RequestVisual from "@site/static/animations/request-visual.json"
 import LatencyVisual from "@site/static/animations/latency-visual.json"
 import {analyticsHandler} from "@site/src/utils"
 import {Theme, tailCallBenchmarkUrl} from "@site/src/constants"
-import Container from "../shared/Container"
+import Section from "../shared/Section"
 
 const Graph = (): JSX.Element => {
   return (
-    <Container className="bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 ">
+    <Section className="bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 ">
       <div className="flex items-center justify-between">
         <Heading
           as="h5"
@@ -64,7 +64,7 @@ const Graph = (): JSX.Element => {
       </div>
 
       <ChooseTailcall />
-    </Container>
+    </Section>
   )
 }
 

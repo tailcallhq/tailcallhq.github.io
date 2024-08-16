@@ -3,12 +3,12 @@ import Heading from "@theme/Heading"
 import SectionTitle from "../shared/SectionTitle"
 import Partners from "./Partners"
 import BenefitsCard from "./BenefitsCard"
-import Container from "../shared/Container"
+import Section from "../shared/Section"
 
 const Benefits = (): JSX.Element => {
   return (
     <div className="bg-[#1C1D1F] grid-background pb-20">
-      <Container className=" !pb-0">
+      <Section className=" !pb-0">
         <div>
           <SectionTitle title="Benefits" />
           <div className="h-fit sm:flex-row sm:items-center sm:space-x-SPACE_10 lg:space-x-SPACE_20">
@@ -21,7 +21,7 @@ const Benefits = (): JSX.Element => {
           </div>
         </div>
         <BenefitsCard />
-      </Container>
+      </Section>
       <Partners />
     </div>
   )

@@ -4,11 +4,11 @@ import CodeBlock from "@theme/CodeBlock"
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 import Link from "@docusaurus/Link"
-import Container from "../shared/Container"
+import Section from "../shared/Section"
 
 const Configuration = (): JSX.Element => {
   return (
-    <Container className="flex flex-col lg:flex-row justify-center gap-10">
+    <Section className="flex flex-col lg:flex-row justify-center gap-10">
       <div className="max-w-2xl">
         <Heading as="h2" className="text-title-large sm:text-display-tiny lg:text-display-small mb-SPACE_04">
           Get <span className="rounded-lg px-SPACE_02 bg-tailCall-yellow">Started</span>
@@ -33,7 +33,7 @@ const Configuration = (): JSX.Element => {
           {CodeTabItem({code: JSON_CONFIG, language: "json"})}
         </Tabs>
       </div>
-    </Container>
+    </Section>
   )
 }
 
