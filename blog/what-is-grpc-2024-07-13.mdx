@@ -1,0 +1,456 @@
+---
+title: "gRPC Decoded: The API Protocol That's Changing Everything"
+sidebar_label: "What is gRPC"
+description: "Demystify gRPC and its impact on modern software architecture. Explore how this powerful tool is reshaping the landscape of API communication."
+image: /images/docs/grpc_logo.png
+authors:
+  - name: Hunain Ahmed
+    title: A freelance software developer, always working on something new and fascinating.
+    url: https://github.com/hunxjunedo
+    image_url: https://avatars.githubusercontent.com/u/89797440?v=4
+hide_table_of_contents: true
+slug: what-is-grpc
+---
+
+gRPC is an open-source RPC (Remote Procedure Call) framework initially developed by Google. It enables efficient communication between services across different environments, utilizing a binary serialization format called Protocol Buffers (Protobuf) over HTTP/2.
+
+<!-- truncate -->
+
+gRPC plays a crucial role in modernizing software architectures by providing efficient, high-performance communication channels. Due to it's low-latency, it is used by many well-known software like Kubernetes, CockroachDB and Netflix etc.
+
+[An Example Snippet from Kubernetes](https://github.com/kubernetes/kubernetes/blob/0c8b3e5f305bf2bf56d47019199b81330d90c2c3/staging/src/k8s.io/kms/apis/v1beta1/api.proto#L29)
+
+_sample code for gRPC:_
+
+```protobuf
+
+syntax = "proto3";
+
+package greeting;
+
+service GreetingService {
+  rpc SayHello (HelloRequest) returns (HelloResponse);
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string message = 1;
+}
+
+```
+
+## The Evolution of API Communication
+
+![evolution](/images/docs/timeline.png)
+
+Request–response protocols date back to early distributed computing in the late 1960s. Theoretical proposals of remote procedure calls as the model of network operations date to the 1970s, with practical implementations emerging in the early 1980s. Traditional RPC mechanisms had limitations in terms of performance, language independence, and flexibility. gRPC addresses these issues by leveraging modern protocols and technologies.
+
+gRPC was initially created by Google, which used a single general-purpose RPC infrastructure called Stubby to connect its numerous microservices. In 2015, Google decided to build the next version of Stubby and make it open source.
+
+## Understanding gRPC
+
+gRPC is a high-performance, language-neutral RPC framework. It uses Protobuf for serialization and HTTP/2 for transport, offering features like streaming, multiplexing, and bidirectional communication. It uses HTTP/2 for transport, Protocol Buffers as the interface description language, and provides features such as authentication, bidirectional streaming and flow control, blocking or nonblocking bindings, and cancellation and timeouts.
+
+### Key components of gRPC
+
+- **Protocol Buffers (Protobuf):** A language-neutral, platform-neutral, extensible mechanism for serializing structured data. It is used to define the structure of messages (request and response payloads) that gRPC services exchange.
+
+- **HTTP/2:** Provides additional capabilities such as multiplexing, header compression, and server push, which are not as efficient and reliable in HTTP/1.1
+
+### How gRPC works (step-by-step process)
+
+![step by step process](/images/docs/steps.png)
+
+gRPC (Remote Procedure Call) works using a straightforward yet powerful mechanism that facilitates communication between clients and servers in a distributed system.
+
+### 1. Service Definition
+
+- **Protocol Buffers (Protobuf)**: The starting point for using gRPC is defining a service and its methods using Protocol Buffers (Protobuf). Protobuf is a language-neutral, platform-neutral, extensible mechanism for serializing structured data. The structure of data and services is defined in a `.proto` file.
+
+[An Example Snippet From Linkerd](https://github.com/linkerd/linkerd2/blob/ad0546b488fad76879e654ad91ceed1e9e53d630/proto/common/net.proto#L4)
+
+_Example of a simple `.proto` file :_
+
+```protobuf
+syntax = "proto3";
+
+package calculator;
+
+service CalculatorService {
+  rpc Add (AddRequest) returns (AddResponse);
+}
+
+message AddRequest {
+  double number1 = 1;
+  double number2 = 2;
+}
+
+message AddResponse {
+  double result = 1;
+}
+
+```
+
+### 2. Code Generation
+
+Once a service is defined in a .proto file, the Protocol Buffer compiler (protoc) is used to generate client and server code in your chosen programming languages. This step is crucial as it automates the creation of the boilerplate code needed for the gRPC service and client to communicate effectively. The generated code includes:
+
+- **Service Stubs:** These are classes with methods that correspond to the service methods defined in the .proto file. They handle the marshalling and unmarshalling of request and response messages, abstracting away the complexities of network communication.
+
+- **Client-Side Stubs:** These are used by the client application to make remote procedure calls to the server. The client stubs handle the creation and sending of requests, as well as receiving and processing responses.
+
+For Example if the calculator example is converted to python, it would look something like this:
+
+```python
+# -*- coding: utf-8 -*-
+# Generated by the protocol buffer compiler.  DO NOT EDIT!
+# source: calculator
+"""Generated protocol buffer code."""
+from google.protobuf import descriptor as _descriptor
+from google.protobuf import descriptor_pool as _descriptor_pool
+from google.protobuf import message as _message
+from google.protobuf import reflection as _reflection
+from google.protobuf import symbol_database as _symbol_database
+# @@protoc_insertion_point(imports)
+
+_sym_db = _symbol_database.Default()
+
+
+
+
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ncalculator\x12\ncalculator\".\n\nAddRequest\x12\x0f\n\x07number1\x18\x01 \x01(\x01\x12\x0f\n\x07number2\x18\x02 \x01(\x01\"\x1d\n\x0b\x41\x64\x64Response\x12\x0e\n\x06result\x18\x01 \x01(\x01\x32K\n\x11\x43\x61lculatorService\x12\x36\n\x03\x41\x64\x64\x12\x16.calculator.AddRequest\x1a\x17.calculator.AddResponseb\x06proto3')
+
+
+
+_ADDREQUEST = DESCRIPTOR.message_types_by_name['AddRequest']
+_ADDRESPONSE = DESCRIPTOR.message_types_by_name['AddResponse']
+AddRequest = _reflection.GeneratedProtocolMessageType('AddRequest', (_message.Message,), {
+'DESCRIPTOR' : _ADDREQUEST,
+'__module__' : 'calculator_pb2'
+# @@protoc_insertion_point(class_scope:calculator.AddRequest)
+})
+_sym_db.RegisterMessage(AddRequest)
+
+AddResponse = _reflection.GeneratedProtocolMessageType('AddResponse', (_message.Message,), {
+'DESCRIPTOR' : _ADDRESPONSE,
+'__module__' : 'calculator_pb2'
+# @@protoc_insertion_point(class_scope:calculator.AddResponse)
+})
+_sym_db.RegisterMessage(AddResponse)
+
+_CALCULATORSERVICE = DESCRIPTOR.services_by_name['CalculatorService']
+if _descriptor._USE_C_DESCRIPTORS == False:
+
+DESCRIPTOR._options = None
+_ADDREQUEST._serialized_start=26
+_ADDREQUEST._serialized_end=72
+_ADDRESPONSE._serialized_start=74
+_ADDRESPONSE._serialized_end=103
+_CALCULATORSERVICE._serialized_start=105
+_CALCULATORSERVICE._serialized_end=180
+# @@protoc_insertion_point(module_scope)
+
+```
+
+### 3. Client-Server Communication
+
+- **Transmission**:
+  When a gRPC client initiates a request to a gRPC server, it sends an HTTP/2 request containing the service name, specific method, and serialized parameters using Protobuf. HTTP/2's advantages include multiplexing, enabling concurrent handling of multiple streams over a single connection, binary framing that minimizes overhead and accelerates data exchange, efficient header compression via HPACK, and integrated flow control mechanisms.
+
+### 4. Serialization and Deserialization
+
+- **Protobuf Serialization**: Data exchanged between gRPC clients and servers is serialized and deserialized using Protobuf.
+
+## gRPC Service Methods
+
+![gRPC Methods](/images/docs/methods.png)
+
+- **Unary RPC**: This is the simplest form where the client sends a single request to the server and receives a single response:
+
+  ```protobuf
+  service MyService { rpc UnaryExample(MyRequest) returns (MyResponse); }
+  ```
+
+- **Server Streaming RPC**: The client sends a request to the server and receives a stream of responses:
+
+  ```protobuf
+  service MyService { rpc UnaryExample(MyRequest) returns (stream MyResponse); }
+  ```
+
+- **Client Streaming RPC**: The client sends a stream of requests to the server and receives a single response:
+
+  ```protobuf
+  service MyService { rpc UnaryExample(stream MyRequest) returns (MyResponse); }
+  ```
+
+- **Bidirectional Streaming RPC**: Both the client and server send a stream of messages to each other, establishing a persistent connection:
+  ```protobuf
+  service MyService { rpc UnaryExample(stream MyRequest) returns (stream MyResponse); }
+  ```
+
+## gRPC vs. REST: Basic Comparison
+
+![payload size comparison](/images/docs/size-compare.png)
+
+_A comparison of payload sizes: REST JSON vs gRPC binary [checkout full comparison ](https://nilsmagnus.github.io/post/proto-json-sizes/)_
+
+### Communication model
+
+- **gRPC:** RPC-based, strong typing, and allows unary and bi-directional streaming, making it feasible for modern-day applications and use-cases.
+- **REST:** Stateless, used for CRUD-based operations over HTTP, follows a simple unary request/response cycle.
+
+### Data format and serialization
+
+- **gRPC:** Uses Protobuf for efficient binary serialization.
+- **REST:** Uses a plain-text format like JSON and XML, which requires more processing in order to parse.
+
+### Use cases for each
+
+- **gRPC:** Suitable for internal microservices, real-time applications, and situations needing high-performance and time-sensitive communication.
+- **REST:** Better for public APIs, browser-based applications, and situations requiring stateless operations where ease of use is a priority.
+
+## Advantages of gRPC
+
+### Efficiency and performance
+
+![gRPC performance](/images/docs/grpc_performance.webp)
+
+Protobuf efficiently serializes messages on both the server and client sides, ensuring that data is transmitted in a compact binary format. This results in smaller message payloads, which are quicker to transmit over the network compared to the verbose JSON format used in REST APIs.
+
+In addition, HTTP/2 uses features like header-compression, multiplexing and server-push which significantly reduce the payload size, as well as make response faster.
+
+These features collectively contribute to significant performance gains, making gRPC [7-10 times](https://medium.com/@EmperorRXF/evaluating-performance-of-rest-vs-grpc-1b8bdf0b22da) faster than traditional REST APIs using JSON.
+
+### Language-agnostic nature
+
+![gRPC Language Agnostic](/images/docs/language_agnostic.png)
+
+gRPC uses Protocol Buffers (Protobuf) as its (IDL) for describing both the structure and the semantics of the messages sent between clients and servers. Protobuf is independent of programming languages, meaning you can define your API once using Protobuf and then generate code in various languages to interact with it. This allows seamless integration of sub-systems API specification, while also enhancing the DX.
+
+### Strong typing and code generation
+
+Protocol Buffers (Protobuf) defines both the structure and the types of messages exchanged between clients and servers within a .proto file, thereby establishing a clear and standardized API contract. This contract specifies the fields and their data types for each message, ensuring consistency and predictability in communication. By enforcing strong typing, Protobuf enhances code reliability by detecting type-related errors during compilation rather than at runtime. This approach not only prevents type mismatches and potential bugs but also saves developers time that would otherwise be spent implementing manual type-checking. Additionally, Protobuf's built-in type safety simplifies the development process, allowing developers to focus more on business logic and less on handling data integrity issues, thus improving the developer experience.
+
+### Bidirectional streaming capabilities
+
+Unlike traditional RPC methods that are unidirectional (either client-to-server or server-to-client), gRPC's bidirectional streaming allows both parties to establish a persistent connection and send a sequence of messages asynchronously.
+
+Bidirectional streaming is particularly beneficial for applications requiring interactive and responsive communication, such as chat systems, collaborative tools, multiplayer games, and real-time data feeds.
+
+### Extensibility and backward compatibility
+
+gRPC using Protobuf as the IDL opens support for extensibility by allowing new fields, messages, and services to be added to the `.proto` file definitions. As services evolve, these changes can be propagated through automated code generation using the `protoc` compiler, which produces language-specific stubs and serializers/deserializers.
+
+Moreover, explicit versioning and API contracts defined in the `.proto` files help manage compatibility between different versions of services. During the RPC connection handshake, gRPC allows clients and servers to negotiate capabilities, ensuring that both parties can communicate effectively even if they support different versions or extensions.
+
+**_Example:_**
+
+```protobuf
+syntax = "proto3";
+
+package greet.v1;
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply);
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
+
+```
+
+## Challenges and Considerations
+
+### Learning curve
+
+gRPC has a much steeper learning curve compared to the traditional REST, mainly due to some new concepts like HTTP/2 and Protobuf which require significant practice and experience.
+
+### Debugging complexity
+
+Debugging gRPC applications can be really challenging compared to traditional REST APIs. The binary nature of Protobuf messages makes it difficult to inspect and manipulate payloads directly. Tools for debugging and tracing gRPC calls are available, but they often require additional setup and expertise.
+
+### Ecosystem maturity
+
+While gRPC has gained significant traction and support, its ecosystem is still maturing compared to REST. Some languages and frameworks may have limited or incomplete support for gRPC features. Additionally, there is less developer support on the internet, less browser-support and very few articles published which makes it challenging to learn especially for beginners.
+
+### Browser support limitations
+
+Current browser limitations prevent direct implementation of the HTTP/2 gRPC specification. Browsers lack the necessary APIs to provide fine-grained control over requests. For instance:
+
+1. There's no way to enforce the use of HTTP/2.
+2. Even if HTTP/2 could be enforced, browsers can't access raw HTTP/2 frames.
+
+To address these limitations, the gRPC-Web specification was developed. It builds upon the HTTP/2 spec but introduces key differences:
+
+1. Support for both HTTP/1.1 and HTTP/2 protocols.
+2. A new method for handling gRPC trailers:
+   - Trailers are sent at the very end of request/response bodies.
+   - A new bit in the gRPC message header indicates the presence of trailers.
+3. Requirement of a proxy server:
+   - This proxy translates between gRPC-Web requests and standard gRPC HTTP/2 responses.
+   - It's a mandatory component in the gRPC-Web architecture.
+
+These adaptations allow gRPC-like functionality in web browsers while working within current browser constraints.
+
+gRPC is powerful for service to service communication, but it may not be the best choice for public APIs or browser-based applications where REST/GraphQL is more prevalent.
+
+:::tip
+To seamlessly integrate the benefits of both gRPC and GraphQL, you can easily generate GraphQL from gRPC using Tailcall. Check out the documentation here:
+
+- [gRPC to GraphQL](https://tailcall.run/docs/graphql-grpc-tailcall/) .
+- [Automated gRPC to GraphQL](https://tailcall.run/docs/graphql-configuration-generation-with-tailcall/#effortless-grpc-integration)
+  :::
+
+## Implementing gRPC: Best Practices
+
+### Designing Effective Protobuf Schemas
+
+Creating efficient and maintainable Protobuf schemas is crucial. Use meaningful field names and provide clear comments for each field, otherwise you may end up in a nested jargon of types! Versioning schemas properly ensures backward and forward compatibility makes it easier to evolve your API without breaking existing clients.
+
+### Error Handling and Status Codes
+
+Define and document all possible error codes your service can return. Consistent and informative error messages aid in debugging and provide a better experience for developers integrating with your API, if the API is not verbose about the error, the developer trying to integrate the API on the other side may get frustrated:
+
+:::info
+**_A bad API is like a traffic jam - frustrating, confusing, and costly._**
+[ - Joshua Bloch](https://www.twitter.com/joshbloch)
+:::
+
+### Security Considerations (Authentication, Encryption)
+
+Secure your gRPC services by implementing authentication and encryption. Use Transport Layer Security (TLS) to encrypt communication between clients and servers. Leverage gRPC's support for various authentication mechanisms, such as OAuth, JWT, or custom tokens, to ensure that only authorized clients can access your services.
+
+### Performance Optimization Techniques
+
+gRPC API performance can be boosted in many ways. The channels are expensive to make, and reusing them instead of remaking has a significant impact.
+
+**_Example:_**
+
+```javascript
+const grpc = require("grpc")
+
+// Singleton instance for the gRPC channel
+let channel = null
+
+function getGrpcChannel() {
+  if (!channel) {
+    // Create a new channel if it doesn't exist
+    channel = new grpc.Client("localhost:50051", grpc.credentials.createInsecure())
+  }
+  return channel
+}
+
+// Example usage:
+const myChannel = getGrpcChannel()
+// Use `myChannel` to make gRPC calls
+```
+
+Alongside with reusing channels, many other ways can improve performance like implementing [load-balancers](https://grpc.io/blog/grpc-load-balancing/) and using streaming instead of unary where needed.
+
+## gRPC Use Cases and Real-World Examples
+
+### Microservices Architecture
+
+gRPC is well-suited for microservices architectures, enabling efficient communication between services. Companies like Netflix and Google use gRPC to connect their microservices, benefiting from its performance and strong typing. It ensures reliable, low-latency communication, which is crucial for maintaining responsive and scalable microservices.
+
+### Real-Time Communication Systems
+
+![enter image description here](/images/docs/realtime.png)
+
+gRPC is ideal for real-time communication systems such as chat applications, online gaming, and live streaming services. Its support for bidirectional streaming allows for seamless and efficient data exchange between clients and servers, enabling real-time interactions and reducing latency.
+
+[A snippet from Open-Match, a gaming framework:](https://github.com/googleforgames/open-match/blob/d781be1a3ce1b6b7fce495345b23256089f55de9/api/backend.proto#L132)
+
+```protobuf
+
+  // Tickets in matches returned by FetchMatches are moved from active to
+  // pending, and will not be returned by query.
+  rpc FetchMatches(FetchMatchesRequest) returns (stream FetchMatchesResponse) {
+    option (google.api.http) = {
+      post: "/v1/backendservice/matches:fetch"
+      body: "*"
+    };
+  }
+
+```
+
+### IoT and Edge Computing
+
+In IoT and edge computing scenarios, gRPC's low overhead and efficient communication make it suitable for resource-constrained devices. It enables reliable communication between edge devices and central servers, facilitating data collection, processing, and command execution in real time.
+
+### Mobile and Web Applications
+
+gRPC is increasingly used in mobile and web applications to improve performance and reduce bandwidth usage. For example, companies like Lyft use gRPC to enhance the efficiency of their mobile apps, ensuring faster response times and a smoother user experience.
+
+## Tools and Frameworks for gRPC Development
+
+### Popular gRPC Libraries for Different Languages
+
+gRPC has libraries and tooling support for various programming languages:
+
+- [gRPC Core](https://github.com/grpc/grpc) - C, C++, Ruby, Node.js, Python, PHP, C#, Objective-C
+- [gRPC Java](https://github.com/grpc/grpc-java) - The Java gRPC implementation. HTTP/2 based RPC
+- [gRPC Node.js](https://github.com/grpc/grpc-node) - gRPC for Node.js
+- [gRPC Go](https://github.com/grpc/grpc-go) - The Go language implementation of gRPC. HTTP/2 based RPC
+- [gRPC C#](https://github.com/grpc/grpc-dotnet) - The C# language implementation of gRPC
+- [gRPC Web](https://github.com/grpc/grpc-web) - gRPC for Web Clients
+
+### Testing and Debugging Tools
+
+- [ghz](https://github.com/bojand/ghz)
+- [gatling-grpc](https://github.com/phiSgr/gatling-grpc)
+
+### API Management Platforms
+
+- [Postman](https://postman.com/)
+- [letmegrpc](https://github.com/gogo/letmegrpc)
+
+## Future of gRPC and API Communication
+
+### Emerging Trends in API Design
+
+The future of API design is moving towards more efficient and flexible communication protocols like gRPC. With the rise of microservices, IoT, and real-time applications, gRPC's performance advantages make it a compelling choice. Trends like GraphQL and RESTful JSON APIs will continue to coexist, but gRPC will gain traction for specific use cases requiring high efficiency and low latency.
+
+### gRPC's Role in Cloud-Native Applications
+
+gRPC is becoming a cornerstone of cloud-native applications, facilitating communication in containerized environments orchestrated by platforms like Kubernetes. Its ability to handle high-performance, low-latency communication is essential for the scalability and reliability of cloud-native architectures.
+
+### Potential Improvements and Extensions
+
+The gRPC ecosystem is continuously evolving, with potential improvements and extensions on the horizon. Enhancements in tooling, support for more languages, better integration with existing frameworks, and increased adoption of gRPC-Web are some areas of expected growth. The community's efforts to address current limitations will make gRPC more accessible and robust for a wider range of applications.
+
+## Conclusion
+
+#### Recap of gRPC's key features and benefits
+
+In summary, gRPC offers efficient, low-latency communication, strong typing through Protobuf, and support for multiple languages. Its bidirectional streaming and multiplexing capabilities make it ideal for real-time and microservices-based applications. The performance and reliability of gRPC provide significant advantages over traditional REST APIs in many scenarios, mainly because of the new HTTP/2 and its binary nature.
+
+#### Considerations for Adopting gRPC in Projects
+
+When considering gRPC for your projects, ensure that your team is prepared to handle the challenges and leverage the best practices discussed to design, implement, and maintain robust gRPC services. Make sure you have enough support resources and officials, as gRPC doesn't have a community as large as REST.
+
+### Further Resources
+
+#### Official documentation and tutorials
+
+- [gRPC Official Documentation](https://grpc.io/)
+
+#### Community forums and support
+
+- [gRPC Twitter handle](https://twitter.com/grpcio)
+- [gRPC StackOverflow tag](https://stackoverflow.com/questions/tagged/grpc)
+- [gRPC Gitter room](https://app.gitter.im/#/room/#grpc_grpc:gitter.im)
+- [gRPC Google Group](https://groups.google.com/g/grpc-io)
+
+#### Books for in-depth learning
+
+- [gRPC: Up and Running](https://www.oreilly.com/library/view/grpc-up-and/9781492058328/)
+- [gRPC Microservices in Go](https://www.manning.com/books/grpc-microservices-in-go)

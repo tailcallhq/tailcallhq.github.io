@@ -1,5 +1,5 @@
 type PartnerImage = {
-  id: number
+  // id: number
   name: string
   logo: string
 }
@@ -8,6 +8,7 @@ type Feature = {
   logo: string
   title: string
   content: React.JSX.Element
+  alt: string
 }
 
 type MoreFeatures = {
@@ -28,6 +29,21 @@ type ChooseTailcall = {
   title: string
   description: string
   image: string
+}
+
+type TailcallFeatures = {
+  id: number
+  title: string
+  image: string
+  redirection_url: string
+}
+
+type Benefits = {
+  id: number
+  title: string
+  description: string
+  image: string
+  redirection_url: string
 }
 
 type EnterpriseFeature = {
@@ -111,6 +127,14 @@ type SidebarItem = {
 type SidebarConfig = {
   sidebar: SidebarItem[]
   hiddenSidebarContainer: boolean
+}
+
+type CustomerFeedback = {
+  id: number
+  citation: string
+  designation: string
+  name?: string
+  department?: string
 }
 
 declare module "docusaurus-lunr-search/src/theme/SearchBar"

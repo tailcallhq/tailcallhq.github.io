@@ -47,7 +47,7 @@ schema @server(headers: {cacheControl: true}) {
 
 [cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 
-### Best Practices for Enhancing REST API Performance with Tailcall
+### Best Practices for Enhancing REST API Performance on GraphQL
 
 The combination of `httpCache` and `cacheControl` provides a comprehensive caching solution. While `httpCache` focuses on internal caching to reduce the impact of high latency and frequent requests, `cacheControl` manages client-side caching policies, ensuring an optimal balance between performance, data freshness, and efficient resource use.
 

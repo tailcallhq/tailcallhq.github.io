@@ -1,6 +1,6 @@
 ---
 title: Getting Started with GraphQL
-slug: /getting-started-with-graphql
+slug: /
 sidebar_position: 2
 description: "Discover how to efficiently get started with GraphQL using Tailcall, enhancing your data access capabilities through optimized execution strategies."
 sidebar_label: Getting Started
@@ -105,17 +105,30 @@ To install Tailcall with Docker, follow the steps below. Please note that curren
 
    <CodeBlock language="bash">
      {/* prettier-ignore-start  */}
-     docker run -d --name graphql-server -p 8000:8000 \ -v /path/to/your/configs:/etc/tailcall \ --entrypoint "/bin/sh" \
-     ghcr.io/tailcallhq/tailcall/tc-server:
+     docker run -d --name graphql-server -p 8000:8000 \ -v /path/to/your/configs:/etc/tailcall \ --entrypoint "/bin/sh"
+     \ ghcr.io/tailcallhq/tailcall/tc-server:
      <Version /> \ -c "export PATH=\$PATH:~/.tailcall/bin && tailcall start /etc/tailcall/config.graphql"
      {/* prettier-ignore-end  */}
    </CodeBlock>
 
-   This command launches the Tailcall server in a Docker container, exposing the GraphQL endpoint on port 8080.
+   This command launches the GraphQL server in a Docker container, exposing the GraphQL endpoint on port 8080.
 
-## Configuration
+## Initializing a GraphQL project
 
-## Writing a Tailcall Configuration
+Once you have installed the Tailcall binaries, you can simply use the [init](cli.md#init) command to initialize your GraphQL project.
+
+```bash
+tailcall init <directory>
+```
+
+The command will ask you a few questions and based on your input bootstrap a new GraphQL project with a few files:
+
+1. `.tailcallrc.schema.json`: Provides autocomplete in your editor when the configuration is written in `json` or `yml` format.
+2. `.graphqlrc.yml`: An IDE configuration that references your GraphQL configuration (if it's in `.graphql` format) and the following `.tailcallrc.graphql`.
+3. `.tailcallrc.graphql`: Contains Tailcall specific auto-completions for `.graphql` format.
+4. `main.graphql`: This is your root configuration that contains
+
+## Writing a GraphQL Configuration
 
 For our first example, we are going to compose a GraphQL schema from the REST APIs at <a href="https://jsonplaceholder.typicode.com" target="_blank">https://jsonplaceholder.typicode.com</a>, a free online REST API with some fake data.
 We will use the API at `/users` to get a list of users, and `/users/:id/posts` to get the posts for each user, and compose them into a single GraphQL schema.
@@ -126,52 +139,46 @@ Create one of the following files and paste the contents into it.
 
 <Tabs>
 <TabItem value="graphql" label="graphql">
+
 ```graphql showLineNumbers
 schema
-  # Specify server configuration: Start tailcall server at 0.0.0.0:8000
+  # Specify server configuration: Start GraphQL server at 0.0.0.0:8000
   @server(port: 8000)
+  # Specify a base url for all http requests
 
-# Specify a base url for all http requests
-
-@upstream(baseURL: "http://jsonplaceholder.typicode.com") {
-
-query: Query
+  @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+  query: Query
 }
 
 type Query {
-
-# Specify the http path for the users query
-
-users: [User] @http(path: "/users")
+  # Specify the http path for the users query
+  users: [User] @http(path: "/users")
 }
 
 # Create a user type with the fields returned by the users api
 
 type User {
-id: Int!
-name: String!
-username: String!
-email: String!
+  id: Int!
+  name: String!
+  username: String!
+  email: String!
 
-# Extend the user type with the posts field
-
-# Use the current user's id to construct the path
-
-posts: [Post] @http(path: "/users/{{.value.id}}/posts")
+  # Extend the user type with the posts field
+  # Use the current user's id to construct the path
+  posts: [Post] @http(path: "/users/{{.value.id}}/posts")
 }
 
 # Create a post type with the fields returned by the posts api
-
 type Post {
-id: Int!
-title: String!
-body: String!
+  id: Int!
+  title: String!
+  body: String!
 }
-
-````
+```
 
 </TabItem>
 <TabItem value="yml" label="yml">
+
 ```yml showLineNumbers
 server:
   port: 8000
@@ -226,10 +233,11 @@ types:
         required: true
       website:
         type: String
-````
+```
 
 </TabItem>
 <TabItem value="json" label="json">
+
 ```json showLineNumbers
 {
   "server": {
@@ -317,7 +325,7 @@ types:
 
 The above file is a standard `.graphQL` file, with some minor additions such as `@upstream` and `@http` directives. Basically we specify the GraphQL schema and how to resolve that GraphQL schema in the same file, without having to write any code!
 
-## Starting the Tailcall server
+## Starting the GraphQL server
 
 Now, run the following command to start the server with the full path to the file that you created earlier.
 
@@ -356,7 +364,7 @@ INFO 🌍 Playground: https://tailcall.run/playground/?u=http://127.0.0.1:8000/g
 
 The server starts with the schema provided and prints out a load of meta information. We will cover those in detail in a bit. For now, open the **playground URL** in a new tab in your browser and try it out for yourself!
 
-## Making GraphQL requests to the Tailcall server
+## Making GraphQL requests to the server
 
 1. Open a web browser and go to [https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql](https://tailcall.run/playground/?u=http://127.0.0.1:8000/graphql). This should load the GraphiQL interface.
 2. In the query editor of GraphiQL, enter the following query
@@ -408,4 +416,9 @@ The server starts with the schema provided and prints out a load of meta informa
    }
    ```
 
-You can now add more fields, and compose more queries together!
+## Deploying GraphQL on Production
+
+Now that you have a running GraphQL server, you can follow our [Github Actions Guide](./gh-action.md) to deploy the application on one of the following cloud providers.
+
+- [AWS Lambda](./tailcall-on-aws.md)
+- [Fly.io](./tailcall-on-fly.md)

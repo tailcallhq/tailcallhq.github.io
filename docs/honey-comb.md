@@ -2,13 +2,13 @@
 title: Honeycomb Telemetry Integration
 description: "Enhance your application's performance with our guide on enabling and analyzing telemetry data in Tailcall. Learn how to configure observability support using OpenTelemetry for comprehensive insights into logs, metrics, and traces. This guide includes practical integration examples for platforms such as Honeycomb.io, New Relic, and Datadog."
 slug: graphql-honeycomb-telemetry-tailcall
-sidebar_label: Honeycomb Integration
+sidebar_label: Honeycomb
 ---
 
 1. Go to [honeycomb.io](https://www.honeycomb.io)
 2. Login to your account
 3. Go to `Account -> Team Settings -> Environments and API Keys -> Configuration` and create new or copy existing api key
-4. Go to tailcall config and update settings:
+4. Go to your GraphQL configuration and update settings:
    ```graphql
    schema
      @telemetry(
@@ -37,7 +37,7 @@ Now make some requests to running service and wait a little bit until honeycomb 
 
 ![trace view](../static/images/telemetry/honeycomb-trace.png)
 
-Here you can see data about the request that was made to tailcall and what actions were made to handle this request.
+Here you can see data about the request that was made to the GraphQL server and what actions were made to handle this request.
 
 To see metrics now go `Query` and run a query to fetch the data about metrics. You can use following screenshot as an example:
 

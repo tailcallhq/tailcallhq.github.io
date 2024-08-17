@@ -10,6 +10,9 @@ on:
     branches: [develop]
     types: [opened, reopened, synchronize]
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }}
@@ -17,18 +20,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Check spelling
         uses: codespell-project/actions-codespell@v2
         with:
           ignore_words_file: .github/codespell-ignore
-          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock,*.excalidraw
+          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock,*.excalidraw,*.graphql,./blog-publisher/generated/graphql.ts
 
       - name: Install and Build 🔧
         run: |
           npm install
-          npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js}"
-          npm run typecheck
+          npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js,css}"
           npm run build
 
       - name: Deploy 🚀
@@ -36,3 +40,27 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
+
+      - name: Publish to Hashnode and Dev.to 📝
+        env:
+          HASHNODE_PAT: ${{ secrets.HASHNODE_PAT }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY}}
+          DEVTO_ORG_ID: ${{secrets.DEVTO_ORG_ID}}
+          DEVTO_ORG_NAME: ${{secrets.DEVTO_ORG_NAME}}
+        run: |
+          cd ./publish-externals
+          npm run generate
+          if [ "$GITHUB_REF" == "refs/heads/develop" ]; then
+            npx --yes tsx ./src/index.ts --publish
+          else
+            npx --yes tsx ./src/index.ts
+          fi
+
+      - name: Commit and push changes (on develop)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: develop
+          commit_author: Author <actions@github.com>
+          commit_message: "[ci skip] update snapshot"

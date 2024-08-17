@@ -1,9 +1,10 @@
 export const pageLinks = {
   home: "/",
-  docs: "/docs/getting-started-with-graphql",
-  introduction: "/docs/",
+  docs: "/docs",
+  introduction: "/graphql/",
   pricing: "/pricing",
   // about: "/about",
   contact: "/contact",
+  contributors: "/docs/contribution-guidelines",
   // enterprise: "/enterprise",
 }

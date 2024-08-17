@@ -1,10 +1,20 @@
 ---
-title: GraphQL on gRPC
-description: "Discover how to integrate gRPC services with Tailcall's GraphQL gateway in this comprehensive guide. Learn about the benefits of using gRPC, a high-performance framework by Google, for efficient data transfer in microservices and distributed systems. Understand how to set up simple gRPC services, define protobuf files, and implement a gRPC server. Explore how to configure Tailcall to seamlessly connect GraphQL types to gRPC types, enabling advanced features like batching and reflection for dynamic service discovery. Perfect for developers with a basic understanding of gRPC, this guide will help you enhance your system's capability to handle high-performance data operations with simplicity and scalability."
+title: "Step-by-Step Tutorial: Building GraphQL over gRPC"
+sidebar_label: "GraphQL on gRPC"
+description: "Learn how gRPC and GraphQL boost microservices. Discover their benefits and how they work together for better APIs."
 slug: graphql-grpc-tailcall
+image: /images/docs/graphql_on_grpc.png
 ---
 
-In this guide, we will set up a simple gRPC service and use it inside Tailcall's config to fetch some of the data provided by the service. This way Tailcall can provide a single GraphQL interface wrapping any number of gRPC services.
+<head>
+  <meta property="og:type" content="article"/>
+  <title>How to build GraphQL over gRPC APIs</title>
+</head>
+
+![GraphQL on gRPC](../static/images/docs/graphql_on_grpc.png)
+_Architecture Diagram Showcasing GraphQL as an API Orchestrator for gRPC APIs_
+
+In this guide, we will set up a simple gRPC service and use it inside Tailcall's GraphQL config to fetch some of the data provided by the service. This way Tailcall can provide a single GraphQL schema wrapping any number of gRPC services. Which client side can use to fetch data from multiple services in a single request.
 
 ## What is gRPC?
 
@@ -78,7 +88,7 @@ npm i
 npm start
 ```
 
-## Tailcall config
+## GraphQL Configuration for GRPC
 
 Now when we have a running gRPC service we're going to write Tailcall's config to make the integration. To do this we need to specify GraphQL types corresponding to gRPC types we have defined in the protobuf file. Let's create a new file `grpc.graphql` file with the following content:
 
@@ -250,7 +260,7 @@ type Query {
 }
 ```
 
-Restart the Tailcall server and make the query with multiple news separately, e.g.:
+Restart the GraphQL server and make the query with multiple news separately, e.g.:
 
 ```graphql
 {
@@ -273,7 +283,7 @@ Those 2 requests will be executed inside a single request to the gRPC method `Ge
 
 gRPC reflection is a potent feature enabling clients to dynamically discover services and their methods at runtime. Tailcall enhances this capability by obviating the need for developers to link each proto file individually. This feature proves particularly valuable in environments where proto files are continuously evolving or when services dynamically expose varying methods. Here are the steps to follow:
 
-1. Add the gRPC endpoint as a [link] with type set to `Grpc`. This enables the Tailcall server to understand that the specified source is a gRPC endpoint that supports reflection.
+1. Add the gRPC endpoint as a [link] with type set to `Grpc`. This enables the GraphQL server to understand that the specified source is a gRPC endpoint that supports reflection.
 
    ```graphql
    schema
@@ -300,6 +310,11 @@ gRPC reflection is a potent feature enabling clients to dynamically discover ser
      postImage: String
    }
    ```
+
+### Can I Automatically Generate GraphQL Schema from `.proto`?
+
+Of course, you can! Tailcall CLI provides a command called `tailcall gen` that can generate a GraphQL config from a proto file. This command can help you to quickly generate a GraphQL config from a `proto`file. You can find more information about
+[Tailcall Config auto generation](/docs/graphql-configuration-generation-with-tailcall/#effortless-grpc-integration).
 
 ## Conclusion
 

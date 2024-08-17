@@ -2,7 +2,7 @@
 title: New Relic Telemetry Integration
 description: "Discover how to enhance application performance with our guide on enabling and analyzing telemetry data in Tailcall. Learn to configure observability support using OpenTelemetry for insights into logs, metrics, and traces, with practical integration examples for platforms like Honeycomb.io, New Relic, and Datadog."
 slug: graphql-newrelic-guide-telemetry
-sidebar_label: New Relic Telemetry
+sidebar_label: New Relic
 ---
 
 The guide is based on [official doc](https://docs.newrelic.com/docs/more-integrations/open-source-telemetry-integrations/opentelemetry/get-started/opentelemetry-set-up-your-app/)
@@ -10,7 +10,7 @@ The guide is based on [official doc](https://docs.newrelic.com/docs/more-integra
 1. Go to [newrelic.com](https://newrelic.com)
 2. Login to your account
 3. Go to `<your user name> -> Api Keys` and copy license value for key with access to write data
-4. Go to tailcall config and update it with:
+4. Go to GraphQL configuration and update it with:
    ```graphql
    schema
      @telemetry(

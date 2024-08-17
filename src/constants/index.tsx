@@ -8,37 +8,30 @@ export const zapierLink = "https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/
 
 export const partnerImages: PartnerImage[] = [
   {
-    id: 1,
     name: "Digital Ocean",
     logo: require("@site/static/icons/companies/digital-ocean.png").default,
   },
   {
-    id: 2,
     name: "Vercel",
     logo: require("@site/static/icons/companies/vercel.png").default,
   },
   {
-    id: 3,
     name: "Fastly",
     logo: require("@site/static/icons/companies/fastly.png").default,
   },
   {
-    id: 4,
     name: "Cloud Flare",
     logo: require("@site/static/icons/companies/cloudflare.png").default,
   },
   {
-    id: 5,
     name: "AWS",
     logo: require("@site/static/icons/companies/aws.png").default,
   },
   {
-    id: 6,
     name: "Google Cloud",
     logo: require("@site/static/icons/companies/google-cloud.png").default,
   },
   {
-    id: 7,
     name: "Fly",
     logo: require("@site/static/icons/companies/fly-io.png").default,
   },
@@ -63,6 +56,7 @@ export const features: Feature[] = [
         transformations or build a completely new set of aggregation APIs.
       </>
     ),
+    alt: "Orchestration",
   },
   {
     logo: require("@site/static/images/home/governance.png").default,
@@ -74,6 +68,7 @@ export const features: Feature[] = [
         true <Highlight text="declarative approach" /> to managing APIs.
       </>
     ),
+    alt: "Governance",
   },
   {
     logo: require("@site/static/images/home/efficiency.png").default,
@@ -85,6 +80,7 @@ export const features: Feature[] = [
         opens up opportunities to use in ultra-low latency workloads.
       </>
     ),
+    alt: "Efficiency",
   },
   // {
   //   logo: require("@site/static/images/home/resiliency.png").default,
@@ -111,6 +107,7 @@ export const features: Feature[] = [
         subsequent actions Tailcall should execute.
       </>
     ),
+    alt: "Extendability",
   },
 ]
 
@@ -160,11 +157,11 @@ export const moreFeatures: MoreFeatures[] = [
     logo: require("@site/static/icons/basic/adaptive.svg").default,
     title: "Adaptive performance improvements",
   },
-  {
-    id: 10,
-    logo: require("@site/static/icons/basic/rate-limit.svg").default,
-    title: "Global rate limiting",
-  },
+  // {
+  //   id: 10,
+  //   logo: require("@site/static/icons/basic/rate-limit.svg").default,
+  //   title: "Global rate limiting",
+  // },
   {
     id: 11,
     logo: require("@site/static/icons/basic/insight.svg").default,
@@ -226,6 +223,116 @@ export const chooseTailcall: ChooseTailcall[] = [
   },
 ]
 
+export const tailcallFeatures: TailcallFeatures[] = [
+  {
+    id: 1,
+    title: "Powerful Batching Primitive",
+    image: require("@site/static/images/choose-tailcall/rocket.png").default,
+    redirection_url: "/docs/graphql-n-plus-one-problem-solved-tailcall/#using-batch-apis",
+  },
+  {
+    id: 2,
+    title: "Extensions with plugins and JS support",
+    image: require("@site/static/images/choose-tailcall/grid.png").default,
+    redirection_url: "/docs/graphql-javascript-customization/",
+  },
+  {
+    id: 3,
+    title: "Field based Authentication & Authorisation",
+    image: require("@site/static/images/choose-tailcall/shield-tick.png").default,
+    redirection_url: "/docs/field-level-access-control-graphql-authentication/",
+  },
+  {
+    id: 4,
+    title: "Protocol agnostic",
+    image: require("@site/static/images/choose-tailcall/check-done.png").default,
+    redirection_url: "/docs/graphql-grpc-tailcall/",
+  },
+  {
+    id: 5,
+    title: "Performance",
+    image: require("@site/static/images/choose-tailcall/line-chart-up.png").default,
+    redirection_url: "https://github.com/tailcallhq/graphql-benchmarks",
+  },
+  {
+    id: 6,
+    title: "Security",
+    image: require("@site/static/images/choose-tailcall/lock.png").default,
+    redirection_url: "/docs/field-level-access-control-graphql-authentication/",
+  },
+  {
+    id: 7,
+    title: "Edge Compatible",
+    image: require("@site/static/images/choose-tailcall/puzzle-piece.png").default,
+    redirection_url: "/docs/deploy-graphql-github-actions/",
+  },
+  {
+    id: 8,
+    title: "Compile time checks",
+    image: require("@site/static/images/choose-tailcall/clock-stopwatch.png").default,
+    redirection_url: "/docs/tailcall-graphql-cli/#check",
+  },
+]
+
+export const benefits: Benefits[] = [
+  {
+    id: 1,
+    title: "Secure",
+    description:
+      "Tailcaill has been validated against a comprehensive database of GraphQL vulnerabilities. Rest easy knowing your GraphQL backends are secure.",
+    image: require("@site/static/images/home/secure-icon.png").default,
+    redirection_url: "/docs/field-level-access-control-graphql-authentication/",
+  },
+  {
+    id: 2,
+    title: "High-Performance",
+    description:
+      "Tailcall performs ahead-of-time optimizations based on analysis of the schema and data dependencies. Deploy GraphQL without compromises.",
+    image: require("@site/static/images/home/performance.png").default,
+    redirection_url: "https://github.com/tailcallhq/graphql-benchmarks",
+  },
+  {
+    id: 3,
+    title: "Statically Verified",
+    description:
+      "Tailcall statically verifies that GraphQL schemas match resolvers and warns about N + 1 issues. Deploy new APIs with confidence.",
+    image: require("@site/static/images/home/statically-verified-icon.png").default,
+    redirection_url: "/docs/graphql-n-plus-one-problem-solved-tailcall/",
+  },
+  {
+    id: 4,
+    title: "Simple",
+    description:
+      "Tailcall configuration generator can integrate thousands of APIs in a matter of minutes. Configure with ease and deploy with confidence.",
+    image: require("@site/static/images/home/simple-icon.png").default,
+    redirection_url: "/docs/tailcall-dsl-graphql-custom-directives/",
+  },
+  {
+    id: 5,
+    title: "Customizable",
+    description:
+      "Write custom Javascript to customize any aspect of your GraphQL backend. Leverage this escape hatch to satisfy any requirement.",
+    image: require("@site/static/images/home/customizable-icon.png").default,
+    redirection_url: "/docs/graphql-javascript-customization/",
+  },
+  {
+    id: 6,
+    title: "Plug & Play",
+    description:
+      "Engineered to stay out of your way, shipping as a single executable with no dependencies or requirements. Get started quickly and easily.",
+    image: require("@site/static/images/home/plug-play-icon.png").default,
+    redirection_url: "/docs/",
+  },
+  {
+    id: 7,
+    title: "Open Source",
+    description:
+      "Tailcall is developed and released under the Apache 2 open source license, the gold standard for OSS. Embrace a vendor-neutral solution.",
+    image: require("@site/static/images/home/open-source-icon.png").default,
+    redirection_url: "https://github.com/tailcallhq/tailcall",
+  },
+]
+
 export const enterpriseFeatures: EnterpriseFeature[] = [
   {
     id: 1,
@@ -233,17 +340,17 @@ export const enterpriseFeatures: EnterpriseFeature[] = [
     title: "Adaptive performance improvements",
     description: "Adaptive optimisation by analysing the hot queries in your Production environment",
   },
-  {
-    id: 2,
-    logo: require("@site/static/icons/basic/rate-limit.svg").default,
-    title: "Global rate limiting",
-    description: "Ability to set global rate limits on access of each field of your data graph.",
-  },
+  // {
+  //   id: 2,
+  //   logo: require("@site/static/icons/basic/rate-limit.svg").default,
+  //   title: "Global rate limiting",
+  //   description: "Ability to set global rate limits on access of each field of your data graph.",
+  // },
   {
     id: 3,
     logo: require("@site/static/icons/basic/reflect.svg").default,
     title: "Managed Solution",
-    description: "The change in any Tailcall config gets seamlessly reflected on your GraphQL. ",
+    description: "The change in any GraphQL config gets seamlessly reflected on your GraphQL. ",
   },
   {
     id: 4,
@@ -406,4 +513,29 @@ export enum Theme {
   Light = "light",
   Dark = "dark",
   Gray = "gray",
+  Tailcall = "tailcall",
 }
+
+export const testimonials: CustomerFeedback[] = [
+  {
+    id: 1,
+    citation: `Having a completely open-source GraphQL solution under my control is a dream. I can customize everything to fit our exact needs, with full transparency and flexibility. No more blocking on backend teams—I can iterate and build and deploy the frontend faster than ever before.`,
+    designation: `Sr. Frontend Engineer`,
+    name: "John Doe",
+    department: "Front-end",
+  },
+  {
+    id: 2,
+    citation: `I love that I no longer have to wrangle with GraphQL for the frontend teams. It saves me a ton of time, reduces complexity, and lets me focus on what I do best—optimizing our microservices. The clear separation of concerns has made collaboration smoother, and now with Tailcall's static verification, I can expose APIs with even more confidence.`,
+    designation: `Sr. Backend Engineer - Big Co. Inc.`,
+    name: "John Doe",
+    department: "Backend",
+  },
+  {
+    id: 3,
+    citation: `Switching to a battle-tested, open-source GraphQL solution has been a game-changer. It’s rock-solid, easy to manage, and scales effortlessly. I no longer worry about security gaps, and the faster iteration cycle means I can focus on bigger challenges. It's like having a superpower in my toolkit!`,
+    designation: `Sr. Frontend Engineer - Big Co. Inc.`,
+    name: "John Doe",
+    department: "Ops",
+  },
+]

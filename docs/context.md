@@ -94,7 +94,7 @@ Here, the variable `apiKey` is set using an environment variable and subsequentl
 
 ### headers
 
-Headers originate from the request made to the Tailcall server.
+Headers originate from the request made to the GraphQL server.
 
 ```graphql showLineNumbers
 type Query {

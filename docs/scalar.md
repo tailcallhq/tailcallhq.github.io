@@ -20,7 +20,7 @@ Here is a list of default scalars that are built into the GraphQL Spec:
 | `Boolean` | A boolean type that represents `true` or `false`.                                               | [GraphQL Specification for Boolean](https://graphql.org/learn/schema/#scalar-Boolean) |
 |      `ID` | A unique identifier, typically used to refetch an object or as a cache key.                     | [GraphQL Specification for ID](https://graphql.org/learn/schema/#scalar-ID)           |
 
-## Tailcall Scalars
+## GraphQL Scalars
 
 These are the current set of custom scalars supported by Tailcall:
 
