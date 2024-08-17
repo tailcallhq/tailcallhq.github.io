@@ -1,6 +1,7 @@
 ---
 title: "GraphQL and Microservices: A Match Made in Heaven?"
 description: ""
+image: /images/graphql/in-heaven.jpg
 authors:
   - name: Hunain Ahmed
     title: A freelance software developer, always working on something new and fascinating.
@@ -25,9 +26,13 @@ But is it really worth combining the two or is it just a new shiny object with a
 
 ## What Are Microservices?
 
+![independent scaling](/images/graphql/scaling.png)
+
 Compared to traditional monolithic architecture, in which all the constituents of an application are usually closely integrated and interwoven, it is that **microservices** presents a very compelling option. Microservices really orient the technique of decomposition and isolation. Development, scaling, and deployment for every service can be independent. It provides high flexibility and a better developer experience.
 
 The three key characteristics of microservices are **scalability**, **flexibility**, and **maintainability**. The components of the system can be scaled as needed, and - in terms of priority. Different languages and technologies can also be used to realize each service according to use cases and appropriate for individual use, which can be developed and maintained independently by different teams. Cleanup will not only be in the debugging phase; it will also accelerate the development cycle, from which you can easily adapt and evolve your application over time.
+
+![spotify logo](/images/graphql/spotify.png)
 
 One of the most famous examples of microservice adoption success is **Spotify**. To support millions of monthly users, Spotify wrote their application in microservices, and the results are stunning. They probably have separate microservices for various tasks, like the following:
 
@@ -94,6 +99,8 @@ This powerful combination is how **Netflix** makes seamless integrations between
 
 **Challenges**:
 Sometimes, it's a pathway to **overengineering** for an application. You could end up writing long, sprawling schemas and queries for things you could have implemented in a few lines of code in REST. It can bring in unnecessary **complexity** and make it harder for another developer to implement something else in the app.
+
+![n + 1 problem](/images/graphql/n+1.png)
 
 Another well-known challenge is the **N+1 problem**: this happens when a GraphQL query requesting nested data provokes plural sequential calls to a microservice, often due to a poorly designed schema. Fortunately, Tailcall has a solution to this problem built into the box, thus making your development easier and more efficient. [Read How](https://tailcall.run/docs/graphql-n-plus-one-problem-solved-tailcall/#n1-in-graphql-using-tailcall).
 
