@@ -15,7 +15,6 @@ Is it really worth combining GraphQL with microservices or is it just a new shin
 
 import CallToAction from '../src/components/blog/call-to-action.tsx';
 
-
 <!-- truncate -->
 
 ## Introduction
@@ -173,4 +172,3 @@ backgroundImageSrc="/icons/basic/bg-tailcall.svg"
 ## Final Thoughts
 
 Concluding, I would like to add that this, though easy and even exciting for some, can result in nightmares or career-ending disasters for some in case of entering into these technologies without any prior considerations. So always do your research and dive in before using GraphQL, and to make things easier, use a runtime like **Tailcall**, which comes with many safety guards against mishaps. See you next time 😄.
-
