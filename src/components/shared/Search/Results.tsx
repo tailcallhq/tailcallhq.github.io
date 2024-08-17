@@ -1,10 +1,12 @@
 import React, {useEffect, useRef} from "react"
 import ItemIcon from "./Icons"
 import clsx from "clsx"
-import {DocSearchHit} from "@docsearch/react/dist/esm/types"
+import type {DocSearchProps} from "@docsearch/react/dist/esm/index"
 import {groupBy} from "./utils"
 import Link from "@docusaurus/Link"
 
+
+type DocSearchHit = Parameters<NonNullable<DocSearchProps['transformItems']>>[0][number]
 const Results = ({
   hits,
   selectedIndex,

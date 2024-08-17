@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import algoliasearch from "algoliasearch/lite"
+import { liteClient} from "algoliasearch/lite"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import EnterKeyIcon from "@site/static/icons/basic/enter-key.svg"
 import UpDownKeyIcon from "@site/static/icons/basic/up-down-key.svg"
@@ -10,12 +10,13 @@ import styles from "@site/src/theme/Navbar/Content/styles.module.css"
 import {useDebounce} from "use-debounce"
 import SearchIcon from "@site/static/icons/basic/search.svg"
 import {setBodyOverflow} from "@site/src/utils"
-import {DocSearchHit} from "@docsearch/react/dist/esm/types"
+import { DocSearchProps } from "@docsearch/react/dist/esm/index"
 import {performSearch} from "./utils"
 import SearchInput from "./SearchBar"
 import Results from "./Results"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import BrowserOnly from "@docusaurus/BrowserOnly"
+type DocSearchHit = Parameters<NonNullable<DocSearchProps['transformItems']>>[0][number]
 
 const SearchRoot = ({isMobile = false}: {isMobile?: boolean}) => {
   const [query, setQuery] = useState("")
@@ -31,7 +32,7 @@ const SearchRoot = ({isMobile = false}: {isMobile?: boolean}) => {
     apiKey: string
     indexName: string
   }
-  const searchClient = algoliasearch(algoliaConfig.appId, algoliaConfig.apiKey)
+  const searchClient = liteClient(algoliaConfig.appId, algoliaConfig.apiKey)
 
   const SearchMobile = () => {
     return (
