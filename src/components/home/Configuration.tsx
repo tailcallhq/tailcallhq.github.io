@@ -8,7 +8,7 @@ import Section from "../shared/Section"
 
 const Configuration = (): JSX.Element => {
   return (
-    <Section className="flex flex-col lg:flex-row justify-center gap-10">
+    <Section className="flex flex-col lg:flex-row justify-center gap-10" innerClassName="flex gap-10">
       <div className="max-w-2xl">
         <Heading as="h2" className="text-title-large sm:text-display-tiny lg:text-display-small mb-SPACE_04">
           Get <span className="rounded-lg px-SPACE_02 bg-tailCall-yellow">Started</span>
