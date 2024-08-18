@@ -65,83 +65,66 @@ these endpoints generally offer less flexibility, which is time-consuming to imp
 
 ## Parallel Execution of Requests
 
-GraphQL's architecture inherently supports parallel execution of resource requests, making it particularly advantageous in microservices environments - unlike traditional REST APIs, where requests are typically handled sequentially.
 
-**GraphQL Resolvers Example:**
+GraphQL's architecture supports parallel execution for resource requests natively. Therefore, it has greater advantages in microservices environments. A GraphQL professional, [Tomer Elmalem](https://nordicapis.com/speakers/tomer-elmalem/), comments, "GraphQL’s ability to execute multiple queries in parallel not only reduces latency but also enhances application performance, delivering a more responsive user experience."
 
-Consider a microservices architecture where different services handle user data, user activities, and user preferences. Here’s how a GraphQL query can efficiently request data from these services in parallel:
+However one of the most important things is to **[implement parallelism after consideration of dependencies](https://cvw.cac.cornell.edu/parallel/data-communication/parallelism-dependency)** - as parallelism - despite being efficient, is not always the solution. Here's how **Tailcall** solves this problem:
 
-```javascript
-const resolvers = {
-  User: {
-    profile: async (parent) => {
-      return await fetchUserProfile(parent.id) // Service A
-    },
-    activities: async (parent) => {
-      return await fetchUserActivities(parent.id) // Service B
-    },
-    preferences: async (parent) => {
-      return await fetchUserPreferences(parent.id) // Service C
-    },
-  },
+```graphql
+
+# Defines the root query type with a single field to fetch an item by its ID
+type Query {
+  item(id: Int!): Item @http(path: "/path/to/items/{{.value.id}}")
 }
-```
 
-In this example, the `profile`, `activities`, and `preferences` resolvers query different microservices independently and in parallel. On top of that, Tailcall makes it simpler to control and connect multiple resolvers. [Read More](https://tailcall.run/docs/graphql-resolver-context-tailcall/).
+
+type Item {
+  id: Int!
+  name: String!
+  pictures: Pictures @http(path: "items/{{.value.id}}/pictures")
+}
+
+
+type Picture {
+  viewPort: String!
+  src: String!
+}
+
+
+type Pictures {
+  pictures: [Picture]
+}
+
+```
+Tailcall automatically decides that `item` and its `pictures` need to fetched sequentially; as demonstrated, parallelism would not be an option here: in this case, if the item does not exist or the resource is causing errors, it would instantly fail before proceeding to fetching the images, saving unnecessary request and reducing timeout before resulting in error.
+[Read More.](https://tailcall.run/docs/graphql-data-access-parallel-vs-sequence/)
 
 **REST API Example:**
 
-To achieve similar functionality with REST APIs in a microservices setup, you would need to manually handle parallel requests, which introduces additional complexity:
+To achieve similar functionality with REST APIs in a microservices setup, you would need to manually handle parallel requests, and manually decide where you need to process sequentially which introduces additional complexity:
 
 ```javascript
-// Fetch user profile from Service A
-const fetchProfile = axios.get(
-  "http://service-a.example.com/users/123",
-)
 
-// Fetch user activities from Service B
-const fetchActivities = axios.get(
-  "http://service-b.example.com/users/123/activities",
-)
-
-// Fetch user preferences from Service C
-const fetchPreferences = axios.get(
-  "http://service-c.example.com/users/123/preferences",
-)
-
-// Execute the requests in parallel
-Promise.all([
-  fetchProfile,
-  fetchActivities,
-  fetchPreferences,
-])
-  .then(
-    ([
-      profileResponse,
-      activitiesResponse,
-      preferencesResponse,
-    ]) => {
-      // Combine and process responses
-    },
-  )
-  .catch((error) =>
-    console.error("Error fetching data:", error),
-  )
+   let itemData = await fetchItem(req.query.id);
+   const images = await fetchItemImages(req.query.id);
+   itemData.images = images;
+   res.send(itemData)
+   
 ```
 
-GraphQL simplifies this by allowing a single query to fetch data from multiple microservices simultaneously. This leads to faster responses and a smoother client experience, making it particularly useful in microservices architectures.
+this may look clean and easy to implement, but its always a jargon of promises and `try...catch` blocks behind the functions.
 
-[Tomer Elmalem](https://nordicapis.com/speakers/tomer-elmalem/), a GraphQL expert, highlights that "GraphQL’s ability to execute multiple queries in parallel not only reduces latency but also enhances application performance, delivering a more responsive user experience."
 
 ## Budgeting and Prioritization
 
-Imagine your server is a busy restaurant during peak hours. Not every order can be processed with the same urgency. Similarly, GraphQL supports request budgeting and prioritization, enabling clients and servers to allocate resources efficiently. This feature becomes essential when some queries are more critical than others, ensuring that high-priority requests are handled promptly while managing overall resource use effectively.
+Imagine your server is a busy restaurant during peak hours. Not every order can be processed with the same urgency. Similarly, GraphQL supports request budgeting and prioritization, enabling clients and servers to allocate resources efficiently. This feature becomes important when you have to make sure the **most important fields are given priority** in terms of time and processing.
 
 **Example**
 
 Consider a social media app that displays user profiles. A typical profile query might return the following data:
 
 ```json
+
 {
   "username": "exampleUser",
   "profile_picture": "url_to_picture",
@@ -151,40 +134,86 @@ Consider a social media app that displays user profiles. A typical profile query
   },
   "related": ["relatedUser1", "relatedUser2"]
 }
+
 ```
 
-While this response format is suitable under normal conditions, during high-traffic periods when the server is particularly busy, it would be inefficient to allocate resources to prepare less critical data, such as the list of `followers` or `related` users.
+ during high-traffic periods when the server is busy, it would be inefficient to allocate resources to prepare less critical data, such as the list of `followers` or `related` users.
 
 GraphQL allows you to manage the complexity and depth of incoming queries through third-party modules like [graphql-depth-limit](https://www.npmjs.com/package/graphql-depth-limit) and [graphql-query-complexity](https://www.npmjs.com/package/graphql-query-complexity) in JavaScript. These tools help set limits on the processing done per request:
 
 ```javascript
-const {ApolloServer} = require("apollo-server")
-const depthLimit = require("graphql-depth-limit")
-const {
-  createComplexityLimitRule,
-} = require("graphql-query-complexity")
 
+const { ApolloServer } = require('apollo-server');
+const depthLimit = require('graphql-depth-limit');
+const { createComplexityLimitRule } = require('graphql-query-complexity');
+
+// Create an ApolloServer instance with custom validation rules
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  typeDefs, 
+  resolvers, 
   validationRules: [
-    createComplexityLimitRule(1000),
-    depthLimit(5),
+    createComplexityLimitRule(1000), // Limits the complexity of queries to prevent overly complex queries
+    depthLimit(5)                    // Restricts the depth of nested queries to a maximum of 5 levels
   ],
-})
+});
+
 ```
 
-By integrating tools to manage query complexity and depth, GraphQL can prioritize critical requests and limit execution during peak times. This approach reduces timeouts: less depth means less time, and improves resource allocation, leading to faster response times and a more efficient app.
+
+
+GraphQL allows the use of custom validators, which in our case, are these two modules which allow us to limit complexity and depth per request.
+
 
 ## Service Caching and Error Handling
+GraphQL makes caching simple and effective by using unique object identifiers, which helps reduce redundant server processing and speeds up response times. For instance, in the video app, if video content remains the same but `upvotes` frequently change, GraphQL can cache the video data and only fetch updates for the upvotes, thus minimizing unnecessary processing. You can even go a step further and have **greater control over the cache** with Tailcall:
 
-GraphQL makes caching simple and effective by using unique object identifiers, which helps reduce redundant server processing and speeds up response times. For instance, in the video app, if video content remains the same but `upvotes` frequently change, GraphQL can cache the video data and only fetch updates for the upvotes, thus minimizing unnecessary processing. You can even go a step further and specify the size of cache and control cache headers [HTTP Cache](https://tailcall.run/docs/graphql-http-cache-guide-tailcall/) with Tailcall.
+*specifying which fields to cache and for how long:*
+```graphql
+schema
+  @server(
+    # Define the port
+    port: 8000            
+    headers: { cacheControl: true }
+  )
 
-It also supports _partial resolution_, meaning a request can still return useful data even if part of it fails. This is a significant improvement over traditional REST APIs, where failures often result in no data being returned. In microservices setups, where multiple services are involved in processing a request, partial resolution allows clients to receive data from the services that succeeded while providing detailed error information about the failures:
+  # configure cache size
+  @upstream(
+    baseURL: "http://baseurl.com/api"
+    httpCache: 240
+  ) {
+
+  query: Query
+
+}
+
+type Query {
+  # Specify the HTTP path for the videos query
+  videos: Videos @http(path: "/videos")
+}
+
+type Video {
+  title: String! @cache(maxAge: 86400000)          # In milliseconds, 24 hours
+  description: String! @cache(maxAge: 43200000)    # 12 hours
+  upvotes: Int!                                    # Don't cache, constantly changing
+  src: String! @cache(maxAge: 86400000)            # 24 hours
+} 
+
+type Videos {
+  videos: [Video]
+}
+
+```
+
+[Read: Caching with Tailcall](https://tailcall.run/docs/graphql-http-cache-guide-tailcall/)
+
+GraphQL also supports **partial resolution**, meaning a request can still return useful data even if part of it fails. This is really useful especially when you have multiple microservices being called in a schema and it's a lot of work to manually implement verbose error handling for each:
+
 
 ![partial_ress](/images/blog/error_handle.jpeg)
 
 This results in more resilient systems, easier error handling, and targeted retries, making it more efficient compared to REST APIs. [Read The Documentation](https://www.apollographql.com/docs/apollo-server/data/errors/).
+
+
 
 ## Conclusion
 
