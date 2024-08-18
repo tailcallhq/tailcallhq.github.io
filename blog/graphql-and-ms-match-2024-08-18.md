@@ -119,8 +119,7 @@ Another well-known challenge is the **N+1 problem**: this happens when a GraphQL
 
 Designing scalable APIs that leverage both **GraphQL** and **microservices** requires careful planning and adherence to certain principles.
 
-
-1. **Schema Design:** Begin with a robust, well-defined schema that accurately represents your data and services. A modular schema is crucial, as it allows your application to grow and evolve without causing disruptions. Ensure that the schema is flexible enough to accommodate new features and changes as your application scales. 
+1. **Schema Design:** Begin with a robust, well-defined schema that accurately represents your data and services. A modular schema is crucial, as it allows your application to grow and evolve without causing disruptions. Ensure that the schema is flexible enough to accommodate new features and changes as your application scales.
 2. **Service Orchestration:** To manage the complexity of multiple microservices, implement a service orchestration layer that coordinates communication between the GraphQL server and underlying services. This layer should handle essential tasks such as load balancing, caching, and fallback mechanisms to ensure seamless interactions and maintain API performance under varying loads.
 3. **Caching:** Utilize effective caching strategies at both the GraphQL and microservice levels to enhance performance. Caching reduces the need for repeated data retrieval, lowering latency and improving the user experience. Consider using in-memory caches for frequently accessed data and implement cache invalidation strategies to ensure data consistency.
 4. **Monitoring and Logging:** Comprehensive monitoring and logging are vital for tracking API performance, identifying potential bottlenecks, and quickly resolving issues. Implementing detailed logging with tools like OpenTelemetry provides valuable insights into the behavior of your API, helping you maintain high availability and optimize performance over time.
@@ -133,6 +132,7 @@ type Reaction @protected {
   count: Int!
 }
 ```
+
 6. **Strong Typing:** Nothing can be more painful than having to work with a poorly-typed GraphQL schema where you had `email` and `url` as `string`, but with handmade validation code. These omissions are a big mistake which could usher in potential errors and inconsistencies in handling your data. Instead, make full use of GraphQL's in-built scalars and custom types. It leverages these built-in scalars to ensure that fields are valid according to the expected data types, reducing the need for error-prone manual validation:
 
 ```graphql
