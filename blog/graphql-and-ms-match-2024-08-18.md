@@ -65,7 +65,7 @@ The true magic happens when **GraphQL** and **microservices** are combined. This
 
 ### Benefits of Combining GraphQL and Microservices
 
-GraphQL allows the use of Tailcall for optimizing **data retrieval** and parallel resolutions baked into the system. Tailcall then decides how and when it should resolve requests sequentially, and which in parallel, reducing response times by quite a large margin. It makes **error handling** very efficient because of the automatic partial resolution and forming of responses, saving you a headache of trouble. Also, with the **flexibility** and clearly-defined ownership GraphQL brings, clients may be granted the freedom to fetch some data from some microservices; this enhances control over the process and efficiency.
+By design, GraphQL has made optimization of **data retrieval** and parallel resolutions intrinsic to the system. **Error management** is also much smoother because of the automatic process of partial resolutions and formation of response as a whole. Further, due to **flexibility** and clear ownership, GraphQL makes it possible for clients to fetch data from different microservices. This grants extra control to the clients while communicating with microservices.
 
 _fetching data from multiple microservices using Tailcall:_
 
@@ -119,9 +119,13 @@ Another well-known challenge is the **N+1 problem**: this happens when a GraphQL
 
 Designing scalable APIs that leverage both **GraphQL** and **microservices** requires careful planning and adherence to certain principles.
 
-Your API should be **efficient**, **strongly typed**, and most-importantly, **secure**:
 
-- **Security:** With **Tailcall's** [built-in auth](https://tailcall.run/docs/field-level-access-control-graphql-authentication/) and [@protected](https://tailcall.run/docs/tailcall-dsl-graphql-custom-directives/#protected-directive) directive, you can add auth functionality and make fields protected with just a few lines of code - which is intelligent enough to protect any query that indirectly resolves to that field:
+1. **Schema Design:** Begin with a robust, well-defined schema that accurately represents your data and services. A modular schema is crucial, as it allows your application to grow and evolve without causing disruptions. Ensure that the schema is flexible enough to accommodate new features and changes as your application scales. 
+2. **Service Orchestration:** To manage the complexity of multiple microservices, implement a service orchestration layer that coordinates communication between the GraphQL server and underlying services. This layer should handle essential tasks such as load balancing, caching, and fallback mechanisms to ensure seamless interactions and maintain API performance under varying loads.
+3. **Caching:** Utilize effective caching strategies at both the GraphQL and microservice levels to enhance performance. Caching reduces the need for repeated data retrieval, lowering latency and improving the user experience. Consider using in-memory caches for frequently accessed data and implement cache invalidation strategies to ensure data consistency.
+4. **Monitoring and Logging:** Comprehensive monitoring and logging are vital for tracking API performance, identifying potential bottlenecks, and quickly resolving issues. Implementing detailed logging with tools like OpenTelemetry provides valuable insights into the behavior of your API, helping you maintain high availability and optimize performance over time.
+
+5. **Security:** With **Tailcall's** [built-in auth](https://tailcall.run/docs/field-level-access-control-graphql-authentication/) and [@protected](https://tailcall.run/docs/tailcall-dsl-graphql-custom-directives/#protected-directive) directive, you can add auth functionality and make fields protected with just a few lines of code - which is intelligent enough to protect any query that indirectly resolves to that field:
 
 ```graphql
 type Reaction @protected {
@@ -129,10 +133,7 @@ type Reaction @protected {
   count: Int!
 }
 ```
-
-- **Efficiency:** Your API should be smart enough to prevent the N + 1 problem, have a good caching mechanism and provide verbose logs for risk management in case of emergencies. You can use [OpenTelemetry](https://opentelemetry.io/) to collect logs and analytics with Tailcall using the [@telemetry](https://tailcall.run/docs/tailcall-dsl-graphql-custom-directives/#telemetry-directive) directive.
-
-- **Strong Typing:** Nothing can be more painful than having to work with a poorly-typed GraphQL schema where you had `email` and `url` as `string`, but with handmade validation code. These omissions are a big mistake which could usher in potential errors and inconsistencies in handling your data. Instead, make full use of GraphQL's in-built scalars and custom types. It leverages these built-in scalars to ensure that fields are valid according to the expected data types, reducing the need for error-prone manual validation:
+6. **Strong Typing:** Nothing can be more painful than having to work with a poorly-typed GraphQL schema where you had `email` and `url` as `string`, but with handmade validation code. These omissions are a big mistake which could usher in potential errors and inconsistencies in handling your data. Instead, make full use of GraphQL's in-built scalars and custom types. It leverages these built-in scalars to ensure that fields are valid according to the expected data types, reducing the need for error-prone manual validation:
 
 ```graphql
 type Query {
@@ -145,13 +146,6 @@ type Account {
   email: String!
 }
 ```
-
-### Principles for Building Scalable APIs
-
-1. **Schema Design:** Begin with a robust, well-defined schema that accurately represents your data and services. A modular schema is crucial, as it allows your application to grow and evolve without causing disruptions. Ensure that the schema is flexible enough to accommodate new features and changes as your application scales.
-2. **Service Orchestration:** To manage the complexity of multiple microservices, implement a service orchestration layer that coordinates communication between the GraphQL server and underlying services. This layer should handle essential tasks such as load balancing, caching, and fallback mechanisms to ensure seamless interactions and maintain API performance under varying loads.
-3. **Caching:** Utilize effective caching strategies at both the GraphQL and microservice levels to enhance performance. Caching reduces the need for repeated data retrieval, lowering latency and improving the user experience. Consider using in-memory caches for frequently accessed data and implement cache invalidation strategies to ensure data consistency.
-4. **Monitoring and Logging:** Comprehensive monitoring and logging are vital for tracking API performance, identifying potential bottlenecks, and quickly resolving issues. Implementing detailed logging with tools like OpenTelemetry provides valuable insights into the behavior of your API, helping you maintain high availability and optimize performance over time.
 
 [Read: Designing The Perfect GraphQL Schema](https://tailcall.run/blog/graphql-schema/)
 
