@@ -107,7 +107,7 @@ type Lyric {
 
 Sometimes, it's a pathway to **overengineering** for an application. You could end up writing long, sprawling schemas and queries for things you could have implemented in a few lines of code in REST. It can bring in unnecessary **complexity** and make it harder for another developer to implement something else in the app.
 
-![n + 1 problem](/images/graphql/n+1.png)
+![n + 1 problem](../static/images/graphql/n+1-issue.png)
 
 Another well-known challenge is the **N+1 problem**: this happens when a GraphQL query requesting nested data provokes plural sequential calls to a microservice, often due to a poorly designed schema. Fortunately, Tailcall has a solution to this problem built into the box, thus making your development easier and more efficient. [Read How](https://tailcall.run/docs/graphql-n-plus-one-problem-solved-tailcall/#n1-in-graphql-using-tailcall).
 
