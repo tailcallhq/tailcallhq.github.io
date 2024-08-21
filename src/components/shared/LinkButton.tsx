@@ -48,13 +48,17 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
           "border-2 border-solid border-tailCall-light-100 text-tailCall-light-100 bg-transparent hover:text-tailCall-light-100",
         gridClasses: "hidden",
       },
+      [Theme.Tailcall]: {
+        classes: "bg-yellow-300 border border-solid text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500",
+        gridClasses: "",
+      },
     }
 
     return themes[theme] || {classes: "", styles: "", gridClasses: ""}
   }
 
   const renderBackgroundElements = (buttonTheme: Theme) => {
-    if (buttonTheme === Theme.Dark) {
+    if (buttonTheme === Theme.Dark || buttonTheme === Theme.Gray) {
       return (
         <>
           {/* Dark theme background */}
@@ -92,7 +96,7 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
       {renderBackgroundElements(theme)}
 
       {/* Render Icon if provided */}
-      {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white" />}
+      {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white z-[1]" />}
 
       {/* Render title if provided */}
       {title && <span className="z-20"> {title}</span>}

@@ -223,6 +223,57 @@ export const chooseTailcall: ChooseTailcall[] = [
   },
 ]
 
+export const tailcallFeatures: TailcallFeatures[] = [
+  {
+    id: 1,
+    title: "Powerful Batching Primitive",
+    image: require("@site/static/images/choose-tailcall/rocket.png").default,
+    redirection_url: "/docs/graphql-n-plus-one-problem-solved-tailcall/#using-batch-apis",
+  },
+  {
+    id: 2,
+    title: "Extensions with plugins and JS support",
+    image: require("@site/static/images/choose-tailcall/grid.png").default,
+    redirection_url: "/docs/graphql-javascript-customization/",
+  },
+  {
+    id: 3,
+    title: "Field based Authentication & Authorisation",
+    image: require("@site/static/images/choose-tailcall/shield-tick.png").default,
+    redirection_url: "/docs/field-level-access-control-graphql-authentication/",
+  },
+  {
+    id: 4,
+    title: "Protocol agnostic",
+    image: require("@site/static/images/choose-tailcall/check-done.png").default,
+    redirection_url: "/docs/graphql-grpc-tailcall/",
+  },
+  {
+    id: 5,
+    title: "Performance",
+    image: require("@site/static/images/choose-tailcall/line-chart-up.png").default,
+    redirection_url: "https://github.com/tailcallhq/graphql-benchmarks",
+  },
+  {
+    id: 6,
+    title: "Security",
+    image: require("@site/static/images/choose-tailcall/lock.png").default,
+    redirection_url: "/docs/field-level-access-control-graphql-authentication/",
+  },
+  {
+    id: 7,
+    title: "Edge Compatible",
+    image: require("@site/static/images/choose-tailcall/puzzle-piece.png").default,
+    redirection_url: "/docs/deploy-graphql-github-actions/",
+  },
+  {
+    id: 8,
+    title: "Compile time checks",
+    image: require("@site/static/images/choose-tailcall/clock-stopwatch.png").default,
+    redirection_url: "/docs/tailcall-graphql-cli/#check",
+  },
+]
+
 export const benefits: Benefits[] = [
   {
     id: 1,
@@ -462,26 +513,27 @@ export enum Theme {
   Light = "light",
   Dark = "dark",
   Gray = "gray",
+  Tailcall = "tailcall",
 }
 
-export const customerFeedbacks: CustomerFeedback[] = [
+export const testimonials: CustomerFeedback[] = [
   {
     id: 1,
-    citation: `I stopped writing orchestration code, and now I get low-latency GraphQL APIs quickly, which let me ship low-latency apps.`,
-    designation: `Sr. Frontend Engineer - Big Co. Inc.`,
+    citation: `Having a completely open-source GraphQL solution under my control is a dream. I can customize everything to fit our exact needs, with full transparency and flexibility. No more blocking on backend teams—I can iterate and build and deploy the frontend faster than ever before.`,
+    designation: `Sr. Frontend Engineer`,
     name: "John Doe",
     department: "Front-end",
   },
   {
     id: 2,
-    citation: `I save so much time building APIs that are better than I could write by hand. Front-end engineers finally leave me alone!`,
+    citation: `I love that I no longer have to wrangle with GraphQL for the frontend teams. It saves me a ton of time, reduces complexity, and lets me focus on what I do best—optimizing our microservices. The clear separation of concerns has made collaboration smoother, and now with Tailcall's static verification, I can expose APIs with even more confidence.`,
     designation: `Sr. Backend Engineer - Big Co. Inc.`,
     name: "John Doe",
     department: "Backend",
   },
   {
     id: 3,
-    citation: `I get the telemetry I need to monitor our GraphQL APIs  with a runtime that’s easy to scale, which doesn’t surprise me in production.`,
+    citation: `Switching to a battle-tested, open-source GraphQL solution has been a game-changer. It’s rock-solid, easy to manage, and scales effortlessly. I no longer worry about security gaps, and the faster iteration cycle means I can focus on bigger challenges. It's like having a superpower in my toolkit!`,
     designation: `Sr. Frontend Engineer - Big Co. Inc.`,
     name: "John Doe",
     department: "Ops",

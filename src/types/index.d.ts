@@ -31,6 +31,13 @@ type ChooseTailcall = {
   image: string
 }
 
+type TailcallFeatures = {
+  id: number
+  title: string
+  image: string
+  redirection_url: string
+}
+
 type Benefits = {
   id: number
   title: string
