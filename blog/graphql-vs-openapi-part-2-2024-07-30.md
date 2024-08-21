@@ -13,7 +13,6 @@ authors:
     image_url: https://avatars.githubusercontent.com/u/68141773?v=4
 ---
 
-![OpenAPI vs GraphQL](../static/images/blog/openapi-vs-graphql-part2.png)
 Welcome back to our API comparison series! In [Part 1](/blog/graphql-vs-openapi-part-1), we covered the fundamentals of GraphQL and OpenAPI, focusing on their core concepts, type systems, and schema definitions. Now, in Part 2, we will dive deeper into the performance, flexibility, and ecosystems of these API specifications.
 
 <!-- truncate -->

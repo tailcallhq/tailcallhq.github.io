@@ -1,7 +1,7 @@
 import React from "react"
 import Heading from "@theme/Heading"
 import CustomerFeedbackCard from "./CustomerFeedbackCard"
-import {customerFeedbacks} from "@site/src/constants"
+import {testimonials} from "@site/src/constants"
 
 export enum TestimonialDisplay {
   Hide = "Hide",
@@ -14,7 +14,7 @@ interface AppConfig {
 }
 
 const config: AppConfig = {
-  testimonials: TestimonialDisplay.Hide, // Default value
+  testimonials: TestimonialDisplay.Anon, // Default value
 }
 
 const Testimonials = () => {
@@ -35,7 +35,7 @@ const Testimonials = () => {
           </Heading>
         </div>
         <div className="flex flex-col space-y-SPACE_10 md:flex-row md:space-x-SPACE_02 md:space-y-0 mt-SPACE_18">
-          {customerFeedbacks.map((feedback) => (
+          {testimonials.map((feedback) => (
             <CustomerFeedbackCard
               key={feedback.id}
               isCenterCard={feedback.id === 2}
