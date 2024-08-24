@@ -8,15 +8,16 @@ interface AnnouncementProps {
 
 const Announcement: React.FC<AnnouncementProps> = ({text, refLink, refText}) => {
   return (
-    <div className="w-full h-[39px] bg-black text-white flex items-center justify-center">
-      <div className="text-sm sm:text-base md:text-lg font-bold">
-        {text}
-        {refLink && refText && (
-          <a className="text-tailCall-yellow font-bold" href={refLink}>
-            {" "}
-            {refText}{" "}
-          </a>
-        )}
+    <div className="w-full h-auto bg-black text-white flex items-center justify-center p-2 sm:p-3">
+      <div className="text-center">
+        <span className="text-sm sm:text-base md:text-lg font-bold">
+          {text}
+          {refLink && refText && (
+            <a className="text-tailCall-yellow font-bold ml-2" href={refLink}>
+              {refText}
+            </a>
+          )}
+        </span>
       </div>
     </div>
   )
