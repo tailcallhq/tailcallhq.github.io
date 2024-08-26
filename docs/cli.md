@@ -116,7 +116,10 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
 
 ```json
 {
-  "secret": "API_KEY",
+  "llm": {
+    "model": "gemini-1.5-flash-latest",
+    "secret": "API_KEY",
+    },
   "inputs": [
     {
       "curl": {
@@ -175,7 +178,9 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
 <TabItem value="yml" label="YML">
 
 ```yaml
-secret: "API_KEY"
+llm:
+  model: "gemini-1.5-flash-latest"
+  secret: "API_KEY"
 inputs:
   - curl:
       src: "https://jsonplaceholder.typicode.com/posts/1"
@@ -591,9 +596,76 @@ preset:
 
    By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, enhancing overall readability and understanding.
 
-### Secret
+### LLM
 
-The `secret` section in the configuration allows you to provide an API key which is then used by the AI agent, for enhancing GraphQL schema. Tailcall leverages the power of AI agents for improving the quality of configuration files by suggesting better names for types and fields etc.
+Tailcall leverages the power of AI to improve the quality of configuration files by suggesting better names for types, fields, and more. The `llm` section in the configuration allows you to specify the LLM model and secret (API key) that will be used for generating the configuration.
+
+The supported models are:
+
+Models for OpenAI
+
+	•	gpt-4o
+	•	gpt-4o-mini
+	•	gpt-4-turbo
+	•	gpt-4
+	•	gpt-3.5-turbo
+
+Models for Gemini
+
+	•	gemini-1.5-pro
+	•	gemini-1.5-flash
+	•	gemini-1.0-pro
+	•	gemini-1.5-flash-latest
+
+Models for Anthropic
+
+	•	claude-3-5-sonnet-20240620
+	•	claude-3-opus-20240229
+	•	claude-3-sonnet-20240229
+	•	claude-3-haiku-20240307
+
+Models for Groq
+
+	•	llama-3.1-405b-reasoning
+	•	llama-3.1-70b-versatile
+	•	llama-3.1-8b-instant
+	•	mixtral-8x7b-32768
+	•	gemma-7b-it
+	•	gemma2-9b-it
+	•	llama3-groq-70b-8192-tool-use-preview
+	•	llama3-groq-8b-8192-tool-use-preview
+	•	llama3-8b-8192
+	•	llama3-70b-8192
+
+Models for Cohere
+
+	•	command-r-plus
+	•	command-r
+	•	command
+	•	command-nightly
+	•	command-light
+	•	command-light-nightly
+
+Anything else is considered an Ollama model.
+Refer to https://ollama.com/library for the list of Ollama models.
+
+Example:
+
+- Using Gemini. Set TAILCALL_LLM_API_KEY to your Gemini API key.
+```json
+"llm": {
+    "model": "gemini-1.5-flash-latest",
+    "secret": "{{.env.TAILCALL_LLM_API_KEY}}"
+}
+```
+
+- Using Ollama. Don't need secret.
+```json
+"llm": {
+    "model": "gemma2",
+}
+
+```
 
 :::info
 Ensure that secrets are not stored directly in the configuration file. Instead, use templates to securely reference secrets from environment variables. For example, you can write secret as `{{.env.TAILCALL_SECRET}}`, where TAILCALL_SECRET is referenced from the running environment.
