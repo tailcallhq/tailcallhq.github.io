@@ -664,7 +664,6 @@ Example:
 "llm": {
     "model": "gemma2",
 }
-
 ```
 
 :::info
