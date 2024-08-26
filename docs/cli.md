@@ -118,8 +118,8 @@ To generate a TailCall GraphQL configuration, provide a configuration file to th
 {
   "llm": {
     "model": "gemini-1.5-flash-latest",
-    "secret": "API_KEY",
-    },
+    "secret": "API_KEY"
+  },
   "inputs": [
     {
       "curl": {
@@ -604,47 +604,47 @@ The supported models are:
 
 Models for OpenAI
 
-	•	gpt-4o
-	•	gpt-4o-mini
-	•	gpt-4-turbo
-	•	gpt-4
-	•	gpt-3.5-turbo
+    •	gpt-4o
+    •	gpt-4o-mini
+    •	gpt-4-turbo
+    •	gpt-4
+    •	gpt-3.5-turbo
 
 Models for Gemini
 
-	•	gemini-1.5-pro
-	•	gemini-1.5-flash
-	•	gemini-1.0-pro
-	•	gemini-1.5-flash-latest
+    •	gemini-1.5-pro
+    •	gemini-1.5-flash
+    •	gemini-1.0-pro
+    •	gemini-1.5-flash-latest
 
 Models for Anthropic
 
-	•	claude-3-5-sonnet-20240620
-	•	claude-3-opus-20240229
-	•	claude-3-sonnet-20240229
-	•	claude-3-haiku-20240307
+    •	claude-3-5-sonnet-20240620
+    •	claude-3-opus-20240229
+    •	claude-3-sonnet-20240229
+    •	claude-3-haiku-20240307
 
 Models for Groq
 
-	•	llama-3.1-405b-reasoning
-	•	llama-3.1-70b-versatile
-	•	llama-3.1-8b-instant
-	•	mixtral-8x7b-32768
-	•	gemma-7b-it
-	•	gemma2-9b-it
-	•	llama3-groq-70b-8192-tool-use-preview
-	•	llama3-groq-8b-8192-tool-use-preview
-	•	llama3-8b-8192
-	•	llama3-70b-8192
+    •	llama-3.1-405b-reasoning
+    •	llama-3.1-70b-versatile
+    •	llama-3.1-8b-instant
+    •	mixtral-8x7b-32768
+    •	gemma-7b-it
+    •	gemma2-9b-it
+    •	llama3-groq-70b-8192-tool-use-preview
+    •	llama3-groq-8b-8192-tool-use-preview
+    •	llama3-8b-8192
+    •	llama3-70b-8192
 
 Models for Cohere
 
-	•	command-r-plus
-	•	command-r
-	•	command
-	•	command-nightly
-	•	command-light
-	•	command-light-nightly
+    •	command-r-plus
+    •	command-r
+    •	command
+    •	command-nightly
+    •	command-light
+    •	command-light-nightly
 
 Anything else is considered an Ollama model.
 Refer to https://ollama.com/library for the list of Ollama models.
@@ -652,6 +652,7 @@ Refer to https://ollama.com/library for the list of Ollama models.
 Example:
 
 - Using Gemini. Set TAILCALL_LLM_API_KEY to your Gemini API key.
+
 ```json
 "llm": {
     "model": "gemini-1.5-flash-latest",
@@ -660,6 +661,7 @@ Example:
 ```
 
 - Using Ollama. Don't need secret.
+
 ```json
 "llm": {
     "model": "gemma2",
