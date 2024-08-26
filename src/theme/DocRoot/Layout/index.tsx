@@ -13,11 +13,6 @@ export default function DocRootLayout({children}: Props): JSX.Element {
   const [hiddenSidebarContainer, setHiddenSidebarContainer] = useState(false)
   return (
     <>
-      <Announcement
-        text={"📣 Catch us at GraphQLConf 2024 • September 10-12 • San Francisco • "}
-        refLink={"https://graphql.org/conf/2024/schedule/870876ffad45b79d11e09393e7f22587/"}
-        refText={" Know more → "}
-      />
       <div className={styles.docsWrapper}>
         <BackToTopButton />
         <div className={styles.docRoot}>
