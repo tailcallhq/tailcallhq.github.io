@@ -5,6 +5,7 @@ import {useLocation} from "@docusaurus/router"
 
 import HomePage from "../components/home"
 import {PageDescription, PageTitle} from "../constants/titles"
+import Announcement from "../components/shared/Announcement"
 
 const Home = (): JSX.Element => {
   const isDevelopment = process.env.NODE_ENV === "development"
