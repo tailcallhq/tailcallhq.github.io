@@ -94,7 +94,7 @@ schema
 
 In this configuration:
 
-- The `export` option specifies the format and endpoint where the telemetry data will be sent. 
+- The `export` option specifies the format and endpoint where the telemetry data will be sent.
 - Replace `http://your-otlp-compatible-backend.com` with the URL of your observability platform that supports OTLP.
 
 ## Exporting Telemetry Data
@@ -113,6 +113,7 @@ In this configuration:
 - **Flexibility**: It can export data in multiple formats, such as Jaeger or Datadog, and is well-suited for large-scale environments.
 
 **Configuration Example**:
+
 ```yaml
 receivers:
   otlp:
@@ -142,11 +143,7 @@ To export metrics to Prometheus, Tailcall needs to expose metrics in a format th
 
 ```graphql
 schema
-  @telemetry(
-    export: {
-      prometheus: {path: "/metrics"}
-    }
-  ) {
+  @telemetry(export: {prometheus: {path: "/metrics"}}) {
   query: Query
 }
 ```
@@ -156,13 +153,7 @@ schema
 Tailcall can also output telemetry data to stdout, which is ideal for testing or local development environments.
 
 ```graphql
-schema @telemetry(
-    export: {
-      stdout: {
-        pretty: true
-      }
-    }
-  ) {
+schema @telemetry(export: {stdout: {pretty: true}}) {
   query: Query
 }
 ```
@@ -190,10 +181,9 @@ Here's an example of using context propagation with Honeycomb:
 In some cases you may want to customize the data that was added to telemetry payload in order to have more control over the analyzing process. Tailcall allows you to customize metrics by using properties like [`requestHeaders`](/docs/directives.md#requestheaders), which can be used to segment data by specific headers.
 
 **Example**:
+
 ```graphql
-schema @telemetry(
-    requestHeaders: ["X-User-Id"]
-  ) {
+schema @telemetry(requestHeaders: ["X-User-Id"]) {
   query: Query
 }
 ```
@@ -209,15 +199,18 @@ Despite the robust telemetry capabilities in Tailcall, you may encounter issues 
 ### Common Telemetry Issues
 
 1. **No Telemetry Data is Being Collected**
+
    - **Check Configuration**: Ensure that the `@telemetry` directive is correctly configured in your GraphQL schema. Verify that the export endpoints are correctly specified and reachable.
    - **Network Connectivity**: Confirm that there is network connectivity between your Tailcall server and the observability backend. Check firewall rules, DNS settings, and endpoint URLs.
    - **Telemetry Data Volume**: If the telemetry data volume is too low, you may not see data immediately. Generate additional traffic to the application to verify data collection.
 
 2. **Incomplete or Missing Traces**
+
    - **Context Propagation Issues**: Verify that context propagation is correctly configured. In distributed systems, missing traces often result from improper context propagation across services.
    - **Instrumentation Gaps**: Ensure all necessary services and components are properly instrumented with OpenTelemetry. Missing or incomplete instrumentation can lead to gaps in tracing data.
 
 3. **High Latency or Performance Degradation**
+
    - **Resource Overhead**: Telemetry collection can introduce overhead, especially if you are exporting a large volume of data. Consider optimizing the frequency of data collection, reducing the amount of data exported, or using more efficient telemetry backends.
    - **Collector Bottlenecks**: If using OpenTelemetry Collector, monitor its performance to ensure it is not a bottleneck. Adjust configuration settings or scale the Collector to handle larger volumes of telemetry data.
 
@@ -228,15 +221,19 @@ Despite the robust telemetry capabilities in Tailcall, you may encounter issues 
 ### Debugging Steps
 
 1. **Enable Debug Logging**
+
    - OpenTelemetry has a debug logging mode that can be enabled to provide more detailed output. Use these logs to identify where issues are occurring in the telemetry pipeline.
 
 2. **Use Local Development Tools**
+
    - For quick testing, configure Tailcall to export telemetry data to `stdout`.
 
 3. **Validate Export Endpoints**
+
    - Test the telemetry export endpoints directly (e.g., using `curl` for HTTP endpoints) to ensure they are reachable and correctly configured. This helps rule out network issues or misconfigured endpoints.
 
 4. **Check Compatibility with Observability Tools**
+
    - Ensure that the observability tool you are using is fully compatible with the telemetry format being exported. Refer to the observability tool's documentation to confirm compatibility with OTLP, Prometheus, or other formats you are using.
 
 5. **Monitor Resource Usage**
