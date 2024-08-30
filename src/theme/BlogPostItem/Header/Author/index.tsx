@@ -6,7 +6,7 @@ import type {Props} from "@theme/BlogPostItem/Header/Author"
 
 function MaybeLink(props: LinkProps): JSX.Element {
   if (props.href) {
-    return <Link {...props} />
+    return <Link {...props} className={"text-black"} />
   }
   return <>{props.children}</>
 }

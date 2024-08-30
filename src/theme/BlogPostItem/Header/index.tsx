@@ -8,7 +8,6 @@ export default function BlogPostItemHeader(): JSX.Element {
     <header>
       <BlogPostItemHeaderTitle />
       <BlogPostItemHeaderInfo />
-      <BlogPostItemHeaderAuthors />
     </header>
   )
 }

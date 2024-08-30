@@ -6,6 +6,7 @@ import {useBlogPost, useDateTimeFormat} from "@docusaurus/theme-common/internal"
 import type {Props} from "@theme/BlogPostItem/Header/Info"
 
 import styles from "./styles.module.css"
+import Link from "@docusaurus/Link"
 
 // Very simple pluralization: probably good enough for now
 function useReadingTimePlural() {
@@ -42,7 +43,9 @@ function Spacer() {
 
 export default function BlogPostItemHeaderInfo({className}: Props): JSX.Element {
   const {metadata} = useBlogPost()
-  const {date, readingTime} = metadata
+  const {date, readingTime, tags} = metadata
+
+  const tagsExists = tags.length > 0
 
   const dateTimeFormat = useDateTimeFormat({
     day: "numeric",
@@ -61,6 +64,20 @@ export default function BlogPostItemHeaderInfo({className}: Props): JSX.Element 
           <Spacer />
           <ReadingTime readingTime={readingTime} />
         </>
+      )}
+      {tagsExists && (
+        <div className="w-full flex gap-2 mt-4">
+          {tags.map((tag) => {
+            return (
+              <Link
+                to={tag.permalink}
+                className="bg-tailCall-light-200 !no-underline text-tailCall-dark-100 px-3 py-2 rounded-full cursor-pointer"
+              >
+                {tag.label}
+              </Link>
+            )
+          })}
+        </div>
       )}
     </div>
   )
