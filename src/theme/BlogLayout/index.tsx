@@ -14,20 +14,21 @@ export default function BlogLayout(props: Props): JSX.Element {
 
   return (
     <Layout {...layoutProps}>
-      {!isBlogRoot && <div className="container margin-vert--lg">
-        <div className="row justify-center">
-          <main
-            className={clsx("col", {
-              "col--7": hasSidebar,
-              "col--9 col--offset-1": !hasSidebar,
-            })}
-          >
-            {children}
-          </main>
-          {toc && <div className="col col--2">{toc}</div>}
+      {!isBlogRoot && (
+        <div className="container margin-vert--lg">
+          <div className="row justify-center">
+            <main
+              className={clsx("col", {
+                "col--7": hasSidebar,
+                "col--9 col--offset-1": !hasSidebar,
+              })}
+            >
+              {children}
+            </main>
+            {toc && <div className="col col--2">{toc}</div>}
+          </div>
         </div>
-      </div>
-      }
+      )}
       <BlogRecentPosts sidebar={sidebar} />
     </Layout>
   )
