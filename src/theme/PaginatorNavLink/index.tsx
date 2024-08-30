@@ -19,7 +19,7 @@ export default function PaginatorNavLink(props: Props): JSX.Element {
       {!isNext && <NavigatorIcon isNext={isNext!} />}
       <div>
         {subLabel && <div className="text-tailCall-dark-100 text-[12px]">{subLabel}</div>}
-        <div className="pagination-nav__label text-black text-[16px]">{title}</div>
+        <div className="pagination-nav__label text-black text-content-small">{title}</div>
       </div>
       {isNext && <NavigatorIcon isNext={isNext} />}
     </Link>
