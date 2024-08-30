@@ -4,7 +4,7 @@ import Link from "@docusaurus/Link"
 
 export default function BlogRecentPosts({sidebar}: {sidebar: Props["sidebar"]}): JSX.Element {
   return (
-    <div className="mx-8 md:mx-[367px]">
+    <div className="mx-8 md:mx-[367px] mt-10">
       <h1 className=" text-title-medium">Recent Blog Posts</h1>
       <div className=" flex flex-wrap gap-4">
         {sidebar?.items.map((item) => {

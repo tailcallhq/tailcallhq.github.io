@@ -1,7 +1,7 @@
 ---
 title: "GraphQL and Microservices: A Match Made in Heaven?"
 description: "Is it really worth combining GraphQL with microservices or is it just a new shiny object with all the hype?"
-image: /images/graphql/graphql-match-microservices.jpg
+image: /images/blog/graphql-match-microservices.png
 authors:
   - name: Hunain Ahmed
     title: A freelance software developer, always working on something new and fascinating.
