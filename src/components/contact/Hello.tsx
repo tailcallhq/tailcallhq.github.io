@@ -14,10 +14,10 @@ const Hello = (): JSX.Element => {
   const [isStageValid, setIsStageValid] = useState<boolean>(true)
 
   const sendData = useCallback(async () => {
-    if(!email || !stage) {
-      setIsStageValid(Boolean(stage));
-      setIsValid(validateEmail(email));
-      return;
+    if (!email || !stage) {
+      setIsStageValid(Boolean(stage))
+      setIsValid(validateEmail(email))
+      return
     }
     if (!validateEmail(email)) {
       setIsValid(false)
