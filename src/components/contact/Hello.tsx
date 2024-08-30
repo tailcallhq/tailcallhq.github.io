@@ -11,8 +11,14 @@ const Hello = (): JSX.Element => {
   const [message, setMessage] = useState<string>("")
   const [stage, setStage] = useState<string>("")
   const [isValid, setIsValid] = useState<boolean>(true)
+  const [isStageValid, setIsStageValid] = useState<boolean>(true)
 
   const sendData = useCallback(async () => {
+    if(!email || !stage) {
+      setIsStageValid(Boolean(stage));
+      setIsValid(validateEmail(email));
+      return;
+    }
     if (!validateEmail(email)) {
       setIsValid(false)
       return
@@ -37,6 +43,7 @@ const Hello = (): JSX.Element => {
       setMessage("")
       setStage("")
       setIsValid(true)
+      setIsStageValid(true)
     }
   }, [email, message, stage])
 
@@ -64,7 +71,7 @@ const Hello = (): JSX.Element => {
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value)
-                if (!isValid) setIsValid(true)
+                if (!isValid) setIsValid(false)
               }}
               className={`border border-solid border-tailCall-border-light-500 rounded-lg font-space-grotesk h-11 w-[95%] sm:w-[480px] 
               p-SPACE_03 text-content-small outline-none focus:border-x-tailCall-light-700  ${
@@ -97,6 +104,7 @@ const Hello = (): JSX.Element => {
                 </div>
               ))}
             </div>
+            {!isStageValid && <div className="text-red-400">Please select your stage of GraphQL.</div>}
           </div>
 
           <div className="flex flex-col space-y-SPACE_02">
