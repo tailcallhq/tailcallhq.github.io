@@ -7,7 +7,7 @@ import BlogBackbutton from "./Back"
 export default function BlogPostItemHeader(): JSX.Element {
   return (
     <header>
-      <BlogBackbutton/>
+      <BlogBackbutton />
       <BlogPostItemHeaderTitle />
       <BlogPostItemHeaderInfo />
     </header>
