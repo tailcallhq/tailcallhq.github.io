@@ -664,3 +664,9 @@ span.token.tag.script.language-javascript {
   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.8) 50%);
   z-index: 1;
 }
+
+@media (max-width: 768px) {
+  .pagination-nav {
+    @apply flex justify-end gap-3;
+  }
+}

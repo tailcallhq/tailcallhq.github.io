@@ -17,7 +17,7 @@ export default function PaginatorNavLink(props: Props): JSX.Element {
   return (
     <Link className="!no-underline flex gap-3 items-center" to={permalink}>
       {!isNext && <NavigatorIcon isNext={isNext!} />}
-      <div>
+      <div className="hidden md:block">
         {subLabel && <div className="text-tailCall-dark-100 text-[12px]">{subLabel}</div>}
         <div className="pagination-nav__label text-black text-content-small">{title}</div>
       </div>

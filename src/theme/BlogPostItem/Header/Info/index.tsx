@@ -66,7 +66,7 @@ export default function BlogPostItemHeaderInfo({className}: Props): JSX.Element 
         </>
       )}
       {tagsExists && (
-        <div className="w-full flex gap-2 mt-4">
+        <div className="w-full flex flex-wrap gap-2 mt-4">
           {tags.map((tag) => {
             return (
               <Link
