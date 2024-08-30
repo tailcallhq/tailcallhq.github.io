@@ -13,6 +13,9 @@ const Hello = (): JSX.Element => {
   const [isValid, setIsValid] = useState<boolean>(true)
 
   const sendData = useCallback(async () => {
+    if (!email || !stage) {
+      return
+    }
     if (!validateEmail(email)) {
       setIsValid(false)
       return
