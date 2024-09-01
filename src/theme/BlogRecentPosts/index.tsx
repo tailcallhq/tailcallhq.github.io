@@ -1,16 +1,19 @@
-import React from "react"
+import React, {useEffect} from "react"
 import Link from "@docusaurus/Link"
 import type {Props} from "@theme/BlogLayout"
 import {useBlogPost} from "@docusaurus/theme-common/internal"
 
 export default function BlogRecentPosts({sidebar}: {sidebar: Props["sidebar"]}): JSX.Element {
   const [isBlogPostPage, setIsBlogPostPage] = React.useState(false)
-  try {
-    const {isBlogPostPage: contextIsBlogPostPage} = useBlogPost()
-    setIsBlogPostPage(contextIsBlogPostPage)
-  } catch (e) {
-    // Context provider is not available
-  }
+
+  useEffect(() => {
+    try {
+      const {isBlogPostPage: contextIsBlogPostPage} = useBlogPost()
+      setIsBlogPostPage(contextIsBlogPostPage)
+    } catch (e) {
+      // Context provider is not available
+    }
+  }, [])
 
   return isBlogPostPage ? (
     <div className="container">
