@@ -14,6 +14,7 @@ authors:
 hide_table_of_contents: true
 slug: graphql-match-microservices
 tags: [GraphQL, Microservices, API]
+category: Tutorial
 ---
 
 Is it really worth combining GraphQL with microservices or is it just a new shiny object with all the hype?

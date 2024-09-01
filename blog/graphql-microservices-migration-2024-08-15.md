@@ -10,6 +10,7 @@ description: Streamline your migration from monolithic architecture to microserv
 image: /images/blog/graphql-microservices-migration.png
 hide_table_of_contents: true
 slug: graphql-microservices-migration
+category: test
 ---
 
 import CallToAction from '../src/components/blog/call-to-action.tsx';

@@ -1,25 +1,41 @@
 import React from "react"
-import type {Props} from "@theme/BlogLayout"
 import Link from "@docusaurus/Link"
+import type {Props} from "@theme/BlogLayout"
+import {useBlogPost} from "@docusaurus/theme-common/internal"
 
 export default function BlogRecentPosts({sidebar}: {sidebar: Props["sidebar"]}): JSX.Element {
-  return (
-    <div className="mx-8 md:mx-[367px] mt-10">
-      <h1 className=" text-title-medium">Recent Blog Posts</h1>
-      <div className=" flex flex-wrap gap-4">
-        {sidebar?.items.map((item) => {
-          return (
-            <Link to={item.permalink} className="w-full md:w-[45%] my-4 !no-underline">
-              <img
-                src={`/images/${item.permalink}.png`}
-                className="w-full rounded-xl aspect-[1.88] object-cover"
-                alt=""
-              />
-              <h1 className=" text-title-medium text-black">{item.title}</h1>
-            </Link>
-          )
-        })}
+  const [isBlogPostPage, setIsBlogPostPage] = React.useState(false)
+  try {
+    const {isBlogPostPage: contextIsBlogPostPage} = useBlogPost()
+    setIsBlogPostPage(contextIsBlogPostPage)
+  } catch (e) {
+    // Context provider is not available
+  }
+
+  return isBlogPostPage ? (
+    <div className="container">
+      <div className="row justify-center">
+        <div className="col col--7">
+          <hr className="h-[1px] !bg-tailCall-light-300" />
+          <h1 className=" text-title-medium">Recent Blog Posts</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {sidebar?.items.map((item) => {
+              return (
+                <Link to={item.permalink} className="w-full my-4 !no-underline">
+                  <img
+                    src={`/images/${item.permalink}.png`}
+                    className="w-full rounded-xl aspect-[1.88] object-cover"
+                    alt=""
+                  />
+                  <h1 className=" text-title-medium text-black">{item.title}</h1>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </div>
+  ) : (
+    <></>
   )
 }

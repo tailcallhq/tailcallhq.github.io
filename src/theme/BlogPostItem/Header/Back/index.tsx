@@ -1,7 +1,7 @@
 import {ArrowLeft} from "lucide-react"
 import React from "react"
 
-export default function BlogBackbutton(): JSX.Element {
+export default function BlogBackButton(): JSX.Element {
   return (
     <div
       className="flex items-center gap-2 my-8 cursor-pointer"
