@@ -671,6 +671,13 @@ span.token.tag.script.language-javascript {
   }
 }
 
+.pagination-nav {
+  @apply !flex !justify-end;
+}
+.pagination-nav a {
+  @apply md:w-1/2;
+}
+
 .pagination-nav a:nth-child(2) {
   @apply justify-end;
 }
