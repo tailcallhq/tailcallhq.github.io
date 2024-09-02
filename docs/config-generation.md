@@ -908,9 +908,9 @@ Let's understand how each of the parameter works.
   ```
 
   Benefits of LLM Inference:
-  - Enhanced Readability: The schema now clearly represents the data it models, using intuitive type names such as User and Post.
-  - Improved Maintenance: Type names aligned with their context make the schema easier to understand, modify, and extend.
-  - Semantic Clarity: Field names and their related types are now self-explanatory, reducing the need for additional documentation or comments.
+  - **Enhanced Readability:** The schema now clearly represents the data it models, using intuitive type names such as User and Post.
+  - **Improved Maintenance:** Type names aligned with their context make the schema easier to understand, modify, and extend.
+  - **Semantic Clarity:** Field names and their related types are now self-explanatory, reducing the need for additional documentation or comments.
 
   By leveraging advanced language models, the schema becomes more intuitive and aligned with the data it represents, making it easier to understand and maintain.
 
