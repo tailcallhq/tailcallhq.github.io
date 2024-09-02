@@ -5,7 +5,7 @@ description: "An exploration of the security, tooling, and future prospects of G
 tags: [GraphQL, API, OpenAPI, Security, Tooling]
 slug: graphql-vs-openapi-part-3
 hide_table_of_contents: true
-image: /images/blog/openapi-vs-graphql-part3.png
+image: /images/blog/graphql-vs-openapi-part-3.png
 authors:
   - name: Shivam Chaudhary
     title: Cloud and Infra Associate

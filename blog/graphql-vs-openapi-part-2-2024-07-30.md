@@ -4,7 +4,7 @@ sidebar_label: "GraphQL vs OpenAPI: Part 2 of the API Comparison Series"
 description: "A detailed comparison of the performance, flexibility, and ecosystems of GraphQL and OpenAPI."
 tags: [GraphQL, API, OpenAPI, Performance, Flexibility]
 slug: graphql-vs-openapi-part-2
-image: /images/blog/openapi-vs-graphql-part2.png
+image: /images/blog/graphql-vs-openapi-part-2.png
 hide_table_of_contents: true
 authors:
   - name: Shivam Chaudhary

@@ -1,10 +1,8 @@
 import React from "react"
 import clsx from "clsx"
 import Layout from "@theme/Layout"
-import BlogSidebar from "@theme/BlogSidebar"
-
+import BlogRecentPosts from "../BlogRecentPosts"
 import type {Props} from "@theme/BlogLayout"
-import Announcement from "@site/src/components/shared/Announcement"
 
 export default function BlogLayout(props: Props): JSX.Element {
   const {sidebar, toc, children, ...layoutProps} = props
@@ -12,9 +10,8 @@ export default function BlogLayout(props: Props): JSX.Element {
 
   return (
     <Layout {...layoutProps}>
-      <div className="container margin-vert--lg">
-        <div className="row">
-          <BlogSidebar sidebar={sidebar} />
+      <div className="container my-8">
+        <div className="row justify-center">
           <main
             className={clsx("col", {
               "col--7": hasSidebar,
@@ -26,6 +23,7 @@ export default function BlogLayout(props: Props): JSX.Element {
           {toc && <div className="col col--2">{toc}</div>}
         </div>
       </div>
+      <BlogRecentPosts sidebar={sidebar} />
     </Layout>
   )
 }

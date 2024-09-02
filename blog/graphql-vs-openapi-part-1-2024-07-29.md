@@ -4,7 +4,7 @@ sidebar_label: "GraphQL vs OpenAPI: Part 1 of the API Comparison Series"
 description: "An Introduction to GraphQL and OpenAPI, outlining their core concepts and initial setup."
 tags: [GraphQL, API, OpenAPI]
 slug: graphql-vs-openapi-part-1
-image: /images/blog/openapi-vs-graphql-part1.png
+image: /images/blog/graphql-vs-openapi-part-1.png
 hide_table_of_contents: true
 authors:
   - name: Shivam Chaudhary

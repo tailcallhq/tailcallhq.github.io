@@ -3,8 +3,8 @@ import clsx from "clsx"
 import {useBlogPost} from "@docusaurus/theme-common/internal"
 import {ThemeClassNames} from "@docusaurus/theme-common"
 import EditMetaRow from "@theme/EditMetaRow"
-import TagsListInline from "@theme/TagsListInline"
 import ReadMoreLink from "@theme/BlogPostItem/Footer/ReadMoreLink"
+import BlogPostItemHeaderAuthors from "../Header/Authors"
 
 export default function BlogPostItemFooter(): JSX.Element | null {
   const {metadata, isBlogPostPage} = useBlogPost()
@@ -27,13 +27,8 @@ export default function BlogPostItemFooter(): JSX.Element | null {
 
     return (
       <footer className="docusaurus-mt-lg">
-        {tagsExists && (
-          <div className={clsx("row", "margin-top--sm", ThemeClassNames.blog.blogFooterEditMetaRow)}>
-            <div className="col">
-              <TagsListInline tags={tags} />
-            </div>
-          </div>
-        )}
+        <h1 className="text-[12px]">Posted By</h1>
+        <BlogPostItemHeaderAuthors />
         {canDisplayEditMetaRow && (
           <EditMetaRow
             className={clsx("margin-top--sm", ThemeClassNames.blog.blogFooterEditMetaRow)}
@@ -49,11 +44,6 @@ export default function BlogPostItemFooter(): JSX.Element | null {
   else {
     return (
       <footer className="row docusaurus-mt-lg">
-        {tagsExists && (
-          <div className={clsx("col", {"col--9": truncatedPost})}>
-            <TagsListInline tags={tags} />
-          </div>
-        )}
         {truncatedPost && (
           <div
             className={clsx("col text--right", {
