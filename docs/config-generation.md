@@ -794,6 +794,8 @@ Let's understand how each of the parameter works.
 
   This setting enables the automatic inference of type names based on field names within the GraphQL schema. The inferTypeNames setting aims to enhance type naming consistency and readability by suggesting meaningful type names derived from the field names.
 
+  **1. Manual Inference:**
+
   **Q. How It Works**
 
   1. **Generates Type Names**: Creates type names from field names using pluralization and other heuristics.
@@ -850,6 +852,67 @@ Let's understand how each of the parameter works.
   - **Priority Handling:** Types directly associated with root operations are given higher priority during inference. For example, if `T2` were associated with a root query or mutation type, it might have a higher priority for inference compared to other types.
 
   - **Pluralization Rules:** The inferred type names are converted to singular form to align with typical GraphQL naming conventions. For instance, a type derived from a plural field name like `comments` would be singularized to `Comment`.
+
+  **2. LLM Inference:**
+
+  **Q. How It Works?**
+
+  LLM Inference enhances the readability and maintainability of your GraphQL schema by intelligently renaming types based on their context and usage patterns. This process leverages advanced language models that understand relationships between fields and their semantics.
+
+  1. **Leverages Language Models**: Utilizes advanced language models to infer type names based on the context and semantics of the field names.
+  2. **Contextual Understanding**: Provides more accurate and contextually relevant type names by understanding the relationships and usage patterns within the schema.
+
+  ```graphql title="Before enabling LLM Inference"
+  type T1 {
+    id: ID
+    name: String
+    email: String
+    post: [T2]
+  }
+
+  type T2 {
+    id: ID
+    title: String
+    body: String
+  }
+
+  type Query {
+    users: [T1] @http(path: "/users")
+  }
+  ```
+  In the above schema, T1 and T2 are generic type names that don't convey the specific context of the data.
+  This naming convention makes it difficult to understand the relationships and the purpose of these types without additional context.
+
+  **How Type Names Are Inferred:**
+
+  - **User**: Derived from T1, inferred by the language model based on the context of the `users` field in the Query type.
+  - **Post**: Derived from T2, inferred by the language model based on the context of the `post` field within User.
+
+  ```graphql title="After enabling LLM Inference"
+  type User {
+    id: ID
+    name: String
+    email: String
+    post: [Post]
+  }
+
+  type Post {
+    id: ID
+    title: String
+    body: String
+  }
+
+  type Query {
+    users: [User] @http(path: "/users")
+  }
+  ```
+
+  Benefits of LLM Inference:
+  - Enhanced Readability: The schema now clearly represents the data it models, using intuitive type names such as User and Post.
+  - Improved Maintenance: Type names aligned with their context make the schema easier to understand, modify, and extend.
+  - Semantic Clarity: Field names and their related types are now self-explanatory, reducing the need for additional documentation or comments.
+
+  By leveraging advanced language models, the schema becomes more intuitive and aligned with the data it represents, making it easier to understand and maintain.
 
 ## Recommended Configuration Parameters
 
