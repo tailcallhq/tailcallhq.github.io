@@ -885,7 +885,9 @@ Let's understand how each of the parameter works.
   This naming convention makes it difficult to understand the relationships and the purpose of these types without additional context.
 
   **How Type Names Are Inferred:**
-
+  We send the type and its fields to the LLM model, requesting it to suggest appropriate names based on the field names.
+  For example:
+  
   - **User**: Derived from T1, inferred by the language model based on the context of the `users` field in the Query type.
   - **Post**: Derived from T2, inferred by the language model based on the context of the `post` field within User.
 
