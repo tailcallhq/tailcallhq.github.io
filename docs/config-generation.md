@@ -880,6 +880,7 @@ Let's understand how each of the parameter works.
     users: [T1] @http(path: "/users")
   }
   ```
+
   In the above schema, T1 and T2 are generic type names that don't convey the specific context of the data.
   This naming convention makes it difficult to understand the relationships and the purpose of these types without additional context.
 
@@ -908,6 +909,7 @@ Let's understand how each of the parameter works.
   ```
 
   Benefits of LLM Inference:
+
   - **Enhanced Readability:** The schema now clearly represents the data it models, using intuitive type names such as User and Post.
   - **Improved Maintenance:** Type names aligned with their context make the schema easier to understand, modify, and extend.
   - **Semantic Clarity:** Field names and their related types are now self-explanatory, reducing the need for additional documentation or comments.
