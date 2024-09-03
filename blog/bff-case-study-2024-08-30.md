@@ -1,5 +1,5 @@
 ---
-title: "How Dream11 Revolutionized Fantasy Sports with GraphQL"
+title: "How Dream11 Uses GraphQL to Power Their Fantasy Sports Platform"
 authors:
   - name: Amit Singh
     title: Head of Growth and Strategy @ Tailcall | Ex Director of Engineering @ Dream11
@@ -13,94 +13,100 @@ image: /images/blog/cover-dream11-case-study.png
 
 import CallToAction from '../src/components/blog/call-to-action.tsx';
 
-As a former Director of Engineering at Dream11, India's largest fantasy sports platform with over 200 million users, I've seen firsthand how we transformed the sports industry by giving users the power to create their own fantasy teams and compete against each other in various leagues. Now, as the Head of Growth and Strategy at Tailcall, I'm excited to share my insights on how Dream11 harnessed the power of GraphQL to build a scalable, performant, and user-friendly platform.
+---
 
+**Picture this:**
+
+200 million users, countless fantasy teams, and a platform that needs to keep up with the lightning-fast pace of live sports. That was the exciting challenge we faced at [Dream11, India's largest fantasy sports platform](https://www.dream11.com/).
+
+As a former employee, I'm thrilled to share how we harnessed the power of GraphQL to create a platform that's not just scalable and performant, but also a joy for both users and developers to interact with.
 
 <!-- truncate -->
 
+## Case Study: Dream11's GraphQL Journey
 
-## The Challenge: Breaking Free from Monolithic Architecture
+### The Challenge: Taming the Monolith
 
-During my time at Dream11, we embarked on a major refactor to improve performance and scalability. We moved from a monolithic architecture to a microservices architecture, but this journey was not without its challenges. One of the biggest hurdles was ensuring that our frontend applications didn't have to worry about how our backend was structured. That's when we turned to GraphQL as our backend-for-frontend (BFF) solution.
+During my time at Dream11, we embarked on several major re-architecture projects to supercharge our systems' performance and scalability. But perhaps the most exhilarating (and occasionally hair-raising) journey was our transition from a monolithic architecture to microservices.
 
-[//]: # (During my time at Dream11, we did many major re architectures to improve the performance and scalabitity of our systems as well as to improve the developer experience.)
+Now, let me tell you, this wasn't a walk in the park. We faced hurdles at every turn. But we had one golden rule that guided us through the chaos: "The frontend should never be shackled by the backend's structure." This mantra led us to an exciting solution: using GraphQL as a backend-for-frontend (BFF).
 
-[//]: # (One of the major refactorings was our journey of moving from a monolithic architecture to a micro-services architecture.)
+## The Magic of Backend-for-Frontends (BFFs)
 
-[//]: # (This journey was not easy and we faced many challenges along the way.)
+Think of BFFs as the ultimate middlemen, sitting between our microservices and frontend applications. They're not just passing messages; they're tailoring responses and error handling for each client application. It's like having a personal assistant for each of your frontend apps! By implementing BFFs, we unlocked a treasure trove of advantages:
 
-[//]: # (During this journey we had only one rule that we followed.)
+- **No more data bloat:** Say goodbye to under-fetching and over-fetching. Our BFFs serve each client exactly what they need, nothing more, nothing less.
+- **Divide and conquer:** With BFFs handling the heavy lifting of data formatting, our frontend developers could focus on crafting amazing user experiences.
+- **Network efficiency:** Imagine making one call instead of ten. That's the power of BFFs – they fetch data from multiple sources in one go, keeping our network traffic lean and mean.
 
-[//]: # ("Frontend should not have any dependency on how the backend is structured".)
+## Dream11's Microservices Odyssey
 
-[//]: # (This where we thought of using GraphQL as backend-for-frontend aka BFF .)
+Now, we could have gone for the "big bang" approach, but where's the fun (or safety) in that? Instead, we opted for a more measured journey:
 
-## What are Backend-for-Frontends (BFFs)?
+1. First, we moved all our monolith APIs to a GraphQL-based BFF.
+2. We then directed all frontend applications to this new BFF, even adding a lint check to catch any sneaky direct API calls to the monolith.
+3. Once we were confident in our new setup, we began the exciting process of moving APIs to microservices, one by one.
 
-BFFs sit between our microservices and frontend applications, customizing responses and error handling for each client application. By implementing BFFs, we gained several advantages:
-
-- **No under/over-fetching:** Our BFFs ensure that clients get exactly what they need, without any unnecessary data.
-- **Separation of concerns:** Our frontend applications no longer had to worry about formatting data, giving our developers the flexibility to choose and structure our microservices as needed.
-- **Fewer network calls:** Our BFFs can fetch data from multiple resources at once, reducing the number of calls our clients need to make.
-
-## Dream11's Microservices Journey
-To make our migration smooth and minimize risk, we decided to move all our APIs to a GraphQL-based BFF. We then updated our frontend applications to use the BFF for all data fetching, adding a lint check to ensure that no frontend application was making direct API calls to our monolith. Once we were confident that all our frontend applications were using the BFF, we began moving our APIs to microservices one by one. This approach may have been longer, but it was smoother and helped us minimize risk and testing.
-
-[//]: # (To make the migration smooth and limit the scope of changes, risk and testing.)
-
-[//]: # (We Decided we will move all the api in our monolith to a GraphQL based BFF.)
-
-[//]: # (and make the frontend applications to use the BFF for all the data fetching. We also added a lint check to make sure that no frontend application is making any direct api calls to the monolith.)
-
-[//]: # (Once we were confident that all the frontend applications are using the BFF we started moving the api's to microservices one by one.)
-
-[//]: # (This was a longer path, but it was smoother and it helped us minimize the risk and testing.)
-
+Sure, it was a longer path, but it was smoother sailing. We minimized risks, kept our testing manageable, and, most importantly, kept our sanity intact!
 
 ![Micro service journey](../static/images/blog/monolith-to-microservices.png)
 
-## Architecture of Dream11's BFF
+## Unveiling Dream11's BFF Architecture
 
-Our BFF architecture at Dream11 consisted of the following components:
+Let me pull back the curtain on our BFF architecture at Dream11. It was a symphony of components working in perfect harmony:
 
-- **GraphQL Server:** Built using Apollo Server, responsible for fetching data from microservices and returning it to frontend applications.
-- **Microservices:** Built using Node.js and Express, responsible for fetching data from databases and returning it to the GraphQL server.
-- **Frontend Applications:** Built using React, responsible for rendering the data returned by the GraphQL server.
-- **API Gateway:** Built using Kong, responsible for routing requests from the GraphQL server to the microservices.
+- **GraphQL Server:** The maestro of our operation, built with Apollo Server. It orchestrated data fetching from microservices and delivered it beautifully to our frontend applications.
+- **Microservices:** Our data virtuosos, crafted with Node.js and Express. They fetched data from databases and passed it to the GraphQL server.
+- **Frontend Applications:** The face of our platform, built in React. They took the data from our GraphQL server and transformed it into the engaging user interfaces our players loved.
+- **API Gateway:** The bouncer of our architecture, powered by Kong. It managed the flow of requests from the GraphQL server to our microservices.
 
 ![Architecture diagram explaining Dream11 GraphQL Based BFF Architecture](../static/images/blog/dream11_bff.png)
 
-In this architecture, the GraphQL server acts as a mediator between the frontend applications and the microservices. It fetches data from the microservices and returns it to the frontend applications in the format they require.
-You might be wondering why we put an API Gateway after the GraphQL server. The reason is resiliency of our microservices.
-We wanted to rate limit and circuit breaking the usage of apis based on the capacity and status of individual microservices. But we were not able to do that with GraphQL because GraphQL has only one endpoint and Rate limiting based on query depth or query cost was not giving us the desired results.
+Now, you might be scratching your head, wondering, "Why put an API Gateway after the GraphQL server?" Great question! It all comes down to resilience. We needed fine-grained control over rate limiting and circuit breaking for each microservice. GraphQL's single endpoint made this tricky, so we added this extra layer to keep our systems robust and responsive.
 
-This architecture worked for us for many years and we were able to scale our systems to 10s of millions of users without any issues. Until we started facing issues with the performance of our GraphQL server.
+This architecture was our trusted companion for years, scaling effortlessly to serve tens of millions of users. But as with any great journey, we eventually hit a new challenge: the performance of our GraphQL server started to feel the strain of our massive success.
 
 <CallToAction
-title="To more about what we did to improve the performance of our GraphQL server"
-subtitle= "Please Join us at GraphQL Conference 2024"
-buttonText="See You At GraphQL Conf"
+title="Curious about how we turbocharged our GraphQL server?"
+subtitle= "Join us at GraphQL Conference 2024 for the thrilling conclusion!"
+buttonText="Save Your Spot"
 href="https://graphql.org/conf/2024/schedule/870876ffad45b79d11e09393e7f22587/"
 backgroundImageSrc="/icons/basic/bg-tailcall.svg"
 />
 
+## The GraphQL Advantage: Dream11's Secret Weapon
 
+Implementing GraphQL for our BFF layer wasn't just a technical decision – it was a game-changer. Here's why we fell in love with GraphQL:
 
-## Advantages of using GraphQL for Dream11's BFF
+- **Network efficiency on steroids:** We slashed unnecessary network calls, making our app lightning-fast.
+- **Bug squashing made easy:** Type-safe queries generated at compile time meant fewer surprises in production.
+- **Performance boost:** We fetched only the data we needed, nothing more, nothing less. Also reduced multiple round trips to the server.
+- **Flexibility unleashed:** We could structure our data exactly how we wanted, adapting to new requirements with ease.
+- **Cross-platform harmony:** Consistency across all platforms became a breeze.
+- **Developer joy:** Our frontend team couldn't stop raving about how easy it was to work with.
+- **Time is money:** Reduced development time meant we could innovate faster.
+- **Happy developers, happy life:** The improved developer experience led to more creative solutions and happier teams.
 
-Implementing GraphQL for our BFF layer at Dream11 brought numerous advantages:
+## The Next Chapter: From Challenges to Solutions
 
-- **Reduced network calls**
-- **Fewer bugs** due to type-safe queries generated at compile time
-- **Improved performance** by fetching only the required data
-- **Flexibility** in structuring our data
-- **Consistency** across all platforms
-- **Scalability** without compromising performance or user experience
-- **Ease of use** for frontend developers
-- **Resilient APIs**
-- **Reduced development time**
-- **Improved developer experience*
+The journey we embarked on at Dream11 wasn't just about solving immediate problems – it was about reimagining how we approach backend architecture for massive-scale applications. The challenges we faced, the solutions we crafted, and the lessons we learned have directly shaped the development of Tailcall.
 
-## 
+Tailcall emerged from the crucible of these experiences, designed to make the implementation of GraphQL and similar migration journeys significantly easier for other companies. Here's how Tailcall is addressing the pain points we encountered:
 
-As I reflect on my time at Dream11 and our journey with GraphQL, I'm excited to bring these insights to my new role at Tailcall. The success we achieved with this architecture has reinforced my belief in the power of GraphQL for building scalable and efficient backend systems.
+1. **Simplified Migration:** Tailcall provides tools to streamline the transition from monolithic architectures to microservices, making the journey we undertook at Dream11 more accessible and less risky for other organizations.
+
+2. **Performance at Scale:** Drawing from our experiences with GraphQL performance challenges, Tailcall incorporates optimizations that allow GraphQL servers to handle massive loads more efficiently.
+
+3. **Automated BFF Generation:** Recognizing the power of the BFF pattern, Tailcall offers features to automatically generate and manage Backend-for-Frontend layers, reducing development time and potential errors.
+
+4. **Enhanced Resilience:** Our struggles with rate limiting and circuit breaking at the GraphQL layer have informed Tailcall's design, incorporating these features more seamlessly into the GraphQL ecosystem.
+
+5. **Developer Experience:** The joys and pains of our development team at Dream11 have directly influenced Tailcall's focus on developer experience, making it easier for teams to work with GraphQL and microservices architectures.
+
+6. **Flexible Scaling:** Tailcall embodies the lessons learned from scaling Dream11 to millions of users, offering flexible scaling options that grow with your application.
+
+The challenges we faced at Dream11 weren't unique – they're common hurdles for any company dealing with rapid growth and complex, real-time data needs. Tailcall is our answer to these industry-wide challenges, encapsulating years of hard-won wisdom into a tool that makes these architectural transitions smoother, faster, and more reliable.
+
+As we continue to evolve Tailcall, we're excited to see how it will empower other companies to undertake their own transformative journeys, armed with the insights and tools born from our experiences. The future of backend architecture is bright, and we're thrilled to be part of shaping it.
+
+Stay tuned, fellow tech enthusiasts. With Tailcall, we're not just solving yesterday's problems – we're building tomorrow's solutions.

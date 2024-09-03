@@ -24,7 +24,7 @@ const CallToAction: React.FC<CallToActionProps> = ({title, subtitle, buttonText,
         <div className="relative z-10 mt-6 max-md:w-full max-md:flex max-md:justify-center md:mt-0 md:ml-6 md:flex-shrink-0">
           <LinkButton
             title={buttonText}
-            href={href ? href: pageLinks.docs}
+            href={href ? href : pageLinks.docs}
             theme={Theme.Tailcall}
             width="auto"
             onClick={() => analyticsHandler("Blog", "Click", "Get Started")}
