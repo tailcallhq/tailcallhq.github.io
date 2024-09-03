@@ -7,7 +7,7 @@ const ChooseTailcall = (): JSX.Element => {
   return (
     <div className="flex flex-col items-center justify-center">
       <p className="text-title-large max-w-lg mx-auto sm:text-display-tiny lg:text-display-medium text-center my-SPACE_14 sm:mb-SPACE_16 sm:my-32">
-        More reasons to choose tailcall.
+        More reasons to choose Tailcall.
       </p>
       <div className="flex flex-col lg:flex-row space-y-SPACE_06 items-center justify-between lg:space-x-SPACE_06 lg:space-y-0">
         {chooseTailcall.map((item) => (

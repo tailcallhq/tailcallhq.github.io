@@ -126,8 +126,8 @@ GraphQL has several built-in types: `String`, `Int`, `Float`, `Boolean`, and `ID
 
 ## Building Apps with GraphQL
 
-TailCall’s CLI tool can generate GraphQL configurations from various sources, such as protobuf files and REST endpoints. This tool simplifies the process of creating GraphQL configurations, enabling you to build powerful applications with ease. To know more about the `gen` command in the TailCall CLI, check out the [documentation](/docs/tailcall-graphql-cli#gen).
+Tailcall’s CLI tool can generate GraphQL configurations from various sources, such as protobuf files and REST endpoints. This tool simplifies the process of creating GraphQL configurations, enabling you to build powerful applications with ease. To know more about the `gen` command in the Tailcall CLI, check out the [documentation](/docs/tailcall-graphql-cli#gen).
 
 ## Conclusion
 
-GraphQL variables and type safety ensure consistent data across your applications. By leveraging these features, you can build flexible, reliable, and scalable applications. TailCall’s CLI tool simplifies the process of generating GraphQL configurations, enabling you to create powerful applications with ease. To learn more about building apps with GraphQL, explore the [TailCall documentation](/docs).
+GraphQL variables and type safety ensure consistent data across your applications. By leveraging these features, you can build flexible, reliable, and scalable applications. Tailcall’s CLI tool simplifies the process of generating GraphQL configurations, enabling you to create powerful applications with ease. To learn more about building apps with GraphQL, explore the [TailCall documentation](/docs).
