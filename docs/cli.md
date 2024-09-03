@@ -1,7 +1,7 @@
 ---
 title: Command Line Reference
 sidebar_position: 3
-description: "Discover the TailCall CLI, a crucial tool for developers to manage and optimize GraphQL configurations from the command line. Learn commands like 'check', 'start', 'init', and 'gen' to validate specs, launch servers, bootstrap projects, and generate configurations. Detect N+1 issues, display schemas, format inputs, and more. Simplify GraphQL composition and enhance your development workflow with TailCall CLI."
+description: "Discover the Tailcall CLI, a crucial tool for developers to manage and optimize GraphQL configurations from the command line. Learn commands like 'check', 'start', 'init', and 'gen' to validate specs, launch servers, bootstrap projects, and generate configurations. Detect N+1 issues, display schemas, format inputs, and more. Simplify GraphQL composition and enhance your development workflow with Tailcall CLI."
 slug: tailcall-graphql-cli
 sidebar_label: Command Line
 ---
@@ -11,7 +11,7 @@ import TabItem from "@theme/TabItem"
 
 <!-- ❕❕❕ Don't forget to update Fig auto complete spec upon adding of new sub-commands or modifying existing ones. https://fig.io/docs/getting-started -->
 
-The TailCall CLI (Command Line Interface) allows developers to manage and optimize GraphQL configurations directly from the command line.
+The Tailcall CLI (Command Line Interface) allows developers to manage and optimize GraphQL configurations directly from the command line.
 
 ## check
 
@@ -81,7 +81,7 @@ tailcall start ./path/to/file1.graphql ./path/to/file2.graphql http://example.co
 
 ## init
 
-The `init` command bootstraps a new TailCall project. It creates the necessary GraphQL schema files in the provided file path.
+The `init` command bootstraps a new Tailcall project. It creates the necessary GraphQL schema files in the provided file path.
 
 ```bash
 tailcall init <file_path>
@@ -101,7 +101,7 @@ This command prompts for file creation and configuration, creating the following
 
 ## gen
 
-The `gen` command in the TailCall CLI is designed to generate GraphQL configurations from various sources, such as protobuf files and REST endpoints.
+The `gen` command in the Tailcall CLI is designed to generate GraphQL configurations from various sources, such as protobuf files and REST endpoints.
 
 **usage:**
 
@@ -109,7 +109,7 @@ The `gen` command in the TailCall CLI is designed to generate GraphQL configurat
 tailcall gen path_to_configuration_file.json
 ```
 
-To generate a TailCall GraphQL configuration, provide a configuration file to the `gen` command like done above. This configuration file should be in JSON or YAML format, as illustrated in the example below:
+To generate a Tailcall GraphQL configuration, provide a configuration file to the `gen` command like done above. This configuration file should be in JSON or YAML format, as illustrated in the example below:
 
 <Tabs>
 <TabItem value="json" label="JSON">

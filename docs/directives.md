@@ -985,7 +985,7 @@ type Post {
 }
 ```
 
-- `query: {key: "user_id", value: "{{.value.userId}}"}]`: Instructs TailCall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?user_id=1&user_id=2&user_id=3...user_id=10`, consolidating requests into one.
+- `query: {key: "user_id", value: "{{.value.userId}}"}]`: Instructs Tailcall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?user_id=1&user_id=2&user_id=3...user_id=10`, consolidating requests into one.
 
 ### onRequest
 

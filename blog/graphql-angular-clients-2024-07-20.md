@@ -75,7 +75,7 @@ cd angular-graphql-tailcall-showcase
 
 ### 🔧 Tailcall Backend Configuration
 
-Create a tailcall directory in the project root and add a jsonplaceholder.graphql file:
+Create a `tailcall` directory in the project root and add a jsonplaceholder.graphql file:
 
 ```graphql
 # File: tailcall/jsonplaceholder.graphql
