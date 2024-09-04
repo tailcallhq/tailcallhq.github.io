@@ -1,39 +1,39 @@
 
 # Frequently Asked Questions
 
-Below are answers to some frequently asked questions. Please [contact us](https://discord.com/invite/kRZBPpkgwq) if you do not see your answer here.
+Here are answers to some of the most frequently asked questions. If you don't see what you're looking for, please feel free to [contact us](https://discord.com/invite/kRZBPpkgwq)!
 
 ## Performance
 
 **What sort of throughput and latency can we expect?**
 
-Please refer to our [benchmarks page](https://github.com/tailcallhq/graphql-benchmarks).
+Check out our [benchmarks page](https://github.com/tailcallhq/graphql-benchmarks) for detailed information.
 
 **How much scale can Tailcall handle?**
 
-We are horizontally scalable and can handle billions of requests per second.
+Tailcall is designed to scale horizontally and can handle billions of requests per second.
 
 ## Features
 
 **I use REST APIs. How can I use Tailcall if I don’t currently use GraphQL?**
 
-Tailcall has developed a directive called `@rest` to take advantage of the composition capabilities of GraphQL without requiring you to adopt GraphQL for your endpoints. With the help of this directive, Tailcall GraphQL queries and mutations may be made available as REST endpoints.
+Tailcall has a special directive called `@rest` that lets you use the composition capabilities of GraphQL without needing you to adopt GraphQL for your endpoints. This directive makes Tailcall GraphQL queries and mutations available as REST endpoints.
 
-**Can Tailcall generate GraphQL from gRPC APIs?**
+**Can Tailcall generate GraphQL from gRPC APIs?**  
 
-Yes, Tailcall automatically generates GraphQL configuration from various sources such as REST, gRPC, and already existing GraphQL configuration files. In fact, we support a hybrid integration of REST and gRPC. You can read more about generating GraphQL configuration from gRPC [here](https://tailcall.run/docs/graphql-grpc-tailcall/).
+Absolutely! Tailcall automatically generates GraphQL configurations from REST, gRPC, and existing GraphQL configuration files. We even support a hybrid integration of REST and gRPC. You can learn more about generating GraphQL configuration from gRPC APIs [here](https://tailcall.run/docs/graphql-grpc-tailcall/). 
 
 **Is authentication built-in with Tailcall? If yes, how?**
 
-Yes, Tailcall provides a straightforward way to implement entity-level authentication in your GraphQL schema. You can read more about it [here](https://tailcall.run/docs/field-level-access-control-graphql-authentication/).
+Yes, Tailcall offers a simple way to add entity-level authentication to your GraphQL schema. You can read more about it [here](https://tailcall.run/docs/field-level-access-control-graphql-authentication/). 
 
-**Does Tailcall work with HTTP/2?**
+**Does Tailcall work with HTTP/2?** 
 
-Yes, Tailcall enables support for HTTP/2 for both server (ingress) and client (egress) operations, facilitating the protocol's adoption for both incoming and outgoing server requests. For egress, there is no special setting required; Tailcall will automatically upgrade the connection to HTTP/2 whenever possible.
+Yes, Tailcall supports HTTP/2 for both server (ingress) and client (egress) operations, enabling the protocol for incoming and outgoing server requests. For egress, no special settings are needed—Tailcall will automatically upgrade the connection to HTTP/2 whenever possible.
 
 **Do you follow the Federation specification?**
 
-Yes, the subgraph spec is compatible with the Federation specification.
+Yes, our subgraph spec is fully compatible with the Federation specification.
 
 **Are you going to have a control plan like Apollo or Cosmo that has a self-hosted solution?**
 
@@ -43,48 +43,47 @@ Yes, it’s in the works! Please [contact us](https://discord.com/invite/kRZBPpk
 
 **What observability integrations do you support?**
 
-Tailcall is integrated for telemetry with Apollo Studio, Data Dog, New Relic, and Honeycomb.
+Tailcall integrates with Apollo Studio, Data Dog, New Relic, and Honeycomb for telemetry.
 
 **What production environments do you support? Where can I deploy Tailcall apps?**
 
-The GitHub Action [tailcallhq/gh-action](https://github.com/tailcallhq/gh-action) can be used to easily deploy a Tailcall server to any supported cloud provider. Currently, [AWS Lambda and Fly](https://tailcall.run/docs/deploy-graphql-github-actions/) are supported.
+The GitHub Action [tailcallhq/gh-action](https://github.com/tailcallhq/gh-action) can be used to easily deploy a Tailcall server to any supported cloud provider. Currently, [AWS Lambda and Fly](https://tailcall.run/docs/deploy-graphql-github-actions/) are supported.  
 
 ## Trivia
 
-**Why did you start Tailcall?**
+**Why did you start Tailcall?** 
 
-The idea for Tailcall was born from our learnings at Dream11, a fast-growing fantasy sports platform (>200M users) where rapid growth introduced frequent changes to the UI and a need for the backend to make these updates while ensuring Type Safety. On the frontend’s recommendation, the backend team adopted GraphQL and saw a reduction in their workload. However, the infrastructure cost ballooned as the platform grew. Handwriting the GraphQL servers also introduced problems in the code and didn’t scale well.
+Tailcall was inspired by our experiences at Dream11, a fast-growing fantasy sports platform with over 200 million users. As the platform grew rapidly, we needed to make frequent UI changes and maintain type safety on the backend. We adopted GraphQL on the frontend’s recommendation, which reduced our workload, but as the platform expanded, infrastructure costs skyrocketed. Handwriting GraphQL servers also became cumbersome and error-prone.
 
-We created a Domain Specific Language (DSL) that could abstract these performance problems of GraphQL and cross-cutting concerns and detect these problems at compile time. We also got a 90% reduction in infrastructure costs.
+We developed a Domain Specific Language (DSL) to address GraphQL’s performance issues and other concerns, which helped us cut infrastructure costs by 90%. Our key takeaway was that APIs should be independently built and operated, and GraphQL should be used as a client-side abstraction closer to the client, not the server. This knowledge shaped the way we architected Tailcall today! You can read more about our GraphQL journey at Dream11 [here](https://tailcall.run/blog/dream11-graphql-case-study/).
 
-Our main learnings at Dream11 were that APIs should be independently built and operated. GraphQL should be used as a client-side abstraction and sit closer to the client than the server. The client in this case could be a mobile app, a website, or even some other service that's querying data from some external or internal source. Because it's a client-side abstraction, responsibility is with the consumer of APIs and not with the producer.
+**What specific problem does Tailcall solve and for whom? Who is your ideal customer?** 
 
-Read more about our GraphQL adventures at Dream11 [here](https://tailcall.run/blog/dream11-graphql-case-study/). All this learning has helped us architect Tailcall the way it is today!
+Tailcall is perfect for growing companies that need efficient API management and are currently using REST APIs. Imagine you have a REST API and run an e-commerce store. The UI must make three separate requests:
+- One to get the list of products.
+- Another to get the seller details for each product.
+- A third to get the reviews for each product and calculate the average rating.
 
-**What specific problem does Tailcall solve and for whom? Who is your ideal customer?**
+**Manual Composition**: The UI is responsible for combining product data with seller names and calculating the average rating.
 
-A growing company that needs efficient management of APIs and is currently using REST APIs is a good prospect for Tailcall.
+**Over-fetching**: REST endpoints may return unnecessary fields, leading to over-fetching of data that the UI does not need.
 
-Suppose you use a REST API that returns a list of products, and another API that returns the reviews for a specific product (or a list of products). The frontend needs to compose these APIs together so that first you get a list of products, and then use the reviews API to fetch reviews for these products, and compose the data together.
+With GraphQL, a single query can be crafted to fetch exactly what the UI needs in one request. The GraphQL schema defines the relationships, simplifying data retrieval. However, setting this up usually involves writing backend code.
 
-With GraphQL, you can define a schema that describes the data and their relationships, and the GraphQL server implementation allows you to build this data structure efficiently using existing REST APIs. GraphQL also allows the UI to only fetch the fields it needs, thus preventing over-fetching. However, you have to write backend code to do this.
-
-Tailcall takes this a step further and enables you to build an efficient and fast GraphQL server with only a configuration file that specifies the shape of the data you want, and the sources the data is composed from. No code is required. This greatly speeds up the development process.
+Tailcall takes it a step further, enabling you to build an efficient GraphQL server using only a configuration file—no code required. This significantly speeds up the development process.
 
 **Is GraphQL dead? Why do you use GraphQL when so many in the industry think it’s dead?**
 
-Writing GraphQL by hand solves some problems but creates another set of problems. So, handwritten GraphQL will most likely be phased out. Combining the power of GraphQL with a powerful GraphQL runtime like Tailcall has a bright future!
+Handwriting GraphQL can solve certain problems but also introduces new challenges. While manual GraphQL might fade away, combining GraphQL with a powerful runtime like Tailcall has a bright future!
 
-**We already have a GraphQL API ready and we don't have reason to change. Why should we use Tailcall?**
+**We already have a GraphQL API ready and don't have a reason to change. Why should we use Tailcall?**
 
-GraphQL has powerful querying capabilities. However, you have to hand-write backend code to do this. This introduces complexity and potential for making mistakes. Read more about it [here](https://tailcall.run/docs/graphql-configuration-generation-with-tailcall/).
-
-Tailcall enables you to build an efficient and fast GraphQL server with only a configuration file that specifies the shape of the data you want, and the sources the data is composed from. No code is required. This greatly speeds up the development process. We highly recommend you install it, and if you have questions, we’d be happy to help!
+While GraphQL is great for querying, manually writing backend code introduces complexity and potential errors. Tailcall simplifies this by letting you build a fast GraphQL server with just a configuration file, greatly speeding up your development. We encourage you to [try it](https://tailcall.run/docs/) out, and if you have questions, we’re here to help!
 
 **What does the name Tailcall mean?**
 
-Tail call optimization (TCO) is the inspiration behind the name of our company :).
+Our name was inspired by "tail call optimization" (TCO), a concept in programming that perfectly reflects our mission to optimize performance and turbocharge developers' productivity!
 
 **I am ready for Tailcall. What next?**
 
-That’s awesome! Please visit our [Getting Started](https://tailcall.run/docs/) page. For any questions or to chat with us, please join us on [Discord](https://discord.com/invite/kRZBPpkgwq).
+Awesome! Check out our [Getting Started](https://tailcall.run/docs/) page to begin your journey. For any questions or to chat with us, join us on [Discord](https://discord.com/invite/kRZBPpkgwq).
