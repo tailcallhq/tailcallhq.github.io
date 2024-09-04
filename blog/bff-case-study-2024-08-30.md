@@ -17,6 +17,10 @@ authors:
     title: Head of Growth and Strategy @ Tailcall | Ex Director of Engineering @ Dream11
     url: https://github.com/amitksingh1490
     image_url: https://avatars.githubusercontent.com/u/23661702?v=5
+  - name: Tushar Mathur
+    title: CEO @ Tailcall | | Ex VP of Engineering @ Dream11
+    url: https://github.com/tusharmath
+    image_url: https://avatars.githubusercontent.com/u/194482?v=4
 ---
 
 import CallToAction from '../src/components/blog/call-to-action.tsx';
@@ -27,7 +31,7 @@ import CallToAction from '../src/components/blog/call-to-action.tsx';
 
 200 million users, countless fantasy teams, and a platform that needs to keep up with the lightning-fast pace of live sports. That was the exciting challenge we faced at [Dream11, India's largest fantasy sports platform](https://www.dream11.com/).
 
-As a former employee, I'm thrilled to share how we harnessed the power of GraphQL to create a platform that's not just scalable and performant, but also a joy for both users and developers to interact with.
+As a former employees, We're thrilled to share how we harnessed the power of GraphQL to create a platform that's not just scalable and performant, but also a joy for both users and developers to interact with.
 
 <!-- truncate -->
 
@@ -35,9 +39,9 @@ As a former employee, I'm thrilled to share how we harnessed the power of GraphQ
 
 ### The Challenge: Taming the Monolith
 
-During my time at Dream11, we embarked on several major re-architecture projects to supercharge our systems' performance and scalability. But perhaps the most exhilarating (and occasionally hair-raising) journey was our transition from a monolithic architecture to microservices.
+During our time at Dream11, we embarked on several major re-architecture projects to supercharge our systems' performance and scalability. But perhaps the most exhilarating (and occasionally hair-raising) journey was our transition from a monolithic architecture to microservices.
 
-Now, let me tell you, this wasn't a walk in the park. We faced hurdles at every turn. But we had one golden rule that guided us through the chaos: "The frontend should never be shackled by the backend's structure." This mantra led us to an exciting solution: using GraphQL as a backend-for-frontend (BFF).
+Now, let us tell you, this wasn't a walk in the park. We faced hurdles at every turn. But we had one golden rule that guided us through the chaos: "The frontend should never be shackled by the backend's structure." This mantra led us to an exciting solution: using GraphQL as a backend-for-frontend (BFF).
 
 ## The Magic of Backend-for-Frontends (BFFs)
 
@@ -63,10 +67,10 @@ Sure, it was a longer path, but it was smoother sailing. We minimized risks, kep
 
 Let me pull back the curtain on our BFF architecture at Dream11. It was a symphony of components working in perfect harmony:
 
-- **GraphQL Server:** The maestro of our operation, built with Apollo Server. It orchestrated data fetching from microservices and delivered it beautifully to our frontend applications.
-- **Microservices:** Our data virtuosos, crafted with Node.js and Express. They fetched data from databases and passed it to the GraphQL server.
 - **Frontend Applications:** The face of our platform, built in React. They took the data from our GraphQL server and transformed it into the engaging user interfaces our players loved.
+- **GraphQL Server:** The maestro of our operation, built with Apollo Server. It orchestrated data fetching from microservices and delivered it beautifully to our frontend applications.
 - **API Gateway:** The bouncer of our architecture, powered by Kong. It managed the flow of requests from the GraphQL server to our microservices.
+- **Microservices:** Our data virtuosos, crafted with Node.js and Express. They fetched data from databases and passed it to the GraphQL server.
 
 ![Architecture diagram explaining Dream11 GraphQL Based BFF Architecture](../static/images/blog/dream11_bff.png)
 
@@ -113,7 +117,7 @@ Tailcall emerged from the crucible of these experiences, designed to make the im
 
 6. **Flexible Scaling:** Tailcall embodies the lessons learned from scaling Dream11 to millions of users, offering flexible scaling options that grow with your application.
 
-The challenges we faced at Dream11 weren't unique – they're common hurdles for any company dealing with rapid growth and complex, real-time data needs. Tailcall is our answer to these industry-wide challenges, encapsulating years of hard-won wisdom into a tool that makes these architectural transitions smoother, faster, and more reliable.
+The challenges we faced at Dream11 weren't unique – they're common hurdles for any company dealing with rapid growth and complex data needs. Tailcall is our answer to these industry-wide challenges, encapsulating years of hard-won wisdom into a tool that makes these architectural transitions smoother, faster, and more reliable.
 
 As we continue to evolve Tailcall, we're excited to see how it will empower other companies to undertake their own transformative journeys, armed with the insights and tools born from our experiences. The future of backend architecture is bright, and we're thrilled to be part of shaping it.
 
