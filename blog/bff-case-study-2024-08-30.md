@@ -1,5 +1,5 @@
 ---
-title: "How Dream11 Uses GraphQL to Power Their Fantasy Sports Platform"
+title: "Lessons from the Frontlines: My GraphQL Adventure at Dream11"
 authors:
   - name: Amit Singh
     title: Head of Growth and Strategy @ Tailcall | Ex Director of Engineering @ Dream11
