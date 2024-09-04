@@ -9,6 +9,7 @@ description: Learn how a well-defined API strategy can drive innovation, improve
 hide_table_of_contents: true
 image: /images/blog/api-strategy.png
 slug: api-strategy
+tags: [API, Strategy, GraphQL, Scalability]
 ---
 
 import CallToAction from '../src/components/blog/call-to-action.tsx';

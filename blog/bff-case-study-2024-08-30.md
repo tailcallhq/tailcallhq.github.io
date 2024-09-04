@@ -1,15 +1,22 @@
 ---
 title: "Lessons from the Frontlines: My GraphQL Adventure at Dream11"
-authors:
-  - name: Amit Singh
-    title: Head of Growth and Strategy @ Tailcall | Ex Director of Engineering @ Dream11
-    url: https://github.com/amitksingh1490
-    image_url: https://avatars.githubusercontent.com/u/23661702?v=5
 description: Learn how Dream11 leverages GraphQL to build a scalable, performant, and user-friendly fantasy sports platform.
 hide_table_of_contents: true
 slug: dream11-graphql-case-study
 image: /images/blog/dream11-graphql-case-study.png
 category: Case Study
+tags:
+  [
+    GraphQL,
+    Backend-for-Frontend,
+    Microservices,
+    Scalability,
+  ]
+authors:
+  - name: Amit Singh
+    title: Head of Growth and Strategy @ Tailcall | Ex Director of Engineering @ Dream11
+    url: https://github.com/amitksingh1490
+    image_url: https://avatars.githubusercontent.com/u/23661702?v=5
 ---
 
 import CallToAction from '../src/components/blog/call-to-action.tsx';
