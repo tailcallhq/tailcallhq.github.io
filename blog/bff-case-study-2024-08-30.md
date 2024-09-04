@@ -8,7 +8,7 @@ authors:
 description: Learn how Dream11 leverages GraphQL to build a scalable, performant, and user-friendly fantasy sports platform.
 hide_table_of_contents: true
 slug: dream11-graphql-case-study
-image: /images/blog/cover-dream11-case-study.png
+image: /images/blog/dream11-graphql-case-study.png
 category: Case Study
 ---
 
