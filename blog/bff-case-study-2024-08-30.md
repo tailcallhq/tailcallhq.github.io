@@ -1,5 +1,5 @@
 ---
-title: "Lessons from the Frontlines: My GraphQL Adventure at Dream11"
+title: "Lessons from the Frontlines: Our GraphQL Adventure at Dream11"
 description: Learn how Dream11 leverages GraphQL to build a scalable, performant, and user-friendly fantasy sports platform.
 hide_table_of_contents: true
 slug: dream11-graphql-case-study
