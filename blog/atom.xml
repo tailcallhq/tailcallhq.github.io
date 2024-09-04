@@ -9,7 +9,7 @@
     <icon>https://tailcall.run/images/favicon.ico</icon>
     <rights>Copyright © 2024 Tailcall, Inc.</rights>
     <entry>
-        <title type="html"><![CDATA[How Dream11 Uses GraphQL to Power Their Fantasy Sports Platform]]></title>
+        <title type="html"><![CDATA[Lessons from the Frontlines: My GraphQL Adventure at Dream11]]></title>
         <id>https://tailcall.run/blog/dream11-graphql-case-study/</id>
         <link href="https://tailcall.run/blog/dream11-graphql-case-study/"/>
         <updated>2024-08-30T00:00:00.000Z</updated>
