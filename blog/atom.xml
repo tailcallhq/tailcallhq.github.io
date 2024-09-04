@@ -17,11 +17,11 @@
         <content type="html"><![CDATA[<hr>
 <p><strong>Picture this:</strong></p>
 <p>200 million users, countless fantasy teams, and a platform that needs to keep up with the lightning-fast pace of live sports. That was the exciting challenge we faced at <a href="https://www.dream11.com/" target="_blank" rel="noopener noreferrer">Dream11, India's largest fantasy sports platform</a>.</p>
-<p>As a former employee, I'm thrilled to share how we harnessed the power of GraphQL to create a platform that's not just scalable and performant, but also a joy for both users and developers to interact with.</p>
+<p>As a former employees, We're thrilled to share how we harnessed the power of GraphQL to create a platform that's not just scalable and performant, but also a joy for both users and developers to interact with.</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="case-study-dream11s-graphql-journey">Case Study: Dream11's GraphQL Journey<a class="hash-link" aria-label="Direct link to Case Study: Dream11's GraphQL Journey" title="Direct link to Case Study: Dream11's GraphQL Journey" href="https://tailcall.run/blog/dream11-graphql-case-study/#case-study-dream11s-graphql-journey">​</a></h2>
 <h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="the-challenge-taming-the-monolith">The Challenge: Taming the Monolith<a class="hash-link" aria-label="Direct link to The Challenge: Taming the Monolith" title="Direct link to The Challenge: Taming the Monolith" href="https://tailcall.run/blog/dream11-graphql-case-study/#the-challenge-taming-the-monolith">​</a></h3>
-<p>During my time at Dream11, we embarked on several major re-architecture projects to supercharge our systems' performance and scalability. But perhaps the most exhilarating (and occasionally hair-raising) journey was our transition from a monolithic architecture to microservices.</p>
-<p>Now, let me tell you, this wasn't a walk in the park. We faced hurdles at every turn. But we had one golden rule that guided us through the chaos: "The frontend should never be shackled by the backend's structure." This mantra led us to an exciting solution: using GraphQL as a backend-for-frontend (BFF).</p>
+<p>During our time at Dream11, we embarked on several major re-architecture projects to supercharge our systems' performance and scalability. But perhaps the most exhilarating (and occasionally hair-raising) journey was our transition from a monolithic architecture to microservices.</p>
+<p>Now, let us tell you, this wasn't a walk in the park. We faced hurdles at every turn. But we had one golden rule that guided us through the chaos: "The frontend should never be shackled by the backend's structure." This mantra led us to an exciting solution: using GraphQL as a backend-for-frontend (BFF).</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="the-magic-of-backend-for-frontends-bffs">The Magic of Backend-for-Frontends (BFFs)<a class="hash-link" aria-label="Direct link to The Magic of Backend-for-Frontends (BFFs)" title="Direct link to The Magic of Backend-for-Frontends (BFFs)" href="https://tailcall.run/blog/dream11-graphql-case-study/#the-magic-of-backend-for-frontends-bffs">​</a></h2>
 <p>Think of BFFs as the ultimate middlemen, sitting between our microservices and frontend applications. They're not just passing messages; they're tailoring responses and error handling for each client application. It's like having a personal assistant for each of your frontend apps! By implementing BFFs, we unlocked a treasure trove of advantages:</p>
 <ul>
@@ -41,10 +41,10 @@
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="unveiling-dream11s-bff-architecture">Unveiling Dream11's BFF Architecture<a class="hash-link" aria-label="Direct link to Unveiling Dream11's BFF Architecture" title="Direct link to Unveiling Dream11's BFF Architecture" href="https://tailcall.run/blog/dream11-graphql-case-study/#unveiling-dream11s-bff-architecture">​</a></h2>
 <p>Let me pull back the curtain on our BFF architecture at Dream11. It was a symphony of components working in perfect harmony:</p>
 <ul>
-<li><strong>GraphQL Server:</strong> The maestro of our operation, built with Apollo Server. It orchestrated data fetching from microservices and delivered it beautifully to our frontend applications.</li>
-<li><strong>Microservices:</strong> Our data virtuosos, crafted with Node.js and Express. They fetched data from databases and passed it to the GraphQL server.</li>
 <li><strong>Frontend Applications:</strong> The face of our platform, built in React. They took the data from our GraphQL server and transformed it into the engaging user interfaces our players loved.</li>
+<li><strong>GraphQL Server:</strong> The maestro of our operation, built with Apollo Server. It orchestrated data fetching from microservices and delivered it beautifully to our frontend applications.</li>
 <li><strong>API Gateway:</strong> The bouncer of our architecture, powered by Kong. It managed the flow of requests from the GraphQL server to our microservices.</li>
+<li><strong>Microservices:</strong> Our data virtuosos, crafted with Node.js and Express. They fetched data from databases and passed it to the GraphQL server.</li>
 </ul>
 <p><img decoding="async" loading="lazy" alt="Architecture diagram explaining Dream11 GraphQL Based BFF Architecture" src="https://tailcall.run/assets/images/dream11_bff-1926c9fdc3f367c97c4a82106a253763.png" width="1694" height="601" class="img_ev3q"></p>
 <p>Now, you might be scratching your head, wondering, "Why put an API Gateway after the GraphQL server?" Great question! It all comes down to resilience. We needed fine-grained control over rate limiting and circuit breaking for each microservice. GraphQL's single endpoint made this tricky, so we added this extra layer to keep our systems robust and responsive.</p>
@@ -85,13 +85,21 @@
 <p><strong>Flexible Scaling:</strong> Tailcall embodies the lessons learned from scaling Dream11 to millions of users, offering flexible scaling options that grow with your application.</p>
 </li>
 </ol>
-<p>The challenges we faced at Dream11 weren't unique – they're common hurdles for any company dealing with rapid growth and complex, real-time data needs. Tailcall is our answer to these industry-wide challenges, encapsulating years of hard-won wisdom into a tool that makes these architectural transitions smoother, faster, and more reliable.</p>
+<p>The challenges we faced at Dream11 weren't unique – they're common hurdles for any company dealing with rapid growth and complex data needs. Tailcall is our answer to these industry-wide challenges, encapsulating years of hard-won wisdom into a tool that makes these architectural transitions smoother, faster, and more reliable.</p>
 <p>As we continue to evolve Tailcall, we're excited to see how it will empower other companies to undertake their own transformative journeys, armed with the insights and tools born from our experiences. The future of backend architecture is bright, and we're thrilled to be part of shaping it.</p>
 <p>Stay tuned, fellow tech enthusiasts. With Tailcall, we're not just solving yesterday's problems – we're building tomorrow's solutions.</p>]]></content>
         <author>
             <name>Amit Singh</name>
             <uri>https://github.com/amitksingh1490</uri>
         </author>
+        <author>
+            <name>Tushar Mathur</name>
+            <uri>https://github.com/tusharmath</uri>
+        </author>
+        <category label="GraphQL" term="GraphQL"/>
+        <category label="Backend-for-Frontend" term="Backend-for-Frontend"/>
+        <category label="Microservices" term="Microservices"/>
+        <category label="Scalability" term="Scalability"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[GraphQL and Microservices: A Match Made in Heaven?]]></title>
@@ -407,6 +415,10 @@ Abstracting cross-cutting concerns from business logic is a critical aspect of A
             <name>Amit Singh</name>
             <uri>https://github.com/amitksingh1490</uri>
         </author>
+        <category label="API" term="API"/>
+        <category label="Strategy" term="Strategy"/>
+        <category label="GraphQL" term="GraphQL"/>
+        <category label="Scalability" term="Scalability"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[How Tailcall statically identifies N+1 issues in GraphQL]]></title>
