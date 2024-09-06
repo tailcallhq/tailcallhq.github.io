@@ -21,6 +21,10 @@ const sidebars: SidebarsConfig = {
         "directives",
       ],
     },
+    {
+      type: "doc",
+      id: "faq",
+    },
   ],
 }
 
