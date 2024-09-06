@@ -23,8 +23,8 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "doc",
-      id: "faq"
-    }
+      id: "faq",
+    },
   ],
 }
 

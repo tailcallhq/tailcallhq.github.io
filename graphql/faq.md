@@ -1,3 +1,8 @@
+---
+title: Frequently Asked Questions
+description: Get answers to the most frequently asked questions about Tailcall, including performance, features, installation, and more.
+slug: faq
+---
 
 # Frequently Asked Questions
 
@@ -9,7 +14,7 @@ Here are answers to some of the most frequently asked questions. If you don't se
 
 Check out our [benchmarks page](https://github.com/tailcallhq/graphql-benchmarks) for detailed information.
 
-**How much scale can Tailcall handle?**
+**What is the maximum capacity that Tailcall can manage effectively?**
 
 Tailcall is designed to scale horizontally and can handle billions of requests per second.
 
@@ -17,23 +22,26 @@ Tailcall is designed to scale horizontally and can handle billions of requests p
 
 **I use REST APIs. How can I use Tailcall if I don’t currently use GraphQL?**
 
-Tailcall has a special directive called `@rest` that lets you use the composition capabilities of GraphQL without needing you to adopt GraphQL for your endpoints. This directive makes Tailcall GraphQL queries and mutations available as REST endpoints.
+You can use Tailcall in two ways:
 
-**Can Tailcall generate GraphQL from gRPC APIs?**  
+1. You can use Tailcall to build a GraphQL server atop your existing REST APIs and Tailcall's `@http` directive. And you can replace your REST APIs with GraphQL over time.
+2. In case you don't want to use GraphQL, Tailcall has a directive called `@rest` that lets you use the composition capabilities of GraphQL without needing you to adopt GraphQL for your endpoints. This directive makes Tailcall GraphQL queries and mutations available as REST endpoints.
 
-Absolutely! Tailcall automatically generates GraphQL configurations from REST, gRPC, and existing GraphQL configuration files. We even support a hybrid integration of REST and gRPC. You can learn more about generating GraphQL configuration from gRPC APIs [here](https://tailcall.run/docs/graphql-grpc-tailcall/). 
+**Can Tailcall generate GraphQL from gRPC APIs?**
+
+Absolutely! Tailcall automatically generates GraphQL configurations from REST, gRPC, and existing GraphQL configuration files. We even support a hybrid integration of REST and gRPC. You can learn more about generating GraphQL configuration from gRPC APIs [here](https://tailcall.run/docs/graphql-grpc-tailcall/).
 
 **Is authentication built-in with Tailcall? If yes, how?**
 
-Yes, Tailcall offers a simple way to add entity-level authentication to your GraphQL schema. You can read more about it [here](https://tailcall.run/docs/field-level-access-control-graphql-authentication/). 
+Yes, Tailcall offers a simple way to add entity-level authentication to your GraphQL schema. You can read more about it [here](https://tailcall.run/docs/field-level-access-control-graphql-authentication/).
 
-**Does Tailcall work with HTTP/2?** 
+**Does Tailcall work with HTTP/2?**
 
-Yes, Tailcall supports HTTP/2 for both server (ingress) and client (egress) operations, enabling the protocol for incoming and outgoing server requests. For egress, no special settings are needed—Tailcall will automatically upgrade the connection to HTTP/2 whenever possible.
+Yes, Tailcall supports HTTP/2 for both server (ingress) and client (egress) operations, enabling the protocol for incoming and outgoing server requests. For egress, no special settings are needed Tailcall will automatically upgrade the connection to HTTP/2 whenever possible.
 
 **Do you follow the Federation specification?**
 
-Yes, our subgraph spec is fully compatible with the Federation specification.
+Yes, our subgraph is fully compatible with the Federation specification.
 
 **Are you going to have a control plan like Apollo or Cosmo that has a self-hosted solution?**
 
@@ -45,21 +53,24 @@ Yes, it’s in the works! Please [contact us](https://discord.com/invite/kRZBPpk
 
 Tailcall integrates with Apollo Studio, Data Dog, New Relic, and Honeycomb for telemetry.
 
-**What production environments do you support? Where can I deploy Tailcall apps?**
+**Where can I deploy Tailcall apps?**
 
-The GitHub Action [tailcallhq/gh-action](https://github.com/tailcallhq/gh-action) can be used to easily deploy a Tailcall server to any supported cloud provider. Currently, [AWS Lambda and Fly](https://tailcall.run/docs/deploy-graphql-github-actions/) are supported.  
+Tailcall is built using Rust and when you compile Rust, it gets compiled to an executable. You can then run the binary from anywhere - including your own self-hosted server!
+You can also run them as serverless functions through supported platforms like AWS Lambda. Each of these deployment methods have their own tradeoffs. You can also deploy Tailcall apps on Kubernetes, Docker, or any other container orchestration platform.
+Tailcall can also be compiled to WebAssembly and run in the browser/js based server .
 
 ## Trivia
 
-**Why did you start Tailcall?** 
+**Why did you start Tailcall?**
 
 Tailcall was inspired by our experiences at Dream11, a fast-growing fantasy sports platform with over 200 million users. As the platform grew rapidly, we needed to make frequent UI changes and maintain type safety on the backend. We adopted GraphQL on the frontend’s recommendation, which reduced our workload, but as the platform expanded, infrastructure costs skyrocketed. Handwriting GraphQL servers also became cumbersome and error-prone.
 
 We developed a Domain Specific Language (DSL) to address GraphQL’s performance issues and other concerns, which helped us cut infrastructure costs by 90%. Our key takeaway was that APIs should be independently built and operated, and GraphQL should be used as a client-side abstraction closer to the client, not the server. This knowledge shaped the way we architected Tailcall today! You can read more about our GraphQL journey at Dream11 [here](https://tailcall.run/blog/dream11-graphql-case-study/).
 
-**What specific problem does Tailcall solve and for whom? Who is your ideal customer?** 
+**What specific problem does Tailcall solve and for whom? Who is your ideal customer?**
 
 Tailcall is perfect for growing companies that need efficient API management and are currently using REST APIs. Imagine you have a REST API and run an e-commerce store. The UI must make three separate requests:
+
 - One to get the list of products.
 - Another to get the seller details for each product.
 - A third to get the reviews for each product and calculate the average rating.
