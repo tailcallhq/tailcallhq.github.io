@@ -40,17 +40,22 @@ const Youtube: React.FC = () => {
     <div className="video-container">
       <div
         className="absolute top-0 left-0 w-full h-full bg-cover bg-center 3xl:rounded-3xl"
-        style={{backgroundImage: `url(${videoData?.thumbnail_url})`}}
+        style={{
+          backgroundImage: `url(${videoData?.thumbnail_url})`,
+        }}
       >
         {!isPlaying ? (
-          <div className="absolute top-0 left-0 bottom-0 right-0 flex items-center justify-center">
-            <div
-              onClick={handlePlay}
-              className="w-14 h-14 md:w-[120px] md:h-[120px] bg-gradient-to-t from-yellow-200/20 to-transparent border md:border-[3px] border-solid border-yellow-500 shadow-md backdrop-blur-xl rounded-[20px] md:rounded-[42px] flex items-center justify-center cursor-pointer"
-            >
-              <img src="/icons/basic/play.svg" alt="Play Button Icon" className="w-6 h-6 md:w-12 md:h-12" />
+          <>
+            <div className="absolute top-0 left-0 bottom-0 right-0 flex items-center justify-center">
+              <div
+                onClick={handlePlay}
+                className="w-14 h-14 md:w-[120px] md:h-[120px] bg-gradient-to-t from-yellow-200/20 to-transparent border md:border-[3px] border-solid border-yellow-500 shadow-md backdrop-blur-xl rounded-[20px] md:rounded-[42px] flex items-center justify-center cursor-pointer"
+              >
+                <img src="/icons/basic/play.svg" alt="Play Button Icon" className="w-6 h-6 md:w-12 md:h-12" />
+              </div>
             </div>
-          </div>
+            <div className="absolute bottom-0 left-0 w-full h-20 md:h-64 bg-gradient-to-t from-tailCall-yellow/15 to-transparent"></div>
+          </>
         ) : (
           <iframe
             className="w-full h-full 3xl:rounded-3xl"
