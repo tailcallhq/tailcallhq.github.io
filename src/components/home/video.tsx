@@ -4,16 +4,16 @@ import "lite-youtube-embed/src/lite-yt-embed.js"
 import {PlayIcon} from "lucide-react"
 
 declare global {
-    namespace JSX {
-      interface IntrinsicElements {
-        'lite-youtube': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-          params?: string;
-          videoid?: string
-        };
+  namespace JSX {
+    interface IntrinsicElements {
+      "lite-youtube": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        params?: string
+        videoid?: string
       }
     }
   }
-  
+}
+
 const Video = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [player, setPlayer] = useState(null)
