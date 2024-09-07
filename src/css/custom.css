@@ -681,7 +681,7 @@ span.token.tag.script.language-javascript {
 .pagination-nav a:nth-child(2) {
   @apply justify-end;
 }
-lite-youtube{
+lite-youtube {
   width: 100% !important;
   max-width: unset !important;
 }

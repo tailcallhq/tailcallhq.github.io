@@ -1,11 +1,23 @@
-import React, {useState, useEffect, useRef} from "react"
+import React, {useState, useEffect, useRef, LegacyRef} from "react"
 import "lite-youtube-embed/src/lite-yt-embed.css"
 import "lite-youtube-embed/src/lite-yt-embed.js"
 import {PlayIcon} from "lucide-react"
+
+declare global {
+    namespace JSX {
+      interface IntrinsicElements {
+        'lite-youtube': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+          params?: string;
+          videoid?: string
+        };
+      }
+    }
+  }
+  
 const Video = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [player, setPlayer] = useState(null)
-  const liteYoutube = useRef()
+  const liteYoutube = useRef<HTMLElement>()
 
   useEffect(() => {
     if (!liteYoutube) {
@@ -61,9 +73,9 @@ const Video = () => {
       {/* Lite YouTube component */}
       <lite-youtube
         js-api
-        ref={liteYoutube}
+        ref={liteYoutube as any}
         className="w-screen"
-        params="modestbranding=1&vq=hd1080&rel=0&fs=0&color=white&controls=0"
+        params={"modestbranding=1&vq=hd1080&rel=0&fs=0&color=white&controls=0" as any}
         videoid="-hgzB5JhWJQ"
       ></lite-youtube>
     </div>
