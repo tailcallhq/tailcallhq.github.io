@@ -12,7 +12,7 @@ const HomePage = (): JSX.Element => {
     <div className="">
       <Banner />
       <Configuration />
-      <TailcallVideo/>
+      <TailcallVideo />
       <Testimonials />
       <Benefits />
       <Graph />
