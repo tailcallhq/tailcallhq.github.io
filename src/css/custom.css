@@ -681,7 +681,8 @@ span.token.tag.script.language-javascript {
 .pagination-nav a:nth-child(2) {
   @apply justify-end;
 }
-lite-youtube {
+.yt-embed {
   width: 100% !important;
   max-width: unset !important;
+  overflow-x: clip ;
 }

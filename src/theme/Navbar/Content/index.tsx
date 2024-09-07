@@ -87,7 +87,7 @@ const CustomSearch = () => {
 
   // Function to handle input focus
   const handleInputFocus = (event: FocusEvent) => {
-    const isInput = (event.target as HTMLElement).tagName.toLowerCase() === "input"
+    const isInput = (event.target).tagName.toLowerCase() === "input"
 
     // Disable user zooming when an input is in focus
     const viewportMetaTag = document.querySelector('meta[name="viewport"]') as HTMLMetaElement
