@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react"
 
 const TailcallIntroVideo = () => {
   return (
@@ -12,7 +12,7 @@ const TailcallIntroVideo = () => {
         loading="lazy"
       ></iframe>
     </div>
-  );
-};
+  )
+}
 
-export default TailcallIntroVideo;
+export default TailcallIntroVideo
