@@ -6,12 +6,13 @@ import Benefits from "./Benefits"
 import Discover from "../shared/Discover"
 import Configuration from "./Configuration"
 import Testimonials from "./Testimonials"
-import Announcement from "../shared/Announcement"
+import TailCallIntroVideo from "./TailCallIntroVideo"
 const HomePage = (): JSX.Element => {
   return (
     <div className="">
       <Banner />
       <Configuration />
+      <TailCallIntroVideo />
       <Testimonials />
       <Benefits />
       <Graph />
