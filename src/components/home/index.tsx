@@ -7,11 +7,13 @@ import Discover from "../shared/Discover"
 import Configuration from "./Configuration"
 import Testimonials from "./Testimonials"
 import Announcement from "../shared/Announcement"
+import Video from "./video"
 const HomePage = (): JSX.Element => {
   return (
     <div className="">
       <Banner />
       <Configuration />
+      <Video />
       <Testimonials />
       <Benefits />
       <Graph />
