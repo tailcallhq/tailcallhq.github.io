@@ -2,8 +2,8 @@ import React from "react"
 
 const TailcallVideo = () => {
   return (
-    <section className="w-full bg-tailCall-dark-600 h-full  text-tailCall-light-100 ">
-      <div className="w-full max-w-7xl mx-auto">
+    <section className="w-full bg-tailCall-dark-600 h-full text-tailCall-light-100 ">
+      <div className="w-full 2xl:max-w-7xl mx-auto">
         <div className="w-[100%] mb-[-10px]">
           <iframe
             width="100%"
