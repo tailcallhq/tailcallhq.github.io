@@ -681,3 +681,28 @@ span.token.tag.script.language-javascript {
 .pagination-nav a:nth-child(2) {
   @apply justify-end;
 }
+
+.rts___tab {
+  border: none !important;
+  border-radius: 0px !important;
+}
+
+.rts___btn {
+  background: transparent !important;
+  border: none !important;
+}
+
+.rts___tab___selected {
+  border-bottom: 2px solid black !important;
+  background: transparent !important;
+  color: black !important;
+  box-shadow: none !important;
+}
+
+.rts___svg___icon:hover {
+  stroke: black !important;
+}
+
+button[disabled] {
+  display: none !important;
+}

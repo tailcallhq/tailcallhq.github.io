@@ -33,3 +33,20 @@ export const isValidURL = (url: string) => {
     return false
   }
 }
+
+export const limitApplier = (string: string, limit: number) => {
+  if (string?.length > limit) {
+    return string.substr(0, limit) + "..."
+  } else {
+    return string
+  }
+}
+
+export const dateformatter = (date: string) => {
+  let dateobj = new Date(date)
+  return dateobj.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
+}
