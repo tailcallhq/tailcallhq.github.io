@@ -686,7 +686,7 @@ span.token.tag.script.language-javascript {
   @apply relative w-full pb-[56.25%]; /* 16:9 aspect ratio */
 }
 
-@media (min-width: 2200px) {
+@media (min-width: 1536px) {
   .video-container {
     @apply max-w-7xl mx-auto aspect-video pb-0;
   }
