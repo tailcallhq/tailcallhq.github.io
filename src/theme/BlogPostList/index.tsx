@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "@docusaurus/Link"
 import type {Props} from "@theme/BlogListPage"
-import {FrontMatter} from "@theme/BlogPostPage"
+import {BlogAuthor} from "../BlogAuthor"
 
 function BlogPostList({items}: {items: Props["items"]}): JSX.Element {
   return (
@@ -32,16 +32,7 @@ function BlogPostList({items}: {items: Props["items"]}): JSX.Element {
               <span className="text-sm line-clamp-2 text-tailCall-light-600">
                 {item.content.metadata.frontMatter.description}
               </span>
-              {item.content.metadata.authors[0] && (
-                <div className="mt-4 flex items-center">
-                  <img
-                    src={item.content.metadata.authors[0].imageURL}
-                    alt={item.content.metadata.authors[0].name}
-                    className="mr-2 size-6 rounded-full"
-                  />
-                  <span className="font-medium text-black">{item.content.metadata.authors[0].name}</span>
-                </div>
-              )}
+              {item.content.metadata.authors[0] && <BlogAuthor author={item.content.metadata.authors[0]} />}
             </div>
           </div>
         </Link>

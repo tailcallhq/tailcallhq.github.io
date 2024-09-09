@@ -11,6 +11,7 @@ import BlogListPageStructuredData from "@theme/BlogListPage/StructuredData"
 import BlogFeaturedPosts from "../BlogFeaturedPosts"
 import BlogPostList from "../BlogPostList"
 import {BlogCategories} from "../BlogCategories"
+import {useBlogPosts} from "@site/src/utils/hooks/useBlogPosts"
 
 function BlogListPageMetadata(props: Props): JSX.Element {
   const {metadata} = props
@@ -28,24 +29,21 @@ function BlogListPageMetadata(props: Props): JSX.Element {
   )
 }
 
+function LoadMoreButton({handleLoadMore}: {handleLoadMore: () => void}): JSX.Element {
+  return (
+    <div className="flex justify-center">
+      <button
+        onClick={handleLoadMore}
+        className="mt-4 h-12 cursor-pointer rounded-lg border-2 border-solid border-tailCall-border-dark-100 bg-transparent px-4 py-2 font-space-grotesk text-title-tiny font-bold text-black"
+      >
+        Load more blogs
+      </button>
+    </div>
+  )
+}
+
 function BlogListPageContent({metadata, items, sidebar}: Props): JSX.Element {
-  const [activeCategory, setActiveCategory] = useState<string>("All")
-  const [visibleItems, setVisibleItems] = useState(5)
-
-  const filteredItems = useMemo(() => {
-    return activeCategory === "All"
-      ? items
-      : items.filter((item) => item.content.metadata.frontMatter.category === activeCategory)
-  }, [items, activeCategory])
-
-  const handleCategoryClick = (category: string) => {
-    setActiveCategory(category)
-    setVisibleItems(5)
-  }
-
-  const handleLoadMore = () => {
-    setVisibleItems((prev) => Math.min(prev + 6, filteredItems.length))
-  }
+  const {activeCategory, visibleItems, filteredItems, handleCategoryClick, handleLoadMore} = useBlogPosts(items)
 
   return (
     <BlogLayout sidebar={sidebar}>
@@ -58,16 +56,7 @@ function BlogListPageContent({metadata, items, sidebar}: Props): JSX.Element {
         >
           <BlogCategories items={items} onCategoryClick={handleCategoryClick} activeCategory={activeCategory} />
           <BlogPostList items={filteredItems.slice(0, visibleItems)} />
-          {visibleItems < filteredItems.length && (
-            <div className="flex justify-center">
-              <button
-                onClick={handleLoadMore}
-                className="mt-4 h-12 cursor-pointer rounded-lg border-2 border-solid border-tailCall-border-dark-100 bg-transparent px-4 py-2 font-space-grotesk text-title-tiny font-bold text-black"
-              >
-                Load more blogs
-              </button>
-            </div>
-          )}
+          {visibleItems < filteredItems.length && <LoadMoreButton handleLoadMore={handleLoadMore} />}
           <BlogListPaginator metadata={metadata} />
         </div>
         <div className="w-full md:w-4/12 hidden md:block md:pl-6">
