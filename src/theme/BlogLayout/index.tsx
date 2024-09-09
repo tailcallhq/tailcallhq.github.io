@@ -45,7 +45,7 @@ export default function BlogLayout(props: Props): JSX.Element {
   // end mobile control
 
   //this one is often called in parallel for each blog
-  const blogProcessor = async (blog, tagOccurances) => {
+  const blogProcessor = async (blog, tagOccurences) => {
     return new Promise((resolve) => {
       //now the logic
       let tagsOfThis = blog.frontMatter.tags || []
@@ -58,17 +58,17 @@ export default function BlogLayout(props: Props): JSX.Element {
           isFeatured = true
         } else {
           // good luck figuring this out :)
-          tagOccurances[tag] = {
-            occurances: tagOccurances[tag]?.occurances + 1 || 1,
-            blogs: [polishedBlog, ...(tagOccurances[tag]?.blogs || [])],
+          tagOccurences[tag] = {
+            occurences: tagOccurences[tag]?.occurences + 1 || 1,
+            blogs: [polishedBlog, ...(tagOccurences[tag]?.blogs || [])],
           }
         }
       })
 
       //now, add it to the 'All' tag
-      tagOccurances["All"] = {
-        occurances: tagOccurances["All"]?.occurances + 1 || 1,
-        blogs: [polishedBlog, ...(tagOccurances["All"]?.blogs || [])],
+      tagOccurences["All"] = {
+        occurences: tagOccurences["All"]?.occurences + 1 || 1,
+        blogs: [polishedBlog, ...(tagOccurences["All"]?.blogs || [])],
       }
 
       resolve(isFeatured ? polishedBlog : undefined)
@@ -78,22 +78,22 @@ export default function BlogLayout(props: Props): JSX.Element {
   //this is the parent function
   const tagsSetup = async (allblogs) => {
     //get all the tags first
-    // let tagOccurances = {tag: {occurances: 5, blogs: []}, }
-    let tagOccurances: any = {}
+    // let tagOccurences = {tag: {occurences: 5, blogs: []}, }
+    let tagOccurences: any = {}
 
     //process each blog in parallel, it also reaturns the featured posts
-    let featuredBlogs = await Promise.all(allblogs.map(({content}) => blogProcessor(content, tagOccurances)))
+    let featuredBlogs = await Promise.all(allblogs.map(({content}) => blogProcessor(content, tagOccurences)))
     //unfortunately, it also sends undefineds
     featuredBlogs = featuredBlogs.filter((b) => b !== undefined)
 
     //now update the states
 
-    setTags(["All", ...Object.keys(tagOccurances)])
-    setAllBlogs(tagOccurances)
+    setTags(["All", ...Object.keys(tagOccurences)])
+    setAllBlogs(tagOccurences)
     setFeaturedBlogs(featuredBlogs)
   }
 
-  //this one extracts usefull data from the frontmatter jargon
+  //this one extracts useful data from the frontmatter jargon
   const blogInfoGather = (rawInfo) => {
     return {...rawInfo.frontMatter, date: rawInfo.metadata.date, link: rawInfo.metadata.permalink}
   }
