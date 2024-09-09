@@ -33,3 +33,12 @@ export const isValidURL = (url: string) => {
     return false
   }
 }
+
+export const isBlogPost = () => {
+  const url = new URL(location.pathname, window.location.origin)
+  const pathSegments = url.pathname.split("/").filter(Boolean)
+
+  // Check if it's a blog post: starts with 'blog', has more segments, and isn't a pagination page
+  const isBlogPost = pathSegments[0] === "blog" && pathSegments.length > 1 && pathSegments[1] !== "page"
+  return isBlogPost
+}

@@ -2,19 +2,14 @@ import React, {useEffect} from "react"
 import Link from "@docusaurus/Link"
 import {useLocation} from "@docusaurus/router"
 import type {Props} from "@theme/BlogLayout"
+import {isBlogPost} from "@site/src/utils"
 
 export default function BlogRecentPosts({sidebar}: {sidebar: Props["sidebar"]}): JSX.Element {
   const [isBlogPostPage, setIsBlogPostPage] = React.useState(false)
   const location = useLocation()
 
   useEffect(() => {
-    const url = new URL(location.pathname, window.location.origin)
-    const pathSegments = url.pathname.split("/").filter(Boolean)
-
-    // Check if it's a blog post: starts with 'blog', has more segments, and isn't a pagination page
-    const isBlogPost = pathSegments[0] === "blog" && pathSegments.length > 1 && pathSegments[1] !== "page"
-
-    setIsBlogPostPage(isBlogPost)
+    setIsBlogPostPage(isBlogPost())
   }, [location.pathname])
 
   return isBlogPostPage ? (
