@@ -30,7 +30,6 @@ const Youtube: React.FC = () => {
                 <img src="/icons/basic/play.svg" alt="Play Button Icon" className="size-6 md:size-10" />
               </div>
             </div>
-            <div className="absolute bottom-0 left-0 w-full h-20 md:h-64 bg-gradient-to-t from-tailCall-yellow/15 to-transparent"></div>
           </>
         ) : (
           <iframe
