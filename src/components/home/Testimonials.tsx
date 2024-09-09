@@ -30,7 +30,7 @@ const Testimonials = () => {
           as="h5"
           className="text-title-large sm:text-display-tiny lg:text-display-medium flex flex-col items-center md:flex-row"
         >
-          <span>Our Customers</span>
+          <span>Developers</span>
           <span className="bg-tailCall-yellow rounded-lg text-black px-SPACE_01 ml-SPACE_02">love us!</span>
         </Heading>
       </div>
