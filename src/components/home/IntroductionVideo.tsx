@@ -12,7 +12,7 @@ const Youtube: React.FC = () => {
   return (
     <div className="video-container">
       <div
-        className="absolute top-0 left-0 w-full h-full bg-cover bg-center 3xl:rounded-3xl"
+        className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
         style={{
           backgroundImage: `url(/images/home/introduction-video-thumbnail.png)`,
         }}
@@ -34,7 +34,7 @@ const Youtube: React.FC = () => {
           </>
         ) : (
           <iframe
-            className="w-full h-full 3xl:rounded-3xl"
+            className="w-full h-full"
             src={`https://www.youtube.com/embed/${VIDEO_ID}?feature=oembed&autoplay=1`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

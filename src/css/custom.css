@@ -688,6 +688,6 @@ span.token.tag.script.language-javascript {
 
 @media (min-width: 2200px) {
   .video-container {
-    @apply max-w-7xl mx-auto aspect-video pb-0 mb-28;
+    @apply max-w-7xl mx-auto aspect-video pb-0;
   }
 }
