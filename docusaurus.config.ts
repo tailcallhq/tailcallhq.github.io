@@ -220,7 +220,7 @@ export default {
         routeBasePath: "blog",
         include: ["**/*.{md,mdx}"],
         exclude: ["**/_*.{js,jsx,ts,tsx,md,mdx}", "**/_*/**", "**/*.test.{js,jsx,ts,tsx}", "**/__tests__/**"],
-        postsPerPage: 'ALL',
+        postsPerPage: "ALL",
         blogListComponent: "@theme/BlogListPage",
         blogPostComponent: "@theme/BlogPostPage",
         blogTagsListComponent: "@theme/BlogTagsListPage",
