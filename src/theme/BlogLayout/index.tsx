@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from "react"
+import React, { useEffect, useState } from "react"
 import clsx from "clsx"
 import Layout from "@theme/Layout"
 import BlogRecentPosts from "../BlogRecentPosts"
-import type {Props} from "@theme/BlogLayout"
+import type { Props } from "@theme/BlogLayout"
 import Categories from "./categories"
 import LinkButton from "@site/src/components/shared/LinkButton"
-import {Theme} from "@site/src/constants"
+import { Theme } from "@site/src/constants"
 import Featured from "./featured"
 import BlogItemCustom from "./customblogitem"
+import BrowserOnly from "@docusaurus/BrowserOnly"
 
 export default function BlogLayout(props: Props): JSX.Element {
-  const {sidebar, toc, children, ...layoutProps} = props
+  const { sidebar, toc, children, ...layoutProps } = props
   const hasSidebar = sidebar && sidebar.items.length > 0
   const [tags, setTags] = useState([])
   const [activeTag, setActiveTag] = useState("All")
@@ -33,12 +34,9 @@ export default function BlogLayout(props: Props): JSX.Element {
   }, [children])
 
   // code to maintain responsiveness
-  useEffect(() => {
-    window.addEventListener("resize", updateMobileState)
-    updateMobileState()
-  }, [window])
 
-  const updateMobileState = () => {
+
+  const updateMobileState = (setismobile) => {
     setismobile(window.innerWidth <= 650)
   }
 
@@ -82,7 +80,7 @@ export default function BlogLayout(props: Props): JSX.Element {
     let tagOccurrences: any = {}
 
     //process each blog in parallel, it also reaturns the featured posts
-    let featuredBlogs = await Promise.all(allblogs.map(({content}) => blogProcessor(content, tagOccurrences)))
+    let featuredBlogs = await Promise.all(allblogs.map(({ content }) => blogProcessor(content, tagOccurrences)))
     //unfortunately, it also sends undefineds
     featuredBlogs = featuredBlogs.filter((b) => b !== undefined)
 
@@ -95,9 +93,28 @@ export default function BlogLayout(props: Props): JSX.Element {
 
   //this one extracts useful data from the frontmatter jargon
   const blogInfoGather = (rawInfo) => {
-    return {...rawInfo.frontMatter, date: rawInfo.metadata.date, link: rawInfo.metadata.permalink}
+    return { ...rawInfo.frontMatter, date: rawInfo.metadata.date, link: rawInfo.metadata.permalink }
   }
 
+  const MobileStateUpdater = ({ ismobile, setismobile }) => (
+    <BrowserOnly fallback={<div></div>}>
+      {
+
+
+        () => {
+          useEffect(() => {
+            if (!window) {
+              return;
+            }
+
+            window.addEventListener("resize", () => (updateMobileState(setismobile)))
+            updateMobileState(setismobile)
+          }, [window])
+          return (<div></div>)
+        }
+      }
+    </BrowserOnly>
+  )
   //
 
   return (
@@ -106,20 +123,21 @@ export default function BlogLayout(props: Props): JSX.Element {
         <>
           <div
             className="container my-6 grid-cols grid gap-3"
-            style={{gridTemplateColumns: ismobile ? "100%" : "70% 30%"}}
+            style={{ gridTemplateColumns: ismobile ? "100%" : "70% 30%" }}
           >
             <div className="row grid grid-cols-1 overflow-clip justify-center p-3">
               <Categories setActiveTag={setActiveTag} tags={tags} />
+              <MobileStateUpdater ismobile={ismobile} setismobile={setismobile} />
               <main className="w-[100%] grid justify-items-center p-4">
-                <BlogItemCustom {...{...allBlogs[activeTag]?.blogs[0], ismobile, main: true}} />
+                <BlogItemCustom {...{ ...allBlogs[activeTag]?.blogs[0], ismobile, main: true }} />
                 <hr className="w-full" />
                 <div
                   className="grid my-3 justify-center gap-4 "
-                  style={{gridTemplateColumns: `repeat(${ismobile ? 1 : 3}, 1fr)`}}
+                  style={{ gridTemplateColumns: `repeat(${ismobile ? 1 : 3}, 1fr)` }}
                 >
-                  {allBlogs[activeTag]?.blogs.slice(1, 7).map((blog) => <BlogItemCustom {...{...blog, ismobile}} />)}
+                  {allBlogs[activeTag]?.blogs.slice(1, 7).map((blog) => <BlogItemCustom {...{ ...blog, ismobile }} />)}
                   {loadmore &&
-                    allBlogs[activeTag]?.blogs.slice(7).map((blog) => <BlogItemCustom {...{...blog, ismobile}} />)}
+                    allBlogs[activeTag]?.blogs.slice(7).map((blog) => <BlogItemCustom {...{ ...blog, ismobile }} />)}
                 </div>
                 {!loadmore && allBlogs[activeTag]?.blogs.length > 6 && (
                   <LinkButton title="Load More" theme={Theme.Light} width="small" onClick={() => setloadmore(true)} />
