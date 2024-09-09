@@ -28,8 +28,6 @@ export default function BlogLayout(props: Props): JSX.Element {
       setMainPage(true)
     }
 
-    console.log(children, sidebar)
-
     //initialize the setup
     tagsSetup(children[0].props.items)
   }, [children])

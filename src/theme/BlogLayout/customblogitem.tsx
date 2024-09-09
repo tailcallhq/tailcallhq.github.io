@@ -3,8 +3,6 @@ import {dateformatter, limitApplier} from "@site/src/utils"
 export default function BlogItemCustom(props) {
   const {title, authors, ismobile, main, link, image, date} = props
 
-  console.log(props)
-
   return (
     title && (
       <div
