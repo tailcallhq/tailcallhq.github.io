@@ -15,7 +15,7 @@ function BlogPostList({items}: {items: Props["items"]}): JSX.Element {
           <img
             src={item.content.metadata.frontMatter.image}
             alt={item.content.metadata.title}
-            className={`w-full rounded-lg object-cover ${index === 0 ? "h-96" : "h-48"}`}
+            className={`w-full object-cover ${index === 0 ? "h-96" : "h-48"}`}
           />
           <div className="mt-5 flex flex-grow flex-col justify-between">
             <div>
@@ -26,7 +26,7 @@ function BlogPostList({items}: {items: Props["items"]}): JSX.Element {
                   year: "numeric",
                 })}
               </span>
-              <h2 className={`mb-2 font-bold ${index === 0 ? "text-3xl" : "text-xl"}`}>
+              <h2 className={`mb-2 line-clamp-2 font-bold ${index === 0 ? "text-3xl" : "text-xl"}`}>
                 {item.content.metadata.title}
               </h2>
               <span className="text-sm line-clamp-2 text-tailCall-light-600">
