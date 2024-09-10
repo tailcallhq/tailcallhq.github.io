@@ -135,14 +135,6 @@ When multiple solutions achieve identical scores, the tiebreaker will be determi
 <details>
 <summary><strong>Contribution Guidelines</strong></summary>
 
-### Objective
-
-Participants must implement a GraphQL API that resolves data from an upstream REST API that is deployed on port `3000`.
-
-### Predefined Schema
-
-The GraphQL schema that you need to implement is specified in the [schema.graphql](./schema.graphql) in the root of this repository.
-
 ### Data Source (Upstream REST API)
 
 On the CI your GraphQL server will need to fetch data from the upstream REST API at:
