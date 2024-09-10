@@ -95,17 +95,17 @@ type Geo {
    - The normalized scores for all queries are averaged.
    - The final score is this average multiplied by 1000.
 
-**Example:**
+     **Example:**
 
-- Given the following scores:
-  | Query | Your RPS | Tailcall RPS | Normalized |
-  | ----------------- | -------- | ------------ | ---------- |
-  | `posts-nested` | 100 | 50 | 2.0 |
-  | `posts-title` | 200 | 350 | 0.8 |
-  | `posts-with-user` | 300 | 250 | 1.2 |
+     - Given the following scores:
+       | Query | Your RPS | Tailcall RPS | Normalized |
+       | ----------------- | -------- | ------------ | ---------- |
+       | `posts-nested` | 100 | 50 | 2.0 |
+       | `posts-title` | 200 | 350 | 0.8 |
+       | `posts-with-user` | 300 | 250 | 1.2 |
 
-- The average normalized score is `(2.0 + 0.8 + 1.2) / 3 = 1.33`.
-- The final score would be `1.33 * 1000 = 1,333.33`.
+     - The average normalized score is `(2.0 + 0.8 + 1.2) / 3 = 1.33`.
+     - The final score would be `1.33 * 1000 = 1,333.33`.
 
 ## FAQs
 
