@@ -77,37 +77,35 @@ type Geo {
 
 ## Scoring
 
-1. **Test Execution:**
-
-- For every commit, a set of predefined tests and benchmarks are executed. These tests are located in the `./tests` directory.
+1. **Test Execution:** For every commit, a set of predefined tests and benchmarks are executed. These tests are located in the `./tests` directory.
 
 2. **Throughput Normalization:**
 
-- Your performance is measured in terms of requests per second (RPS) for each query.
-- This performance is then compared to Tailcall's RPS for the same query.
-- The comparison is done by dividing your RPS by Tailcall's RPS. This gives a normalized score for each query.
+   - Your performance is measured in terms of requests per second (RPS) for each query.
+   - This performance is then compared to Tailcall's RPS for the same query.
+   - The comparison is done by dividing your RPS by Tailcall's RPS. This gives a normalized score for each query.
 
-**Example:**
+     **Example:**
 
-- For the `posts-title` query:
-  - If your RPS is `100` and Tailcall's RPS is `50`, the normalized score for this query would be `100/50 = 2.0`.
+     - For the `posts-title` query:
+       - If your RPS is `100` and Tailcall's RPS is `50`, the normalized score for this query would be `100/50 = 2.0`.
 
 3. **Final Score Calculation:**
 
-- The normalized scores for all queries are averaged.
-- The final score is this average multiplied by 1000.
+   - The normalized scores for all queries are averaged.
+   - The final score is this average multiplied by 1000.
 
 **Example:**
 
-- Given the following scores:
-  | Query | Your RPS | Tailcall RPS | Normalized |
-  | ----------------- | -------- | ------------ | ---------- |
-  | `posts-nested` | 100 | 50 | 2.0 |
-  | `posts-title` | 200 | 350 | 0.8 |
-  | `posts-with-user` | 300 | 250 | 1.2 |
+  - Given the following scores:
+    | Query | Your RPS | Tailcall RPS | Normalized |
+    | ----------------- | -------- | ------------ | ---------- |
+    | `posts-nested` | 100 | 50 | 2.0 |
+    | `posts-title` | 200 | 350 | 0.8 |
+    | `posts-with-user` | 300 | 250 | 1.2 |
 
-- The average normalized score is `(2.0 + 0.8 + 1.2) / 3 = 1.33`.
-- The final score would be `1.33 * 1000 = 1,333.33`.
+  - The average normalized score is `(2.0 + 0.8 + 1.2) / 3 = 1.33`.
+  - The final score would be `1.33 * 1000 = 1,333.33`.
 
 ## FAQs
 
