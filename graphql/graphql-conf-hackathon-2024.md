@@ -65,9 +65,10 @@ type Geo {
 
 ## Technical Requirements
 
-1. All CI tests should pass.
-2. Your implementation should be under the `/projects` directory.
-3. Should support any query that is supported by the schema.
+1. Repository should be forked from [Tailcall's GraphQL Conf Hackathon 2024](https://github.com/tailcallhq/hackathon)
+2. All CI tests should pass.
+3. Your implementation should be under the `/projects` directory.
+4. Should support any query that is supported by the schema.
 
 ## And Some More...
 
