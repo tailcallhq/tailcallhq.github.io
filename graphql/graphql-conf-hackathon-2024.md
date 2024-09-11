@@ -1,11 +1,13 @@
 ---
 title: "GraphQL Conf Hackathon 2024"
 description: "Get ready for an adrenaline-pumping, 3-day coding marathon where your mission is clear: Build the fastest, most resilient GraphQL server and prove you can beat Tailcall's performance!"
-slug: ../graphql-conf-hackathon-2024
+slug: /graphql-conf-hackathon-2024
+image: /images/graphql/hackathon-2024.png
 ---
 
 # 🚀 GraphQL Conf Hackathon 2024
 
+![img.png](../static/images/graphql/hackathon-2024.png)
 Get ready for an adrenaline-pumping, 3-day coding marathon where your mission is clear: **Build the fastest, most resilient GraphQL server** and prove you can **beat Tailcall's performance!**
 
 Winner takes home a **$5,000 cash prize** and the bragging rights of being the fastest GraphQL server in the galaxy. Are you up for the challenge?
