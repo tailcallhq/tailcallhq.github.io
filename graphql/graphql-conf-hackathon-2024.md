@@ -1,11 +1,13 @@
 ---
 title: "GraphQL Conf Hackathon 2024"
 description: "Get ready for an adrenaline-pumping, 3-day coding marathon where your mission is clear: Build the fastest, most resilient GraphQL server and prove you can beat Tailcall's performance!"
-slug: ../graphql-conf-hackathon-2024
+slug: /graphql-conf-hackathon-2024
+image: /images/graphql/hackathon-2024.png
 ---
 
 # 🚀 GraphQL Conf Hackathon 2024
 
+![img.png](../static/images/graphql/hackathon-2024.png)
 Get ready for an adrenaline-pumping, 3-day coding marathon where your mission is clear: **Build the fastest, most resilient GraphQL server** and prove you can **beat Tailcall's performance!**
 
 Winner takes home a **$5,000 cash prize** and the bragging rights of being the fastest GraphQL server in the galaxy. Are you up for the challenge?
@@ -49,7 +51,6 @@ type User {
   address: Address
   phone: String
   website: String
-  posts: [Post]
 }
 
 type Address {
@@ -77,56 +78,54 @@ type Geo {
 
 ## Scoring
 
-1. **Test Execution:**
-
-- For every commit, a set of predefined tests and benchmarks are executed. These tests are located in the `./tests` directory.
+1. **Test Execution:** For every commit, a set of predefined tests and benchmarks are executed. These tests are located in the `./tests` directory.
 
 2. **Throughput Normalization:**
 
-- Your performance is measured in terms of requests per second (RPS) for each query.
-- This performance is then compared to Tailcall's RPS for the same query.
-- The comparison is done by dividing your RPS by Tailcall's RPS. This gives a normalized score for each query.
+   - Your performance is measured in terms of requests per second (RPS) for each query.
+   - This performance is then compared to Tailcall's RPS for the same query.
+   - The comparison is done by dividing your RPS by Tailcall's RPS. This gives a normalized score for each query.
 
-**Example:**
+     **Example:**
 
-- For the `posts-title` query:
-  - If your RPS is `100` and Tailcall's RPS is `50`, the normalized score for this query would be `100/50 = 2.0`.
+     - For the `posts-title` query:
+       - If your RPS is `100` and Tailcall's RPS is `50`, the normalized score for this query would be `100/50 = 2.0`.
 
 3. **Final Score Calculation:**
 
-- The normalized scores for all queries are averaged.
-- The final score is this average multiplied by 1000.
+   - The normalized scores for all queries are averaged.
+   - The final score is this average multiplied by 1000.
 
-**Example:**
+     **Example:**
 
-- Given the following scores:
-  | Query | Your RPS | Tailcall RPS | Normalized |
-  | ----------------- | -------- | ------------ | ---------- |
-  | `posts-nested` | 100 | 50 | 2.0 |
-  | `posts-title` | 200 | 350 | 0.8 |
-  | `posts-with-user` | 300 | 250 | 1.2 |
+     - Given the following scores:
+       | Query | Your RPS | Tailcall RPS | Normalized |
+       | ----------------- | -------- | ------------ | ---------- |
+       | `posts-nested` | 100 | 50 | 2.0 |
+       | `posts-title` | 200 | 350 | 0.8 |
+       | `posts-with-user` | 300 | 250 | 1.2 |
 
-- The average normalized score is `(2.0 + 0.8 + 1.2) / 3 = 1.33`.
-- The final score would be `1.33 * 1000 = 1,333.33`.
+     - The average normalized score is `(2.0 + 0.8 + 1.2) / 3 = 1.33`.
+     - The final score would be `1.33 * 1000 = 1,333.33`.
 
 ## FAQs
 
-**How do I submit my solution?**  
+**How do I submit my solution?**
 Submit your solution as a pull request (PR) from your forked repo to the main repo.
 
-**What should my PR include?**  
+**What should my PR include?**
 Your PR should only include file additions inside `/projects/${participant_name}`. Don't change any other files or code belonging to other participants.
 
-**Can I use any language or tools?**  
+**Can I use any language or tools?**
 Yes, you can use any language, framework, or tools as long as they're within the scope of the licenses. However, the [tailcall](https://github.com/tailcallhq/tailcall/) tool is not allowed.
 
-**What should be included in the solution?**  
+**What should be included in the solution?**
 Your solution should include all the source code and setup instructions necessary to understand how you achieved the solution and how to run it.
 
-**Can I work with others on the solution?**  
+**Can I work with others on the solution?**
 Yes, you can collaborate, but only the person who submits the PR will be eligible to win the prize.
 
-**What if there are multiple solutions with identical code?**  
+**What if there are multiple solutions with identical code?**
 Any kind of plagiarism will result in a ban, Check our guidelines below on plagiarism for more.
 
 **What if two solutions have the same score?**
@@ -143,19 +142,19 @@ On the CI your GraphQL server will need to fetch data from the upstream REST API
 
 ### Endpoints
 
-- **GET** `/posts`  
+- **GET** `/posts`
   _Returns a list of posts._
 
-- **GET** `/posts/:id`  
+- **GET** `/posts/:id`
   _Returns a post by ID._
 
-- **GET** `/users`  
+- **GET** `/users`
   _Returns a list of users._
 
-- **GET** `/users/:id`  
+- **GET** `/users/:id`
   _Returns a user by ID._
 
-- **GET** `/users?id=1&id=2&id=3`  
+- **GET** `/users?id=1&id=2&id=3`
   _Returns multiple users with IDs specified in query parameters._
 
 The structure of the REST API responses will match the GraphQL schema fields.
