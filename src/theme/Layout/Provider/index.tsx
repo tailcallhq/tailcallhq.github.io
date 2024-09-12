@@ -33,8 +33,8 @@ const LayoutProvider = ({children}: LayoutProviderProps) => {
   return (
     <Provider>
       <Announcement
-        text={"📣 Catch us at GraphQLConf 2024 • September 10-12 • San Francisco • "}
-        refLink={"https://graphql.org/conf/2024/schedule/870876ffad45b79d11e09393e7f22587/"}
+        text={"📣 GraphQL Conf Hackathon 2024 • September 10-12 • Win $5000 cash prize"}
+        refLink={"/graphql/graphql-conf-hackathon-2024"}
         refText={" Know more → "}
       />
       {children}
