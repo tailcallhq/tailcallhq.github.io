@@ -32,11 +32,6 @@ const Provider = composeProviders([
 const LayoutProvider = ({children}: LayoutProviderProps) => {
   return (
     <Provider>
-      <Announcement
-        text={"📣 GraphQL Conf Hackathon 2024 • September 10-12 • Win $5000 cash prize"}
-        refLink={"/graphql/graphql-conf-hackathon-2024"}
-        refText={" Know more → "}
-      />
       {children}
       <Footer />
     </Provider>
