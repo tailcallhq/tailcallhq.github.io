@@ -1690,6 +1690,7 @@ In above configuration, the server will reject queries where the total complexit
 - **Example Query:**
 
   This query has a total complexity of 7. Since it exceeds the configured limit of 3, the server will reject the request with a validation error.
+
   ```graphql showLineNumbers
   query {
     post {
@@ -1705,14 +1706,15 @@ In above configuration, the server will reject queries where the total complexit
   ```
 
   If the `queryComplexity` was instead set to 8:
+
   ```graphql showLineNumbers
   schema @server(
     port: 8000
     queryComplexity: 8
   )
   ```
-  The same query would succeed because the total complexity (7) is below the limit.
 
+  The same query would succeed because the total complexity (7) is below the limit.
 
 ### queryDepth
 
@@ -1726,18 +1728,21 @@ schema @server(
   queryDepth: 2
 )
 ```
+
 In this configuration, the server will reject queries where the depth exceeds 2. If a query goes beyond this limit, a validation error will be returned.
 
 - **Example Query:**
   This query has a depth of 3, since the user field is nested under the `post` field, and `id` and `name` are further nested under `user`. Since this exceeds the configured depth limit of 2, the query will be rejected.
+
   ```graphql showLineNumbers
   query {
-    post {            # depth: 1
-      id              # depth: 2
-      title 
-      body            
+    post {
+      # depth: 1
+      id # depth: 2
+      title
+      body
       user {
-        id            # depth: 3
+        id # depth: 3
         name
       }
     }
@@ -1745,12 +1750,14 @@ In this configuration, the server will reject queries where the depth exceeds 2.
   ```
 
   If the `queryDepth` was instead set to 4:
+
   ```graphql showLineNumbers
   schema @server(
     port: 8000
     queryDepth: 4
   )
   ```
+
   The same query would succeed because the depth (4) is now within the limit.
 
 ## @telemetry Directive
