@@ -1758,7 +1758,7 @@ In this configuration, the server will reject queries where the depth exceeds 2.
   )
   ```
 
-  The same query would succeed because the depth (4) is now within the limit.
+  The same query would succeed because the depth (3) is now within the limit.
 
 ## @telemetry Directive
 
