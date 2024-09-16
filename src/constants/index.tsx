@@ -279,7 +279,7 @@ export const benefits: Benefits[] = [
     id: 1,
     title: "Secure",
     description:
-      "Tailcaill has been validated against a comprehensive database of GraphQL vulnerabilities. Rest easy knowing your GraphQL backends are secure.",
+      "Tailcall has been validated against a comprehensive database of GraphQL vulnerabilities. Rest easy knowing your GraphQL backends are secure.",
     image: require("@site/static/images/home/secure-icon.png").default,
     redirection_url: "/docs/field-level-access-control-graphql-authentication/",
   },
