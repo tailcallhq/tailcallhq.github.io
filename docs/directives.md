@@ -1682,6 +1682,7 @@ This optional field allows you to customize the server's endpoint paths, enablin
 ```graphql showLineNumbers
 schema @server(routes: {graphQL: "/tailcall-gql", status: "/health"})
 ```
+
 In this example, the GraphQL endpoint is changed to `/tailcall-gql` and the status endpoint to `/health`.
 
 ## @telemetry Directive
