@@ -1,7 +1,8 @@
 import React, {useEffect, useState, useRef} from "react"
 import {useHistory} from "react-router-dom"
 import Sidebar from "@theme-original/DocRoot/Layout/Sidebar"
-import Search from "docusaurus-lunr-search/src/theme/SearchBar"
+import DocSearchComponent from "@site/src/theme/DocSearch";
+
 import useIsBrowser from "@docusaurus/useIsBrowser"
 import Platform from "react-platform-js"
 
@@ -106,7 +107,7 @@ const CustomSearch = () => {
             <div onClick={handleSearchModalClose} className={styles.overlay}></div>
             <div className={styles.modal}>
               <div className={styles.modalContent}>
-                <Search />
+                <DocSearchComponent />
                 <div className={styles.initialCase}>
                   <PageSearchIcon />
                   <div className={styles.searchDocsTitle}>Search Docs</div>

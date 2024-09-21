@@ -5,7 +5,7 @@ import {useHistory} from "react-router-dom"
 import {useLocation} from "@docusaurus/router"
 import NavbarItem, {type Props as NavbarItemConfig} from "@theme/NavbarItem"
 
-import Search from "docusaurus-lunr-search/src/theme/SearchBar" // Assuming Search is a valid component
+import DocSearchComponent from "@site/src/theme/DocSearch"
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle"
 import SearchBar from "@theme/SearchBar"
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle"
@@ -149,7 +149,7 @@ const CustomSearch = () => {
               <div className={styles.modalContent}>
                 <div className={styles.search}>
                   <div className={styles.searchInput}>
-                    <Search />
+                    <DocSearchComponent />
                   </div>
                   <span
                     className={`${styles.searchDocsClose} ${styles.searchDocsCommon}`}
