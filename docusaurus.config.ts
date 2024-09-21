@@ -102,7 +102,16 @@ export default {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "/images/tc-og-2.png",
+    image: "icons/companies/taicall.svg",
+    algolia: {
+      appId: 'X27WDVHRQ3',
+      apiKey: '35bc100f239853cd8a7195b23ed7393b',
+      indexName: 'tailcall',
+      searchParameters: {
+        facetFilters: [],
+      },
+    },
+
     navbar: {
       hideOnScroll: true,
       logo: {
@@ -248,21 +257,12 @@ export default {
       },
     ],
     [
-      require.resolve("docusaurus-lunr-search"),
+      "@docusaurus/plugin-ideal-image",
       {
         highlightResult: true,
       },
-    ],
-    // [
-    //   "@docusaurus/plugin-ideal-image",
-    //   {
-    //     // quality: 70,
-    //     // max: 1030, // max resized image's size.
-    //     // min: 640, // min resized image's size. if original is lower, use that size.
-    //     // steps: 2, // the max number of images generated between min and max (inclusive)
-    //     disableInDev: false,
-    //   },
-    // ], causing problem in layouts and image loads
+    ], 
+    // causing problem in layouts and image loads
     async function myPlugin() {
       return {
         name: "docusaurus-tailwindcss",

@@ -5,12 +5,10 @@ import {useHistory} from "react-router-dom"
 import {useLocation} from "@docusaurus/router"
 import NavbarItem, {type Props as NavbarItemConfig} from "@theme/NavbarItem"
 
-import Search from "docusaurus-lunr-search/src/theme/SearchBar" // Assuming Search is a valid component
+import Search from "../../SearchBar/index" 
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle"
-import SearchBar from "@theme/SearchBar"
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle"
 import NavbarLogo from "@theme/Navbar/Logo"
-import NavbarSearch from "@theme/Navbar/Search"
 import GithubStarsButton from "@site/src/components/shared/GithubStarsButton"
 import SearchIcon from "@site/static/icons/basic/search.svg"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
@@ -53,6 +51,7 @@ const NavbarContentLayout = ({left, right}: {left: ReactNode; right: ReactNode})
 }
 
 // Custom search component
+// safe to remove in the future
 const CustomSearch = () => {
   const [showSearchIcon, setShowSearchIcon] = useState<boolean>(false)
   const [isSearchModalVisible, setIsSearchModalVisible] = useState<boolean>(false)
@@ -188,7 +187,7 @@ const NavbarContent = (): JSX.Element => {
         // TODO stop hardcoding items? (added by docusaurus)
         // Render left navbar items
         <>
-          <CustomSearch />
+          {mobileSidebar.shouldRender && <Search/>}
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
           <NavbarItems items={leftItems} />
@@ -201,11 +200,6 @@ const NavbarContent = (): JSX.Element => {
           <NavbarItems items={rightItems} />
           <GithubStarsButton className="navbar__item navbar__link" />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
-          {!searchBarItem && (
-            <NavbarSearch>
-              <SearchBar />
-            </NavbarSearch>
-          )}
         </>
       }
     />
