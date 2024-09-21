@@ -1672,6 +1672,19 @@ schema @server(
 )
 ```
 
+### routes
+
+This optional field allows you to customize the server's endpoint paths, enabling you to override the default values for the GraphQL and status endpoints. If not specified, the following default paths will be used:
+
+- graphQL: `/graphql`
+- status: `/status`
+
+```graphql showLineNumbers
+schema @server(routes: {graphQL: "/tailcall-gql", status: "/health"})
+```
+
+In this example, the GraphQL endpoint is changed to `/tailcall-gql` and the status endpoint to `/health`.
+
 ## @telemetry Directive
 
 The `@telemetry` directive facilitates seamless integration with [OpenTelemetry](https://open-telemetry.io), enhancing the observability of your GraphQL services powered by Tailcall. By leveraging this directive, developers gain access to valuable insights into the performance and behavior of their applications.
