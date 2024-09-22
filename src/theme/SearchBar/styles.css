@@ -22,9 +22,72 @@
     width: 50px !important;
   }
 
-  .DocSearch-Modal {
-    width: 90vw !important;
+  .DocSearch-Dropdown {
+    max-height: unset;
+    height: 80vh !important;
   }
+
+  .DocSearch-Modal {
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0px !important;
+  }
+
+  .DocSearch-Container {
+    z-index: 201 !important;
+    position: fixed !important;
+  }
+
+  .DocSearch-SearchBar {
+    padding: 10px 10px !important;
+  }
+
+  .DocSearch-SearchBar form {
+    border-radius: 10px !important;
+    border: 1px solid var(--ifm-color-brand-light-600) !important;
+  }
+}
+
+.DocSearch-Cancel {
+  margin: 0 10px;
+}
+
+.DocSearch-Hit-path mark,
+.DocSearch-Hit[aria-selected="true"] mark,
+.DocSearch-Hit-title mark {
+  color: var(--ifm-color-primary) !important;
+  background-color: var(--ifm-color-brand) !important;
+}
+
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-action,
+.DocSearch-MagnifierLabel,
+.DocSearch-Reset,
+.DocSearch-Cancel,
+.DocSearch-Hit-Container *,
+.DocSearch-Hit-source,
+.DocSearch-Hits ul li a,
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-icon,
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-path,
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-text,
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-title,
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-Tree {
+  color: var(--ifm-color-gray-900) !important;
+}
+
+.DocSearch-Hits ul li a {
+  background-color: white;
+  box-shadow: none !important;
+}
+
+.DocSearch-Hit[aria-selected="true"] a {
+  background-color: var(--ifm-color-brand-light-200);
+}
+
+.DocSearch-Commands-Key {
+  box-shadow: none !important;
+  background: transparent !important;
+  border: 1px solid #858586 !important;
+  border-radius: 4px !important;
 }
 
 .DocSearch-Button:hover {
@@ -32,7 +95,6 @@
 }
 
 .DocSearch-Container {
-  z-index: calc(var(--ifm-z-index-fixed) + 1);
   backdrop-filter: blur(3px);
   background: var(--ifm-color-white-opacity-15);
   z-index: 100;
@@ -44,12 +106,11 @@
 .DocSearch-Modal {
   margin: 0;
   box-shadow: none;
-  border: 1px solid black;
+  border: 1px solid var(--ifm-color-gray-900);
   height: fit-content;
   width: 50vw;
   max-width: unset;
   border-radius: 8px;
-
   overflow: clip;
 }
 
@@ -65,7 +126,7 @@
 .DocSearch-SearchBar form {
   border-radius: 0;
   box-shadow: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--ifm-color-gray-900);
 }
 
 .DocSearch-Footer {
