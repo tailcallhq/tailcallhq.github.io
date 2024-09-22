@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from "react"
 import {useHistory} from "react-router-dom"
 import Sidebar from "@theme-original/DocRoot/Layout/Sidebar"
-import DocSearchComponent from "@site/src/theme/DocSearch";
+import DocSearchComponent from "@site/src/theme/SearchBar/DocSearch";
 
 import useIsBrowser from "@docusaurus/useIsBrowser"
 import Platform from "react-platform-js"
@@ -140,7 +140,7 @@ const CustomSearch = () => {
 const SidebarWrapper = (props: SidebarConfig) => {
   return (
     <div className="sidebar-search-container flex flex-col lg:mb-[100px]">
-      <CustomSearch />
+      <DocSearchComponent />
       <Sidebar {...props} />
     </div>
   )

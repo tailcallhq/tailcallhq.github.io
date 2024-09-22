@@ -5,7 +5,7 @@ import {useHistory} from "react-router-dom"
 import {useLocation} from "@docusaurus/router"
 import NavbarItem, {type Props as NavbarItemConfig} from "@theme/NavbarItem"
 
-import DocSearchComponent from "@site/src/theme/DocSearch"
+import DocSearchComponent from "@site/src/theme/SearchBar/DocSearch"
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle"
 import SearchBar from "@theme/SearchBar"
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle"
@@ -203,7 +203,7 @@ const NavbarContent = (): JSX.Element => {
           <NavbarColorModeToggle className={styles.colorModeToggle} />
           {!searchBarItem && (
             <NavbarSearch>
-              <SearchBar />
+              <DocSearchComponent />
             </NavbarSearch>
           )}
         </>
