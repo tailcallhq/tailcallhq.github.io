@@ -19,7 +19,13 @@
 
 @media only screen and (max-width: 1000px) {
   .DocSearch-Button {
-    width: 50px !important;
+    width: fit-content !important;
+    border: none !important;
+    margin: 0 !important;
+  }
+
+  .DocSearch-Button-Keys {
+    display: none !important;
   }
 
   .DocSearch-Dropdown {
