@@ -7,6 +7,13 @@ const organization = "tailcallhq"
 const project = "tailcallhq.github.io"
 
 export default {
+  customFields: {
+    algoliaConfig: {
+      appId: "X27WDVHRQ3",
+      apiKey: "35bc100f239853cd8a7195b23ed7393b",
+      indexName: "tailcall",
+    },
+  },
   title,
   trailingSlash: true,
   tagline: "GraphQL platform engineered for scale",
