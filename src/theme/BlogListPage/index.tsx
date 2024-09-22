@@ -48,12 +48,7 @@ function BlogListPageContent({metadata, items, sidebar}: Props): JSX.Element {
   return (
     <BlogLayout sidebar={sidebar}>
       <div className="flex flex-col md:flex-row items-start w-full">
-        <div
-          className="w-full md:w-8/12 md:pr-6"
-          style={{
-            borderRight: "1px solid #E7E7E7",
-          }}
-        >
+        <div className="w-full md:w-8/12 md:pr-6 border-right">
           <BlogCategories items={items} onCategoryClick={handleCategoryClick} activeCategory={activeCategory} />
           <BlogPostList items={filteredItems.slice(0, visibleItems)} />
           {visibleItems < filteredItems.length && <LoadMoreButton handleLoadMore={handleLoadMore} />}

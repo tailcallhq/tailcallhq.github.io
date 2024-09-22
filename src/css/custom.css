@@ -698,3 +698,9 @@ span.token.tag.script.language-javascript {
   height: 100%;
   border: 0;
 }
+
+@media (min-width: 768px) {
+  .border-right {
+    border-right: 1px solid #E7E7E7;
+  }
+}
