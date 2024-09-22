@@ -104,9 +104,9 @@ export default {
     // Replace with your project's social card
     image: "icons/companies/taicall.svg",
     algolia: {
-      appId: 'X27WDVHRQ3',
-      apiKey: '35bc100f239853cd8a7195b23ed7393b',
-      indexName: 'tailcall',
+      appId: "X27WDVHRQ3",
+      apiKey: "35bc100f239853cd8a7195b23ed7393b",
+      indexName: "tailcall",
       searchParameters: {
         facetFilters: [],
       },
@@ -261,7 +261,7 @@ export default {
       {
         highlightResult: true,
       },
-    ], 
+    ],
     // causing problem in layouts and image loads
     async function myPlugin() {
       return {

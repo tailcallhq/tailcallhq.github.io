@@ -5,7 +5,7 @@ import {useHistory} from "react-router-dom"
 import {useLocation} from "@docusaurus/router"
 import NavbarItem, {type Props as NavbarItemConfig} from "@theme/NavbarItem"
 
-import Search from "../../SearchBar/index" 
+import Search from "../../SearchBar/index"
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle"
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle"
 import NavbarLogo from "@theme/Navbar/Logo"
@@ -187,7 +187,7 @@ const NavbarContent = (): JSX.Element => {
         // TODO stop hardcoding items? (added by docusaurus)
         // Render left navbar items
         <>
-          {mobileSidebar.shouldRender && <Search/>}
+          {mobileSidebar.shouldRender && <Search />}
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
           <NavbarItems items={leftItems} />
