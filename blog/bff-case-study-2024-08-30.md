@@ -33,20 +33,6 @@ As a former employees, We're thrilled to share how we harnessed the power of Gra
 
 ## Case Study: Dream11's GraphQL Journey
 
-Before we dive into the details of our GraphQL journey, check out this video for a high-level overview of how we tackled the challenges and transformed our backend architecture:
-
-<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth:'100%'}}>
-  <iframe
-    src="https://www.youtube.com/embed/Esb7oQ0PuXw"
-    frameBorder="0"
-    title="Lessons for Scaling GraphQL"
-    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-    loading="lazy"
-  ></iframe>
-</div>
-
 ### The Challenge: Taming the Monolith
 
 During our time at Dream11, we embarked on several major re-architecture projects to supercharge our systems' performance and scalability. But perhaps the most exhilarating (and occasionally hair-raising) journey was our transition from a monolithic architecture to microservices.
@@ -87,6 +73,18 @@ Let me pull back the curtain on our BFF architecture at Dream11. It was a sympho
 Now, you might be scratching your head, wondering, "Why put an API Gateway after the GraphQL server?" Great question! It all comes down to resilience. We needed fine-grained control over rate limiting and circuit breaking for each microservice. GraphQL's single endpoint made this tricky, so we added this extra layer to keep our systems robust and responsive.
 
 This architecture was our trusted companion for years, scaling effortlessly to serve tens of millions of users. But as with any great journey, we eventually hit a new challenge: the performance of our GraphQL server started to feel the strain of our massive success.
+
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth:'100%'}}>
+  <iframe
+    src="https://www.youtube.com/embed/Esb7oQ0PuXw?si=kuSvBFaUki2GYJie&rel=0"
+    frameBorder="0"
+    title="Lessons for Scaling GraphQL"
+    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerPolicy="strict-origin-when-cross-origin"
+    allowFullScreen
+  ></iframe>
+</div>
 
 ## The GraphQL Advantage: Dream11's Secret Weapon
 
