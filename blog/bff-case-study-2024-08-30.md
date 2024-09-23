@@ -47,7 +47,6 @@ Before we dive into the details of our GraphQL journey, check out this video for
   ></iframe>
 </div>
 
-
 ### The Challenge: Taming the Monolith
 
 During our time at Dream11, we embarked on several major re-architecture projects to supercharge our systems' performance and scalability. But perhaps the most exhilarating (and occasionally hair-raising) journey was our transition from a monolithic architecture to microservices.
@@ -88,7 +87,6 @@ Let me pull back the curtain on our BFF architecture at Dream11. It was a sympho
 Now, you might be scratching your head, wondering, "Why put an API Gateway after the GraphQL server?" Great question! It all comes down to resilience. We needed fine-grained control over rate limiting and circuit breaking for each microservice. GraphQL's single endpoint made this tricky, so we added this extra layer to keep our systems robust and responsive.
 
 This architecture was our trusted companion for years, scaling effortlessly to serve tens of millions of users. But as with any great journey, we eventually hit a new challenge: the performance of our GraphQL server started to feel the strain of our massive success.
-
 
 ## The GraphQL Advantage: Dream11's Secret Weapon
 
