@@ -51,6 +51,17 @@ Think of BFFs as the ultimate middlemen, sitting between our microservices and f
 - **Divide and conquer:** With BFFs handling the heavy lifting of data formatting, our frontend developers could focus on crafting amazing user experiences.
 - **Network efficiency:** Imagine making one call instead of ten. That's the power of BFFs – they fetch data from multiple sources in one go, keeping our network traffic lean and mean.
 
+
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: '0', overflow: 'hidden', maxWidth: '100%', background: '#000' }}>
+    <iframe 
+        src="https://www.youtube.com/embed/Esb7oQ0PuXw?rel=0&modestbranding=1&showinfo=0" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen 
+        style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%' }}>
+    </iframe>
+</div>
+
 ## Dream11's Microservices Odyssey
 
 Now, we could have gone for the "big bang" approach, but where's the fun (or safety) in that? Instead, we opted for a more measured journey:
