@@ -23,10 +23,6 @@ authors:
     image_url: https://avatars.githubusercontent.com/u/194482?v=4
 ---
 
-import CallToAction from '../src/components/blog/call-to-action.tsx';
-
----
-
 **Picture this:**
 
 200 million users, countless fantasy teams, and a platform that needs to keep up with the lightning-fast pace of live sports. That was the exciting challenge we faced at [Dream11, India's largest fantasy sports platform](https://www.dream11.com/).
@@ -36,6 +32,21 @@ As a former employees, We're thrilled to share how we harnessed the power of Gra
 <!-- truncate -->
 
 ## Case Study: Dream11's GraphQL Journey
+
+Before we dive into the details of our GraphQL journey, check out this video for a high-level overview of how we tackled the challenges and transformed our backend architecture:
+
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', maxWidth:'100%'}}>
+  <iframe
+    src="https://www.youtube.com/embed/Esb7oQ0PuXw"
+    frameBorder="0"
+    title="Lessons for Scaling GraphQL"
+    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    loading="lazy"
+  ></iframe>
+</div>
+
 
 ### The Challenge: Taming the Monolith
 
@@ -78,13 +89,6 @@ Now, you might be scratching your head, wondering, "Why put an API Gateway after
 
 This architecture was our trusted companion for years, scaling effortlessly to serve tens of millions of users. But as with any great journey, we eventually hit a new challenge: the performance of our GraphQL server started to feel the strain of our massive success.
 
-<CallToAction
-title="Curious about how we turbocharged our GraphQL server?"
-subtitle= "Join us at GraphQL Conference 2024 for the thrilling conclusion!"
-buttonText="Save Your Spot"
-href="https://graphql.org/conf/2024/schedule/870876ffad45b79d11e09393e7f22587/"
-backgroundImageSrc="/icons/basic/bg-tailcall.svg"
-/>
 
 ## The GraphQL Advantage: Dream11's Secret Weapon
 
