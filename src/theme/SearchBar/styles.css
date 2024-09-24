@@ -57,7 +57,7 @@
 .DocSearch-Commands-Key {
   box-shadow: none;
   background: transparent;
-  border: 1px solid #858586;
+  border: 1px solid var(--ifm-color-brand-light-500);
   border-radius: 4px;
 }
 
