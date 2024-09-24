@@ -107,6 +107,7 @@ export default {
       appId: "X27WDVHRQ3",
       apiKey: "35bc100f239853cd8a7195b23ed7393b",
       indexName: "tailcall",
+      contextualSearch: false,
       searchParameters: {
         facetFilters: [],
       },
