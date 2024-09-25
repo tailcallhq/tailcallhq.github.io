@@ -825,6 +825,20 @@ type Query {
 Read about [n + 1](./N+1.md) to learn how to use the `batchKey` setting.
 :::
 
+### onResponseBody
+
+This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](/docs/directives.md#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
+
+```graphql showLineNumbers
+type Query {
+  news: NewsData!
+    @grpc(
+      method: "news.NewsService.GetAllNews"
+      onResponseBody: "onResponse"
+    )
+}
+```
+
 ## @http Directive
 
 The `@http` directive indicates a field or node relies on a REST API. For example:
@@ -1002,6 +1016,20 @@ type Query {
       path: "/posts"
       query: [{key: "userId", value: "{{.args.id}}"}]
       onRequest: "someFunctionName"
+    )
+}
+```
+
+### onResponseBody
+
+This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](/docs/directives.md#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
+
+```graphql showLineNumbers
+type Query {
+  user(id: Int!): User
+    @http(
+      path: "/users/{{.args.id}}"
+      onResponseBody: "onResponse"
     )
 }
 ```

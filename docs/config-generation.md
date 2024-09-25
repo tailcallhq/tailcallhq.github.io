@@ -1,6 +1,6 @@
 ---
-title: GraphQL Configuration Generation with Tailcall
-description: Migrate REST or Protobuff to GraphQL within minutes
+title: Automatic GraphQL Configuration Generation with Tailcall
+description: Migrate REST or gRPC APIs to GraphQL automatically
 slug: graphql-configuration-generation-with-tailcall
 sidebar_label: Auto Generation
 ---
