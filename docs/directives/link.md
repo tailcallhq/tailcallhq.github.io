@@ -116,8 +116,8 @@ Each type serves a specific purpose, enabling the flexible integration of extern
 
 ### Htpasswd
 
-The `Htpasswd` link type allows the importation of an [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) file. This file is utilized to set up [Basic authentication](./auth.md#basic-authentication).
+The `Htpasswd` link type allows the importation of an [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) file. This file is utilized to set up [Basic authentication](../auth.md#basic-authentication).
 
 ### Jwks
 
-The `Jwks` link type enables the importation of a [`JWKS`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) file. This file facilitates the provision of detailed access control through [JWT authentication](./auth.md#jwt-authentication).
+The `Jwks` link type enables the importation of a [`JWKS`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) file. This file facilitates the provision of detailed access control through [JWT authentication](../auth.md#jwt-authentication).
