@@ -12,8 +12,8 @@ Here is a list of all the custom directives supported by Tailcall:
 
 <!-- SORT OPERATOR BY NAME -->
 
-| Operator                                   | Description                                                                                                  |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| Operator                                              | Description                                                                                                  |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | [`@addField`](/docs/directives/add-field-directive/)  | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
 | [`@cache`](/docs/directives/cache-directive/)         | Enables caching for the query, field or type applied to.                                                     |
 | [`@call`](/docs/directives/call-directive/)           | Invokes a query or mutation from another query or mutation field.                                            |
