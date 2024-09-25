@@ -711,7 +711,7 @@ span.token.tag.script.language-javascript {
   right: 0;
   bottom: 0;
   background-image: linear-gradient(90deg, #c5c5c5 1px, transparent 1px), linear-gradient(#c5c5c5 1px, transparent 1px);
-  background-size: 100px 100px;
+  background-size: 100px 50px;
   background-position: -1px -1px;
   opacity: 0.5;
   max-width: 1595px;
@@ -719,18 +719,8 @@ span.token.tag.script.language-javascript {
   margin-right: auto;
 }
 
-.video-wrapper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(ellipse at center, transparent 50%, white 85%);
-}
-
 .video-container {
-  @apply relative w-full overflow-hidden pb-[56.25%] rounded-3xl z-10;
+  @apply relative w-full overflow-hidden pb-[56.25%] rounded-md md:rounded-3xl z-10;
   box-shadow: 0px 4px 32px 0px #ffe933;
 }
 
@@ -747,5 +737,14 @@ span.token.tag.script.language-javascript {
 @media (min-width: 1536px) {
   .video-container {
     @apply max-w-7xl mx-auto aspect-video pb-0;
+  }
+  .video-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 50%, white 85%);
   }
 }
