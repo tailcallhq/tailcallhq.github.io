@@ -698,3 +698,37 @@ span.token.tag.script.language-javascript {
   height: 100%;
   border: 0;
 }
+
+.grid-light {
+  position: relative;
+  width: 100%;
+}
+
+.grid-light::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+      0deg,
+      rgb(233 13 13 / 70%),
+      rgb(8 8 8 / 31%) 0.5px,
+      #b9000000 1px,
+      #77040400 27px
+    ),
+    repeating-linear-gradient(90deg, rgb(179 103 103), rgb(0 0 0 / 33%) 0.5px, transparent 1px, transparent 70px);
+  z-index: 0;
+}
+
+.grid-light::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgb(255 255 255 / 0%) 0%, rgb(255 255 255) 90%);
+  z-index: 1;
+}
