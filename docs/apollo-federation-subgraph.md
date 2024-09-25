@@ -18,7 +18,11 @@ Now you need to add [entity resolvers](https://www.apollographql.com/docs/federa
 To do this, you need to define resolver on types by using one of the [directives](./configuration.mdx) that resolve the data. Use [`{{.value}}`](https://tailcall.run/docs/graphql-resolver-context-tailcall/#value) to access the fields that act as a federation `@key` and will be provided by the Federation Router when making the request to this subgraph.
 
 ```graphql
-type Post @http(path: "/posts", query: [{key: "id", value: "{{.value.id}}"}]) {
+type Post
+  @http(
+    path: "/posts"
+    query: [{key: "id", value: "{{.value.id}}"}]
+  ) {
   id: Int!
   userId: Int!
   title: String!
@@ -53,7 +57,10 @@ Example of `@apollo/gateway` configuration:
 ```ts
 import {ApolloServer} from "@apollo/server"
 import {startStandaloneServer} from "@apollo/server/standalone"
-import {ApolloGateway, IntrospectAndCompose} from "@apollo/gateway"
+import {
+  ApolloGateway,
+  IntrospectAndCompose,
+} from "@apollo/gateway"
 
 const gateway = new ApolloGateway({
   supergraphSdl: new IntrospectAndCompose({
@@ -85,7 +92,13 @@ type User @http(path: "/users/{{.args.id}}") @shareable {
   name: String!
 }
 
-type Post @expr(body: {id: "{{.value.id}}", title: "post-title-{{.value.id}}"}) {
+type Post
+  @expr(
+    body: {
+      id: "{{.value.id}}"
+      title: "post-title-{{.value.id}}"
+    }
+  ) {
   id: Int!
   title: String! @override(from: "name")
 }
