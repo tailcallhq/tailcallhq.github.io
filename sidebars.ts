@@ -47,7 +47,7 @@ const sidebars: SidebarsConfig = {
         "config-generation",
       ],
     },
-    {type: "category", label: "Integrations", items: ["apollo-studio", "data-dog", "new-relic", "honey-comb", "llm"]},
+    {type: "category", label: "Integrations", items: ["apollo-studio", "apollo-federation-subgraph", "data-dog", "new-relic", "honey-comb", "llm"]},
     {
       type: "category",
       label: "Production",
