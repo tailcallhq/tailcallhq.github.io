@@ -187,7 +187,7 @@ In the example above, the configuration for `allowedHeaders` permits `Authorizat
 
 ### baseURL
 
-This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` directive, then each [`@http`](#http-directive) directive must specify its own `baseURL`. If neither `@upstream` nor [`@http`](#http-directive) provides a `baseURL`, it results in a compilation error.
+This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` directive, then each [`@http`](/docs/directives/http.md) directive must specify its own `baseURL`. If neither `@upstream` nor [`@http`](/docs/directives/http.md) provides a `baseURL`, it results in a compilation error.
 
 ```graphql showLineNumbers
 schema
@@ -246,7 +246,7 @@ schema
 
 ### onRequest
 
-Similar to the [@http](#http-directive) property, this accepts a string value representing a middleware function defined in a JavaScript file. It intercepts all outgoing HTTP requests from the server. This interceptor, written in JavaScript, can be used to modify outgoing requests and also generate artificial responses to customize the behavior of the GraphQL server.
+Similar to the [@http](/docs/directives/http.md) property, this accepts a string value representing a middleware function defined in a JavaScript file. It intercepts all outgoing HTTP requests from the server. This interceptor, written in JavaScript, can be used to modify outgoing requests and also generate artificial responses to customize the behavior of the GraphQL server.
 
 ```graphql showLineNumbers
 schema @upstream(onRequest: 'someFunctionName')

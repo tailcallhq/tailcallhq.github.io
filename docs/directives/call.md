@@ -177,7 +177,7 @@ Here is how the response would look like:
 }
 ```
 
-As you can see the [`@expr`](#expr-directive) directive plucks the inner value and returns the result. How about we implement an `abc` operation that could leverage the existing operations and unwrap the following input value:
+As you can see the [`@expr`](/docs/directives/expr.md) directive plucks the inner value and returns the result. How about we implement an `abc` operation that could leverage the existing operations and unwrap the following input value:
 
 ```json
 {"a": {"b": {"c": {"d": 1000}}}}

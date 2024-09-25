@@ -39,7 +39,7 @@ query {
 
 ### baseURL
 
-This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [`@upstream`](#upstream-directive) directive.
+This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [`@upstream`](/docs/directives/upstream.md) directive.
 
 ```graphql showLineNumbers
 type Query {

@@ -185,27 +185,27 @@ export default {
           },
           {
             from: "/docs/operators/add-field/",
-            to: "/docs/tailcall-dsl-graphql-custom-directives/#addfield-directive",
+            to: "/docs/directives/add-field-directive",
           },
           {
             from: "/docs/operators/graphql/",
-            to: "/docs/tailcall-dsl-graphql-custom-directives/#graphql-directive",
+            to: "/docs/directives/graphQL-directive",
           },
           {
             from: "/docs/operators/http/",
-            to: "/docs/tailcall-dsl-graphql-custom-directives/#http-directive",
+            to: "/docs/directives/http-directive",
           },
           {
             from: "/docs/operators/server/",
-            to: "/docs/tailcall-dsl-graphql-custom-directives/#server-directive",
+            to: "/docs/directives/server-directive",
           },
           {
             from: "/docs/operators/telemetry/",
-            to: "/docs/tailcall-dsl-graphql-custom-directives/#telemetry-directive",
+            to: "/docs/directives/telemetry-directive",
           },
           {
             from: "/docs/operators/upstream/",
-            to: "/docs/tailcall-dsl-graphql-custom-directives/#upstream-directive",
+            to: "/docs/directives/upstream-directive",
           },
           {
             from: "/docs/n+1/introduction/",

@@ -230,7 +230,7 @@ When a client sends a GraphQL query, the server resolves each field in the query
 By setting up a GraphQL server, defining a schema, and attaching resolvers, you can begin building powerful and flexible APIs that provide clients with the precise data they need. This foundational knowledge forms the basis for more advanced GraphQL development, including integrating GraphQL with existing APIs, handling complex data relationships, and optimizing API performance.
 
 Lets attach resolvers to the schema we defined in the previous section using Tailcall's GraphQL Configuration:
-We will add the resolvers with [`@http`](/docs/tailcall-dsl-graphql-custom-directives/#http-directive) directive:
+We will add the resolvers with [`@http`](/docs/directives/http-directive) directive:
 
 ```graphql
 schema

@@ -697,9 +697,9 @@ This setting merges types in the configuration that satisfy the threshold criter
 
 ### consolidateURL
 
-The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
+The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](/docs/directives/upstream.md) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
 
-For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](directives.md#http-directive) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
+For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](/docs/directives/http.md) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
 
 ```graphql showLineNumbers
 schema
@@ -950,7 +950,7 @@ When setting up your configuration file for GraphQL generation with Tailcall, co
     </TabItem>
     </Tabs>
 
-2. **[Consolidate URL](config-generation.md#consolidateurl)**: Identifies the most common base URL among multiple REST endpoints and uses it in the [@upstream](directives.md#upstream-directive) directive. Set a threshold (0.0 to 1.0) to determine when to consolidate URLs. Recommended threshold is anything above `0.5`.
+2. **[Consolidate URL](config-generation.md#consolidateurl)**: Identifies the most common base URL among multiple REST endpoints and uses it in the [@upstream](/docs/directives/upstream.md) directive. Set a threshold (0.0 to 1.0) to determine when to consolidate URLs. Recommended threshold is anything above `0.5`.
    <Tabs>
    <TabItem value="json" label="JSON">
    ```json showLineNumbers
@@ -1043,7 +1043,7 @@ curl:
 
 **Q. What if I have multiple REST endpoints with different base URLs?**
 
-**Answer:** Use the [consolidateURL](config-generation.md#consolidateurl) parameter to identify the most common base URL among multiple REST endpoints and it will automatically select the most common base url and add it to the [@upstream](directives.md#upstream-directive) directive. Here is an example:
+**Answer:** Use the [consolidateURL](config-generation.md#consolidateurl) parameter to identify the most common base URL among multiple REST endpoints and it will automatically select the most common base url and add it to the [@upstream](/docs/directives/upstream.md) directive. Here is an example:
 
   <Tabs>
   <TabItem value="json" label="JSON">

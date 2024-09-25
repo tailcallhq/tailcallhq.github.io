@@ -18,7 +18,7 @@ Here is a list of all the custom directives supported by Tailcall:
 | [`@cache`](/docs/directives/cache-directive/)         | Enables caching for the query, field or type applied to.                                                     |
 | [`@call`](/docs/directives/call-directive/)           | Invokes a query or mutation from another query or mutation field.                                            |
 | [`@expr`](/docs/directives/expr-directive/)           | Allows embedding of a constant response within the schema.                                                   |
-| [`@graphQL`](/docs/directives/graphql-directive/)     | Resolves a field or node by a GraphQL API.                                                                   |
+| [`@graphQL`](/docs/directives/graphQL-directive/)     | Resolves a field or node by a GraphQL API.                                                                   |
 | [`@grpc`](/docs/directives/grpc-directive/)           | Resolves a field or node by a gRPC API.                                                                      |
 | [`@http`](/docs/directives/http-directive/)           | Resolves a field or node by a REST API.                                                                      |
 | [`@link`](/docs/directives/link-directive/)           | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |

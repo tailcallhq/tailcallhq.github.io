@@ -123,7 +123,7 @@ type Query {
 }
 ```
 
-Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`@server`](/docs/directives.md#server-directive) and [`@upstream`](/docs/directives.md#upstream-directive) directives.
+Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`@server`](/docs/directives.md#server-directive) and [`@upstream`](/docs/directives/upstream.md) directives.
 
 ```graphql
 schema
