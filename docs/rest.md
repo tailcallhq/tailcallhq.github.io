@@ -74,7 +74,7 @@ query ($id: Int!) @rest(method: GET, path: "/post/$id") {
 }
 ```
 
-to know more about the `@rest` directive, please refer to the [Tailcall GraphQL Directives](/docs/directives.md#rest-directive).
+to know more about the `@rest` directive, please refer to the [Tailcall GraphQL Directives](/docs/directives/rest.md).
 
 ### Step 3: Link the operation to the main config file
 
@@ -90,7 +90,7 @@ schema
 }
 ```
 
-To know more about the `@link` directive, please refer to the [Tailcall GraphQL Directives](/docs/directives.md#link-directive).
+To know more about the `@link` directive, please refer to the [Tailcall GraphQL Directives](/docs/directives/link.md).
 
 #### Response
 

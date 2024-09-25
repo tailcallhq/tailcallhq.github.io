@@ -126,7 +126,7 @@ Where Tailcall is a part of whole distributed trace
 
 ### Customize generated data
 
-In some cases you may want to customize the data that were added to telemetry payload to have more control over analyzing process. Tailcall supports that customization for specific use cases described below. For eg. the metric [`http.server.request.count`](/docs/directives.md#metrics) can be customized with the [`requestHeaders`](/docs/directives.md#requestheaders) property to allow splitting the overall count by specific headers.
+In some cases you may want to customize the data that were added to telemetry payload to have more control over analyzing process. Tailcall supports that customization for specific use cases described below. For eg. the metric [`http.server.request.count`](/docs/directives/telemetry.md#metrics) can be customized with the [`requestHeaders`](/docs/directives/telemetry.md#requestheaders) property to allow splitting the overall count by specific headers.
 
 :::important
 The value of specified headers will be sent to telemetry backend as is, so use it with care to prevent of leaking any sensitive data to third-party services you don't have control over.

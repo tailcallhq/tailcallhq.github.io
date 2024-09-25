@@ -170,7 +170,7 @@ type Post {
 The `onRequest` property accepts a string value representing the remote function to be called every time an HTTP request is initiated. Typically the remote function is defined in a linked JavaScript worker file.
 
 :::note
-For defining a request middleware globally for all requests, refer to the [upstream directive documentation](/docs/directives.md#onrequest-1).
+For defining a request middleware globally for all requests, refer to the [upstream directive documentation](/docs/directives/upstream.md#onrequest).
 :::
 
 ```graphql showLineNumbers
@@ -186,7 +186,7 @@ type Query {
 
 ### onResponseBody
 
-This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](/docs/directives.md#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
+This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
 
 ```graphql showLineNumbers
 type Query {

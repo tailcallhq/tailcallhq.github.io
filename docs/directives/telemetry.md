@@ -26,7 +26,7 @@ The `@telemetry` directive also captures the following metrics:
 
 |                    Metric | Description                                                                                                                                     |
 | ------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------- |
-|            cache.hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](#cache-directive) directive                                                 |
+|            cache.hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](/docs/directives/cache.md) directive                                        |
 | http.server.request.count | Counts the number of incoming requests made to specific route. Optionally enriched with selected headers by [`requestHeaders`](#requestheaders) |
 | http.client.request.count | Counts the number of outgoing requests to specific upstream                                                                                     |
 

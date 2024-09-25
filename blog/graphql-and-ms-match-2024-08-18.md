@@ -125,7 +125,7 @@ Designing scalable APIs that leverage both **GraphQL** and **microservices** req
 3. **Caching:** Utilize effective caching strategies at both the GraphQL and microservice levels to enhance performance. Caching reduces the need for repeated data retrieval, lowering latency and improving the user experience. Consider using in-memory caches for frequently accessed data and implement cache invalidation strategies to ensure data consistency.
 4. **Monitoring and Logging:** Comprehensive monitoring and logging are vital for tracking API performance, identifying potential bottlenecks, and quickly resolving issues. Implementing detailed logging with tools like OpenTelemetry provides valuable insights into the behavior of your API, helping you maintain high availability and optimize performance over time.
 
-5. **Security:** With **Tailcall's** [built-in auth](https://tailcall.run/docs/field-level-access-control-graphql-authentication/) and [@protected](https://tailcall.run/docs/tailcall-dsl-graphql-custom-directives/#protected-directive) directive, you can add auth functionality and make fields protected with just a few lines of code - which is intelligent enough to protect any query that indirectly resolves to that field:
+5. **Security:** With **Tailcall's** [built-in auth](https://tailcall.run/docs/field-level-access-control-graphql-authentication/) and [@protected](https://tailcall.run/docs/protected-directive) directive, you can add auth functionality and make fields protected with just a few lines of code - which is intelligent enough to protect any query that indirectly resolves to that field:
 
 ```graphql
 type Reaction @protected {
