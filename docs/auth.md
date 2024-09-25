@@ -42,12 +42,37 @@ to know more about how to use it, read the following articles:
 1. [Basic Auth](#basic-authentication)
 2. [JWT](#jwt-authentication)
 
+## @protected Directive
+
+The `@protected` annotation designates a type or field as protected, meaning that a user must be authenticated to access that data.
+
+```graphql
+type Query {
+  protected: String! @protected
+  protectedType: ProtectedType
+}
+
+type ProtectedType @protected {
+  name: String!
+  nested: String!
+}
+```
+
+:::important
+To utilize the `@protected` directive, you must link at least one authentication provider in the configuration using the [`@link`](/docs/directives/link.md) directive (`Htpasswd` or `Jwks`).
+:::
+
+### How It Works
+
+- When a field is annotated with `@protected`, an authentication check is performed upon receiving the request. Depending on the authentication result, either the requested data is provided in the response, or an authentication error is returned.
+- If a type is annotated with `@protected`, all fields within that type inherit the protection, requiring user authentication for any field that's queried.
+
 ## GraphQL Configuration
 
 Enabling support for authentication in Tailcall could be done in two steps:
 
 1. With the help of [`@link` directive](/docs/directives/link.md) connect multiple authentication files as you need for different provides. To connect it use either [`Htpasswd`](/docs/directives/link.md#htpasswd) or [`Jwks`](/docs/directives/link.md#jwks) link type
-2. Mark that some type of field requires authentication to be fetched with the help of [`@protected` directive](/docs/directives/protected.md)
+2. Mark that some type of field requires authentication to be fetched with the help of [`@protected` directive](/docs/auth.md#protected-directive)
 
 Your config could look like this now:
 
@@ -229,7 +254,7 @@ In case you linked multiple authentication files all of them will be used to exe
 
 ### Authentication headers
 
-To validate authentication for user request the specific headers are used (like `Authorization` header). In case auth is enabled for tailcall those headers will be also added to the [`allowedHeaders` list](/docs/directives/upstream.md#allowedheaders) and therefore they will be forwarded to the upstream requests implicitly.
+To validate authentication for user request the specific headers are used (like `Authorization` header). In case auth is enabled for tailcall those headers will be also added to the [`allowedHeaders` list](/docs/client-tuning.md#allowedheaders) and therefore they will be forwarded to the upstream requests implicitly.
 
 ## Basic Authentication
 
@@ -257,7 +282,7 @@ We can use that file as an example for it that has data for `testuser:mypassword
 testuser:$2y$10$wJ/mZDURcAOBIrswCAKFsO0Nk7BpHmWl/XuhF7lNm3gBAFH3ofsuu
 ```
 
-After adding `@link` you can use the [`@protected` directive](/docs/directives/protected.md) to mark the fields that requiring success authentication to be requested.
+After adding `@link` you can use the [`@protected` directive](/docs/auth.md#protected-directive) to mark the fields that requiring success authentication to be requested.
 
 The whole example could look like this:
 
@@ -349,7 +374,7 @@ We can use that file as an example for it:
 }
 ```
 
-After adding `@link` you can use the [`@protected` directive](/docs/directives/protected.md) to mark the fields that requiring success authentication to be requested.
+After adding `@link` you can use the [`@protected` directive](/docs/auth.md#protected-directive) to mark the fields that requiring success authentication to be requested.
 
 The whole example could look like this:
 

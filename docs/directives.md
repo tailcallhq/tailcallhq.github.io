@@ -12,19 +12,19 @@ Here is a list of all the custom directives supported by Tailcall:
 
 <!-- SORT OPERATOR BY NAME -->
 
-| Operator                                              | Description                                                                                                  |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`@addField`](/docs/directives/add-field-directive/)  | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
-| [`@cache`](/docs/directives/cache-directive/)         | Enables caching for the query, field or type applied to.                                                     |
-| [`@call`](/docs/directives/call-directive/)           | Invokes a query or mutation from another query or mutation field.                                            |
-| [`@expr`](/docs/directives/expr-directive/)           | Allows embedding of a constant response within the schema.                                                   |
-| [`@graphQL`](/docs/directives/graphQL-directive/)     | Resolves a field or node by a GraphQL API.                                                                   |
-| [`@grpc`](/docs/directives/grpc-directive/)           | Resolves a field or node by a gRPC API.                                                                      |
-| [`@http`](/docs/directives/http-directive/)           | Resolves a field or node by a REST API.                                                                      |
-| [`@link`](/docs/directives/link-directive/)           | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |
-| [`@modify`](/docs/directives/modify-directive/)       | Enables changes to attributes of fields or nodes in the schema.                                              |
-| [`@omit`](/docs/directives/omit-directive/)           | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
-| [`@rest`](/docs/directives/rest-directive/)           | Allows exposing REST endpoints on top of GraphQL.                                                            |
-| [`@server`](/docs/directives/server-directive/)       | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
-| [`@telemetry`](/docs/directives/telemetry-directive/) | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
-| [`@upstream`](/docs/directives/upstream-directive/)   | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
+| Operator                                                 | Description                                                                                                  |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [`@addField`](/docs/directives/add-field-directive/)     | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
+| [`@cache`](/docs/directives/cache-directive/)            | Enables caching for the query, field or type applied to.                                                     |
+| [`@call`](/docs/directives/call-directive/)              | Invokes a query or mutation from another query or mutation field.                                            |
+| [`@expr`](/docs/directives/expr-directive/)              | Allows embedding of a constant response within the schema.                                                   |
+| [`@graphQL`](/docs/directives/graphQL-directive/)        | Resolves a field or node by a GraphQL API.                                                                   |
+| [`@grpc`](/docs/directives/grpc-directive/)              | Resolves a field or node by a gRPC API.                                                                      |
+| [`@http`](/docs/directives/http-directive/)              | Resolves a field or node by a REST API.                                                                      |
+| [`@link`](/docs/directives/link-directive/)              | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |
+| [`@modify`](/docs/directives/modify-directive/)          | Enables changes to attributes of fields or nodes in the schema.                                              |
+| [`@omit`](/docs/directives/omit-directive/)              | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
+| [`@rest`](/docs/rest.md#rest-directive)                  | Allows exposing REST endpoints on top of GraphQL.                                                            |
+| [`@server`](/docs/directives/server-directive/)          | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
+| [`@telemetry`](/docs/telemetry.md#telemetry-directive)   | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
+| [`@upstream`](/docs/client-tuning.md#upstream-directive) | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |

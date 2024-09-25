@@ -123,7 +123,7 @@ type Query {
 }
 ```
 
-Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`@server`](/docs/directives/server.md) and [`@upstream`](/docs/directives/upstream.md) directives.
+Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`@server`](/docs/directives/server.md) and [`@upstream`](/docs/client-tuning.md#upstream-directive) directives.
 
 ```graphql
 schema
@@ -235,7 +235,7 @@ Or
 
 Another important feature of the `@grpc` directive is that it allows you to implement request batching for remote data almost effortlessly as soon as you have gRPC methods that resolve multiple responses for multiple inputs in a single request.
 
-In our protobuf example file, we have a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`@upstream.batch` option](/docs/directives/upstream.md#batch) first and specify `batchKey` option for the `@grpc` directive.
+In our protobuf example file, we have a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`@upstream.batch` option](/docs/client-tuning.md#batch) first and specify `batchKey` option for the `@grpc` directive.
 
 ```graphql
 schema

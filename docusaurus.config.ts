@@ -201,11 +201,11 @@ export default {
           },
           {
             from: "/docs/operators/telemetry/",
-            to: "/docs/directives/telemetry-directive",
+            to: "/docs/graphql-telemetry-guide#telemetry-directive",
           },
           {
             from: "/docs/operators/upstream/",
-            to: "/docs/directives/upstream-directive",
+            to: "/docs/graphql-client-performance-tuning#upstream-directive",
           },
           {
             from: "/docs/n+1/introduction/",
