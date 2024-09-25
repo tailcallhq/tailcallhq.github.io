@@ -183,3 +183,17 @@ type Query {
     )
 }
 ```
+
+### onResponseBody
+
+This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](/docs/directives.md#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
+
+```graphql showLineNumbers
+type Query {
+  user(id: Int!): User
+    @http(
+      path: "/users/{{.args.id}}"
+      onResponseBody: "onResponse"
+    )
+}
+```
