@@ -682,24 +682,49 @@ span.token.tag.script.language-javascript {
   @apply justify-end;
 }
 
+.video-wrapper {
+  @apply p-7 md:p-28 bg-white relative overflow-hidden;
+}
+
+.video-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(#e6e6e6 1px, transparent 1px), linear-gradient(90deg, #e6e6e6 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.5;
+}
+
+.video-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, white 85%);
+}
+
 .video-container {
-  @apply relative w-full mb-28 overflow-hidden pb-[56.25%]; /* 16:9 aspect ratio */
-  box-shadow: 0px 4px 32px 0px #FFE933;
+  @apply relative w-full overflow-hidden pb-[56.25%] rounded-3xl z-10;
+  box-shadow: 0px 4px 32px 0px #ffe933;
+}
+
+.video-background {
+  @apply absolute top-0 left-0 w-full h-full bg-cover bg-center;
+}
+
+.play-button {
+  @apply absolute inset-0 flex items-center justify-center cursor-pointer absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  @apply w-14 h-14 md:w-[120px] md:h-[120px] bg-white border md:border-[3px] border-solid border-tailCall-yellow;
+  @apply rounded-[20px] md:rounded-[42px] shadow-md backdrop-blur-xl;
 }
 
 @media (min-width: 1536px) {
   .video-container {
     @apply max-w-7xl mx-auto aspect-video pb-0;
   }
-}
-
-.grid-light {
-  background-color: #ffffff;
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0.10) 100%),
-    linear-gradient(#e6e6e6 1px, transparent 1px),
-    linear-gradient(90deg, #e6e6e6 1px, transparent 1px);
-  background-size: 100% 100%, 80px 80px, 80px 80px;
-  background-position: center, 0 0, 0 0;
-  z-index: 1;
 }
