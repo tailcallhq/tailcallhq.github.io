@@ -10,6 +10,7 @@ import {
 } from "@docusaurus/theme-common/internal"
 import GithubStarsProvider from "@site/src/components/shared/GithubStarsProvider"
 import Footer from "@site/src/components/shared/Footer"
+import Announcement from "@site/src/components/shared/Announcement"
 
 // Define the type for LayoutProvider props
 type LayoutProviderProps = {

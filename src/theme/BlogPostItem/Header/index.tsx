@@ -1,14 +1,19 @@
 import React from "react"
 import BlogPostItemHeaderTitle from "@theme/BlogPostItem/Header/Title"
 import BlogPostItemHeaderInfo from "@theme/BlogPostItem/Header/Info"
-import BlogPostItemHeaderAuthors from "@theme/BlogPostItem/Header/Authors"
+import BlogBackButton from "./Back"
+import {useBlogPost} from "@docusaurus/theme-common/internal"
+import BlogPostItemCategory from "../Category"
 
 export default function BlogPostItemHeader(): JSX.Element {
+  const {isBlogPostPage} = useBlogPost()
+
   return (
     <header>
+      {isBlogPostPage && <BlogBackButton />}
+      <BlogPostItemCategory />
       <BlogPostItemHeaderTitle />
       <BlogPostItemHeaderInfo />
-      <BlogPostItemHeaderAuthors />
     </header>
   )
 }

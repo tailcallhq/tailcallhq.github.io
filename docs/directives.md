@@ -825,6 +825,20 @@ type Query {
 Read about [n + 1](./N+1.md) to learn how to use the `batchKey` setting.
 :::
 
+### onResponseBody
+
+This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](/docs/directives.md#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
+
+```graphql showLineNumbers
+type Query {
+  news: NewsData!
+    @grpc(
+      method: "news.NewsService.GetAllNews"
+      onResponseBody: "onResponse"
+    )
+}
+```
+
 ## @http Directive
 
 The `@http` directive indicates a field or node relies on a REST API. For example:
@@ -985,7 +999,7 @@ type Post {
 }
 ```
 
-- `query: {key: "user_id", value: "{{.value.userId}}"}]`: Instructs TailCall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?user_id=1&user_id=2&user_id=3...user_id=10`, consolidating requests into one.
+- `query: {key: "user_id", value: "{{.value.userId}}"}]`: Instructs Tailcall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?user_id=1&user_id=2&user_id=3...user_id=10`, consolidating requests into one.
 
 ### onRequest
 
@@ -1002,6 +1016,20 @@ type Query {
       path: "/posts"
       query: [{key: "userId", value: "{{.args.id}}"}]
       onRequest: "someFunctionName"
+    )
+}
+```
+
+### onResponseBody
+
+This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](/docs/directives.md#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
+
+```graphql showLineNumbers
+type Query {
+  user(id: Int!): User
+    @http(
+      path: "/users/{{.args.id}}"
+      onResponseBody: "onResponse"
     )
 }
 ```
@@ -1671,6 +1699,19 @@ schema @server(
   dedupe: true
 )
 ```
+
+### routes
+
+This optional field allows you to customize the server's endpoint paths, enabling you to override the default values for the GraphQL and status endpoints. If not specified, the following default paths will be used:
+
+- graphQL: `/graphql`
+- status: `/status`
+
+```graphql showLineNumbers
+schema @server(routes: {graphQL: "/tailcall-gql", status: "/health"})
+```
+
+In this example, the GraphQL endpoint is changed to `/tailcall-gql` and the status endpoint to `/health`.
 
 ## @telemetry Directive
 

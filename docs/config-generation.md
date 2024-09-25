@@ -1,6 +1,6 @@
 ---
-title: GraphQL Configuration Generation with Tailcall
-description: Migrate REST or Protobuff to GraphQL within minutes
+title: Automatic GraphQL Configuration Generation with Tailcall
+description: Migrate REST or gRPC APIs to GraphQL automatically
 slug: graphql-configuration-generation-with-tailcall
 sidebar_label: Auto Generation
 ---
@@ -133,30 +133,43 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
-    **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
+To generate the GraphQL configuration run following command
+<Tabs>
+<TabItem value="json" label="JSON Config Format">
+`bash
+    tailcall gen ./config.json
+    `
+</TabItem>
+<TabItem value="yml" label="YML Config Format">
+`bash
+    tailcall gen ./config.yml
+    `
+</TabItem>
+</Tabs>
+**Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
-    ```graphql showLineNumbers title="Generated GraphQL Configuration"
-    schema
-      @server
-      @upstream(
-        baseURL: "https://jsonplaceholder.typicode.com"
-      ) {
-      query: Query
-    }
+```graphql showLineNumbers title="Generated GraphQL Configuration"
+schema
+  @server
+  @upstream(
+    baseURL: "https://jsonplaceholder.typicode.com"
+  ) {
+  query: Query
+}
 
-    type Post {
-      body: String
-      id: Int
-      title: String
-      userId: Int
-    }
+type Post {
+  body: String
+  id: Int
+  title: String
+  userId: Int
+}
 
-    type Query {
-      posts: [Post] @http(path: "/posts")
-    }
-    ```
+type Query {
+  posts: [Post] @http(path: "/posts")
+}
+```
 
-    <hr />
+  <hr />
 
 2.  **Simple Post Request**
 
@@ -221,7 +234,7 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
           path: "./jsonplaceholder.graphql"
           format: "graphQL"
         schema:
-          query: "Query"
+          query: "Query"        
         ```
     </TabItem>
     </Tabs>
@@ -262,7 +275,23 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
-    **Schema**: Specifies the operation type. In this example, it's a `Mutation` operation with the name `Mutation`.
+To generate the GraphQL configuration run following command
+<Tabs>
+<TabItem value="json" label="JSON Config Format">
+
+```bash
+tailcall gen ./config.json
+```
+
+  </TabItem>
+  <TabItem value="yml" label="YML Config Format">
+    ```bash
+    tailcall gen ./config.yml
+    ```
+  </TabItem>
+  </Tabs>
+
+**Schema**: Specifies the operation type. In this example, it's a `Mutation` operation with the name `Mutation`.
 
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
 schema @server @upstream {
@@ -309,81 +338,82 @@ Tailcall simplifies the process of generating GraphQL schemas from gRPC. By spec
 
     <Tabs>
     <TabItem value="json" label="JSON Config Format">
-    ```json showLineNumbers
-    {
-      "inputs":[
-        {
-          "proto":{
-              "src":"./news.proto"
+          ```json showLineNumbers
+          {
+            "inputs": [
+              {
+                "proto": {
+                  "src": "./news.proto"
+                }
+              }
+            ],
+            "preset": {
+              "mergeType": 1.0
+            },
+            "output": {
+              "path": "./jsonplaceholder.graphql",
+              "format": "graphQL"
+            },
+            "schema": {
+              "query": "Query"
+            }
           }
-        }
-      ],
-      "preset":{
-        "mergeType":1.0
-      },
-      "output":{
-        "path":"./jsonplaceholder.graphql",
-        "format":"graphQL"
-      },
-      "schema":{
-        "query":"Query"
-      }
-    }
-    ```
+          ```
     </TabItem>
+
     <TabItem value="yml" label="YML Config Format">
-   ```yml showLineNumbers
-    inputs:
-      - proto:
-        src: "./news.proto"
-    preset:
-      mergeType: 1.0
-    output:
-      path: "./jsonplaceholder.graphql"
-      format: "graphQL"
-    schema:
-      query: "Query"
-    ```
+      
+      ```yml showLineNumbers
+        inputs:
+          - proto:
+            src: "./news.proto"
+        preset:
+          mergeType: 1.0
+        output:
+          path: "./jsonplaceholder.graphql"
+          format: "graphQL"
+        schema:
+          query: "Query"
+        ```
+
     </TabItem>
     </Tabs>
 
-   Let's understand the above configuration file.
+Let's understand the above configuration file.
 
-   **Proto**: Defines the path to the proto file that the configuration interacts with.
+**Proto**: Defines the path to the proto file that the configuration interacts with.
 
-   - **src**: Specifies the path to the proto file (`./news.proto` in this example).
+- **src**: Specifies the path to the proto file (`./news.proto` in this example).
 
-   **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
+**Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 
-   - We've set [mergeType](config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
+- We've set [mergeType](config-generation.md#mergetype) to `1.0`, which basically tells config generator to merge any two GraphQL types that are exactly similar.
 
-     if you're interested in understanding preset's in detail head over to [preset](config-generation.md#understanding-presets) section.
+  if you're interested in understanding preset's in detail head over to [preset](config-generation.md#understanding-presets) section.
 
-   **Output**: Specifies where and in what format the output data should be saved.
+**Output**: Specifies where and in what format the output data should be saved.
 
-   - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
-   - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
+- **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
+- **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
-   **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
+**Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
-   ```graphql showLineNumbers title="Generated GraphQL Configuration"
-   schema
-     @link(src: "./news.proto", type: Protobuf)
-     @server {
-     query: Query
-   }
+```graphql showLineNumbers title="Generated GraphQL Configuration"
+schema @link(src: "./news.proto", type: Protobuf) @server {
+  query: Query
+}
 
-   type News @tag(id: "news.News") {
-     id: Int
-     title: String
-     content: String
-     author: String
-   }
+type News @tag(id: "news.News") {
+  id: Int
+  title: String
+  content: String
+  author: String
+}
 
-   type Query {
-     news: [News] @grpc(method: "news.NewsService.GetNews")
-   }
-   ```
+type Query {
+  news: [News] @grpc(method: "news.NewsService.GetNews")
+}
+```
 
 for more insights on how gPRC works with GraphQL, you can read this [GraphQL over gRPC](grpc.md) article.
 
@@ -466,6 +496,21 @@ Let's understand the above configuration file.
 - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
 - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
+To generate the GraphQL configuration run following command
+<Tabs>
+<TabItem value="json" label="JSON Config Format">
+
+```bash
+tailcall gen ./config.json
+```
+
+  </TabItem>
+  <TabItem value="yml" label="YML Config Format">
+    ```bash
+    tailcall gen ./config.yml
+    ```
+  </TabItem>
+  </Tabs>
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
 ```graphql showLineNumbers
@@ -496,11 +541,7 @@ type Query {
 }
 ```
 
-## Advanced Features
-
-<hr/>
-
-### Understanding Presets
+## Understanding Presets
 
 This section is optional and can be used to generate a more optimized configuration by applying various transformers that improve the config generation process, such as automatically inferring meaningful names of the types, merging duplicate types, removing unused types, and more. If you find that the generated GraphQL configuration is sufficient for your needs, you can skip this section.
 
@@ -534,9 +575,9 @@ preset:
 
 Let's understand how each of the parameter works.
 
-- #### mergeType:
+### mergeType
 
-  This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`. MergeType also supports union types as well as interface types but merging of these types will happen only when they match exactly.
+This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`. MergeType also supports union types as well as interface types but merging of these types will happen only when they match exactly.
 
         **Example 1**: following types `T1` and `T2` are exactly similar, and with a threshold value of `1.0`, they can be merged into a single type called `M1`:
 
@@ -654,228 +695,260 @@ Let's understand how each of the parameter works.
 
         <hr/>
 
-- #### consolidateURL:
+### consolidateURL
 
-  The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
+The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
 
-  For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](directives.md#http-directive) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
+For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](directives.md#http-directive) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
 
-  ```graphql showLineNumbers
-  schema
-    @server(hostname: "0.0.0.0", port: 8000)
-    @upstream(httpCache: 42) {
-    query: Query
-  }
+```graphql showLineNumbers
+schema
+  @server(hostname: "0.0.0.0", port: 8000)
+  @upstream(httpCache: 42) {
+  query: Query
+}
 
-  type Query {
-    post(id: Int!): Post
-      @http(
-        baseURL: "http://jsonplaceholder.typicode.com"
-        path: "/posts/{{.args.id}}"
-      )
-    posts: [Post]
-      @http(
-        baseURL: "http://jsonplaceholder.typicode.com"
-        path: "/posts"
-      )
-    user(id: Int!): User
-      @http(
-        baseURL: "http://jsonplaceholder.typicode.com"
-        path: "/users/{{.args.id}}"
-      )
-    users: [User]
-      @http(
-        baseURL: "http://jsonplaceholder-1.typicode.com"
-        path: "/users"
-      )
-  }
-  ```
-
-  After enabling the `consolidateURL` setting:
-
-  ```graphql showLineNumbers
-  schema
-    @server(hostname: "0.0.0.0", port: 8000)
-    @upstream(
+type Query {
+  post(id: Int!): Post
+    @http(
       baseURL: "http://jsonplaceholder.typicode.com"
-      httpCache: 42
-    ) {
-    query: Query
-  }
+      path: "/posts/{{.args.id}}"
+    )
+  posts: [Post]
+    @http(
+      baseURL: "http://jsonplaceholder.typicode.com"
+      path: "/posts"
+    )
+  user(id: Int!): User
+    @http(
+      baseURL: "http://jsonplaceholder.typicode.com"
+      path: "/users/{{.args.id}}"
+    )
+  users: [User]
+    @http(
+      baseURL: "http://jsonplaceholder-1.typicode.com"
+      path: "/users"
+    )
+}
+```
 
-  type Query {
-    post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
-    posts: [Post] @http(path: "/posts")
-    user(id: Int!): User @http(path: "/users/{{.args.id}}")
-    users: [User]
-      @http(
-        baseURL: "http://jsonplaceholder-1.typicode.com"
-        path: "/users"
-      )
-  }
-  ```
+After enabling the `consolidateURL` setting:
 
-  <hr />
+```graphql showLineNumbers
+schema
+  @server(hostname: "0.0.0.0", port: 8000)
+  @upstream(
+    baseURL: "http://jsonplaceholder.typicode.com"
+    httpCache: 42
+  ) {
+  query: Query
+}
 
-- #### unwrapSingleFieldTypes:
-
-  This setting instructs Tailcall to flatten out types with single field.
-
-  for example:
-
-  ```graphql showLineNumbers
-  type Query {
-    foo: Foo
-  }
-
-  # Type with only one field
-  type Foo {
-    bar: Bar
-  }
-
-  # Type with only one field
-  type Bar {
-    a: Int
-  }
-  ```
-
-  After setting `unwrapSingleFieldTypes` to true:
-
-  ```graphql showLineNumbers
-  type Query {
-    foo: Int
-  }
-  ```
-
-  This helps in flattening out types into single field.
+type Query {
+  post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
+  posts: [Post] @http(path: "/posts")
+  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  users: [User]
+    @http(
+      baseURL: "http://jsonplaceholder-1.typicode.com"
+      path: "/users"
+    )
+}
+```
 
   <hr />
 
-- #### treeShake:
+### unwrapSingleFieldTypes
 
-  This setting removes unused types from the configuration. When enabled, any type that is defined in the configuration but not referenced anywhere else (e.g., as a field type, union member, or interface implementation) will be removed. This helps to keep the configuration clean and free from unnecessary definitions.
+This setting instructs Tailcall to flatten out types with single field.
 
-  ```graphql showLineNumbers title="Before applying treeShake, the configuration might look like this."
-  type Query {
-    foo: Foo
-  }
+for example:
 
-  type Foo {
-    bar: Bar
-  }
+```graphql showLineNumbers
+type Query {
+  foo: Foo
+}
 
-  # Type not used anywhere else
-  type UnusedType {
-    baz: String
-  }
+# Type with only one field
+type Foo {
+  bar: Bar
+}
 
-  type Bar {
-    a: Int
-  }
-  ```
+# Type with only one field
+type Bar {
+  a: Int
+}
+```
 
-  ```graphql showLineNumbers title="After enabling treeShake, the UnusedType will be removed."
-  type Query {
-    foo: Foo
-  }
+After setting `unwrapSingleFieldTypes` to true:
 
-  type Foo {
-    bar: Bar
-  }
+```graphql showLineNumbers
+type Query {
+  foo: Int
+}
+```
 
-  type Bar {
-    a: Int
-  }
-  ```
+This helps in flattening out types into single field.
 
   <hr />
 
-- #### inferTypeNames:
+### treeShake
 
-  This setting enables the automatic inference of type names based on field names within the GraphQL schema. The inferTypeNames setting aims to enhance type naming consistency and readability by suggesting meaningful type names derived from the field names.
+This setting removes unused types from the configuration. When enabled, any type that is defined in the configuration but not referenced anywhere else (e.g., as a field type, union member, or interface implementation) will be removed. This helps to keep the configuration clean and free from unnecessary definitions.
 
-  **Q. How It Works**
+```graphql showLineNumbers title="Before applying treeShake, the configuration might look like this."
+type Query {
+  foo: Foo
+}
 
-  1. **Generates Type Names**: Creates type names from field names using pluralization and other heuristics.
-  2. **Updates Configuration**: Replaces existing type names with the inferred names and updates all references.
+type Foo {
+  bar: Bar
+}
 
-  ```graphql title="Before enabling inferTypeNames setting"
-  type T1 {
-    id: ID
-    name: String
-    email: String
-    post: [T2]
+# Type not used anywhere else
+type UnusedType {
+  baz: String
+}
+
+type Bar {
+  a: Int
+}
+```
+
+```graphql showLineNumbers title="After enabling treeShake, the UnusedType will be removed."
+type Query {
+  foo: Foo
+}
+
+type Foo {
+  bar: Bar
+}
+
+type Bar {
+  a: Int
+}
+```
+
+  <hr />
+
+### inferTypeNames
+
+The `inferTypeNames` setting aims to enhance type naming consistency and readability by suggesting meaningful type names derived from its usage and shape.
+
+**Heuristic Algorithm**
+
+This is the default algorithm used to infer the name of the types in the configuration.
+
+1.  **Generates Type Names**: Creates type names from field names using pluralization and other heuristics.
+2.  **Updates Configuration**: Replaces existing type names with the inferred names and updates all references.
+
+```graphql title="Before enabling inferTypeNames setting"
+type T1 {
+  id: ID
+  name: String
+  email: String
+  post: [T2]
+}
+
+type T2 {
+  id: ID
+  title: String
+  body: String
+}
+
+type Query {
+  users: [T1] @http(path: "/users")
+}
+```
+
+- **User**: Derived from T1, since T1 is linked to user data through the users field in the Query type. The new name User clearly indicates the type represents user information.
+
+- **Post**: Derived from T2, since T2 is linked to post data through the post field within User. The new name Post clearly indicates the type represents post information.
+
+```graphql title="After enabling inferTypeNames setting"
+type User {
+  id: ID
+  name: String
+  email: String
+  post: [Post]
+}
+
+type Post {
+  id: ID
+  title: String
+  body: String
+}
+
+type Query {
+  user: User @http(path: "/users")
+}
+```
+
+By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, making it easier to understand and maintain.
+
+**Additional Considerations:**
+
+- **Priority Handling:** Types directly associated with root operations are given higher priority during inference. For example, if `T2` were associated with a root query or mutation type, it might have a higher priority for inference compared to other types.
+
+- **Pluralization Rules:** The inferred type names are converted to singular form to align with typical GraphQL naming conventions. For instance, a type derived from a plural field name like `comments` would be singularized to `Comment`.
+
+## LLM Powered Inference
+
+This is a more advanced completely opt-in feature. Sometimes it's not possible to infer names correctly based on usage, or a name is not available because its been used already. In such scenarios we leverage LLMs that understand relationships between fields, their schema and other meta information to infer type names. To allow Tailcall to connect to LLMs, you need to provide the API key in the configuration file.
+
+<Tabs>
+<TabItem value="json" label="JSON">
+
+```json showLineNumbers
+{
+  "llm": {
+    "model": "gpt-4o",
+    "secret": "{{env.LLM_API_KEY}}"
   }
+}
+```
 
-  type T2 {
-    id: ID
-    title: String
-    body: String
-  }
+</TabItem>
+<TabItem value="yml" label="YML">
 
-  type Query {
-    users: [T1] @http(path: "/users")
-  }
-  ```
+```yaml showLineNumbers
+llm:
+  model: "gpt-4o"
+  secret: "{{env.LLM_API_KEY}}"
+```
 
-  **How Type Names Are Inferred:**
+</TabItem>
+</Tabs>
 
-  - **User**: Derived from T1, since T1 is linked to user data through the users field in the Query type. The new name User clearly indicates the type represents user information.
+:::tip
+Checkout our [LLM](llm.md) section to get a list of all the LLM models that Tailcall supports.
+:::
 
-  - **Post**: Derived from T2, since T2 is linked to post data through the post field within User. The new name Post clearly indicates the type represents post information.
-
-  ```graphql title="After enabling inferTypeNames setting"
-  type User {
-    id: ID
-    name: String
-    email: String
-    post: [Post]
-  }
-
-  type Post {
-    id: ID
-    title: String
-    body: String
-  }
-
-  type Query {
-    user: User @http(path: "/users")
-  }
-  ```
-
-  By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, making it easier to understand and maintain.
-
-  **Additional Considerations:**
-
-  - **Priority Handling:** Types directly associated with root operations are given higher priority during inference. For example, if `T2` were associated with a root query or mutation type, it might have a higher priority for inference compared to other types.
-
-  - **Pluralization Rules:** The inferred type names are converted to singular form to align with typical GraphQL naming conventions. For instance, a type derived from a plural field name like `comments` would be singularized to `Comment`.
-
-## Recommended Configuration Parameters
+## Best Practices
 
 When setting up your configuration file for GraphQL generation with Tailcall, consider these key parameters to optimize and customize your setup:
 
 1. **[Merge Type](config-generation.md#mergetype)**:
-Controls the merging of similar GraphQL types to reduce duplication. Adjust the threshold (0.0 to 1.0) based on how strictly you want types to match for merging.
-the closer the number to 1.0, you get the best type inference in graphQL playground. Recommended threshold is anything above `0.9`.
+   Controls the merging of similar GraphQL types to reduce duplication. Adjust the threshold (0.0 to 1.0) based on how strictly you want types to match for merging.
+   the closer the number to 1.0, you get the best type inference in graphQL playground. Recommended threshold is anything above `0.9`.
 
-   <Tabs>
-   <TabItem value="json" label="JSON">
-   ```json showLineNumbers
-   {
+    <Tabs>
+    <TabItem value="json" label="JSON">
+    ```json showLineNumbers
+    {
       "preset": {
           "mergeType": 0.9
       }
-   }
-   ```
-   </TabItem>
-   <TabItem value="yml" label="YML">
-   ```yml showLineNumbers
-   preset:
-       mergeType: 0.9
-   ```
-   </TabItem>
-   </Tabs>
+    }
+    ```
+    </TabItem>
+    <TabItem value="yml" label="YML">
+    ```yml showLineNumbers
+    preset:
+        mergeType: 0.9
+    ```
+    </TabItem>
+    </Tabs>
 
 2. **[Consolidate URL](config-generation.md#consolidateurl)**: Identifies the most common base URL among multiple REST endpoints and uses it in the [@upstream](directives.md#upstream-directive) directive. Set a threshold (0.0 to 1.0) to determine when to consolidate URLs. Recommended threshold is anything above `0.5`.
    <Tabs>

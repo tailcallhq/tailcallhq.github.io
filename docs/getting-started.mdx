@@ -11,6 +11,9 @@ import Version from "../src/components/Version"
 import InstallCommand from "../src/components/install"
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
+import Video from "../src/components/video"
+
+<Video />
 
 ## Installing the Tailcall CLI
 
@@ -193,46 +196,57 @@ types:
   Post:
     fields:
       body:
-        type: String
-        required: true
+        type:
+          name: String
+          required: true
       id:
-        type: Int
-        required: true
+        type:
+          name: Int
+          required: true
       title:
-        type: String
-        required: true
+        type:
+          name: String
+          required: true
       user:
-        type: User
-        http:
-          path: /users/{{.value.userId}}
+        type:
+          name: User
       userId:
-        type: Int
-        required: true
+        type:
+          name: Int
+          required: true
+        cache: null
   Query:
     fields:
       posts:
-        type: Post
-        list: true
+        type:
+          list:
+            name: Post
         http:
           path: /posts
   User:
     fields:
       email:
-        type: String
-        required: true
+        type:
+          name: String
+          required: true
       id:
-        type: Int
-        required: true
+        type:
+          name: Int
+          required: true
       name:
-        type: String
-        required: true
+        type:
+          name: String
+          required: true
       phone:
-        type: String
+        type:
+          name: String
       username:
-        type: String
-        required: true
+        type:
+          name: String
+          required: true
       website:
-        type: String
+        type:
+          name: String
 ```
 
 </TabItem>
@@ -256,34 +270,47 @@ types:
     "Post": {
       "fields": {
         "body": {
-          "type": "String",
-          "required": true
+          "type": {
+            "name": "String",
+            "required": true
+          }
         },
         "id": {
-          "type": "Int",
-          "required": true
+          "type": {
+            "name": "Int",
+            "required": true
+          }
         },
         "title": {
-          "type": "String",
-          "required": true
+          "type": {
+            "name": "String",
+            "required": true
+          }
         },
         "user": {
-          "type": "User",
+          "type": {
+            "name": "User"
+          },
           "http": {
             "path": "/users/{{.value.userId}}"
           }
         },
         "userId": {
-          "type": "Int",
-          "required": true
+          "type": {
+            "name": "Int",
+            "required": true
+          }
         }
       }
     },
     "Query": {
       "fields": {
         "posts": {
-          "type": "Post",
-          "list": true,
+          "type": {
+            "list": {
+              "name": "Post"
+            }
+          },
           "http": {
             "path": "/posts"
           }
@@ -293,26 +320,38 @@ types:
     "User": {
       "fields": {
         "email": {
-          "type": "String",
-          "required": true
+          "type": {
+            "name": "String",
+            "required": true
+          }
         },
         "id": {
-          "type": "Int",
-          "required": true
+          "type": {
+            "name": "Int",
+            "required": true
+          }
         },
         "name": {
-          "type": "String",
-          "required": true
+          "type": {
+            "name": "String",
+            "required": true
+          }
         },
         "phone": {
-          "type": "String"
+          "type": {
+            "name": "String"
+          }
         },
         "username": {
-          "type": "String",
-          "required": true
+          "type": {
+            "name": "String",
+            "required": true
+          }
         },
         "website": {
-          "type": "String"
+          "type": {
+            "name": "String"
+          }
         }
       }
     }

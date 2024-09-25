@@ -9,9 +9,10 @@ interface CallToActionProps {
   title: string
   subtitle: string
   buttonText: string
+  href?: string
 }
 
-const CallToAction: React.FC<CallToActionProps> = ({title, subtitle, buttonText}) => {
+const CallToAction: React.FC<CallToActionProps> = ({title, subtitle, buttonText, href}) => {
   return (
     <section className="flex flex-col justify-center px-4 py-4 max-w-3xl mx-auto">
       <div className="relative flex flex-col max-md:space-y-6 md:flex-row md:items-center p-8 bg-neutral-900 rounded-2xl overflow-hidden max-md:p-6">
@@ -23,7 +24,7 @@ const CallToAction: React.FC<CallToActionProps> = ({title, subtitle, buttonText}
         <div className="relative z-10 mt-6 max-md:w-full max-md:flex max-md:justify-center md:mt-0 md:ml-6 md:flex-shrink-0">
           <LinkButton
             title={buttonText}
-            href={pageLinks.docs}
+            href={href ? href : pageLinks.docs}
             theme={Theme.Tailcall}
             width="auto"
             onClick={() => analyticsHandler("Blog", "Click", "Get Started")}

@@ -5,8 +5,8 @@ import Graph from "./Graph"
 import Benefits from "./Benefits"
 import Discover from "../shared/Discover"
 import Configuration from "./Configuration"
-import Playground from "./Playground"
 import Testimonials from "./Testimonials"
+import Announcement from "../shared/Announcement"
 const HomePage = (): JSX.Element => {
   return (
     <div className="">

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Space+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -610,6 +610,12 @@ span.token.tag.script.language-javascript {
   background: url("../../static/images/home/bg-map.png") no-repeat;
 }
 
+@media (min-width: 768px) {
+  .customer-container {
+    background-size: 100% 100% !important;
+  }
+}
+
 .customer-feedback-card {
   border: 2px solid transparent;
   border-bottom: none;
@@ -657,4 +663,38 @@ span.token.tag.script.language-javascript {
   height: 100%;
   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.8) 50%);
   z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .pagination-nav {
+    @apply flex justify-end gap-3;
+  }
+}
+
+.pagination-nav {
+  @apply !flex !justify-end;
+}
+.pagination-nav a {
+  @apply md:w-1/2;
+}
+
+.pagination-nav a:nth-child(2) {
+  @apply justify-end;
+}
+
+.responsive-iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Aspect ratio: 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
+.responsive-iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
