@@ -257,12 +257,7 @@ export default {
         sidebarPath: require.resolve("./graphql/sidebar.ts"),
       },
     ],
-    [
-      "@docusaurus/plugin-ideal-image",
-      {
-        highlightResult: true,
-      },
-    ],
+
     // causing problem in layouts and image loads
     async function myPlugin() {
       return {
@@ -270,6 +265,7 @@ export default {
         configurePostCss(postcssOptions: {[key: string]: any}) {
           // Appends TailwindCSS and AutoPrefixer.
           postcssOptions.plugins.push(require("tailwindcss"))
+          postcssOptions.plugins.push(require("postcss-import"))
           postcssOptions.plugins.push(require("autoprefixer"))
           return postcssOptions
         },
