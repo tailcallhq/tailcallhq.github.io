@@ -1,8 +1,6 @@
 import React, {useState} from "react"
 
-const VIDEO_ID = "-hgzB5JhWJQ"
-
-const Youtube: React.FC = () => {
+const IntroductionVideo: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false)
 
   const handlePlay = () => {
@@ -10,9 +8,10 @@ const Youtube: React.FC = () => {
   }
 
   return (
-    <div className="video-container">
+    <div className="grid-light md:p-28">
+    <div className="video-container rounded-3xl ">
       <div
-        className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
+        className="absolute top-0 left-0 w-full h-full bg-cover bg-center rounded-3xl"
         style={{
           backgroundImage: `url(/images/home/introduction-video-thumbnail.png)`,
         }}
@@ -34,7 +33,7 @@ const Youtube: React.FC = () => {
         ) : (
           <iframe
             className="w-full h-full"
-            src={`https://www.youtube.com/embed/${VIDEO_ID}?feature=oembed&autoplay=1`}
+            src={`https://player.vimeo.com/video/1011521201?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             title="Tailcall Introduction Video"
@@ -42,7 +41,8 @@ const Youtube: React.FC = () => {
         )}
       </div>
     </div>
+    </div>
   )
 }
 
-export default Youtube
+export default IntroductionVideo
