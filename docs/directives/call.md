@@ -1,8 +1,8 @@
 ---
-title: Efficient Schema Refactoring with the @call Directive in GraphQL
-description: Leverage the @call directive to reduce redundancy in GraphQL schemas by composing queries and mutations, streamlining operations and enhancing code maintainability.
+title: Composing GraphQL operations
+description: Leverage the @call directive to reduce duplication in GraphQL schemas by composing queries and mutations, streamlining operations and enhancing code maintainability.
 slug: call-directive
-sidebar_label: Function Invocations
+sidebar_label: Operation Composition
 ---
 
 The `@call` directive in GraphQL signifies a shift towards more efficient configuration management by introducing a methodology akin to function invocations in conventional programming. This directive is pivotal for developers navigating the intricacies of elaborate GraphQL schemas, where minimizing redundancy and adhering to the DRY (Don't Repeat Yourself) principle are paramount. Consider the following schema example:

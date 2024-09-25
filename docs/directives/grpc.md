@@ -1,8 +1,8 @@
 ---
-title: Integrating gRPC Services
+title: Integrating with gRPC APIs
 description: Explore how the @grpc directive facilitates the resolution of GraphQL fields using gRPC services, enabling efficient data fetching and seamless integration of gRPC in your GraphQL schema.
 slug: grpc-directive
-sidebar_label: gRPC Integration
+sidebar_label: gRPC Upstream
 ---
 
 The `@grpc` directive enables the resolution of GraphQL fields via gRPC services. Below is an illustrative example of how to apply this directive within a GraphQL schema:

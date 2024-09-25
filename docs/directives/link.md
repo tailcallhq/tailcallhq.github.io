@@ -1,5 +1,5 @@
 ---
-title: Integrating External Resources with Link Directive
+title: Integrating External Resources
 description: Explore how to use the @link directive in GraphQL to integrate external resources like configurations, Protobuf files, and scripts into your schema, enhancing flexibility and modularity.
 slug: link-directive
 sidebar_label: Linking Resources

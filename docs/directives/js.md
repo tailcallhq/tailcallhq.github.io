@@ -1,5 +1,5 @@
 ---
-title: Custom Field Resolvers with @js Directive
+title: Writing custom resolvers using Javascript
 description: Discover how to utilize the @js directive in GraphQL to incorporate JavaScript functions for custom data transformations and complex field resolutions, enhancing the flexibility of your API.
 slug: js-directive
 sidebar_label: JavaScript Field Resolution

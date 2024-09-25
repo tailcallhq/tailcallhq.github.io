@@ -1,8 +1,8 @@
 ---
-title: Efficient Data Fetching with GraphQL Directive
+title: Integrating with other GraphQL APIs
 description: Streamline data retrieval from upstream GraphQL APIs using the @graphQL directive for enhanced schema efficiency.
 slug: graphQL-directive
-sidebar_label: GraphQL API Fetching
+sidebar_label: GraphQL Upstream
 ---
 
 The `@graphQL` directive allows to specify GraphQL API server request to fetch data from.

@@ -1,5 +1,5 @@
 ---
-title: Enhancing GraphQL Responses with the @expr Directive
+title: Embedding values in GraphQL Responses
 description: Learn how to use the @expr directive in GraphQL for embedding data into your schema, providing flexibility and efficiency for custom responses.
 slug: expr-directive
 sidebar_label: Embedding Data

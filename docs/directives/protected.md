@@ -1,5 +1,5 @@
 ---
-title: Enforcing Authentication with Protected Directive
+title: Enforcing Authentication
 description: The @protected directive restricts access to specific fields or types in your GraphQL schema, ensuring that only authenticated users can retrieve sensitive data.
 slug: protected-directive
 sidebar_label: Protected Fields

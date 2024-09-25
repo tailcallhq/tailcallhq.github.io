@@ -1,5 +1,5 @@
 ---
-title: Using @http Directive
+title: Integrating with REST APIs
 description: Learn how to leverage the @http directive in GraphQL to interact with REST APIs, including customizable request methods, dynamic paths, and query parameters for efficient data fetching.
 slug: http-directive
 sidebar_label: HTTP Directive

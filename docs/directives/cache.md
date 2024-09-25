@@ -1,8 +1,8 @@
 ---
-title: Optimizing GraphQL with the @cache Directive
+title: Caching on GraphQL
 description: Enhance GraphQL performance by caching field results using the @cache directive, specifying caching durations and optimizing data fetching.
 slug: cache-directive
-sidebar_label: Caching Fields
+sidebar_label: GraphQL Caching
 ---
 
 The `@cache` directive provides a protocol agnostic mechanism for caching the results of fields within a GraphQL schema. Like any other cache implementation, this feature is useful for optimizing performance by reducing the need to fetch data that doesn't change frequently.

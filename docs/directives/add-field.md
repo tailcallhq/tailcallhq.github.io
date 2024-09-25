@@ -1,5 +1,5 @@
 ---
-title: Adding Custom Fields with the @addField Directive
+title: Adding Custom Fields
 description: Simplify your GraphQL schema using the @addField directive to flatten nested fields and streamline data queries for better performance.
 slug: add-field-directive
 sidebar_label: Adding Custom Fields

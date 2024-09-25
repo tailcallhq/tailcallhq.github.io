@@ -1,5 +1,5 @@
 ---
-title: Altering Schema Attributes with Modify Directive
+title: Altering fields in the GraphQL Schema
 description: Learn how to use the @modify directive in GraphQL to alter the fields in your schema, allowing for better alignment between your data source and GraphQL API design.
 slug: modify-directive
 sidebar_label: Modifying Fields

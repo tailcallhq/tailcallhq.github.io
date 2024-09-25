@@ -1,5 +1,5 @@
 ---
-title: Excluding Fields with Omit Directive
+title: Excluding Fields
 description: Utilize the @omit directive in GraphQL to exclude specific fields from your schema, enhancing API security and simplifying client interactions by hiding unnecessary data.
 slug: omit-directive
 sidebar_label: Omitting Fields
