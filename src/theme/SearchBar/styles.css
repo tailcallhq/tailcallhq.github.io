@@ -105,7 +105,7 @@
   box-shadow: none;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 996px) {
   .DocSearch-Button {
     width: fit-content;
     border: none;
@@ -156,7 +156,11 @@
   color: #858586;
 }
 
-@media only screen and (min-width: 769px) {
+.DocSearch-Button-Placeholder {
+  display: none;
+}
+
+@media only screen and (min-width: 996px) {
   .DocSearch-Button {
     padding-top: 1.3rem;
     padding-bottom: 1.3rem;
@@ -165,6 +169,9 @@
     margin-top: 1.3rem;
     margin-bottom: 1.3rem;
     border: 1px solid var(--ifm-color-gray-800);
+  }
+  .DocSearch-Button-Placeholder {
+    display: block;
   }
 }
 
