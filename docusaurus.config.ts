@@ -257,12 +257,7 @@ export default {
         sidebarPath: require.resolve("./graphql/sidebar.ts"),
       },
     ],
-    [
-      "@docusaurus/plugin-ideal-image",
-      {
-        highlightResult: true,
-      },
-    ],
+
     // causing problem in layouts and image loads
     async function myPlugin() {
       return {
