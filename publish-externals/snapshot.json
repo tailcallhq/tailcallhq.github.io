@@ -1,3 +1,316 @@
 {
-  "blogs": {}
+  "blogs": {
+    "graphql-conf-2023": {
+      "file": "blog/2023-graphql-conf-2023-09-29.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "no-one-talks-about-api-orchestration": {
+      "file": "blog/api-orchestration-2023-06-12.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "api-strategy": {
+      "file": "blog/api-strategy-2024-08-13.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "the-truth-about-scaling-automatic-persisted-queries": {
+      "file": "blog/automatic-persisted-queries-2023-08-11.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "dream11-graphql-case-study": {
+      "file": "blog/bff-case-study-2024-08-30.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "unraveling-the-challenges-of-bff-federation": {
+      "file": "blog/bff-challenges-2023-06-19.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-match-microservices": {
+      "file": "blog/graphql-and-ms-match-2024-08-18.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-angular-client": {
+      "file": "blog/graphql-angular-clients-2024-07-20.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-introspection-security": {
+      "file": "blog/graphql-introspection-security-2024-7-12.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-microservices-migration": {
+      "file": "blog/graphql-microservices-migration-2024-08-15.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-schema": {
+      "file": "blog/graphql-schema-2024-07-11.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-schema-part-2-1": {
+      "file": "blog/graphql-schema-part-2-1-2024-07-21.mdx",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-schema-part-2-2": {
+      "file": "blog/graphql-schema-part-2-2-2024-07-22.mdx",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-schema-part-2-3": {
+      "file": "blog/graphql-schema-part-2-3-2024-07-23.mdx",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-vs-openapi-part-1": {
+      "file": "blog/graphql-vs-openapi-part-1-2024-07-29.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-vs-openapi-part-2": {
+      "file": "blog/graphql-vs-openapi-part-2-2024-07-30.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-vs-openapi-part-3": {
+      "file": "blog/graphql-vs-openapi-part-3-2024-07-31.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-vs-rest-vs-grpc": {
+      "file": "blog/graphql-vs-rest-vs-grpc-2024-03-30.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-vue-client": {
+      "file": "blog/graphql-vue-clients-2024-08-01.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "graphql-vs-grpc": {
+      "file": "blog/grpc-vs-graphql-2024-07-26.mdx",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "exploring-graphiql": {
+      "file": "blog/guide-on-graphiql-2024-07-24.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "writing-a-graphql-backend-by-hand-is-long-gone": {
+      "file": "blog/no-code-graphql-2024-05-30.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "tailcall-n+1-identification-algorithm": {
+      "file": "blog/tailcall-n+1-working-2024-08-04.md",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    },
+    "what-is-grpc": {
+      "file": "blog/what-is-grpc-2024-07-13.mdx",
+      "platforms": {
+        "Hashnode": {
+          "published": false,
+          "lastUpdatePublished": false
+        },
+        "Dev.to": {
+          "published": false,
+          "lastUpdatePublished": false
+        }
+      }
+    }
+  }
 }
