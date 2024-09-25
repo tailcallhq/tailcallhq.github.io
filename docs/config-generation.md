@@ -1,6 +1,6 @@
 ---
-title: GraphQL Configuration Generation with Tailcall
-description: Migrate REST or Protobuff to GraphQL within minutes
+title: Automatic GraphQL Configuration Generation with Tailcall
+description: Migrate REST or gRPC APIs to GraphQL automatically
 slug: graphql-configuration-generation-with-tailcall
 sidebar_label: Auto Generation
 ---
@@ -133,30 +133,43 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
-    **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
+To generate the GraphQL configuration run following command
+<Tabs>
+<TabItem value="json" label="JSON Config Format">
+`bash
+    tailcall gen ./config.json
+    `
+</TabItem>
+<TabItem value="yml" label="YML Config Format">
+`bash
+    tailcall gen ./config.yml
+    `
+</TabItem>
+</Tabs>
+**Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
-    ```graphql showLineNumbers title="Generated GraphQL Configuration"
-    schema
-      @server
-      @upstream(
-        baseURL: "https://jsonplaceholder.typicode.com"
-      ) {
-      query: Query
-    }
+```graphql showLineNumbers title="Generated GraphQL Configuration"
+schema
+  @server
+  @upstream(
+    baseURL: "https://jsonplaceholder.typicode.com"
+  ) {
+  query: Query
+}
 
-    type Post {
-      body: String
-      id: Int
-      title: String
-      userId: Int
-    }
+type Post {
+  body: String
+  id: Int
+  title: String
+  userId: Int
+}
 
-    type Query {
-      posts: [Post] @http(path: "/posts")
-    }
-    ```
+type Query {
+  posts: [Post] @http(path: "/posts")
+}
+```
 
-    <hr />
+  <hr />
 
 2.  **Simple Post Request**
 
@@ -262,7 +275,23 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
-    **Schema**: Specifies the operation type. In this example, it's a `Mutation` operation with the name `Mutation`.
+To generate the GraphQL configuration run following command
+<Tabs>
+<TabItem value="json" label="JSON Config Format">
+
+```bash
+tailcall gen ./config.json
+```
+
+  </TabItem>
+  <TabItem value="yml" label="YML Config Format">
+    ```bash
+    tailcall gen ./config.yml
+    ```
+  </TabItem>
+  </Tabs>
+
+**Schema**: Specifies the operation type. In this example, it's a `Mutation` operation with the name `Mutation`.
 
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
 schema @server @upstream {
@@ -467,6 +496,21 @@ Let's understand the above configuration file.
 - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
 - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
+To generate the GraphQL configuration run following command
+<Tabs>
+<TabItem value="json" label="JSON Config Format">
+
+```bash
+tailcall gen ./config.json
+```
+
+  </TabItem>
+  <TabItem value="yml" label="YML Config Format">
+    ```bash
+    tailcall gen ./config.yml
+    ```
+  </TabItem>
+  </Tabs>
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
 ```graphql showLineNumbers
