@@ -710,9 +710,13 @@ span.token.tag.script.language-javascript {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: linear-gradient(#e6e6e6 1px, transparent 1px), linear-gradient(90deg, #e6e6e6 1px, transparent 1px);
-  background-size: 80px 80px;
+  background-image: linear-gradient(90deg, #c5c5c5 1px, transparent 1px), linear-gradient(#c5c5c5 1px, transparent 1px);
+  background-size: 100px 100px;
+  background-position: -1px -1px;
   opacity: 0.5;
+  max-width: 1595px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .video-wrapper::after {

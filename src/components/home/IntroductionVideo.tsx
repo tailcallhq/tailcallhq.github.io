@@ -18,7 +18,7 @@ const IntroductionVideo: React.FC = () => {
             </div>
           ) : (
             <iframe
-              src="https://player.vimeo.com/video/1011521201?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+              src="https://player.vimeo.com/video/1011521201?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="absolute top-0 left-0 w-full h-full"
