@@ -13,6 +13,10 @@ First, you need to create a basic Tailcall configuration. For reference, check o
 
 ## Define Entity Resolvers
 
+:::note
+Skip this step if you don't have entities for now or want to add them later.
+:::
+
 Now you need to add [entity resolvers](https://www.apollographql.com/docs/federation/entities/) to the Tailcall config to make it act as a subgraph.
 
 To do this, you need to define resolver on types by using one of the [directives](./configuration.mdx) that resolve the data. Use [`{{.value}}`](https://tailcall.run/docs/graphql-resolver-context-tailcall/#value) to access the fields that act as a federation `@key` and will be provided by the Federation Router when making the request to this subgraph.
@@ -33,6 +37,10 @@ type Post
 :::note
 Please, note that you don't need to specify the `@key` directive manually when defining entity resolver with Tailcall. It's because Tailcall can automatically infer the key definitions from the usage of the resolver itself.
 :::
+
+## Enable federation in the Tailcall config
+
+Federation is controlled by the flag [`enableFederation`](./directives.md#enablefederation). In case you've added the entity resolvers on the previous step then federation compatibility will be enabled even without the flag.
 
 ## Register your subgraph
 
