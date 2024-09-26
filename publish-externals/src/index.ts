@@ -1,10 +1,11 @@
 import path from "path"
-import * as hashnode from "./utils/hashnode"
 import {extractFrontMatterAndContent} from "./utils/markdown"
-import * as devTo from "./utils/devto"
 import snapshot from "../snapshot.json"
 import fs from "fs"
 import {createHash} from "crypto"
+import {Publisher} from "./utils/types"
+import {hashnodePostHandler} from "./utils/hashnode"
+import {devtoPostHandler} from "./utils/devto"
 
 interface Blog {
   file: string
@@ -20,16 +21,14 @@ interface Blog {
 
 interface ExternalPublication {
   name: string
-  handler: (frontMatter: FrontMatter, content: string) => Promise<void>
+  handler: (frontMatter: any, content: string) => Promise<any>
+  publisherEnum: Publisher
 }
 
-interface FrontMatter {
-  slug: string
-}
 
 const ExternalPublications: ExternalPublication[] = [
-  {name: "Hashnode", handler: hashnode.handler},
-  {name: "Dev.to", handler: devTo.handler},
+  {name: "Hashnode", handler: hashnodePostHandler, publisherEnum: Publisher.HASHNODE},
+  {name: "Dev.to", handler: devtoPostHandler, publisherEnum: Publisher.DEVTO},
 ]
 
 const main = async () => {

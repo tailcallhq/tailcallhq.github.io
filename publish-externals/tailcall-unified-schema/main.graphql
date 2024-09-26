@@ -65,14 +65,14 @@ type Mutation {
     )
     @transform(get: "publishPost")
 
-  publishToDevTo(input: DevToPublishInput!): DevToPublishResponse!
+  publishToDevTo(input: ArticleInput!): DevToPublishResponse!
     @http(
       method: POST
       baseURL: "https://dev.to"
       path: "/api/articles"
       headers: [{key: "Content-Type", value: "application/json"}, {key: "api-key", value: "{{env.DEVTO_API_KEY}}"}]
       body: """
-      {{toJson .args.input.article}}
+      {{toJson .args.input}}
       """
     )
 
@@ -196,6 +196,44 @@ type DevToUpdateArticleResponse {
   id: ID!
   title: String!
   description: String
+  url: String!
+  published: Boolean
+  tags: [String!]
+}
+
+type Publisher {
+  publish(
+    publisher: Publisher!
+    id: ID
+    article: ArticleInput!
+  ): ArticleResponse!
+}
+
+enum Publisher {
+  DEVTO
+  HASHNODE
+  MEDIUM
+}
+
+input ArticleInput {
+  title: String!
+  body_markdown: String!
+  published: Boolean
+  tags: [String!]
+  series: String
+  canonical_url: String
+  description: String
+  organization_id: Int
+  subtitle: String
+  slug: String
+  coverImageOptions: CoverImageOptions
+}
+
+type ArticleResponse {
+  id: ID!
+  title: String!
+  description: String
+  readable_publish_date: String
   url: String!
   published: Boolean
   tags: [String!]
