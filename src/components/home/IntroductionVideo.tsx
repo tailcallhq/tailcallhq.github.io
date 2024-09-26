@@ -6,16 +6,7 @@ const IntroductionVideo: React.FC = () => {
   const videoId = "1011521201"
   const videoRef = useRef<HTMLDivElement>(null)
 
-  const fetchThumbnail = async () => {
-    const response = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${videoId}`)
-    const data = await response.json()
-    const fullResUrl = data.thumbnail_url.split("-d")[0] + "-d"
-    setThumbnailUrl(fullResUrl)
-  }
-
   useEffect(() => {
-    fetchThumbnail()
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -40,7 +31,7 @@ const IntroductionVideo: React.FC = () => {
         <div
           className="video-background"
           style={{
-            backgroundImage: `url(${thumbnailUrl})`,
+            backgroundImage: `url(/images/home/introduction-video-thumbnail.jpeg)`,
           }}
         >
           {!isPlaying ? (
