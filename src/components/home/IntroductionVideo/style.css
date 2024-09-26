@@ -29,6 +29,8 @@
   border-radius: 0.375rem;
   z-index: 10;
   box-shadow: 0px 4px 32px 0px #ffe933;
+  background-image: url("/static/images/video-thumbnail.webp");
+  background-size: 100%;
 }
 
 .video-background {
