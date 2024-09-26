@@ -4,6 +4,29 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .border-b-solid {
+    border-bottom-style: solid;
+  }
+  .border-t-solid {
+    border-top-style: solid;
+  }
+  .border-l-solid {
+    border-left-style: solid;
+  }
+  .border-r-solid {
+    border-right-style: solid;
+  }
+  .border-x-solid {
+    border-left-style: solid;
+    border-right-style: solid;
+  }
+  .border-y-solid {
+    border-top-style: solid;
+    border-bottom-style: solid;
+  }
+}
+
 :root {
   /* Font and Dimension Tokens */
   --ifm-font-family-base: "Space Grotesk", sans-serif;

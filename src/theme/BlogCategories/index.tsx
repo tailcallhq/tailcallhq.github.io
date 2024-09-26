@@ -28,12 +28,11 @@ export function BlogCategories({items, onCategoryClick, activeCategory}: BlogCat
           aria-label={`${name} (${count})`}
           key={name}
           onClick={() => onCategoryClick(name === activeCategory ? "All" : name)}
-          style={{
-            borderBottom: activeCategory === name ? "2px solid #000" : "none",
-          }}
           className={clsx(
             "text-sm cursor-pointer appearance-none border-none bg-transparent px-1 font-medium",
-            activeCategory === name ? "font-medium text-gray-900" : "text-gray-500 hover:text-gray-700",
+            activeCategory === name
+              ? "font-medium text-gray-900 border-b-solid border-b-2 border-black"
+              : "text-gray-500 hover:text-gray-700",
           )}
         >
           {name}
