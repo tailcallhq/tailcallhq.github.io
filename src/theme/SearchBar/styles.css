@@ -116,15 +116,15 @@
     display: none;
   }
 
+  .DocSearch-Container > div {
+    width: 100vw;
+    border-radius: 0;
+    height: 100vh;
+  }
+
   .DocSearch-Dropdown {
     max-height: unset;
     height: 80vh;
-  }
-
-  .DocSearch-Modal {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0px;
   }
 
   .DocSearch-Container {
@@ -139,6 +139,31 @@
   .DocSearch-SearchBar form {
     border-radius: 10px;
     border: 1px solid var(--ifm-color-brand-light-600);
+  }
+
+  .DocSearch-Button-Keys,
+  .DocSearch-Button-Placeholder {
+    display: none;
+  }
+
+  .DocSearch-Cancel {
+    appearance: none;
+    background: none;
+    border: 0;
+    color: var(--docsearch-highlight-color);
+    cursor: pointer;
+    display: inline-block;
+    flex: none;
+    font: inherit;
+    font-size: 1em;
+    font-weight: 500;
+    margin-left: var(--docsearch-spacing);
+    outline: none;
+    overflow: hidden;
+    padding: 0;
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
   }
 }
 
