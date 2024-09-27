@@ -178,7 +178,11 @@ const NavbarContent = (): JSX.Element => {
 
   const items = useNavbarItems()
   const [leftItems, rightItems] = splitNavbarItems(items)
-
+  const pageHasSearch = () => {
+    let location = window.location.pathname.split("/")[1]
+    let allowedPaths = ["docs", "graphql"]
+    return allowedPaths.includes(location)
+  }
   const searchBarItem = items.find((item) => item.type === "search")
 
   return (
@@ -187,7 +191,7 @@ const NavbarContent = (): JSX.Element => {
         // TODO stop hardcoding items? (added by docusaurus)
         // Render left navbar items
         <>
-          {mobileSidebar.shouldRender && <Search />}
+          {mobileSidebar.shouldRender && pageHasSearch() && <Search />}
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
           <NavbarItems items={leftItems} />
