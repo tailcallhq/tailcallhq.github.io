@@ -14,6 +14,15 @@ export default {
     {
       tagName: "script",
       attributes: {
+        id: "chatbotscript",
+        "data-accountid": "CZPG9aVdtk59Tjz4SMTu8w==",
+        "data-websiteid": "75VGI0NlBqessD4BQn2pFg==",
+        src: "https://app.robofy.ai/bot/js/common.js?v=" + new Date().getTime(),
+      },
+    },
+    {
+      tagName: "script",
+      attributes: {
         async: "true",
         src: "https://tag.clearbitscripts.com/v1/pk_498a76355e253f5c7f4e7c7bed78748e/tags.js",
         referrerPolicy: "strict-origin-when-cross-origin",
