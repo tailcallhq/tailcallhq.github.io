@@ -1139,6 +1139,7 @@ schema
     id: "news"
     src: "./src/grpc/news.proto"
     type: Protobuf
+    headers: [{key: "authorization", value: "Bearer 123"}]
   ) {
   query: Query
 }
