@@ -45,12 +45,13 @@ const sidebars: SidebarsConfig = {
         "environment-variables",
         "configuration",
         "config-generation",
+        "apollo-federation-subgraph",
       ],
     },
     {
       type: "category",
       label: "Integrations",
-      items: ["apollo-studio", "apollo-federation-subgraph", "data-dog", "new-relic", "honey-comb", "llm"],
+      items: ["apollo-studio", "data-dog", "new-relic", "honey-comb", "llm"],
     },
     {
       type: "category",
