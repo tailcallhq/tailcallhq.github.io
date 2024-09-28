@@ -11,7 +11,6 @@ image: /images/blog/bff-architecture.png
 hide_table_of_contents: true
 slug: no-one-talks-about-api-orchestration
 canonical_url: https://tailcall.hashnode.dev/no-one-talks-about-api-orchestration
-featured: true
 ---
 
 <!-- truncate -->

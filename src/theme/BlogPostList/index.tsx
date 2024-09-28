@@ -26,7 +26,7 @@ const RegularPost = ({item}: {item: Props["items"][0]}) => (
     <img
       src={item.content.metadata.frontMatter.image}
       alt={item.content.metadata.title}
-      className="w-full object-cover h-48 hidden md:block"
+      className="w-full object-cover aspect-video hidden md:block"
     />
     <PostContent item={item} />
   </Link>
