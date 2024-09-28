@@ -48,6 +48,10 @@ Learn more about QUIC in detail [here](https://blog.cloudflare.com/the-road-to-q
 
 Connection pooling mitigates these issues by reusing existing connections for requests, reducing connection establishment frequency (and thus handshake overhead) and conserving client-side ports. This approach enhances application performance by minimizing the resources and time spent on managing connections.
 
+## Tuning HTTP Client
+
+Tailcall uses connection pooling by default and sets up with default tuning suitable for most use cases. You might need to further tune the HTTP client to improve your application's performance. Tailcall DSL provides a directive named [`@upstream`](/docs/client-tuning.md#upstream-directive) for this purpose.
+
 ## @upstream Directive
 
 The `upstream` directive enables control over specific aspects of the upstream server connection, including settings such as connection timeouts, keep-alive intervals, and more. The system applies default values if you do not specify them.
@@ -78,7 +82,7 @@ schema
 
 ### poolMaxIdlePerHost
 
-The max number of idle connections each host will maintain.
+The max number of idle connections each host will maintain, defaulting to `60`.
 
 ```graphql showLineNumbers
 schema
@@ -90,6 +94,10 @@ schema
   mutation: Mutation
 }
 ```
+
+Too idle connections can unnecessarily consume memory and ports, while too few might cause delays as new connections need frequent establishment. `poolMaxIdlePerHost` ensures judicious use of network and memory resources, avoiding wastage on seldom-used connections.
+
+For applications connecting to hosts, set this value lower to keep connections available for other hosts. Conversely, if you have hosts and all requests must resolve through them, maintain a higher value for this setting.
 
 ### keepAliveInterval
 
@@ -155,7 +163,7 @@ In the provided example, we've set the proxy's `url` to "http://localhost:3000".
 
 ### connectTimeout
 
-The time in seconds that the connection will wait for a response before timing out.
+The time in seconds that the connection will wait for a response before timing out, defaulting to 60 seconds.
 
 ```graphql showLineNumbers
 schema
@@ -167,6 +175,8 @@ schema
   mutation: Mutation
 }
 ```
+
+`connectTimeout` specifically applies to the phase where your client attempts to establish a connection with the server. When making a connection request, the client tries to resolve the DNS, complete the SSL handshake, and establish a TCP connection. In environments where pods are frequently created and destroyed, maintaining a low `connectTimeout` is crucial to avoid unnecessary delays. In systems using connection pooling, the system aborts the attempt if it cannot establish a connection within the `connectTimeout` period. This approach prevents indefinite waiting for a connection to establish, which could cause delays and timeouts.
 
 ### timeout
 
@@ -185,7 +195,7 @@ schema
 
 ### tcpKeepAlive
 
-The time in seconds between each TCP keep-alive message sent to maintain the connection.
+The time in seconds between each TCP keep-alive message sent to maintain the connection, defaults to 5 seconds.
 
 ```graphql showLineNumbers
 schema
@@ -197,6 +207,8 @@ schema
   mutation: Mutation
 }
 ```
+
+`tcpKeepAlive` keeps TCP connections alive for a duration, during inactivity, by periodically sending packets to the server to check if the connection remains open. In connection pooling, `tcpKeepAlive` maintains reusable connections in a ready-to-use state. This setting is useful for long-lived connections, preventing -lived connections, preventing the client from using a connection the server has closed due to inactivity. Without `tcpKeepAlive`, connections in the pool might get dropped by the server or intermediate network devices (like firewalls or load balancers). When your client tries to use such a dropped connection, it would fail, causing delays and errors. Keeping connections alive and monitored means you can efficiently reuse them, reducing the overhead of establishing new connections frequently.
 
 ### userAgent
 
@@ -301,68 +313,16 @@ schema @upstream(onRequest: 'someFunctionName')
 }
 ```
 
-## Tuning HTTP Client
-
-Tailcall uses connection pooling by default and sets up with default tuning suitable for most use cases. You might need to further tune the HTTP client to improve your application's performance. Tailcall DSL provides a directive named [`@upstream`](/docs/client-tuning.md#upstream-directive) for this purpose.
-
 :::note
 Connection pooling optimizes HTTP/1. Since HTTP/2 and HTTP/3 support multiplexing, pooling enabled does not noticeably affect performance.
 :::
 
 When using HTTP/1.x, tune the connection pool with the following parameters:
 
-### poolMaxIdlePerHost
+- [poolMaxIdlePerHost](#poolmaxidleperhost)
+- [tcpKeepAlive](#tcpkeepalive)
+- [connectTimeout](#connecttimeout)
 
-`poolMaxIdlePerHost` specifies the allowed number of idle connections per host, defaulting to `60`. Example:
-
-```graphql showLineNumbers
-schema
-  @upstream(
-    # highlight-start
-    poolMaxIdlePerHost: 60
-    # highlight-end
-  ) {
-  query: Query
-}
-```
-
-Too idle connections can unnecessarily consume memory and ports, while too few might cause delays as new connections need frequent establishment. `poolMaxIdlePerHost` ensures judicious use of network and memory resources, avoiding wastage on seldom-used connections.
-
-For applications connecting to hosts, set this value lower to keep connections available for other hosts. Conversely, if you have hosts and all requests must resolve through them, maintain a higher value for this setting.
-
-### tcpKeepAlive
-
-`tcpKeepAlive` keeps TCP connections alive for a duration, during inactivity, by periodically sending packets to the server to check if the connection remains open. In connection pooling, `tcpKeepAlive` maintains reusable connections in a ready-to-use state. This setting is useful for long-lived connections, preventing -lived connections, preventing the client from using a connection the server has closed due to inactivity. Without `tcpKeepAlive`, connections in the pool might get dropped by the server or intermediate network devices (like firewalls or load balancers). When your client tries to use such a dropped connection, it would fail, causing delays and errors. Keeping connections alive and monitored means you can efficiently reuse them, reducing the overhead of establishing new connections frequently.
-
-Tailcall provides a parameter named `tcpKeepAlive` for the upstream which defaults to 5 seconds. Example:
-schema
-
-```graphql
-@upstream (
-# highlight-start
-  tcpKeepAlive: 300
-# highlight-end
-) {
-query: Query
-}
-
-```
-
-### connectTimeout
-
-`connectTimeout` specifically applies to the phase where your client attempts to establish a connection with the server. When making a connection request, the client tries to resolve the DNS, complete the SSL handshake, and establish a TCP connection. In environments where pods are frequently created and destroyed, maintaining a low `connectTimeout` is crucial to avoid unnecessary delays. In systems using connection pooling, the system aborts the attempt if it cannot establish a connection within the `connectTimeout` period. This approach prevents indefinite waiting for a connection to establish, which could cause delays and timeouts.
-
-Tailcall offers a `connectTimeout` parameter to set the connection timeout in seconds for the HTTP client, defaulting to 60 seconds. Example:
-
-```graphql showLineNumbers
-schema
-  @upstream(
-    # highlight-start
-    connectTimeout: 10
-    # highlight-end
-  ) {
-  query: Query
-}
-```
+These parameters allow you to control the number of idle connections, maintain active connections, and set appropriate timeouts to ensure efficient communication between the client and server.
 
 In summary, maximizing HTTP client performance requires understanding the underlying protocols and configuring client settings through testing. This ensures efficient, robust, and high-performing client-server communication, crucial for the smooth operation of modern web applications.
