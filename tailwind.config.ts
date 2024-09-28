@@ -66,6 +66,9 @@ module.exports = {
         SPACE_20: "80px",
         SPACE_21: "160px",
       },
+      screens: {
+        "3xl": "2200px",
+      },
     },
     fontFamily: {
       "space-grotesk": ["Space Grotesk", "sans-serif"],
