@@ -490,7 +490,7 @@ This way you can compose combine multiple operations can compose them together u
 
 ### dedupe
 
-A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+This flag when set to `true` prevents duplicate HTTP requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
 ```graphql showLineNumbers
 schema @call(
@@ -700,7 +700,7 @@ Make sure you have also specified batch settings to the `@upstream` and to the `
 
 ### dedupe
 
-A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+This flag when set to `true` prevents duplicate HTTP requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
 ```graphql showLineNumbers
 schema @graphQL(
@@ -794,7 +794,7 @@ type Query {
 
 ### dedupe
 
-A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+This flag when set to `true` prevents duplicate HTTP requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
 ```graphql showLineNumbers
 schema @grpc(
@@ -897,7 +897,7 @@ type Query {
 
 ### dedupe
 
-A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+This flag when set to `true` prevents duplicate HTTP requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
 ```graphql showLineNumbers
 schema @http(
