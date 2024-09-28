@@ -1696,9 +1696,11 @@ Batching can improve performance but may introduce latency if one request in the
 
 A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
+This feature is supported in `IO` based directives such as
+[`@http`](#http-directive), [`@grpc`](#grpc-directive), [`@graphQL`](#graphql-directive) and [`@call`](#call-directive)
+
 ```graphql showLineNumbers
-schema @server(
-  port: 8000
+schema @http(
   dedupe: true
 )
 ```
