@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react"
+import React from "react"
 import clsx from "clsx"
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
@@ -12,6 +12,7 @@ import BlogFeaturedPosts from "../BlogFeaturedPosts"
 import BlogPostList from "../BlogPostList"
 import {BlogCategories} from "../BlogCategories"
 import {useBlogPosts} from "@site/src/utils/hooks/useBlogPosts"
+import {FrontMatter} from "@theme/BlogPostPage"
 
 function BlogListPageMetadata(props: Props): JSX.Element {
   const {metadata} = props
@@ -44,19 +45,22 @@ function LoadMoreButton({handleLoadMore}: {handleLoadMore: () => void}): JSX.Ele
 
 function BlogListPageContent({metadata, items, sidebar}: Props): JSX.Element {
   const {activeCategory, visibleItems, filteredItems, handleCategoryClick, handleLoadMore} = useBlogPosts(items)
+  const featuredItems = items.filter((post) => (post.content.frontMatter as FrontMatter & {featured: boolean}).featured)
 
   return (
     <BlogLayout sidebar={sidebar}>
       <div className="flex flex-col md:flex-row items-start w-full">
-        <div className="w-full md:w-9/12 md:pr-6 border-right">
+        <div className={clsx("w-full md:w-9/12 md:pr-6 border-right", featuredItems.length == 0 ? "md:w-full" : "")}>
           <BlogCategories items={items} onCategoryClick={handleCategoryClick} activeCategory={activeCategory} />
           <BlogPostList items={filteredItems.slice(0, visibleItems)} />
           {visibleItems < filteredItems.length && <LoadMoreButton handleLoadMore={handleLoadMore} />}
           <BlogListPaginator metadata={metadata} />
         </div>
-        <div className="w-full md:w-3/12 hidden md:block md:pl-6">
-          <BlogFeaturedPosts items={items} />
-        </div>
+        {featuredItems.length > 0 ? (
+          <div className="w-full md:w-3/12 hidden md:block md:pl-6">
+            <BlogFeaturedPosts items={featuredItems} />
+          </div>
+        ) : null}
       </div>
     </BlogLayout>
   )
