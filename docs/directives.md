@@ -490,7 +490,7 @@ This way you can compose combine multiple operations can compose them together u
 
 ### dedupe
 
-This flag when set to `true` prevents duplicate HTTP requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+This flag when set to `true` prevents duplicate calls from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
 ```graphql showLineNumbers
 schema @call(
@@ -700,7 +700,7 @@ Make sure you have also specified batch settings to the `@upstream` and to the `
 
 ### dedupe
 
-This flag when set to `true` prevents duplicate HTTP requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+This flag when set to `true` prevents duplicate GraphQL requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
 ```graphql showLineNumbers
 schema @graphQL(
@@ -794,7 +794,7 @@ type Query {
 
 ### dedupe
 
-This flag when set to `true` prevents duplicate HTTP requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+This flag when set to `true` prevents duplicate gRPC requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
 ```graphql showLineNumbers
 schema @grpc(
