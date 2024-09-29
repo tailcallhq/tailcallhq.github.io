@@ -488,6 +488,16 @@ The server returns the response that we expected:
 
 This way you can compose combine multiple operations can compose them together using the `@call` directive.
 
+### dedupe
+
+This flag when set to `true` prevents duplicate calls from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+schema @call(
+  dedupe: true
+)
+```
+
 :::note
 We use `JSON` scalar here because we don't care about the type safety of this option. In a real world example you might want to use proper input and output types.
 :::
@@ -688,6 +698,16 @@ type Query {
 
 Make sure you have also specified batch settings to the `@upstream` and to the `@graphQL` directive.
 
+### dedupe
+
+This flag when set to `true` prevents duplicate GraphQL requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+schema @graphQL(
+  dedupe: true
+)
+```
+
 ## @grpc Directive
 
 The `@grpc` directive enables the resolution of GraphQL fields via gRPC services. Below is an illustrative example of how to apply this directive within a GraphQL schema:
@@ -770,6 +790,16 @@ type Query {
       method: "proto.users.UserService.ListUsers"
     )
 }
+```
+
+### dedupe
+
+This flag when set to `true` prevents duplicate gRPC requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+schema @grpc(
+  dedupe: true
+)
 ```
 
 ### body
@@ -863,6 +893,16 @@ type Query {
       baseURL: "https://jsonplaceholder.typicode.com"
     )
 }
+```
+
+### dedupe
+
+This flag when set to `true` prevents duplicate HTTP requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+schema @http(
+  dedupe: true
+)
 ```
 
 ### path
@@ -1691,17 +1731,6 @@ schema @server(
 :::tip
 Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
 :::
-
-### dedupe
-
-A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
-
-```graphql showLineNumbers
-schema @server(
-  port: 8000
-  dedupe: true
-)
-```
 
 ### routes
 
