@@ -45,6 +45,7 @@ const sidebars: SidebarsConfig = {
         "environment-variables",
         "configuration",
         "config-generation",
+        "apollo-federation-subgraph",
         "directives/add-field",
         "directives/cache",
         "directives/call",
@@ -59,7 +60,11 @@ const sidebars: SidebarsConfig = {
         "directives/server",
       ],
     },
-    {type: "category", label: "Integrations", items: ["apollo-studio", "data-dog", "new-relic", "honey-comb", "llm"]},
+    {
+      type: "category",
+      label: "Integrations",
+      items: ["apollo-studio", "data-dog", "new-relic", "honey-comb", "llm"],
+    },
     {
       type: "category",
       label: "Production",
