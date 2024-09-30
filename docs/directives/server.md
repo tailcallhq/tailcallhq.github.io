@@ -348,3 +348,11 @@ schema @server(routes: {graphQL: "/tailcall-gql", status: "/health"})
 ```
 
 In this example, the GraphQL endpoint is changed to `/tailcall-gql` and the status endpoint to `/health`.
+
+### enableFederation
+
+A boolean flag, if set to `true` the Tailcall server will additionally act as federation subgraph. If set to `false` federation compatibility will be forcefully disabled. If flag is not set the federation compatibility is enabled automatically if any entity resolver is defined and disabled otherwise.
+
+```graphql showLineNumbers
+schema @server(enableFederation: true)
+```

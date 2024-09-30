@@ -17,6 +17,8 @@ The `@link` directive requires specifying a source `src`, the resource's type `t
 
 - `id`: This is an optional field that assigns a unique identifier to the link. It's helpful for referring to the link within the schema.
 
+- `headers`: This is an optional field that assigns custom headers to the gRPC reflection server requests. Specifying a key-value map of header names and their values achieves this.
+
 ### Example
 
 The following example illustrates how to utilize the `@link` directive to incorporate a Protocol Buffers (.proto) file for a gRPC service into your GraphQL schema.
@@ -33,6 +35,7 @@ schema
     id: "news"
     src: "./src/grpc/news.proto"
     type: Protobuf
+    headers: [{key: "authorization", value: "Bearer 123"}]
   ) {
   query: Query
 }

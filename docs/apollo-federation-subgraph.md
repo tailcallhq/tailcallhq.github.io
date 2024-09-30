@@ -40,7 +40,7 @@ Please, note that you don't need to specify the `@key` directive manually when d
 
 ## Enable federation in the Tailcall config
 
-Federation is controlled by the flag [`enableFederation`](./directives.md#enablefederation). In case you've added the entity resolvers on the previous step then federation compatibility will be enabled even without the flag.
+Federation is controlled by the flag [`enableFederation`](./directives/server.md#enablefederation). In case you've added the entity resolvers on the previous step then federation compatibility will be enabled even without the flag.
 
 ## Register your subgraph
 
