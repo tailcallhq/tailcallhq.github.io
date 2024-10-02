@@ -1718,7 +1718,7 @@ In this example, the GraphQL endpoint is changed to `/tailcall-gql` and the stat
 
 ### enableFederation
 
-A boolean flag, if set to `true` the Tailcall server will additionally act as federation subgraph. If set to `false` federation compatibility will be forcefully disabled. If flag is not set the federation compatibility is enabled automatically if any entity resolver is defined and disabled otherwise.
+A boolean flag, if set to `true` the Tailcall server will additionally act as federation subgraph. By default, it's disabled.
 
 ```graphql showLineNumbers
 schema @server(enableFederation: true)
