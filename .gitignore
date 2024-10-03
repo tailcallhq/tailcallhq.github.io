@@ -24,3 +24,4 @@ yarn-error.log*
 src/*/*.json
 .vscode/
 .gitpod.yml
+cypress/screenshots
