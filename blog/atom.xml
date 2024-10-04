@@ -88,12 +88,12 @@
 <p>As we continue to evolve Tailcall, we're excited to see how it will empower other companies to undertake their own transformative journeys, armed with the insights and tools born from our experiences. The future of backend architecture is bright, and we're thrilled to be part of shaping it.</p>
 <p>Stay tuned, fellow tech enthusiasts. With Tailcall, we're not just solving yesterday's problems – we're building tomorrow's solutions.</p>]]></content>
         <author>
-            <name>Amit Singh</name>
-            <uri>https://github.com/amitksingh1490</uri>
-        </author>
-        <author>
             <name>Tushar Mathur</name>
             <uri>https://github.com/tusharmath</uri>
+        </author>
+        <author>
+            <name>Amit Singh</name>
+            <uri>https://github.com/amitksingh1490</uri>
         </author>
         <category label="GraphQL" term="GraphQL"/>
         <category label="Backend-for-Frontend" term="Backend-for-Frontend"/>
