@@ -1,6 +1,7 @@
 import {themes as prismThemes} from "prism-react-renderer"
 import type * as Preset from "@docusaurus/preset-classic"
 import prismTheme from "./src/theme/CodeBlock/theme"
+import type {Config} from "@docusaurus/types"
 
 const title = "Tailcall"
 const organization = "tailcallhq"
@@ -76,8 +77,12 @@ export default {
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
+    localeConfigs: {
+      en: {
+        label: "English",
+      },
+    },
   },
-
   presets: [
     [
       "classic",
@@ -239,7 +244,7 @@ export default {
         routeBasePath: "blog",
         include: ["**/*.{md,mdx}"],
         exclude: ["**/_*.{js,jsx,ts,tsx,md,mdx}", "**/_*/**", "**/*.test.{js,jsx,ts,tsx}", "**/__tests__/**"],
-        postsPerPage: 10,
+        postsPerPage: "ALL",
         blogListComponent: "@theme/BlogListPage",
         blogPostComponent: "@theme/BlogPostPage",
         blogTagsListComponent: "@theme/BlogTagsListPage",
@@ -266,16 +271,16 @@ export default {
         sidebarPath: require.resolve("./graphql/sidebar.ts"),
       },
     ],
-    async function myPlugin() {
+    async function tailwindPlugin() {
       return {
         name: "docusaurus-tailwindcss",
-        configurePostCss(postcssOptions: {[key: string]: any}) {
-          // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(require("tailwindcss"))
-          postcssOptions.plugins.push(require("autoprefixer"))
-          return postcssOptions
+        configurePostCss(postcssOptions) {
+          return {
+            ...postcssOptions,
+            plugins: [...postcssOptions.plugins, require("tailwindcss"), require("autoprefixer")],
+          }
         },
       }
     },
   ],
-}
+} satisfies Config

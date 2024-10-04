@@ -5,6 +5,7 @@ hide_table_of_contents: true
 slug: dream11-graphql-case-study
 image: /images/blog/dream11-graphql-case-study.png
 category: Case Study
+featured: true
 tags:
   [
     GraphQL,
@@ -13,14 +14,14 @@ tags:
     Scalability,
   ]
 authors:
-  - name: Amit Singh
-    title: Head of Growth and Strategy @ Tailcall | Ex Director of Engineering @ Dream11
-    url: https://github.com/amitksingh1490
-    image_url: https://avatars.githubusercontent.com/u/23661702?v=5
   - name: Tushar Mathur
     title: CEO @ Tailcall | | Ex VP of Engineering @ Dream11
     url: https://github.com/tusharmath
     image_url: https://avatars.githubusercontent.com/u/194482?v=4
+  - name: Amit Singh
+    title: Head of Growth and Strategy @ Tailcall | Ex Director of Engineering @ Dream11
+    url: https://github.com/amitksingh1490
+    image_url: https://avatars.githubusercontent.com/u/23661702?v=5
 ---
 
 **Picture this:**
