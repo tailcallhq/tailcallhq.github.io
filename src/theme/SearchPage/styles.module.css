@@ -40,19 +40,19 @@
 }
 
 .searchResultItemHeading {
-  font-weight: 400;
   margin-bottom: 0;
+
+  a {
+    color: #000;
+    text-decoration: none;
+    transition: none;
+  }
 }
 
 .searchResultItemPath {
   font-size: 0.8rem;
   color: var(--ifm-color-content-secondary);
   --ifm-breadcrumb-separator-size-multiplier: 1;
-}
-
-.searchResultItemSummary {
-  margin: 0.5rem 0 0;
-  font-style: italic;
 }
 
 @media only screen and (max-width: 996px) {
@@ -105,8 +105,3 @@
   margin-top: 2rem;
 }
 
-:global(.search-result-match) {
-  color: var(--docsearch-hit-color);
-  background: rgb(255 215 142 / 25%);
-  padding: 0.09em 0;
-}
