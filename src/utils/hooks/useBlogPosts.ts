@@ -5,7 +5,7 @@ const DEFAULT_CATEGORY = "All"
 
 export function useBlogPosts(items: Props["items"]) {
   const [activeCategory, setActiveCategory] = useState<string>(DEFAULT_CATEGORY)
-  const [visibleItems, setVisibleItems] = useState(5)
+  const [visibleItems, setVisibleItems] = useState(7)
 
   const filteredItems = useMemo(() => {
     return activeCategory === DEFAULT_CATEGORY
@@ -15,7 +15,7 @@ export function useBlogPosts(items: Props["items"]) {
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category)
-    setVisibleItems(5)
+    setVisibleItems(7)
   }
 
   const handleLoadMore = () => {
