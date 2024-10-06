@@ -24,7 +24,6 @@ import {
   useSearchResultUrlProcessor,
 } from '@docusaurus/theme-search-algolia/client';
 import Layout from '@theme/Layout';
-import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
 // Very simple pluralization: probably good enough for now
@@ -236,11 +235,11 @@ function SearchPageContent(): JSX.Element {
       const items = hits.map(
         ({
           url,
-          _highlightResult: {hierarchy},
+          _highlightResult: {hierarchy, content},
           _snippetResult: snippet = {},
         }: {
           url: string;
-          _highlightResult: {hierarchy: {[key: string]: {value: string}}};
+          _highlightResult: {hierarchy: {[key: string]: {value: string}}, content: {value: string}};
           _snippetResult: {content?: {value: string}};
         }) => {
           const titles = Object.keys(hierarchy).map((key) =>
@@ -249,9 +248,9 @@ function SearchPageContent(): JSX.Element {
           return {
             title: titles.pop()!,
             url: processSearchResultUrl(url),
-            summary: snippet.content
-              ? `${sanitizeValue(snippet.content.value)}...`
-              : '',
+            summary: content?.value
+              ? `${sanitizeValue(content?.value)}`
+              : snippet.content ? `${sanitizeValue(snippet.content.value)}` : '',
             breadcrumbs: titles,
           };
         },
@@ -298,7 +297,7 @@ function SearchPageContent(): JSX.Element {
       ? translate(
           {
             id: 'theme.SearchPage.existingResultsTitle',
-            message: 'Search results for "{query}"',
+            message: 'Search Results for "{query}"',
             description: 'The search page title for non-empty query',
           },
           {
@@ -373,8 +372,7 @@ function SearchPageContent(): JSX.Element {
       </Head>
 
       <div className="container margin-vert--lg w-full px-8 md:px-24 lg:px-36">
-        <Heading as="h1">{getTitle()}</Heading>
-
+        <span className="text-tailCall-dark-700 font-space-grotesk text-title-medium font-bold">{getTitle()}</span>
         <form className="row" onSubmit={(e) => e.preventDefault()}>
           <div
             className={clsx('col', styles.searchQueryColumn, {
@@ -384,7 +382,7 @@ function SearchPageContent(): JSX.Element {
             <input
               type="search"
               name="q"
-              className={styles.searchQueryInput}
+              className={`${styles.searchQueryInput} mt-4 mb-3 text-tailCall-dark-200 font-space-grotesk text-content-small font-normal`}
               placeholder={translate({
                 id: 'theme.SearchPage.inputPlaceholder',
                 message: 'Type your search here',
@@ -425,7 +423,7 @@ function SearchPageContent(): JSX.Element {
                     <Link to={url} dangerouslySetInnerHTML={{__html: title}} />
                   </span>
 
-                  {breadcrumbs.length > 0 && (
+                  {/* {breadcrumbs.length > 0 && (
                     <nav aria-label="breadcrumbs">
                       <ul
                         className={clsx(
@@ -443,11 +441,11 @@ function SearchPageContent(): JSX.Element {
                         ))}
                       </ul>
                     </nav>
-                  )}
+                  )}  */}
 
                   {summary && (
                     <span
-                      className="text-tailCall-dark-200 font-space-grotesk text-content-small font-normal"
+                      className="text-tailCall-dark-200 font-space-grotesk text-content-small font-normal line-clamp-2"
                       // Developer provided the HTML, so assume it's safe.
                       // eslint-disable-next-line react/no-danger
                       dangerouslySetInnerHTML={{__html: summary}}

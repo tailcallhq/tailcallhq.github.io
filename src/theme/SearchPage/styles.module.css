@@ -2,18 +2,14 @@
 .searchVersionInput {
   border-radius: var(--ifm-global-radius);
   border: 2px solid var(--ifm-toc-border-color);
-  font: var(--ifm-font-size-base) var(--ifm-font-family-base);
   padding: 0.8rem;
   width: 100%;
   background: var(--docsearch-searchbox-focus-background);
-  color: var(--docsearch-text-color);
-  margin-bottom: 0.5rem;
   transition: border var(--ifm-transition-fast) ease;
 }
 
 .searchQueryInput:focus,
 .searchVersionInput:focus {
-  border-color: var(--docsearch-primary-color);
   outline: none;
 }
 
@@ -24,14 +20,6 @@
 .searchResultsColumn {
   font-size: 0.9rem;
   font-weight: bold;
-}
-
-.algoliaLogo {
-  max-width: 150px;
-}
-
-.algoliaLogoPathFill {
-  fill: var(--ifm-font-color-base);
 }
 
 .searchResultItem {
