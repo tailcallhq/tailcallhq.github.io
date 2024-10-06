@@ -839,6 +839,32 @@ type Query {
 }
 ```
 
+### select
+
+You can use `select` with mustache syntax to re-construct the directives
+response to the desired format. This is useful when data are deeply
+nested or want to keep specific fields only from the response.
+
+* EXAMPLE 1: if we have a call that returns `{ "user": { "items": [...],
+  ... } ... }` we can use `"{{.user.items}}"`, to extract the `items`.
+* EXAMPLE 2: if we have a call that returns `{ "foo": "bar", "fizz": {
+  "buzz": "eggs", ... }, ... }` we can use `{ foo: "{{.foo}}", buzz:
+  "{{.fizz.buzz}}" }`
+
+
+```graphql showLineNumbers
+type Query {
+  userCompany(id: Int!): Company @http(
+    method: "news.UsersService.GetUserDetails",
+    select: "{{.company}}"
+  )
+  userDetails(id: Int!): UserDetails @http(
+    method: "news.UsersService.GetUserDetails",
+    select: {id: "{{.id}}", city: "{{.address.city}}", phone: "{{.phone}}"}
+  )
+}
+```
+
 ## @http Directive
 
 The `@http` directive indicates a field or node relies on a REST API. For example:
@@ -1031,6 +1057,32 @@ type Query {
       path: "/users/{{.args.id}}"
       onResponseBody: "onResponse"
     )
+}
+```
+
+### select
+
+You can use `select` with mustache syntax to re-construct the directives
+response to the desired format. This is useful when data are deeply
+nested or want to keep specific fields only from the response.
+
+* EXAMPLE 1: if we have a call that returns `{ "user": { "items": [...],
+  ... } ... }` we can use `"{{.user.items}}"`, to extract the `items`.
+* EXAMPLE 2: if we have a call that returns `{ "foo": "bar", "fizz": {
+  "buzz": "eggs", ... }, ... }` we can use `{ foo: "{{.foo}}", buzz:
+  "{{.fizz.buzz}}" }`
+
+
+```graphql showLineNumbers
+type Query {
+  userCompany(id: Int!): Company @http(
+    path: "/users/{{.args.id}}",
+    select: "{{.company}}"
+  )
+  userDetails(id: Int!): UserDetails @http(
+    path: "/users/{{.args.id}}",
+    select: {id: "{{.id}}", city: "{{.address.city}}", phone: "{{.phone}}"}
+  )
 }
 ```
 
