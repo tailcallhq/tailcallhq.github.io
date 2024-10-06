@@ -854,11 +854,11 @@ nested or want to keep specific fields only from the response.
 
 ```graphql showLineNumbers
 type Query {
-  userCompany(id: Int!): Company @http(
+  userCompany(id: Int!): Company @grpc(
     method: "news.UsersService.GetUserDetails",
     select: "{{.company}}"
   )
-  userDetails(id: Int!): UserDetails @http(
+  userDetails(id: Int!): UserDetails @grpc(
     method: "news.UsersService.GetUserDetails",
     select: {id: "{{.id}}", city: "{{.address.city}}", phone: "{{.phone}}"}
   )
