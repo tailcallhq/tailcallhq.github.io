@@ -335,19 +335,19 @@ function SearchPageContent(): JSX.Element {
     setSelectedCategory(category)
   }
 
-  const getSidebar = () => {
+  const getSidebar = (containerClassName?: string) => {
     return (
-      <div className="flex flex-col my-SPACE_14">
+      <div className={`flex mt-SPACE_05 mb-SPACE_01 gap-3 overflow-x-scroll cursor-pointer sm:overflow-visible sm:gap-0 sm:my-SPACE_14 sm:flex-col ${containerClassName}`}>
         {Object.values(resultsCategory).map((category) => {
           return (
             <div
-              className={`flex justify-between items-center rounded-md px-3 py-2 w-[180px] ${selectedCategory === category ? "bg-tailCall-yellow" : ""}`}
+              className={`flex justify-between items-center rounded-md p-1 pl-3 gap-2 sm:gap-0 sm:px-3 sm:py-2 sm:w-[180px] ${selectedCategory === category ? "border border-solid border-tailCall-border-light-400 sm:bg-tailCall-yellow sm:border-none" : ""}`}
               onClick={() => handleCategoryClick(category)}
             >
-              <span className="text-tailCall-dark-700 text-tailCall-dark-100 font-space-grotesk text-title-tiny font-bold">
+              <span className={`text-tailCall-dark-500 font-space-grotesk text-title-tiny font-bold ${selectedCategory === category ? "" : "text-tailCall-light-600 sm:text-tailCall-dark-500"}`}>
                 {category}
               </span>
-              <span className="text-tailCall-dark-700 font-space-grotesk text-content-small font-medium">
+              <span className={`flex justify-center items-center sm:pt-[2px] px-[6px] font-space-grotesk !font-medium text-content-tiny sm:text-content-small ${selectedCategory === category ? "text-tailCall-dark-700 bg-tailCall-yellow sm:bg-transparent rounded-md" : "text-tailCall-dark-100 rounded-[6px] bg-tailCall-light-200"}`}>
                 {categoryCount[category as keyof typeof categoryCount] || 0}
               </span>
             </div>
@@ -368,9 +368,9 @@ function SearchPageContent(): JSX.Element {
         <meta property="robots" content="noindex, follow" />
       </Head>
 
-      <div className="container margin-vert--lg flex">
-        {getSidebar()}
-        <div className="flex flex-col w-full px-8 md:px-24 lg:px-36">
+      <div className="container mt-4 flex flex-col sm:flex-row sm:mt-8">
+        {getSidebar("hidden sm:flex")}
+        <div className="flex flex-col w-full px-0 sm:px-24 md:px-24 lg:px-36 sm:pl-16 md:pl-16 lg:pl-24">
           <span className="text-tailCall-dark-700 font-space-grotesk text-title-medium font-bold">{getTitle()}</span>
           <form className="row" onSubmit={(e) => e.preventDefault()}>
             <div
@@ -410,6 +410,8 @@ function SearchPageContent(): JSX.Element {
               {!!searchResultState.totalResults && documentsFoundPlural(searchResultState.totalResults)}
             </div>
           </div>
+
+          {getSidebar("sm:hidden")}
 
           {searchResultState.items.length > 0 ? (
             <main>

@@ -44,9 +44,9 @@
 }
 
 @media only screen and (max-width: 996px) {
-  .searchQueryColumn {
+  /* .searchQueryColumn {
     max-width: 60% !important;
-  }
+  } */
 
   .searchVersionColumn {
     max-width: 40% !important;
