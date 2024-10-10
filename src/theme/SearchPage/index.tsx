@@ -123,7 +123,7 @@ type ResultDispatcher =
 enum resultsCategory {
   All = "All",
   Docs = "Docs",
-  Blogs = "Blog",
+  Blogs = "Blogs",
   Snippets = "Snippets",
 }
 
@@ -203,7 +203,8 @@ function SearchPageContent(): JSX.Element {
     facetingAfterDistinct: true,
   })
 
-  algoliaHelper.on("result", ({results: {query, hits, page, nbHits, nbPages}}) => {
+  algoliaHelper.on("result", (event) => {
+    const {query, hits, page, nbHits, nbPages, facets} = event.results
     if (query === "" || !Array.isArray(hits)) {
       searchResultStateDispatcher({type: "reset"})
       return
@@ -235,6 +236,17 @@ function SearchPageContent(): JSX.Element {
         }
       },
     )
+
+    if(selectedCategory === resultsCategory.All) {
+      const facetsCountData = facets[0]?.["data"];
+
+      setCategoryCount({
+        [resultsCategory.All]: nbHits,
+        [resultsCategory.Docs]: facetsCountData?.[resultsCategory.Docs as keyof {}] || 0,
+        [resultsCategory.Blogs]: facetsCountData?.[resultsCategory.Blogs as keyof {}] || 0,
+        [resultsCategory.Snippets]: 0,
+      })
+    }
 
     searchResultStateDispatcher({
       type: "update",
