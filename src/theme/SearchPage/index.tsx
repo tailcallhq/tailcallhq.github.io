@@ -17,6 +17,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import {useAlgoliaThemeConfig, useSearchResultUrlProcessor} from "@docusaurus/theme-search-algolia/client"
 import Layout from "@theme/Layout"
 import styles from "./styles.module.css"
+import { algoliaConstants } from "@site/src/constants"
 
 // Very simple pluralization: probably good enough for now
 function useDocumentsFoundPlural() {
@@ -122,7 +123,7 @@ type ResultDispatcher =
 enum resultsCategory {
   All = "All",
   Docs = "Docs",
-  Blogs = "Blogs",
+  Blogs = "Blog",
   Snippets = "Snippets",
 }
 
@@ -138,7 +139,7 @@ function SearchPageContent(): JSX.Element {
   const documentsFoundPlural = useDocumentsFoundPlural()
 
   const docsSearchVersionsHelpers = useDocsSearchVersionsHelpers()
-  const [searchQuery, setSearchQuery] = useSearchQueryString()
+  const [searchQuery, setSearchQuery] = useSearchQueryString()  
   const [categoryCount, setCategoryCount] = useState({
     All: 0,
     Blogs: 0,
@@ -198,6 +199,8 @@ function SearchPageContent(): JSX.Element {
     hitsPerPage: 15,
     advancedSyntax: true,
     disjunctiveFacets,
+    facets: [algoliaConstants.categoryFacet],
+    facetingAfterDistinct: true,
   })
 
   algoliaHelper.on("result", ({results: {query, hits, page, nbHits, nbPages}}) => {
@@ -296,6 +299,9 @@ function SearchPageContent(): JSX.Element {
       })
     }
 
+    if(selectedCategory !== resultsCategory.All) {
+      algoliaHelper.addFacetRefinement(algoliaConstants.categoryFacet, selectedCategory)
+    }
     algoliaHelper.setQuery(searchQuery).setPage(page).search()
   })
 
@@ -321,7 +327,7 @@ function SearchPageContent(): JSX.Element {
         makeSearch()
       }, 300)
     }
-  }, [searchQuery, docsSearchVersionsHelpers.searchVersions, makeSearch])
+  }, [searchQuery, docsSearchVersionsHelpers.searchVersions, makeSearch, selectedCategory])
 
   useEffect(() => {
     if (!searchResultState.lastPage || searchResultState.lastPage === 0) {
@@ -329,7 +335,7 @@ function SearchPageContent(): JSX.Element {
     }
 
     makeSearch(searchResultState.lastPage)
-  }, [makeSearch, searchResultState.lastPage])
+  }, [makeSearch, searchResultState.lastPage, selectedCategory])
 
   const handleCategoryClick = (category: resultsCategory) => {
     setSelectedCategory(category)
