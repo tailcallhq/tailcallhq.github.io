@@ -173,11 +173,11 @@ input[type="radio"]:checked::before {
   background-color: transparent;
   color: var(--ifm-color-gray-900);
   font-weight: var(--ifm-font-weight-semibold);
-  border-left: 2px solid var(--ifm-color-brand);
+  box-shadow: inset 2px 0 0 0 var(--ifm-color-brand);
 }
 
 .menu__list-item-collapsible a {
-  border-left: none !important;
+  box-shadow: none !important;
 }
 
 .menu__list-item:not(:first-child) {
