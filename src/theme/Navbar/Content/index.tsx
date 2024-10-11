@@ -180,10 +180,10 @@ const NavbarContent = (): JSX.Element => {
   const [leftItems, rightItems] = splitNavbarItems(items)
 
   const getFilteredRightItems = (): NavbarItemConfig[] => {
-      if(!pageHasSearch()) {
-        return rightItems.filter((item) => item.type !== 'search')
-      }
-      return rightItems;
+    if (!pageHasSearch()) {
+      return rightItems.filter((item) => item.type !== "search")
+    }
+    return rightItems
   }
 
   const pageHasSearch = () => {

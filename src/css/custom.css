@@ -133,7 +133,7 @@ input[type="radio"]:checked::before {
 
 .theme-doc-sidebar-menu {
   padding-right: 0.75rem;
-  padding-left: 1rem
+  padding-left: 1rem;
 }
 .benefits-drop-shadow:hover {
   box-shadow: 0px 14px 24px 0px rgba(250, 234, 90, 0.1);
@@ -142,7 +142,8 @@ input[type="radio"]:checked::before {
   background: transparent;
 }
 
-.menu__list-item-collapsible a, .theme-doc-sidebar-item-link-level-1 a {
+.menu__list-item-collapsible a,
+.theme-doc-sidebar-item-link-level-1 a {
   padding: 0.5rem;
   font-size: var(--ifm-list-item-link);
   font-weight: var(--ifm-font-weight-semibold);
@@ -772,6 +773,7 @@ span.token.tag.script.language-javascript {
   background: url("../../static/icons/basic/chevron-down.svg") no-repeat;
 }
 
-.menu__list-item--collapsed .menu__link--sublist:after, .menu__list-item--collapsed .menu__caret:before {
+.menu__list-item--collapsed .menu__link--sublist:after,
+.menu__list-item--collapsed .menu__caret:before {
   transform: rotateZ(360deg);
 }
