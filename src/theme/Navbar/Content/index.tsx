@@ -179,11 +179,8 @@ const NavbarContent = (): JSX.Element => {
   const items = useNavbarItems()
   const [leftItems, rightItems] = splitNavbarItems(items)
 
-  const getFilteredRightItems = (): NavbarItemConfig[] => {
-    if (!pageHasSearch()) {
-      return rightItems.filter((item) => item.type !== "search")
-    }
-    return rightItems
+  const getRightItemsWithoutSearch = (): NavbarItemConfig[] => {
+    return rightItems.filter((item) => item.type !== "search")
   }
 
   const pageHasSearch = () => {
@@ -209,7 +206,9 @@ const NavbarContent = (): JSX.Element => {
         // TODO stop hardcoding items? (added by docusaurus)
         // Render right navbar items
         <>
-          <NavbarItems items={getFilteredRightItems()} />
+          <NavbarItems
+            items={typeof window !== "undefined" && pageHasSearch() ? rightItems : getRightItemsWithoutSearch()}
+          />
           <GithubStarsButton className="navbar__item navbar__link" />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
         </>
