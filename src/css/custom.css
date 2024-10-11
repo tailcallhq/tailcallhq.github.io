@@ -41,7 +41,7 @@
   --ifm-grid-bg-size-lg: 3.25rem;
   --ifm-grid-bg-size-md: 2.5rem;
   --ifm-grid-bg-size-sm: 1.25rem;
-  --ifm-list-item-link: 1.5rem;
+  --ifm-list-item-link: 1rem;
   --ifm-navbar-font-size: 1.25rem;
   --ifm-content-link-font-size: 0.875rem;
   --ifm-search-input-font-size: 0.9rem;
@@ -117,7 +117,7 @@ input[type="radio"]:checked::before {
 
 .theme-doc-sidebar-item-link .menu__link.menu__link--active:after {
   content: "";
-  display: block;
+  display: none;
   background: url("../../static/icons/basic/chevron-right.svg") no-repeat;
   width: 1rem;
   margin-right: 1rem;
@@ -131,8 +131,9 @@ input[type="radio"]:checked::before {
   font-weight: var(--ifm-font-weight-bold);
 }
 
-.menu__list {
-  padding-right: 1rem;
+.theme-doc-sidebar-menu {
+  padding-right: 0.75rem;
+  padding-left: 1rem
 }
 .benefits-drop-shadow:hover {
   box-shadow: 0px 14px 24px 0px rgba(250, 234, 90, 0.1);
@@ -141,23 +142,45 @@ input[type="radio"]:checked::before {
   background: transparent;
 }
 
-.menu__list-item-collapsible a {
+.menu__list-item-collapsible a, .theme-doc-sidebar-item-link-level-1 a {
+  padding: 0.5rem;
   font-size: var(--ifm-list-item-link);
-  font-weight: var(--ifm-font-weight-bold);
+  font-weight: var(--ifm-font-weight-semibold);
+}
+
+.theme-doc-sidebar-item-link-level-1 {
+  margin-top: 1rem !important;
+}
+
+.menu__list .menu__list {
+  padding-left: 0rem;
+  margin-left: 1rem;
+  border-left: 1px solid var(--ifm-toc-border-color);
 }
 
 .menu__link {
-  height: 2.5rem;
+  height: 2.125rem;
   display: flex;
   align-items: center;
   color: var(--ifm-color-gray-900);
-  border-radius: 8px;
+  border-radius: 0;
+  font-size: 0.875rem;
+  font-weight: var(--ifm-font-weight-normal);
 }
 
 .menu__link.menu__link--active {
-  background-color: var(--ifm-color-brand);
+  background-color: transparent;
   color: var(--ifm-color-gray-900);
-  font-weight: var(--ifm-font-weight-bold);
+  font-weight: var(--ifm-font-weight-semibold);
+  border-left: 2px solid var(--ifm-color-brand);
+}
+
+.menu__list-item-collapsible a {
+  border-left: none !important;
+}
+
+.menu__list-item:not(:first-child) {
+  margin-top: 0;
 }
 
 .menu__link:hover {
@@ -165,7 +188,7 @@ input[type="radio"]:checked::before {
 }
 
 .theme-doc-sidebar-item-category:not(:first-child) {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .theme-edit-this-page {
@@ -355,7 +378,7 @@ input[type="radio"]:checked::before {
 }
 
 .theme-doc-toc-desktop > .table-of-contents > li:has(a.table-of-contents__link--active) {
-  border-left: 2px solid #fdea2e;
+  border-left: 2px solid var(--ifm-color-brand);
 }
 
 .theme-doc-toc-desktop > .table-of-contents > li > li:has(a.table-of-contents__link--active) {
@@ -743,4 +766,12 @@ span.token.tag.script.language-javascript {
   .border-right {
     border-right: 1px solid #e7e7e7;
   }
+}
+
+.menu__link--sublist-caret:after {
+  background: url("../../static/icons/basic/chevron-down.svg") no-repeat;
+}
+
+.menu__list-item--collapsed .menu__link--sublist:after, .menu__list-item--collapsed .menu__caret:before {
+  transform: rotateZ(360deg);
 }
