@@ -17,6 +17,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Usage",
+      collapsed: false,
       items: [
         "getting-started",
         "cli",
@@ -31,6 +32,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Features",
+      collapsed: false,
       items: [
         "N+1",
         "auth",
@@ -51,16 +53,19 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Integrations",
+      collapsed: false,
       items: ["apollo-studio", "data-dog", "new-relic", "honey-comb", "llm"],
     },
     {
       type: "category",
       label: "Production",
+      collapsed: false,
       items: ["gh-action", "tailcall-on-fly", "tailcall-on-aws", "client-tuning"],
     },
     {
       type: "category",
       label: "Contributors",
+      collapsed: false,
       items: [
         "contributors/guidelines",
         "contributors/bounty",

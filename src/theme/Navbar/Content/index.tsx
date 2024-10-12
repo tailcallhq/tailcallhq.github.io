@@ -178,6 +178,11 @@ const NavbarContent = (): JSX.Element => {
 
   const items = useNavbarItems()
   const [leftItems, rightItems] = splitNavbarItems(items)
+
+  const getRightItemsWithoutSearch = (): NavbarItemConfig[] => {
+    return rightItems.filter((item) => item.type !== "search")
+  }
+
   const pageHasSearch = () => {
     let location = window.location.pathname.split("/")[1]
     let allowedPaths = ["docs", "graphql"]
@@ -201,7 +206,9 @@ const NavbarContent = (): JSX.Element => {
         // TODO stop hardcoding items? (added by docusaurus)
         // Render right navbar items
         <>
-          <NavbarItems items={rightItems} />
+          <NavbarItems
+            items={typeof window !== "undefined" && pageHasSearch() ? rightItems : getRightItemsWithoutSearch()}
+          />
           <GithubStarsButton className="navbar__item navbar__link" />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
         </>

@@ -7,12 +7,13 @@
 
 .DocSearch-Button {
   margin: 0;
-  width: 85%;
-  margin: 10px;
+  /* width: 85%;
+  margin: 10px; 
   border: 1px solid black;
-  border-radius: 8px;
+  border-radius: 8px; */
+  box-shadow: none !important;
   background: transparent;
-  padding: 10px 8px;
+  padding: 0;
   height: 44px;
   cursor: text;
   transition: all var(--ifm-transition-fast) var(--ifm-transition-timing-default);
@@ -110,6 +111,7 @@
     width: fit-content;
     border: none;
     margin: 0;
+    padding: 10px 8px;
   }
 
   .DocSearch-Button-Keys {
@@ -182,19 +184,28 @@
 }
 
 .DocSearch-Button-Placeholder {
+  font-weight: 700;
+  font-size: 20px;
+  font-family: "Space Grotesk";
+  color: #121315;
+  padding-right: 0;
+  padding-left: 10px;
+}
+
+.DocSearch-Button-Placeholder {
   display: none;
 }
 
 @media only screen and (min-width: 996px) {
-  .DocSearch-Button {
+  /* .DocSearch-Button {
     padding-top: 1.3rem;
     padding-bottom: 1.3rem;
     padding-left: 0.6rem;
-    padding-right: 0.6rem;
+    padding-right: 0.6rem; 
     margin-top: 1.3rem;
-    margin-bottom: 1.3rem;
-    border: 1px solid var(--ifm-color-gray-800);
-  }
+    margin-bottom: 1.3rem; 
+    border: 1px solid var(--ifm-color-gray-800); 
+  } */
   .DocSearch-Button-Placeholder {
     display: block;
   }
@@ -202,4 +213,23 @@
 
 .DocSearch-Button-Keys kbd.DocSearch-Button-Key:first-child {
   font-size: 16px;
+}
+
+.DocSearch-Button-Keys {
+  display: none;
+}
+
+.search-icon-navbar {
+  padding: 0 !important;
+}
+
+.DocSearch-Search-Icon {
+  cursor: pointer;
+  stroke-width: 2px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1150px) {
+  .DocSearch-Button-Placeholder {
+    display: none;
+  }
 }
