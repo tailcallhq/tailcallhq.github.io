@@ -142,6 +142,11 @@ export default {
         {to: "/graphql", label: "Learn", position: "left"},
         {to: "/blog", label: "Blog", position: "left"},
         {
+          type: "search",
+          position: "right",
+          className: "hidden lg:flex search-icon-navbar",
+        },
+        {
           href: "https://discord.gg/kRZBPpkgwq",
           position: "right",
           className: "header-button header-button-discord",
