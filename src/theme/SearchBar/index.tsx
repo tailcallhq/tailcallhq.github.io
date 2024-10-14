@@ -26,6 +26,7 @@ import type {
   StoredDocSearchHit,
 } from '@docsearch/react/dist/esm/types';
 import type {SearchClient} from 'algoliasearch/lite';
+import { algoliaConstants } from '@site/src/constants';
 
 type DocSearchProps = Omit<
   DocSearchModalProps,
@@ -57,13 +58,16 @@ function ResultsFooter({state, onClose}: ResultsFooterProps) {
   const createSearchLink = useSearchLinkCreator();
 
   return (
-    <Link to={createSearchLink(state.query)} onClick={onClose}>
-      <Translate
-        id="theme.SearchBar.seeAll"
-        values={{count: state.context.nbHits}}>
-        {'See all {count} results'}
-      </Translate>
-    </Link>
+    <div className="flex justify-between w-full">
+      <span>{`${state.context.nbHits} results found`}</span>
+      <Link to={createSearchLink(state.query)} onClick={onClose}>
+        <Translate
+          id="theme.SearchBar.seeAll"
+          >
+          {"See all results"}
+        </Translate>
+      </Link>
+    </div>
   );
 }
 
@@ -249,7 +253,7 @@ function DocSearch({
             })}
             {...props}
             searchParameters={searchParameters}
-            placeholder={translations.placeholder}
+            placeholder={algoliaConstants.searchModalPlaceholder}
             translations={translations.modal}
           />,
           searchContainer.current,
