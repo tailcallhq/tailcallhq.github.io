@@ -55,7 +55,7 @@
 }
 
 .DocSearch-Hit[aria-selected="true"] a {
-  background-color: var(--ifm-color-brand-light);
+  background-color: var(--ifm-color-brand-light-200);
 }
 
 .DocSearch-Commands-Key {

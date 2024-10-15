@@ -338,6 +338,13 @@ function SearchPageContent(): JSX.Element {
       setTimeout(() => {
         makeSearch()
       }, 300)
+    } else {
+      setCategoryCount({
+        [resultsCategory.All]: 0,
+        [resultsCategory.Docs]: 0,
+        [resultsCategory.Blogs]: 0,
+        [resultsCategory.Snippets]: 0,
+      })
     }
   }, [searchQuery, docsSearchVersionsHelpers.searchVersions, makeSearch, selectedCategory])
 
@@ -425,11 +432,11 @@ function SearchPageContent(): JSX.Element {
 
           <div className="row">
             <div className={clsx("col", "col--8", styles.searchResultsColumn)}>
-              {!!searchResultState.totalResults && documentsFoundPlural(searchResultState.totalResults)}
+              {!!searchResultState.totalResults ? documentsFoundPlural(searchResultState.totalResults) : `${categoryCount[selectedCategory]} results found`}
             </div>
           </div>
 
-          {getSidebar("sm:hidden")}
+          {searchQuery && getSidebar("sm:hidden")}
 
           {searchResultState.items.length > 0 ? (
             <main>
@@ -481,7 +488,11 @@ function SearchPageContent(): JSX.Element {
                   </Translate>
                 </p>
               ),
-              !!searchResultState.loading && <div key="spinner" className={styles.loadingSpinner} />,
+              !!searchResultState.loading && (
+                <div className={styles.loaderContainer}>
+                  <div key="spinner" className={styles.loadingSpinner} />
+                </div>
+              ),
             ]
           )}
 

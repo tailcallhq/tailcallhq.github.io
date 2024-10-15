@@ -93,3 +93,8 @@
   margin-top: 2rem;
 }
 
+.loaderContainer{
+  display: flex;
+  height: 68vh;
+  align-items: center;
+}
