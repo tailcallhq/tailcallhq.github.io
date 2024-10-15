@@ -124,7 +124,6 @@ enum resultsCategory {
   All = "All",
   Docs = "Docs",
   Blogs = "Blogs",
-  Snippets = "Snippets",
 }
 
 function SearchPageContent(): JSX.Element {
@@ -144,7 +143,6 @@ function SearchPageContent(): JSX.Element {
     All: 0,
     Blogs: 0,
     Docs: 0,
-    Snippets: 0,
   })
   const [selectedCategory, setSelectedCategory] = useState(resultsCategory.All)
   const initialSearchResultState: ResultDispatcherState = {
@@ -244,7 +242,6 @@ function SearchPageContent(): JSX.Element {
         [resultsCategory.All]: nbHits,
         [resultsCategory.Docs]: facetsCountData?.[resultsCategory.Docs as keyof {}] || 0,
         [resultsCategory.Blogs]: facetsCountData?.[resultsCategory.Blogs as keyof {}] || 0,
-        [resultsCategory.Snippets]: 0,
       })
     }
 
@@ -343,7 +340,6 @@ function SearchPageContent(): JSX.Element {
         [resultsCategory.All]: 0,
         [resultsCategory.Docs]: 0,
         [resultsCategory.Blogs]: 0,
-        [resultsCategory.Snippets]: 0,
       })
     }
   }, [searchQuery, docsSearchVersionsHelpers.searchVersions, makeSearch, selectedCategory])
@@ -372,7 +368,7 @@ function SearchPageContent(): JSX.Element {
               <span className={`text-tailCall-dark-500 font-space-grotesk text-title-tiny font-bold ${selectedCategory === category ? "" : "text-tailCall-light-600 sm:text-tailCall-dark-500"}`}>
                 {category}
               </span>
-              <span className={`flex justify-center items-center sm:pt-[2px] px-[6px] font-space-grotesk !font-medium text-content-tiny sm:text-content-small ${selectedCategory === category ? "text-tailCall-dark-700 bg-tailCall-yellow sm:bg-transparent rounded-md" : "text-tailCall-dark-100 rounded-[6px] bg-tailCall-light-200"}`}>
+              <span className={`flex justify-center items-center py-[2px] px-[6px] md:py-0 font-space-grotesk !font-medium text-content-tiny sm:text-content-small ${selectedCategory === category ? "text-tailCall-dark-700 bg-tailCall-yellow sm:bg-transparent rounded-md" : "text-tailCall-dark-100 rounded-[6px] bg-tailCall-light-200"}`}>
                 {categoryCount[category as keyof typeof categoryCount] || 0}
               </span>
             </div>
