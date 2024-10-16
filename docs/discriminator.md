@@ -12,7 +12,7 @@ sidebar_label: Type Discrimination
 
 ## Overview
 
-Discrimination in Tailcall is a mechanism to determine the type of an object in a GraphQL schema. It's used to resolve the `__typename` field of an object, which is essential for Union and Interface types. There are two types of discriminators in Tailcall: `KeyedDiscriminator` and `TypeFieldDiscriminator`. The `KeyedDiscriminator` is used by default but can be overwritten using the `@discriminate` directive.
+Discrimination in Tailcall is a mechanism to determine the type of an object in a GraphQL schema. It's used to resolve the `__typename` field of an object, which is essential for Union and Interface types. Tailcall has the following discrimination strategies: `KeyedDiscriminator` and `TypeFieldDiscriminator`. The `KeyedDiscriminator` is used by default but can be overwritten using the `@discriminate` directive.
 
 ## KeyedDiscriminator
 
