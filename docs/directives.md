@@ -24,6 +24,7 @@ Here is a list of all the custom directives supported by Tailcall:
 | [`@link`](#link-directive)           | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |
 | [`@modify`](#modify-directive)       | Enables changes to attributes of fields or nodes in the schema.                                              |
 | [`@omit`](#omit-directive)           | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
+| [`@discriminate`](#discriminate-directive)           | Allows to overwrite the default discriminator strategy of `__typename`.                                                            |
 | [`@rest`](#rest-directive)           | Allows exposing REST endpoints on top of GraphQL.                                                            |
 | [`@server`](#server-directive)       | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
 | [`@telemetry`](#telemetry-directive) | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
@@ -1381,6 +1382,49 @@ To utilize the `@protected` directive, you must link at least one authentication
 
 - When a field is annotated with `@protected`, an authentication check is performed upon receiving the request. Depending on the authentication result, either the requested data is provided in the response, or an authentication error is returned.
 - If a type is annotated with `@protected`, all fields within that type inherit the protection, requiring user authentication for any field that's queried.
+
+## @discriminate Directive
+
+The `@discriminate` directive is used to drive Tailcall discriminator to use a field of an object to resolve the type. This allows you to override the default discriminator and configure Tailcall to use the specified `field` to determine the `__typename` of the value.
+
+### Example
+
+```graphql
+type Query {
+  components: [Component!]! @discriminate(field: "type")
+}
+
+union Component = Cpu | Gpu
+
+type Cpu {
+  cores: Int!
+}
+
+type Gpu {
+  shaders: Int!
+}
+```
+
+Given the following data and query:
+
+```json
+[{ "type": "Cpu", "cores": 8 }, { "type": "Gpu", "shaders": 512 }]
+```
+
+```gql
+{ components { ... on Cpu { cores} ... on Gpu { shaders } __typename }}
+```
+
+We resolve to:
+```json
+[{ "__typename": "Cpu", "cores": 8 }, { "__typename": "Gpu", "shaders": 512 }]
+```
+
+### How It Works
+
+When a field is annotated with the `@discriminate` directive, Tailcall uses the specified `field` argument to resolve the type of the value. This is done by checking the presence of the specified `field` in the returned value and verifying that it is a member of the Union or Interface type.
+
+Note that the `field` argument is required and should be a string.
 
 ## @rest Directive
 
