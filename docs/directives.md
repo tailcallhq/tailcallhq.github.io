@@ -1754,17 +1754,6 @@ schema @server(
 Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
 :::
 
-### dedupe
-
-A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
-
-```graphql showLineNumbers
-schema @server(
-  port: 8000
-  dedupe: true
-)
-```
-
 ### routes
 
 This optional field allows you to customize the server's endpoint paths, enabling you to override the default values for the GraphQL and status endpoints. If not specified, the following default paths will be used:
