@@ -12,23 +12,23 @@ Here is a list of all the custom directives supported by Tailcall:
 
 <!-- SORT OPERATOR BY NAME -->
 
-| Operator                             | Description                                                                                                  |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| [`@addField`](#addfield-directive)   | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
-| [`@cache`](#cache-directive)         | Enables caching for the query, field or type applied to.                                                     |
-| [`@call`](#call-directive)           | Invokes a query or mutation from another query or mutation field.                                            |
-| [`@expr`](#expr-directive)           | Allows embedding of a constant response within the schema.                                                   |
-| [`@graphQL`](#graphql-directive)     | Resolves a field or node by a GraphQL API.                                                                   |
-| [`@grpc`](#grpc-directive)           | Resolves a field or node by a gRPC API.                                                                      |
-| [`@http`](#http-directive)           | Resolves a field or node by a REST API.                                                                      |
-| [`@link`](#link-directive)           | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |
-| [`@modify`](#modify-directive)       | Enables changes to attributes of fields or nodes in the schema.                                              |
-| [`@omit`](#omit-directive)           | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
-| [`@discriminate`](#discriminate-directive)           | Allows to overwrite the default discriminator strategy of `__typename`.                                                            |
-| [`@rest`](#rest-directive)           | Allows exposing REST endpoints on top of GraphQL.                                                            |
-| [`@server`](#server-directive)       | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
-| [`@telemetry`](#telemetry-directive) | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
-| [`@upstream`](#upstream-directive)   | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
+| Operator                                   | Description                                                                                                  |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| [`@addField`](#addfield-directive)         | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
+| [`@cache`](#cache-directive)               | Enables caching for the query, field or type applied to.                                                     |
+| [`@call`](#call-directive)                 | Invokes a query or mutation from another query or mutation field.                                            |
+| [`@expr`](#expr-directive)                 | Allows embedding of a constant response within the schema.                                                   |
+| [`@graphQL`](#graphql-directive)           | Resolves a field or node by a GraphQL API.                                                                   |
+| [`@grpc`](#grpc-directive)                 | Resolves a field or node by a gRPC API.                                                                      |
+| [`@http`](#http-directive)                 | Resolves a field or node by a REST API.                                                                      |
+| [`@link`](#link-directive)                 | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |
+| [`@modify`](#modify-directive)             | Enables changes to attributes of fields or nodes in the schema.                                              |
+| [`@omit`](#omit-directive)                 | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
+| [`@discriminate`](#discriminate-directive) | Allows to overwrite the default discriminator strategy of `__typename`.                                      |
+| [`@rest`](#rest-directive)                 | Allows exposing REST endpoints on top of GraphQL.                                                            |
+| [`@server`](#server-directive)             | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
+| [`@telemetry`](#telemetry-directive)       | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
+| [`@upstream`](#upstream-directive)         | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
 
 ## @addField Directive
 
@@ -1408,16 +1408,33 @@ type Gpu {
 Given the following data and query:
 
 ```json
-[{ "type": "Cpu", "cores": 8 }, { "type": "Gpu", "shaders": 512 }]
+[
+  {"type": "Cpu", "cores": 8},
+  {"type": "Gpu", "shaders": 512}
+]
 ```
 
 ```gql
-{ components { ... on Cpu { cores} ... on Gpu { shaders } __typename }}
+{
+  components {
+    ... on Cpu {
+      cores
+    }
+    ... on Gpu {
+      shaders
+    }
+    __typename
+  }
+}
 ```
 
 We resolve to:
+
 ```json
-[{ "__typename": "Cpu", "cores": 8 }, { "__typename": "Gpu", "shaders": 512 }]
+[
+  {"__typename": "Cpu", "cores": 8},
+  {"__typename": "Gpu", "shaders": 512}
+]
 ```
 
 ### How It Works
