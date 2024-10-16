@@ -686,6 +686,17 @@ type Query {
 }
 ```
 
+### dedupe
+
+A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+@graphQL(
+  name: "users",
+  dedupe: true
+)
+```
+
 Make sure you have also specified batch settings to the `@upstream` and to the `@graphQL` directive.
 
 ## @grpc Directive
@@ -868,6 +879,17 @@ type Query {
       }
     )
 }
+```
+
+### dedupe
+
+A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+@grpc(
+  method: "news.UsersService.GetUserDetails"
+  dedupe: true
+)
 ```
 
 ## @http Directive
@@ -1094,6 +1116,17 @@ type Query {
       }
     )
 }
+```
+
+### dedupe
+
+A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+@http(
+  path: "/users/"
+  dedupe: true
+)
 ```
 
 ## @js Directive
