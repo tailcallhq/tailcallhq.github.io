@@ -1,7 +1,7 @@
 :root {
   --docsearch-footer-height: 38px;
   --docsearch-spacing: 16px;
-  --docsearch-modal-background: #F3F3F3;
+  --docsearch-modal-background: #f3f3f3;
   --docsearch-primary-color: var(--ifm-color-primary);
   --docsearch-text-color: var(--ifm-font-color-base);
   --docsearch-hit-active-color: var(--ifm-color-primary);
@@ -154,7 +154,7 @@
 
 .DocSearch-Hit-title {
   color: var(--ifm-color-brand-dark) !important;
-  font-family: 'Space Grotesk';
+  font-family: "Space Grotesk";
   font-size: 16px;
   line-height: 25px;
   font-weight: 500;
@@ -162,14 +162,14 @@
 
 .DocSearch-Hit-path {
   color: var(--ifm-color-brand-dark-200) !important;
-  font-family: 'Space Grotesk';
+  font-family: "Space Grotesk";
   font-size: 12px;
   line-height: 18px;
   font-weight: 400;
 }
 
 .DocSearch-Hit-source {
-  font-family: 'Space Grotesk';
+  font-family: "Space Grotesk";
   font-size: 16px;
   font-weight: 500;
   color: #858586 !important;
@@ -182,12 +182,12 @@
 }
 
 .DocSearch-Input {
-  font-family: 'Space Grotesk';
+  font-family: "Space Grotesk";
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
   color: #545556;
-}  
+}
 
 .DocSearch-Form {
   border-bottom: 1px solid var(--ifm-color-brand-light-500) !important;
@@ -202,12 +202,12 @@
   }
 
   .DocSearch-Input {
-    font-family: 'Space Grotesk';
+    font-family: "Space Grotesk";
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
     color: #545556;
-  }  
+  }
 
   .DocSearch-Button {
     width: fit-content;
@@ -234,7 +234,6 @@
     z-index: 201;
     position: fixed;
   }
-
 
   .DocSearch-SearchBar form {
     border-bottom: 1px solid var(--ifm-color-brand-light-500);
@@ -330,4 +329,3 @@
     display: none;
   }
 }
-

@@ -17,7 +17,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import {useAlgoliaThemeConfig, useSearchResultUrlProcessor} from "@docusaurus/theme-search-algolia/client"
 import Layout from "@theme/Layout"
 import styles from "./styles.module.css"
-import { algoliaConstants } from "@site/src/constants"
+import {algoliaConstants} from "@site/src/constants"
 
 // Very simple pluralization: probably good enough for now
 function useDocumentsFoundPlural() {
@@ -138,7 +138,7 @@ function SearchPageContent(): JSX.Element {
   const documentsFoundPlural = useDocumentsFoundPlural()
 
   const docsSearchVersionsHelpers = useDocsSearchVersionsHelpers()
-  const [searchQuery, setSearchQuery] = useSearchQueryString()  
+  const [searchQuery, setSearchQuery] = useSearchQueryString()
   const [categoryCount, setCategoryCount] = useState({
     All: 0,
     Blogs: 0,
@@ -235,8 +235,8 @@ function SearchPageContent(): JSX.Element {
       },
     )
 
-    if(selectedCategory === resultsCategory.All) {
-      const facetsCountData = facets[0]?.["data"];
+    if (selectedCategory === resultsCategory.All) {
+      const facetsCountData = facets[0]?.["data"]
 
       setCategoryCount({
         [resultsCategory.All]: nbHits,
@@ -308,7 +308,7 @@ function SearchPageContent(): JSX.Element {
       })
     }
 
-    if(selectedCategory !== resultsCategory.All) {
+    if (selectedCategory !== resultsCategory.All) {
       algoliaHelper.addFacetRefinement(algoliaConstants.categoryFacet, selectedCategory)
     }
     algoliaHelper.setQuery(searchQuery).setPage(page).search()
@@ -358,17 +358,23 @@ function SearchPageContent(): JSX.Element {
 
   const getSidebar = (containerClassName?: string) => {
     return (
-      <div className={`flex mt-SPACE_05 mb-SPACE_01 gap-3 overflow-x-scroll cursor-pointer sm:overflow-visible sm:gap-0 sm:my-SPACE_14 sm:flex-col ${containerClassName}`}>
+      <div
+        className={`flex mt-SPACE_05 mb-SPACE_01 gap-3 overflow-x-scroll cursor-pointer sm:overflow-visible sm:gap-0 sm:my-SPACE_14 sm:flex-col ${containerClassName}`}
+      >
         {Object.values(resultsCategory).map((category) => {
           return (
             <div
               className={`flex justify-between items-center rounded-md p-1 pl-3 gap-2 sm:gap-0 sm:px-3 sm:py-2 sm:w-[180px] ${selectedCategory === category ? "border border-solid border-tailCall-border-light-400 sm:bg-tailCall-yellow sm:border-none" : ""}`}
               onClick={() => handleCategoryClick(category)}
             >
-              <span className={`text-tailCall-dark-500 font-space-grotesk text-title-tiny font-bold ${selectedCategory === category ? "" : "text-tailCall-light-600 sm:text-tailCall-dark-500"}`}>
+              <span
+                className={`text-tailCall-dark-500 font-space-grotesk text-title-tiny font-bold ${selectedCategory === category ? "" : "text-tailCall-light-600 sm:text-tailCall-dark-500"}`}
+              >
                 {category}
               </span>
-              <span className={`flex justify-center items-center py-[2px] px-[6px] md:py-0 font-space-grotesk !font-medium text-content-tiny sm:text-content-small ${selectedCategory === category ? "text-tailCall-dark-700 bg-tailCall-yellow sm:bg-transparent rounded-md" : "text-tailCall-dark-100 rounded-[6px] bg-tailCall-light-200"}`}>
+              <span
+                className={`flex justify-center items-center py-[2px] px-[6px] md:py-0 font-space-grotesk !font-medium text-content-tiny sm:text-content-small ${selectedCategory === category ? "text-tailCall-dark-700 bg-tailCall-yellow sm:bg-transparent rounded-md" : "text-tailCall-dark-100 rounded-[6px] bg-tailCall-light-200"}`}
+              >
                 {categoryCount[category as keyof typeof categoryCount] || 0}
               </span>
             </div>
@@ -428,7 +434,9 @@ function SearchPageContent(): JSX.Element {
 
           <div className="row">
             <div className={clsx("col", "col--8", styles.searchResultsColumn)}>
-              {!!searchResultState.totalResults ? documentsFoundPlural(searchResultState.totalResults) : `${categoryCount[selectedCategory]} results found`}
+              {!!searchResultState.totalResults
+                ? documentsFoundPlural(searchResultState.totalResults)
+                : `${categoryCount[selectedCategory]} results found`}
             </div>
           </div>
 
