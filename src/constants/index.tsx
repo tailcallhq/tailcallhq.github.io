@@ -6,6 +6,11 @@ export const tailCallBlogUrl = "https://blog.tailcall.run/"
 export const codeSandboxUrl = "https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
 export const zapierLink = "https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/"
 
+export const algoliaConstants = {
+  categoryFacet: "category",
+  searchModalPlaceholder: "What do you want to know about graphql ?",
+}
+
 export const partnerImages: PartnerImage[] = [
   {
     name: "Digital Ocean",
