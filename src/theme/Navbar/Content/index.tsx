@@ -195,9 +195,7 @@ const NavbarContent = (): JSX.Element => {
         // TODO stop hardcoding items? (added by docusaurus)
         // Render right navbar items
         <>
-          <NavbarItems
-            items={rightItems}
-          />
+          <NavbarItems items={rightItems} />
           <GithubStarsButton className="navbar__item navbar__link" />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
         </>
