@@ -29,12 +29,12 @@
 
 .searchResultItemHeading {
   margin-bottom: 0;
+}
 
-  a {
-    color: #000;
-    text-decoration: none;
-    transition: none;
-  }
+.searchResultItemHeading a {
+  color: #000;
+  text-decoration: none;
+  transition: none;
 }
 
 .searchResultItemPath {
