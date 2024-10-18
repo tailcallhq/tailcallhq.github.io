@@ -246,7 +246,7 @@
   }
 
   .DocSearch-Cancel {
-    display: none;
+    display: none !important;
   }
 
   .DocSearch-Footer {
