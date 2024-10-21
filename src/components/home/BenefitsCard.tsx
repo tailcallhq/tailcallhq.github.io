@@ -6,7 +6,7 @@ import clsx from "clsx"
 
 const BenefitsCard = (): JSX.Element => {
   return (
-    <div className="mt-16 mb-10">
+    <div className="mt-16 mb-10 lg:my-24">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
         {benefits.map((item, index) => (
           <Link
