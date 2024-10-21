@@ -196,7 +196,7 @@
 @media only screen and (max-width: 996px) {
   .DocSearch-Modal {
     height: 80dvh !important;
-    bottom: 0dvh !important;
+    bottom: 0dvh;
     border-radius: 8px 8px 0px 0px !important;
   }
 
@@ -257,9 +257,9 @@
     position: absolute;
     width: 100%;
     padding: 8px 16px !important;
-    margin-top: unset !important;
-    margin-bottom: unset !important;
-    bottom: 0dvh !important;
+    margin-top: unset;
+    margin-bottom: unset;
+    bottom: 0dvh;
   }
 
   .DocSearch-Search-Icon {
