@@ -21,7 +21,6 @@ To activate HTTP caching, adjust the upstream configuration in Tailcall by setti
 schema
   @server(port: 4000)
   @upstream(
-    baseURL: "https://api.example.com"
     # highlight-start
     httpCache: 42
     # highlight-end

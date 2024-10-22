@@ -104,8 +104,7 @@ schema {
 type Query {
   users(id: Int!): User
     @http(
-      baseURL: "https://users.example.com"
-      path: "/users/{{.args.id}}"
+      url: "https://users.example.com/users/{{.args.id}}"
     )
 }
 
@@ -114,8 +113,7 @@ type User {
   name: String!
   orders: [Order]
     @http(
-      baseURL: "https://orders.example.com"
-      path: "/users/{{.value.id}/orders"
+      url: "https://orders.example.com/users/{{.value.id}/orders"
     )
 }
 
@@ -151,7 +149,10 @@ GraphQL supports schema stitching and federation, which allow you to combine mul
 ```graphql
 extend type Order {
   sellerId: Int!
-  seller: Seller @http(path: "/sellers/{{.value.sellerId}}")
+  seller: Seller
+    @http(
+      url: "https://orders.example.com/sellers/{{.value.sellerId}}"
+    )
 }
 
 type Seller {

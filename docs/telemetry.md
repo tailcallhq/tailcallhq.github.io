@@ -38,17 +38,18 @@ While [Apollo studio](./apollo-studio.md) telemetry also provides analytics tool
 Consider we have the following GraphQL configuration that connects with jsonplaceholder.com to fetch the data about user and posts
 
 ```graphql
-schema
-  @server(port: 8000, hostname: "0.0.0.0")
-  @upstream(
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @server(port: 8000, hostname: "0.0.0.0") {
   query: Query
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts") @cache(maxAge: 3000)
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  posts: [Post]
+    @http(url: "http://jsonplaceholder.typicode.com/posts")
+    @cache(maxAge: 3000)
+  user(id: Int!): User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
 }
 
 type User {
@@ -65,7 +66,10 @@ type Post {
   userId: Int!
   title: String!
   body: String!
-  user: User @http(path: "/users/{{.value.userId}}")
+  user: User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.value.userId}}"
+    )
 }
 ```
 

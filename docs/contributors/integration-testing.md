@@ -17,15 +17,13 @@ identity: true
 <!-- Test Configuration -->
 
 ```graphql @config
-schema
-  @upstream(
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema {
   query: Query
 }
 
 type Query {
-  post: Post @http(path: "/post")
+  post: Post
+    @http(url: "https://jsonplaceholder.typicode.com/post")
 }
 
 type Post {

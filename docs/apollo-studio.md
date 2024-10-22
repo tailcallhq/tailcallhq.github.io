@@ -45,9 +45,6 @@ To see the metrics for you queries follow these instructions:
    ```graphql
    schema
      @server(port: 8000)
-     @upstream(
-       baseURL: "http://jsonplaceholder.typicode.com"
-     )
      @telemetry(
        export: {
          apollo: {
@@ -60,7 +57,10 @@ To see the metrics for you queries follow these instructions:
    }
 
    type Query {
-     posts: [Post] @http(path: "/posts")
+     posts: [Post]
+       @http(
+         url: "http://jsonplaceholder.typicode.com/posts"
+       )
    }
 
    type Post {

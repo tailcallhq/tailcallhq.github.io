@@ -88,8 +88,7 @@ type User {
 type Query {
   user(id: ID!): User
     @http(
-      baseURL: "https://jsonplaceholder.typicode.com"
-      path: "/users/{{.args.id)}"
+      url: "https://jsonplaceholder.typicode.com/users/{{.args.id)}"
     )
 }
 ```

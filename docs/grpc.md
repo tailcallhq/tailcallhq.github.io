@@ -126,12 +126,7 @@ type Query {
 Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`@server`](/docs/directives.md#server-directive) and [`@upstream`](/docs/directives.md#upstream-directive) directives.
 
 ```graphql
-schema
-  @server(port: 8000)
-  @upstream(
-    baseURL: "http://localhost:50051"
-    httpCache: 42
-  ) {
+schema @server(port: 8000) @upstream(httpCache: 42) {
   query: Query
 }
 ```
@@ -149,9 +144,13 @@ If you need to provide any input to the gRPC method call you can specify it with
 ```graphql
 type Query {
   news: NewsData!
-    @grpc(method: "news.news.NewsService.GetAllNews")
+    @grpc(
+      url: "http://localhost:50051"
+      method: "news.news.NewsService.GetAllNews"
+    )
   newsById(news: NewsInput!): News!
     @grpc(
+      url: "http://localhost:50051"
       service: "news.news.NewsService.GetNews"
       body: "{..args.news}}"
     )
@@ -165,19 +164,20 @@ Wrapping up the whole result config that may look like this:
 
 schema
   @server(port: 8000)
-  @upstream(
-    baseURL: "http://localhost:50051"
-    httpCache: 42
-  )
+  @upstream(httpCache: 42)
   @link(id: "news", src: "./news.proto", type: Protobuf) {
   query: Query
 }
 
 type Query {
   news: NewsData!
-    @grpc(method: "news.news.NewsService.GetAllNews")
+    @grpc(
+      url: "http://localhost:50051"
+      method: "news.news.NewsService.GetAllNews"
+    )
   newsById(news: NewsInput!): News!
     @grpc(
+      url: "http://localhost:50051"
       method: "news.news.NewsService.GetNews"
       body: "{{.args.news}}"
     )
@@ -240,11 +240,7 @@ In our protobuf example file, we have a method called `GetMultipleNews` that we 
 ```graphql
 schema
   @server(port: 8000)
-  @upstream(
-    baseURL: "http://localhost:50051"
-    httpCache: 42
-    batch: {delay: 10}
-  )
+  @upstream(httpCache: 42, batch: {delay: 10})
   @link(id: "news", src: "./news.proto", type: Protobuf) {
   query: Query
 }
@@ -252,6 +248,7 @@ schema
 type Query {
   newsById(news: NewsInput!): News!
     @grpc(
+      url: "http://localhost:50051"
       method: "news.NewsService.GetNews"
       body: "{{.args.news}}"
       # highlight-next-line
@@ -300,7 +297,10 @@ gRPC reflection is a potent feature enabling clients to dynamically discover ser
    ```graphql
    type Query {
      news: [News]
-       @grpc(method: "news.NewsService.GetAllNews")
+       @grpc(
+         url: "http://localhost:50051"
+         method: "news.NewsService.GetAllNews"
+       )
    }
 
    type News {

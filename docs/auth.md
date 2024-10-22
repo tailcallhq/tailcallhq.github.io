@@ -54,7 +54,6 @@ Your config could look like this now:
 ```graphql
 schema
   @server(port: 8000)
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com")
   #highlight-start
   @link(id: "auth-basic", type: Htpasswd, src: "htpasswd")
   @link(id: "auth-jwt", type: Jwks, src: "jwks.json") {
@@ -65,12 +64,19 @@ schema
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts")
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  posts: [Post]
+    @http(url: "http://jsonplaceholder.typicode.com/posts")
+  user(id: Int!): User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
 }
 
 type Mutation {
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  user(id: Int!): User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
 }
 
 #highlight-start
@@ -91,7 +97,10 @@ type Post {
   #highlight-start
   body: String! @protected
   #highlight-end
-  user: User @http(path: "/users/{{.value.userId}}")
+  user: User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.value.userId}}"
+    )
 }
 ```
 
@@ -181,12 +190,18 @@ schema {
 }
 
 type Query {
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  user(id: Int!): User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
 }
 
 type Mutation {
   user(id: Int!): User
-    @http(path: "/users/{{.args.id}}", method: POST)
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+      method: POST
+    )
 }
 
 type User {
@@ -207,12 +222,18 @@ schema {
 }
 
 type Query {
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  user(id: Int!): User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
 }
 
 type Mutation {
   user(id: Int!): User
-    @http(path: "/users/{{.args.id}}", method: POST)
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+      method: POST
+    )
     @protected
 }
 
@@ -264,13 +285,15 @@ The whole example could look like this:
 ```graphql
 schema
   @server(port: 8000)
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com")
   @link(id: "auth-basic", type: Htpasswd, src: "htpasswd") {
   query: Query
 }
 
 type Query {
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  user(id: Int!): User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
 }
 
 type User @protected {
@@ -356,13 +379,15 @@ The whole example could look like this:
 ```graphql
 schema
   @server(port: 8000)
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com")
   @link(id: "auth-jwks", type: Jwks, src: "jwks.json") {
   query: Query
 }
 
 type Query {
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  user(id: Int!): User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
 }
 
 type User @protected {
