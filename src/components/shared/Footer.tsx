@@ -8,7 +8,7 @@ const Footer = (): JSX.Element => {
   const year = new Date().getFullYear()
   return (
     <footer
-      className="bg-tailCall-dark-700 grid-dark pt-SPACE_10 pb-SPACE_05 flex flex-col items-center 
+      className="bg-tailCall-dark-700 grid-dark pt-SPACE_16 pb-SPACE_05 flex flex-col items-center 
       justify-center gap-SPACE_10 w-full relative px-SPACE_04"
     >
       <TailcallLogo className="w-[120px] h-10 z-10" />
