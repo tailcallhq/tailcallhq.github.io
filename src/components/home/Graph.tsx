@@ -13,8 +13,8 @@ import Section from "../shared/Section"
 
 const Graph = (): JSX.Element => {
   return (
-    <Section className="bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 ">
-      <div className="flex items-center justify-between">
+    <Section className="bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 lg:pt-48 lg:pb-36">
+      <div className="flex items-center justify-between lg:mb-12">
         <Heading
           as="h5"
           className="text-title-large sm:text-display-tiny lg:text-display-medium sm:max-w-sm lg:max-w-xl"

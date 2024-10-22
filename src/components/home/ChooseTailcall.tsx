@@ -6,7 +6,7 @@ import Link from "@docusaurus/Link"
 const ChooseTailcall = (): JSX.Element => {
   return (
     <div className="flex flex-col items-center justify-center">
-      <p className="text-title-large max-w-lg mx-auto sm:text-display-tiny lg:text-display-medium text-center my-SPACE_14 sm:mb-SPACE_16 sm:my-32">
+      <p className="text-title-large max-w-lg mx-auto sm:text-display-tiny lg:text-display-medium text-center my-SPACE_14 sm:mb-SPACE_16 sm:my-32 lg:mt-44">
         More reasons to choose Tailcall.
       </p>
       <div className="flex flex-col lg:flex-row space-y-SPACE_06 items-center justify-between lg:space-x-SPACE_06 lg:space-y-0">
@@ -26,7 +26,7 @@ const ChooseTailcall = (): JSX.Element => {
           </div>
         ))}
       </div>
-      <div className="flex py-10 gap-y-SPACE_04 gap-x-SPACE_04 md:gap-y-SPACE_06 md:gap-x-SPACE_06 flex-wrap md:items-center md:justify-center">
+      <div className="flex py-10 gap-y-SPACE_04 gap-x-SPACE_04 md:gap-y-SPACE_06 md:gap-x-SPACE_06 flex-wrap md:items-center md:justify-center lg:pb-16">
         {tailcallFeatures.map((item) => (
           <Link
             to={item.redirection_url}

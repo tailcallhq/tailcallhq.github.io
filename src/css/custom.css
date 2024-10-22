@@ -674,12 +674,6 @@ span.token.tag.script.language-javascript {
   background: url("../../static/images/home/bg-map.png") no-repeat;
 }
 
-@media (min-width: 768px) {
-  .customer-container {
-    background-size: 100% 100% !important;
-  }
-}
-
 .customer-feedback-card {
   border: 2px solid transparent;
   border-bottom: none;
