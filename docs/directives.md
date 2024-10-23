@@ -1808,6 +1808,94 @@ A boolean flag, if set to `true` the Tailcall server will additionally act as fe
 schema @server(enableFederation: true)
 ```
 
+### queryComplexity
+
+The `queryComplexity` configuration sets a limit on the complexity of incoming GraphQL queries. Query complexity is a measure of how resource-intensive a GraphQL query is, primarily based on the number of fields in the query. By default, each field contributes a complexity of 1. This feature helps prevent resource-intensive queries that could potentially overload the server.
+
+Consider the following schema with a `queryComplexity` limit set to 3:
+
+```graphql showLineNumbers
+schema @server(
+  port: 8000
+  queryComplexity: 3
+)
+```
+
+In above configuration, the server will reject queries where the total complexity exceeds 3. If a query surpasses this limit, the server will return a validation error.
+
+- **Example Query:**
+
+  This query has a total complexity of 7. Since it exceeds the configured limit of 3, the server will reject the request with a validation error.
+
+  ```graphql showLineNumbers
+  query {
+    post {
+      id
+      title
+      body
+      user {
+        id
+        name
+      }
+    }
+  }
+  ```
+
+  If the `queryComplexity` was instead set to 8:
+
+  ```graphql showLineNumbers
+  schema @server(
+    port: 8000
+    queryComplexity: 8
+  )
+  ```
+
+  The same query would succeed because the total complexity (7) is below the limit.
+
+### queryDepth
+
+The `queryDepth` configuration limits the depth of GraphQL queries to prevent overly nested queries that can strain server resources. Query depth refers to the level of nested fields within a query. By restricting the depth, you can safeguard your server from deeply nested queries that could result in excessive processing time.
+
+Consider the following schema with a `queryDepth` limit set to 2:
+
+```graphql showLineNumbers
+schema @server(
+  port: 8000
+  queryDepth: 2
+)
+```
+
+In this configuration, the server will reject queries where the depth exceeds 2. If a query goes beyond this limit, a validation error will be returned.
+
+- **Example Query:**
+  This query has a depth of 3, since the user field is nested under the `post` field, and `id` and `name` are further nested under `user`. Since this exceeds the configured depth limit of 2, the query will be rejected.
+
+  ```graphql showLineNumbers
+  query {
+    post {
+      # depth: 1
+      id # depth: 2
+      title
+      body
+      user {
+        id # depth: 3
+        name
+      }
+    }
+  }
+  ```
+
+  If the `queryDepth` was instead set to 4:
+
+  ```graphql showLineNumbers
+  schema @server(
+    port: 8000
+    queryDepth: 4
+  )
+  ```
+
+  The same query would succeed because the depth (3) is now within the limit.
+
 ## @telemetry Directive
 
 The `@telemetry` directive facilitates seamless integration with [OpenTelemetry](https://open-telemetry.io), enhancing the observability of your GraphQL services powered by Tailcall. By leveraging this directive, developers gain access to valuable insights into the performance and behavior of their applications.
