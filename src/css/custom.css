@@ -773,7 +773,8 @@ span.token.tag.script.language-javascript {
 }
 
 @media only screen and (min-width: 391px) and (max-width: 640px) {
-  .hero-banner-title, .hero-banner-sub-title {
+  .hero-banner-title,
+  .hero-banner-sub-title {
     max-width: unset;
     text-align: center;
   }
