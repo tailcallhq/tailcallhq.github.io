@@ -41,18 +41,20 @@ const Banner = (): JSX.Element => {
             />
           </div>
 
-          <div className="sm:hidden flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
+          <div className="sm:hidden flex justify-between md:justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
               title="Learn More"
               href={pageLinks.introduction}
               theme={Theme.Dark}
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              width="full"
             />
             <LinkButton
               title="Get Started"
               href={pageLinks.docs}
               theme={Theme.Light}
               onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
+              width="full"
             />
           </div>
         </div>
