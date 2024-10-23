@@ -16,12 +16,12 @@ const Banner = (): JSX.Element => {
         <div className="h-full 2xl:min-h-0">
           <Heading
             as="h1"
-            className="text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl"
+            className="hero-banner-title text-title-large max-w-xs sm:text-display-small lg:text-display-large sm:max-w-5xl"
           >
             The modern <br />
             <span className="bg-tailCall-yellow rounded-md sm:rounded-2xl px-SPACE_02">GraphQL</span> platform
           </Heading>
-          <p className="sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-SPACE_04 mb-0">
+          <p className="hero-banner-sub-title sm:max-w-2xl sm:m-auto text-content-small sm:text-content-medium lg:text-content-large font-normal max-w-md sm:mt-SPACE_04 mb-0">
             Swiftly design and ship best-practice GraphQL backends atop existing data sources and APIs.
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
@@ -41,18 +41,20 @@ const Banner = (): JSX.Element => {
             />
           </div>
 
-          <div className="sm:hidden flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
+          <div className="sm:hidden flex justify-between md:justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
               title="Learn More"
               href={pageLinks.introduction}
               theme={Theme.Dark}
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              width="full"
             />
             <LinkButton
               title="Get Started"
               href={pageLinks.docs}
               theme={Theme.Light}
               onClick={() => analyticsHandler("Home Page", "Click", "Get Started")}
+              width="full"
             />
           </div>
         </div>

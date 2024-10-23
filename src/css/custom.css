@@ -771,3 +771,11 @@ span.token.tag.script.language-javascript {
 .menu__list-item--collapsed .menu__caret:before {
   transform: rotateZ(360deg);
 }
+
+@media only screen and (min-width: 391px) and (max-width: 640px) {
+  .hero-banner-title,
+  .hero-banner-sub-title {
+    max-width: unset;
+    text-align: center;
+  }
+}
