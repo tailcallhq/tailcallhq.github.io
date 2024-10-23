@@ -195,10 +195,9 @@
 
 @media only screen and (max-width: 996px) {
   .DocSearch-Modal {
-    position: relative;
-    height: calc(100vh - 160px) !important;
-    top: 80px;
-    border-radius: 8px 8px 0px 0px;
+    height: 80dvh !important;
+    bottom: 0dvh;
+    border-radius: 8px 8px 0px 0px !important;
   }
 
   .DocSearch-Input {
@@ -226,13 +225,15 @@
 
   .DocSearch-Dropdown {
     max-height: unset;
-    height: 100vh;
+    height: 100dvh !important;
     padding-bottom: 300px;
   }
 
   .DocSearch-Container {
     z-index: 201;
     position: fixed;
+    height: 100dvh !important;
+    align-items: end;
   }
 
   .DocSearch-SearchBar form {
@@ -254,9 +255,11 @@
 
   .DocSearch-HitsFooter {
     position: absolute;
-    bottom: 0;
     width: 100%;
     padding: 8px 16px !important;
+    margin-top: unset;
+    margin-bottom: unset;
+    bottom: 0dvh;
   }
 
   .DocSearch-Search-Icon {
