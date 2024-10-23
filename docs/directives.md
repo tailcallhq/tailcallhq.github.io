@@ -58,7 +58,10 @@ type Address {
 }
 
 type Query {
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  user(id: Int!): User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
 }
 ```
 
@@ -106,7 +109,10 @@ type User
   email: String!
   phone: String
   website: String
-  posts: Post @http(path: "/users/{{.value.id}}/posts")
+  posts: Post
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.value.id}}/posts"
+    )
 }
 
 type Post {
@@ -137,7 +143,8 @@ Consider the following GraphQL schema example:
 
 ```graphql
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post {
@@ -145,7 +152,9 @@ type Post {
   title: String
   userId: Int @cache(maxAge: 100)
   user: User
-    @http(path: "/user/{{.value.userId}}")
+    @http(
+      url: "https://jsonplaceholder.typicode.com/user/{{.value.userId}}"
+    )
     @cache(maxAge: 200)
 }
 
@@ -156,20 +165,24 @@ type User {
 }
 ```
 
-In this configuration, the system caches the result of the `user` field due to its association with an HTTP resolver. But it does not cache the values of `userId` and `title` because they lack individual resolvers; the resolver for the `posts` field retrieves their values, employing the `@http(path: "/posts")` directive.
+In this configuration, the system caches the result of the `user` field due to its association with an HTTP resolver. But it does not cache the values of `userId` and `title` because they lack individual resolvers; the resolver for the `posts` field retrieves their values, employing the `@http(url: "https://jsonplaceholder.typicode.com/posts")` directive.
 
 Applying the `@cache` directive at the type level affects all fields within that type. For example:
 
 ```graphql
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post @cache(maxAge: 100) {
   id: Int
   title: String
   userId: Int
-  user: User @http(path: "/user/{{.value.userId}}")
+  user: User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/user/{{.value.userId}}"
+    )
 }
 
 type User {
@@ -183,7 +196,8 @@ You can simplify this configuration to show that applying the `@cache` directive
 
 ```graphql
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post {
@@ -191,7 +205,9 @@ type Post {
   title: String @cache(maxAge: 100)
   userId: Int @cache(maxAge: 100)
   user: User
-    @http(path: "/user/{{.value.userId}}")
+    @http(
+      url: "https://jsonplaceholder.typicode.com/user/{{.value.userId}}"
+    )
     @cache(maxAge: 100)
 }
 
@@ -206,7 +222,8 @@ Since the `@cache` directive does not affect fields without resolvers, the effec
 
 ```graphql
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post {
@@ -214,7 +231,9 @@ type Post {
   title: String
   userId: Int
   user: User
-    @http(path: "/user/{{.value.userId}}")
+    @http(
+      url: "https://jsonplaceholder.typicode.com/user/{{.value.userId}}"
+    )
     @cache(maxAge: 100)
 }
 
@@ -229,7 +248,8 @@ When applying the `@cache` directive both at the type level and on individual fi
 
 ```graphql
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post @cache(maxAge: 200) {
@@ -237,7 +257,9 @@ type Post @cache(maxAge: 200) {
   title: String
   userId: Int
   user: User
-    @http(path: "/user/{{.value.userId}}")
+    @http(
+      url: "https://jsonplaceholder.typicode.com/user/{{.value.userId}}"
+    )
     @cache(maxAge: 100)
 }
 
@@ -261,18 +283,19 @@ For instance, the system caches the `user` field in the following configuration,
 The `@call` directive in GraphQL signifies a shift towards more efficient configuration management by introducing a methodology akin to function invocations in conventional programming. This directive is pivotal for developers navigating the intricacies of elaborate GraphQL schemas, where minimizing redundancy and adhering to the DRY (Don't Repeat Yourself) principle are paramount. Consider the following schema example:
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    baseURL: "https://jsonplaceholder.typicode.com"
-  ) {
+schema {
   query: Query
 }
 
 type Query {
   # highlight-start
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  user(id: Int!): User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
   # highlight-end
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post {
@@ -281,7 +304,10 @@ type Post {
   title: String!
   body: String!
   # highlight-start
-  user: User @http(path: "/users/{{.value.userId}}")
+  user: User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.value.userId}}"
+    )
   # highlight-end
 }
 
@@ -343,7 +369,7 @@ type Mutation {
     @http(
       body: "{{.args.input}}"
       method: "POST"
-      path: "/posts"
+      url: "https://jsonplaceholder.typicode.com/posts"
       query: {overwrite: "{{.args.overwrite}}"}
     )
 
@@ -567,7 +593,11 @@ The `@graphQL` directive allows to specify GraphQL API server request to fetch d
 
 ```graphql showLineNumbers
 type Query {
-  users: [User] @graphQL(name: "userList")
+  users: [User]
+    @graphQL(
+      url: "https://jsonplaceholder.typicode.com"
+      name: "userList"
+    )
 }
 ```
 
@@ -595,16 +625,16 @@ query {
 }
 ```
 
-### baseURL
+### url
 
-This refers to the base URL of the API. If not specified, the default base URL is the one specified in the [`@upstream`](#upstream-directive) directive.
+This refers to the URL of the API.
 
 ```graphql showLineNumbers
 type Query {
   users: [User]
     @graphQL(
       name: "users"
-      baseURL: "https://graphqlzero.almansi.me/api"
+      url: "https://graphqlzero.almansi.me/api"
     )
 }
 ```
@@ -615,7 +645,11 @@ The root field's name on the upstream to request data from. For example:
 
 ```graphql showLineNumbers
 type Query {
-  users: [User] @graphQL(name: "userList")
+  users: [User]
+    @graphQL(
+      url: "https://jsonplaceholder.typicode.com"
+      name: "userList"
+    )
 }
 ```
 
@@ -629,6 +663,7 @@ Named arguments for the requested field. For example:
 type Query {
   user: User
     @graphQL(
+      url: "https://jsonplaceholder.typicode.com"
       name: "user"
       args: [{key: "id", value: "{{.value.userId}}"}]
     )
@@ -655,6 +690,7 @@ For instance:
 type Mutation {
   users: User
     @graphQL(
+      url: "https://jsonplaceholder.typicode.com"
       name: "users"
       headers: [{key: "X-Server", value: "Tailcall"}]
     )
@@ -681,9 +717,31 @@ schema
 }
 
 type Query {
-  users: [User] @graphQL(name: "users", batch: true)
-  posts: [Post] @graphQL(name: "posts", batch: true)
+  users: [User]
+    @graphQL(
+      url: "https://jsonplaceholder.typicode.com"
+      name: "users"
+      batch: true
+    )
+  posts: [Post]
+    @graphQL(
+      url: "https://jsonplaceholder.typicode.com"
+      name: "posts"
+      batch: true
+    )
 }
+```
+
+### dedupe
+
+A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+@graphQL(
+  url: "https://jsonplaceholder.typicode.com",
+  name: "users",
+  dedupe: true
+)
 ```
 
 Make sure you have also specified batch settings to the `@upstream` and to the `@graphQL` directive.
@@ -758,15 +816,15 @@ type Query {
 }
 ```
 
-### baseURL
+### url
 
-Defines the base URL for the gRPC API. If not specified, the URL set in the `@upstream` directive is used by default:
+Defines the base URL for the gRPC API.
 
 ```graphql
 type Query {
   users: [User]
     @grpc(
-      baseURL: "https://grpc-server.example.com"
+      url: "https://grpc-server.example.com"
       method: "proto.users.UserService.ListUsers"
     )
 }
@@ -816,7 +874,7 @@ type Query {
     @grpc(
       batchKey: ["id"]
       method: "proto.users.UserService.ListUsers"
-      baseURL: "https://grpc-server.example.com"
+      url: "https://grpc-server.example.com"
     )
 }
 ```
@@ -870,47 +928,52 @@ type Query {
 }
 ```
 
+### dedupe
+
+A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+@grpc(
+  method: "news.UsersService.GetUserDetails"
+  dedupe: true
+)
+```
+
 ## @http Directive
 
 The `@http` directive indicates a field or node relies on a REST API. For example:
 
 ```graphql showLineNumbers
 type Query {
-  users: [User] @http(path: "/users")
+  users: [User]
+    @http(url: "https://jsonplaceholder.typicode.com/users")
 }
 ```
 
 In this example, adding the `@http` directive to the `users` field of the `Query` type indicates reliance on a REST API for the `users` field. The [path](#path) argument specifies the REST API's path, which is `/users` in this scenario.Querying the `users` field prompts the GraphQL server to issue a GET request to `https://jsonplaceholder.typicode.com/users`.
 
-### baseURL
+### url
 
-Specifies the API's base URL. If unspecified, it defaults to the URL in the [`@upstream`](#upstream-directive) directive.
+Specifies the API's URL.
 
 ```graphql showLineNumbers
 type Query {
   users: [User]
     @http(
-      path: "/users"
-      baseURL: "https://jsonplaceholder.typicode.com"
+      url: "https://jsonplaceholder.typicode.com/users"
+      url: "https://jsonplaceholder.typicode.com"
     )
 }
 ```
 
-### path
-
-Refers to the API endpoint, for example, `https://jsonplaceholder.typicode.com/users`.
+If your API endpoint contains dynamic segments, you can substitute variables using Mustache templates. For example, to fetch a specific user, you can write the url as `/users/{{.args.id}}`.
 
 ```graphql showLineNumbers
 type Query {
-  users: [User] @http(path: "/users")
-}
-```
-
-If your API endpoint contains dynamic segments, you can substitute variables using Mustache templates. For example, to fetch a specific user, you can write the path as `/users/{{.args.id}}`.
-
-```graphql showLineNumbers
-type Query {
-  user(id: ID!): User @http(path: "/users/{{.args.id}}")
+  user(id: ID!): User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
 }
 ```
 
@@ -921,7 +984,10 @@ Specifies the HTTP method for the API call. The default method is GET if not spe
 ```graphql showLineNumbers
 type Mutation {
   createUser(input: UserInput!): User
-    @http(method: "POST", path: "/users")
+    @http(
+      method: "POST"
+      url: "https://jsonplaceholder.typicode.com/users"
+    )
 }
 ```
 
@@ -933,7 +999,7 @@ Represents the API call's query parameters, either as a static object or with dy
 type Query {
   userPosts(id: ID!): [Post]
     @http(
-      path: "/posts"
+      url: "https://jsonplaceholder.typicode.com/posts"
       query: [
         {
           key: "userId"
@@ -964,7 +1030,7 @@ type Mutation {
   createUser(input: UserInput!): User
     @http(
       method: "POST"
-      path: "/users"
+      url: "https://jsonplaceholder.typicode.com/users"
       body: "{{.args.input}}"
     )
 }
@@ -982,7 +1048,7 @@ For instance:
 type Mutation {
   createUser(input: UserInput!): User
     @http(
-      path: "/users"
+      url: "https://jsonplaceholder.typicode.com/users"
       headers: [{key: "X-Server", value: "Tailcall"}]
     )
 }
@@ -998,7 +1064,7 @@ You can make use of mustache templates to provide dynamic values for headers, de
 type Mutation {
   users(name: String): User
     @http(
-      path: "/users"
+      url: "https://jsonplaceholder.typicode.com/users"
       headers: [
         {key: "X-Server", value: "Tailcall"}
         {key: "User-Name", value: "{{.args.name}}"}
@@ -1023,7 +1089,7 @@ type Post {
   name: String!
   user: User
     @http(
-      path: "/users"
+      url: "https://jsonplaceholder.typicode.com/users"
       query: [{key: "user_id", value: "{{.value.userId}}"}]
       batchKey: ["users", "id"]
     )
@@ -1044,7 +1110,7 @@ For defining a request middleware globally for all requests, refer to the [upstr
 type Query {
   userPosts(id: ID!): [Post]
     @http(
-      path: "/posts"
+      url: "https://jsonplaceholder.typicode.com/posts"
       query: [{key: "userId", value: "{{.args.id}}"}]
       onRequest: "someFunctionName"
     )
@@ -1059,7 +1125,7 @@ This hook allows you to intercept and modify the response body from upstream ser
 type Query {
   user(id: Int!): User
     @http(
-      path: "/users/{{.args.id}}"
+      url: "https://jsonplaceholder.typicode.com/users/{{.args.id}}"
       onResponseBody: "onResponse"
     )
 }
@@ -1081,12 +1147,12 @@ nested or want to keep specific fields only from the response.
 type Query {
   userCompany(id: Int!): Company
     @http(
-      path: "/users/{{.args.id}}"
+      url: "https://jsonplaceholder.typicode.com/users/{{.args.id}}"
       select: "{{.company}}"
     )
   userDetails(id: Int!): UserDetails
     @http(
-      path: "/users/{{.args.id}}"
+      url: "https://jsonplaceholder.typicode.com/users/{{.args.id}}"
       select: {
         id: "{{.id}}"
         city: "{{.address.city}}"
@@ -1094,6 +1160,17 @@ type Query {
       }
     )
 }
+```
+
+### dedupe
+
+A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+
+```graphql showLineNumbers
+@http(
+  url: "https://jsonplaceholder.typicode.com/users/"
+  dedupe: true
+)
 ```
 
 ## @js Directive
@@ -1129,15 +1206,13 @@ Here is an example of how the `@js` directive is used within a GraphQL schema:
 schema
   @link(type: Script, src: "./scripts/foo.js")
   @server(port: 8000)
-  @upstream(
-    baseURL: "http://jsonplaceholder.typicode.com"
-    httpCache: true
-  ) {
+  @upstream(httpCache: true) {
   query: Query
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post {
@@ -1192,11 +1267,7 @@ The following example illustrates how to utilize the `@link` directive to incorp
 ```graphql showLineNumbers
 schema
   @server(port: 8000)
-  @upstream(
-    baseURL: "http://news.local"
-    httpCache: 42
-    batch: {delay: 10}
-  )
+  @upstream(httpCache: 42, batch: {delay: 10})
   @link(
     id: "news"
     src: "./src/grpc/news.proto"
@@ -1400,7 +1471,6 @@ Define GraphQL types and queries, using the `@rest` directive to map fields to R
 
 ```graphql
 schema
-  @upstream(baseURL: "https://jsonplaceholder.typicode.com")
   @link(type: Operation, src: "user-operation.graphql") {
   query: Query
 }
@@ -1603,7 +1673,7 @@ schema
 type Query {
   externalData: Data
     @http(
-      path: "/external-api/data"
+      url: "https://jsonplaceholder.typicode.com/external-api/data"
       headers: [
         {
           key: "Authorization"
@@ -1753,17 +1823,6 @@ schema @server(
 :::tip
 Batching can improve performance but may introduce latency if one request in the batch takes longer. It also makes network traffic debugging harder.
 :::
-
-### dedupe
-
-A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
-
-```graphql showLineNumbers
-schema @server(
-  port: 8000
-  dedupe: true
-)
-```
 
 ### routes
 
@@ -1943,11 +2002,7 @@ The document below details the options for `UpstreamSetting`.
 The connection pool waits for this duration in seconds before closing idle connections.
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    poolIdleTimeout: 60
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @upstream(poolIdleTimeout: 60) {
   query: Query
   mutation: Mutation
 }
@@ -1958,11 +2013,7 @@ schema
 The max number of idle connections each host will maintain.
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    poolMaxIdlePerHost: 60
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @upstream(poolMaxIdlePerHost: 60) {
   query: Query
   mutation: Mutation
 }
@@ -1973,11 +2024,7 @@ schema
 The time in seconds between each keep-alive message sent to maintain the connection.
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    keepAliveInterval: 60
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @upstream(keepAliveInterval: 60) {
   query: Query
   mutation: Mutation
 }
@@ -1988,11 +2035,7 @@ schema
 The time in seconds that the connection will wait for a keep-alive message before closing.
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    keepAliveTimeout: 60
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @upstream(keepAliveTimeout: 60) {
   query: Query
   mutation: Mutation
 }
@@ -2003,11 +2046,7 @@ schema
 A boolean value that determines whether to send keep-alive messages while the connection is idle.
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    keepAliveWhileIdle: false
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @upstream(keepAliveWhileIdle: false) {
   query: Query
   mutation: Mutation
 }
@@ -2018,28 +2057,20 @@ schema
 The `proxy` setting defines an intermediary server that routes upstream requests before they reach their intended endpoint. By specifying a proxy URL, you introduce a layer, enabling custom routing and security policies.
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    proxy: {url: "http://localhost:3000"}
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @upstream(proxy: {url: "http://localhost:3000"}) {
   query: Query
   mutation: Mutation
 }
 ```
 
-In the provided example, we've set the proxy's `url` to "http://localhost:3000". This configuration ensures that all requests aimed at the designated `baseURL` first go through this proxy. To illustrate, if the `baseURL` is "http://jsonplaceholder.typicode.com", any request targeting it initially goes to "http://localhost:3000" before the proxy redirects it to its final destination.
+In the provided example, we've set the proxy's `url` to "http://localhost:3000". This configuration ensures that all requests aimed at the designated `url` first go through this proxy. To illustrate, if the `url` is "http://jsonplaceholder.typicode.com", any request targeting it initially goes to "http://localhost:3000" before the proxy redirects it to its final destination.
 
 ### connectTimeout
 
 The time in seconds that the connection will wait for a response before timing out.
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    connectTimeout: 60
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @upstream(connectTimeout: 60) {
   query: Query
   mutation: Mutation
 }
@@ -2050,11 +2081,7 @@ schema
 The max time in seconds that the connection will wait for a response.
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    timeout: 60
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @upstream(timeout: 60) {
   query: Query
   mutation: Mutation
 }
@@ -2065,11 +2092,7 @@ schema
 The time in seconds between each TCP keep-alive message sent to maintain the connection.
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    tcpKeepAlive: 60
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @upstream(tcpKeepAlive: 60) {
   query: Query
   mutation: Mutation
 }
@@ -2080,11 +2103,7 @@ schema
 The User-Agent header value for HTTP requests.
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    userAgent: "Tailcall/1.0"
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema @upstream(userAgent: "Tailcall/1.0") {
   query: Query
   mutation: Mutation
 }
@@ -2106,30 +2125,6 @@ schema
 ```
 
 In the example above, the configuration for `allowedHeaders` permits `Authorization` and `X-Api-Key` headers. Thus, requests with these headers will forward them to upstream services; the system ignores all others. This configuration ensures communication of the expected headers to dependent services, emphasizing security and consistency.
-
-### baseURL
-
-This refers to the default base URL for your APIs. If it's not explicitly mentioned in the `@upstream` directive, then each [`@http`](#http-directive) directive must specify its own `baseURL`. If neither `@upstream` nor [`@http`](#http-directive) provides a `baseURL`, it results in a compilation error.
-
-```graphql showLineNumbers
-schema
-  @upstream(
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
-  query: Query
-  mutation: Mutation
-}
-```
-
-In this representation, `http://jsonplaceholder.typicode.com` serves as the `baseURL`. Thus, all API calls made by `@http` prepend this URL to their respective paths.
-
-:::tip
-Ensure that your base URL remains free from specific path segments.
-
-- **GOOD:** `@upstream(baseURL: http://jsonplaceholder.typicode.com)`
-- **BAD:** `@upstream(baseURL: http://jsonplaceholder.typicode.com/api)`
-
-:::
 
 ### httpCache
 

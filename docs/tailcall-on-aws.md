@@ -107,15 +107,13 @@ In this example, we will deploy a simple `graphQL` server using `tailcall`, on A
 Below is the config present in the template repo, that will be used for this deployment. You can learn more about this [here](getting-started.mdx#writing-a-graphql-configuration).
 
 ```graphql
-schema
-  @upstream(
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema {
   query: Query
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type User {
@@ -132,7 +130,10 @@ type Post {
   userId: Int!
   title: String!
   body: String!
-  user: User @http(path: "/users/{{.value.userId}}")
+  user: User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.value.userId}}"
+    )
 }
 ```
 

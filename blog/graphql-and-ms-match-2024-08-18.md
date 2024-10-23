@@ -73,7 +73,10 @@ _fetching data from multiple microservices using Tailcall:_
 ```graphql
 type Query {
   tracks: TrackData!
-    @grpc(method: "tracks.trackService.listTracks")
+    @grpc(
+      url: "https://example.com"
+      method: "tracks.trackService.listTracks"
+    )
 }
 
 type Track {
@@ -81,9 +84,12 @@ type Track {
   title: String!
   audioUrl: String!
   reactions: [Reaction]
-    @http(path: "/tracks/{{.value.id}}/reactions")
+    @http(
+      url: "https://example.com/tracks/{{.value.id}}/reactions"
+    )
   lyrics: [Lyric]
     @grpc(
+      url: "https://example.com"
       body: "{{.value.id}}"
       method: "tracks.trackService.getLyrics"
     )
@@ -139,7 +145,9 @@ type Reaction @protected {
 ```graphql
 type Query {
   findMyAccount(phone: PhoneNumber!): Account!
-    @http(path: "/accounts?phone={{.args.phone}}")
+    @http(
+      url: "https://example.com/accounts?phone={{.args.phone}}"
+    )
 }
 type Account {
   id: ID!

@@ -44,14 +44,14 @@ To learn more about writing configuration to leverage the full power of Tailcall
 ```graphql showLineNumbers
 schema
   @server(port: 8000, hostname: "0.0.0.0")
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com", httpCache: 42, batch: {delay: 100}) {
+  @upstream(httpCache: 42, batch: {delay: 100}) {
   query: Query
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts")
-  users: [User] @http(path: "/users")
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
+  posts: [Post] @http(url: "http://jsonplaceholder.typicode.com/posts")
+  users: [User] @http(url: "http://jsonplaceholder.typicode.com/users")
+  user(id: Int!): User @http(url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}")
 }
 
 type User {
@@ -79,7 +79,6 @@ server:
   hostname: 0.0.0.0
   port: 8000
 upstream:
-  baseURL: http://jsonplaceholder.typicode.com
   httpCache: 42
   batch:
     maxSize: 100
@@ -122,7 +121,7 @@ types:
           list:
             name: Post
         http:
-          path: /posts
+          url: http://jsonplaceholder.typicode.com/posts
         cache: null
       user:
         type:
@@ -133,14 +132,14 @@ types:
               name: Int
               required: true
         http:
-          path: /users/{{.args.id}}
+          url: http://jsonplaceholder.typicode.com/users/{{.args.id}}
         cache: null
       users:
         type:
           list:
             name: User
         http:
-          path: /users
+          url: http://jsonplaceholder.typicode.com/users
         cache: null
     cache: null
   User:
@@ -185,7 +184,6 @@ types:
     "port": 8000
   },
   "upstream": {
-    "baseURL": "http://jsonplaceholder.typicode.com",
     "httpCache": 42,
     "batch": {
       "maxSize": 100,
@@ -245,7 +243,7 @@ types:
             }
           },
           "http": {
-            "path": "/posts"
+            "url": "http://jsonplaceholder.typicode.com/posts"
           },
           "cache": null
         },
@@ -262,7 +260,7 @@ types:
             }
           },
           "http": {
-            "path": "/users/{{.args.id}}"
+            "url": "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
           },
           "cache": null
         },
@@ -273,7 +271,7 @@ types:
             }
           },
           "http": {
-            "path": "/users"
+            "url": "http://jsonplaceholder.typicode.com/users"
           },
           "cache": null
         }

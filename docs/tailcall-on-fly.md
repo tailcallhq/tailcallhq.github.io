@@ -66,15 +66,13 @@ You can learn more about the configuration [here](./configuration.mdx)
 :::
 
 ```graphql
-schema
-  @upstream(
-    baseURL: "http://jsonplaceholder.typicode.com"
-  ) {
+schema {
   query: Query
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "http://jsonplaceholder.typicode.com/posts")
 }
 
 type User {
@@ -91,7 +89,10 @@ type Post {
   userId: Int!
   title: String!
   body: String!
-  user: User @http(path: "/users/{{.value.userId}}")
+  user: User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.value.userId}}"
+    )
 }
 ```
 

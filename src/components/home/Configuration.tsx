@@ -53,14 +53,13 @@ const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" 
 export default Configuration
 
 const GRAPHQL_CONFIG = `schema
-  @server(port: 8000)
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+  @server(port: 8000) {
   query: Query
 }
 
 type Query {
-  users: [User] @http(path: "/users")
-  posts: [Post] @http(path: "/posts")
+  users: [User] @http(url: "http://jsonplaceholder.typicode.com/users")
+  posts: [Post] @http(url: "http://jsonplaceholder.typicode.com/posts")
 }
 
 type User {
@@ -78,7 +77,7 @@ type Post {
   userId: Int!
 
   # Expand a post with user information
-  user: User @http(path: "/users/{{.value.userId}}")
+  user: User @http(url: "http://jsonplaceholder.typicode.com/users/{{.value.userId}}")
 }
 `
 
@@ -106,7 +105,7 @@ types:
       user:
         type: User
         http:
-          path: /users/{{.value.userId}}
+          url: http://jsonplaceholder.typicode.com/users/{{.value.userId}}
         cache: null
       userId:
         type: Int
@@ -119,13 +118,13 @@ types:
         type: Post
         list: true
         http:
-          path: /posts
+          url: http://jsonplaceholder.typicode.com/posts
         cache: null
       users:
         type: User
         list: true
         http:
-          path: /users
+          url: http://jsonplaceholder.typicode.com/users
         cache: null
     cache: null
   User:
@@ -153,9 +152,6 @@ const JSON_CONFIG = `{
   "server": {
     "port": 8000
   },
-  "upstream": {
-    "baseURL": "http://jsonplaceholder.typicode.com"
-  },
   "schema": {
     "query": "Query"
   },
@@ -180,7 +176,7 @@ const JSON_CONFIG = `{
         "user": {
           "type": "User",
           "http": {
-            "path": "/users/{{.value.userId}}"
+            "url": "http://jsonplaceholder.typicode.com/users/{{.value.userId}}"
           },
           "cache": null
         },
@@ -198,7 +194,7 @@ const JSON_CONFIG = `{
           "type": "Post",
           "list": true,
           "http": {
-            "path": "/posts"
+            "url": "http://jsonplaceholder.typicode.com/posts"
           },
           "cache": null
         },
@@ -206,7 +202,7 @@ const JSON_CONFIG = `{
           "type": "User",
           "list": true,
           "http": {
-            "path": "/users"
+            "url": "http://jsonplaceholder.typicode.com/users"
           },
           "cache": null
         }

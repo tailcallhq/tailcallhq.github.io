@@ -18,7 +18,10 @@ Imagine you're building a blog and want to display a specific user's profile pag
 ```graphql
 type Query {
   # Retrieve a specific user by ID
-  user(id: Int!): User @http(path: "/users/{{.value.id}}")
+  user(id: Int!): User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.value.id}}"
+    )
 }
 
 type User {
@@ -27,8 +30,11 @@ type User {
   username: String!
   email: String!
 
-  # Access user's posts using their ID in the path
-  posts: [Post] @http(path: "/users/{{.value.id}}/posts")
+  # Access user's posts using their ID in the url
+  posts: [Post]
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.value.id}}/posts"
+    )
 }
 
 type Post {
@@ -69,7 +75,8 @@ Suppose you're building a social media platform and want to display profiles of 
 ```graphql
 type Query {
   # Retrieve users from the "/users" endpoint
-  users: [User] @http(path: "/users")
+  users: [User]
+    @http(url: "https://jsonplaceholder.typicode.com/users")
 }
 
 type User {
@@ -78,8 +85,11 @@ type User {
   username: String!
   email: String!
 
-  # Access user's posts using their ID in the path
-  posts: [Post] @http(path: "/users/{{.value.id}}/posts")
+  # Access user's posts using their ID in the url
+  posts: [Post]
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.value.id}}/posts"
+    )
 }
 
 type Post {
@@ -119,7 +129,8 @@ Imagine you're building a social media platform and want to display a list of po
 
 ```graphql
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post {
@@ -127,7 +138,10 @@ type Post {
   userId: Int!
   title: String!
   body: String!
-  user: User @http(path: "/users/{{.value.userId}}")
+  user: User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.value.userId}}"
+    )
 }
 
 type User {

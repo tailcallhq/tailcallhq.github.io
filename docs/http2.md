@@ -70,7 +70,8 @@ schema
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type User {
@@ -93,7 +94,8 @@ schema
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type User {
