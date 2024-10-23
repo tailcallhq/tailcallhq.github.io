@@ -954,7 +954,7 @@ In this example, adding the `@http` directive to the `users` field of the `Query
 
 ### url
 
-Specifies the API's base URL.
+Specifies the API's URL.
 
 ```graphql showLineNumbers
 type Query {
@@ -966,18 +966,7 @@ type Query {
 }
 ```
 
-### path
-
-Refers to the API endpoint, for example, `https://jsonplaceholder.typicode.com/users`.
-
-```graphql showLineNumbers
-type Query {
-  users: [User]
-    @http(url: "https://jsonplaceholder.typicode.com/users")
-}
-```
-
-If your API endpoint contains dynamic segments, you can substitute variables using Mustache templates. For example, to fetch a specific user, you can write the path as `/users/{{.args.id}}`.
+If your API endpoint contains dynamic segments, you can substitute variables using Mustache templates. For example, to fetch a specific user, you can write the url as `/users/{{.args.id}}`.
 
 ```graphql showLineNumbers
 type Query {

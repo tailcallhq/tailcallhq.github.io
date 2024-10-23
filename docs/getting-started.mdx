@@ -143,16 +143,13 @@ Create one of the following files and paste the contents into it.
 ```graphql showLineNumbers
 schema
   # Specify server configuration: Start GraphQL server at 0.0.0.0:8000
-  @server(port: 8000)
-  # Specify a base url for all http requests
-
-  @upstream(baseURL: "http://jsonplaceholder.typicode.com") {
+  @server(port: 8000) {
   query: Query
 }
 
 type Query {
   # Specify the http path for the users query
-  users: [User] @http(path: "/users")
+  users: [User] @http(url: "http://jsonplaceholder.typicode.com/users")
 }
 
 # Create a user type with the fields returned by the users api
@@ -165,7 +162,7 @@ type User {
 
   # Extend the user type with the posts field
   # Use the current user's id to construct the path
-  posts: [Post] @http(path: "/users/{{.value.id}}/posts")
+  posts: [Post] @http(url: "http://jsonplaceholder.typicode.com/users/{{.value.id}}/posts")
 }
 
 # Create a post type with the fields returned by the posts api
@@ -185,7 +182,6 @@ server:
   queryValidation: false
   hostname: "0.0.0.0"
 upstream:
-  baseURL: "http://jsonplaceholder.typicode.com"
   httpCache: 42
 schema:
   query: Query
@@ -219,7 +215,7 @@ types:
           list:
             name: Post
         http:
-          path: /posts
+          url: http://jsonplaceholder.typicode.com/posts
   User:
     fields:
       email:
@@ -257,7 +253,6 @@ types:
     "hostname": "0.0.0.0"
   },
   "upstream": {
-    "baseURL": "http://jsonplaceholder.typicode.com",
     "httpCache": 42
   },
   "schema": {
@@ -289,7 +284,7 @@ types:
             "name": "User"
           },
           "http": {
-            "path": "/users/{{.value.userId}}"
+            "url": "http://jsonplaceholder.typicode.com/users/{{.value.userId}}"
           }
         },
         "userId": {
@@ -309,7 +304,7 @@ types:
             }
           },
           "http": {
-            "path": "/posts"
+            "url": "http://jsonplaceholder.typicode.com/posts"
           }
         }
       }
