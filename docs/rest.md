@@ -24,15 +24,15 @@ There are three main steps to this process:
 ### Step 1: Define your GraphQL configuration
 
 ```graphql
-schema
-  @upstream(
-    baseURL: "https://jsonplaceholder.typicode.com"
-  ) {
+schema {
   query: Query
 }
 
 type Query {
-  post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
+  post(id: Int!): Post
+    @http(
+      url: "https://jsonplaceholder.typicode.com/posts/{{.args.id}}"
+    )
 }
 
 type Post {
@@ -40,7 +40,10 @@ type Post {
   id: Int
   title: String
   body: String
-  user: User @http(path: "/users/{{.value.userId}}")
+  user: User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users/{{.value.userId}}"
+    )
 }
 
 type User {
@@ -82,7 +85,6 @@ checkout the `@link` directive in the config snippet below to link the operation
 
 ```graphql
 schema
-  @upstream(baseURL: "https://jsonplaceholder.typicode.com")
   #highlight-start
   @link(type: Operation, src: "user-operation.graphql") {
   #highlight-end

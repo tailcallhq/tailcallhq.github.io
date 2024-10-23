@@ -149,11 +149,7 @@ To generate the GraphQL configuration run following command
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
-schema
-  @server
-  @upstream(
-    baseURL: "https://jsonplaceholder.typicode.com"
-  ) {
+schema {
   query: Query
 }
 
@@ -165,7 +161,8 @@ type Post {
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 ```
 
@@ -307,10 +304,9 @@ input PostInput {
 type Mutation {
   createPost(createPostInput: PostInput): Post
     @http(
-      baseURL: "https://jsonplaceholder.typicode.com"
+      url: "https://jsonplaceholder.typicode.com/posts"
       body: "{{.args.createPostInput}}"
       method: "POST"
-      path: "/posts"
     )
 }
 
@@ -514,10 +510,7 @@ tailcall gen ./config.json
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
 ```graphql showLineNumbers
-schema
-  @link(src: "./news.proto", type: Protobuf)
-  @upstream(baseURL: "https://jsonplaceholder.typicode.com")
-  @server {
+schema @link(src: "./news.proto", type: Protobuf) @server {
   query: Query
 }
 
@@ -536,7 +529,8 @@ type Post {
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
   news: [News] @grpc(method: "news.NewsService.GetNews")
 }
 ```
@@ -553,7 +547,6 @@ The config generator provides a set of tuning parameters that can make the gener
 {
    "preset": {
     "mergeType": 0.8,
-    "consolidateURL": 0.8,
     "treeShake": true,
     "unwrapSingleFieldTypes": true,
     "inferTypeNames": true,
@@ -565,7 +558,6 @@ The config generator provides a set of tuning parameters that can make the gener
 ```yml showLineNumbers
 preset:
   mergeType: 0.8
-  consolidateURL: 0.8
   treeShake: true
   unwrapSingleFieldTypes: true
   inferTypeNames: true
@@ -695,69 +687,6 @@ This setting merges types in the configuration that satisfy the threshold criter
 
         <hr/>
 
-### consolidateURL
-
-The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
-
-For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](directives.md#http-directive) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
-
-```graphql showLineNumbers
-schema
-  @server(hostname: "0.0.0.0", port: 8000)
-  @upstream(httpCache: 42) {
-  query: Query
-}
-
-type Query {
-  post(id: Int!): Post
-    @http(
-      baseURL: "http://jsonplaceholder.typicode.com"
-      path: "/posts/{{.args.id}}"
-    )
-  posts: [Post]
-    @http(
-      baseURL: "http://jsonplaceholder.typicode.com"
-      path: "/posts"
-    )
-  user(id: Int!): User
-    @http(
-      baseURL: "http://jsonplaceholder.typicode.com"
-      path: "/users/{{.args.id}}"
-    )
-  users: [User]
-    @http(
-      baseURL: "http://jsonplaceholder-1.typicode.com"
-      path: "/users"
-    )
-}
-```
-
-After enabling the `consolidateURL` setting:
-
-```graphql showLineNumbers
-schema
-  @server(hostname: "0.0.0.0", port: 8000)
-  @upstream(
-    baseURL: "http://jsonplaceholder.typicode.com"
-    httpCache: 42
-  ) {
-  query: Query
-}
-
-type Query {
-  post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
-  posts: [Post] @http(path: "/posts")
-  user(id: Int!): User @http(path: "/users/{{.args.id}}")
-  users: [User]
-    @http(
-      baseURL: "http://jsonplaceholder-1.typicode.com"
-      path: "/users"
-    )
-}
-```
-
-  <hr />
-
 ### unwrapSingleFieldTypes
 
 This setting instructs Tailcall to flatten out types with single field.
@@ -857,7 +786,8 @@ type T2 {
 }
 
 type Query {
-  users: [T1] @http(path: "/users")
+  users: [T1]
+    @http(url: "https://jsonplaceholder.typicode.com/users")
 }
 ```
 
@@ -880,7 +810,8 @@ type Post {
 }
 
 type Query {
-  user: User @http(path: "/users")
+  user: User
+    @http(url: "https://jsonplaceholder.typicode.com/users")
 }
 ```
 
@@ -950,25 +881,7 @@ When setting up your configuration file for GraphQL generation with Tailcall, co
     </TabItem>
     </Tabs>
 
-2. **[Consolidate URL](config-generation.md#consolidateurl)**: Identifies the most common base URL among multiple REST endpoints and uses it in the [@upstream](directives.md#upstream-directive) directive. Set a threshold (0.0 to 1.0) to determine when to consolidate URLs. Recommended threshold is anything above `0.5`.
-   <Tabs>
-   <TabItem value="json" label="JSON">
-   ```json showLineNumbers
-   {
-     "preset": {
-       "consolidateURL": 0.5
-     }
-   }
-   ```
-   </TabItem>
-   <TabItem value="yml" label="YML">
-   ```yml showLineNumbers
-   preset:
-       consolidateURL: 0.5
-   ```
-   </TabItem>
-   </Tabs>
-3. **Headers**: Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from [environment variables](environment-variables.md).
+2. **Headers**: Never store sensitive information like access tokens directly in configuration files. Leverage templates to securely reference secrets from [environment variables](environment-variables.md).
    <Tabs>
    <TabItem value="json" label="JSON">
    ```json showLineNumbers
@@ -1037,28 +950,6 @@ curl:
   ```yml showLineNumbers
   preset:
       mergeType: 0.9
-  ```
-  </TabItem>
-  </Tabs>
-
-**Q. What if I have multiple REST endpoints with different base URLs?**
-
-**Answer:** Use the [consolidateURL](config-generation.md#consolidateurl) parameter to identify the most common base URL among multiple REST endpoints and it will automatically select the most common base url and add it to the [@upstream](directives.md#upstream-directive) directive. Here is an example:
-
-  <Tabs>
-  <TabItem value="json" label="JSON">
-  ```json showLineNumbers
-  {
-    "preset": {
-      "consolidateURL": 0.5
-    }
-  }
-  ```
-  </TabItem>
-  <TabItem value="yml" label="YML">
-  ```yml showLineNumbers
-  preset:
-      consolidateURL: 0.5
   ```
   </TabItem>
   </Tabs>

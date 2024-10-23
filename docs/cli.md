@@ -165,7 +165,6 @@ To generate a Tailcall GraphQL configuration, provide a configuration file to th
   },
   "preset": {
     "mergeType": 1,
-    "consolidateURL": 0.5,
     "treeShake": true,
     "unwrapSingleFieldTypes": true,
     "inferTypeNames": true
@@ -211,7 +210,6 @@ schema:
   mutation: "Mutation"
 preset:
   mergeType: 1
-  consolidateURL: 0.5
   treeShake: true
   unwrapSingleFieldTypes: true
   inferTypeNames: true
@@ -276,7 +274,10 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     ```graphql {2} showLineNumbers title="Generated Configuration"
     type Query {
       # field name is taken from the above JSON config
-      post(p1: Int!): Post @http(path: "/posts/{{arg.p1}}")
+      post(p1: Int!): Post
+        @http(
+          url: "https://jsonplaceholder.typicode.com/posts/{{arg.p1}}"
+        )
     }
     ```
 
@@ -336,7 +337,10 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     type Mutation {
       # field name is taken from the above JSON config
       createPost(createPostInput: PostInput!): Post
-        @http(path: "/posts/{{arg.p1}}", method: "POST")
+        @http(
+          url: "https://jsonplaceholder.typicode.com/posts/{{arg.p1}}"
+          method: "POST"
+        )
     }
     ```
 
@@ -382,7 +386,6 @@ The config generator provides a set of tuning parameters that can make the gener
 {
   "preset": {
     "mergeType": 1,
-    "consolidateURL": 0.5,
     "treeShake": true,
     "unwrapSingleFieldTypes": true,
     "inferTypeNames": true
@@ -396,7 +399,6 @@ The config generator provides a set of tuning parameters that can make the gener
 ```yml title="Presets with default values"
 preset:
     mergeType: 1
-    consolidateURL: 0.5
     treeShake: true
     unwrapSingleFieldTypes: true
     inferTypeNames: true
@@ -430,66 +432,7 @@ preset:
    }
    ```
 
-2. **consolidateURL:** The setting identifies the most common base URL among multiple REST endpoints and uses this URL in the [upstream](directives.md#upstream-directive) directive. It takes a threshold value between 0.0 and 1.0 to determine the most common endpoint. The default is `0.5`.
-
-   For example, if the `Query` type has three base URLs, using the `consolidateURL` setting with a `0.5` threshold will pick the base URL that is used in more than 50% of the [http](directives.md#http-directive) directives, `http://jsonplaceholder.typicode.com`, and add it to the upstream, cleaning the base URLs from the `Query` type.
-
-   ```graphql showLineNumbers
-   schema
-     @server(hostname: "0.0.0.0", port: 8000)
-     @upstream(httpCache: 42) {
-     query: Query
-   }
-
-   type Query {
-     post(id: Int!): Post
-       @http(
-         baseURL: "http://jsonplaceholder.typicode.com"
-         path: "/posts/{{.args.id}}"
-       )
-     posts: [Post]
-       @http(
-         baseURL: "http://jsonplaceholder.typicode.com"
-         path: "/posts"
-       )
-     user(id: Int!): User
-       @http(
-         baseURL: "http://jsonplaceholder.typicode.com"
-         path: "/users/{{.args.id}}"
-       )
-     users: [User]
-       @http(
-         baseURL: "http://jsonplaceholder-1.typicode.com"
-         path: "/users"
-       )
-   }
-   ```
-
-   After enabling the `consolidateURL` setting:
-
-   ```graphql showLineNumbers
-   schema
-     @server(hostname: "0.0.0.0", port: 8000)
-     @upstream(
-       baseURL: "http://jsonplaceholder.typicode.com"
-       httpCache: 42
-     ) {
-     query: Query
-   }
-
-   type Query {
-     post(id: Int!): Post @http(path: "/posts/{{.args.id}}")
-     posts: [Post] @http(path: "/posts")
-     user(id: Int!): User @http(path: "/users/{{.args.id}}")
-     users: [User]
-       @http(
-         baseURL: "http://jsonplaceholder-1.typicode.com"
-         path: "/users"
-       )
-   }
-   ```
-
-3. **treeShake:** This setting removes unused types from the configuration. When enabled, any type that is defined in the configuration but not referenced anywhere else (e.g., as a field type, union member, or interface implementation) will be removed. This helps to keep the configuration clean and free from unnecessary definitions.
+2. **treeShake:** This setting removes unused types from the configuration. When enabled, any type that is defined in the configuration but not referenced anywhere else (e.g., as a field type, union member, or interface implementation) will be removed. This helps to keep the configuration clean and free from unnecessary definitions.
 
    ```graphql showLineNumbers title="Before applying treeShake, the configuration might look like this."
    type Query {
@@ -524,7 +467,7 @@ preset:
    }
    ```
 
-4. **unwrapSingleFieldTypes:** This setting instructs Tailcall to flatten out types with single field.
+3. **unwrapSingleFieldTypes:** This setting instructs Tailcall to flatten out types with single field.
 
    ```graphql showLineNumbers title="Before applying the setting"
    type Query {
@@ -550,7 +493,7 @@ preset:
 
    This helps in flattening out types into single field.
 
-5. **inferTypeNames:** This setting enables the automatic inference of type names based on their schema and it's usage. For it to work reliably it depends on an external secure AI agent.
+4. **inferTypeNames:** This setting enables the automatic inference of type names based on their schema and it's usage. For it to work reliably it depends on an external secure AI agent.
 
    ```graphql title="Before enabling inferTypeNames setting"
    type T1 {
@@ -567,7 +510,10 @@ preset:
    }
 
    type Query {
-     users: [T1] @http(path: "/users")
+     users: [T1]
+       @http(
+         url: "https://jsonplaceholder.typicode.com/users"
+       )
    }
    ```
 
@@ -590,7 +536,10 @@ preset:
    }
 
    type Query {
-     user: User @http(path: "/users")
+     user: User
+       @http(
+         url: "https://jsonplaceholder.typicode.com/users"
+       )
    }
    ```
 

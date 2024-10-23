@@ -27,7 +27,10 @@ This property facilitates access to query arguments. Consider the example:
 
 ```graphql showLineNumbers
 type Query {
-  user(id: ID!): User @http(path: "/users/{{.args.id}}")
+  user(id: ID!): User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
 }
 ```
 
@@ -43,7 +46,9 @@ type Post {
   title: String!
   body: String!
   comments: [Comment]
-    @http(path: "/posts/{{.value.id}}/comments")
+    @http(
+      url: "http://jsonplaceholder.typicode.com/posts/{{.value.id}}/comments"
+    )
 }
 ```
 
@@ -57,8 +62,7 @@ Example:
 
 ```graphql showLineNumbers
 type Query {
-  users: [User]!
-    @http(baseUrl: "{{.env.API_ENDPOINT}}", path: "/users")
+  users: [User]! @http(url: "{{.env.API_ENDPOINT}}/users")
 }
 ```
 
@@ -99,7 +103,9 @@ Headers originate from the request made to the GraphQL server.
 ```graphql showLineNumbers
 type Query {
   commentsForUser: [Comment]
-    @http(path: "/users/{{.headers.x-user-id}}/comments")
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.headers.x-user-id}}/comments"
+    )
 }
 ```
 

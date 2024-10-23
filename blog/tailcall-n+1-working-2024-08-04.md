@@ -79,15 +79,13 @@ Now, yes all of these issues can be solved by better coding practices, using a [
 With a configuration its a completely different story, take the below Tailcall configuration for example:
 
 ```graphql
-schema
-  @upstream(
-    baseURL: "https://jsonplaceholder.typicode.com"
-  ) {
+schema {
   query: Query
 }
 
 type Query {
-  posts: [Post] @http(path: "/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post {
@@ -95,7 +93,10 @@ type Post {
   userId: ID!
   title: String!
   body: String!
-  user: User @http(path: "/users{{.value.userId}}")
+  user: User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users{{.value.userId}}"
+    )
 }
 
 type User {

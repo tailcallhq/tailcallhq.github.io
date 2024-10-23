@@ -24,7 +24,7 @@ To do this, you need to define resolver on types by using one of the [directives
 ```graphql
 type Post
   @http(
-    path: "/posts"
+    url: "https://jsonplaceholder.typicode.com/posts"
     query: [{key: "id", value: "{{.value.id}}"}]
   ) {
   id: Int!
@@ -95,7 +95,11 @@ The Federation specification defines [multiple directives](https://www.apollogra
 Example of using federation directives in the Tailcall config:
 
 ```graphql
-type User @http(path: "/users/{{.args.id}}") @shareable {
+type User
+  @http(
+    url: "https://jsonplaceholder.typicode.com/users/{{.args.id}}"
+  )
+  @shareable {
   id: Int!
   name: String!
 }

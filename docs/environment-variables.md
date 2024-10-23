@@ -36,10 +36,7 @@ Example schema:
 ```graphql showLineNumbers
 type Query {
   users: [User]!
-    @http(
-      baseUrl: "https://jsonplaceholder.typicode.com"
-      path: "/users"
-    )
+    @http(url: "https://jsonplaceholder.typicode.com/users")
 }
 ```
 
@@ -49,8 +46,7 @@ We can address this issue using environment variables. Replace the API endpoint 
 
 ```graphql showLineNumbers
 type Query {
-  users: [User]!
-    @http(baseUrl: "{{env.API_ENDPOINT}}", path: "/users")
+  users: [User]! @http(url: "{{env.API_ENDPOINT}}/users")
 }
 ```
 
@@ -58,7 +54,7 @@ Here, you must set `API_ENDPOINT` as an environment variable on the device runni
 
 This approach allows us to change the API endpoint without modifying our codebase. For instance, we might use different API endpoints for development (`stage-api.example.com`) and production (`api.example.com`) environments.
 
-Remember, environment variables are not limited to the `baseUrl` or `@http` directive. You can use them throughout your schema, as a Mustache template handles their evaluation.
+Remember, environment variables are not limited to the `url` or `@http` directive. You can use them throughout your schema, as a Mustache template handles their evaluation.
 
 Here's another example, using an environment variable in the `headers` of `@grpc`:
 
@@ -69,7 +65,7 @@ type Query {
       service: "UserService"
       method: "ListUsers"
       protoPath: "./proto/user_service.proto"
-      baseURL: "https://grpc-server.example.com"
+      url: "https://grpc-server.example.com"
       headers: [
         {key: "X-API-KEY", value: "{{.env.API_KEY}}"}
       ]
