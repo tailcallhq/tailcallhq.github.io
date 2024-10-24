@@ -30,7 +30,7 @@ const PostContent = ({ item }: { item: Props["items"][0]; }) => (
         {item.content.metadata.frontMatter.description}
       </span>
     </div>
-    {item.content.metadata.authors[0] && <BlogAuthor author={item.content.metadata.authors[0]} className="mt-auto" />}
+    {item.content.metadata.authors[0] && <BlogAuthor author={item.content.metadata.authors[0]} containerClassName="mt-auto" />}
   </div>
 )
 

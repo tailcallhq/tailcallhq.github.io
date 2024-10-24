@@ -57,7 +57,7 @@ function BlogListPageContent({ metadata, items, sidebar }: Props): JSX.Element {
           <BlogListPaginator metadata={metadata} />
         </div>
         {featuredItems.length > 0 ? (
-          <div className="w-full md:w-3/12 hidden md:block md:pl-6">
+          <div className="w-full md:w-3/12 hidden md:block md:pl-5">
             <BlogFeaturedPosts items={featuredItems} />
           </div>
         ) : null}
