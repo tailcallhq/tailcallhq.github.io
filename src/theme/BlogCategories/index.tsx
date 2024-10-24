@@ -1,6 +1,6 @@
-import type {Props} from "@theme/BlogListPage"
+import type { Props } from "@theme/BlogListPage"
 import clsx from "clsx"
-import React, {useMemo} from "react"
+import React, { useMemo } from "react"
 
 interface BlogCategoriesProps {
   items: Props["items"]
@@ -8,9 +8,9 @@ interface BlogCategoriesProps {
   activeCategory: string | null
 }
 
-export function BlogCategories({items, onCategoryClick, activeCategory}: BlogCategoriesProps): JSX.Element {
+export function BlogCategories({ items, onCategoryClick, activeCategory }: BlogCategoriesProps): JSX.Element {
   const categories = useMemo(() => {
-    const categoryCounts: Record<string, number> = {All: items.length}
+    const categoryCounts: Record<string, number> = { All: items.length }
     items.map((item) => {
       const category = item.content.metadata.frontMatter.category as string
       if (typeof category === "string") {
@@ -21,7 +21,7 @@ export function BlogCategories({items, onCategoryClick, activeCategory}: BlogCat
   }, [items])
 
   return (
-    <div className="mb-4 flex items-center space-x-4 border-b border-gray-200">
+    <div className="mb-5 flex items-center space-x-4 border-b border-gray-200">
       {Object.entries(categories).map(([name, count]) => (
         <div
           aria-role="button"

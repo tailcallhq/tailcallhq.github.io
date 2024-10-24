@@ -1,9 +1,9 @@
 import React from "react"
 import Link from "@docusaurus/Link"
-import type {Props} from "@theme/BlogListPage"
-import {BlogAuthor} from "../BlogAuthor"
+import type { Props } from "@theme/BlogListPage"
+import { BlogAuthor } from "../BlogAuthor"
 
-function BlogFeaturedPosts({items}: {items: Props["items"]}): JSX.Element {
+function BlogFeaturedPosts({ items }: { items: Props["items"] }): JSX.Element {
   return (
     <div className="space-y-4">
       <h2 className="text-2xl mb-4 font-bold">Featured Posts</h2>
@@ -14,7 +14,7 @@ function BlogFeaturedPosts({items}: {items: Props["items"]}): JSX.Element {
           className="flex flex-col gap-4 text-black !no-underline hover:text-black"
         >
           <div className="flex items-center gap-2">
-            {post.content.metadata.authors[0] && <BlogAuthor author={post.content.metadata.authors[0]} />}
+            {post.content.metadata.authors[0] && <BlogAuthor author={post.content.metadata.authors[0]} className="mt-4" />}
           </div>
           <div>
             <div className="text-lg font-semibold">{post.content.metadata.title}</div>
