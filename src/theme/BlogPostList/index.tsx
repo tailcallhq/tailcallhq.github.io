@@ -14,8 +14,8 @@ const RegularPost = ({ item }: { item: Props["items"][0] }) => (
 )
 
 const PostContent = ({ item }: { item: Props["items"][0]; }) => (
-  <div className="flex flex-col flex-1 py-12 px-6 gap-3 border border-solid border-tailCall-border-light-400 hover:border-tailCall-border-dark-100 rounded-md">
-    <span className="text-content-mini text-black">
+  <div className="flex flex-col flex-1 p-3 md:py-12 md:px-6 gap-2 md:gap-3 border border-solid border-tailCall-border-light-400 hover:border-tailCall-border-dark-100 rounded-lg md:rounded-md">
+    <span className="hidden md:flex text-content-mini text-black">
       {new Date(item.content.metadata.date).toLocaleDateString("en-US", {
         month: "long",
         day: "numeric",
@@ -23,10 +23,10 @@ const PostContent = ({ item }: { item: Props["items"][0]; }) => (
       })}
     </span>
     <div className="flex flex-col">
-      <span className={clsx("text-title-small")}>
+      <span className={clsx("text-title-small line-clamp-2")}>
         {item.content.metadata.title}
       </span>
-      <span className="text-content-small line-clamp-3 text-tailCall-light-600">
+      <span className="text-content-tiny md:text-content-small line-clamp-1 md:line-clamp-3 text-tailCall-light-600">
         {item.content.metadata.frontMatter.description}
       </span>
     </div>
@@ -36,7 +36,7 @@ const PostContent = ({ item }: { item: Props["items"][0]; }) => (
 
 function BlogPostList({ items }: { items: Props["items"] }): JSX.Element {
   return (
-    <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 md:gap-3 md:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => {
         return (
           <RegularPost key={item.content.metadata.permalink} item={item} />
