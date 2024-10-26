@@ -9,7 +9,7 @@ type LinkButtonProps = {
   theme: Theme
   onClick?: () => void | Promise<void>
   href?: string
-  width?: "small" | "medium" | "large" | "auto"
+  width?: "small" | "medium" | "large" | "auto" | "full"
   disabled?: boolean
 }
 
@@ -23,6 +23,8 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
         return "w-[300px]"
       case "large":
         return "w-[500px]"
+      case "full":
+        return "w-full"
       case "auto":
         return "w-fit"
       default:
