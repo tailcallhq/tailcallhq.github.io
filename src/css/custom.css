@@ -798,7 +798,3 @@ span.token.tag.script.language-javascript {
   padding-bottom: var(--ifm-navbar-height);
   top: 2rem;
 }
-
-.blog-category-active-tab {
-  box-shadow: inset 0 -2px 0 0 var(--ifm-color-brand-dark);
-}

@@ -31,7 +31,7 @@ export function BlogCategories({items, onCategoryClick, activeCategory}: BlogCat
           className={clsx(
             "text-content-small md:text-title-tiny cursor-pointer appearance-none border-none bg-transparent px-1",
             activeCategory === name
-              ? "!font-medium text-black blog-category-active-tab"
+              ? "!font-medium text-black border-b-solid border-b-2 border-black"
               : "!font-normal text-tailCall-dark-200 hover:text-gray-700",
           )}
         >
