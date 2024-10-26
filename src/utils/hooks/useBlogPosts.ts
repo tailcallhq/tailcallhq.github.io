@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react"
-import type { Props } from "@theme/BlogListPage"
+import {useState, useMemo} from "react"
+import type {Props} from "@theme/BlogListPage"
 
 const DEFAULT_CATEGORY = "All"
 const INITIAL_BLOG_COUNT = 12

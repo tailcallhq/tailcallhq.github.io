@@ -2,24 +2,24 @@ import React from "react"
 import clsx from "clsx"
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
-import { PageMetadata, HtmlClassNameProvider, ThemeClassNames } from "@docusaurus/theme-common"
+import {PageMetadata, HtmlClassNameProvider, ThemeClassNames} from "@docusaurus/theme-common"
 import BlogLayout from "@theme/BlogLayout"
 import BlogListPaginator from "@theme/BlogListPaginator"
 import SearchMetadata from "@theme/SearchMetadata"
-import type { Props } from "@theme/BlogListPage"
+import type {Props} from "@theme/BlogListPage"
 import BlogListPageStructuredData from "@theme/BlogListPage/StructuredData"
 import BlogFeaturedPosts from "../BlogFeaturedPosts"
 import BlogPostList from "../BlogPostList"
-import { BlogCategories } from "../BlogCategories"
-import { useBlogPosts } from "@site/src/utils/hooks/useBlogPosts"
-import { FrontMatter } from "@theme/BlogPostPage"
+import {BlogCategories} from "../BlogCategories"
+import {useBlogPosts} from "@site/src/utils/hooks/useBlogPosts"
+import {FrontMatter} from "@theme/BlogPostPage"
 
 function BlogListPageMetadata(props: Props): JSX.Element {
-  const { metadata } = props
+  const {metadata} = props
   const {
-    siteConfig: { title: siteTitle },
+    siteConfig: {title: siteTitle},
   } = useDocusaurusContext()
-  const { blogDescription, blogTitle, permalink } = metadata
+  const {blogDescription, blogTitle, permalink} = metadata
   const isBlogOnlyMode = permalink === "/"
   const title = isBlogOnlyMode ? siteTitle : blogTitle
   return (
@@ -30,7 +30,7 @@ function BlogListPageMetadata(props: Props): JSX.Element {
   )
 }
 
-function LoadMoreButton({ handleLoadMore }: { handleLoadMore: () => void }): JSX.Element {
+function LoadMoreButton({handleLoadMore}: {handleLoadMore: () => void}): JSX.Element {
   return (
     <div className="flex justify-center">
       <button
@@ -43,9 +43,9 @@ function LoadMoreButton({ handleLoadMore }: { handleLoadMore: () => void }): JSX
   )
 }
 
-function BlogListPageContent({ metadata, items, sidebar }: Props): JSX.Element {
-  const { activeCategory, visibleItems, filteredItems, handleCategoryClick, handleLoadMore } = useBlogPosts(items)
-  const featuredItems = items.filter((post) => (post.content.frontMatter as FrontMatter & { featured: boolean }).featured)
+function BlogListPageContent({metadata, items, sidebar}: Props): JSX.Element {
+  const {activeCategory, visibleItems, filteredItems, handleCategoryClick, handleLoadMore} = useBlogPosts(items)
+  const featuredItems = items.filter((post) => (post.content.frontMatter as FrontMatter & {featured: boolean}).featured)
 
   return (
     <BlogLayout sidebar={sidebar}>

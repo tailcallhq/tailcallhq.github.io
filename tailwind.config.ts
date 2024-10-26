@@ -180,13 +180,13 @@ module.exports = {
         },
       ],
       "content-mini": [
-        "12px", 
+        "12px",
         {
-          "lineHeight": "16px",
-          "fontWeight": "400",
-          "letterSpacing": "-2%"
-        }
-      ]
+          lineHeight: "16px",
+          fontWeight: "400",
+          letterSpacing: "-2%",
+        },
+      ],
     },
   },
   plugins: [],
