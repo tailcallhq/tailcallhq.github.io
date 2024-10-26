@@ -766,6 +766,10 @@ span.token.tag.script.language-javascript {
   .border-right {
     border-right: 1px solid #e7e7e7;
   }
+
+  .blog-post-content-desc {
+    -webkit-mask-image: linear-gradient(180deg, #000 75%, transparent);
+  }
 }
 
 .menu__link--sublist-caret:after {
@@ -789,4 +793,8 @@ span.token.tag.script.language-javascript {
 [class*="navbarHidden"]+.main-wrapper .featured-posts-container {
   padding-bottom: var(--ifm-navbar-height);
   top: 2rem;
+}
+
+.blog-category-active-tab {
+  box-shadow: inset 0 -2px 0 0 var(--ifm-color-brand-dark);
 }

@@ -22,11 +22,11 @@ const PostContent = ({ item }: { item: Props["items"][0]; }) => (
         year: "numeric",
       })}
     </span>
-    <div className="flex flex-col">
+    <div className="flex flex-col flex-1 gap-1 md:gap-2">
       <span className={clsx("text-title-small line-clamp-2")}>
         {item.content.metadata.title}
       </span>
-      <span className="text-content-tiny md:text-content-small line-clamp-1 md:line-clamp-3 text-tailCall-light-600">
+      <span className="flex-1 text-content-tiny md:text-content-small line-clamp-1 md:line-clamp-3 text-tailCall-light-600 blog-post-content-desc">
         {item.content.metadata.frontMatter.description}
       </span>
     </div>

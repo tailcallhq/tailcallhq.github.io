@@ -29,10 +29,10 @@ export function BlogCategories({ items, onCategoryClick, activeCategory }: BlogC
           key={name}
           onClick={() => onCategoryClick(name === activeCategory ? "All" : name)}
           className={clsx(
-            "text-sm cursor-pointer appearance-none border-none bg-transparent px-1 font-medium",
+            "text-content-small md:text-title-tiny cursor-pointer appearance-none border-none bg-transparent px-1",
             activeCategory === name
-              ? "font-medium text-gray-900 border-b-solid border-b-2 border-black"
-              : "text-gray-500 hover:text-gray-700",
+              ? "!font-medium text-black blog-category-active-tab"
+              : "!font-normal text-tailCall-dark-200 hover:text-gray-700",
           )}
         >
           {name}
