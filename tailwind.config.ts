@@ -179,6 +179,14 @@ module.exports = {
           letterSpacing: "-4%",
         },
       ],
+      "content-mini": [
+        "12px",
+        {
+          lineHeight: "16px",
+          fontWeight: "400",
+          letterSpacing: "-2%",
+        },
+      ],
     },
   },
   plugins: [],

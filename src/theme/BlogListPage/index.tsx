@@ -50,14 +50,14 @@ function BlogListPageContent({metadata, items, sidebar}: Props): JSX.Element {
   return (
     <BlogLayout sidebar={sidebar}>
       <div className="flex flex-col md:flex-row items-start w-full">
-        <div className={clsx("w-full md:w-9/12 md:pr-6", featuredItems.length == 0 ? "md:w-full" : "border-right")}>
+        <div className={clsx("w-full md:w-9/12 md:pr-5", featuredItems.length == 0 ? "md:w-full" : "border-right")}>
           <BlogCategories items={items} onCategoryClick={handleCategoryClick} activeCategory={activeCategory} />
           <BlogPostList items={filteredItems.slice(0, visibleItems)} />
           {visibleItems < filteredItems.length && <LoadMoreButton handleLoadMore={handleLoadMore} />}
           <BlogListPaginator metadata={metadata} />
         </div>
         {featuredItems.length > 0 ? (
-          <div className="w-full md:w-3/12 hidden md:block md:pl-6">
+          <div className="w-full md:w-3/12 hidden md:block md:pl-5 featured-posts-container">
             <BlogFeaturedPosts items={featuredItems} />
           </div>
         ) : null}

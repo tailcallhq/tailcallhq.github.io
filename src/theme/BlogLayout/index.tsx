@@ -17,7 +17,7 @@ export default function BlogLayout(props: Props): JSX.Element {
 
   return (
     <Layout {...layoutProps}>
-      <div className="container mx-auto my-8 px-4">
+      <div className="container mx-auto mt-3 mb-10 md:my-8 px-4 ">
         <div className="flex flex-row">
           {isBlogPostPage && <div className="hidden lg:block lg:w-[20.83%]"></div>}
           <div className={clsx("w-full", isBlogPostPage && "lg:w-[58.33%]")}>{children}</div>
