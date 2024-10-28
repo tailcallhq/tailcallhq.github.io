@@ -196,7 +196,6 @@ const NavbarContent = (): JSX.Element => {
         // Render right navbar items
         <>
           <NavbarItems items={rightItems} />
-          <GithubStarsButton className="navbar__item navbar__link" />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
         </>
       }
