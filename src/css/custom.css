@@ -288,7 +288,7 @@ input[type="radio"]:checked::before {
 
 .navbar__items.navbar__items--right {
   position: absolute;
-  right: 0;
+  right: 14%;
   top: 50%;
   transform: translateY(-50%);
 }

@@ -326,9 +326,3 @@
   cursor: pointer;
   stroke-width: 2px;
 }
-
-@media only screen and (min-width: 992px) and (max-width: 1150px) {
-  .DocSearch-Button-Placeholder {
-    display: none;
-  }
-}

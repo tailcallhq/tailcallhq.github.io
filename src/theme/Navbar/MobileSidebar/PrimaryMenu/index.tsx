@@ -22,10 +22,6 @@ const NavbarMobilePrimaryMenu = (): JSX.Element => {
       {items.map((item, i) => (
         <NavbarItem mobile {...item} onClick={() => mobileSidebar.toggle()} key={i} />
       ))}
-      <li className="menu__list-item">
-        {/* Render the GithubStarsButton component */}
-        <GithubStarsButton className="menu__link" />
-      </li>
     </ul>
   )
 }
