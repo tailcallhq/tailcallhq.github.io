@@ -238,7 +238,7 @@ export default {
       },
     ],
     [
-      "@docusaurus/plugin-content-blog",
+      "./plugins/custom-blog-plugin.ts",
       {
         path: "blog",
         editLocalizedFiles: false,
