@@ -137,5 +137,10 @@ type CustomerFeedback = {
   department?: string
 }
 
+type BlogTag = {
+  label: string
+  permalink: string
+}
+
 declare module "docusaurus-lunr-search/src/theme/SearchBar"
 declare module "react-platform-js"
