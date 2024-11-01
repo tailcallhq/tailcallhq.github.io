@@ -62,7 +62,7 @@ function BlogTagsPostsPageContent({tag, items}: Props): JSX.Element {
   return (
     <Layout>
       <div className="container mx-auto mt-3 mb-10 md:my-8 px-4 md:w-8/12">
-        <div className="flex gap-2 mb-5">
+        <div className="flex flex-col md:flex-row gap-2 mb-5">
           <span className="text-title-medium text-tailCall-light-600">Results for</span>
           <span className="flex items-center justify-between flex-1">
             <span className="text-content-small px-3 py-1 text-tailCall-dark-100 rounded-full bg-tailCall-light-200">
