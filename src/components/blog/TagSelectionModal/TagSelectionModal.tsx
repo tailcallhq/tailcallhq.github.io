@@ -66,12 +66,12 @@ const TagSelectionModal: React.FC<TagSelectionModalProps> = ({open, onClose}) =>
           {/* Modal Container */}
           <div
             className={clsx(
-              "absolute w-full md:w-4/12 h-full overflow-scroll right-0 bg-white rounded-xl md:rounded-none md:border md:border-solid md:border-tailCall-border-light-500 px-4 py-8 md:px-10 md:py-8 flex flex-col gap-8",
+              "absolute w-full lg:w-4/12 h-full overflow-scroll right-0 bg-white rounded-xl lg:rounded-none lg:border lg:border-solid lg:border-tailCall-border-light-500 px-4 py-8 lg:px-10 lg:py-8 flex flex-col gap-8",
               styles.modalContainer,
             )}
           >
             <div className="flex items-center justify-between">
-              <span className="text-title-medium md:text-title-large text-black">Explore All Tags</span>
+              <span className="text-title-medium lg:text-title-large text-black">Explore All Tags</span>
               <X width={24} height={24} className="cursor-pointer" onClick={handleModalClose} />
             </div>
             <div className="flex flex-col gap-5 pb-36">
@@ -86,11 +86,11 @@ const TagSelectionModal: React.FC<TagSelectionModalProps> = ({open, onClose}) =>
                   className="text-black placeholder:text-tailCall-light-500 border-none outline-none text-content-small"
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 md:gap-y-10">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-8 lg:gap-y-10">
                 {Object.keys(searchResults).map((category: string) => {
                   return (
-                    <div className="flex flex-col gap-3 md:gap-4" key={category}>
-                      <span className="text-title-tiny md:text-title-small text-black">{category}</span>
+                    <div className="flex flex-col gap-3 lg:gap-4" key={category}>
+                      <span className="text-title-tiny lg:text-title-small text-black">{category}</span>
                       {searchResults?.[category]?.map((tag: BlogTag) => (
                         <Link
                           key={tag.label}
