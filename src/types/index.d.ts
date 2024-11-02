@@ -144,3 +144,11 @@ type BlogTag = {
 
 declare module "docusaurus-lunr-search/src/theme/SearchBar"
 declare module "react-platform-js"
+
+type RecentBlogPostItem = {
+  date: string
+  title: string
+  description: string
+  authors: Author[]
+  permalink: string
+}
