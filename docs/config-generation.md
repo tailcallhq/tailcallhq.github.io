@@ -339,7 +339,8 @@ Tailcall simplifies the process of generating GraphQL schemas from gRPC. By spec
             "inputs": [
               {
                 "proto": {
-                  "src": "./news.proto"
+                  "src": "./news.proto",
+                  "url": "http://localhost:50051"
                 }
               }
             ],
@@ -363,6 +364,7 @@ Tailcall simplifies the process of generating GraphQL schemas from gRPC. By spec
         inputs:
           - proto:
             src: "./news.proto"
+            url: "http://localhost:50051"
         preset:
           mergeType: 1.0
         output:
