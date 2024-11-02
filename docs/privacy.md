@@ -19,6 +19,7 @@ If you reside in California, please also see our California-Specific Disclosures
 ### 2.1 Information You Provide to Us
 
 In the course of using our Sites and Services you may provide us with certain information about you, such as when you:
+
 - Create an account or register for the Services
 - Use the Tailcall CLI
 - Participate in any interactive features of the Sites
@@ -28,6 +29,7 @@ In the course of using our Sites and Services you may provide us with certain in
 - Otherwise communicate with us
 
 The types of information we may collect include:
+
 - Name
 - Email address
 - GitHub username
@@ -40,6 +42,7 @@ The types of information we may collect include:
 When you access or use our Sites and Services, we automatically collect information about you, including:
 
 **Log Information:**
+
 - Type of browser you use
 - Access times
 - Pages viewed
@@ -48,6 +51,7 @@ When you access or use our Sites and Services, we automatically collect informat
 - Pages visited before navigating to our Services
 
 **CLI Usage Information:**
+
 - Command usage patterns
 - Error logs
 - Performance metrics
@@ -55,6 +59,7 @@ When you access or use our Sites and Services, we automatically collect informat
 - Operating system information
 
 **Device Information:**
+
 - Computer or device type
 - Operating system and version
 - Unique device identifiers
@@ -66,6 +71,7 @@ We use cookies and other technologies, such as web beacons, web storage, and uni
 ### 2.3 Information We Collect from Other Sources
 
 We may obtain information from other sources and combine that with information we collect through our Sites and Services, such as:
+
 - Information from GitHub or other third-party authentication services
 - Publicly available information from open source repositories
 - Information from third-party services that integrate with our Services
@@ -73,6 +79,7 @@ We may obtain information from other sources and combine that with information w
 ## 3. Use of Information
 
 We use information we collect about you to:
+
 - Provide, maintain, and improve our Sites and Services
 - Process and complete transactions
 - Send technical notices and support communications
@@ -112,20 +119,25 @@ We may transfer, process, and store information about you outside your home coun
 ## 8. Your Choices
 
 ### 8.1 Account Information
+
 You may update, correct or delete certain account information at any time by contacting us. Note that we may retain certain information as required by law or for legitimate business purposes.
 
 ### 8.2 Cookies
+
 Most web browsers are set to accept cookies by default. You can usually modify your browser settings to remove or reject browser cookies. Please note that removing or rejecting cookies could affect the availability and functionality of our Sites.
 
 ### 8.3 CLI Data Collection
+
 You can opt out of non-essential data collection in the Tailcall CLI by modifying your configuration settings. Essential operational data may still be collected for security and functionality purposes.
 
 ### 8.4 Communications
+
 You may opt out of receiving promotional communications from us by following the instructions in those messages or by contacting us. If you opt out, we may still send you non-promotional communications, such as those about your account or our ongoing business relations.
 
 ## 9. California-Specific Disclosures
 
 If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA), including:
+
 - The right to know what personal information we collect and how we use it
 - The right to delete your personal information
 - The right to opt-out of the sale of your personal information
@@ -136,6 +148,7 @@ We do not sell personal information of California residents.
 ## 10. EEA- and UK-Specific Disclosures
 
 If you are located in the EEA or UK, you have certain rights under the General Data Protection Regulation (GDPR), including:
+
 - The right to access your personal data
 - The right to rectify inaccurate personal data
 - The right to delete your personal data
@@ -156,6 +169,6 @@ We may change this Privacy Policy from time to time. If we make changes, we will
 
 If you have any questions about this Privacy Policy or our privacy practices, please contact us at:
 
-Email: [hi@tailcall.run](mailto:hi@tailcall.run)
+Email: [support@tailcall.run](mailto:support@tailcall.run)
 
 Website: https://tailcall.run
