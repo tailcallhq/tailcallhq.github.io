@@ -1,0 +1,9 @@
+.modalContainer {
+  z-index: calc(var(--ifm-z-index-fixed) + 2);
+  top: var(--ifm-navbar-height);
+  box-shadow: -56px 32px 48px 0px rgba(0, 0, 0, 0.08);
+}
+
+.modalOverlay {
+  z-index: calc(var(--ifm-z-index-fixed) + 1);
+}

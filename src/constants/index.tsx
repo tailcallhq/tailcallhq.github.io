@@ -544,3 +544,44 @@ export const testimonials: CustomerFeedback[] = [
     department: "Ops",
   },
 ]
+
+export const blogTagsMapping: Record<string, BlogTag[]> = {
+  "Technologies and Frameworks": [
+    {label: "Angular", permalink: "/blog/tags/angular"},
+    {label: "Apollo client", permalink: "/blog/tags/apollo-client"},
+    {label: "JavaScript", permalink: "/blog/tags/java-script"},
+    {label: "Node.js", permalink: "/blog/tags/node-js"},
+    {label: "URQL", permalink: "/blog/tags/urql"},
+    {label: "Villus", permalink: "/blog/tags/villus"},
+    {label: "Vue", permalink: "/blog/tags/vue"},
+  ],
+  "Debugging and Tooling": [
+    {label: "debugging", permalink: "/blog/tags/debugging"},
+    {label: "IDE", permalink: "/blog/tags/ide"},
+    {label: "Tooling", permalink: "/blog/tags/tooling"},
+  ],
+  "API Concepts and Tools": [
+    {label: "API", permalink: "/blog/tags/api"},
+    {label: "Fetch API", permalink: "/blog/tags/fetch-api"},
+    {label: "GraphiQL", permalink: "/blog/tags/graphi-ql"},
+    {label: "GraphQL", permalink: "/blog/tags/graph-ql"},
+    {label: "OpenAPI", permalink: "/blog/tags/open-api"},
+    {label: "Microservice", permalink: "/blog/tags/microservice"},
+    {label: "Microservices", permalink: "/blog/tags/microservices"},
+    {label: "Backend-for-Frontend", permalink: "/blog/tags/backend-for-frontend"},
+  ],
+  "Schema and Introspection": [
+    {label: "Introspection", permalink: "/blog/tags/introspection"},
+    {label: "Schema", permalink: "/blog/tags/schema"},
+  ],
+  "General Terms": [
+    {label: "Performance", permalink: "/blog/tags/performance"},
+    {label: "Scalability", permalink: "/blog/tags/scalability"},
+    {label: "Security", permalink: "/blog/tags/security"},
+    {label: "Strategy", permalink: "/blog/tags/strategy"},
+    {label: "Migration", permalink: "/blog/tags/migration"},
+    {label: "Design", permalink: "/blog/tags/design"},
+    {label: "Flexibility", permalink: "/blog/tags/flexibility"},
+  ],
+  "Development Practices": [{label: "Best Practices", permalink: "/blog/tags/best-practices"}],
+}
