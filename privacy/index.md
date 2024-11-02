@@ -1,7 +1,6 @@
 ---
 title: Privacy Policy
 description: "Tailcall Privacy Policy"
-slug: privacy
 sidebar_label: Privacy Policy
 last_updated: 2024-10-29
 ---

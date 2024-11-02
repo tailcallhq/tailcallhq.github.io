@@ -42,9 +42,7 @@ To learn more about writing configuration to leverage the full power of Tailcall
 <TabItem value="graphql" label="graphql">
 
 ```graphql showLineNumbers
-schema
-  @server(port: 8000, hostname: "0.0.0.0")
-  @upstream(httpCache: 42, batch: {delay: 100}) {
+schema @server(port: 8000, hostname: "0.0.0.0") @upstream(httpCache: 42, batch: {delay: 100}) {
   query: Query
 }
 

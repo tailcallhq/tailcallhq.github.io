@@ -256,6 +256,16 @@ export default {
         },
       },
     ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "privacy",
+        path: "privacy",
+        routeBasePath: "privacy",
+        showLastUpdateTime: true,
+        sidebarPath: require.resolve("./privacy/sidebar.ts"),
+      },
+    ],
 
     [
       "@docusaurus/plugin-content-docs",
