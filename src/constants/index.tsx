@@ -5,6 +5,7 @@ export const tailCallBenchmarkUrl = "https://github.com/tailcallhq/graphql-bench
 export const tailCallBlogUrl = "https://blog.tailcall.run/"
 export const codeSandboxUrl = "https://codesandbox.io/p/github/tailcallhq/tailcall-sandbox/main"
 export const zapierLink = "https://hooks.zapier.com/hooks/catch/2793322/3a1gxp2/"
+export const playgroundAdsConversionId = "AW-16578154380/3FH_CJrawsgZEIyfiuE9"
 
 export const algoliaConstants = {
   categoryFacet: "category",

@@ -10,6 +10,15 @@ export const analyticsHandler = (category: string, action: string, label: string
   })
 }
 
+export const sendConversionEvent = (conversionId: string, eventCallback?: Function) => {
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "conversion", {
+      send_to: conversionId,
+      event_callback: eventCallback,
+    })
+  }
+}
+
 // Function to set overflow on body
 export const setBodyOverflow = (value: "initial" | "hidden") => {
   document.body.style.overflow = value

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react"
 import {GraphiQL} from "graphiql"
-import {analyticsHandler, isValidURL} from "@site/src/utils"
+import {analyticsHandler, isValidURL, sendConversionEvent} from "@site/src/utils"
+import {playgroundAdsConversionId} from "@site/src/constants"
 import "graphiql/graphiql.css"
 import "../../css/graphiql.css"
 import {type FetcherParams, FetcherOpts} from "@graphiql/toolkit"
@@ -45,6 +46,7 @@ const Playground = () => {
       return Promise.resolve({})
     }
     analyticsHandler("GraphQL", "tc_fetch_query", apiEndpoint.toString())
+    sendConversionEvent(playgroundAdsConversionId)
 
     const response = await fetch(apiEndpoint.toString(), {
       method: "post",
