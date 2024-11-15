@@ -19,7 +19,7 @@ type ProtectedType @protected {
 ```
 
 :::important
-To utilize the `@protected` directive, you must link at least one authentication provider in the configuration using the [`@link`](#link-directive) directive (`Htpasswd` or `Jwks`).
+To utilize the `@protected` directive, you must link at least one authentication provider in the configuration using the [`@link`](./link.md) directive (`Htpasswd` or `Jwks`).
 :::
 
 ## How It Works

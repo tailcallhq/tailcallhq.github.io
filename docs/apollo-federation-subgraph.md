@@ -40,7 +40,7 @@ Please, note that you don't need to specify the `@key` directive manually when d
 
 ## Enable federation in the Tailcall config
 
-Federation is controlled by the flag [`enableFederation`](./directives.md#enablefederation). Define it with `true` value to enable federation support.
+Federation is controlled by the flag [`enableFederation`](./directives/server.md#enablefederation). Define it with `true` value to enable federation support.
 
 ## Register your subgraph
 
