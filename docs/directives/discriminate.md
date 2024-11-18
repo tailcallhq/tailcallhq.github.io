@@ -75,4 +75,8 @@ In this case the API is expected to respond with an object that has a key `ty` r
 {"ty": "Bar","bar": "World"}
 ```
 
+:::note
+The value of the discriminator field should match the type name in a case sensitive manner.
+:::
+
 Great! Congratulations on learning how to use the `@discriminate` directive to customize decoding of union types. Now you can confidently work with union types in your GraphQL schema. 🎉
