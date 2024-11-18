@@ -17,6 +17,7 @@ Here is a list of all the custom directives supported by Tailcall:
 | [`@addField`](./directives/addField.md)   | Simplifies data structures and queries by adding, inlining, or flattening fields or nodes within the schema. |
 | [`@cache`](./directives/cache.md)         | Enables caching for the query, field or type applied to.                                                     |
 | [`@call`](./directives/call.md)           | Invokes a query or mutation from another query or mutation field.                                            |
+| [`@discriminate`](./directives/discr.md)  | Allows to overwrite the default discriminator strategy of `__typename`.                                      |
 | [`@expr`](./directives/expr.md)           | Allows embedding of a constant response within the schema.                                                   |
 | [`@graphQL`](./directives/graphQL.md)     | Resolves a field or node by a GraphQL API.                                                                   |
 | [`@grpc`](./directives/grpc.md)           | Resolves a field or node by a gRPC API.                                                                      |
