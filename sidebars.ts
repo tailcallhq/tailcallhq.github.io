@@ -42,6 +42,7 @@ const sidebars: SidebarsConfig = {
         "directives/server",
         "directives/telemetry",
         "directives/upstream",
+        "directives/discriminate",
       ].sort(),
     },
 

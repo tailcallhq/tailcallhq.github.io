@@ -1,106 +1,78 @@
 ---
 title: "@discriminate"
-description: The `@discriminate` directive is used to change the default way Tailcall resolves the `__typename` property of GraphQL types.
+description: The `@discriminate` directive is used to customize decoding of union types.
 slug: ../discriminate
 ---
 
-The `@discriminate` directive is used to change the default way Tailcall resolves the `__typename` property of GraphQL types. When the directive is used we configure Tailcall to use the specified `field` for the `__typename` property.
+By default a union type expects an object with a wrapper key representing the value type. For example say we have the following GraphQL schema:
 
-
-## discriminate
-
-```graphql
-@discriminate(field: String!)
-```
-
-The `field` argument is required and should be a string, and specifies the field Tailcall will use of the `__typename` property.
-
-### How It Works
-
-When a field is annotated with the `@discriminate` directive, Tailcall uses the specified `field` argument to resolve the type of the value. This is done by checking the presence of the specified `field` in the returned value and verifying that it is a member of the Union or Interface type.
-
-### Usage
-
-Lets assume that we configure Tailcall in the following way:
-
-```graphql
+```graphql showLineNumbers
 type Query {
-  components: [Component!]! @discriminate(field: "type")
+  fooBar: [FooBar]
+    @http(url: "https://api.example.com/foobar")
 }
 
-union Component = Cpu | Gpu
+union FooBar = Foo | Bar
 
-type Cpu {
-  cores: Int!
+type Foo {
+  foo: String!
 }
 
-type Gpu {
-  shaders: Int!
-}
-```
-
-When we request the following query:
-
-
-```gql
-{
-  components {
-    ... on Cpu {
-      cores
-    }
-    ... on Gpu {
-      shaders
-    }
-    __typename
-  }
+type Bar {
+  bar: String!
 }
 ```
 
-Given the following data:
+The API is expected to respond with an object that is wrapped with a key representing the type of the value. For example for `Foo` the response should look like:
 
 ```json
 [
-  {"type": "Cpu", "cores": 8},
-  {"type": "Gpu", "shaders": 512}
+  // API Response
+  {"Foo": {"foo": "Hello"}},
+  {"Bar": {"bar": "World"}}
 ]
 ```
 
-We resolve to:
+:::note
+The **key** is always case sensitive and should match the type name.
+:::
+
+This allows Tailcall to correctly decode the response and resolve with the exact variant of the union type. However its also a common practice to have a special field to specify the type. For example:
 
 ```json
 [
-  {"__typename": "Cpu", "cores": 8},
-  {"__typename": "Gpu", "shaders": 512}
+  {"type": "Foo", "foo": "Hello"},
+  {"type": "Boo", "bar": "World"}
 ]
 ```
 
-## Discrimination Overview
+This can be achieved by modifying the schema to leverage the `@discriminate` directive:
 
-Discrimination in Tailcall is a mechanism to determine the type of an object in a GraphQL schema. It's used to resolve the `__typename` field of an object, which is essential for Union and Interface types. Tailcall has the following discrimination strategies: `KeyedDiscriminator` and `TypeFieldDiscriminator`. The `KeyedDiscriminator` is used by default but can be overwritten using the `@discriminate` directive.
+```graphql {4}
+type Query {
+  fooBar: FooBar
+    @http(url: "https://api.example.com/foobar")
+    @discriminate
+}
+```
 
-## KeyedDiscriminator
+The `@discriminate` directive is used to indicate explicitly that the union type should be resolved using a discriminator field.
 
-A `KeyedDiscriminator` expects an object with one key representing the value type. For example, `{ "Foo": {...} }` would resolve to `"Foo"`. This discriminator is used when the type of an object can be determined by its keys.
+The directive can be further customized by providing the discriminator field `name`:
 
-Here's a step-by-step explanation of how `KeyedDiscriminator` works:
+```graphql {4}
+type Query {
+  fooBar: FooBar
+    @http(url: "https://api.example.com/foobar")
+    @discriminate(name: "ty")
+}
+```
 
-1. The `KeyedDiscriminator` is created with a `type_name` and a set of possible `types` (e.g., `["Foo", "Bar"]`).
-2. When resolving the `__typename` field, the discriminator checks if the object has exactly one key.
-3. If the object has more than one key, an error is returned.
-4. If the object has no keys, an error is returned.
-5. If the object has exactly one key, the discriminator checks if the key is in the set of possible `types`.
-6. An error is returned if the key is not in the set of possible `types`.
-7. If the key is in the set of possible `types`, the discriminator returns the key as the resolved `__typename`.
+In this case the API is expected to respond with an object that has a key `ty` representing the type of the value. For example for `Foo` the response should look like:
 
-## TypeFieldDiscriminator
+```json
+{"ty": "Foo","foo": "Hello"}
+{"ty": "Bar","bar": "World"}
+```
 
-A `TypeFieldDiscriminator` expects an object with a specific field containing the value type. For example, `{ "type": "Buzz", "bar": "test" }` would resolve to `"Buzz"`. This discriminator is used when a type field is present in the JSON response.
-
-Here's a step-by-step explanation of how `TypeFieldDiscriminator` works:
-
-1. The `TypeFieldDiscriminator` is created with a `type_name`, a set of possible `types` (e.g., `["Foo", "Bar"]`), and a `field` (e.g., `"type"`).
-2. When resolving the `__typename` field, the discriminator checks if the object has the specified `field`.
-3. If the object does not have the `field`, an error is returned.
-4. If the object has the `field`, the discriminator checks if the field's value is in the set of possible `types`.
-5. An error is returned if the value is not in the set of possible `types`.
-6. If the value is in the set of possible `types`, the discriminator returns the value as the resolved `__typename`.
+Great! Congratulations on learning how to use the `@discriminate` directive to customize decoding of union types. Now you can confidently work with union types in your GraphQL schema. 🎉
