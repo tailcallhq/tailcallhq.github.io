@@ -61,6 +61,21 @@ This is an optional command which allows changing the format of the input file. 
 tailcall check ./path/to/file1.graphql ./path/to/file2.graphql --format json
 ```
 
+### --verify-ssl
+
+Controls SSL/TLS certificate verification when loading remote configuration files.
+
+- Type: Boolean
+- Default: `true`
+
+```bash
+tailcall check --verify-ssl false < FILE_PATHS > ...
+```
+
+:::warning
+Disabling SSL verification is not recommended for production environments as it makes your connections vulnerable to man-in-the-middle attacks.
+:::
+
 ## start
 
 The `start` command launches the GraphQL Server for the specific configuration.
@@ -78,6 +93,21 @@ The `start` command allows for files and supports loading configurations over HT
 ```bash
 tailcall start ./path/to/file1.graphql ./path/to/file2.graphql http://example.com/file2.graphql
 ```
+
+### --verify-ssl
+
+Controls SSL/TLS certificate verification when loading remote configuration files.
+
+- Type: Boolean
+- Default: `true`
+
+```bash
+tailcall start --verify-ssl false < FILE_PATHS > ...
+```
+
+:::warning
+Disabling SSL verification is not recommended for production environments as it makes your connections vulnerable to man-in-the-middle attacks.
+:::
 
 ## init
 
