@@ -7,49 +7,90 @@ sidebar_label: Data Dog
 
 This guide is based on the [official doc](https://docs.datadoghq.com/getting_started/opentelemetry/?s=header#exploring-observability-data-in-datadog).
 
-1. Go to [datadoghq.com](https://www.datadoghq.com)
-2. Login to your account (make sure you choose right region for your account on login)
-3. Go to `Organization Settings -> API Keys` and copy the value of existing key or create a new one
-4. Integration with datadog requires [OpenTelemetry Collector](./telemetry.md#opentelemetry-collector) to be able to send data to. As an example we can use following config for the collector:
-   ```yml
-   receivers:
-     otlp:
-       protocols:
-         grpc:
-           endpoint: 0.0.0.0:4317
-   exporters:
-     logging:
-       verbosity: detailed
-     datadog:
-       traces:
-         span_name_as_resource_name: true
-       hostname: "otelcol"
-       api:
-         key: ${DATADOG_API_KEY}
-         # make sure to specify right datadog site based on
-         # https://docs.datadoghq.com/getting_started/site/
-         site: us5.datadoghq.com
-   processors:
-     batch:
-     datadog/processor:
-     probabilistic_sampler:
-       sampling_percentage: 30
-   service:
-     pipelines:
-       traces:
-         receivers: [otlp]
-         processors: [batch, datadog/processor]
-         exporters: [datadog]
-       metrics:
-         receivers: [otlp]
-         processors: [batch]
-         exporters: [datadog]
-       logs:
-         receivers: [otlp]
-         processors: [batch]
-         exporters: [datadog]
-   ```
-5. Go to your GraphQL configuration and update it to:
+---
+
+### Steps to Integrate Datadog with Tailcall
+
+1. **Log in to Datadog:**
+
+- Go to [datadoghq.com](https://www.datadoghq.com).
+- Log in to your account. Ensure you select the correct region for your account during login.
+
+2. **Obtain an API Key:**
+
+- Navigate to `Organization Settings -> API Keys`.
+- Copy the value of an existing API key or create a new one.
+
+3. **Set Up OpenTelemetry Collector:**
+
+- Integration with Datadog requires an [OpenTelemetry Collector](#opentelemetry-collector) to send data. Below is a sample configuration file:
+
+  ```yml
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+  exporters:
+    logging:
+      verbosity: detailed
+    datadog:
+      traces:
+        span_name_as_resource_name: true
+      hostname: "otelcol"
+      api:
+        key: ${DATADOG_API_KEY}
+        site: us5.datadoghq.com
+  processors:
+    batch:
+    datadog/processor:
+    probabilistic_sampler:
+      sampling_percentage: 30
+  service:
+    pipelines:
+      traces:
+        receivers: [otlp]
+        processors: [batch, datadog/processor]
+        exporters: [datadog]
+      metrics:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [datadog]
+      logs:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [datadog]
+  ```
+
+4. **Start OpenTelemetry Collector:**
+   Follow these steps to start the collector:
+
+- **Download and Install:**
+  Download the OpenTelemetry Collector from the [release page](https://github.com/open-telemetry/opentelemetry-collector-releases/releases). Select the appropriate version for your platform and install it.
+
+- **Save the Configuration File:**
+  Save the configuration above to a file named `otel-collector-config.yml` in your working directory.
+
+- **Set the Environment Variable:**
+  Replace `<your-api-key>` with the API key copied earlier:
+
+  ```bash
+  export DATADOG_API_KEY=<your-api-key>
+  ```
+
+- **Run the Collector:**
+  Start the collector with:
+
+  ```bash
+  ./otelcol --config otel-collector-config.yml
+  ```
+
+- **Verify the Collector:**
+  Confirm that it is running by checking the terminal logs. It should indicate that the collector is listening on the `OTLP` endpoint (`0.0.0.0:4317`).
+
+5. **Update Tailcall Configuration:**
+   Add telemetry support to your Tailcall configuration as follows:
+
    ```graphql
    schema
      @telemetry(
@@ -58,12 +99,33 @@ This guide is based on the [official doc](https://docs.datadoghq.com/getting_sta
      query: Query
    }
    ```
-6. 5. Set the api key you've copied before to the environment variable named `DATADOG_API_KEY` and start Otel collector and tailcall with updated config
 
-Now make some requests to running service and wait a little bit until Datadog proceeds the data. After that you can go to `APM -> Traces`, locate the span with name `request` and click on it. You should see something like on screenshot below:
+6. **Set the Environment Variable for Tailcall:**
 
-![datadog-trace](../static/images/telemetry/datadog-trace.png)
+- Ensure that the `DATADOG_API_KEY` environment variable is set.
+- Start both the OpenTelemetry Collector and Tailcall with the updated configuration.
 
-To see metrics now go to `Metrics -> Explorer` and search for metric you want to see. After updating the query you should see something like on example below:
+7. **Send and Analyze Data:**
 
-![datadog-metrics](../static/images/telemetry/datadog-metrics.png)
+- Make requests to the running service.
+- Wait for Datadog to process the telemetry data.
+
+---
+
+### Viewing Data in Datadog
+
+#### Viewing Traces:
+
+- Navigate to `APM -> Traces` in the Datadog dashboard.
+- Locate the span named `request` and click on it.
+- You should see details similar to the screenshot below:
+
+  ![datadog-trace](../static/images/telemetry/datadog-trace.png)
+
+#### Viewing Metrics:
+
+- Go to `Metrics -> Explorer` in the Datadog dashboard.
+- Search for the desired metric.
+- Update the query to visualize data, as shown below:
+
+  ![datadog-metrics](../static/images/telemetry/datadog-metrics.png)
