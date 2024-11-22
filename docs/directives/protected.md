@@ -44,17 +44,24 @@ schema
 }
 
 type Query {
-  animals: [Animal!]! @expr(body: [{Dog: {bark: "woof"}}, {Cat: {meow: "meow"}}, {Bird: {tweet: "tweet"}}])
+  animals: [Animal!]!
+    @expr(
+      body: [
+        {Dog: {bark: "woof"}}
+        {Cat: {meow: "meow"}}
+        {Bird: {tweet: "tweet"}}
+      ]
+    )
 }
 
 union Animal = Dog | Cat | Bird | Fish | Snake
 
 type Dog {
-  bark: String @protected(providers: ["a"])
+  bark: String @protected(ids: ["a"])
 }
 
 type Cat {
-  meow: String @protected(providers: ["a", "c"])
+  meow: String @protected(ids: ["a", "c"])
 }
 
 type Bird {
