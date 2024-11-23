@@ -4,6 +4,22 @@ description: The @modify directive allows altering attributes of a field or node
 slug: ../modify-directive
 ---
 
+The `@modify` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @modify(
+  """
+  New name for the field or node
+  """
+  name: String
+
+  """
+  Whether to exclude the field or node from the schema
+  """
+  omit: Boolean
+) repeatable on FIELD_DEFINITION | OBJECT
+```
+
 The `@modify` directive in GraphQL provides the flexibility to alter the attributes of a field or a node within your GraphQL schema. Here's how you can use this directive:
 
 ## name

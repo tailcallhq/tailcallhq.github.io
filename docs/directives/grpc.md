@@ -4,9 +4,24 @@ description: The @grpc directive enables the resolution of GraphQL fields via gR
 slug: ../grpc-directive
 ---
 
+The `@grpc` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @grpc(
+  url: String!
+  method: String!
+  body: JSON
+  headers: [InputKeyValue!]
+  batchKey: [String!]
+  onResponseBody: String
+  select: JSON
+  dedupe: Boolean
+) on FIELD_DEFINITION
+```
+
 The `@grpc` directive enables the resolution of GraphQL fields via gRPC services. Below is an illustrative example of how to apply this directive within a GraphQL schema:
 
-```graphql
+```graphql showLineNumbers
 schema @link(src: "./users.proto", type: Protobuf) {
   query: Query
 }

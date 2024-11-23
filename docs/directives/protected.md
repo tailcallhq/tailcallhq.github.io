@@ -4,9 +4,15 @@ description: The @protected directive ensures that a user must be authenticated 
 slug: ../protected-directive
 ---
 
+The `@protected` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @protected repeatable on FIELD_DEFINITION | OBJECT
+```
+
 The `@protected` annotation designates a type or field as protected, meaning that a user must be authenticated to access that data.
 
-```graphql
+```graphql showLineNumbers
 type Query {
   protected: String! @protected
   protectedType: ProtectedType

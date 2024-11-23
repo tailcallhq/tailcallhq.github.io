@@ -4,6 +4,12 @@ description: The @omit directive excludes fields or nodes from the generated Gra
 slug: ../omit-directive
 ---
 
+The `@omit` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @omit repeatable on FIELD_DEFINITION | OBJECT
+```
+
 Within a GraphQL schema, the `@omit` directive excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API. This directive is useful for hiding sensitive information or simplifying your API by removing unnecessary fields.
 
 ## How it works

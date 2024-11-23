@@ -4,6 +4,17 @@ description: The @js directive allows you to use JavaScript functions to resolve
 slug: ../js-directive
 ---
 
+The `@js` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @js(
+  """
+  Name of the JavaScript function to be used as resolver
+  """
+  name: String!
+) on FIELD_DEFINITION
+```
+
 The `@js` directive allows you to use JavaScript functions to resolve fields in your GraphQL schema. This can be useful for custom data transformations or complex field resolutions.
 
 ## Usage

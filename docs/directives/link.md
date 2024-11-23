@@ -4,6 +4,46 @@ description: The @link directive is used for bringing external resources into yo
 slug: ../link-directive
 ---
 
+The `@link` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @link(
+  """
+  Source path or URL of the external resource
+  """
+  src: String!
+
+  """
+  Type of the external resource
+  """
+  type: LinkType!
+
+  """
+  Optional identifier for the link
+  """
+  id: String
+
+  """
+  Optional headers for gRPC reflection server requests
+  """
+  headers: [InputKeyValue!]
+) on SCHEMA
+
+"""
+Available types for external resources
+"""
+enum LinkType {
+  Config
+  Protobuf
+  Script
+  Cert
+  Key
+  Operation
+  Htpasswd
+  Jwks
+}
+```
+
 The `@link` directive is used for bringing external resources into your GraphQL schema. It makes it easier to include configurations, .proto files for gRPC services, and other files into your schema. With this directive, external resources are either merged with or used effectively in the importing configuration.
 
 ## How it Works

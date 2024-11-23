@@ -4,6 +4,55 @@ description: The @telemetry directive facilitates seamless integration with Open
 slug: ../telemetry-directive
 ---
 
+The `@telemetry` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @telemetry(
+  """
+  Export configuration for telemetry data
+  """
+  export: TelemetryExport
+
+  """
+  Headers from ingress request to be included in telemetry
+  """
+  requestHeaders: [String!]
+) on SCHEMA
+
+input TelemetryExport {
+  otlp: OtlpConfig
+  prometheus: PrometheusConfig
+  stdout: StdoutConfig
+  apollo: ApolloConfig
+}
+
+input OtlpConfig {
+  url: String!
+  headers: [InputKeyValue!]
+}
+
+input PrometheusConfig {
+  path: String
+  format: PrometheusFormat
+}
+
+input StdoutConfig {
+  pretty: Boolean
+}
+
+input ApolloConfig {
+  api_key: String!
+  graph_ref: String!
+  platform: String
+  version: String
+}
+
+enum PrometheusFormat {
+  text
+  protobuf
+}
+```
+
 The `@telemetry` directive facilitates seamless integration with [OpenTelemetry](https://open-telemetry.io), enhancing the observability of your GraphQL services powered by Tailcall. By leveraging this directive, developers gain access to valuable insights into the performance and behavior of their applications.
 
 ## Traces

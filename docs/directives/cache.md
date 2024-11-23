@@ -4,6 +4,17 @@ description: The @cache directive provides a protocol agnostic mechanism for cac
 slug: ../cache-directive
 ---
 
+The `@cache` directive is defined as follows:
+
+```graphql showLineNumbers title="Directive Definition"
+directive @cache(
+  """
+  Duration in milliseconds for which the value should be cached
+  """
+  maxAge: Int!
+) repeatable on FIELD_DEFINITION | OBJECT
+```
+
 The `@cache` directive provides a protocol agnostic mechanism for caching the results of fields within a GraphQL schema. Like any other cache implementation, this feature is useful for optimizing performance by reducing the need to fetch data that doesn't change frequently.
 
 ## maxAge

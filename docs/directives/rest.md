@@ -4,6 +4,27 @@ description: The @rest directive maps fields to REST API endpoints, allowing Gra
 slug: ../rest-directive
 ---
 
+The `@rest` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @rest(
+  """
+  HTTP method for the REST endpoint
+  """
+  method: Method!
+
+  """
+  Path for the REST endpoint, supports dynamic values
+  """
+  path: String!
+
+  """
+  Query parameters as key-value pairs
+  """
+  query: [InputKeyValue!]
+) on OPERATION_DEFINITION
+```
+
 API orchestration is essential, yet not all can adopt GraphQL despite its benefits. The Tailcall DSL feature leverages GraphQL at compile time to generate REST endpoints, aligning with traditional API infrastructure like CDNs and Gateways.
 
 ## Usage

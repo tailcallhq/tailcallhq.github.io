@@ -4,6 +4,23 @@ description: The @http directive indicates a field or node relies on a REST API.
 slug: ../http-directive
 ---
 
+The `@http` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @http(
+  url: String!
+  method: Method
+  query: [InputKeyValue!]
+  body: JSON
+  headers: [InputKeyValue!]
+  batchKey: [String!]
+  onRequest: String
+  onResponseBody: String
+  select: JSON
+  dedupe: Boolean
+) on FIELD_DEFINITION
+```
+
 The `@http` directive indicates a field or node relies on a REST API. For example:
 
 ```graphql showLineNumbers

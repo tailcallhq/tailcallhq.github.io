@@ -4,6 +4,37 @@ description: The @upstream directive enables control over specific aspects of th
 slug: ../upstream-directive
 ---
 
+The `@upstream` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @upstream(
+  poolIdleTimeout: Int
+  poolMaxIdlePerHost: Int
+  keepAliveInterval: Int
+  keepAliveTimeout: Int
+  keepAliveWhileIdle: Boolean
+  proxy: ProxyConfig
+  connectTimeout: Int
+  timeout: Int
+  tcpKeepAlive: Int
+  userAgent: String
+  allowedHeaders: [String!]
+  httpCache: Int
+  batch: BatchConfig
+  onRequest: String
+) on SCHEMA
+
+input ProxyConfig {
+  url: String!
+}
+
+input BatchConfig {
+  maxSize: Int!
+  delay: Int!
+  headers: [String!]
+}
+```
+
 The `upstream` directive enables control over specific aspects of the upstream server connection, including settings such as connection timeouts, keep-alive intervals, and more. The system applies default values if you do not specify them.
 
 ```graphql showLineNumbers

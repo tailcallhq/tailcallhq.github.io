@@ -4,6 +4,57 @@ description: The @server directive provides a comprehensive set of server config
 slug: ../server-directive
 ---
 
+The `@server` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @server(
+  workers: Int
+  port: Int
+  headers: ServerHeaders
+  introspection: Boolean
+  queryValidation: Boolean
+  responseValidation: Boolean
+  globalResponseTimeout: Int
+  version: Version
+  cert: String
+  key: String
+  showcase: Boolean
+  batchRequests: Boolean
+  routes: Routes
+  enableFederation: Boolean
+  vars: [InputKeyValue!]
+) on SCHEMA
+
+input ServerHeaders {
+  cacheControl: Boolean
+  custom: [InputKeyValue!]
+  experimental: [String!]
+  setCookies: Boolean
+  cors: CorsConfig
+}
+
+input CorsConfig {
+  allowCredentials: Boolean
+  allowHeaders: [String!]
+  allowMethods: [Method!]
+  allowOrigins: [String!]
+  allowPrivateNetwork: Boolean
+  exposeHeaders: [String!]
+  maxAge: Int
+  vary: [String!]
+}
+
+input Routes {
+  graphQL: String
+  status: String
+}
+
+enum Version {
+  HTTP1
+  HTTP2
+}
+```
+
 The `@server` directive, applied at the schema level, provides a comprehensive set of server configurations. It dictates server behavior and helps tune Tailcall for a range of use-cases.
 
 ```graphql showLineNumbers

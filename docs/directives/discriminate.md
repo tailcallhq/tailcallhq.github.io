@@ -4,6 +4,17 @@ description: The `@discriminate` directive is used to customize decoding of unio
 slug: ../discriminate
 ---
 
+The `@discriminate` directive is defined as follows:
+
+```graphql showLineNumbers title="Directive Definition"
+directive @discriminate(
+  """
+  Name of the field that contains the type discriminator
+  """
+  name: String = "type"
+) on FIELD_DEFINITION
+```
+
 By default a union type expects an object with a wrapper key representing the value type. For example say we have the following GraphQL schema:
 
 ```graphql showLineNumbers

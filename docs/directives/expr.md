@@ -4,6 +4,12 @@ description: The @expr directive allows you to embed data directly into your sch
 slug: ../expr-directive
 ---
 
+The `@expr` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @expr(body: JSON) on FIELD_DEFINITION | OBJECT
+```
+
 The `@expr` directive in GraphQL is a powerful tool for embedding data directly into your schema, offering two primary functionalities:
 
 ## Static
@@ -69,4 +75,4 @@ type Emails {
 }
 ```
 
-In this example, the `@expr` directive dynamically generate an `Emails` object based on the provided template data. The placeholders within the template (`{{.value.workEmail}}` and `{{.value.personalEmail}}`) gets replaced with the actual values specified in the `User` type, allowing for dynamic content generation while still adhering to the schema's structure.
+In this example, the `@expr` directive dynamically generates an `Emails` object based on the provided template data. The placeholders within the template (`{{.value.workEmail}}` and `{{.value.personalEmail}}`) get replaced with the actual values specified in the `User` type, allowing for dynamic content generation while still adhering to the schema's structure.

@@ -4,6 +4,19 @@ description: The @graphQL directive allows to specify a GraphQL API server to fe
 slug: ../graphQL-directive
 ---
 
+The `@graphQL` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @graphQL(
+  url: String!
+  name: String!
+  args: [InputKeyValue!]
+  headers: [InputKeyValue!]
+  batch: Boolean
+  dedupe: Boolean
+) on FIELD_DEFINITION
+```
+
 The `@graphQL` directive allows to specify a GraphQL API server to fetch data from.
 
 ```graphql showLineNumbers

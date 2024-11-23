@@ -4,6 +4,22 @@ description: The @addField directive simplifies queries by adding a field that _
 slug: ../addField-directive
 ---
 
+The `@addField` directive is defined as follows:
+
+```graphql title="Directive Definition" showLineNumbers
+directive @addField(
+  """
+  Name of the new field to be added
+  """
+  name: String!
+
+  """
+  Path of the data where the field should point to
+  """
+  path: [String!]
+) repeatable on OBJECT
+```
+
 The `@addField` directive simplifies data structures and queries by adding a field that _inline_ or flattens a nested field or node within your schema. It modifies the schema and the data transformation process, making nested data more accessible and straightforward to present.
 
 For instance, consider a schema:

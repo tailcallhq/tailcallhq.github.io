@@ -4,6 +4,37 @@ description: The @call directive simplifies queries by composing together other 
 slug: ../call-directive
 ---
 
+The `@call` directive is defined as follows:
+
+```graphql showLineNumbers title="Directive Definition"
+directive @call(
+  """
+  Array of steps to be executed in sequence. Each step can call a query or mutation.
+  """
+  steps: [CallStep!]!
+) on FIELD_DEFINITION
+
+"""
+Input type defining a single step in the call sequence
+"""
+input CallStep {
+  """
+  Name of the query field to call
+  """
+  query: String
+
+  """
+  Name of the mutation field to call
+  """
+  mutation: String
+
+  """
+  Arguments to pass to the called field
+  """
+  args: JSON
+}
+```
+
 The `@call` directive in GraphQL signifies a shift towards more efficient configuration management by introducing a methodology akin to function invocations in conventional programming. This directive is pivotal for developers navigating the intricacies of elaborate GraphQL schemas, where minimizing redundancy and adhering to the DRY (Don't Repeat Yourself) principle are paramount. Consider the following schema example:
 
 ```graphql showLineNumbers
