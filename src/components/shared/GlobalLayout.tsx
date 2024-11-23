@@ -2,7 +2,6 @@ import React, {useEffect} from "react"
 import {pageLinks} from "@site/src/constants/routes"
 import CookieConsentModal from "./CookieConsentModal/CookieConsentModal"
 import GlobalHead from "./GlobalHead"
-import CookieSettings from "./CookieSettings"
 import {useCookieConsentManager} from "./CookieConsentProvider"
 
 const GlobalLayout: React.FC = () => {
@@ -34,7 +33,6 @@ const GlobalLayout: React.FC = () => {
         onPartialAccept={onPartialAccept}
       />
       <GlobalHead isCookieConsentAccepted={Boolean(cookieConsent?.accepted)} preferences={cookieConsent?.preferences} />
-      <CookieSettings />
     </>
   )
 }
