@@ -37,7 +37,8 @@ export default {
   url: "https://tailcall.run",
   baseUrl: "/",
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenMarkdownLinks: "throw",
+  onBrokenAnchors: "throw",
   favicon: "images/favicon.ico",
 
   // GitHub pages deployment config.
