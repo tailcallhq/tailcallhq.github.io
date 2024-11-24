@@ -14,7 +14,6 @@ directive @protected(
 
 The `@protected` annotation designates a type or field as protected, meaning that a user must be authenticated to access that data.
 
-
 :::important
 To utilize the `@protected` directive, you must link at least one authentication provider in the configuration using the [`@link`](./link.md) directive (`Htpasswd` or `Jwks`).
 :::
