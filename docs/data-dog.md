@@ -23,7 +23,7 @@ This guide is based on the [official doc](https://docs.datadoghq.com/getting_sta
 
 3. **Set Up OpenTelemetry Collector:**
 
-- Integration with Datadog requires an [OpenTelemetry Collector](#opentelemetry-collector) to send data. Below is a sample configuration file:
+- Integration with Datadog requires an [OpenTelemetry Collector](https://docs.datadoghq.com/opentelemetry/collector_exporter/otel_collector_datadog_exporter/?tab=onahost) to send data. Below is a sample configuration file:
 
   ```yml
   receivers:
