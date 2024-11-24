@@ -1,7 +1,19 @@
-import {useCallback, useState} from "react"
-import {useCookieConsent} from "./useCookieConsent"
+import React, {createContext, useCallback, useContext, useState} from "react"
+import {CookieConsentType, useCookieConsent} from "@site/src/utils/hooks/useCookieConsent"
 
-export const useCookieConsentManager = () => {
+interface CookieConsentContextType {
+  cookieConsent: CookieConsentType
+  isCookieConsentModalVisible: boolean
+  openCookieConsentModal: () => void
+  closeCookieConsentModal: () => void
+  onAccept: () => void
+  onDeny: () => void
+  onPartialAccept: (selectedPreferences: string[]) => void
+}
+
+const CookieConsentContext = createContext<CookieConsentContextType | null>(null)
+
+const useCookieConsentContextValue = (): CookieConsentContextType => {
   const {getCookieConsent, setCookieConsent} = useCookieConsent()
   const [isCookieConsentModalVisible, setIsCookieConsentModalVisible] = useState(false)
   const cookieConsent = getCookieConsent()
@@ -47,4 +59,17 @@ export const useCookieConsentManager = () => {
     onDeny,
     onPartialAccept,
   }
+}
+
+export const CookieConsentProvider = ({children}: {children: React.ReactNode}) => {
+  const value = useCookieConsentContextValue()
+  return <CookieConsentContext.Provider value={value}>{children}</CookieConsentContext.Provider>
+}
+
+export const useCookieConsentManager = () => {
+  const context = useContext(CookieConsentContext)
+  if (!context) {
+    throw new Error("useCookieConsentManager must be used within a CookieConsentProvider")
+  }
+  return context
 }
