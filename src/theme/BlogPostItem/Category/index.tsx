@@ -1,6 +1,6 @@
 import React from "react"
 import {BlogPostFrontMatter} from "@docusaurus/plugin-content-blog"
-import {useBlogPost} from "@docusaurus/theme-common/internal"
+import {useBlogPost} from "@docusaurus/plugin-content-blog/client"
 
 export default function BlogPostItemCategory(): JSX.Element {
   const {frontMatter} = useBlogPost()

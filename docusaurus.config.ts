@@ -59,6 +59,9 @@ export default {
       },
     },
   },
+  future: {
+    experimental_faster: true, // Required for faster production builds. For reference: https://docusaurus.io/blog/releases/3.6#adoption-strategy
+  },
   presets: [
     [
       "classic",
@@ -160,6 +163,7 @@ export default {
           type: "all",
           copyright: `Copyright © ${new Date().getFullYear()} Tailcall, Inc.`,
         },
+        onInlineAuthors: "ignore", // TODO: Create an authors.yml file to reduce authors info. redundancy
       },
     ],
     [
