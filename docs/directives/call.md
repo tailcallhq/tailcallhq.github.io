@@ -94,11 +94,13 @@ type Post {
 
 Here, the `@call` directive invokes the `user` query from the `Query` type, leveraging the data-fetching process that's already defined in the root `query`. The `query` parameter specifies the target field, while the `args` parameter delineates the arguments to be passed.
 
-## steps
+## Options
+
+### steps
 
 `@call` directive can compose together other resolvers, allowing to create a chain of resolvers that can be executed in sequence. This is done by using the `steps` parameter, which is an array of objects that define the operations to be executed.
 
-## query
+### query
 
 Specify the root **query** field to invoke, alongside the requisite arguments, using the `@call` directive for a concise and efficient query structure.
 
@@ -114,7 +116,7 @@ type Post {
 }
 ```
 
-## mutation
+### mutation
 
 Similarly, the `@call` directive can facilitate calling a mutation from another mutation field, employing the `mutation` parameter for field specification and the `args` parameter for argument delineation.
 
@@ -140,7 +142,7 @@ type Mutation {
 }
 ```
 
-## args
+### args
 
 The `args` parameter in the `@call` directive facilitates passing arguments to the targeted query or mutation, represented as a key-value mapping where each key corresponds to an argument name and its associated value.
 
@@ -272,3 +274,9 @@ This way you can compose combine multiple operations can compose them together u
 :::note
 We use `JSON` scalar here because we don't care about the type safety of this option. In a real world example you might want to use proper input and output types.
 :::
+
+## Combining Directives
+
+The `@call` directive can be added multiple times to the same field and can also be combined with other resolvable directives on the same field. Results from all directives will be deeply merged, with later results potentially overriding data from previous ones.
+
+For more details see [directives documentation](../directives.md).

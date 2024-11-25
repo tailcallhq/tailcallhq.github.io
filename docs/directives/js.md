@@ -82,3 +82,9 @@ function resolve(val) {
 ## Performance Considerations
 
 When using the `@js` directive, keep in mind that JavaScript functions can introduce performance overhead, especially if they perform complex operations or are called frequently. To minimize performance impact, ensure that your functions are optimized and avoid unnecessary computations.
+
+## Combining Directives
+
+The `@js` directive can be added multiple times to the same field and can also be combined with other resolvable directives on the same field. Results from all directives will be deeply merged, with later results potentially overriding data from previous ones.
+
+For more details see [directives documentation](../directives.md).

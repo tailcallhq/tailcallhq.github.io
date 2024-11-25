@@ -53,7 +53,9 @@ query {
 }
 ```
 
-## url
+## Options
+
+### url
 
 This refers to the URL of the API.
 
@@ -67,7 +69,7 @@ type Query {
 }
 ```
 
-## name
+### name
 
 The root field's name on the upstream to request data from. For example:
 
@@ -83,7 +85,7 @@ type Query {
 
 When Tailcall receives a query for the `users` field, it will request a query for `userList` from the upstream.
 
-## args
+### args
 
 Named arguments for the requested field. For example:
 
@@ -108,7 +110,7 @@ query {
 }
 ```
 
-## headers
+### headers
 
 The `headers` parameter allows customizing the headers of the GraphQL request made by the `@graphQL` directive. Specifying a key-value map of header names and their values achieves this.
 
@@ -127,7 +129,7 @@ type Mutation {
 
 In this example, a request to `/users` will include the HTTP header `X-Server` with the value `Tailcall`.
 
-## batch
+### batch
 
 In case the upstream GraphQL server supports request batching, we can specify the `batch` argument to batch requests to a single upstream into a single batch request. For example:
 
@@ -160,7 +162,7 @@ type Query {
 }
 ```
 
-## dedupe
+### dedupe
 
 A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
@@ -173,3 +175,9 @@ A boolean flag, if set to `true`, will enable deduplication of IO operations to 
 ```
 
 Make sure you have also specified batch settings to the `@upstream` and to the `@graphQL` directive.
+
+## Combining Directives
+
+The `@graphQL` directive can be added multiple times to the same field and can also be combined with other resolvable directives on the same field. Results from all directives will be deeply merged, with later results potentially overriding data from previous ones.
+
+For more details see [directives documentation](../directives.md).

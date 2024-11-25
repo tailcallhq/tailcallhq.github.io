@@ -76,7 +76,9 @@ schema @link(src: "./users.proto", type: Protobuf) {
 
 Tailcall automatically resolves the protobuf file for any methods referenced in the `@grpc` directive.
 
-## method
+## Options
+
+### method
 
 This parameter specifies the gRPC service and method to be invoked, formatted as `<package>.<service>.<method>`:
 
@@ -87,7 +89,7 @@ type Query {
 }
 ```
 
-## url
+### url
 
 Defines the base URL for the gRPC API.
 
@@ -101,7 +103,7 @@ type Query {
 }
 ```
 
-## body
+### body
 
 This parameter outlines the arguments for the gRPC call, allowing for both static and dynamic inputs:
 
@@ -119,7 +121,7 @@ type Query {
 }
 ```
 
-## headers
+### headers
 
 Custom headers for the gRPC request can be defined, facilitating the transmission of authentication tokens or other contextual data:
 
@@ -135,7 +137,7 @@ type Query {
 }
 ```
 
-## batchKey
+### batchKey
 
 This argument is employed to optimize batch requests by grouping them based on specified response keys, enhancing performance in scenarios requiring multiple, similar requests:
 
@@ -154,7 +156,7 @@ type Query {
 Read about [n + 1](../N+1.md) to learn how to use the `batchKey` setting.
 :::
 
-## onResponseBody
+### onResponseBody
 
 This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](./http.md#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
 
@@ -168,7 +170,7 @@ type Query {
 }
 ```
 
-## select
+### select
 
 You can use `select` with mustache syntax to re-construct the directives
 response to the desired format. This is useful when data are deeply
@@ -199,7 +201,7 @@ type Query {
 }
 ```
 
-## dedupe
+### dedupe
 
 A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
@@ -209,3 +211,9 @@ A boolean flag, if set to `true`, will enable deduplication of IO operations to 
   dedupe: true
 )
 ```
+
+## Combining Directives
+
+The `@grpc` directive can be added multiple times to the same field and can also be combined with other resolvable directives on the same field. Results from all directives will be deeply merged, with later results potentially overriding data from previous ones.
+
+For more details see [directives documentation](../directives.md).
