@@ -4,35 +4,77 @@ description: The @protected directive ensures that a user must be authenticated 
 slug: ../protected-directive
 ---
 
-The `@protected` directive is defined as follows:
+The `@protected` directive ensures that a user must be authenticated to access certain data.
 
 ```graphql title="Directive Definition" showLineNumbers
 directive @protected(
-  ids: [String!]
+  id: [String!]
 ) on OBJECT | FIELD_DEFINITION
 ```
 
-The `@protected` annotation designates a type or field as protected, meaning that a user must be authenticated to access that data.
+The `@protected` directive designates a type or field as protected, meaning that only authenticated users can access it.
 
-:::important
-To utilize the `@protected` directive, you must link at least one authentication provider in the configuration using the [`@link`](./link.md) directive (`Htpasswd` or `Jwks`).
-:::
+---
+
+## Prerequisites
+
+To use the `@protected` directive, you must configure at least one authentication provider using the [`@link`](./link.md) directive, such as `Htpasswd` or `Jwks`.
+
+```graphql title="Authentication Provider Configuration" showLineNumbers
+schema
+  @server
+  @upstream
+  @link(id: "a", src: ".htpasswd_a", type: Htpasswd)
+  @link(id: "b", src: ".htpasswd_b", type: Htpasswd)
+{
+  query: Query
+}
+
+```
 
 ## How It Works
 
-The directive works by adding an authentication check to the resolver execution chain. If multiple fields are protected, we merge the authentication requirements. The check is performed first, before the rest of the resolver chain is executed.
+The `@protected` directive adds an authentication check to the resolver execution chain. This check ensures that users accessing the data meet the specified authentication criteria.
 
-## providers
+### Key Features:
 
-The `ids` argument is optional. By using this argument, you can specify which authentication providers are required to access the data. When present we check against all specified providers.
+1. **Field-Level and Type-Level Protection**:
+  - The directive can be applied to both object types and individual fields.
+  - Field-level authentication gets merged with type-level authentication.
 
-## Example
+2. **Authentication Providers (`id` Argument)**:
+  - The optional `id` argument specifies the authentication providers required to access the data.
+  - If multiple `id` values are provided, all listed provider ids are required to access the data.
+  - If no `id` is provided, all configured providers are required to access the data.
 
-- The `Dog` type is protected by the `a` provider, so only users authenticated by `a` can access the `bark` field.
-- The `Cat` type is protected by both the `a` and `c` providers, so only users authenticated by either `a` or `c` can access the `meow` field.
-- The `Bird` type is protected by all providers, so only users authenticated by any provider can access the `tweet` field.
+3. **Query Planning Optimization**:
+  - During query execution, the authentication requirements for all fields in a query are merged and moved to the top of the execution plan.
+  - This eliminates redundant authentication checks for each field, significantly improving performance.
+
+## Behavior with Multiple `id` Values
+
+When multiple `id` values are provided in the `@protected` directive, the system validates users against **all the specified providers**. For example:
 
 ```graphql
+type Cat {
+  meow: String @protected(id: ["a", "c"])
+}
+```
+
+In this case:
+- A user authenticated via provider `a` **and** provider `c` are required to access the `meow` field.
+
+If no `id` argument is provided:
+- The system allows access to users authenticated via **all configured provider**.
+
+
+## Example Usage
+
+Consider the following config and authentication configuration:
+
+### Schema
+
+```graphql showLineNumbers
 schema
   @server
   @upstream
@@ -56,11 +98,11 @@ type Query {
 union Animal = Dog | Cat | Bird | Fish | Snake
 
 type Dog {
-  bark: String @protected(ids: ["a"])
+  bark: String @protected(id: ["a"])
 }
 
 type Cat {
-  meow: String @protected(ids: ["a", "c"])
+  meow: String @protected(id: ["a", "c"])
 }
 
 type Bird {
@@ -68,17 +110,77 @@ type Bird {
 }
 ```
 
-```text title=".htpasswd_a"
+### Authentication Files
+
+#### `.htpasswd_a`
+```text
 testuser1:$apr1$e3dp9qh2$fFIfHU9bilvVZBl8TxKzL/
 testuser2:$2y$10$wJ/mZDURcAOBIrswCAKFsO0Nk7BpHmWl/XuhF7lNm3gBAFH3ofsuu
 ```
 
-```text title=".htpasswd_b"
+#### `.htpasswd_b`
+```text
 testuser2:$2y$10$wJ/mZDURcAOBIrswCAKFsO0Nk7BpHmWl/XuhF7lNm3gBAFH3ofsuu
 testuser3:{SHA}Y2fEjdGT1W6nsLqtJbGUVeUp9e4=
 ```
 
-```text title=".htpasswd_c"
+#### `.htpasswd_c`
+```text
 testuser1:$apr1$e3dp9qh2$fFIfHU9bilvVZBl8TxKzL/
 testuser3:{SHA}Y2fEjdGT1W6nsLqtJbGUVeUp9e4=
 ```
+
+### Scenarios
+
+1. **Accessing `Dog.bark` Field**:
+  - Authentication via provider `a` is required.
+  - **Allowed Users**: `testuser1`, `testuser2`.
+
+2. **Accessing `Cat.meow` Field**:
+  - Authentication via providers `a` **and** `c` is required.
+  - **Allowed Users**: `testuser1` (from `a`), `testuser1` (from `c`).
+
+3. **Accessing `Bird.tweet` Field**:
+  - Authentication via **all configured provider**.
+  - **Allowed Users**: None as there is no user which is present in all providers.
+---
+
+## Type-Level vs Field-Level Protection
+
+The `@protected` directive can be applied at both the type and field levels. Here’s how they interact and the advantages of using each:
+
+### Type-Level Protection
+Applying `@protected` at the type level ensures all fields within the type are protected. This reduces redundancy, as you don’t need to annotate each field individually.
+
+### Field-Level Protection
+If specific fields within a type require different authentication rules, you can apply `@protected` at the field level. Field-level rules will be merged with type-level rules.
+
+### Combined Use of Type and Field-Level Protection
+
+When `@protected` is applied at both the type and field levels, the rules are **merged and moved to the top of the query execution plan**. This ensures authentication checks are performed efficiently without redundant processing.
+
+For example:
+
+```graphql showLineNumbers
+type Pet @protected(id: ["a"]) {
+  name: String
+  age: Int
+  breed: String @protected(id: ["c"])
+}
+```
+
+#### Explanation:
+
+1. **Type-Level Rule (`id: ["a"]`)**:
+  - Protects all fields (`name`, `age`, and `breed`).
+  - Requires authentication via provider `a`.
+
+2. **Field-Level Rule (`breed` with `id: ["c"]`)**:
+  - Adds a provider `c` for the `breed` field.
+
+#### Merged Authentication Rule:
+- For fields like `name` and `age`, authentication via provider `a` suffices.
+- For the `breed` field, authentication `a` and `c` is required.
+
+#### Query Planning:
+- The authentication requirements (`id: ["a", "c"]`) are merged and moved to the top of the query plan, ensuring no redundant checks for individual fields.
