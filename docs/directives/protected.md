@@ -27,8 +27,8 @@ To use the `@protected` directive, you must configure at least one authenticatio
 schema
   @server
   @upstream
-  @link(id: "basic_auth" src: ".htpasswd_a" type: Htpasswd)
-  @link(id: "jwt_auth", type: Jwks, src: "jwks.json") {
+  @link(id: "basic", type: Htpasswd, src: ".htpasswd_a")
+  @link(id: "jwt", type: Jwks, src: "jwks.json") {
   query: Query
 }
 ```
