@@ -8,13 +8,16 @@ The `@protected` directive ensures that a user must be authenticated to access c
 
 ```graphql title="Directive Definition" showLineNumbers
 directive @protected(
+  """
+  List of authentication provider IDs that can access this field or type. - Leave empty
+  to require authorization from all providers. - Include multiple IDs to require authentication
+  from each one.
+  """
   id: [String!]
 ) on OBJECT | FIELD_DEFINITION
 ```
 
 The `@protected` directive designates a type or field as protected, meaning that only authenticated users can access it.
-
----
 
 ## Prerequisites
 
@@ -25,31 +28,32 @@ schema
   @server
   @upstream
   @link(id: "a", src: ".htpasswd_a", type: Htpasswd)
-  @link(id: "b", src: ".htpasswd_b", type: Htpasswd)
-{
+  @link(id: "b", type: Jwks, src: "jwks.json") {
   query: Query
 }
-
 ```
 
 ## How It Works
 
-The `@protected` directive adds an authentication check to the resolver execution chain. This check ensures that users accessing the data meet the specified authentication criteria.
+The `@protected` directive adds an authentication check to the resolver execution chain, ensuring that users meet the specified authentication criteria.
 
 ### Key Features:
 
 1. **Field-Level and Type-Level Protection**:
-  - The directive can be applied to both object types and individual fields.
-  - Field-level authentication gets merged with type-level authentication.
+
+- The directive can be applied to both object types and individual fields.
+- Field-level authentication merges with type-level authentication.
 
 2. **Authentication Providers (`id` Argument)**:
-  - The optional `id` argument specifies the authentication providers required to access the data.
-  - If multiple `id` values are provided, all listed provider ids are required to access the data.
-  - If no `id` is provided, all configured providers are required to access the data.
+
+- The optional `id` argument specifies the authentication providers required to access the data.
+- If multiple `id` values are provided, all listed providers are required to access the data.
+- If no `id` is provided, all configured providers are required.
 
 3. **Query Planning Optimization**:
-  - During query execution, the authentication requirements for all fields in a query are merged and moved to the top of the execution plan.
-  - This eliminates redundant authentication checks for each field, significantly improving performance.
+
+- During query execution, the authentication requirements for all fields in a query are merged and moved to the top of the execution plan.
+- This eliminates redundant authentication checks for each field, significantly improving performance.
 
 ## Behavior with Multiple `id` Values
 
@@ -62,15 +66,16 @@ type Cat {
 ```
 
 In this case:
-- A user authenticated via provider `a` **and** provider `c` are required to access the `meow` field.
+
+- A user authenticated via provider `a` **and** provider `c` is required to access the `meow` field.
 
 If no `id` argument is provided:
-- The system allows access to users authenticated via **all configured provider**.
 
+- The system allows access to users authenticated via **all configured providers**.
 
 ## Example Usage
 
-Consider the following config and authentication configuration:
+Consider the following schema and authentication configuration:
 
 ### Schema
 
@@ -113,18 +118,21 @@ type Bird {
 ### Authentication Files
 
 #### `.htpasswd_a`
+
 ```text
 testuser1:$apr1$e3dp9qh2$fFIfHU9bilvVZBl8TxKzL/
 testuser2:$2y$10$wJ/mZDURcAOBIrswCAKFsO0Nk7BpHmWl/XuhF7lNm3gBAFH3ofsuu
 ```
 
 #### `.htpasswd_b`
+
 ```text
 testuser2:$2y$10$wJ/mZDURcAOBIrswCAKFsO0Nk7BpHmWl/XuhF7lNm3gBAFH3ofsuu
 testuser3:{SHA}Y2fEjdGT1W6nsLqtJbGUVeUp9e4=
 ```
 
 #### `.htpasswd_c`
+
 ```text
 testuser1:$apr1$e3dp9qh2$fFIfHU9bilvVZBl8TxKzL/
 testuser3:{SHA}Y2fEjdGT1W6nsLqtJbGUVeUp9e4=
@@ -133,27 +141,31 @@ testuser3:{SHA}Y2fEjdGT1W6nsLqtJbGUVeUp9e4=
 ### Scenarios
 
 1. **Accessing `Dog.bark` Field**:
-  - Authentication via provider `a` is required.
-  - **Allowed Users**: `testuser1`, `testuser2`.
+
+- Authentication via provider `a` is required.
+- **Allowed Users**: `testuser1`, `testuser2`.
 
 2. **Accessing `Cat.meow` Field**:
-  - Authentication via providers `a` **and** `c` is required.
-  - **Allowed Users**: `testuser1` (from `a`), `testuser1` (from `c`).
+
+- Authentication via providers `a` **and** `c` is required.
+- **Allowed Users**: `testuser1` (from `a` and `c`).
 
 3. **Accessing `Bird.tweet` Field**:
-  - Authentication via **all configured provider**.
-  - **Allowed Users**: None as there is no user which is present in all providers.
----
+
+- Authentication via **all configured providers** is required.
+- **Allowed Users**: None, as no user is present in all providers.
 
 ## Type-Level vs Field-Level Protection
 
 The `@protected` directive can be applied at both the type and field levels. Here’s how they interact and the advantages of using each:
 
 ### Type-Level Protection
+
 Applying `@protected` at the type level ensures all fields within the type are protected. This reduces redundancy, as you don’t need to annotate each field individually.
 
 ### Field-Level Protection
-If specific fields within a type require different authentication rules, you can apply `@protected` at the field level. Field-level rules will be merged with type-level rules.
+
+If specific fields within a type require different authentication rules, you can apply `@protected` at the field level. Field-level rules are merged with type-level rules.
 
 ### Combined Use of Type and Field-Level Protection
 
@@ -172,15 +184,15 @@ type Pet @protected(id: ["a"]) {
 #### Explanation:
 
 1. **Type-Level Rule (`id: ["a"]`)**:
-  - Protects all fields (`name`, `age`, and `breed`).
-  - Requires authentication via provider `a`.
+
+- Protects all fields (`name`, `age`, and `breed`).
+- Requires authentication via provider `a`.
 
 2. **Field-Level Rule (`breed` with `id: ["c"]`)**:
-  - Adds a provider `c` for the `breed` field.
+
+- Adds provider `c` for the `breed` field.
 
 #### Merged Authentication Rule:
-- For fields like `name` and `age`, authentication via provider `a` suffices.
-- For the `breed` field, authentication `a` and `c` is required.
 
-#### Query Planning:
-- The authentication requirements (`id: ["a", "c"]`) are merged and moved to the top of the query plan, ensuring no redundant checks for individual fields.
+- For fields like `name` and `age`, authentication via provider `a` suffices.
+- For the `breed` field, authentication via both `a` and `c` is required.
