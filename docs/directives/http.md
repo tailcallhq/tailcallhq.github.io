@@ -225,7 +225,8 @@ Body: [
 
 ```graphql showLineNumbers
 type Query {
-  posts: [Post] @http(url: "https://jsonplaceholder.typicode.com/posts")
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post {
