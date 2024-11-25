@@ -10,7 +10,7 @@ The `@protected` directive ensures that a user must be authenticated to access c
 directive @protected(
   """
   List of authentication provider IDs that can access this field or type. - Leave empty
-  to require authorization from all providers. - Include multiple IDs to require authentication
+  to require authentication from all providers. - Include multiple IDs to require authentication
   from each one.
   """
   id: [String!]
