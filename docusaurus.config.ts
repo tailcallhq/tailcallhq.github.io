@@ -88,7 +88,7 @@ export default {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "icons/companies/taicall.svg",
+    image: "icons/companies/tailcall.svg",
     algolia: {
       appId: "X27WDVHRQ3",
       apiKey: "35bc100f239853cd8a7195b23ed7393b",
@@ -103,8 +103,9 @@ export default {
       hideOnScroll: true,
       logo: {
         alt: "My Site Logo",
-        src: "icons/companies/taicall.svg",
+        src: "icons/companies/tailcall.svg",
         height: "2.5rem",
+        width: "150px",
       },
       items: [
         {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
