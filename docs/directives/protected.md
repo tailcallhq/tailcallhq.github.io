@@ -9,7 +9,7 @@ The `@protected` directive ensures that a user must be authenticated to access c
 ```graphql title="Directive Definition" showLineNumbers
 directive @protected(
   """
-  Optional: A list of provider IDs that are allowed to access this field or type.
+  Optional: A list of provider IDs that are required to access this field or type.
   If omitted, authentication will be required from all providers.
   To require access from specific providers, include multiple IDs.
   """
