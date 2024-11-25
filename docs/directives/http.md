@@ -181,11 +181,13 @@ type Post {
 
 ### Batching with POST Requests
 
-Tailcall allows you to batch multiple `POST` requests into a single upstream `POST` request, improving efficiency.
+Tailcall supports batching multiple `POST` requests into a single upstream `POST` request, enhancing efficiency and reducing network overhead.
 
-Consider the following example where `https://jsonplaceholder.typicode.com/posts` returns the following data:
+#### Example Scenario
 
-```json title="Posts"
+Suppose the endpoint `https://jsonplaceholder.typicode.com/posts` returns the following data:
+
+```json
 [
   {
     "id": 1,
@@ -200,9 +202,9 @@ Consider the following example where `https://jsonplaceholder.typicode.com/posts
 ]
 ```
 
-With the configuration below, a single batched `POST` request will be made to the upstream service:
+With the configuration below, Tailcall will consolidate these into a single batched `POST` request to the upstream service:
 
-```showLineNumbers
+```bash
 Request: https://jsonplaceholder.typicode.com/users
 Method: POST
 Body: [
@@ -217,12 +219,13 @@ Body: [
       ]
 ```
 
-Currently, only one dynamic parameter is supported in a batched `POST` request, as shown with `{{.value.userId}}` in the example.
+**Note**: Currently, only one dynamic parameter is supported in a batched `POST` request, as demonstrated with `{{.value.userId}}` in the example.
+
+#### GraphQL Configuration
 
 ```graphql showLineNumbers
 type Query {
-  posts: [Post]
-    @http(url: "https://jsonplaceholder.typicode.com/posts")
+  posts: [Post] @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post {
