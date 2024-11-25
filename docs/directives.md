@@ -34,6 +34,7 @@ Here is a list of all the custom directives supported by Tailcall:
 ## Combining directives on fields
 
 Directives can be combined together on the same field:
+
 - If it's a standalone directive that changes how the field works, this directive can be defined in any order with other directives
 - If the directive is a resolvable directive (`@call`, `@expr`, `@graphQL`, `@grpc`, `@http`), i.e., a directive that resolves actual data, then the order of definition in the schema is important. The result data for the field will be the combined output from the ordered list of every resolvable directive's output, achieved by deep merging all the partial results.
 
@@ -58,7 +59,7 @@ type Query {
 }
 
 type Data {
-    foo: String
-    bar: String
+  foo: String
+  bar: String
 }
 ```
