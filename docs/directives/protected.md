@@ -9,7 +9,9 @@ The `@protected` directive ensures that a user must be authenticated to access c
 ```graphql title="Directive Definition" showLineNumbers
 directive @protected(
   """
-  Optional: A list of authentication provider IDs that are allowed to access this field or type. If omitted, authentication will be required from all providers. To require access from specific providers, include multiple IDs.
+  Optional: A list of provider IDs that are allowed to access this field or type.
+  If omitted, authentication will be required from all providers.
+  To require access from specific providers, include multiple IDs.
   """
   id: [String!]
 ) on OBJECT | FIELD_DEFINITION
@@ -25,11 +27,7 @@ To use the `@protected` directive, you must configure at least one authenticatio
 schema
   @server
   @upstream
-  @link(
-    id: "basic_auth"
-    src: ".htpasswd_a"
-    type: Htpasswd
-  )
+  @link(id: "basic_auth" src: ".htpasswd_a" type: Htpasswd)
   @link(id: "jwt_auth", type: Jwks, src: "jwks.json") {
   query: Query
 }
