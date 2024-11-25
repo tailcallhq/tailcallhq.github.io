@@ -3,11 +3,11 @@ import {composeProviders} from "@docusaurus/theme-common"
 import {
   ColorModeProvider,
   AnnouncementBarProvider,
-  DocsPreferredVersionContextProvider,
   ScrollControllerProvider,
   NavbarProvider,
   PluginHtmlClassNameProvider,
 } from "@docusaurus/theme-common/internal"
+import {DocsPreferredVersionContextProvider} from "@docusaurus/plugin-content-docs/client"
 import GithubStarsProvider from "@site/src/components/shared/GithubStarsProvider"
 import Footer from "@site/src/components/shared/Footer"
 import Announcement from "@site/src/components/shared/Announcement"

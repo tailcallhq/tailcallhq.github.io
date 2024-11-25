@@ -159,6 +159,7 @@ export default {
           type: "all",
           copyright: `Copyright © ${new Date().getFullYear()} Tailcall, Inc.`,
         },
+        onInlineAuthors: "ignore", // TODO: Create an authors.yml file to reduce authors info. redundancy
       },
     ],
     [

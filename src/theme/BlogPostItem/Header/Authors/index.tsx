@@ -1,7 +1,7 @@
 import React from "react"
 import clsx from "clsx"
-import {useBlogPost} from "@docusaurus/theme-common/internal"
-import BlogPostItemHeaderAuthor from "@theme/BlogPostItem/Header/Author"
+import {useBlogPost} from "@docusaurus/plugin-content-blog/client"
+import BlogAuthor from "@theme/Blog/Components/Author"
 import type {Props} from "@theme/BlogPostItem/Header/Authors"
 import styles from "./styles.module.css"
 
@@ -23,7 +23,7 @@ export default function BlogPostItemHeaderAuthors({className}: Props): JSX.Eleme
           className={clsx(!imageOnly && "col col--6", imageOnly ? styles.imageOnlyAuthorCol : styles.authorCol)}
           key={idx}
         >
-          <BlogPostItemHeaderAuthor
+          <BlogAuthor
             author={{
               ...author,
               // Handle author images using relative paths
