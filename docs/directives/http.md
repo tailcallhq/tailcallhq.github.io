@@ -167,6 +167,7 @@ When `batchKey` is present, Tailcall considers the first `query` parameter to be
 type Post {
   id: Int!
   name: String!
+  userId: Int!
   user: User
     @http(
       url: "https://jsonplaceholder.typicode.com/users"
@@ -177,6 +178,66 @@ type Post {
 ```
 
 - `query: {key: "user_id", value: "{{.value.userId}}"}]`: Instructs Tailcall CLI to generate a URL aligning the user id with `userId` from the parent `Post`, compiling a single URL for a batch of posts, such as `/users?user_id=1&user_id=2&user_id=3...user_id=10`, consolidating requests into one.
+
+### Batching with POST Requests
+
+Tailcall allows you to batch multiple `POST` requests into a single upstream `POST` request, improving efficiency.
+
+Consider the following example where `https://jsonplaceholder.typicode.com/posts` returns the following data:
+
+```json title="Posts"
+[
+  {
+    "id": 1,
+    "name": "post-1",
+    "userId": 1
+  },
+  {
+    "id": 2,
+    "name": "post-2",
+    "userId": 2
+  }
+]
+```
+
+With the configuration below, a single batched `POST` request will be made to the upstream service:
+
+```showLineNumbers
+Request: https://jsonplaceholder.typicode.com/users
+Method: POST
+Body: [
+        {
+          "userId": 1,
+          "staticValue": "static"
+        },
+        {
+          "userId": 2,
+          "staticValue": "static"
+        }
+      ]
+```
+
+Currently, only one dynamic parameter is supported in a batched `POST` request, as shown with `{{.value.userId}}` in the example.
+
+```graphql showLineNumbers
+type Query {
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
+}
+
+type Post {
+  id: Int!
+  name: String!
+  userId: Int!
+  user: User
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users"
+      method: POST
+      body: "{\"userId\": \"{{.value.userId}}\", \"staticValue\": \"static\"}"
+      batchKey: ["users", "id"]
+    )
+}
+```
 
 ## onRequest
 
