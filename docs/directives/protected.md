@@ -9,9 +9,7 @@ The `@protected` directive ensures that a user must be authenticated to access c
 ```graphql title="Directive Definition" showLineNumbers
 directive @protected(
   """
-  List of authentication provider IDs that can access this field or type. - Leave empty
-  to require authentication from all providers. - Include multiple IDs to require authentication
-  from each one.
+  Optional: A list of authentication provider IDs that are allowed to access this field or type. If omitted, authentication will be required from all providers. To require access from specific providers, include multiple IDs.
   """
   id: [String!]
 ) on OBJECT | FIELD_DEFINITION
@@ -27,8 +25,12 @@ To use the `@protected` directive, you must configure at least one authenticatio
 schema
   @server
   @upstream
-  @link(id: "a", src: ".htpasswd_a", type: Htpasswd)
-  @link(id: "b", type: Jwks, src: "jwks.json") {
+  @link(
+    id: "basic_auth"
+    src: ".htpasswd_a"
+    type: Htpasswd
+  )
+  @link(id: "jwt_auth", type: Jwks, src: "jwks.json") {
   query: Query
 }
 ```
@@ -41,8 +43,20 @@ The `@protected` directive adds an authentication check to the resolver executio
 
 1. **Field-Level and Type-Level Protection**:
 
-- The directive can be applied to both object types and individual fields.
-- Field-level authentication merges with type-level authentication.
+- The directive can be applied to both object types and individual fields. for example
+  ```graphql
+  type Cat @protected {
+    meow: String
+    purr: String
+  }
+  ```
+  or
+  ```graphql
+  type Cat {
+    meow: String @protected
+    purr: String @protected
+  }
+  ```
 
 2. **Authentication Providers (`id` Argument)**:
 
