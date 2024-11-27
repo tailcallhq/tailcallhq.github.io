@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([["9914"],{63982:function(e,s,c){c.d(s,{Z:()=>i});var a=c("85893");c("67294");var l=c("736");c("65216"),c("7227"),c("36150"),c("8202"),c("9030");let i=e=>(0,a.jsx)("div",{className:"sidebar-search-container place-items-center flex flex-col lg:mb-[100px]",children:(0,a.jsx)(l.Z,{...e})})}}]);
