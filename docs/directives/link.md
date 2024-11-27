@@ -162,4 +162,5 @@ The `Htpasswd` link type allows the importation of an [`htpasswd`](https://httpd
 The `Jwks` link type enables the importation of a [`JWKS`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) file. This file facilitates the provision of detailed access control through [JWT authentication](../auth.md#jwt-authentication).
 
 ### Grpc
-The `Grpc` link type enables the GraphQL server to understand that the specified source is a gRPC endpoint that supports reflection. 
+
+The `Grpc` link type enables the GraphQL server to understand that the specified source is a gRPC endpoint that supports reflection.
