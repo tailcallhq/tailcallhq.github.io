@@ -85,6 +85,6 @@ When using the `@js` directive, keep in mind that JavaScript functions can intro
 
 ## Combining Directives
 
-The `@js` directive can be added multiple times to the same field and can also be combined with other resolvable directives on the same field. Results from all directives will be deeply merged, with later results potentially overriding data from previous ones.
+The `@js` directive can be used in combination with other [resolvable directives](../directives.md#resolvable-directives), with results merged deeply. This allows for powerful and flexible resolver configurations.
 
-For more details see [directives documentation](../directives.md).
+For more details, see [Directives Documentation](../directives.md).
