@@ -84,7 +84,7 @@ Tailcall automatically resolves the protobuf file for any methods referenced in 
 
 ## Directive Arguments
 
-### `method`: Specify gRPC Method
+### method
 
 Defines the gRPC service and method to call, formatted as `<package>.<service>.<method>`:
 
@@ -95,7 +95,7 @@ type Query {
 }
 ```
 
-### `url`: Base URL for gRPC API
+### url
 
 Specifies the base URL for the gRPC service:
 
@@ -109,7 +109,7 @@ type Query {
 }
 ```
 
-### `body`: Arguments for gRPC Call
+### body
 
 The `body` outlines the arguments for the gRPC call, allowing for both static and dynamic inputs:
 
@@ -127,7 +127,7 @@ type Query {
 }
 ```
 
-### `headers`: Custom Headers
+### headers
 
 Custom headers for the gRPC request can be defined, facilitating the transmission of authentication tokens or other contextual data:
 
@@ -143,7 +143,7 @@ type Query {
 }
 ```
 
-### `batchKey`: Optimize Batch Requests
+### batchKey
 
 Use `batchKey` to group similar requests for optimized batching, reducing the number of requests:
 
@@ -162,7 +162,7 @@ type Query {
 Refer to [N + 1 Problem](../N+1.md) to learn how to use the `batchKey` setting.
 :::
 
-### `onResponseBody`: Transform Response
+### onResponseBody
 
 This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](./http.md#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
 
@@ -176,7 +176,7 @@ type Query {
 }
 ```
 
-### `select`: Extract Specific Data from Response
+### select
 
 You can use `select` with mustache syntax to re-construct the directives
 response to the desired format. This is useful when data are deeply
@@ -207,7 +207,7 @@ type Query {
 }
 ```
 
-### `dedupe`: Deduplicate Requests
+### dedupe
 
 The `dedupe` parameter, if set to `true`, prevents duplicate IO requests from being executed concurrently:
 

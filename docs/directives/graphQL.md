@@ -61,7 +61,7 @@ query {
 
 ## Directive Arguments
 
-### `url`: External API URL
+### url
 
 The `url` parameter specifies the endpoint for the external GraphQL API:
 
@@ -75,7 +75,7 @@ type Query {
 }
 ```
 
-### `name`: Root Field Name in Upstream API
+### name
 
 The `name` parameter specifies the name of the root field in the external API. For example:
 
@@ -91,7 +91,7 @@ type Query {
 
 In this case, `users` maps to `userList` in the upstream query.
 
-### `args`: Pass Arguments to Upstream
+### args
 
 The `args` parameter allows you to pass arguments to the upstream GraphQL query:
 
@@ -116,7 +116,7 @@ query {
 }
 ```
 
-### `headers`: Custom HTTP Headers
+### headers
 
 The `headers` parameter customizes the HTTP headers sent in the GraphQL request:
 
@@ -133,7 +133,7 @@ type Mutation {
 
 Here, the `X-Server` header is added to requests.
 
-### `batch`: Batch Requests to Upstream
+### batch
 
 If the upstream server supports batching, you can use the `batch` option to batch requests:
 
@@ -154,7 +154,7 @@ type Query {
 }
 ```
 
-### `dedupe`: Deduplicate Requests
+### dedupe
 
 The `dedupe` parameter is a boolean flag that, when set to `true`, prevents duplicate requests from being sent concurrently:
 
