@@ -41,6 +41,7 @@ enum LinkType {
   Operation
   Htpasswd
   Jwks
+  Grpc
 }
 ```
 
@@ -96,7 +97,7 @@ type NewsData {
 
 The `@link` directive enriches your configuration by supporting the integration of external resources. Each link type is designed to serve a specific purpose, enhancing the functionality and flexibility of your schema. Below is a detailed overview of each supported link type:
 
-## Config
+### Config
 
 The `Config` link type is essential for importing other configuration files. This feature enables a modular approach to schema management by allowing configurations from the imported file to override overlapping settings in the main schema. This functionality is useful in large projects, where maintaining a single monolithic schema file becomes impractical. By using `Config`, developers can split their schema configurations into manageable pieces, thus promoting better organization and scalability.
 
@@ -105,13 +106,13 @@ Example use case:
 - Modularizing schema configurations for different environments (development, staging, production).
 - Reusing common configurations across multiple schema files.
 
-## Protobuf
+### Protobuf
 
 The `Protobuf` link type integrates Protocol Buffers definitions by importing .proto files. This integration is crucial for Tailcall to communicate with gRPC services. By including `.proto` definitions, the GraphQL server can directly interact with gRPC services, allowing for efficient and type-safe communication.
 
 For detailed integration steps and best practices, refer to the [gRPC Integration Guide](/docs/grpc.md).
 
-## Script
+### Script
 
 The `Script` link type allows the config to link to an external JavaScript file. This file can contain custom logic that is executed in response to HTTP request-response events. This feature enables developers to implement custom behaviors, such as adding headers to responses or filtering requests based on specific criteria.
 
@@ -127,7 +128,7 @@ function onRequest({request}) {
 }
 ```
 
-## Cert
+### Cert
 
 The `Cert` link type is designed for importing SSL/TLS certificates, a crucial component for enabling HTTPS in your GraphQL server. This link type ensures that the server can expose connections over HTTPS.
 
@@ -138,24 +139,28 @@ When using the `Cert` link type, specify the path to the certificate file. Ensur
 Example use case:
 
 - Securing communication between the GraphQL server and clients.
-- Enhancing privacy and security by encrypting data in transit.
+  - Enhancing privacy and security by encrypting data in transit.
 
-## Key
+### Key
 
 The `Key` link type imports the private key associated with your SSL/TLS certificate, enabling HTTPS for your GraphQL server. The private key is a critical security element that decrypts information encrypted by the corresponding public key in the SSL/TLS certificate.
 
 When configuring the `Key` link type, provide the path to your private key file. Ensure the private key matches the imported certificate specified by the [Cert](#cert) link above, and is protected by appropriate file permissions to maintain security.
 
-## Operation
+### Operation
 
 The `Operation` link type connects your schema to a set of predefined, GraphQL spec-compliant queries and mutations. This functionality allows for the validation and optimization of these operations by the GraphQL server.
 
 Each type serves a specific purpose, enabling the flexible integration of external resources into your GraphQL schema.
 
-## Htpasswd
+### Htpasswd
 
 The `Htpasswd` link type allows the importation of an [`htpasswd`](https://httpd.apache.org/docs/2.4/programs/htpasswd.html) file. This file is utilized to set up [Basic authentication](../auth.md#basic-authentication).
 
-## Jwks
+### Jwks
 
 The `Jwks` link type enables the importation of a [`JWKS`](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-key-sets) file. This file facilitates the provision of detailed access control through [JWT authentication](../auth.md#jwt-authentication).
+
+### Grpc
+
+The `Grpc` link type enables the GraphQL server to understand that the specified source is a gRPC endpoint that supports reflection.

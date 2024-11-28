@@ -60,7 +60,7 @@ export default {
     },
   },
   future: {
-    experimental_faster: true, // Required for faster production builds. For reference: https://docusaurus.io/blog/releases/3.6#adoption-strategy
+    experimental_faster: false, // Required for faster production builds. For reference: https://docusaurus.io/blog/releases/3.6#adoption-strategy
   },
   presets: [
     [
@@ -107,8 +107,6 @@ export default {
       logo: {
         alt: "My Site Logo",
         src: "icons/companies/tailcall.svg",
-        height: "2.5rem",
-        width: "150px",
       },
       items: [
         {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
