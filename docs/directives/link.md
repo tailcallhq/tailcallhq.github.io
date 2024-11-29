@@ -51,13 +51,13 @@ The `@link` directive is used for bringing external resources into your GraphQL 
 
 The `@link` directive requires specifying a source `src`, the resource's type `type`, and an optional identifier `id`.
 
-- `src`: The source of the link is defined here. It can be either a URL or a file path. When a file path is given, it's relative to the file's location that is importing the link.
+- `src`: The source of the link is defined here. It can be either a URL or a file path. When a file path is given, it's relative to the file's location that is importing the link. (This field also supports Mustache template)
 
 - `type`: This specifies the link's type, which determines how the imported resource is integrated into the schema. For a list of supported types, see the [Supported Types](#supported-types) section.
 
 - `id`: This is an optional field that assigns a unique identifier to the link. It's helpful for referring to the link within the schema.
 
-- `headers`: This is an optional field that assigns custom headers to the gRPC reflection server requests. Specifying a key-value map of header names and their values achieves this.
+- `headers`: This is an optional field that assigns custom headers to the gRPC reflection server requests. Specifying a key-value map of header names and their values achieves this. (Values supports Mustache template)
 
 ## Example
 
@@ -92,6 +92,49 @@ type NewsData {
   news: [News]!
 }
 ```
+
+## Example using Mustache template
+
+The following example illustrates how to utilize the `@link` directive to incorporate a Protocol Buffers (.proto) file for a gRPC service into your GraphQL schema using Mustache template.
+
+```graphql showLineNumbers
+schema
+  @server(port: 8000)
+  @upstream(httpCache: 42, batch: {delay: 10})
+  @link(
+    id: "news"
+    src: "{{.env.NEWS_PROTO_PATH}}"
+    type: Protobuf
+    headers: [
+      {key: "authorization", value: "{{.env.BEARER}}"}
+    ]
+  ) {
+  query: Query
+}
+
+type Query {
+  news: NewsData!
+    @grpc(method: "news.NewsService.GetAllNews")
+}
+
+type News {
+  id: Int
+  title: String
+  body: String
+  postImage: String
+}
+
+type NewsData {
+  news: [News]!
+}
+```
+
+In the above example, you can notice that `src` is changed to `src: "{{.env.NEWS_PROTO_PATH}}"`
+and value for auth is changed to `value: "{{.env.BEARER}}"`.
+
+Assuming `BEARER="Bearer 123"` and `NEWS_PROTO_PATH=./src/grpc/news.proto` is set as
+your environment variables, the parsed config will automatically parse the mustache templates
+and populate it with the values given.
 
 ## Supported Types
 
