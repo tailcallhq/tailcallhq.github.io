@@ -59,6 +59,9 @@ export default {
       },
     },
   },
+  future: {
+    experimental_faster: false, // Required for faster production builds. For reference: https://docusaurus.io/blog/releases/3.6#adoption-strategy
+  },
   presets: [
     [
       "classic",
@@ -88,7 +91,7 @@ export default {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "icons/companies/taicall.svg",
+    image: "icons/companies/tailcall.svg",
     algolia: {
       appId: "X27WDVHRQ3",
       apiKey: "35bc100f239853cd8a7195b23ed7393b",
@@ -103,8 +106,7 @@ export default {
       hideOnScroll: true,
       logo: {
         alt: "My Site Logo",
-        src: "icons/companies/taicall.svg",
-        height: "2.5rem",
+        src: "icons/companies/tailcall.svg",
       },
       items: [
         {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
@@ -159,6 +161,7 @@ export default {
           type: "all",
           copyright: `Copyright © ${new Date().getFullYear()} Tailcall, Inc.`,
         },
+        onInlineAuthors: "ignore", // TODO: Create an authors.yml file to reduce authors info. redundancy
       },
     ],
     [

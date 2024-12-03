@@ -76,3 +76,9 @@ type Emails {
 ```
 
 In this example, the `@expr` directive dynamically generates an `Emails` object based on the provided template data. The placeholders within the template (`{{.value.workEmail}}` and `{{.value.personalEmail}}`) get replaced with the actual values specified in the `User` type, allowing for dynamic content generation while still adhering to the schema's structure.
+
+## Combining Multiple Directives
+
+The `@expr` directive can be used in combination with other [resolvable directives](../directives.md#resolvable-directives), with results merged deeply. This allows for powerful and flexible resolver configurations.
+
+For more details, see [Directives Documentation](../directives.md).

@@ -30,3 +30,43 @@ Here is a list of all the custom directives supported by Tailcall:
 | [`@server`](./directives/server.md)             | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
 | [`@telemetry`](./directives/telemetry.md)       | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
 | [`@upstream`](./directives/upstream.md)         | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
+
+### Resolvable Directives
+
+Resolvable directives are used to fetch actual data from external sources. These include the following directives: `@call`, `@expr`, `@graphQL`, `@grpc`, and `@http`.
+
+### Combining Resolvable Directives on Fields
+
+When multiple resolvable directives (such as `@call`, `@expr`, `@graphQL`, `@grpc`, or `@http`) are applied to a field, the **order in which they are defined in the schema is important**. Each directive contributes a part of the final result, and the outputs are combined by performing a deep merge of all partial results.
+
+#### Example: Combining Resolvable Directives
+
+```graphql
+type Query {
+  data: Data
+    # This request resolves the `{ "foo": "..." }` part of the response
+    @http(url: "http://api.com/foo")
+    # This request resolves the `{ "bar": "..." }` part of the response
+    # After executing both requests, the results are merged into a single `Data` object
+    @http(url: "http://api.com/bar")
+
+  dataList: [Data]
+    # This request resolves 3 entries of data: `[.., .., ..]`
+    @http(url: "http://api.com/list/foo")
+    # This request resolves 2 entries of data: `[.., ..]`
+    # After executing both requests, the results are merged into a single list
+    # containing 5 entries
+    @http(url: "http://api.com/list/bar")
+}
+
+type Data {
+  foo: String
+  bar: String
+}
+```
+
+### Key Points
+
+1. **Order Matters**: The schema's order of directives determines how partial results are combined.
+2. **Deep Merge**: Partial outputs from each directive are deep-merged to produce the final result.
+3. **Versatility**: Resolvable directives can fetch data from various sources, making them powerful tools for flexible schema design.

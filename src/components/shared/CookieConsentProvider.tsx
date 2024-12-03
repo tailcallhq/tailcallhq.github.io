@@ -26,16 +26,28 @@ const useCookieConsentContextValue = (): CookieConsentContextType => {
     setIsCookieConsentModalVisible(false)
   }, [])
 
+  const handleConsentChange = useCallback(
+    (consentData: {accepted: boolean; preferences?: string[]}) => {
+      const isConsentAlreadyAvailable = cookieConsent
+
+      setCookieConsent(consentData)
+      closeCookieConsentModal()
+
+      if (isConsentAlreadyAvailable) {
+        window.location.reload()
+      }
+    },
+    [cookieConsent, setCookieConsent, closeCookieConsentModal],
+  )
+
   const onAccept = useCallback(() => {
     const consentData = {accepted: true}
-    setCookieConsent(consentData)
-    closeCookieConsentModal()
+    handleConsentChange(consentData)
   }, [setCookieConsent])
 
   const onDeny = useCallback(() => {
     const consentData = {accepted: false}
-    setCookieConsent(consentData)
-    closeCookieConsentModal()
+    handleConsentChange(consentData)
   }, [setCookieConsent])
 
   const onPartialAccept = useCallback(
@@ -44,8 +56,7 @@ const useCookieConsentContextValue = (): CookieConsentContextType => {
         accepted: true,
         preferences: selectedPreferences,
       }
-      setCookieConsent(consentData)
-      closeCookieConsentModal()
+      handleConsentChange(consentData)
     },
     [setCookieConsent],
   )

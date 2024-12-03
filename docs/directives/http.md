@@ -4,7 +4,9 @@ description: The @http directive indicates a field or node relies on a REST API.
 slug: ../http-directive
 ---
 
-The `@http` directive is defined as follows:
+The `@http` directive enables GraphQL fields to be resolved using REST API endpoints, simplifying the integration of external data sources.
+
+## `@http` Directive Definition
 
 ```graphql title="Directive Definition" showLineNumbers
 directive @http(
@@ -21,7 +23,7 @@ directive @http(
 ) on FIELD_DEFINITION
 ```
 
-The `@http` directive indicates a field or node relies on a REST API. For example:
+## Example: Basic Usage of `@http`
 
 ```graphql showLineNumbers
 type Query {
@@ -32,21 +34,11 @@ type Query {
 
 In this example, adding the `@http` directive to the `users` field of the `Query` type indicates reliance on a REST API for the `users` field. The [url](#url) argument specifies the REST API's url, which is `https://jsonplaceholder.typicode.com/users` in this scenario. Querying the `users` field prompts the GraphQL server to issue a GET request to `https://jsonplaceholder.typicode.com/users`.
 
-## url
+## Directive Arguments
 
-Specifies the API's URL.
+### url
 
-```graphql showLineNumbers
-type Query {
-  users: [User]
-    @http(
-      url: "https://jsonplaceholder.typicode.com/users"
-      url: "https://jsonplaceholder.typicode.com"
-    )
-}
-```
-
-If your API endpoint contains dynamic segments, you can substitute variables using Mustache templates. For example, to fetch a specific user, you can write the url as `/users/{{.args.id}}`.
+The `url` parameter defines the API endpoint. It can also contain dynamic segments with Mustache templates for variable substitution:
 
 ```graphql showLineNumbers
 type Query {
@@ -57,9 +49,9 @@ type Query {
 }
 ```
 
-## method
+### method
 
-Specifies the HTTP method for the API call. The default method is GET if not specified.
+Specifies the HTTP method for the request. Defaults to `GET` if not specified:
 
 ```graphql showLineNumbers
 type Mutation {
@@ -71,7 +63,7 @@ type Mutation {
 }
 ```
 
-## query
+### query
 
 Represents the API call's query parameters, either as a static object or with dynamic parameters using Mustache templates. These parameters append to the URL.
 
@@ -91,7 +83,7 @@ type Query {
 }
 ```
 
-The `query` field and be further configured using the following fields:
+#### Query Fields:
 
 1. **key** : Represents the name of the query parameter.
 2. **value** : A string literal or a mustache template representing the value of query parameter.
@@ -101,7 +93,7 @@ The `query` field and be further configured using the following fields:
 When `batchKey` is present, Tailcall considers the first `query` parameter to be the batch query key, so remember to adjust the order of the items accordingly.
 :::
 
-## body
+### body
 
 Defines the API call's body, necessary for methods like POST or PUT. Pass it as a static object or use Mustache templates for variable substitution from the GraphQL variables.
 
@@ -118,7 +110,7 @@ type Mutation {
 
 In the example above, the `createUser` mutation sends a POST request to `/users`, with the input object converted to JSON and included in the request body.
 
-## headers
+### headers
 
 Customizes the HTTP request headers made by the `@http` directive. Specify a key-value map of header names and values.
 
@@ -155,7 +147,7 @@ type Mutation {
 
 In this scenario, the `User-Name` header's value will dynamically adjust according to the `name` argument passed in the request.
 
-## batchKey
+### batchKey
 
 Groups data requests into a single call, enhancing efficiency. Refer to our [n + 1 guide](../N+1.md) for more details.
 
@@ -288,7 +280,7 @@ type User {
 - Better resource utilization
 - Lower upstream server load
 
-## onRequest
+### onRequest
 
 The `onRequest` property accepts a string value representing the remote function to be called every time an HTTP request is initiated. Typically the remote function is defined in a linked JavaScript worker file.
 
@@ -307,7 +299,7 @@ type Query {
 }
 ```
 
-## onResponseBody
+### onResponseBody
 
 This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
 
@@ -321,7 +313,7 @@ type Query {
 }
 ```
 
-## select
+### select
 
 You can use `select` with mustache syntax to re-construct the directives
 response to the desired format. This is useful when data are deeply
@@ -352,7 +344,7 @@ type Query {
 }
 ```
 
-## dedupe
+### dedupe
 
 A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
 
@@ -362,3 +354,9 @@ A boolean flag, if set to `true`, will enable deduplication of IO operations to 
   dedupe: true
 )
 ```
+
+## Combining Multiple Directives
+
+The `@http` directive can be used in combination with other [resolvable directives](../directives.md#resolvable-directives), with results merged deeply. This allows for powerful and flexible resolver configurations.
+
+For more details, see [Directives Documentation](../directives.md).

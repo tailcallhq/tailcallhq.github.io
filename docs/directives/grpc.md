@@ -4,7 +4,9 @@ description: The @grpc directive enables the resolution of GraphQL fields via gR
 slug: ../grpc-directive
 ---
 
-The `@grpc` directive is defined as follows:
+The `@grpc` directive allows GraphQL fields to be resolved by fetching data through gRPC services, facilitating powerful integrations between GraphQL and gRPC.
+
+## `@grpc` Directive Definition
 
 ```graphql title="Directive Definition" showLineNumbers
 directive @grpc(
@@ -19,7 +21,9 @@ directive @grpc(
 ) on FIELD_DEFINITION
 ```
 
-The `@grpc` directive enables the resolution of GraphQL fields via gRPC services. Below is an illustrative example of how to apply this directive within a GraphQL schema:
+## Example: Resolving Users via gRPC
+
+Here's an example demonstrating the use of the `@grpc` directive:
 
 ```graphql showLineNumbers
 schema @link(src: "./users.proto", type: Protobuf) {
@@ -31,9 +35,11 @@ type Query {
 }
 ```
 
-This schema snippet demonstrates the directive's application, where a query for `users` triggers a gRPC request to the `UserService`'s `ListUsers` method, thereby fetching the user data.
+In this example, the `users` field fetches data from the gRPC method `UserService.ListUsers`.
 
-The `.proto` file delineates the structure and methods of the gRPC service. A simplified example of such a file is as follows:
+### Defining gRPC Services
+
+The gRPC methods referenced by the directive are defined in a `.proto` file, such as:
 
 ```proto
 syntax = "proto3";
@@ -76,9 +82,11 @@ schema @link(src: "./users.proto", type: Protobuf) {
 
 Tailcall automatically resolves the protobuf file for any methods referenced in the `@grpc` directive.
 
-## method
+## Directive Arguments
 
-This parameter specifies the gRPC service and method to be invoked, formatted as `<package>.<service>.<method>`:
+### method
+
+Defines the gRPC service and method to call, formatted as `<package>.<service>.<method>`:
 
 ```graphql
 type Query {
@@ -87,9 +95,9 @@ type Query {
 }
 ```
 
-## url
+### url
 
-Defines the base URL for the gRPC API.
+Specifies the base URL for the gRPC service:
 
 ```graphql
 type Query {
@@ -101,9 +109,9 @@ type Query {
 }
 ```
 
-## body
+### body
 
-This parameter outlines the arguments for the gRPC call, allowing for both static and dynamic inputs:
+The `body` outlines the arguments for the gRPC call, allowing for both static and dynamic inputs:
 
 ```graphql
 type UserInput {
@@ -119,7 +127,7 @@ type Query {
 }
 ```
 
-## headers
+### headers
 
 Custom headers for the gRPC request can be defined, facilitating the transmission of authentication tokens or other contextual data:
 
@@ -135,9 +143,9 @@ type Query {
 }
 ```
 
-## batchKey
+### batchKey
 
-This argument is employed to optimize batch requests by grouping them based on specified response keys, enhancing performance in scenarios requiring multiple, similar requests:
+Use `batchKey` to group similar requests for optimized batching, reducing the number of requests:
 
 ```graphql
 type Query {
@@ -151,10 +159,10 @@ type Query {
 ```
 
 :::info
-Read about [n + 1](../N+1.md) to learn how to use the `batchKey` setting.
+Refer to [N + 1 Problem](../N+1.md) to learn how to use the `batchKey` setting.
 :::
 
-## onResponseBody
+### onResponseBody
 
 This hook allows you to intercept and modify the response body from upstream services before it's processed by Tailcall. Like [onRequest](./http.md#onrequest), it accepts a string value representing a middleware function defined in a JavaScript file. This function can be used to transform or validate the response data.
 
@@ -168,7 +176,7 @@ type Query {
 }
 ```
 
-## select
+### select
 
 You can use `select` with mustache syntax to re-construct the directives
 response to the desired format. This is useful when data are deeply
@@ -199,9 +207,9 @@ type Query {
 }
 ```
 
-## dedupe
+### dedupe
 
-A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+The `dedupe` parameter, if set to `true`, prevents duplicate IO requests from being executed concurrently:
 
 ```graphql showLineNumbers
 @grpc(
@@ -209,3 +217,9 @@ A boolean flag, if set to `true`, will enable deduplication of IO operations to 
   dedupe: true
 )
 ```
+
+## Combining Directives
+
+The `@grpc` directive can be used in combination with other [resolvable directives](../directives.md#resolvable-directives), with results merged deeply. This allows for powerful and flexible resolver configurations.
+
+For more details, see [Directives Documentation](../directives.md).

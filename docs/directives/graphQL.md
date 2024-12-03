@@ -4,7 +4,9 @@ description: The @graphQL directive allows to specify a GraphQL API server to fe
 slug: ../graphQL-directive
 ---
 
-The `@graphQL` directive is defined as follows:
+The `@graphQL` directive allows you to specify an external GraphQL API server to fetch data from, making it easier to integrate remote data sources.
+
+## `@graphQL` Directive Definition
 
 ```graphql title="Directive Definition" showLineNumbers
 directive @graphQL(
@@ -17,7 +19,9 @@ directive @graphQL(
 ) on FIELD_DEFINITION
 ```
 
-The `@graphQL` directive allows to specify a GraphQL API server to fetch data from.
+## Example: Fetching Users from External API
+
+The following example shows how to use the `@graphQL` directive to fetch data from an external GraphQL API server:
 
 ```graphql showLineNumbers
 type Query {
@@ -29,9 +33,11 @@ type Query {
 }
 ```
 
-The `@graphQL` directive facilitates fetching a list of users from the GraphQL API upstream. The [name](#name) argument specifies the root field's name on the upstream server. The upcoming request to the GraphQL server determines the `User` type's inner fields for the request. Depending on the operation type within which one finds the `@graphQL` directive, the GraphQL configuration determines the query's operation type.
+In the example above, the `@graphQL` directive specifies that the `users` field should be resolved by fetching data from an external GraphQL endpoint.
 
-For the next request with the config above:
+### Request Flow Example
+
+Given a query for `users`:
 
 ```graphql showLineNumbers
 query {
@@ -42,7 +48,7 @@ query {
 }
 ```
 
-Tailcall will request the next query for the upstream:
+Tailcall will make the following query to the upstream server:
 
 ```graphql showLineNumbers
 query {
@@ -53,9 +59,11 @@ query {
 }
 ```
 
-## url
+## Directive Arguments
 
-This refers to the URL of the API.
+### url
+
+The `url` parameter specifies the endpoint for the external GraphQL API:
 
 ```graphql showLineNumbers
 type Query {
@@ -67,9 +75,9 @@ type Query {
 }
 ```
 
-## name
+### name
 
-The root field's name on the upstream to request data from. For example:
+The `name` parameter specifies the name of the root field in the external API. For example:
 
 ```graphql showLineNumbers
 type Query {
@@ -81,11 +89,11 @@ type Query {
 }
 ```
 
-When Tailcall receives a query for the `users` field, it will request a query for `userList` from the upstream.
+In this case, `users` maps to `userList` in the upstream query.
 
-## args
+### args
 
-Named arguments for the requested field. For example:
+The `args` parameter allows you to pass arguments to the upstream GraphQL query:
 
 ```graphql showLineNumbers
 type Query {
@@ -98,7 +106,7 @@ type Query {
 }
 ```
 
-Will request the next query from the upstream for the first user's name:
+Example query to fetch a user's name by ID:
 
 ```graphql showLineNumbers
 query {
@@ -108,11 +116,9 @@ query {
 }
 ```
 
-## headers
+### headers
 
-The `headers` parameter allows customizing the headers of the GraphQL request made by the `@graphQL` directive. Specifying a key-value map of header names and their values achieves this.
-
-For instance:
+The `headers` parameter customizes the HTTP headers sent in the GraphQL request:
 
 ```graphql showLineNumbers
 type Mutation {
@@ -125,25 +131,13 @@ type Mutation {
 }
 ```
 
-In this example, a request to `/users` will include the HTTP header `X-Server` with the value `Tailcall`.
+Here, the `X-Server` header is added to requests.
 
-## batch
+### batch
 
-In case the upstream GraphQL server supports request batching, we can specify the `batch` argument to batch requests to a single upstream into a single batch request. For example:
+If the upstream server supports batching, you can use the `batch` option to batch requests:
 
 ```graphql showLineNumbers
-schema
-  @upstream(
-    batch: {
-      maxSize: 1000
-      delay: 10
-      headers: ["X-Server", "Authorization"]
-    }
-  ) {
-  query: Query
-  mutation: Mutation
-}
-
 type Query {
   users: [User]
     @graphQL(
@@ -160,16 +154,23 @@ type Query {
 }
 ```
 
-## dedupe
+### dedupe
 
-A boolean flag, if set to `true`, will enable deduplication of IO operations to enhance performance. This flag prevents duplicate IO requests from being executed concurrently, reducing resource load. If not specified, this feature defaults to `false`.
+The `dedupe` parameter is a boolean flag that, when set to `true`, prevents duplicate requests from being sent concurrently:
 
 ```graphql showLineNumbers
-@graphQL(
-  url: "https://jsonplaceholder.typicode.com",
-  name: "users",
-  dedupe: true
-)
+type Query {
+  users: [User]
+    @graphQL(
+      url: "https://jsonplaceholder.typicode.com"
+      name: "users"
+      dedupe: true
+    )
+}
 ```
 
-Make sure you have also specified batch settings to the `@upstream` and to the `@graphQL` directive.
+## Combining Multiple Directives
+
+The `@graphQL` directive can be used in combination with other [resolvable directives](../directives.md#resolvable-directives), with results merged deeply. This allows for powerful and flexible resolver configurations.
+
+For more details, see [Directives Documentation](../directives.md).

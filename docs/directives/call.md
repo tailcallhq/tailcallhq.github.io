@@ -4,6 +4,10 @@ description: The @call directive simplifies queries by composing together other 
 slug: ../call-directive
 ---
 
+The `@call` directive simplifies GraphQL schema design by enabling resolver composition, allowing you to create chains of resolvers executed in sequence.
+
+## `@call` Directive Definition
+
 The `@call` directive is defined as follows:
 
 ```graphql showLineNumbers title="Directive Definition"
@@ -34,6 +38,8 @@ input CallStep {
   args: JSON
 }
 ```
+
+## Example: Eliminating Redundancy
 
 The `@call` directive in GraphQL signifies a shift towards more efficient configuration management by introducing a methodology akin to function invocations in conventional programming. This directive is pivotal for developers navigating the intricacies of elaborate GraphQL schemas, where minimizing redundancy and adhering to the DRY (Don't Repeat Yourself) principle are paramount. Consider the following schema example:
 
@@ -94,13 +100,13 @@ type Post {
 
 Here, the `@call` directive invokes the `user` query from the `Query` type, leveraging the data-fetching process that's already defined in the root `query`. The `query` parameter specifies the target field, while the `args` parameter delineates the arguments to be passed.
 
-## steps
+## Composing Resolvers with `steps`
 
-`@call` directive can compose together other resolvers, allowing to create a chain of resolvers that can be executed in sequence. This is done by using the `steps` parameter, which is an array of objects that define the operations to be executed.
+The `steps` argument in the `@call` directive is used to define a chain of resolvers, executed sequentially.
 
-## query
+### Example: Invoking a Query
 
-Specify the root **query** field to invoke, alongside the requisite arguments, using the `@call` directive for a concise and efficient query structure.
+To invoke a query, specify the `query` field to call, along with any required arguments:
 
 ```graphql showLineNumbers
 type Post {
@@ -114,9 +120,9 @@ type Post {
 }
 ```
 
-## mutation
+### Example: Invoking a Mutation
 
-Similarly, the `@call` directive can facilitate calling a mutation from another mutation field, employing the `mutation` parameter for field specification and the `args` parameter for argument delineation.
+Similarly, you can invoke a mutation by specifying the `mutation` parameter:
 
 ```graphql showLineNumbers
 type Mutation {
@@ -140,9 +146,9 @@ type Mutation {
 }
 ```
 
-## args
+### Passing Arguments
 
-The `args` parameter in the `@call` directive facilitates passing arguments to the targeted query or mutation, represented as a key-value mapping where each key corresponds to an argument name and its associated value.
+Arguments can be passed using the `args` parameter, where each key represents an argument name:
 
 ```graphql showLineNumbers
 type Post {
@@ -157,14 +163,16 @@ type Post {
 ```
 
 :::tip
-The `@call` directive is predominantly advantageous in complex, large-scale configurations. For those new to GraphQL or Tailcall, it may be beneficial to explore this directive after familiarizing yourself with the foundational aspects of GraphQL.
+The `@call` directive is most useful in larger schemas with complex configurations. If you're just starting with GraphQL, consider mastering the basics before diving into advanced directives like `@call`.
 :::
 
-## Composition
+## Advanced Composition Example
 
-`@call` directive provides the ability to express a sequence of steps that one might need to compose. These steps are executed such that the result of each step is passed as an argument to the next step. The `query` and `mutation` parameters are used to specify the target field, while the `args` parameter is used to pass arguments to the target field.
+The `@call` directive can be used to combine multiple resolvers in a sequence, passing the output of each step to the next. This allows for flexible composition of existing operations.
 
-Let's explain this with an example:
+### Example: Composing Multiple Operations
+
+Consider a scenario where we have three operations (`a`, `b`, `c`), each extracting a specific part of the input:
 
 ```graphql showLineNumbers
 schema @server {
@@ -183,41 +191,7 @@ type Query {
 }
 ```
 
-Here we have defined there operations viz. `a`, `b` & `c` each of them pluck their respective keys from the given input value. Let's run this query with some test input:
-
-```graphql
-{
-  a(input: {a: 100})
-  b(input: {b: 200})
-  c(input: {c: 300})
-}
-```
-
-Here is how the response would look like:
-
-```json
-{
-  "data": {
-    "a": {
-      "value": 100
-    },
-    "b": {
-      "value": 200
-    },
-    "c": {
-      "value": 300
-    }
-  }
-}
-```
-
-As you can see the [`@expr`](./expr.md) directive plucks the inner value and returns the result. How about we implement an `abc` operation that could leverage the existing operations and unwrap the following input value:
-
-```json
-{"a": {"b": {"c": {"d": 1000}}}}
-```
-
-Given the above input if we wish to extract the last inner number `1000` then we could define a new operation as follows
+We can create a new `abc` operation that calls `a`, `b`, and `c` in sequence to extract deeply nested data:
 
 ```graphql showLineNumbers
 schema @server {
@@ -247,7 +221,7 @@ type Query {
 }
 ```
 
-We use the `@call` directive to compose the operations together. The `args` specify how we would like to pass the arguments to the operation and the result of that operation is passed to the next step. We can test the new `abc` operation with the following query:
+### Running the Composed Query
 
 ```graphql
 query {
@@ -255,7 +229,7 @@ query {
 }
 ```
 
-The server returns the response that we expected:
+Response:
 
 ```json
 {
@@ -270,5 +244,11 @@ The server returns the response that we expected:
 This way you can compose combine multiple operations can compose them together using the `@call` directive.
 
 :::note
-We use `JSON` scalar here because we don't care about the type safety of this option. In a real world example you might want to use proper input and output types.
+Using `JSON` scalar here is for simplicity. In production, proper input and output types should be used for type safety.
 :::
+
+## Combining Multiple Directives
+
+The `@call` directive can be used in combination with other [resolvable directives](../directives.md#resolvable-directives), with results merged deeply. This allows for powerful and flexible resolver configurations.
+
+For more details, see [Directives Documentation](../directives.md).
