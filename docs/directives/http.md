@@ -181,11 +181,35 @@ type Post {
 
 ### Batching with POST Requests
 
-Tailcall supports batching multiple `POST` requests into a single upstream `POST` request, enhancing efficiency and reducing network overhead.
+Tailcall can optimize multiple individual POST requests by batching them into a single upstream POST request. This feature significantly reduces network overhead and improves overall performance.
 
-#### Example Scenario
+#### How Batching Works
 
-Suppose the endpoint `https://jsonplaceholder.typicode.com/posts` returns the following data:
+When Tailcall receives multiple POST requests that share the same endpoint but have different parameters, it:
+
+1. Collects these requests into a batch
+2. Transforms them into a single POST request with an array of bodies
+3. Sends this consolidated request to the upstream service
+4. Maps the responses back to individual results
+
+#### Example
+
+Let's say your GraphQL query needs to fetch user details for multiple posts:
+
+```graphql
+query {
+  posts {
+    id
+    name
+    user {
+      id
+      name
+    }
+  }
+}
+```
+
+The posts endpoint returns:
 
 ```json
 [
@@ -202,46 +226,67 @@ Suppose the endpoint `https://jsonplaceholder.typicode.com/posts` returns the fo
 ]
 ```
 
-With the configuration below, Tailcall will consolidate these into a single batched `POST` request to the upstream service:
+Instead of making separate POST requests for each user, Tailcall will batch them into a single request:
 
 ```bash
-Request: https://jsonplaceholder.typicode.com/users
-Method: POST
-Body: [
-        {
-          "userId": 1,
-          "staticValue": "static"
-        },
-        {
-          "userId": 2,
-          "staticValue": "static"
-        }
-      ]
+POST https://jsonplaceholder.typicode.com/users
+Content-Type: application/json
+Body:
+[
+  {
+    "userId": 1,
+    "staticValue": "static"
+  },
+  {
+    "userId": 2,
+    "staticValue": "static"
+  }
+]
 ```
 
-**Note**: Currently, only one dynamic parameter is supported in a batched `POST` request, as demonstrated with `{{.value.userId}}` in the example.
+#### Configuration
 
-#### GraphQL Configuration
+To enable batching, configure your schema with the appropriate directives:
 
-```graphql showLineNumbers
+```graphql
 type Query {
   posts: [Post]
     @http(url: "https://jsonplaceholder.typicode.com/posts")
 }
 
 type Post {
-  id: Int!
+  id: ID!
   name: String!
-  userId: Int!
-  user: User
+  user: User!
     @http(
       url: "https://jsonplaceholder.typicode.com/users"
       method: POST
-      body: "{\"userId\": \"{{.value.userId}}\", \"staticValue\": \"static\"}"
-      batchKey: ["users", "id"]
+      body: {
+        userId: "{{.value.userId}}"
+        staticValue: "static"
+      }
+      batchKey: ["userId"]
     )
 }
+
+type User {
+  id: ID!
+  name: String!
+}
 ```
+
+#### Limitations
+
+- Currently supports only one dynamic parameter per batched request
+- All requests in a batch must share the same endpoint and method
+- The dynamic parameter must be referenced using the `{{.value.fieldName}}` syntax
+
+#### Benefits
+
+- Reduced network overhead
+- Improved response times
+- Better resource utilization
+- Lower upstream server load
 
 ## onRequest
 
