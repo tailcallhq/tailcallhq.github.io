@@ -28,16 +28,12 @@
 
 @media (max-width: 1000px) {
   .cookieConsentModal {
-    max-height: 90%;
-    max-width: unset;
-    width: 100%;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
   }
 
   .closeBtn {
     right: 15px;
-  }
-
-  .consentOptionsContainer {
-    flex-direction: column;
   }
 }
