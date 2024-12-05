@@ -181,7 +181,15 @@ To generate a Tailcall GraphQL configuration, provide a configuration file to th
     },
     {
       "proto": {
-        "src": "./news.proto"
+        "src": "./news.proto",
+        "url": "http://127.0.0.1:8080/rpc"
+      }
+    },
+    {
+      "proto": {
+        "src": "./news.proto",
+        "url": "http://localhost:8080/news.NewsService/",
+        "connectRPC": true
       }
     }
   ],
@@ -232,6 +240,11 @@ inputs:
       fieldName: "createPost"
   - proto:
       src: "./news.proto"
+      url: "http://127.0.0.1:8080/rpc"
+  - proto:
+      src: "./news.proto"
+      url: "http://localhost:8080/news.NewsService/"
+      connectRPC: true
 output:
   path: "./output.graphql"
   format: "graphQL"
@@ -374,14 +387,15 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     }
     ```
 
-4.  **Proto:** For protobuf files, specify the path to the proto file (`src`).
+4.  **Proto:** For protobuf files, specify the path to the proto file (`src`) and the gRPC hosted url (`url`).
 
     <Tabs>
       <TabItem value="json" label="JSON">
       ```json
       {
         "proto": {
-          "src": "./path/to/file.proto"
+          "src": "./path/to/file.proto",
+          "url": "http://127.0.0.1:8080/rpc",
         }
       }
       ```
@@ -390,6 +404,31 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
       ```yml
       - proto:
           src: "./news.proto"
+          url: "http://127.0.0.1:8080/rpc"
+      ```
+      </TabItem>
+    </Tabs>
+
+5.  **Connect-RPC:** For connect-RPC, specify the path to the proto file (`src`), the url on which connect-rpc is hosted and set `connectRPC` flag to true.
+
+    <Tabs>
+      <TabItem value="json" label="JSON">
+      ```json
+      {
+        "proto": {
+          "src": "./path/to/file.proto",
+          "url": "http://localhost:8080/news.NewsService/",
+          "connectRPC": true
+        }
+      }
+      ```
+      </TabItem>
+      <TabItem value="yml" label="YML">
+      ```yml
+      - proto:
+          src: "./news.proto"
+          url: "http://localhost:8080/news.NewsService/"
+          connectRPC: true
       ```
       </TabItem>
     </Tabs>
@@ -415,8 +454,6 @@ The config generator provides a set of tuning parameters that can make the gener
 ```json title="Presets with default values"
 {
   "preset": {
-    "mergeType": 1,
-    "treeShake": true,
     "unwrapSingleFieldTypes": true,
     "inferTypeNames": true
   }
@@ -436,7 +473,7 @@ preset:
 </TabItem>
 </Tabs>
 
-1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`.
+1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not.
 
    For example, the following types `T1` and `T2` are exactly similar, and with a threshold value of `1.0`, they can be merged into a single type called `M1`:
 

@@ -342,6 +342,13 @@ Tailcall simplifies the process of generating GraphQL schemas from gRPC. By spec
                   "src": "./news.proto",
                   "url": "http://localhost:50051"
                 }
+              },
+              {
+                "proto": {
+                  "src": "./news.proto",
+                  "url": "http://localhost:8080/news.NewsService/",
+                  "connectRPC": true
+                }
               }
             ],
             "preset": {
@@ -365,6 +372,10 @@ Tailcall simplifies the process of generating GraphQL schemas from gRPC. By spec
           - proto:
             src: "./news.proto"
             url: "http://localhost:50051"
+          - proto:
+            src: "./news.proto"
+            url: "http://localhost:8080/news.NewsService/"
+            connectRPC: true
         preset:
           mergeType: 1.0
         output:
@@ -382,6 +393,8 @@ Let's understand the above configuration file.
 **Proto**: Defines the path to the proto file that the configuration interacts with.
 
 - **src**: Specifies the path to the proto file (`./news.proto` in this example).
+- **url**: Specifies the url on which gRPC service is hosted. (`http://localhost:50051` in this example).
+- **connectRPC**: An optional flag indicating whether Tailcall should generate `Connect-RPC` compatible configuration.
 
 **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 
@@ -436,7 +449,8 @@ Here is an example configuration that demonstrates how to set up a hybrid integr
     },
     {
       "proto": {
-        "src": "./news.proto"
+        "src": "./news.proto",
+        "url": "http://localhost:50051"
       }
     }
   ],
@@ -462,6 +476,7 @@ inputs:
       fieldName: "posts"
   - proto:
       src: "./news.proto"
+      url: "http://localhost:50051"
 preset:
   mergeType: 1.0
 output:
@@ -974,7 +989,8 @@ curl:
     },
     {
       "proto": {
-        "src": "./news.proto"
+        "src": "./news.proto",
+        "url": "http://localhost:50051"
       }
     }
   ],
@@ -995,9 +1011,53 @@ inputs:
       fieldName: "posts"
   - proto:
       src: "./news.proto"
+      url: "http://localhost:50051"
 schema:
   query: "Query"
 ```
 
 </TabItem>
 </Tabs>
+
+**Q. How do I configure Tailcall to work with Connect-RPC services?**
+
+**Answer:** You can configure Tailcall to work with Connect-RPC services by specifying the appropriate configuration in your input source. Here's an example:
+
+<Tabs>
+<TabItem value="json" label="JSON">
+
+```json showLineNumbers
+{
+  "inputs": [
+    {
+      "proto": {
+        "src": "./service.proto",
+        "url": "http://localhost:8080",
+        "connectRPC": true
+      }
+    }
+  ],
+  "schema": {
+    "query": "Query"
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="yml" label="YML">
+
+```yml showLineNumbers
+inputs:
+  - proto:
+      src: "./service.proto"
+      url: "http://localhost:8080"
+      connectRPC: true
+schema:
+  query: "Query"
+```
+
+</TabItem>
+</Tabs>
+
+Set `connectRPC: true` in your proto input configuration to enable Connect-RPC compatibility. This tells Tailcall to use the Connect-RPC protocol when communicating with your gRPC service.
