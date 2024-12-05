@@ -132,22 +132,24 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
+  
+    **Schema**: Specifies the operation type names. In this example, it's saying GraphQL configuration will have a query operation type and it's type name name will be `Query`.
 
 To generate the GraphQL configuration run following command
 <Tabs>
-<TabItem value="json" label="JSON Config Format">
-`bash
+  <TabItem value="json" label="JSON Config Format">
+    ```bash
     tailcall gen ./config.json
-    `
-</TabItem>
-<TabItem value="yml" label="YML Config Format">
-`bash
+    ```
+  </TabItem>
+  <TabItem value="yml" label="YML Config Format">
+    ```bash
     tailcall gen ./config.yml
-    `
-</TabItem>
+    ```
+  </TabItem>
 </Tabs>
-**Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
+Generated Configuration looks like following.
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
 schema {
   query: Query
@@ -272,24 +274,23 @@ type Query {
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
+    **Schema**: Specifies the operation type names. In this example, it's saying GraphQL configuration will have a mutation operation type and it's type name name will be `Mutation`.
+
 To generate the GraphQL configuration run following command
 <Tabs>
-<TabItem value="json" label="JSON Config Format">
-
-```bash
-tailcall gen ./config.json
-```
-
+  <TabItem value="json" label="JSON Config Format">
+    ```bash
+    tailcall gen ./config.json
+    ```
   </TabItem>
   <TabItem value="yml" label="YML Config Format">
     ```bash
     tailcall gen ./config.yml
     ```
   </TabItem>
-  </Tabs>
+</Tabs>
 
-**Schema**: Specifies the operation type. In this example, it's a `Mutation` operation with the name `Mutation`.
-
+Generated Configuration looks like following.
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
 schema @server @upstream {
   mutation: Mutation
@@ -1021,7 +1022,7 @@ schema:
 
 **Q. How do I configure Tailcall to work with Connect-RPC services?**
 
-**Answer:** You can configure Tailcall to work with Connect-RPC services by specifying the appropriate configuration in your input source. Here's an example:
+**Answer:** You can configure Tailcall to work with Connect-RPC services by setting the `connectRPC` flag to true in config generation file. Here's an example:
 
 <Tabs>
 <TabItem value="json" label="JSON">
@@ -1060,4 +1061,4 @@ schema:
 </TabItem>
 </Tabs>
 
-Set `connectRPC: true` in your proto input configuration to enable Connect-RPC compatibility. This tells Tailcall to use the Connect-RPC protocol when communicating with your gRPC service.
+Set `connectRPC: true` in your generation configuration file under the proto section to enable `Connect-RPC` compatibility. This tells Tailcall to generate the Connect-RPC compatible configuration by looking at the proto file.
