@@ -132,24 +132,22 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
 
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
-  
-    **Schema**: Specifies the operation type names. In this example, it's saying GraphQL configuration will have a query operation type and it's type name name will be `Query`.
 
 To generate the GraphQL configuration run following command
 <Tabs>
   <TabItem value="json" label="JSON Config Format">
-    ```bash
+    ```bash showLineNumbers
     tailcall gen ./config.json
     ```
   </TabItem>
   <TabItem value="yml" label="YML Config Format">
-    ```bash
+    ```bash showLineNumbers
     tailcall gen ./config.yml
     ```
   </TabItem>
 </Tabs>
+**Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
-Generated Configuration looks like following.
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
 schema {
   query: Query
@@ -274,21 +272,19 @@ type Query {
     - **path**: Defines the output file path (in above example, it's `./jsonplaceholder.graphql`).
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
-    **Schema**: Specifies the operation type names. In this example, it's saying GraphQL configuration will have a mutation operation type and it's type name name will be `Mutation`.
-
 To generate the GraphQL configuration run following command
 <Tabs>
-  <TabItem value="json" label="JSON Config Format">
-    ```bash
-    tailcall gen ./config.json
-    ```
+<TabItem value="json" label="JSON Config Format">
+  ```bash
+  tailcall gen ./config.json
+  ```
   </TabItem>
   <TabItem value="yml" label="YML Config Format">
     ```bash
     tailcall gen ./config.yml
     ```
   </TabItem>
-</Tabs>
+  </Tabs>
 
 Generated Configuration looks like following.
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
@@ -395,7 +391,8 @@ Let's understand the above configuration file.
 
 - **src**: Specifies the path to the proto file (`./news.proto` in this example).
 - **url**: Specifies the url on which gRPC service is hosted. (`http://localhost:50051` in this example).
-- **connectRPC**: An optional flag indicating whether Tailcall should generate `Connect-RPC` compatible configuration.
+- **connectRPC**: An optional flag indicating whether Tailcall should generate [`Connect-RPC`](https://connectrpc.com/docs/protocol/) compatible configuration.
+
 
 **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 
@@ -1019,46 +1016,3 @@ schema:
 
 </TabItem>
 </Tabs>
-
-**Q. How do I configure Tailcall to work with Connect-RPC services?**
-
-**Answer:** You can configure Tailcall to work with Connect-RPC services by setting the `connectRPC` flag to true in config generation file. Here's an example:
-
-<Tabs>
-<TabItem value="json" label="JSON">
-
-```json showLineNumbers
-{
-  "inputs": [
-    {
-      "proto": {
-        "src": "./service.proto",
-        "url": "http://localhost:8080",
-        "connectRPC": true
-      }
-    }
-  ],
-  "schema": {
-    "query": "Query"
-  }
-}
-```
-
-</TabItem>
-
-<TabItem value="yml" label="YML">
-
-```yml showLineNumbers
-inputs:
-  - proto:
-      src: "./service.proto"
-      url: "http://localhost:8080"
-      connectRPC: true
-schema:
-  query: "Query"
-```
-
-</TabItem>
-</Tabs>
-
-Set `connectRPC: true` in your generation configuration file under the proto section to enable `Connect-RPC` compatibility. This tells Tailcall to generate the Connect-RPC compatible configuration by looking at the proto file.

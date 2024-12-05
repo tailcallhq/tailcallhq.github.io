@@ -184,13 +184,6 @@ To generate a Tailcall GraphQL configuration, provide a configuration file to th
         "src": "./news.proto",
         "url": "http://127.0.0.1:8080/rpc"
       }
-    },
-    {
-      "proto": {
-        "src": "./news.proto",
-        "url": "http://localhost:8080/news.NewsService/",
-        "connectRPC": true
-      }
     }
   ],
   "output": {
@@ -241,10 +234,6 @@ inputs:
   - proto:
       src: "./news.proto"
       url: "http://127.0.0.1:8080/rpc"
-  - proto:
-      src: "./news.proto"
-      url: "http://localhost:8080/news.NewsService/"
-      connectRPC: true
 output:
   path: "./output.graphql"
   format: "graphQL"
@@ -387,51 +376,30 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     }
     ```
 
-4.  **Proto:** For protobuf files, specify the path to the proto file (`src`) and the gRPC hosted url (`url`).
+4. **Proto:**  
+   - Specify the **path to the proto file** (`src`) to help Tailcall create a schema and understand the gRPC methods to call when a field is queried.
+   - Specify the **gRPC URL** (`url`) where the gRPC service is hosted.
+   - Include a **boolean parameter** `connectRPC` (optional). If set to `true`, the proto file will be used to generate the schema, but the communication between Tailcall and the upstream will happen using the [Connect-RPC protocol](https://connectrpc.com/docs/protocol/).
 
-    <Tabs>
-      <TabItem value="json" label="JSON">
-      ```json
-      {
-        "proto": {
-          "src": "./path/to/file.proto",
-          "url": "http://127.0.0.1:8080/rpc",
-        }
-      }
-      ```
-      </TabItem>
-      <TabItem value="yml" label="YML">
-      ```yml
-      - proto:
-          src: "./news.proto"
-          url: "http://127.0.0.1:8080/rpc"
-      ```
-      </TabItem>
-    </Tabs>
-
-5.  **Connect-RPC:** For connect-RPC, specify the path to the proto file (`src`), the url on which connect-rpc is hosted and set `connectRPC` flag to true.
-
-    <Tabs>
-      <TabItem value="json" label="JSON">
-      ```json
-      {
-        "proto": {
-          "src": "./path/to/file.proto",
-          "url": "http://localhost:8080/news.NewsService/",
-          "connectRPC": true
-        }
-      }
-      ```
-      </TabItem>
-      <TabItem value="yml" label="YML">
-      ```yml
-      - proto:
-          src: "./news.proto"
-          url: "http://localhost:8080/news.NewsService/"
-          connectRPC: true
-      ```
-      </TabItem>
-    </Tabs>
+       <Tabs>
+         <TabItem value="json" label="JSON">
+         ```json
+         {
+           "proto": {
+             "src": "./path/to/file.proto",
+             "url": "http://127.0.0.1:8080/rpc"
+           }
+         }
+         ```
+         </TabItem>
+         <TabItem value="yml" label="YML">
+         ```yml
+         - proto:
+             src: "./news.proto"
+             url: "http://127.0.0.1:8080/rpc"
+         ```
+         </TabItem>
+       </Tabs>
 
 ### Output
 
@@ -454,6 +422,8 @@ The config generator provides a set of tuning parameters that can make the gener
 ```json title="Presets with default values"
 {
   "preset": {
+    "mergeType": 1,
+    "treeShake": true,
     "unwrapSingleFieldTypes": true,
     "inferTypeNames": true
   }
@@ -473,7 +443,7 @@ preset:
 </TabItem>
 </Tabs>
 
-1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not.
+1. **mergeType:** This setting merges types in the configuration that satisfy the threshold criteria. It takes a threshold value between `0.0` and `1.0` to determine if two types should be merged or not. The default is `1.0`.
 
    For example, the following types `T1` and `T2` are exactly similar, and with a threshold value of `1.0`, they can be merged into a single type called `M1`:
 
@@ -610,7 +580,7 @@ preset:
    }
    ```
 
-   By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, enhancing overall readability and understanding.
+   By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, enhancing overall readability and understanding. You can learn more about config autogen [here](./config-generation.md).
 
 ### LLM
 
