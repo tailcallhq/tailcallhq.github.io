@@ -134,7 +134,6 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
 To generate the GraphQL configuration run following command
-To generate the GraphQL configuration run following command
 
 <Tabs>
 <TabItem value="yml" label="YML Config Format">
