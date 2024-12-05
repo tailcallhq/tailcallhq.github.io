@@ -134,17 +134,23 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
 To generate the GraphQL configuration run following command
+To generate the GraphQL configuration run following command
+
 <Tabs>
-  <TabItem value="json" label="JSON Config Format">
-    ```bash showLineNumbers
-    tailcall gen ./config.json
-    ```
-  </TabItem>
-  <TabItem value="yml" label="YML Config Format">
-    ```bash showLineNumbers
-    tailcall gen ./config.yml
-    ```
-  </TabItem>
+<TabItem value="yml" label="YML Config Format">
+
+```bash
+tailcall gen ./config.yml
+```
+
+</TabItem>
+<TabItem value="json" label="JSON Config Format">
+
+```bash
+tailcall gen ./config.json
+```
+
+</TabItem>
 </Tabs>
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
@@ -275,9 +281,11 @@ type Query {
 To generate the GraphQL configuration run following command
 <Tabs>
 <TabItem value="json" label="JSON Config Format">
-  ```bash
-  tailcall gen ./config.json
-  ```
+
+```bash
+tailcall gen ./config.json
+```
+
   </TabItem>
   <TabItem value="yml" label="YML Config Format">
     ```bash
@@ -287,6 +295,7 @@ To generate the GraphQL configuration run following command
   </Tabs>
 
 Generated Configuration looks like following.
+
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
 schema @server @upstream {
   mutation: Mutation
@@ -392,7 +401,6 @@ Let's understand the above configuration file.
 - **src**: Specifies the path to the proto file (`./news.proto` in this example).
 - **url**: Specifies the url on which gRPC service is hosted. (`http://localhost:50051` in this example).
 - **connectRPC**: An optional flag indicating whether Tailcall should generate [`Connect-RPC`](https://connectrpc.com/docs/protocol/) compatible configuration.
-
 
 **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 
@@ -508,20 +516,23 @@ Let's understand the above configuration file.
 - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
 To generate the GraphQL configuration run following command
+
 <Tabs>
+<TabItem value="yml" label="YML Config Format">
+
+```bash
+tailcall gen ./config.yml
+```
+
+</TabItem>
 <TabItem value="json" label="JSON Config Format">
 
 ```bash
 tailcall gen ./config.json
 ```
 
-  </TabItem>
-  <TabItem value="yml" label="YML Config Format">
-    ```bash
-    tailcall gen ./config.yml
-    ```
-  </TabItem>
-  </Tabs>
+</TabItem>
+</Tabs>
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
 ```graphql showLineNumbers
