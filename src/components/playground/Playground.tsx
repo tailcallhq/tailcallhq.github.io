@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react"
-import { GraphiQL } from "graphiql"
-import { analyticsHandler, isValidURL, sendConversionEvent } from "@site/src/utils"
-import { CookiePreferenceCategory, playgroundAdsConversionId } from "@site/src/constants"
+import React, {useEffect, useMemo, useState} from "react"
+import {GraphiQL} from "graphiql"
+import {analyticsHandler, isValidURL, sendConversionEvent} from "@site/src/utils"
+import {CookiePreferenceCategory, playgroundAdsConversionId} from "@site/src/constants"
 import "graphiql/graphiql.css"
 import "../../css/graphiql.css"
-import { type FetcherParams, FetcherOpts } from "@graphiql/toolkit"
-import { useCookieConsent } from "@site/src/utils/hooks/useCookieConsent"
-import { createGraphiQLFetcher } from "@graphiql/create-fetcher"
+import {type FetcherParams, FetcherOpts} from "@graphiql/toolkit"
+import {useCookieConsent} from "@site/src/utils/hooks/useCookieConsent"
+import {createGraphiQLFetcher} from "@graphiql/create-fetcher"
 
 const useDebouncedValue = (inputValue: string, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(inputValue)
@@ -33,7 +33,7 @@ const Playground = () => {
   )
   const [inputValue, setInputValue] = useState<string>(initialApiEndpoint.toString())
 
-  const { getCookieConsent } = useCookieConsent()
+  const {getCookieConsent} = useCookieConsent()
   const cookieConsent = getCookieConsent()
 
   const debouncedApiEndpoint = useDebouncedValue(inputValue, 500)
@@ -46,7 +46,7 @@ const Playground = () => {
     }
   }, [debouncedApiEndpoint])
 
-  const fetcher = createGraphiQLFetcher({ url: apiEndpoint.toString() });
+  const fetcher = createGraphiQLFetcher({url: apiEndpoint.toString()})
 
   const graphQLFetcher = async (graphQLParams: FetcherParams, opts?: FetcherOpts) => {
     if (apiEndpoint.toString().trim() === "") {
@@ -54,7 +54,6 @@ const Playground = () => {
     }
     analyticsHandler("GraphQL", "tc_fetch_query", apiEndpoint.toString())
     sendConversionEvent(playgroundAdsConversionId)
-
 
     return fetcher(graphQLParams, opts)
   }
@@ -79,7 +78,6 @@ const Playground = () => {
     // Block storing graphiql data in local storage if user denies cookie consent
     return emptyGraphiqlStorageObject
   }, [cookieConsent])
-
 
   return (
     <div className="min-h-[90vh]">
