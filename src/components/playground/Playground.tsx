@@ -46,7 +46,6 @@ const Playground = () => {
     }
   }, [debouncedApiEndpoint])
 
-  const fetcher = createGraphiQLFetcher({url: apiEndpoint.toString()})
 
   const graphQLFetcher = async (graphQLParams: FetcherParams, opts?: FetcherOpts) => {
     if (apiEndpoint.toString().trim() === "") {
@@ -55,6 +54,7 @@ const Playground = () => {
     analyticsHandler("GraphQL", "tc_fetch_query", apiEndpoint.toString())
     sendConversionEvent(playgroundAdsConversionId)
 
+    const fetcher = createGraphiQLFetcher({url: apiEndpoint.toString()})
     return fetcher(graphQLParams, opts)
   }
 
@@ -94,7 +94,7 @@ const Playground = () => {
             />
           </div>
           <div className="flex my-SPACE_03">
-            <GraphiQL fetcher={fetcher} storage={graphiqlStorage}>
+            <GraphiQL fetcher={graphQLFetcher} storage={graphiqlStorage}>
               <GraphiQL.Logo>
                 <></>
               </GraphiQL.Logo>
