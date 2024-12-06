@@ -35,11 +35,14 @@ function groupReleasesByMonth(releases) {
   const grouped = {}
 
   releases.forEach((release) => {
+    // Ignore draft releases
+    if (release.draft) return
+
     const date = new Date(release.published_at)
     const year = date.getFullYear()
     const month = date.toLocaleString("default", {month: "long"})
 
-    const folder = `releases-test/${year}/${month}`
+    const folder = `releases/${year}/${month}`
     if (!grouped[folder]) {
       grouped[folder] = []
     }
@@ -67,6 +70,9 @@ function formatReleaseBody(body) {
     return `${userLink} (${prLink})`
   })
 
+  // Escape double braces (like {{args}}) to prevent MDX parsing errors
+  body = body.replace(/{{(.*?)}}/g, "{'{{$1}}'}")
+
   return body.trim()
 }
 
@@ -82,7 +88,7 @@ function writeReleasesToFiles(groupedReleases) {
     const filePath = path.join(folderPath, `${month}.mdx`)
 
     const monthNumber = new Date(`${month} 1, 2024`).getMonth() + 1
-    const frontmatter = `---\nsidebar_position: ${monthNumber}\n---\n\n`
+    const frontmatter = `---\nsidebar_position: ${12 - monthNumber + 1}\ntoc_max_heading_level: 2\n---\n\n`
 
     const content = releases
       .map((release) => {
