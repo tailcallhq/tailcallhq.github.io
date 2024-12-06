@@ -46,7 +46,6 @@ const Playground = () => {
     }
   }, [debouncedApiEndpoint])
 
-
   const graphQLFetcher = async (graphQLParams: FetcherParams, opts?: FetcherOpts) => {
     if (apiEndpoint.toString().trim() === "") {
       return Promise.resolve({})
