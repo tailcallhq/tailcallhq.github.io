@@ -115,6 +115,7 @@ export default {
         {to: "/docs", label: "Docs", position: "left"},
         {to: "/graphql", label: "Learn", position: "left"},
         {to: "/blog", label: "Blog", position: "left"},
+        {to: "/releases", label: "Releases", position: "left"},
         {
           type: "search",
           position: "right",
@@ -183,6 +184,15 @@ export default {
         routeBasePath: "graphql",
         showLastUpdateTime: true,
         sidebarPath: require.resolve("./graphql/sidebar.ts"),
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "releases",
+        path: "releases",
+        routeBasePath: "releases",
+        showLastUpdateTime: true,
       },
     ],
     async function tailwindPlugin() {
