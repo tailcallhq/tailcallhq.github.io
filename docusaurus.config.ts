@@ -193,6 +193,10 @@ export default {
         path: "releases",
         routeBasePath: "releases",
         showLastUpdateTime: true,
+        async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}: any) {
+          const sidebarItems = await defaultSidebarItemsGenerator(args)
+          return sidebarItems.reverse()
+        },
       },
     ],
     async function tailwindPlugin() {
