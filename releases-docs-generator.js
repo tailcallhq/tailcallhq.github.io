@@ -89,6 +89,7 @@ function writeReleasesToFiles(groupedReleases) {
 
     const monthNumber = new Date(`${month} 1, 2024`).getMonth() + 1
     const frontmatter = `---\nsidebar_position: ${12 - monthNumber + 1}\ntoc_max_heading_level: 2\n---\n\n`
+    const versionUpdateCardBody = `import VersionUpdateCard from "@site/src/components/shared/VersionUpdateCard"\n\n<VersionUpdateCard />\n\n`
 
     const content = releases
       .map((release) => {
@@ -97,7 +98,7 @@ function writeReleasesToFiles(groupedReleases) {
       })
       .join("\n\n---\n")
 
-    fs.writeFileSync(filePath, frontmatter + content, "utf-8")
+    fs.writeFileSync(filePath, frontmatter + versionUpdateCardBody + content, "utf-8")
     console.log(`Wrote releases to ${filePath}`)
   }
 }
