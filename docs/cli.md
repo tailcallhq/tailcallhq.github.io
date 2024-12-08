@@ -181,7 +181,8 @@ To generate a Tailcall GraphQL configuration, provide a configuration file to th
     },
     {
       "proto": {
-        "src": "./news.proto"
+        "src": "./news.proto",
+        "url": "http://127.0.0.1:8080/rpc"
       }
     }
   ],
@@ -232,6 +233,7 @@ inputs:
       fieldName: "createPost"
   - proto:
       src: "./news.proto"
+      url: "http://127.0.0.1:8080/rpc"
 output:
   path: "./output.graphql"
   format: "graphQL"
@@ -374,25 +376,31 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     }
     ```
 
-4.  **Proto:** For protobuf files, specify the path to the proto file (`src`).
+4.  **Proto:**
 
-    <Tabs>
-      <TabItem value="json" label="JSON">
-      ```json
-      {
-        "proto": {
-          "src": "./path/to/file.proto"
-        }
-      }
-      ```
-      </TabItem>
-      <TabItem value="yml" label="YML">
-      ```yml
-      - proto:
-          src: "./news.proto"
-      ```
-      </TabItem>
-    </Tabs>
+    - Specify the **path to the proto file** (`src`) to help Tailcall create a schema and understand the gRPC methods to call when a field is queried.
+    - Specify the **gRPC URL** (`url`) where the gRPC service is hosted.
+    - Include a **boolean parameter** `connectRPC` (optional). If set to `true`, the proto file will be used to generate the schema, but the communication between Tailcall and the upstream will happen using the [Connect-RPC protocol](https://connectrpc.com/docs/protocol/).
+
+        <Tabs>
+          <TabItem value="json" label="JSON">
+          ```json
+          {
+            "proto": {
+              "src": "./path/to/file.proto",
+              "url": "http://127.0.0.1:8080/rpc"
+            }
+          }
+          ```
+          </TabItem>
+          <TabItem value="yml" label="YML">
+          ```yml
+          - proto:
+              src: "./news.proto"
+              url: "http://127.0.0.1:8080/rpc"
+          ```
+          </TabItem>
+        </Tabs>
 
 ### Output
 
@@ -573,7 +581,7 @@ preset:
    }
    ```
 
-   By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, enhancing overall readability and understanding.
+   By leveraging field names to derive type names, the schema becomes more intuitive and aligned with the data it represents, enhancing overall readability and understanding. You can learn more about config autogen [here](./config-generation.md).
 
 ### LLM
 
