@@ -53,14 +53,6 @@ The `check` command allows for files. Specify each file path, separated by a spa
 tailcall check --schema ./path/to/file1.graphql ./path/to/file2.graphql
 ```
 
-### --format
-
-This is an optional command which allows changing the format of the input file. It accepts `gql` or `graphql`,`yml` or `yaml`, `json` .
-
-```bash
-tailcall check ./path/to/file1.graphql ./path/to/file2.graphql --format json
-```
-
 ### --verify-ssl
 
 Controls SSL/TLS certificate verification when loading remote configuration files.
@@ -119,13 +111,17 @@ tailcall init <file_path>
 
 This command prompts for file creation and configuration, creating the following files:
 
-|                 File Name | Description                                                                                                                             |
-| ------------------------: | --------------------------------------------------------------------------------------------------------------------------------------- |
-| [.tailcallrc.schema.json] | Provides autocomplete in your editor when the configuration is written in `json` or `yml` format.                                       |
-|          [.graphqlrc.yml] | An IDE configuration that references your GraphQL configuration (if it's in `.graphql` format) and the following `.tailcallrc.graphql`. |
-|     [.tailcallrc.graphql] | Contains Tailcall specific auto-completions for `.graphql` format.                                                                      |
+| File Name | Description |
+| --------: | ----------- |
 
-[.tailcallrc.schema.json]: https://github.com/tailcallhq/tailcall/blob/main/generated/.tailcallrc.schema.json
+<!-- TODO: uncomment when the Taillcall configuration will in separate file -->
+<!-- | [.tailcallrc.schema.json] | Provides autocomplete in your editor for the tailcall configuration written in `json` or `yml` format.                                       | -->
+
+| [.graphqlrc.yml] | An IDE configuration that references your GraphQL schema and the following `.tailcallrc.graphql`. |
+| [.tailcallrc.graphql] | Contains Tailcall specific auto-completions for `.graphql` format. |
+
+<!-- [.tailcallrc.schema.json]: https://github.com/tailcallhq/tailcall/blob/main/generated/.tailcallrc.schema.json -->
+
 [.graphqlrc.yml]: https://the-guild.dev/graphql/config/docs
 [.tailcallrc.graphql]: https://github.com/tailcallhq/tailcall/blob/main/generated/.tailcallrc.graphql
 
@@ -187,8 +183,7 @@ To generate a Tailcall GraphQL configuration, provide a configuration file to th
     }
   ],
   "output": {
-    "path": "./output.graphql",
-    "format": "graphQL"
+    "path": "./output.graphql"
   },
   "schema": {
     "query": "Query",
@@ -236,7 +231,6 @@ inputs:
       url: "http://127.0.0.1:8080/rpc"
 output:
   path: "./output.graphql"
-  format: "graphQL"
 schema:
   query: "Query"
   mutation: "Mutation"
@@ -404,14 +398,9 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
 
 ### Output
 
-The `output` section specifies the path and format for the generated GraphQL configuration.
+The `output` section specifies the path for the generated GraphQL configuration.
 
 - **path**: The file path where the output will be saved.
-- **format**: The format of the output file. Supported formats are `json`, `yml`, and `graphQL`.
-
-:::tip
-You can also change the format of the configuration later using the [check](#--format) command.
-:::
 
 ### Preset
 

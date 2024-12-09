@@ -61,10 +61,6 @@ In this example, we will deploy a simple GraphQL server using `tailcall` on Fly.
 
 Below is the configuration present in the template repository, which will be used for this deployment.
 
-:::tip
-You can learn more about the configuration [here](./configuration.mdx)
-:::
-
 ```graphql
 schema {
   query: Query
