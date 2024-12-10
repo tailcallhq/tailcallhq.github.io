@@ -250,7 +250,7 @@ A boolean flag, if set to `true`, will enable deduplication of IO operations to 
 
 In some cases, your batch API might use a POST request that accepts a list of items for processing. Tailcall can batch these requests similarly to how it handles GET requests, but instead of sending the input in query parameters, it sends them in the request body.
 
-### How Batching Works
+### Mechanism
 
 When Tailcall receives multiple POST requests that share the same endpoint but have different parameters, it:
 
@@ -342,7 +342,7 @@ Body:
 ]
 ```
 
-### Limitations
+### Current Limitations
 
 - Currently, supports only one dynamic parameter per batched request
 - All requests in a batch must share the same endpoint and method
