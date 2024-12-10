@@ -41,12 +41,12 @@ const CookieConsentModal: React.FC<CookieConsentModalProps> = ({open, onAccept, 
             },
           }
         : {
-            text: "Manage Preferences",
+            text: "Manage Settings",
             onClick: () => setShowPreferences(true),
           },
     ],
     {
-      text: "Accept Only Essential",
+      text: "Deny",
       onClick: onDeny,
     },
   ]
@@ -67,18 +67,6 @@ const CookieConsentModal: React.FC<CookieConsentModalProps> = ({open, onAccept, 
     }, [])
   }, [preferences])
 
-  useEffect(() => {
-    if (typeof window === "undefined") return
-
-    if (open) {
-      requestAnimationFrame(() => {
-        document.body.style.overflow = "hidden"
-      })
-    } else {
-      document.body.style.overflow = "visible"
-    }
-  }, [open])
-
   const handlePreferenceToggle = (index: number) => {
     if (preferences[index].readonly) return
 
@@ -98,97 +86,76 @@ const CookieConsentModal: React.FC<CookieConsentModalProps> = ({open, onAccept, 
     <>
       {open ? (
         <>
-          {/* Overlay */}
-          <div
-            className={clsx("block fixed inset-0 bg-black bg-opacity-50", styles.modalOverlay)}
-            onClick={handleClose}
-          ></div>
-
           {/* Modal Container */}
-          <div className={clsx("p-4 bg-black", styles.cookieConsentModal)}>
-            <div className="relative p-2 border border-solid border-tailCall-border-light-600">
-              <div
-                className={clsx(
-                  "flex flex-col items-center justify-center py-12 md:py-8 px-5 md:px-16 gap-5 font-space-mono border border-solid border-tailCall-border-light-600",
-                  styles.bodyContainer,
-                )}
-              >
-                <div className="flex flex-col items-center justify-center p-3 gap-2 text-center text-tailCall-light-300">
-                  <img src={require("@site/static/images/cookie-consent/cookie.png").default} height={54} width={54} />
-                  <span className="text-title-small md:text-title-medium">We Value Your Privacy</span>
-                  <span className="text-content-mini md:text-content-small">
-                    Our website uses cookies to enhance your browsing experience, improve website functionality, and
-                    analyze website traffic. We also collect and process your IP address for purposes such as ensuring
-                    security and maintaining network performance.
-                  </span>
-                  <span className="text-content-mini md:text-content-small">
-                    You can choose which cookies to accept by selecting your preferences below. Essential cookies are
-                    necessary for the website to function and cannot be disabled. By clicking “Accept All” you consent
-                    to the use of all cookies.
-                  </span>
-                  <span className="text-content-mini md:text-content-small">
-                    For more information, please review our{" "}
-                    <Link
-                      href={pageLinks.privacyPolicy}
-                      className="text-tailCall-light-300 hover:text-tailCall-light-300 underline"
-                    >
-                      Privacy Policy
-                    </Link>
-                    .
-                  </span>
-                  {showPreferences && (
-                    <div className="grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-x-5">
-                      {preferences.map((preference: PreferenceOption, index: number) => {
-                        return (
-                          <span
-                            key={index}
-                            className={clsx(
-                              "flex cursor-pointer text-content-mini md:text-content-small gap-2 p-1",
-                              preference.selected ? "text-tailCall-light-600" : "",
-                            )}
-                            onClick={() => handlePreferenceToggle(index)}
-                          >
-                            <span className="whitespace-pre">{`${preference.selected ? `[ X ]` : `[   ]`}`}</span>
-                            <span>{preference.name}</span>
-                          </span>
-                        )
-                      })}
-                    </div>
-                  )}
-                </div>
-                <div className={clsx("flex flex-col md:flex-row gap-6", styles.consentOptionsContainer)}>
-                  {consentOptions.map((btn: ConsentOption, index: number) => {
+          <div
+            className={clsx(
+              "flex flex-col xl:flex-row xl:justify-between relative py-6 px-8 gap-4 sm:gap-12 xl:gap-0 font-space-mono bg-black rounded-xl",
+              styles.cookieConsentModal,
+            )}
+          >
+            <div className="flex flex-col gap-4 text-tailCall-light-300">
+              <div className="flex flex-col gap-2">
+                <span className="text-content-small font-bold xl:text-title-small">We Value Your Privacy</span>
+                <span className="text-content-tiny xl:text-content-small">
+                  This website uses cookies to ensure you receive the best possible experience.{" "}
+                  <Link
+                    href={pageLinks.privacyPolicy}
+                    className="text-tailCall-light-300 hover:text-tailCall-light-300 underline"
+                  >
+                    Learn More
+                  </Link>
+                </span>
+              </div>
+              {showPreferences && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 sm:w-6/12 xl:w-full gap-6 xl:gap-8">
+                  {preferences.map((preference: PreferenceOption, index: number) => {
                     return (
                       <span
                         key={index}
                         className={clsx(
-                          "flex items-center justify-center md:whitespace-nowrap py-1 px-3 text-title-medium bg-tailCall-dark-400 border border-solid border-tailCall-dark-300 cursor-pointer text-center",
-                          styles.consentOption,
+                          "flex cursor-pointer text-content-tiny xl:text-content-small gap-2",
+                          preference.selected ? "text-tailCall-light-600" : "",
                         )}
-                        onClick={btn.onClick}
+                        onClick={() => handlePreferenceToggle(index)}
                       >
-                        {btn.text}
+                        <span className="whitespace-pre">{`${preference.selected ? `[ X ]` : `[   ]`}`}</span>
+                        <span>{preference.name}</span>
                       </span>
                     )
                   })}
                 </div>
-              </div>
-              <span
+              )}
+            </div>
+            <div className="flex items-end">
+              <div
                 className={clsx(
-                  "absolute px-2 text-title-small md:text-title-medium text-tailCall-light-300 bg-black",
-                  styles.modalHeading,
+                  "flex flex-col sm:flex-row flex-1 gap-6 h-fit sm:justify-end",
+                  styles.consentOptionsContainer,
                 )}
               >
-                Cookie Settings
-              </span>
-              <img
-                className={clsx("absolute cursor-pointer", styles.closeBtn)}
-                src={require("@site/static/images/cookie-consent/close-btn.png").default}
-                height={16}
-                width={25}
-                onClick={handleClose}
-              />
+                {consentOptions.map((btn: ConsentOption, index: number) => {
+                  return (
+                    <span
+                      key={index}
+                      className={clsx(
+                        "sm:whitespace-nowrap py-1 px-3 text-title-tiny bg-tailCall-dark-400 border border-solid border-tailCall-dark-300 cursor-pointer text-center",
+                        styles.consentOption,
+                      )}
+                      onClick={btn.onClick}
+                    >
+                      {btn.text}
+                    </span>
+                  )
+                })}
+              </div>
             </div>
+            <img
+              className={clsx("absolute cursor-pointer", styles.closeBtn)}
+              src={require("@site/static/images/cookie-consent/close-btn.png").default}
+              height={16}
+              width={25}
+              onClick={handleClose}
+            />
           </div>
         </>
       ) : null}

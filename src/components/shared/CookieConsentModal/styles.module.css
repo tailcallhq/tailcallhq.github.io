@@ -1,18 +1,9 @@
 .cookieConsentModal {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-height: 80%;
-  max-width: 90%;
-  overflow-y: scroll;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
   z-index: calc(var(--ifm-z-index-fixed) + 2);
-  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
-}
-
-.modalOverlay {
-  z-index: calc(var(--ifm-z-index-fixed) + 1);
-  backdrop-filter: blur(12px);
 }
 
 .consentOption {
@@ -30,40 +21,19 @@
   color: #e7e7e7;
 }
 
-.modalHeading {
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, calc(-50% + 4px));
-}
-
 .closeBtn {
-  top: 0;
+  top: 8px;
   right: 30px;
-  transform: translate(-50%, calc(-50% + 4px));
-}
-
-.bodyContainer {
-  background-image: radial-gradient(circle, #121214 10%, transparent 10%);
-  background-size: 8px 8px;
-  background-repeat: repeat;
 }
 
 @media (max-width: 1000px) {
   .cookieConsentModal {
-    max-height: 90%;
-    max-width: unset;
-    width: 100%;
-  }
-
-  .modalHeading {
-    width: max-content;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
   }
 
   .closeBtn {
     right: 15px;
-  }
-
-  .consentOptionsContainer {
-    flex-direction: column;
   }
 }

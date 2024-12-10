@@ -134,16 +134,21 @@ Tailcall simplifies GraphQL schema generation from REST APIs, supporting various
     - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
 To generate the GraphQL configuration run following command
+
 <Tabs>
-<TabItem value="json" label="JSON Config Format">
-`bash
-    tailcall gen ./config.json
-    `
-</TabItem>
 <TabItem value="yml" label="YML Config Format">
-`bash
-    tailcall gen ./config.yml
-    `
+
+```bash
+tailcall gen ./config.yml
+```
+
+</TabItem>
+<TabItem value="json" label="JSON Config Format">
+
+```bash
+tailcall gen ./config.json
+```
+
 </TabItem>
 </Tabs>
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
@@ -288,7 +293,7 @@ tailcall gen ./config.json
   </TabItem>
   </Tabs>
 
-**Schema**: Specifies the operation type. In this example, it's a `Mutation` operation with the name `Mutation`.
+Generated Configuration looks like following.
 
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
 schema @server @upstream {
@@ -342,6 +347,13 @@ Tailcall simplifies the process of generating GraphQL schemas from gRPC. By spec
                   "src": "./news.proto",
                   "url": "http://localhost:50051"
                 }
+              },
+              {
+                "proto": {
+                  "src": "./news.proto",
+                  "url": "http://localhost:8080/news.NewsService/",
+                  "connectRPC": true
+                }
               }
             ],
             "preset": {
@@ -365,6 +377,10 @@ Tailcall simplifies the process of generating GraphQL schemas from gRPC. By spec
           - proto:
             src: "./news.proto"
             url: "http://localhost:50051"
+          - proto:
+            src: "./news.proto"
+            url: "http://localhost:8080/news.NewsService/"
+            connectRPC: true
         preset:
           mergeType: 1.0
         output:
@@ -382,6 +398,8 @@ Let's understand the above configuration file.
 **Proto**: Defines the path to the proto file that the configuration interacts with.
 
 - **src**: Specifies the path to the proto file (`./news.proto` in this example).
+- **url**: Specifies the url on which gRPC service is hosted. (`http://localhost:50051` in this example).
+- **connectRPC**: An optional flag indicating whether Tailcall should generate [`Connect-RPC`](https://connectrpc.com/docs/protocol/) compatible configuration.
 
 **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 
@@ -436,7 +454,8 @@ Here is an example configuration that demonstrates how to set up a hybrid integr
     },
     {
       "proto": {
-        "src": "./news.proto"
+        "src": "./news.proto",
+        "url": "http://localhost:50051"
       }
     }
   ],
@@ -462,6 +481,7 @@ inputs:
       fieldName: "posts"
   - proto:
       src: "./news.proto"
+      url: "http://localhost:50051"
 preset:
   mergeType: 1.0
 output:
@@ -495,20 +515,23 @@ Let's understand the above configuration file.
 - **format**: Specifies the output format as GraphQL (in above example, it's `graphQL`).
 
 To generate the GraphQL configuration run following command
+
 <Tabs>
+<TabItem value="yml" label="YML Config Format">
+
+```bash
+tailcall gen ./config.yml
+```
+
+</TabItem>
 <TabItem value="json" label="JSON Config Format">
 
 ```bash
 tailcall gen ./config.json
 ```
 
-  </TabItem>
-  <TabItem value="yml" label="YML Config Format">
-    ```bash
-    tailcall gen ./config.yml
-    ```
-  </TabItem>
-  </Tabs>
+</TabItem>
+</Tabs>
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
 ```graphql showLineNumbers
@@ -974,7 +997,8 @@ curl:
     },
     {
       "proto": {
-        "src": "./news.proto"
+        "src": "./news.proto",
+        "url": "http://localhost:50051"
       }
     }
   ],
@@ -995,6 +1019,7 @@ inputs:
       fieldName: "posts"
   - proto:
       src: "./news.proto"
+      url: "http://localhost:50051"
 schema:
   query: "Query"
 ```
