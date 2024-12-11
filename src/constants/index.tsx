@@ -17,6 +17,13 @@ export const algoliaConstants = {
   searchModalPlaceholder: "What do you want to know about graphql ?",
 }
 
+export const companies: PartnerImage[] = [
+  {name: "Dream11", logo: require("@site/static/icons/companies/dream11.png").default},
+  {name: "AfterShip", logo: require("@site/static/icons/companies/aftership.png").default},
+  {name: "Optum", logo: require("@site/static/icons/companies/optum.png").default},
+  {name: "Sinch", logo: require("@site/static/icons/companies/sinch.png").default},
+]
+
 export const partnerImages: PartnerImage[] = [
   {
     name: "Digital Ocean",

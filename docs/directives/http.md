@@ -159,6 +159,7 @@ When `batchKey` is present, Tailcall considers the first `query` parameter to be
 type Post {
   id: Int!
   name: String!
+  userId: Int!
   user: User
     @http(
       url: "https://jsonplaceholder.typicode.com/users"
@@ -244,6 +245,108 @@ A boolean flag, if set to `true`, will enable deduplication of IO operations to 
   dedupe: true
 )
 ```
+
+## Batching with POST Requests
+
+In some cases, your batch API might use a POST request that accepts a list of items for processing. Tailcall can batch these requests similarly to how it handles GET requests, but instead of sending the input in query parameters, it sends them in the request body.
+
+### Mechanism
+
+When Tailcall receives multiple POST requests that share the same endpoint but have different parameters, it:
+
+1. Collects these requests
+2. Transforms them into a single POST request with an array of objects in the body
+3. Sends this consolidated request to the upstream service
+4. Maps the responses back to individual results
+
+### Configuration
+
+To enable batching, configure your schema as follows:
+
+```graphql
+type Query {
+  posts: [Post]
+    @http(url: "https://jsonplaceholder.typicode.com/posts")
+}
+
+type Post {
+  id: ID!
+  name: String!
+  user: User!
+    @http(
+      url: "https://jsonplaceholder.typicode.com/users"
+      method: POST
+      body: {
+        userId: "{{.value.userId}}"
+        staticValue: "static"
+      }
+      batchKey: ["userId"]
+    )
+}
+
+type User {
+  id: ID!
+  name: String!
+}
+```
+
+In this example, the `posts` query fetches a list of posts, and the `user` field fetches user details for each post. The `batchKey` parameter groups the user requests into a single POST request, enhancing efficiency.
+
+Let's say your GraphQL query needs to fetch user details for multiple posts:
+
+```graphql
+query {
+  posts {
+    id
+    name
+    user {
+      id
+      name
+    }
+  }
+}
+```
+
+The posts endpoint returns:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "post-1",
+    "userId": 1
+  },
+  {
+    "id": 2,
+    "name": "post-2",
+    "userId": 2
+  }
+]
+```
+
+Instead of making separate POST requests for each user, Tailcall will batch them into a single request:
+
+```bash
+POST https://jsonplaceholder.typicode.com/users
+Content-Type: application/json
+Body:
+[
+  {
+    "userId": 1,
+    "staticValue": "static"
+  },
+  {
+    "userId": 2,
+    "staticValue": "static"
+  }
+]
+```
+
+### Current Limitations
+
+- Currently, supports only one dynamic parameter per batched request
+- All requests in a batch must share the same endpoint and method
+- The dynamic parameter must be referenced using the `{{.value.fieldName}}` syntax
 
 ## Combining Multiple Directives
 

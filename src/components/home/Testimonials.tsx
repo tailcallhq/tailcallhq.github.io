@@ -1,8 +1,10 @@
 import React from "react"
 import Heading from "@theme/Heading"
 import CustomerFeedbackCard from "./CustomerFeedbackCard"
-import {testimonials} from "@site/src/constants"
+import {companies, testimonials} from "@site/src/constants"
 import Section from "../shared/Section"
+import Partners from "@site/src/components/home/Partners"
+import TrustedByMarquee from "@site/src/components/home/TrustedByMarquee"
 
 export enum TestimonialDisplay {
   Hide = "Hide",
@@ -47,6 +49,7 @@ const Testimonials = () => {
           />
         ))}
       </div>
+      <TrustedByMarquee title="Trusted by" logos={companies} />
     </Section>
   )
 }

@@ -6,6 +6,7 @@ import "graphiql/graphiql.css"
 import "../../css/graphiql.css"
 import {type FetcherParams, FetcherOpts} from "@graphiql/toolkit"
 import {useCookieConsent} from "@site/src/utils/hooks/useCookieConsent"
+import {createGraphiQLFetcher} from "@graphiql/create-fetcher"
 
 const useDebouncedValue = (inputValue: string, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(inputValue)
@@ -52,12 +53,8 @@ const Playground = () => {
     analyticsHandler("GraphQL", "tc_fetch_query", apiEndpoint.toString())
     sendConversionEvent(playgroundAdsConversionId)
 
-    const response = await fetch(apiEndpoint.toString(), {
-      method: "post",
-      headers: {"Content-Type": "application/json", ...opts?.headers},
-      body: JSON.stringify(graphQLParams),
-    })
-    return await response.json()
+    const fetcher = createGraphiQLFetcher({url: apiEndpoint.toString()})
+    return fetcher(graphQLParams, opts)
   }
 
   const emptyGraphiqlStorageObject = {

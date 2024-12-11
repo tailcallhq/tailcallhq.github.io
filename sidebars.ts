@@ -62,7 +62,6 @@ const sidebars: SidebarsConfig = {
         "rest",
         "scalar",
         "environment-variables",
-        "configuration",
         "config-generation",
         "apollo-federation-subgraph",
       ],
