@@ -59,6 +59,107 @@ The `@link` directive requires specifying a source `src`, the resource's type `t
 
 - `headers`: This is an optional field that assigns custom headers to the gRPC reflection server requests. Specifying a key-value map of header names and their values achieves this. (Values supports Mustache template)
 
+### Linking other configs
+
+With `@link` you can link other [configuration files](#config) that will be merged with the root configuration i.e. the first config file you've specified for the cli.
+
+See in details how it works:
+
+- The definitions `@server`, `@upstream`, `@telemetry`, `@links` are used only from the root configuration and their definitions from the linked configs are ignored
+- The schema definitions (i.e. types, unions, enums) are merged by the [federation composition rules](https://www.apollographql.com/docs/graphos/reference/federation/composition-rules)
+
+For example, consider the following files:
+
+Root config:
+
+```graphql
+schema
+  @server(port: 8000)
+  @upstream(httpCache: 10, batch: {delay: 10})
+  @link(src: "a.graphql", type: Config)
+  @link(src: "b.graphql", type: Config) {
+  query: Query
+}
+```
+
+a.graphql:
+
+```graphql
+schema
+  # this definitions are ignored from linked config
+  @server(port: 3000)
+  @upstream(httpCache: 42, batch: {delay: 22})
+  @link(src: "nested.graphql", type: Config) {
+  query: Query
+}
+
+type User {
+  id: Int
+  age: Int
+}
+
+union Media = Book | Movie
+
+type Query {
+  media: media
+    @http(url: "http://jsonplaceholder.typicode.com/media")
+}
+```
+
+b.graphql:
+
+```graphql
+schema
+  # this definitions are ignored from linked config
+  @server(port: 4000)
+  @upstream(httpCache: 33, batch: {delay: 48}) {
+  query: Query
+}
+
+type Query {
+  user(id: Int!): User
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
+}
+
+union Media = Book | Podcast
+
+type User {
+  id: Int
+  name: String
+}
+```
+
+The merged result config will look like this:
+
+```graphql
+schema
+  @server(port: 8000)
+  @upstream(batch: {delay: 10, headers: []}, httpCache: 10)
+  @link(src: "a.graphql", type: Config)
+  @link(src: "b.graphql", type: Config) {
+  query: Query
+}
+
+union Media = Book | Movie | Podcast
+
+type Query {
+  media: Foo
+    @http(url: "http://jsonplaceholder.typicode.com/media")
+  post(id: Int!): Post
+    @http(
+      url: "http://jsonplaceholder.typicode.com/users/{{.args.id}}"
+    )
+}
+
+type User {
+  id: Int
+  age: Int
+  name: String
+}
+```
+
 ## Example
 
 The following example illustrates how to utilize the `@link` directive to incorporate a Protocol Buffers (.proto) file for a gRPC service into your GraphQL schema.
