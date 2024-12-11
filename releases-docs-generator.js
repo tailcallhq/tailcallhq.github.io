@@ -2,7 +2,7 @@ const axios = require("axios")
 const fs = require("fs")
 const path = require("path")
 
-const GITHUB_TOKEN = ""
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN
 const REPO_OWNER = "tailcallhq"
 const REPO_NAME = "tailcall"
 
