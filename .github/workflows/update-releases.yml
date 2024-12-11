@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Run npm Install
+        run: npm install
+
       - name: Run Releases Docs Generator Script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
