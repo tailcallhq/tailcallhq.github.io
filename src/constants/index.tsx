@@ -537,21 +537,21 @@ export enum Theme {
 export const testimonials: CustomerFeedback[] = [
   {
     id: 1,
-    citation: `Having a completely open-source GraphQL solution under my control is a dream. I can customize everything to fit our exact needs, with full transparency and flexibility. No more blocking on backend teams—I can iterate and build and deploy the frontend faster than ever before.`,
+    citation: `With a fully open-source GraphQL solution at your disposal, you gain complete control to tailor it precisely to your requirements. This approach provides unparalleled transparency and flexibility, allowing you to work independently of backend teams. You can iterate, develop, and deploy your frontend applications more efficiently than ever before.`,
     designation: `Sr. Frontend Engineer`,
     name: "John Doe",
     department: "Front-end",
   },
   {
     id: 2,
-    citation: `I love that I no longer have to wrangle with GraphQL for the frontend teams. It saves me a ton of time, reduces complexity, and lets me focus on what I do best—optimizing our microservices. The clear separation of concerns has made collaboration smoother, and now with Tailcall's static verification, I can expose APIs with even more confidence.`,
+    citation: `By eliminating the need to manage GraphQL for frontend teams, you can focus on your core responsibilities—optimizing microservices and streamlining backend operations. The clear separation of concerns enhances collaboration, while Tailcall's static verification ensures you can expose APIs with confidence and reliability.`,
     designation: `Sr. Backend Engineer - Big Co. Inc.`,
     name: "John Doe",
     department: "Backend",
   },
   {
     id: 3,
-    citation: `Switching to a battle-tested, open-source GraphQL solution has been a game-changer. It’s rock-solid, easy to manage, and scales effortlessly. I no longer worry about security gaps, and the faster iteration cycle means I can focus on bigger challenges. It's like having a superpower in my toolkit!`,
+    citation: `Adopting a proven, open-source GraphQL solution transforms your operational workflows. It offers robust reliability, simplifies management, and scales seamlessly to meet growing demands. With enhanced security and faster iteration cycles, you can dedicate more time to strategic challenges and high-impact projects.`,
     designation: `Sr. Frontend Engineer - Big Co. Inc.`,
     name: "John Doe",
     department: "Ops",
