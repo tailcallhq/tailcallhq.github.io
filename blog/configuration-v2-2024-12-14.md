@@ -12,6 +12,8 @@ slug: migrating-to-graphql-configuration-v2/
 
 Our current configuration architecture, while aiming for flexibility, has introduced complexities that hinder its usability and maintainability. This blog outlines the existing design, its shortcomings, and a proposed solution for a simpler, more predictable configuration experience.
 
+<!-- truncate -->
+
 ## Current Configuration Design
 
 Currently, developers define configurations using `.graphql`, `.json`, or `.yml` formats. These configurations contain schema information (types & resolvers), runtime information (upstream settings, server settings, telemetry), and links to other configurations. This linking mechanism was introduced to enable modular configuration management, particularly within larger organizations where each team wants to maintain their own configuration and compose them together to run a federated GraphQL server. A merge algorithm within the Tailcall binary, combines the linked configurations into a single effective configuration. Beyond configuration files, linking also supports external resources like JWTKS, Protobuf files, and JavaScript files.
