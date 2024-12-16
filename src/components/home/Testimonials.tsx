@@ -49,7 +49,7 @@ const Testimonials = () => {
           />
         ))}
       </div>
-      <TrustedByMarquee title="Trusted by" logos={companies} />
+      <TrustedByMarquee title="Trusted by developers at" logos={companies} />
     </Section>
   )
 }
