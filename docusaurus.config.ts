@@ -114,8 +114,38 @@ export default {
         // {to: "/enterprise", label: "Enterprise", position: "left"},
         {to: "/docs", label: "Docs", position: "left"},
         {to: "/graphql", label: "Learn", position: "left"},
-        {to: "/blog", label: "Blog", position: "left"},
-        {to: "/releases", label: "Releases", position: "left"},
+        {
+          label: "Insights",
+          position: "left",
+          items: [
+            {
+              to: "/blog",
+              html: `
+                <div class="flex items-center p-1">
+                  <img
+                    class="mr-2"
+                    src="images/home/book.svg"
+                    alt="Blog Navbar Icon"
+                    style={{ width: '16px', height: '16px' }}
+                  />
+                  <span class="text-content-small font-medium">Blogs</span>
+                </div>`,
+            },
+            {
+              to: "/releases",
+              html: `
+                <div class="flex items-center p-1">
+                  <img
+                    class="mr-2"
+                    src="images/home/git-merge.svg"
+                    alt="Releases Icon"
+                    style={{ width: '16px', height: '16px' }}
+                  />
+                  <span class="text-content-small font-medium">Releases</span>
+                </div>`,
+            },
+          ],
+        },
         {
           type: "search",
           position: "right",
