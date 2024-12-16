@@ -124,8 +124,8 @@ export default {
                 <div class="flex items-center p-1">
                   <img
                     class="mr-2"
-                    src="images/home/book.svg"
-                    alt="Blog Navbar Icon"
+                    src="/images/home/book.svg"
+                    alt="Blogs Icon"
                     style={{ width: '16px', height: '16px' }}
                   />
                   <span class="text-content-small font-medium">Blogs</span>
@@ -137,7 +137,7 @@ export default {
                 <div class="flex items-center p-1">
                   <img
                     class="mr-2"
-                    src="images/home/git-merge.svg"
+                    src="/images/home/git-merge.svg"
                     alt="Releases Icon"
                     style={{ width: '16px', height: '16px' }}
                   />

@@ -834,3 +834,21 @@ span.token.tag.script.language-javascript {
 .navbar__item.dropdown {
   padding: 0;
 }
+
+.navbar__item .dropdown__menu .dropdown__link.dropdown__link--active,
+.navbar__item.dropdown .navbar__link:hover {
+  color: var(--ifm-color-brand-dark-100);
+}
+
+.dropdown > .navbar__link:after {
+  content: "";
+  background: url("../../static/icons/basic/dropdown-chevron.svg") no-repeat;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-size: 1.25rem;
+  border: none;
+  top: unset;
+  bottom: -4px;
+  transform: unset;
+  margin-left: 0.25rem;
+}
