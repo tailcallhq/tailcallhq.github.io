@@ -46,7 +46,7 @@ to know more about how to use it, read the following articles:
 
 Enabling support for authentication in Tailcall could be done in two steps:
 
-1. With the help of [`@link` directive](./directives/link.md) connect multiple authentication files as you need for different provides. To connect it use either [`Htpasswd`](./directives/link.md#htpasswd) or [`Jwks`](./directives/link.md#jwks) link type
+1. With the help of [`@link` directive](./config/links.md) connect multiple authentication files as you need for different provides. To connect it use either [`Htpasswd`](./config/links.md#htpasswd) or [`Jwks`](./config/links.md#jwks) link type
 2. Mark that some type of field requires authentication to be fetched with the help of [`@protected` directive](./directives/protected.md)
 
 Your config could look like this now:
@@ -250,7 +250,7 @@ In case you linked multiple authentication files all of them will be used to exe
 
 ### Authentication headers
 
-To validate authentication for user request the specific headers are used (like `Authorization` header). In case auth is enabled for tailcall those headers will be also added to the [`allowedHeaders` list](./directives/upstream.md#allowedheaders) and therefore they will be forwarded to the upstream requests implicitly.
+To validate authentication for user request the specific headers are used (like `Authorization` header). In case auth is enabled for tailcall those headers will be also added to the [`allowedHeaders` list](./config/upstream.md#allowedheaders) and therefore they will be forwarded to the upstream requests implicitly.
 
 ## Basic Authentication
 
@@ -270,7 +270,7 @@ Since this file stores secure information make sure to hash the password you use
 
 ### Basic Auth GraphQL Configuration
 
-To use Basic Auth you should first include htpasswd file generated from [Prerequisites](#prerequisites) with the help of [`@link` directive](./directives/link.md#htpasswd).
+To use Basic Auth you should first include htpasswd file generated from [Prerequisites](#prerequisites) with the help of [`@link` directive](./config/links.md#htpasswd).
 
 We can use that file as an example for it that has data for `testuser:mypassword` credentials in encrypted format:
 
@@ -353,7 +353,7 @@ To create this file you can use available web-tools like [JWK creator](https://r
 
 ### JWT Auth GraphQL Configuration
 
-To use JWT you should first include JWKS file generated from [Prerequisites](#prerequisites) with the help of [`@link` directive](./directives/link.md#jwks).
+To use JWT you should first include JWKS file generated from [Prerequisites](#prerequisites) with the help of [`@link` directive](./config/links.md#jwks).
 
 We can use that file as an example for it:
 

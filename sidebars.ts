@@ -24,12 +24,7 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "Config",
       collapsed: false,
-      items: [
-        "config/link",
-        "config/server",
-        "config/telemetry",
-        "config/upstream"
-      ].sort()
+      items: ["config/links", "config/server", "config/telemetry", "config/upstream"].sort(),
     },
     {
       type: "category",

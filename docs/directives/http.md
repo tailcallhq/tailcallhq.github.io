@@ -176,7 +176,7 @@ type Post {
 The `onRequest` property accepts a string value representing the remote function to be called every time an HTTP request is initiated. Typically the remote function is defined in a linked JavaScript worker file.
 
 :::note
-For defining a request middleware globally for all requests, refer to the [upstream directive documentation](./upstream.md#onrequest).
+For defining a request middleware globally for all requests, refer to the [upstream config documentation](../config/upstream.md#onrequest).
 :::
 
 ```graphql showLineNumbers

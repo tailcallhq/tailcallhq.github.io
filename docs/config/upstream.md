@@ -172,7 +172,7 @@ upstream:
 
 ## onRequest
 
-Similar to the [@http](./http.md) property, this accepts a string value representing a middleware function defined in a JavaScript file. It intercepts all outgoing HTTP requests from the server. This interceptor, written in JavaScript, can be used to modify outgoing requests and also generate artificial responses to customize the behavior of the GraphQL server.
+Similar to the [@http](../directives/http.md) property, this accepts a string value representing a middleware function defined in a JavaScript file. It intercepts all outgoing HTTP requests from the server. This interceptor, written in JavaScript, can be used to modify outgoing requests and also generate artificial responses to customize the behavior of the GraphQL server.
 
 ```yaml showLineNumbers
 upstream:

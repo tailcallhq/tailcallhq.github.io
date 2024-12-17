@@ -123,7 +123,7 @@ type Query {
 }
 ```
 
-Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`@server`](./directives/server.md) and [`@upstream`](./directives/upstream.md) directives.
+Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`server`](./config/server.md) and [`upstream`](./config/upstream.md) options.
 
 ```graphql
 schema @server(port: 8000) @upstream(httpCache: 42) {
@@ -235,7 +235,7 @@ Or
 
 Another important feature of the `@grpc` directive is that it allows you to implement request batching for remote data almost effortlessly as soon as you have gRPC methods that resolve multiple responses for multiple inputs in a single request.
 
-In our protobuf example file, we have a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`@upstream.batch` option](./directives/upstream.md#batch) first and specify `batchKey` option for the `@grpc` directive.
+In our protobuf example file, we have a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`upstream.batch` option](./config/upstream.md#batch) first and specify `batchKey` option for the `@grpc` directive.
 
 ```graphql
 schema
@@ -280,7 +280,7 @@ Those 2 requests will be executed inside a single request to the gRPC method `Ge
 
 gRPC reflection is a potent feature enabling clients to dynamically discover services and their methods at runtime. Tailcall enhances this capability by obviating the need for developers to link each proto file individually. This feature proves particularly valuable in environments where proto files are continuously evolving or when services dynamically expose varying methods. Here are the steps to follow:
 
-1. Add the gRPC endpoint as a [link](directives/link.md) with type set to `Grpc`. This enables the GraphQL server to understand that the specified source is a gRPC endpoint that supports reflection.
+1. Add the gRPC endpoint as a [link](./config/links.md) with type set to `Grpc`. This enables the GraphQL server to understand that the specified source is a gRPC endpoint that supports reflection.
 
    ```graphql
    schema

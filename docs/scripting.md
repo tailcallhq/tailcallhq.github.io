@@ -10,10 +10,10 @@ The runtime is not a full-fledged Node.js environment and has no access to the f
 
 ## Getting Started
 
-To leverage this customization, JavaScript functions must be created in a JavaScript file and linked with the main configuration file using the [@link](./directives/link.md) directive. There are two primary ways to achieve this:
+To leverage this customization, JavaScript functions must be created in a JavaScript file and linked with the main configuration file using the [links](./config/links.md) configuration. There are two primary ways to achieve this:
 
 1. Define an `onRequest` property with the JS function name in the [http](./directives/http.md#onrequest) directive.
-2. Define it in the [upstream](./directives/upstream.md#onrequest) directive, which acts as a global middleware for all requests.
+2. Define it in the [upstream](./config/upstream.md#onrequest) configuration, which acts as a global middleware for all requests.
 
 :::tip
 If you specify a `onRequest` handler for both `http` and `upstream` the `http` one will always take precedence over the global `onRequest` handler.
@@ -29,7 +29,7 @@ function foo({request}) {
 }
 ```
 
-Once you have a worker file ready, link that file to the GraphQL configuration using the [`@link`](./directives/link.md) directive and define the [onRequest](./directives/upstream.md#onrequest) property.
+Once you have a worker file ready, link that file to the GraphQL configuration using the [`links`](./config/links.md) configuration and define the [onRequest](./config/upstream.md#onrequest) property.
 
 ```graphql
 schema
@@ -123,7 +123,7 @@ type Request = {
 }
 ```
 
-By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](./directives/upstream.md#allowedheaders) setting in [`@upstream`](./directives/upstream.md).
+By default the headers field will be empty in most cases, unless headers are whitelisted via the [allowedHeaders](./config/upstream.md#allowedheaders) setting.
 
 The http filter doesn't have access to the request's body, hence you can't directly modify the body of an outgoing request. This is more of a design choice than a limitation we have made to ensure that developers don't misuse this API to write all kind of business logic in Tailcall.
 

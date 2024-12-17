@@ -21,7 +21,7 @@ The `@protected` directive designates a type or field as protected, meaning that
 
 ## Prerequisites
 
-To use the `@protected` directive, you must configure at least one authentication provider using the [`@link`](./link.md) directive, such as `Htpasswd` or `Jwks`.
+To use the `@protected` directive, you must configure at least one authentication provider using the [`links`](../config/links.md) configuration, such as `Htpasswd` or `Jwks`.
 
 ```graphql title="Authentication Provider Configuration" showLineNumbers
 schema

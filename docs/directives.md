@@ -22,14 +22,10 @@ Here is a list of all the custom directives supported by Tailcall:
 | [`@graphQL`](./directives/graphQL.md)           | Resolves a field or node by a GraphQL API.                                                                   |
 | [`@grpc`](./directives/grpc.md)                 | Resolves a field or node by a gRPC API.                                                                      |
 | [`@http`](./directives/http.md)                 | Resolves a field or node by a REST API.                                                                      |
-| [`@link`](./directives/link.md)                 | Imports external resources such as config files, certs, protobufs, etc in the schema.                        |
 | [`@modify`](./directives/modify.md)             | Enables changes to attributes of fields or nodes in the schema.                                              |
 | [`@omit`](./directives/omit.md)                 | Excludes fields or nodes from the generated schema, making them inaccessible through the GraphQL API.        |
 | [`@protected`](./directives/protected.md)       | Adds authentication and authorization controls to fields or nodes in the schema.                             |
 | [`@rest`](./directives/rest.md)                 | Allows exposing REST endpoints on top of GraphQL.                                                            |
-| [`@server`](./directives/server.md)             | Provides server configurations for behavior tuning and tailcall optimization in specific use-cases.          |
-| [`@telemetry`](./directives/telemetry.md)       | Integrates with open-telemetry to provide observability of the running tailcall service.                     |
-| [`@upstream`](./directives/upstream.md)         | Controls aspects of the upstream server connection, including timeouts and keep-alive settings.              |
 
 ### Resolvable Directives
 

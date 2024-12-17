@@ -92,7 +92,7 @@ schema
 }
 ```
 
-To know more about the `@link` directive, please refer to the [Tailcall GraphQL Directives](./directives/link.md).
+To know more about the `links` configuration, please refer [it's documentation](./config/links.md).
 
 #### Response
 
