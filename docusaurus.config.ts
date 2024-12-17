@@ -126,7 +126,7 @@ export default {
                     class="mr-2"
                     src="/images/home/book.svg"
                     alt="Blogs Icon"
-                    style={{ width: '16px', height: '16px' }}
+                    style="width: 16px; height: 16px;"
                   />
                   <span class="text-content-small font-medium">Blogs</span>
                 </div>`,
@@ -139,7 +139,7 @@ export default {
                     class="mr-2"
                     src="/images/home/git-merge.svg"
                     alt="Releases Icon"
-                    style={{ width: '16px', height: '16px' }}
+                    style="width: 16px; height: 16px;"
                   />
                   <span class="text-content-small font-medium">Releases</span>
                 </div>`,
