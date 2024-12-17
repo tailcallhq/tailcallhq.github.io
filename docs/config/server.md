@@ -1,82 +1,58 @@
 ---
-title: "@server"
-description: The @server directive provides a comprehensive set of server configurations.
-slug: ../server-directive
+title: "server"
+description: The server configuration provides a comprehensive set of server settings.
+slug: ../server-config
 ---
 
-The `@server` directive is defined as follows:
+The `server` configuration is defined in a YAML file as follows:
 
-```graphql title="Directive Definition" showLineNumbers
-directive @server(
-  workers: Int
-  port: Int
-  headers: ServerHeaders
-  introspection: Boolean
-  queryValidation: Boolean
-  responseValidation: Boolean
-  globalResponseTimeout: Int
-  version: Version
-  cert: String
-  key: String
-  showcase: Boolean
-  batchRequests: Boolean
-  routes: Routes
-  enableFederation: Boolean
-  vars: [InputKeyValue!]
-) on SCHEMA
-
-input ServerHeaders {
-  cacheControl: Boolean
-  custom: [InputKeyValue!]
-  experimental: [String!]
-  setCookies: Boolean
-  cors: CorsConfig
-}
-
-input CorsConfig {
-  allowCredentials: Boolean
-  allowHeaders: [String!]
-  allowMethods: [Method!]
-  allowOrigins: [String!]
-  allowPrivateNetwork: Boolean
-  exposeHeaders: [String!]
-  maxAge: Int
-  vary: [String!]
-}
-
-input Routes {
-  graphQL: String
-  status: String
-}
-
-enum Version {
-  HTTP1
-  HTTP2
-}
+```yaml title="Runtime Configuration" showLineNumbers
+server:
+  workers: 32
+  port: 8000
+  headers:
+    cacheControl: true
+    setCookies: true
+    custom:
+      - key: "X-Custom-Header"
+        value: "custom-value"
+    cors:
+      allowCredentials: true
+      allowHeaders: ["*"]
+      allowMethods: ["*"]
+      allowOrigins: ["*"]
+      exposeHeaders: ["*"]
+      maxAge: 600
+      vary: ["Origin"]
+  introspection: true
+  queryValidation: false
+  responseValidation: false
+  globalResponseTimeout: 5000
+  version: "HTTP1"
+  cert: "./cert.pem"
+  key: "./key.pem"
+  showcase: false
+  batchRequests: false
+  routes:
+    graphQL: "/graphql"
+    status: "/status"
+  enableFederation: false
+  vars:
+    - key: "apiKey"
+      value: "YOUR_API_KEY_HERE"
 ```
 
-The `@server` directive, applied at the schema level, provides a comprehensive set of server configurations. It dictates server behavior and helps tune Tailcall for a range of use-cases.
+The `server` configuration provides a comprehensive set of server configurations. It dictates server behavior and helps tune Tailcall for a range of use-cases.
 
-```graphql showLineNumbers
-schema @server(...[ServerSettings]...){
-    query: Query
-    mutation: Mutation
-}
-```
-
-In this templated structure, replace `...[ServerSettings]...` with specific configurations tailored to your project's needs. Adjust and expand these settings as necessary.
-
-The `ServerSettings` options and their details appear below.
+The options and their details appear below.
 
 ## workers
 
 Setting `workers` to `32` means that the GraphQL server will use 32 worker threads.
 
-```graphql showLineNumbers
-schema @server(workers: 32) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  workers: 32
 ```
 
 This example sets the `workers` to `32`, meaning the GraphQL server will use 32 worker threads.
@@ -85,11 +61,9 @@ This example sets the `workers` to `32`, meaning the GraphQL server will use 32 
 
 Setting the `port` to `8090` means that Tailcall will be accessible at `http://localhost:8000`.
 
-```graphql showLineNumbers
-schema @server(port: 8090) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  port: 8090
 ```
 
 This example sets the `port` to `8090`, making Tailcall accessible at `http://localhost:8090`.
@@ -108,43 +82,33 @@ Activating the `cacheControl` configuration directs Tailcall to send [Cache-Cont
 
 [cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 
-```graphql showLineNumbers
-schema @server(headers: {cacheControl: true}) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  headers:
+    cacheControl: true
 ```
 
 ## custom
 
 The `custom` is an array of key-value pairs. These headers get added to the response of every request made to the server. This can be useful for adding headers like `Access-Control-Allow-Origin` to allow cross-origin requests, or some headers like `X-Allowed-Roles` for use by downstream services.
 
-```graphql showLineNumbers
-schema
-  @server(
-    headers: {
-      custom: [
-        {key: "X-Allowed-Roles", value: "admin,user"}
-      ]
-    }
-  ) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  headers:
+    custom:
+      - key: "X-Allowed-Roles"
+        value: "admin,user"
 ```
 
 ## experimental
 
 When the `experimental` configuration is enabled, Tailcall can include headers starting with `X-` in its responses, which are sourced from its upstream. By default, this feature is disabled (`[]`), meaning Tailcall does not forward any such headers unless explicitly configured to do so.
 
-```graphql showLineNumbers
-schema
-  @server(
-    headers: {experimental: ["X-Experimental-Header"]}
-  ) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  headers:
+    experimental:
+      - "X-Experimental-Header"
 ```
 
 ## setCookies
@@ -153,26 +117,22 @@ Enabling the `setCookies` option instructs Tailcall to include `set-cookie` head
 
 [set-cookie]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/set-cookie
 
-```graphql showLineNumbers
-schema @server(headers: {setCookies: true}) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  headers:
+    setCookies: true
 ```
 
 ## cors
 
 The `cors` configuration allows you to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) on Tailcall. This is useful when you want to access Tailcall in the browser. Here is a simple configuration to get started with cors:
 
-```graphql showLineNumbers
-schema
-  @server(
-    headers: {
-      cors: {allowHeaders: ["*"], allowOrigins: ["*"]}
-    }
-  ) {
-  query: Query
-}
+```yaml showLineNumbers
+server:
+  headers:
+    cors:
+      allowHeaders: ["*"]
+      allowOrigins: ["*"]
 ```
 
 The above setting will enable CORS on the server for all headers, origins & methods. You can further configure the cors settings to make it more secure with the following fields:
@@ -186,41 +146,36 @@ The above setting will enable CORS on the server for all headers, origins & meth
 - `maxAge`: The maximum time (in seconds) that the client should cache preflight OPTIONS requests to avoid sending excessive requests to the server.
 - `vary`: A list of header names that indicate the values of which might cause the server's response to vary, potentially affecting caching.
 
-```graphql showLineNumbers
-schema
-  @server(
-    port: 8000
-    hostname: "0.0.0.0"
-    headers: {
-      cors: {
-        allowCredentials: false
-        allowHeaders: ["Authorization"]
-        allowMethods: [POST, GET, OPTIONS]
-        allowOrigins: ["abc.xyz"]
-        allowPrivateNetwork: true
-        exposeHeaders: ["Content-Type"]
-        maxAge: 360
-        vary: ["Origin"]
-      }
-    }
-  ) {
-  query: Query
-}
+```yaml showLineNumbers
+server:
+  port: 8000
+  hostname: "0.0.0.0"
+  headers:
+    cors:
+      allowCredentials: false
+      allowHeaders: ["Authorization"]
+      allowMethods: ["POST", "GET", "OPTIONS"]
+      allowOrigins: ["abc.xyz"]
+      allowPrivateNetwork: true
+      exposeHeaders: ["Content-Type"]
+      maxAge: 360
+      vary: ["Origin"]
 ```
 
 ## vars
 
 This configuration allows defining local variables for use during the server's operations. These variables are handy for storing constant configurations, secrets, or other shared information that operations might need.
 
-```graphql showLineNumbers
-schema
-  @server(
-    vars: {key: "apiKey", value: "YOUR_API_KEY_HERE"}
-  ) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  vars:
+    - key: "apiKey"
+      value: "YOUR_API_KEY_HERE"
+```
 
+Then in your schema file:
+
+```graphql showLineNumbers
 type Query {
   externalData: Data
     @http(
@@ -245,11 +200,9 @@ Local variables, like `apiKey`, are instrumental in securing access to external 
 
 This setting controls the server's allowance of introspection queries. Introspection, a core feature of GraphQL, allows clients to directly fetch schema information. This capability proves crucial for tools and client applications in comprehending the available types, fields, and operations. By default, the server enables this setting (`true`).
 
-```graphql showLineNumbers
-schema @server(introspection: false) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  introspection: false
 ```
 
 :::tip
@@ -260,11 +213,9 @@ Although introspection is beneficial during development and debugging stages, co
 
 The `queryValidation` configuration determines if the server checks incoming GraphQL queries against the defined schema. Each query check ensures it matches the schema, preventing errors from incorrect or malformed queries. In some situations, you might want to disable it, notably to **enhance server performance** at the cost of these checks. This defaults to `false` if not specified.
 
-```graphql showLineNumbers
-schema @server(queryValidation: true) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  queryValidation: true
 ```
 
 The example above sets `queryValidation` to `true`, enabling the validation phase for incoming queries.
@@ -277,11 +228,9 @@ Enable this in the development environment to ensure the queries sent are correc
 
 Tailcall can automatically infer the schema of the HTTP endpoints for you. This information can check responses received from the upstream services. Enabling this setting allows you to do that. If not specified, the default setting for `responseValidation` is `false`.
 
-```graphql showLineNumbers
-schema @server(responseValidation: true) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  responseValidation: true
 ```
 
 :::tip
@@ -294,11 +243,9 @@ The `globalResponseTimeout` configuration sets the max duration a query can run 
 
 If not explicitly defined, there might be a system-specific or default value that applies.
 
-```graphql showLineNumbers
-schema @server(globalResponseTimeout: 5000) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  globalResponseTimeout: 5000
 ```
 
 In this given example, setting the `globalResponseTimeout` to `5000` milliseconds, or 5 seconds, means any query execution taking longer than this duration will be automatically terminated by
@@ -311,22 +258,18 @@ Setting an appropriate response timeout in production environments is crucial. T
 
 The server uses the HTTP version. If not specified, the default value is `HTTP1`. The available options are `HTTP1` and `HTTP2`.
 
-```graphql showLineNumbers
-schema @server(version: HTTP2) {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  version: "HTTP2"
 ```
 
 ## cert
 
 The path to certificate(s) for running the server over HTTP2 (HTTPS). If not specified, the default value is `null`.
 
-```graphql showLineNumbers
-schema @server(cert: "./cert.pem") {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  cert: "./cert.pem"
 ```
 
 <!-- prefer to use standard extension libraries -->
@@ -339,11 +282,9 @@ The certificate can be of any extension, but it's highly recommended to use stan
 
 The path to the key for running the server over HTTP2 (HTTPS). If not specified, the default value is `null`.
 
-```graphql showLineNumbers
-schema @server(key: "./key.pem") {
-  query: Query
-  mutation: Mutation
-}
+```yaml showLineNumbers
+server:
+  key: "./key.pem"
 ```
 
 :::tip
@@ -352,23 +293,21 @@ The key can be of any extension, but it's highly recommended to use standards (`
 
 ## showcase
 
-The `@server` directive's `showcase` option allows for hands-on experimentation with server configurations in a controlled environment. This feature simplifies the process of exploring and testing different settings.
+The `server` configurations's `showcase` option allows for hands-on experimentation with server configurations in a controlled environment. This feature simplifies the process of exploring and testing different settings.
 
-```graphql showLineNumbers
-schema @server(showcase: true) {
-  query: Query
-}
+```yaml showLineNumbers
+server:
+  showcase: true
 ```
 
 ## batchRequests
 
 Batching in GraphQL combines requests into one, reducing server round trips.
 
-```graphql showLineNumbers
-schema @server(
+```yaml showLineNumbers
+server:
   port: 8000
   batchRequests: true
-)
 ```
 
 :::tip
@@ -382,8 +321,11 @@ This optional field allows you to customize the server's endpoint paths, enablin
 - graphQL: `/graphql`
 - status: `/status`
 
-```graphql showLineNumbers
-schema @server(routes: {graphQL: "/tailcall-gql", status: "/health"})
+```yaml showLineNumbers
+server:
+  routes:
+    graphQL: "/tailcall-gql"
+    status: "/health"
 ```
 
 In this example, the GraphQL endpoint is changed to `/tailcall-gql` and the status endpoint to `/health`.
@@ -392,6 +334,7 @@ In this example, the GraphQL endpoint is changed to `/tailcall-gql` and the stat
 
 A boolean flag, if set to `true` the Tailcall server will additionally act as federation subgraph. By default, it's disabled.
 
-```graphql showLineNumbers
-schema @server(enableFederation: true)
+```yaml showLineNumbers
+server:
+  enableFederation: true
 ```

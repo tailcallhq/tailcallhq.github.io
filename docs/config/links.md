@@ -6,8 +6,8 @@ slug: ../links-config
 
 The `links` configuration is defined in a YAML file as follows:
 
-```yaml title="Link Configuration" showLineNumbers
-link:
+```yaml title="Runtime Configuration" showLineNumbers
+links:
   - src: "path_or_url_of_external_resource"
     type: "LinkType"
     id: "optional_identifier"

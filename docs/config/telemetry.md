@@ -1,63 +1,39 @@
 ---
-title: "@telemetry"
-description: The @telemetry directive facilitates seamless integration with OpenTelemetry, enhancing the observability of your GraphQL services.
-slug: ../telemetry-directive
+title: "telemetry"
+description: The telemetry configuration facilitates seamless integration with OpenTelemetry, enhancing the observability of your GraphQL services.
+slug: ../telemetry-config
 ---
 
-The `@telemetry` directive is defined as follows:
+The `telemetry` configuration is defined as follows:
 
-```graphql title="Directive Definition" showLineNumbers
-directive @telemetry(
-  """
-  Export configuration for telemetry data
-  """
-  export: TelemetryExport
-
-  """
-  Headers from ingress request to be included in telemetry
-  """
-  requestHeaders: [String!]
-) on SCHEMA
-
-input TelemetryExport {
-  otlp: OtlpConfig
-  prometheus: PrometheusConfig
-  stdout: StdoutConfig
-  apollo: ApolloConfig
-}
-
-input OtlpConfig {
-  url: String!
-  headers: [InputKeyValue!]
-}
-
-input PrometheusConfig {
-  path: String
-  format: PrometheusFormat
-}
-
-input StdoutConfig {
-  pretty: Boolean
-}
-
-input ApolloConfig {
-  api_key: String!
-  graph_ref: String!
-  platform: String
-  version: String
-}
-
-enum PrometheusFormat {
-  text
-  protobuf
-}
+```yaml title="Runtime Configuration" showLineNumbers
+telemetry:
+  export:
+    # oneof:
+    otlp:
+      url: string
+      headers:
+        - key: string
+          value: string
+    prometheus:
+      path: string
+      format: text # protobuf
+    stdout:
+      pretty: boolean
+    apollo:
+      api_key: string
+      graph_ref: string
+      platform: string
+      version: string
+  requestHeaders:
+    - string
 ```
 
-The `@telemetry` directive facilitates seamless integration with [OpenTelemetry](https://open-telemetry.io), enhancing the observability of your GraphQL services powered by Tailcall. By leveraging this directive, developers gain access to valuable insights into the performance and behavior of their applications.
+The `telemetry` configuration facilitates seamless integration with [OpenTelemetry](https://open-telemetry.io), enhancing the observability of your GraphQL services powered by Tailcall. By leveraging this configuration, developers gain access to valuable insights into the performance and behavior of their applications.
 
 ## Traces
 
-Here are the traces that are captured by the `@telemetry` directive:
+Here are the traces that are captured by the `telemetry` configuration:
 
 |                        Trace Name | Description                                                                                                                                                                                     |
 | --------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -70,11 +46,11 @@ Here are the traces that are captured by the `@telemetry` directive:
 
 ## Metrics
 
-The `@telemetry` directive also captures the following metrics:
+The `telemetry` configuration also captures the following metrics:
 
 |                    Metric | Description                                                                                                                                     |
 | ------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------- |
-|            cache.hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](./cache.md) directive                                                       |
+|            cache.hit_rate | Reflects the cache hit rate for the cache powered by the [`@cache`](../directives/cache.md) directive                                           |
 | http.server.request.count | Counts the number of incoming requests made to specific route. Optionally enriched with selected headers by [`requestHeaders`](#requestheaders) |
 | http.client.request.count | Counts the number of outgoing requests to specific upstream                                                                                     |
 
@@ -88,24 +64,16 @@ Utilizes the OTLP format to export telemetry data to backend systems, supported 
 
 [honecomb.io]: https://www.honeycomb.io/
 
-```graphql
-schema
-  @telemetry(
-    export: {
-      otlp: {
-        url: "https://api.honeycomb.io:443"
-        headers: [
-          {
-            key: "x-honeycomb-team"
-            value: "{{.env.HONEYCOMB_API_KEY}}"
-          }
-          {key: "x-honeycomb-dataset", value: "tailcall"}
-        ]
-      }
-    }
-  ) {
-  query: Query
-}
+```yaml
+telemetry:
+  export:
+    otlp:
+      url: "https://api.honeycomb.io:443"
+      headers:
+        - key: "x-honeycomb-team"
+          value: "{{.env.HONEYCOMB_API_KEY}}"
+        - key: "x-honeycomb-dataset"
+          value: "tailcall"
 ```
 
 You can configure the OTLP exporter with the following options:
@@ -119,11 +87,11 @@ You can configure the OTLP exporter with the following options:
 
 Facilitates metrics export in a Prometheus compatible format, providing a dedicated endpoint for metrics.
 
-```graphql
-schema
-  @telemetry(export: {prometheus: {path: "/metrics"}}) {
-  query: Query
-}
+```yaml
+telemetry:
+  export:
+    prometheus:
+      path: "/metrics"
 ```
 
 You can configure the Prometheus exporter with the following options:
@@ -137,10 +105,11 @@ You can configure the Prometheus exporter with the following options:
 
 Outputs all telemetry data to stdout, ideal for testing or local development environments.
 
-```graphql
-schema @telemetry(export: {stdout: {pretty: true}}) {
-  query: Query
-}
+```yaml
+telemetry:
+  export:
+    stdout:
+      pretty: true
 ```
 
 You can configure the stdout exporter with the following options:
@@ -153,30 +122,24 @@ You can configure the stdout exporter with the following options:
 
 Specifies list of headers of ingress request the value of which will be sent to the telemetry as attributes.
 
-```graphql
-schema @telemetry(requestHeaders: ["X-User-Id"]) {
-  query: Query
-}
+```yaml
+telemetry:
+  requestHeaders:
+    - "X-User-Id"
 ```
 
 ## apollo
 
 Facilitates seamless integration with [Apollo Studio](https://studio.apollographql.com/), enhancing the observability of GraphQL services. By leveraging this field, developers gain access to valuable insights into the performance and behavior of their GraphQL APIs.
 
-```graphql
-schema
-  @telemetry(
-    export: {
-      otlp: {
-        api_key: "{{.env.APOLLO_API_KEY}}"
-        graph_ref: "graph-id@current"
-        platform: "website.com"
-        version: "1.0.0"
-      }
-    }
-  ) {
-  query: Query
-}
+```yaml
+telemetry:
+  export:
+    apollo:
+      api_key: "{{.env.APOLLO_API_KEY}}"
+      graph_ref: "graph-id@current"
+      platform: "website.com"
+      version: "1.0.0"
 ```
 
 You can configure the apollo exporter with the following options:
@@ -188,4 +151,4 @@ You can configure the apollo exporter with the following options:
 |  platform | An arbitrary value which can contain the name of your website or some other value to identify your deployment uniqely, in case you have multiple deployments. |
 |   version | Version of Apollo which is being used.                                                                                                                        |
 
-By integrating the `@telemetry` directive into your GraphQL schema, you empower your development teams with critical insights into application performance, enabling proactive optimization and maintenance.
+By integrating the `telemetry` configuration into your GraphQL schema, you empower your development teams with critical insights into application performance, enabling proactive optimization and maintenance.
