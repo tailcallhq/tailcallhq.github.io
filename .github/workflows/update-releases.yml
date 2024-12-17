@@ -2,15 +2,14 @@ name: Update Releases
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
-    # - cron: "0 */4 * * *"
+    - cron: "0 */4 * * *"
 
 permissions:
   contents: write
 
 jobs:
   update-releases:
-    # if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
 
     steps:
