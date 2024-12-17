@@ -22,9 +22,9 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Config",
+      label: "Runtime configuration",
       collapsed: false,
-      items: ["config/links", "config/server", "config/telemetry", "config/upstream"].sort(),
+      items: ["runtime-config", "config/links", "config/server", "config/telemetry", "config/upstream"],
     },
     {
       type: "category",
