@@ -10,7 +10,7 @@ const VersionUpdateCard = () => {
         <span className="text-title-medium sm:text-title-large text-white">Update to latest version !!</span>
         <span className="text-content-small text-tailCall-light-500">Get the instructions from the docs</span>
       </div>
-      <LinkButton title="Get Started" href={pageLinks.docs} theme={Theme.Tailcall} />
+      <LinkButton title="Get Started" titleClassName="text-center" href={pageLinks.docs} theme={Theme.Tailcall} />
     </div>
   )
 }

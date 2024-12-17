@@ -1,10 +1,12 @@
 import Link from "@docusaurus/Link"
 import {Theme} from "@site/src/constants"
+import clsx from "clsx"
 import React from "react"
 import {SVGProps} from "react"
 
 type LinkButtonProps = {
   title?: string
+  titleClassName?: string
   Icon?: React.ComponentType<SVGProps<SVGSVGElement>> // Define the type of Icon prop
   theme: Theme
   onClick?: () => void | Promise<void>
@@ -13,7 +15,16 @@ type LinkButtonProps = {
   disabled?: boolean
 }
 
-const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled}: LinkButtonProps): JSX.Element => {
+const LinkButton = ({
+  title,
+  titleClassName,
+  Icon,
+  theme,
+  onClick,
+  href,
+  width = "auto",
+  disabled,
+}: LinkButtonProps): JSX.Element => {
   // Generate button widths as tailwind is not able to handle dynamic widths
   const setButtonWidth = () => {
     switch (width) {
@@ -101,7 +112,7 @@ const LinkButton = ({title, Icon, theme, onClick, href, width = "auto", disabled
       {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:h-8 lg:w-8 text-white z-[1]" />}
 
       {/* Render title if provided */}
-      {title && <span className="z-20"> {title}</span>}
+      {title && <span className={clsx("z-20", titleClassName)}> {title}</span>}
     </Link>
   )
 }
