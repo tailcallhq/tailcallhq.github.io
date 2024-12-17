@@ -1,13 +1,15 @@
 name: Update Releases
 
 on:
-  workflow_dispatch:
+  schedule:
+    - cron: "0 */4 * * *"
 
 permissions:
   contents: write
 
 jobs:
   update-releases:
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
 
     steps:
@@ -27,9 +29,9 @@ jobs:
       - name: Run Releases Docs Generator Script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node releases-docs-generator.js
+        run: node release-notes-generator.js
 
-      - name: Auto Commit Changes
+      - name: Commit and push changes (on develop)
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: ${{ github.ref_name }}
