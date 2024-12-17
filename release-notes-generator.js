@@ -78,6 +78,8 @@ function formatReleaseBody(body) {
 
 // Write releases to files
 function writeReleasesToFiles(groupedReleases) {
+  let isFirstFileWrite = true
+
   for (const [folder, releases] of Object.entries(groupedReleases)) {
     const [fname, year, month] = folder.split("/")
 
@@ -88,7 +90,7 @@ function writeReleasesToFiles(groupedReleases) {
     const filePath = path.join(folderPath, `${month}.mdx`)
 
     const monthNumber = new Date(`${month} 1, 2024`).getMonth() + 1
-    const frontmatter = `---\nsidebar_position: ${12 - monthNumber + 1}\ntoc_max_heading_level: 2\n---\n\n`
+    const frontmatter = `---\nsidebar_position: ${12 - monthNumber + 1}\ntoc_max_heading_level: 2\n${isFirstFileWrite ? "slug: /\n" : ""}---\n\n`
     const versionUpdateCardBody = `import VersionUpdateCard from "@site/src/components/shared/VersionUpdateCard"\n\n<VersionUpdateCard />\n\n`
 
     const content = releases
@@ -99,6 +101,7 @@ function writeReleasesToFiles(groupedReleases) {
       .join("\n\n---\n")
 
     fs.writeFileSync(filePath, frontmatter + versionUpdateCardBody + content, "utf-8")
+    isFirstFileWrite = false
     console.log(`Wrote releases to ${filePath}`)
   }
 }
