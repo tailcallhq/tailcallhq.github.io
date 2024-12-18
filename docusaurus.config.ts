@@ -128,7 +128,7 @@ export default {
                     alt="Blogs Icon"
                     style="width: 16px; height: 16px;"
                   />
-                  <span class="text-content-small font-medium">Blogs</span>
+                  <span class="text-content-tiny font-bold lg:text-content-small lg:font-medium">Blogs</span>
                 </div>`,
             },
             {
@@ -141,7 +141,7 @@ export default {
                     alt="Releases Icon"
                     style="width: 16px; height: 16px;"
                   />
-                  <span class="text-content-small font-medium">Releases</span>
+                  <span class="text-content-tiny font-bold lg:text-content-small lg:font-medium">Releases</span>
                 </div>`,
             },
           ],
