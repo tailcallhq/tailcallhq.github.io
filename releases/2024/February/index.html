@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-releases docs-version-current docs-doc-page docs-doc-id-2024/February" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.6.3">
+<title data-rh="true">February | Tailcall</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://tailcall.run/icons/companies/tailcall.svg"><meta data-rh="true" name="twitter:image" content="https://tailcall.run/icons/companies/tailcall.svg"><meta data-rh="true" property="og:url" content="https://tailcall.run/releases/2024/February/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-releases-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-releases-current"><meta data-rh="true" property="og:title" content="February | Tailcall"><meta data-rh="true" name="description" content="v0.40.9"><meta data-rh="true" property="og:description" content="v0.40.9"><link data-rh="true" rel="icon" href="/images/favicon.ico"><link data-rh="true" rel="canonical" href="https://tailcall.run/releases/2024/February/"><link data-rh="true" rel="alternate" href="https://tailcall.run/releases/2024/February/" hreflang="en"><link data-rh="true" rel="alternate" href="https://tailcall.run/releases/2024/February/" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://X27WDVHRQ3-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="Tailcall" href="/opensearch.xml">
+<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Tailcall RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Tailcall Atom Feed">
+<link rel="alternate" type="application/json" href="/blog/feed.json" title="Tailcall JSON Feed">
+
+
+
+
+<script id="chatbotscript" data-accountid="CZPG9aVdtk59Tjz4SMTu8w==" data-websiteid="75VGI0NlBqessD4BQn2pFg==" src="https://app.robofy.ai/bot/js/common.js?v=1734634124030"></script>
+<script type="application/ld+json">{"@context":"https://schema.org/","@type":"WebSite","name":"Tailcall","url":"https://tailcall.run/"}</script><link rel="stylesheet" href="/assets/css/styles.d55587b5.css">
+<script src="/assets/js/runtime~main.1a22113c.js" defer="defer"></script>
+<script src="/assets/js/main.753dd05c.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top navbarHideable_m1mJ"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/icons/companies/tailcall.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/icons/companies/tailcall.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div></a><a class="navbar__item navbar__link" href="/">Home</a><a class="navbar__item navbar__link" href="/docs/">Docs</a><a class="navbar__item navbar__link" href="/graphql/">Learn</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Insights</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/blog/">
+                <div class="flex items-center p-1">
+                  <img class="mr-2" src="/images/home/book.svg" alt="Blogs Icon" style="width: 16px; height: 16px;">
+                  <span class="text-content-tiny font-bold lg:text-content-small lg:font-medium">Blogs</span>
+                </div></a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/releases/">
+                <div class="flex items-center p-1">
+                  <img class="mr-2" src="/images/home/git-merge.svg" alt="Releases Icon" style="width: 16px; height: 16px;">
+                  <span class="text-content-tiny font-bold lg:text-content-small lg:font-medium">Releases</span>
+                </div></a></li></ul></div></div><div class="navbar__items navbar__items--right"><div class="hidden lg:flex search-icon-navbar navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search (Command+K)"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_eExm"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><div class="sidebar-search-container place-items-center flex flex-col lg:mb-[100px]"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd sidebarWithHideableNavbar_wUlq"><a tabindex="-1" class="sidebarLogo_isFc" href="/"><img src="/icons/companies/tailcall.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/icons/companies/tailcall.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></a><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/releases/">2024</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/">December</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/2024/November/">November</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/2024/October/">October</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/2024/September/">September</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/2024/August/">August</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/2024/July/">July</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/2024/June/">June</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/2024/May/">May</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/2024/April/">April</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/2024/March/">March</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/releases/2024/February/">February</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/releases/2024/January/">January</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/releases/2023/December/">2023</a></div></li></ul></nav></div></div></aside></div><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">2024</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">February</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>February</h1></header><div class="flex flex-col sm:flex-row py-8 px-6 sm:px-11 rounded-2xl bg-tailCall-dark-600 justify-between items-start sm:items-center gap-4 version-update-card"><div class="flex flex-col gap-1"><span class="text-title-medium sm:text-title-large text-white">Update to latest version !!</span><span class="text-content-small text-tailCall-light-500">Get the instructions from the docs</span></div><a class="group relative disabled:opacity-25 disabled:cursor-not-allowed flex items-center justify-center gap-x-SPACE_03 hover:no-underline rounded-lg sm:rounded-xl h-12 sm:h-16 text-content-small font-bold sm:text-title-small cursor-pointer px-SPACE_06 py-SPACE_03 sm:px-SPACE_08 lg:px-SPACE_10 sm:py-SPACE_04 lg:py-SPACE_05 w-fit bg-yellow-300 border border-solid text-tailCall-dark-500 bg-transparent hover:text-tailCall-dark-500" href="/docs/"><span class="z-20 text-center"> <!-- -->Get Started</span></a></div>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0409">v0.40.9<a href="#v0409" class="hash-link" aria-label="Direct link to v0.40.9" title="Direct link to v0.40.9">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes">🐛 Bug Fixes<a href="#-bug-fixes" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate log to 0.4.21 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1264" target="_blank" rel="noopener noreferrer">#1264</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0408">v0.40.8<a href="#v0408" class="hash-link" aria-label="Direct link to v0.40.8" title="Direct link to v0.40.8">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-1">🐛 Bug Fixes<a href="#-bug-fixes-1" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate deno_core to 0.266.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1263" target="_blank" rel="noopener noreferrer">#1263</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance">🧰 Maintenance<a href="#-maintenance" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(deps): update dependency wrangler to v3.30.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1257" target="_blank" rel="noopener noreferrer">#1257</a>)</li>
+<li>chore(deps): update dependency miniflare to v3.20240223.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1256" target="_blank" rel="noopener noreferrer">#1256</a>)</li>
+<li>chore: disable http cache in benchmarks <a href="https://github.com/tusharmath" target="_blank" rel="noopener noreferrer">@tusharmath</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1249" target="_blank" rel="noopener noreferrer">#1249</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0407">v0.40.7<a href="#v0407" class="hash-link" aria-label="Direct link to v0.40.7" title="Direct link to v0.40.7">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-2">🐛 Bug Fixes<a href="#-bug-fixes-2" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix: losing cache wrapper for expr from app_context <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1242" target="_blank" rel="noopener noreferrer">#1242</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-1">🧰 Maintenance<a href="#-maintenance-1" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(deps): update rust crate tempfile to 3.10.1 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1254" target="_blank" rel="noopener noreferrer">#1254</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0406">v0.40.6<a href="#v0406" class="hash-link" aria-label="Direct link to v0.40.6" title="Direct link to v0.40.6">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-3">🐛 Bug Fixes<a href="#-bug-fixes-3" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate deno_core to 0.265.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1253" target="_blank" rel="noopener noreferrer">#1253</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0405">v0.40.5<a href="#v0405" class="hash-link" aria-label="Direct link to v0.40.5" title="Direct link to v0.40.5">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-4">🐛 Bug Fixes<a href="#-bug-fixes-4" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate rustls-pki-types to 1.3.1 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1252" target="_blank" rel="noopener noreferrer">#1252</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0404">v0.40.4<a href="#v0404" class="hash-link" aria-label="Direct link to v0.40.4" title="Direct link to v0.40.4">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-5">🐛 Bug Fixes<a href="#-bug-fixes-5" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate lambda_runtime to 0.10.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1251" target="_blank" rel="noopener noreferrer">#1251</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0403">v0.40.3<a href="#v0403" class="hash-link" aria-label="Direct link to v0.40.3" title="Direct link to v0.40.3">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-6">🐛 Bug Fixes<a href="#-bug-fixes-6" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate lambda_http to 0.10.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1250" target="_blank" rel="noopener noreferrer">#1250</a>)</li>
+<li>fix(deps): update dependency yaml to v2.4.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1248" target="_blank" rel="noopener noreferrer">#1248</a>)</li>
+<li>chore: fix app version warning  <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1245" target="_blank" rel="noopener noreferrer">#1245</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-2">🧰 Maintenance<a href="#-maintenance-2" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: fix app version warning  <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1245" target="_blank" rel="noopener noreferrer">#1245</a>)</li>
+<li>chore: switch to FileIO from tokio fs <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1246" target="_blank" rel="noopener noreferrer">#1246</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0402">v0.40.2<a href="#v0402" class="hash-link" aria-label="Direct link to v0.40.2" title="Direct link to v0.40.2">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-7">🐛 Bug Fixes<a href="#-bug-fixes-7" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate lru to 0.12.3 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1247" target="_blank" rel="noopener noreferrer">#1247</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-3">🧰 Maintenance<a href="#-maintenance-3" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: switch to FileIO from tokio fs <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1246" target="_blank" rel="noopener noreferrer">#1246</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0401">v0.40.1<a href="#v0401" class="hash-link" aria-label="Direct link to v0.40.1" title="Direct link to v0.40.1">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-documentation">📝 Documentation<a href="#-documentation" class="hash-link" aria-label="Direct link to 📝 Documentation" title="Direct link to 📝 Documentation">​</a></h3>
+<ul>
+<li>chore(deps): update fedora docker tag to v41 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1225" target="_blank" rel="noopener noreferrer">#1225</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-8">🐛 Bug Fixes<a href="#-bug-fixes-8" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate inquire to 0.7.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1243" target="_blank" rel="noopener noreferrer">#1243</a>)</li>
+<li>chore: fix <code>cargo test &lt;module name&gt; panics</code> <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1238" target="_blank" rel="noopener noreferrer">#1238</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-4">🧰 Maintenance<a href="#-maintenance-4" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: fix <code>cargo test &lt;module name&gt; panics</code> <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1238" target="_blank" rel="noopener noreferrer">#1238</a>)</li>
+<li>chore(deps): update fedora docker tag to v41 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1225" target="_blank" rel="noopener noreferrer">#1225</a>)</li>
+<li>chore(cf): add tests for worker <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1232" target="_blank" rel="noopener noreferrer">#1232</a>)</li>
+<li>chore: drop test-conv <a href="https://github.com/tusharmath" target="_blank" rel="noopener noreferrer">@tusharmath</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1237" target="_blank" rel="noopener noreferrer">#1237</a>)</li>
+<li>chore(deps): update dependency wrangler to v3.29.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1234" target="_blank" rel="noopener noreferrer">#1234</a>)</li>
+<li>chore(deps): update dependency @cloudflare/workers-types to v4.20240222.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1235" target="_blank" rel="noopener noreferrer">#1235</a>)</li>
+<li>chore(deps): update dependency miniflare to v3.20240208.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1233" target="_blank" rel="noopener noreferrer">#1233</a>)</li>
+<li>chore(deps-dev): bump undici from 5.28.2 to 5.28.3 in /cloudflare <a href="https://github.com/dependabot" target="_blank" rel="noopener noreferrer">@dependabot</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1208" target="_blank" rel="noopener noreferrer">#1208</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0400">v0.40.0<a href="#v0400" class="hash-link" aria-label="Direct link to v0.40.0" title="Direct link to v0.40.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features">🚀 Features<a href="#-features" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>feat: const to support mustache templates <a href="https://github.com/amitksingh1490" target="_blank" rel="noopener noreferrer">@amitksingh1490</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1196" target="_blank" rel="noopener noreferrer">#1196</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0398">v0.39.8<a href="#v0398" class="hash-link" aria-label="Direct link to v0.39.8" title="Direct link to v0.39.8">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-9">🐛 Bug Fixes<a href="#-bug-fixes-9" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate futures-timer to 3.0.3 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1230" target="_blank" rel="noopener noreferrer">#1230</a>)</li>
+<li>fix(deps): update dependency type-fest to v4.10.3 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1229" target="_blank" rel="noopener noreferrer">#1229</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0397">v0.39.7<a href="#v0397" class="hash-link" aria-label="Direct link to v0.39.7" title="Direct link to v0.39.7">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-10">🐛 Bug Fixes<a href="#-bug-fixes-10" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate deno_core to 0.264.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1228" target="_blank" rel="noopener noreferrer">#1228</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-5">🧰 Maintenance<a href="#-maintenance-5" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(deps): update dependency wrangler to v3.28.4 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1224" target="_blank" rel="noopener noreferrer">#1224</a>)</li>
+<li>chore: upgrade async-graphql <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1222" target="_blank" rel="noopener noreferrer">#1222</a>)</li>
+<li>chore(deps): update dependency vitest to v1.3.1 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1223" target="_blank" rel="noopener noreferrer">#1223</a>)</li>
+<li>chore:  make <code>resolve_descriptors</code> accept <code>FileDescriptorProto</code> <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1221" target="_blank" rel="noopener noreferrer">#1221</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0396">v0.39.6<a href="#v0396" class="hash-link" aria-label="Direct link to v0.39.6" title="Direct link to v0.39.6">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-11">🐛 Bug Fixes<a href="#-bug-fixes-11" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate serde_json to 1.0.114 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1219" target="_blank" rel="noopener noreferrer">#1219</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0395">v0.39.5<a href="#v0395" class="hash-link" aria-label="Direct link to v0.39.5" title="Direct link to v0.39.5">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-12">🐛 Bug Fixes<a href="#-bug-fixes-12" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate serde to 1.0.197 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1218" target="_blank" rel="noopener noreferrer">#1218</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-6">🧰 Maintenance<a href="#-maintenance-6" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(deps): update rust crate insta to 1.35.1 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1217" target="_blank" rel="noopener noreferrer">#1217</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0394">v0.39.4<a href="#v0394" class="hash-link" aria-label="Direct link to v0.39.4" title="Direct link to v0.39.4">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-13">🐛 Bug Fixes<a href="#-bug-fixes-13" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate anyhow to 1.0.80 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1216" target="_blank" rel="noopener noreferrer">#1216</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-7">🧰 Maintenance<a href="#-maintenance-7" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(deps): update dependency wrangler to v3.28.3 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1204" target="_blank" rel="noopener noreferrer">#1204</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0393">v0.39.3<a href="#v0393" class="hash-link" aria-label="Direct link to v0.39.3" title="Direct link to v0.39.3">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-14">🐛 Bug Fixes<a href="#-bug-fixes-14" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate deno_core to 0.263.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1205" target="_blank" rel="noopener noreferrer">#1205</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-8">🧰 Maintenance<a href="#-maintenance-8" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(deps): update dependency wrangler to v3.28.3 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1204" target="_blank" rel="noopener noreferrer">#1204</a>)</li>
+<li>chore: update deno_core version <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1200" target="_blank" rel="noopener noreferrer">#1200</a>)</li>
+<li>chore(deps): update dependency miniflare to v3.20240129.3 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1203" target="_blank" rel="noopener noreferrer">#1203</a>)</li>
+<li>chore(deps): update dependency vitest to v1.3.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1202" target="_blank" rel="noopener noreferrer">#1202</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0392">v0.39.2<a href="#v0392" class="hash-link" aria-label="Direct link to v0.39.2" title="Direct link to v0.39.2">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-15">🐛 Bug Fixes<a href="#-bug-fixes-15" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate clap to 4.5.1 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1201" target="_blank" rel="noopener noreferrer">#1201</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0391">v0.39.1<a href="#v0391" class="hash-link" aria-label="Direct link to v0.39.1" title="Direct link to v0.39.1">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-16">🐛 Bug Fixes<a href="#-bug-fixes-16" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(link): bug in relative path <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1199" target="_blank" rel="noopener noreferrer">#1199</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0390">v0.39.0<a href="#v0390" class="hash-link" aria-label="Direct link to v0.39.0" title="Direct link to v0.39.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-1">🚀 Features<a href="#-features-1" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>revert: &quot;feat: switch to TailcallBuilder (#1178)&quot; <a href="https://github.com/amitksingh1490" target="_blank" rel="noopener noreferrer">@amitksingh1490</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1194" target="_blank" rel="noopener noreferrer">#1194</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-17">🐛 Bug Fixes<a href="#-bug-fixes-17" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix: mustache parsing for jsonlike string <a href="https://github.com/amitksingh1490" target="_blank" rel="noopener noreferrer">@amitksingh1490</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1192" target="_blank" rel="noopener noreferrer">#1192</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0381">v0.38.1<a href="#v0381" class="hash-link" aria-label="Direct link to v0.38.1" title="Direct link to v0.38.1">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-18">🐛 Bug Fixes<a href="#-bug-fixes-18" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate lambda_http to 0.9.3 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1163" target="_blank" rel="noopener noreferrer">#1163</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0380">v0.38.0<a href="#v0380" class="hash-link" aria-label="Direct link to v0.38.0" title="Direct link to v0.38.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-2">🚀 Features<a href="#-features-2" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>feat: switch to TailcallBuilder <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1178" target="_blank" rel="noopener noreferrer">#1178</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0378">v0.37.8<a href="#v0378" class="hash-link" aria-label="Direct link to v0.37.8" title="Direct link to v0.37.8">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-19">🐛 Bug Fixes<a href="#-bug-fixes-19" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate lambda_runtime to 0.9.2 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1190" target="_blank" rel="noopener noreferrer">#1190</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0377">v0.37.7<a href="#v0377" class="hash-link" aria-label="Direct link to v0.37.7" title="Direct link to v0.37.7">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-20">🐛 Bug Fixes<a href="#-bug-fixes-20" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate env_logger to 0.11.2 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1187" target="_blank" rel="noopener noreferrer">#1187</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-9">🧰 Maintenance<a href="#-maintenance-9" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(deps): update dependency wrangler to v3.28.2 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1184" target="_blank" rel="noopener noreferrer">#1184</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0376">v0.37.6<a href="#v0376" class="hash-link" aria-label="Direct link to v0.37.6" title="Direct link to v0.37.6">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-21">🐛 Bug Fixes<a href="#-bug-fixes-21" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate rustls-pki-types to 1.3.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1186" target="_blank" rel="noopener noreferrer">#1186</a>)</li>
+<li>chore: lint fixes in <code>Definition</code> <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1181" target="_blank" rel="noopener noreferrer">#1181</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-10">🧰 Maintenance<a href="#-maintenance-10" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(deps): update dependency miniflare to v3.20240129.2 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1183" target="_blank" rel="noopener noreferrer">#1183</a>)</li>
+<li>chore: lint fixes in <code>Definition</code> <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1181" target="_blank" rel="noopener noreferrer">#1181</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0375">v0.37.5<a href="#v0375" class="hash-link" aria-label="Direct link to v0.37.5" title="Direct link to v0.37.5">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-22">🐛 Bug Fixes<a href="#-bug-fixes-22" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate thiserror to 1.0.57 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1180" target="_blank" rel="noopener noreferrer">#1180</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0374">v0.37.4<a href="#v0374" class="hash-link" aria-label="Direct link to v0.37.4" title="Direct link to v0.37.4">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-23">🐛 Bug Fixes<a href="#-bug-fixes-23" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate serde_v8 to 0.170.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1176" target="_blank" rel="noopener noreferrer">#1176</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0373">v0.37.3<a href="#v0373" class="hash-link" aria-label="Direct link to v0.37.3" title="Direct link to v0.37.3">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-24">🐛 Bug Fixes<a href="#-bug-fixes-24" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate deno_core to 0.261.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1175" target="_blank" rel="noopener noreferrer">#1175</a>)</li>
+<li>chore: fix musl build <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1174" target="_blank" rel="noopener noreferrer">#1174</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-11">🧰 Maintenance<a href="#-maintenance-11" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: rename <code>config_set</code> to <code>config_module</code> <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1177" target="_blank" rel="noopener noreferrer">#1177</a>)</li>
+<li>chore: fix musl build <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1174" target="_blank" rel="noopener noreferrer">#1174</a>)</li>
+<li>chore: add test io <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1165" target="_blank" rel="noopener noreferrer">#1165</a>)</li>
+<li>chore(deps): update dependency tsx to v4.7.1 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1173" target="_blank" rel="noopener noreferrer">#1173</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0372">v0.37.2<a href="#v0372" class="hash-link" aria-label="Direct link to v0.37.2" title="Direct link to v0.37.2">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-documentation-1">📝 Documentation<a href="#-documentation-1" class="hash-link" aria-label="Direct link to 📝 Documentation" title="Direct link to 📝 Documentation">​</a></h3>
+<ul>
+<li>fix: docker build <a href="https://github.com/neo773" target="_blank" rel="noopener noreferrer">@neo773</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1170" target="_blank" rel="noopener noreferrer">#1170</a>)</li>
+<li>fix(docker): fix build being broken by AWS <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1168" target="_blank" rel="noopener noreferrer">#1168</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-25">🐛 Bug Fixes<a href="#-bug-fixes-25" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix: docker build <a href="https://github.com/neo773" target="_blank" rel="noopener noreferrer">@neo773</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1170" target="_blank" rel="noopener noreferrer">#1170</a>)</li>
+<li>fix(docker): fix build being broken by AWS <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1168" target="_blank" rel="noopener noreferrer">#1168</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-12">🧰 Maintenance<a href="#-maintenance-12" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(deps): update dependency wrangler to v3.28.1 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1169" target="_blank" rel="noopener noreferrer">#1169</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0371">v0.37.1<a href="#v0371" class="hash-link" aria-label="Direct link to v0.37.1" title="Direct link to v0.37.1">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-26">🐛 Bug Fixes<a href="#-bug-fixes-26" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(aws): update lambda_http to fix AWS Lambda build <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1166" target="_blank" rel="noopener noreferrer">#1166</a>)</li>
+<li>fix(deps): update rust crate lambda_runtime to 0.9.1 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1164" target="_blank" rel="noopener noreferrer">#1164</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-13">🧰 Maintenance<a href="#-maintenance-13" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: retry on codecov failing error <a href="https://github.com/ologbonowiwi" target="_blank" rel="noopener noreferrer">@ologbonowiwi</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1154" target="_blank" rel="noopener noreferrer">#1154</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0370">v0.37.0<a href="#v0370" class="hash-link" aria-label="Direct link to v0.37.0" title="Direct link to v0.37.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-3">🚀 Features<a href="#-features-3" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>feat: load cert and key for TLS via <code>@link</code> <a href="https://github.com/ologbonowiwi" target="_blank" rel="noopener noreferrer">@ologbonowiwi</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1143" target="_blank" rel="noopener noreferrer">#1143</a>)</li>
+<li>feat(aws): add AWS Lambda function <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1044" target="_blank" rel="noopener noreferrer">#1044</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-27">🐛 Bug Fixes<a href="#-bug-fixes-27" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate lambda_runtime to 0.9.1 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1164" target="_blank" rel="noopener noreferrer">#1164</a>)</li>
+<li>fix(aws): prevent skipping of AWS release build <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1162" target="_blank" rel="noopener noreferrer">#1162</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-14">🧰 Maintenance<a href="#-maintenance-14" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: replace *IO to TargetRuntime <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1155" target="_blank" rel="noopener noreferrer">#1155</a>)</li>
+<li>chore(deps): update dependency wrangler to v3.28.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1160" target="_blank" rel="noopener noreferrer">#1160</a>)</li>
+<li>chore(deps): update dependency @cloudflare/workers-types to v4.20240208.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1159" target="_blank" rel="noopener noreferrer">#1159</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0360">v0.36.0<a href="#v0360" class="hash-link" aria-label="Direct link to v0.36.0" title="Direct link to v0.36.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-4">🚀 Features<a href="#-features-4" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>chore(test): add virtual file system <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1142" target="_blank" rel="noopener noreferrer">#1142</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-28">🐛 Bug Fixes<a href="#-bug-fixes-28" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate clap to 4.5.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1158" target="_blank" rel="noopener noreferrer">#1158</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-15">🧰 Maintenance<a href="#-maintenance-15" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(test): add virtual file system <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1142" target="_blank" rel="noopener noreferrer">#1142</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0355">v0.35.5<a href="#v0355" class="hash-link" aria-label="Direct link to v0.35.5" title="Direct link to v0.35.5">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-29">🐛 Bug Fixes<a href="#-bug-fixes-29" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate protox-parse to 0.6.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1148" target="_blank" rel="noopener noreferrer">#1148</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0354">v0.35.4<a href="#v0354" class="hash-link" aria-label="Direct link to v0.35.4" title="Direct link to v0.35.4">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-30">🐛 Bug Fixes<a href="#-bug-fixes-30" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate prost-reflect to 0.13.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1145" target="_blank" rel="noopener noreferrer">#1145</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0353">v0.35.3<a href="#v0353" class="hash-link" aria-label="Direct link to v0.35.3" title="Direct link to v0.35.3">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-31">🐛 Bug Fixes<a href="#-bug-fixes-31" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate prost-reflect to 0.13.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1145" target="_blank" rel="noopener noreferrer">#1145</a>)</li>
+<li>fix(deps): update rust crate serde_v8 to 0.169.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1149" target="_blank" rel="noopener noreferrer">#1149</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0352">v0.35.2<a href="#v0352" class="hash-link" aria-label="Direct link to v0.35.2" title="Direct link to v0.35.2">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-32">🐛 Bug Fixes<a href="#-bug-fixes-32" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate deno_core to 0.260.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1147" target="_blank" rel="noopener noreferrer">#1147</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0351">v0.35.1<a href="#v0351" class="hash-link" aria-label="Direct link to v0.35.1" title="Direct link to v0.35.1">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-33">🐛 Bug Fixes<a href="#-bug-fixes-33" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate protox to 0.6.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1146" target="_blank" rel="noopener noreferrer">#1146</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-16">🧰 Maintenance<a href="#-maintenance-16" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: disable unused flag to reduce build size <a href="https://github.com/amitksingh1490" target="_blank" rel="noopener noreferrer">@amitksingh1490</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1139" target="_blank" rel="noopener noreferrer">#1139</a>)</li>
+<li>chore: delete config folder <a href="https://github.com/tusharmath" target="_blank" rel="noopener noreferrer">@tusharmath</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1138" target="_blank" rel="noopener noreferrer">#1138</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0350">v0.35.0<a href="#v0350" class="hash-link" aria-label="Direct link to v0.35.0" title="Direct link to v0.35.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-5">🚀 Features<a href="#-features-5" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>feat: import script via link <a href="https://github.com/ologbonowiwi" target="_blank" rel="noopener noreferrer">@ologbonowiwi</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1127" target="_blank" rel="noopener noreferrer">#1127</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-34">🐛 Bug Fixes<a href="#-bug-fixes-34" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate serde_v8 to 0.168.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1133" target="_blank" rel="noopener noreferrer">#1133</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-17">🧰 Maintenance<a href="#-maintenance-17" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>refactor: simplify expression modify <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1129" target="_blank" rel="noopener noreferrer">#1129</a>)</li>
+<li>chore: ci release builds <a href="https://github.com/amitksingh1490" target="_blank" rel="noopener noreferrer">@amitksingh1490</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1134" target="_blank" rel="noopener noreferrer">#1134</a>)</li>
+<li>test: add test case for batching inside an expr <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1128" target="_blank" rel="noopener noreferrer">#1128</a>)</li>
+<li>chore: lock rust nightly version <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1124" target="_blank" rel="noopener noreferrer">#1124</a>)</li>
+<li>chore(deps): update dependency wrangler to v3.27.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1131" target="_blank" rel="noopener noreferrer">#1131</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0341">v0.34.1<a href="#v0341" class="hash-link" aria-label="Direct link to v0.34.1" title="Direct link to v0.34.1">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-35">🐛 Bug Fixes<a href="#-bug-fixes-35" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate deno_core to 0.259.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1132" target="_blank" rel="noopener noreferrer">#1132</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-18">🧰 Maintenance<a href="#-maintenance-18" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(deps): update dependency miniflare to v3.20240129.1 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1130" target="_blank" rel="noopener noreferrer">#1130</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0340">v0.34.0<a href="#v0340" class="hash-link" aria-label="Direct link to v0.34.0" title="Direct link to v0.34.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-6">🚀 Features<a href="#-features-6" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>test(<code>@grpc</code>): add tests for method wrong format <a href="https://github.com/ologbonowiwi" target="_blank" rel="noopener noreferrer">@ologbonowiwi</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1125" target="_blank" rel="noopener noreferrer">#1125</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-36">🐛 Bug Fixes<a href="#-bug-fixes-36" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate deno_core to 0.258.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1126" target="_blank" rel="noopener noreferrer">#1126</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-19">🧰 Maintenance<a href="#-maintenance-19" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: simpler javascript runtime <a href="https://github.com/tusharmath" target="_blank" rel="noopener noreferrer">@tusharmath</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1088" target="_blank" rel="noopener noreferrer">#1088</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0330">v0.33.0<a href="#v0330" class="hash-link" aria-label="Direct link to v0.33.0" title="Direct link to v0.33.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-7">🚀 Features<a href="#-features-7" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>feat(<code>@grpc</code>): infer proto file from method <a href="https://github.com/ologbonowiwi" target="_blank" rel="noopener noreferrer">@ologbonowiwi</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1123" target="_blank" rel="noopener noreferrer">#1123</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-20">🧰 Maintenance<a href="#-maintenance-20" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: drop is grpc check from http_spec <a href="https://github.com/amitksingh1490" target="_blank" rel="noopener noreferrer">@amitksingh1490</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1122" target="_blank" rel="noopener noreferrer">#1122</a>)</li>
+<li>chore: enable preserve order in serde json <a href="https://github.com/amitksingh1490" target="_blank" rel="noopener noreferrer">@amitksingh1490</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1118" target="_blank" rel="noopener noreferrer">#1118</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0321">v0.32.1<a href="#v0321" class="hash-link" aria-label="Direct link to v0.32.1" title="Direct link to v0.32.1">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-37">🐛 Bug Fixes<a href="#-bug-fixes-37" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix: caching values based on resolvers <a href="https://github.com/shashitnak" target="_blank" rel="noopener noreferrer">@shashitnak</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1078" target="_blank" rel="noopener noreferrer">#1078</a>)</li>
+<li>fix(deps): update rust crate tempfile to 3.10.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1120" target="_blank" rel="noopener noreferrer">#1120</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0320">v0.32.0<a href="#v0320" class="hash-link" aria-label="Direct link to v0.32.0" title="Direct link to v0.32.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-8">🚀 Features<a href="#-features-8" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>feat: add link operator <a href="https://github.com/ologbonowiwi" target="_blank" rel="noopener noreferrer">@ologbonowiwi</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1094" target="_blank" rel="noopener noreferrer">#1094</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-38">🐛 Bug Fixes<a href="#-bug-fixes-38" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate tempfile to 3.10.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1120" target="_blank" rel="noopener noreferrer">#1120</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-21">🧰 Maintenance<a href="#-maintenance-21" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: remove nightly <a href="https://github.com/tusharmath" target="_blank" rel="noopener noreferrer">@tusharmath</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1119" target="_blank" rel="noopener noreferrer">#1119</a>)</li>
+<li>chore: remove lambda.rs <a href="https://github.com/thesapan" target="_blank" rel="noopener noreferrer">@thesapan</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1115" target="_blank" rel="noopener noreferrer">#1115</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0310">v0.31.0<a href="#v0310" class="hash-link" aria-label="Direct link to v0.31.0" title="Direct link to v0.31.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-9">🚀 Features<a href="#-features-9" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>feat: add <code>/showcase/graphql</code> endpoint <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1015" target="_blank" rel="noopener noreferrer">#1015</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-22">🧰 Maintenance<a href="#-maintenance-22" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: cargo profile warning <a href="https://github.com/neo773" target="_blank" rel="noopener noreferrer">@neo773</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1110" target="_blank" rel="noopener noreferrer">#1110</a>)</li>
+<li>chore(prettier): don&#x27;t put trailing commas in devcontainer.json <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1107" target="_blank" rel="noopener noreferrer">#1107</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0300">v0.30.0<a href="#v0300" class="hash-link" aria-label="Direct link to v0.30.0" title="Direct link to v0.30.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-10">🚀 Features<a href="#-features-10" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>chore(test): delete tests that have been converted to md <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1102" target="_blank" rel="noopener noreferrer">#1102</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-39">🐛 Bug Fixes<a href="#-bug-fixes-39" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(testconv): only convert from existing dirs <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1106" target="_blank" rel="noopener noreferrer">#1106</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-23">🧰 Maintenance<a href="#-maintenance-23" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore(prettier): don&#x27;t put trailing commas in devcontainer.json <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1107" target="_blank" rel="noopener noreferrer">#1107</a>)</li>
+<li>chore(test): delete tests that have been converted to md <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1102" target="_blank" rel="noopener noreferrer">#1102</a>)</li>
+<li>chore: use <code>allow_list</code> in favour of <code>whitelist</code> <a href="https://github.com/ologbonowiwi" target="_blank" rel="noopener noreferrer">@ologbonowiwi</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1104" target="_blank" rel="noopener noreferrer">#1104</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0291">v0.29.1<a href="#v0291" class="hash-link" aria-label="Direct link to v0.29.1" title="Direct link to v0.29.1">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-40">🐛 Bug Fixes<a href="#-bug-fixes-40" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix: fixing duplicate types <a href="https://github.com/shashitnak" target="_blank" rel="noopener noreferrer">@shashitnak</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1100" target="_blank" rel="noopener noreferrer">#1100</a>)</li>
+<li>chore: various execution_spec/testconv hotfixes <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1098" target="_blank" rel="noopener noreferrer">#1098</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-24">🧰 Maintenance<a href="#-maintenance-24" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: implement <code>blueprint::Upstream</code> <a href="https://github.com/lazyfuhrer" target="_blank" rel="noopener noreferrer">@lazyfuhrer</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1076" target="_blank" rel="noopener noreferrer">#1076</a>)</li>
+<li>chore: various execution_spec/testconv hotfixes <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1098" target="_blank" rel="noopener noreferrer">#1098</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0290">v0.29.0<a href="#v0290" class="hash-link" aria-label="Direct link to v0.29.0" title="Direct link to v0.29.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-11">🚀 Features<a href="#-features-11" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>chore: add snapshot testing via <code>md</code> files <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1054" target="_blank" rel="noopener noreferrer">#1054</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-41">🐛 Bug Fixes<a href="#-bug-fixes-41" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>fix(deps): update rust crate tokio to 1.36.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1097" target="_blank" rel="noopener noreferrer">#1097</a>)</li>
+<li>fix(deps): update rust crate rustls-pki-types to 1.2.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1096" target="_blank" rel="noopener noreferrer">#1096</a>)</li>
+<li>ci: fix commit comments, pr title validation and autofix <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1092" target="_blank" rel="noopener noreferrer">#1092</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-25">🧰 Maintenance<a href="#-maintenance-25" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: add snapshot testing via <code>md</code> files <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1054" target="_blank" rel="noopener noreferrer">#1054</a>)</li>
+<li>chore: add package name to news.proto <a href="https://github.com/ssddOnTop" target="_blank" rel="noopener noreferrer">@ssddOnTop</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1087" target="_blank" rel="noopener noreferrer">#1087</a>)</li>
+<li>chore(deps): update release-drafter/release-drafter action to v6 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1091" target="_blank" rel="noopener noreferrer">#1091</a>)</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v0280">v0.28.0<a href="#v0280" class="hash-link" aria-label="Direct link to v0.28.0" title="Direct link to v0.28.0">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-features-12">🚀 Features<a href="#-features-12" class="hash-link" aria-label="Direct link to 🚀 Features" title="Direct link to 🚀 Features">​</a></h3>
+<ul>
+<li>chore: refactor ci setup to remove insecure features <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/964" target="_blank" rel="noopener noreferrer">#964</a>)</li>
+<li>chore: introduce and use <code>TargetRuntime</code> <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1086" target="_blank" rel="noopener noreferrer">#1086</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-bug-fixes-42">🐛 Bug Fixes<a href="#-bug-fixes-42" class="hash-link" aria-label="Direct link to 🐛 Bug Fixes" title="Direct link to 🐛 Bug Fixes">​</a></h3>
+<ul>
+<li>ci: fix commit comments, pr title validation and autofix <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1092" target="_blank" rel="noopener noreferrer">#1092</a>)</li>
+<li>fix(deps): update rust crate tokio to 1.36.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1093" target="_blank" rel="noopener noreferrer">#1093</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-maintenance-26">🧰 Maintenance<a href="#-maintenance-26" class="hash-link" aria-label="Direct link to 🧰 Maintenance" title="Direct link to 🧰 Maintenance">​</a></h3>
+<ul>
+<li>chore: refactor ci setup to remove insecure features <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/964" target="_blank" rel="noopener noreferrer">#964</a>)</li>
+<li>chore(deps): update release-drafter/release-drafter action to v6 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1089" target="_blank" rel="noopener noreferrer">#1089</a>)</li>
+<li>chore(deps): update codecov/codecov-action action to v4 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1081" target="_blank" rel="noopener noreferrer">#1081</a>)</li>
+<li>chore: introduce and use <code>TargetRuntime</code> <a href="https://github.com/mogery" target="_blank" rel="noopener noreferrer">@mogery</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1086" target="_blank" rel="noopener noreferrer">#1086</a>)</li>
+<li>chore(cloudflare): package cleanup <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/998" target="_blank" rel="noopener noreferrer">#998</a>)</li>
+<li>chore: add fuse in valid <a href="https://github.com/tusharmath" target="_blank" rel="noopener noreferrer">@tusharmath</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1077" target="_blank" rel="noopener noreferrer">#1077</a>)</li>
+<li>chore(deps): update dependency wrangler to v3.26.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1082" target="_blank" rel="noopener noreferrer">#1082</a>)</li>
+<li>chore(deps): update dependency miniflare to v3.20240129.0 <a href="https://github.com/renovate" target="_blank" rel="noopener noreferrer">@renovate</a> (<a href="https://github.com/tailcallhq/tailcall/pull/1080" target="_blank" rel="noopener noreferrer">#1080</a>)</li>
+</ul>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="-security">🔒 Security<a href="#-security" class="hash-link" aria-label="Direct link to 🔒 Security" title="Direct link to 🔒 Security">​</a></h3>
+<ul>
+<li>chore: refactor ci setup to remove insecure features <a href="https://github.com/meskill" target="_blank" rel="noopener noreferrer">@meskill</a> (<a href="https://github.com/tailcallhq/tailcall/pull/964" target="_blank" rel="noopener noreferrer">#964</a>)</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"></div><div class="col lastUpdated_JAkA"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2024-12-19T18:47:17.000Z" itemprop="dateModified">Dec 19, 2024</time></b></span></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="!no-underline flex gap-3 items-center" href="/releases/2024/March/"><div class="w-10 h-10 p-2 bg-tailCall-yellow flex justify-center items-center rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg></div><div class="hidden md:block"><div class="text-tailCall-dark-100 text-[12px] font-medium">Previous</div><div class="pagination-nav__label text-black text-content-small font-medium">March</div></div></a><a class="!no-underline flex gap-3 items-center" href="/releases/2024/January/"><div class="hidden md:block"><div class="text-tailCall-dark-100 text-[12px] font-medium">Next</div><div class="pagination-nav__label text-black text-content-small font-medium">January</div></div><div class="w-10 h-10 p-2 bg-tailCall-yellow flex justify-center items-center rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></div></a></nav><div class="min-h-[450px]"><hr><br></div></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#v0409" class="table-of-contents__link toc-highlight">v0.40.9</a></li><li><a href="#v0408" class="table-of-contents__link toc-highlight">v0.40.8</a></li><li><a href="#v0407" class="table-of-contents__link toc-highlight">v0.40.7</a></li><li><a href="#v0406" class="table-of-contents__link toc-highlight">v0.40.6</a></li><li><a href="#v0405" class="table-of-contents__link toc-highlight">v0.40.5</a></li><li><a href="#v0404" class="table-of-contents__link toc-highlight">v0.40.4</a></li><li><a href="#v0403" class="table-of-contents__link toc-highlight">v0.40.3</a></li><li><a href="#v0402" class="table-of-contents__link toc-highlight">v0.40.2</a></li><li><a href="#v0401" class="table-of-contents__link toc-highlight">v0.40.1</a></li><li><a href="#v0400" class="table-of-contents__link toc-highlight">v0.40.0</a></li><li><a href="#v0398" class="table-of-contents__link toc-highlight">v0.39.8</a></li><li><a href="#v0397" class="table-of-contents__link toc-highlight">v0.39.7</a></li><li><a href="#v0396" class="table-of-contents__link toc-highlight">v0.39.6</a></li><li><a href="#v0395" class="table-of-contents__link toc-highlight">v0.39.5</a></li><li><a href="#v0394" class="table-of-contents__link toc-highlight">v0.39.4</a></li><li><a href="#v0393" class="table-of-contents__link toc-highlight">v0.39.3</a></li><li><a href="#v0392" class="table-of-contents__link toc-highlight">v0.39.2</a></li><li><a href="#v0391" class="table-of-contents__link toc-highlight">v0.39.1</a></li><li><a href="#v0390" class="table-of-contents__link toc-highlight">v0.39.0</a></li><li><a href="#v0381" class="table-of-contents__link toc-highlight">v0.38.1</a></li><li><a href="#v0380" class="table-of-contents__link toc-highlight">v0.38.0</a></li><li><a href="#v0378" class="table-of-contents__link toc-highlight">v0.37.8</a></li><li><a href="#v0377" class="table-of-contents__link toc-highlight">v0.37.7</a></li><li><a href="#v0376" class="table-of-contents__link toc-highlight">v0.37.6</a></li><li><a href="#v0375" class="table-of-contents__link toc-highlight">v0.37.5</a></li><li><a href="#v0374" class="table-of-contents__link toc-highlight">v0.37.4</a></li><li><a href="#v0373" class="table-of-contents__link toc-highlight">v0.37.3</a></li><li><a href="#v0372" class="table-of-contents__link toc-highlight">v0.37.2</a></li><li><a href="#v0371" class="table-of-contents__link toc-highlight">v0.37.1</a></li><li><a href="#v0370" class="table-of-contents__link toc-highlight">v0.37.0</a></li><li><a href="#v0360" class="table-of-contents__link toc-highlight">v0.36.0</a></li><li><a href="#v0355" class="table-of-contents__link toc-highlight">v0.35.5</a></li><li><a href="#v0354" class="table-of-contents__link toc-highlight">v0.35.4</a></li><li><a href="#v0353" class="table-of-contents__link toc-highlight">v0.35.3</a></li><li><a href="#v0352" class="table-of-contents__link toc-highlight">v0.35.2</a></li><li><a href="#v0351" class="table-of-contents__link toc-highlight">v0.35.1</a></li><li><a href="#v0350" class="table-of-contents__link toc-highlight">v0.35.0</a></li><li><a href="#v0341" class="table-of-contents__link toc-highlight">v0.34.1</a></li><li><a href="#v0340" class="table-of-contents__link toc-highlight">v0.34.0</a></li><li><a href="#v0330" class="table-of-contents__link toc-highlight">v0.33.0</a></li><li><a href="#v0321" class="table-of-contents__link toc-highlight">v0.32.1</a></li><li><a href="#v0320" class="table-of-contents__link toc-highlight">v0.32.0</a></li><li><a href="#v0310" class="table-of-contents__link toc-highlight">v0.31.0</a></li><li><a href="#v0300" class="table-of-contents__link toc-highlight">v0.30.0</a></li><li><a href="#v0291" class="table-of-contents__link toc-highlight">v0.29.1</a></li><li><a href="#v0290" class="table-of-contents__link toc-highlight">v0.29.0</a></li><li><a href="#v0280" class="table-of-contents__link toc-highlight">v0.28.0</a></li></ul></div></div></div></div></main></div></div></div><footer class="bg-tailCall-dark-700 grid-dark pt-SPACE_16 pb-SPACE_05 flex flex-col items-center justify-center gap-SPACE_10 w-full relative px-SPACE_04"><svg xmlns="http://www.w3.org/2000/svg" width="115" height="40" fill="none" viewBox="0 0 115 40" class="w-[120px] h-10 z-10"><g clip-path="url(#a)"><path fill="#FDEA2E" d="m33.197 8.055-.965-.562-1.111-.644-1.16-.675-1.063-.618L20.561.711a5.26 5.26 0 0 0-5.284 0L2.642 8.055A5.32 5.32 0 0 0 0 12.658V27.34a5.32 5.32 0 0 0 2.642 4.604l6.4 3.718 2.27 1.32 3.965 2.304c1.635.95 3.65.95 5.284 0l12.636-7.342a5.32 5.32 0 0 0 2.641-4.604V12.658c0-1.9-1.007-3.655-2.641-4.605z"></path><path fill="#000" fill-rule="evenodd" d="M28.668 26.788a2.62 2.62 0 0 1-2.618 2.625 2.6 2.6 0 0 1-1.562-.518l-3.735 2.162-.042.023-.465.262a4.32 4.32 0 0 1-4.222.037 4.36 4.36 0 0 1-2.302-3.869v-9.562h-.002l-3.41 1.973q.014.136.014.274a2.617 2.617 0 1 1-5.222-.283 2.62 2.62 0 0 1 2.604-2.343c.61 0 1.17.21 1.615.56l4.399-2.544v-1.697c0-1.128.602-2.166 1.575-2.726l4.788-2.746a1.04 1.04 0 0 1 1.423.388 1.05 1.05 0 0 1-.388 1.427l-4.788 2.747a1.05 1.05 0 0 0-.527.91V27.51c0 1.76 1.89 2.87 3.419 2.008l.666-.375 3.56-2.06a2 2 0 0 1-.015-.215q-.003-.04-.002-.08a2.62 2.62 0 0 1 2.62-2.625q.052 0 .105.002.04 0 .08.004l.068.006q.125.012.247.036l.08.017q.04.009.08.02.038.009.074.02.049.014.097.03l.017.006q.065.022.129.049.072.028.142.061a2.7 2.7 0 0 1 .41.245l.024.016q0 .002.002.002a2.62 2.62 0 0 1 1.061 2.078z" clip-rule="evenodd"></path><path fill="#000" fill-rule="evenodd" d="M28.67 10.953c0 .34-.064.664-.182.96q-.03.074-.062.147l-.035.071a2 2 0 0 1-.077.143q-.015.03-.034.058a2.5 2.5 0 0 1-.513.603l-.074.063a2.5 2.5 0 0 1-.505.321 2.61 2.61 0 0 1-2.816-.353l-4.54 2.627v10.445c0 .578-.466 1.046-1.042 1.046a1.044 1.044 0 0 1-1.043-1.046v-10.69c0-.564.283-1.086.746-1.395l.017-.01q0 0 .003-.002l.075-.044 4.847-2.804q0-.015-.002-.031-.004-.053-.005-.108a2.619 2.619 0 0 1 2.822-2.62h.001q.078.006.155.018h.003l.154.026.005.002.048.01q.037.007.071.017.065.015.128.035.023.007.047.015.023.006.046.016.047.015.092.034.255.097.479.246c.312.202.578.47.778.785a2.6 2.6 0 0 1 .413 1.415" clip-rule="evenodd"></path></g><path fill="#fff" d="M50.151 28.543q-1.196 0-1.953-.732-.732-.757-.732-2.002v-6.834H44.44v-2.539h3.027v-3.759h3.076v3.76h3.32v2.538h-3.32v6.297q0 .733.683.733h2.343v2.538zM59.428 28.885q-1.294 0-2.319-.44a4 4 0 0 1-1.635-1.318q-.585-.878-.586-2.123 0-1.245.586-2.075.61-.855 1.66-1.27 1.074-.439 2.44-.439h3.32v-.683q0-.855-.537-1.391-.537-.562-1.709-.562-1.147 0-1.708.537-.562.513-.733 1.343l-2.831-.952q.292-.928.928-1.684.659-.782 1.733-1.245 1.098-.489 2.66-.488 2.392 0 3.784 1.196 1.39 1.195 1.39 3.466v4.515q0 .733.684.733h.977v2.538h-2.05q-.904 0-1.49-.44a1.39 1.39 0 0 1-.585-1.17v-.025h-.464q-.098.293-.44.78-.34.465-1.074.83-.732.367-2.001.367m.537-2.49q1.293 0 2.1-.708.828-.731.829-1.928v-.244h-3.1q-.855 0-1.342.366-.489.366-.489 1.025 0 .66.513 1.074t1.489.415M68.804 28.543V16.436h3.076v12.107zm1.538-13.522a2.02 2.02 0 0 1-1.416-.538q-.561-.537-.561-1.415 0-.879.561-1.416a2.02 2.02 0 0 1 1.416-.537q.854 0 1.416.537t.561 1.416-.561 1.415-1.416.537M74.311 28.543V11.457h3.076v17.086zM85.506 28.885q-1.757 0-3.198-.732a5.53 5.53 0 0 1-2.245-2.124q-.83-1.39-.83-3.369v-.341q0-1.977.83-3.369a5.53 5.53 0 0 1 2.245-2.123q1.44-.733 3.198-.733 1.733 0 2.978.61t2.002 1.685q.78 1.05 1.025 2.392l-2.978.635a3.5 3.5 0 0 0-.44-1.318q-.341-.586-.976-.928-.61-.342-1.538-.342-.927 0-1.684.415-.732.391-1.172 1.196-.415.781-.415 1.929v.244q0 1.148.415 1.953.44.78 1.172 1.195.757.39 1.684.391 1.392 0 2.1-.708.732-.732.927-1.904l2.978.708a6.7 6.7 0 0 1-1.099 2.368q-.756 1.05-2.001 1.66t-2.978.61M96.904 28.885q-1.294 0-2.32-.44a4 4 0 0 1-1.635-1.318q-.585-.878-.585-2.123t.585-2.075q.61-.855 1.66-1.27 1.074-.439 2.441-.439h3.32v-.683q0-.855-.537-1.391-.537-.562-1.709-.562-1.147 0-1.709.537-.561.513-.732 1.343l-2.831-.952a4.9 4.9 0 0 1 .927-1.684q.66-.782 1.733-1.245 1.1-.489 2.66-.488 2.394 0 3.784 1.196 1.392 1.195 1.392 3.466v4.515q0 .733.683.733h.976v2.538h-2.05q-.903 0-1.489-.44a1.4 1.4 0 0 1-.586-1.17v-.025h-.463q-.099.293-.44.78-.342.465-1.074.83-.732.367-2.001.367m.537-2.49q1.293 0 2.099-.708.83-.731.83-1.928v-.244h-3.1q-.854 0-1.343.366-.488.366-.488 1.025 0 .66.513 1.074.512.415 1.489.415M106.28 28.543V11.457h3.075v17.086zM111.787 28.543V11.457h3.076v17.086z"></path><defs><clipPath id="a"><path fill="#fff" d="M0 0h35.838v40H0z"></path></clipPath></defs></svg><div class="text-content-tiny sm:text-title-small space-x-SPACE_06 text-tailCall-light-500 z-10"><a class="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline" href="/docs/">Documentation</a><a href="https://blog.tailcall.run/" target="_blank" rel="noopener noreferrer" class="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline">Blog</a><a class="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline" href="/docs/contribution-guidelines/">Contributors</a><a class="text-tailCall-light-500 hover:text-tailCall-light-300 hover:no-underline" href="/privacy/">Privacy Policy</a></div><div class="flex flex-col sm:flex-row items-center gap-y-SPACE_04 sm:justify-between w-[100%] max-w-7xl sm:mt-SPACE_10 z-10"><p class="text-content-tiny text-tailCall-light-700 font-space-mono font-normal cursor-pointer mb-0 sm:mb-5 order-2 sm:order-1">Cookie Settings</p><p class="text-content-tiny text-tailCall-light-700 font-space-mono font-normal mb-0 sm:mb-5 order-3 sm:order-2">Copyright © <!-- -->2024<!-- --> Tailcall, Inc.</p><div class="space-x-SPACE_04 order-1 sm:order-3"><a href="https://github.com/tailcallhq/tailcall" target="_blank" rel="noopener noreferrer" class="cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="h-6 w-6"><g clip-path="url(#a)"><path fill="#B6B6B7" fill-rule="evenodd" d="M11.967 1C5.903 1 1 6.042 1 12.279c0 4.986 3.141 9.206 7.5 10.7.544.112.743-.243.743-.542 0-.261-.017-1.157-.017-2.091C6.175 21.018 5.539 19 5.539 19c-.49-1.307-1.216-1.643-1.216-1.643-.999-.69.072-.69.072-.69 1.108.074 1.69 1.157 1.69 1.157.98 1.718 2.56 1.232 3.195.934.09-.729.381-1.233.69-1.513-2.433-.261-4.993-1.232-4.993-5.565 0-1.232.435-2.24 1.125-3.025-.109-.28-.49-1.438.11-2.988 0 0 .925-.298 3.013 1.158a10.3 10.3 0 0 1 2.742-.373c.926 0 1.87.13 2.742.373 2.088-1.456 3.014-1.158 3.014-1.158.6 1.55.218 2.708.109 2.988.708.784 1.126 1.793 1.126 3.025 0 4.333-2.56 5.285-5.012 5.565.4.355.745 1.027.745 2.092 0 1.512-.018 2.726-.018 3.1 0 .298.2.653.744.54 4.358-1.493 7.5-5.713 7.5-10.7C22.933 6.043 18.013 1 11.966 1" clip-rule="evenodd"></path></g><defs><clipPath id="a"><path fill="#fff" d="M1 1h22v22H1z"></path></clipPath></defs></svg></a><a href="https://discord.gg/kRZBPpkgwq" target="_blank" rel="noopener noreferrer" class="cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="h-6 w-6"><mask id="a" width="20" height="16" x="2" y="4" maskUnits="userSpaceOnUse" style="mask-type:luminance"><path fill="#fff" d="M22 4H2v16h20z"></path></mask><g mask="url(#a)"><path fill="#B6B6B7" d="M18.93 5.425a16.1 16.1 0 0 0-4.07-1.304.06.06 0 0 0-.066.032c-.175.323-.37.744-.506 1.075a14.8 14.8 0 0 0-4.573 0A11 11 0 0 0 9.2 4.153a.06.06 0 0 0-.065-.032 16 16 0 0 0-4.07 1.304.06.06 0 0 0-.028.024c-2.593 4-3.303 7.902-2.954 11.756a.07.07 0 0 0 .026.048 16.4 16.4 0 0 0 4.994 2.608.06.06 0 0 0 .07-.024 12.3 12.3 0 0 0 1.022-1.716.066.066 0 0 0-.035-.091 11 11 0 0 1-1.56-.768.068.068 0 0 1-.007-.11q.159-.122.31-.251a.06.06 0 0 1 .065-.01c3.273 1.544 6.817 1.544 10.051 0a.06.06 0 0 1 .066.01c.1.084.205.17.31.25a.068.068 0 0 1-.005.11q-.747.45-1.561.768a.067.067 0 0 0-.034.091c.3.601.643 1.173 1.02 1.716a.06.06 0 0 0 .07.025 16.3 16.3 0 0 0 5.003-2.608.07.07 0 0 0 .026-.047c.417-4.455-.699-8.325-2.957-11.756a.05.05 0 0 0-.026-.025M8.684 14.86c-.985 0-1.797-.935-1.797-2.082 0-1.148.796-2.082 1.797-2.082 1.01 0 1.814.943 1.798 2.082 0 1.147-.796 2.082-1.798 2.082m6.646 0c-.985 0-1.797-.935-1.797-2.082 0-1.148.796-2.082 1.797-2.082 1.009 0 1.813.943 1.797 2.082 0 1.147-.788 2.082-1.797 2.082"></path></g></svg></a><a href="https://www.linkedin.com/company/tailcall" target="_blank" rel="noopener noreferrer" class="cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="h-6 w-6"><mask id="a" width="18" height="18" x="3" y="3" maskUnits="userSpaceOnUse" style="mask-type:luminance"><path fill="#fff" d="M21 3H3v18h18z"></path></mask><g mask="url(#a)"><path fill="#B6B6B7" d="M8.178 19V9.554H5.177V19zm-1.5-10.736c1.046 0 1.698-.725 1.698-1.632C8.356 5.705 7.724 5 6.698 5 5.671 5 5 5.705 5 6.632c0 .907.651 1.632 1.658 1.632zM9.84 19h3.001v-5.275c0-.282.02-.564.099-.766.217-.564.71-1.148 1.54-1.148 1.086 0 1.52.866 1.52 2.136V19H19v-5.416c0-2.902-1.48-4.252-3.455-4.252-1.619 0-2.33.947-2.725 1.591h.02v-1.37h-3c.039.887 0 9.447 0 9.447"></path></g></svg></a><a href="https://twitter.com/tailcallhq" target="_blank" rel="noopener noreferrer" class="cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 28 28" class="h-6 w-6"><path fill="#B6B6B7" d="M18.745 6.428h2.53l-5.528 6.318 6.503 8.597h-5.092l-3.988-5.215-4.563 5.215H6.076l5.912-6.758L5.75 6.428h5.22l3.605 4.766zm-.888 13.4h1.402l-9.05-11.965H8.705z"></path></svg></a></div></div></footer></div>
+</body>
+</html>
