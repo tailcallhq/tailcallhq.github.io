@@ -2,6 +2,7 @@ import {themes as prismThemes} from "prism-react-renderer"
 import type * as Preset from "@docusaurus/preset-classic"
 import prismTheme from "./src/theme/CodeBlock/theme"
 import type {Config} from "@docusaurus/types"
+import {getNavDropdownItemHtml} from "./src/utils"
 
 const title = "Tailcall"
 const organization = "tailcallhq"
@@ -112,37 +113,22 @@ export default {
         {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
         // {to: "/about", label: "About", position: "left"},
         // {to: "/enterprise", label: "Enterprise", position: "left"},
-        {to: "/docs", label: "Docs", position: "left"},
-        {to: "/graphql", label: "Learn", position: "left"},
+        {to: "/blog", label: "Blog", position: "left"},
         {
-          label: "Insights",
+          label: "Developers",
           position: "left",
           items: [
             {
-              to: "/blog",
-              html: `
-                <div class="flex items-center p-1">
-                  <img
-                    class="mr-2"
-                    src="/images/home/book.svg"
-                    alt="Blogs Icon"
-                    style="width: 16px; height: 16px;"
-                  />
-                  <span class="text-content-tiny font-bold lg:text-content-small lg:font-medium">Blogs</span>
-                </div>`,
+              to: "/docs",
+              html: getNavDropdownItemHtml("/images/home/book.svg", "Docs Icon", "Docs"),
+            },
+            {
+              to: "/graphql",
+              html: getNavDropdownItemHtml("/images/home/archive.svg", "Learn Icon", "Learn"),
             },
             {
               to: "/releases",
-              html: `
-                <div class="flex items-center p-1">
-                  <img
-                    class="mr-2"
-                    src="/images/home/git-merge.svg"
-                    alt="Releases Icon"
-                    style="width: 16px; height: 16px;"
-                  />
-                  <span class="text-content-tiny font-bold lg:text-content-small lg:font-medium">Releases</span>
-                </div>`,
+              html: getNavDropdownItemHtml("/images/home/git-merge.svg", "Releases Icon", "Releases"),
             },
           ],
         },
