@@ -124,7 +124,7 @@ export default {
             },
             {
               to: "/graphql",
-              html: getNavDropdownItemHtml("/images/home/book.svg", "Learn Icon", "Learn"),
+              html: getNavDropdownItemHtml("/images/home/archive.svg", "Learn Icon", "Learn"),
             },
             {
               to: "/releases",
