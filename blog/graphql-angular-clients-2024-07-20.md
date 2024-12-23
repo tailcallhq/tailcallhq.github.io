@@ -1,9 +1,5 @@
 ---
-authors:
-  - name: David Onyedikachi
-    title: NodeJs-Golang Backend Developer, with experience in Python, Rust, and Solidity
-    url: https://github.com/onyedikachi-david
-    image_url: https://avatars.githubusercontent.com/u/51977119?v=4
+authors: onyedikachidavid
 tags: [GraphQL, Angular, Apollo client]
 hide_table_of_contents: true
 title: "Apollo vs Urql vs Fetch: The Ultimate Showdown"

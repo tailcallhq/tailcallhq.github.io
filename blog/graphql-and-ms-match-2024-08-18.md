@@ -2,15 +2,7 @@
 title: "GraphQL and Microservices: A Match Made in Heaven?"
 description: "Is it really worth combining GraphQL with microservices or is it just a new shiny object with all the hype?"
 image: /images/blog/graphql-match-microservices.png
-authors:
-  - name: Hunain Ahmed
-    title: A freelance software developer, always working on something new and fascinating.
-    url: https://github.com/hunxjunedo
-    image_url: https://avatars.githubusercontent.com/u/89797440?v=4
-  - name: Jacob Gaffke
-    title: Freelance web and game developer with experience in Rust, Godot and Web3.
-    url: https://masterofgiraffe.com/
-    image_url: https://masterofgiraffe.com/favicon.ico
+authors: [hunxjunedo, jacobgaffke]
 hide_table_of_contents: true
 slug: graphql-match-microservices
 tags: [GraphQL, Microservices, API]

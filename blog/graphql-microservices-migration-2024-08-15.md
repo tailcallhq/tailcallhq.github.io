@@ -1,10 +1,6 @@
 ---
 title: Simplify your monolith to microservices migration using GraphQL
-authors:
-  - name: Jacob Gaffke
-    title: Freelance web and game developer with experience in Rust, Godot and Web3.
-    url: https://masterofgiraffe.com/
-    image_url: https://masterofgiraffe.com/favicon.ico
+authors: jacobgaffke
 tags: [GraphQL, Microservice, Best Practices, Migration]
 description: Streamline your migration from monolithic architecture to microservices with expert tips, practical examples, and step-by-step guidance using GraphQL.
 image: /images/blog/graphql-microservices-migration.png

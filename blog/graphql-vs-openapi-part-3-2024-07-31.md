@@ -6,11 +6,7 @@ tags: [GraphQL, API, OpenAPI, Security, Tooling]
 slug: graphql-vs-openapi-part-3
 hide_table_of_contents: true
 image: /images/blog/graphql-vs-openapi-part-3.png
-authors:
-  - name: Shivam Chaudhary
-    title: Cloud and Infra Associate
-    url: https://blog.shivamchaudhary.com
-    image_url: https://avatars.githubusercontent.com/u/68141773?v=4
+authors: shivamchaudhary
 ---
 
 Welcome to Part 3 of our API comparison series! So far, we've discussed the basics and compared the performance and flexibility of GraphQL and OpenAPI. In this installment, we will focus on exploring their security features, tooling support, and future prospects.

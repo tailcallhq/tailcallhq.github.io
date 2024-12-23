@@ -6,11 +6,7 @@ tags: [GraphQL, API, OpenAPI]
 slug: graphql-vs-openapi-part-1
 image: /images/blog/graphql-vs-openapi-part-1.png
 hide_table_of_contents: true
-authors:
-  - name: Shivam Chaudhary
-    title: Cloud and Infra Associate
-    url: https://blog.shivamchaudhary.com
-    image_url: https://avatars.githubusercontent.com/u/68141773?v=4
+authors: shivamchaudhary
 ---
 
 In today's ever-evolving technological landscape, APIs play a crucial role in enabling software systems to communicate with each other. Among the myriad of API specifications available, GraphQL and OpenAPI stand out as prominent choices, each offering unique advantages and addressing different needs.

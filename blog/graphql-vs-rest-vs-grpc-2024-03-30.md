@@ -1,10 +1,6 @@
 ---
 title: GraphQL vs REST vs gRPC - an unfair comparison
-authors:
-  - name: Tushar Mathur
-    title: CEO @ Tailcall | Love to talk about programming, scale, distributed systems and building high performance systems.
-    url: https://github.com/tusharmath
-    image_url: https://avatars.githubusercontent.com/u/194482?v=5
+authors: tusharmath
 description: Understand what makes GraphQL different from REST and gRPC.
 image: /images/blog/gql-vs-rest-vs-grpc-cover.png
 hide_table_of_contents: true

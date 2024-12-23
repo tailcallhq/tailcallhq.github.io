@@ -1,11 +1,7 @@
 ---
 title: GraphQL Configuration v2
 subtitle: Migrating to the newer configuration format
-authors:
-  - name: Tushar Mathur
-    title: CEO @ Tailcall | Love to talk about programming, scale, distributed systems and building high performance systems.
-    url: https://github.com/tusharmath
-    image_url: https://avatars.githubusercontent.com/u/194482?v=4
+authors: tusharmath
 hide_table_of_contents: true
 slug: migrating-to-graphql-configuration-v2/
 ---

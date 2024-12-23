@@ -1,10 +1,6 @@
 ---
 title: "API Strategy: Driving Innovation and Growth in Modern Business"
-authors:
-  - name: Amit Singh
-    title: Head of Growth and Strategy @ Tailcall
-    url: https://github.com/amitksingh1490
-    image_url: https://avatars.githubusercontent.com/u/23661702?v=5
+authors: amitksingh1490
 description: Learn how a well-defined API strategy can drive innovation, improve efficiency, and create new opportunities for growth in modern businesses.
 hide_table_of_contents: true
 image: /images/blog/api-strategy.png

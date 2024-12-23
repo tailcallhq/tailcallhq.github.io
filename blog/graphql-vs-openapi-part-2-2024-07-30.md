@@ -6,11 +6,7 @@ tags: [GraphQL, API, OpenAPI, Performance, Flexibility]
 slug: graphql-vs-openapi-part-2
 image: /images/blog/graphql-vs-openapi-part-2.png
 hide_table_of_contents: true
-authors:
-  - name: Shivam Chaudhary
-    title: Cloud and Infra Associate
-    url: https://blog.shivamchaudhary.com
-    image_url: https://avatars.githubusercontent.com/u/68141773?v=4
+authors: shivamchaudhary
 ---
 
 Welcome back to our API comparison series! In [Part 1](/blog/graphql-vs-openapi-part-1), we covered the fundamentals of GraphQL and OpenAPI, focusing on their core concepts, type systems, and schema definitions. Now, in Part 2, we will dive deeper into the performance, flexibility, and ecosystems of these API specifications.

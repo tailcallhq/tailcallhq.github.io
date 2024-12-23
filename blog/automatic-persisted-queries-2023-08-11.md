@@ -1,10 +1,6 @@
 ---
 title: The truth about scaling Automatic Persisted Queries
-authors:
-  - name: Tushar Mathur
-    title: CEO @ Tailcall | Love to talk about programming, scale, distributed systems and building high performance systems.
-    url: https://github.com/tusharmath
-    image_url: https://avatars.githubusercontent.com/u/194482?v=4
+authors: tusharmath
 description: Learn about the limitations and potential scaling issues that accompany Automatic Persisted Queries (APQ).
 image: /images/blog/apq-cover.png
 hide_table_of_contents: true
