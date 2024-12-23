@@ -1,0 +1,110 @@
+---
+sidebar_position: 4
+toc_max_heading_level: 2
+---
+
+import VersionUpdateCard from "@site/src/components/shared/VersionUpdateCard"
+
+<VersionUpdateCard />
+
+## v0.11.0 
+
+### 🚀 Features
+
+
+- refactor: use new mustache and endpoint [@amitksingh1490](https://github.com/amitksingh1490) ([#345](https://github.com/tailcallhq/tailcall/pull/345))
+
+### 🐛 Bug Fixes
+
+- fix: inline operator [@amitksingh1490](https://github.com/amitksingh1490) ([#376](https://github.com/tailcallhq/tailcall/pull/376))
+- fix(deps): update rust crate clap to 4.4.6 [@renovate](https://github.com/renovate) ([#368](https://github.com/tailcallhq/tailcall/pull/368))
+- fix(deps): update rust crate http-cache-reqwest to 0.11.3 [@renovate](https://github.com/renovate) ([#369](https://github.com/tailcallhq/tailcall/pull/369))
+- fix: docs trim from schema [@amitksingh1490](https://github.com/amitksingh1490) ([#363](https://github.com/tailcallhq/tailcall/pull/363))
+- fix: false-positive case for n + 1 checker [@meskill](https://github.com/meskill) ([#359](https://github.com/tailcallhq/tailcall/pull/359))
+- fix: request generation from request template [@amitksingh1490](https://github.com/amitksingh1490) ([#360](https://github.com/tailcallhq/tailcall/pull/360))
+- fix: add validation for undeclared types and unions [@meskill](https://github.com/meskill) ([#338](https://github.com/tailcallhq/tailcall/pull/338))
+- fix: header forwarding [@amitksingh1490](https://github.com/amitksingh1490) ([#354](https://github.com/tailcallhq/tailcall/pull/354))
+- fix: N+1 formatting [@neo773](https://github.com/neo773) ([#346](https://github.com/tailcallhq/tailcall/pull/346))
+- Fix: validation should fail with non-zero exit code. [@ayewo](https://github.com/ayewo) ([#336](https://github.com/tailcallhq/tailcall/pull/336))
+- fix(deps): update rust crate http-cache-reqwest to 0.11.2 [@renovate](https://github.com/renovate) ([#340](https://github.com/tailcallhq/tailcall/pull/340))
+- fix(deps): update rust crate thiserror to 1.0.49 [@renovate](https://github.com/renovate) ([#341](https://github.com/tailcallhq/tailcall/pull/341))
+- fix(deps): update rust crate clap to 4.4.5 [@renovate](https://github.com/renovate) ([#332](https://github.com/tailcallhq/tailcall/pull/332))
+
+### 🧰 Maintenance
+- refactor: add transform [@tusharmath](https://github.com/tusharmath) ([#352](https://github.com/tailcallhq/tailcall/pull/352))
+- chore: update ci [@tusharmath](https://github.com/tusharmath) ([#361](https://github.com/tailcallhq/tailcall/pull/361))
+- chore: update ci.yml [@tusharmath](https://github.com/tusharmath) ([#353](https://github.com/tailcallhq/tailcall/pull/353))
+- chore: add nightly tool chain [@tusharmath](https://github.com/tusharmath) ([#344](https://github.com/tailcallhq/tailcall/pull/344))
+- test: mustache with mixed literal and template [@amitksingh1490](https://github.com/amitksingh1490) ([#350](https://github.com/tailcallhq/tailcall/pull/350))
+
+
+---
+## v0.10.0 
+
+### 🚀 Features
+
+- Refactor: Endpoint + Mustache [@tusharmath](https://github.com/tusharmath) ([#324](https://github.com/tailcallhq/tailcall/pull/324))
+
+### 🐛 Bug Fixes
+
+- fix: headers forwarding [@amitksingh1490](https://github.com/amitksingh1490) ([#328](https://github.com/tailcallhq/tailcall/pull/328))
+- fix: tls support [@amitksingh1490](https://github.com/amitksingh1490) ([#327](https://github.com/tailcallhq/tailcall/pull/327))
+- fix(deps): update rust crate clap to 4.4.4 [@renovate](https://github.com/renovate) ([#322](https://github.com/tailcallhq/tailcall/pull/322))
+- Remove unsafe unwrap [@sujeetsr](https://github.com/sujeetsr) ([#315](https://github.com/tailcallhq/tailcall/pull/315))
+- fix(deps): update rust crate mimalloc to 0.1.39 [@renovate](https://github.com/renovate) ([#314](https://github.com/tailcallhq/tailcall/pull/314))
+- Fix: Disable `queryValidation` setting [@tusharmath](https://github.com/tusharmath) ([#309](https://github.com/tailcallhq/tailcall/pull/309))
+
+### 🧰 Maintenance
+
+- Add dedicated benchmarking infrastructure [@tusharmath](https://github.com/tusharmath) ([#331](https://github.com/tailcallhq/tailcall/pull/331))
+- chore(deps): update actions/checkout digest to 8ade135 [@renovate](https://github.com/renovate) ([#326](https://github.com/tailcallhq/tailcall/pull/326))
+- chore(deps): update rust crate mockito to 1.2.0 [@renovate](https://github.com/renovate) ([#319](https://github.com/tailcallhq/tailcall/pull/319))
+- fix(deps): update rust crate moka to 0.12.0 [@renovate](https://github.com/renovate) ([#321](https://github.com/tailcallhq/tailcall/pull/321))
+- Update README.md [@tusharmath](https://github.com/tusharmath) ([#325](https://github.com/tailcallhq/tailcall/pull/325))
+- chore(deps): update peter-evans/commit-comment action to v3 [@renovate](https://github.com/renovate) ([#320](https://github.com/tailcallhq/tailcall/pull/320))
+- add code-coverage [@tusharmath](https://github.com/tusharmath) ([#318](https://github.com/tailcallhq/tailcall/pull/318))
+- chore(deps): update rust crate mockito to 1.1.1 [@renovate](https://github.com/renovate) ([#313](https://github.com/tailcallhq/tailcall/pull/313))
+- chore: run tests on all branches [@amitksingh1490](https://github.com/amitksingh1490) ([#316](https://github.com/tailcallhq/tailcall/pull/316))
+- Document to Config should not fail [@amitksingh1490](https://github.com/amitksingh1490) ([#312](https://github.com/tailcallhq/tailcall/pull/312))
+- CI: fix fly deployment [@amitksingh1490](https://github.com/amitksingh1490) ([#311](https://github.com/tailcallhq/tailcall/pull/311))
+- Auto Update Labels [@amitksingh1490](https://github.com/amitksingh1490) ([#310](https://github.com/tailcallhq/tailcall/pull/310))
+- CI Benchmark [@sujeetsr](https://github.com/sujeetsr) ([#307](https://github.com/tailcallhq/tailcall/pull/307))
+- fix(deps): update rust crate clap to 4.4.3 [@renovate](https://github.com/renovate) ([#308](https://github.com/tailcallhq/tailcall/pull/308))
+
+
+---
+## v0.9.0 
+
+### 🚀 Features
+
+- Update install.sh to install arch specific builds [@amitksingh1490](https://github.com/amitksingh1490) ([#306](https://github.com/tailcallhq/tailcall/pull/306))
+- Enable Linux Builds [@amitksingh1490](https://github.com/amitksingh1490) ([#305](https://github.com/tailcallhq/tailcall/pull/305))
+- Installation via Curl [@amitksingh1490](https://github.com/amitksingh1490) ([#304](https://github.com/tailcallhq/tailcall/pull/304))
+
+
+---
+## v0.8.2 
+
+- Ci version var fix [@amitksingh1490](https://github.com/amitksingh1490) ([#303](https://github.com/tailcallhq/tailcall/pull/303))
+
+
+---
+## v0.8.0 
+
+- Update README.md [@tusharmath](https://github.com/tusharmath) ([#298](https://github.com/tailcallhq/tailcall/pull/298))
+- chore(deps): update actions/checkout action to v4 [@renovate](https://github.com/renovate) ([#284](https://github.com/tailcallhq/tailcall/pull/284))
+
+### 🚀 Features
+
+- Disable wait for batching [@tusharmath](https://github.com/tusharmath) ([#299](https://github.com/tailcallhq/tailcall/pull/299))
+- Clean up CLI Errors [@tusharmath](https://github.com/tusharmath) ([#295](https://github.com/tailcallhq/tailcall/pull/295))
+
+### 🧰 Maintenance
+
+- Update Release Build [@amitksingh1490](https://github.com/amitksingh1490) ([#297](https://github.com/tailcallhq/tailcall/pull/297))
+- Module Restructuring [@tusharmath](https://github.com/tusharmath) ([#300](https://github.com/tailcallhq/tailcall/pull/300))
+- Enhance `Valid` type [@tusharmath](https://github.com/tusharmath) ([#292](https://github.com/tailcallhq/tailcall/pull/292))
+
+### 💥Breaking Changes
+
+- Rust Re-write [@tusharmath](https://github.com/tusharmath) ([#289](https://github.com/tailcallhq/tailcall/pull/289))

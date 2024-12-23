@@ -1,0 +1,201 @@
+---
+sidebar_position: 7
+toc_max_heading_level: 2
+---
+
+import VersionUpdateCard from "@site/src/components/shared/VersionUpdateCard"
+
+<VersionUpdateCard />
+
+## v0.4.0 
+
+### 🚀 Features
+
+- add support for interfaces in SDL [@tusharmath](https://github.com/tusharmath) ([#213](https://github.com/tailcallhq/tailcall/pull/213))
+- support apollo persisted queries [@amitksingh1490](https://github.com/amitksingh1490) ([#209](https://github.com/tailcallhq/tailcall/pull/209))
+- better response cache headers [@amitksingh1490](https://github.com/amitksingh1490) ([#204](https://github.com/tailcallhq/tailcall/pull/204))
+
+### 🐛 Bug Fixes
+
+- fix status code errors on responses [@tusharmath](https://github.com/tusharmath) ([#214](https://github.com/tailcallhq/tailcall/pull/214))
+- fix cli default remote option in `check` [@tusharmath](https://github.com/tusharmath) ([#212](https://github.com/tailcallhq/tailcall/pull/212))
+- fix duplicate sha getting published in memory registry [@amitksingh1490](https://github.com/amitksingh1490) ([#208](https://github.com/tailcallhq/tailcall/pull/208))
+- fix cli version prefix [@tusharmath](https://github.com/tusharmath) ([#199](https://github.com/tailcallhq/tailcall/pull/199))
+- fix java version in docker [@tusharmath](https://github.com/tusharmath) ([#200](https://github.com/tailcallhq/tailcall/pull/200))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency sbt/sbt to v1.9.1 [@renovate](https://github.com/renovate) ([#211](https://github.com/tailcallhq/tailcall/pull/211))
+- move server-sdl and client-sdl into the same graphql spec files [@tusharmath](https://github.com/tusharmath) ([#210](https://github.com/tailcallhq/tailcall/pull/210))
+- gpt fixes [@tusharmath](https://github.com/tusharmath) ([#201](https://github.com/tailcallhq/tailcall/pull/201))
+
+
+---
+## v0.3.0 
+
+### 🚀 Features
+
+- Support short SHAs Query and Playground [@amitksingh1490](https://github.com/amitksingh1490) ([#187](https://github.com/tailcallhq/tailcall/pull/187))
+
+### 🐛 Bug Fixes
+
+- Fix default remote location for all CLI commands [@tusharmath](https://github.com/tusharmath) ([#198](https://github.com/tailcallhq/tailcall/pull/198))
+- Fix favicon and Icon url [@amitksingh1490](https://github.com/amitksingh1490) ([#197](https://github.com/tailcallhq/tailcall/pull/197))
+- Handle command parsing errors on CLI better [@tusharmath](https://github.com/tusharmath) ([#192](https://github.com/tailcallhq/tailcall/pull/192))
+- Fix CLI Version [@tusharmath](https://github.com/tusharmath) ([#189](https://github.com/tailcallhq/tailcall/pull/189))
+
+### 🧰 Maintenance
+
+- Test Restructuring [@tusharmath](https://github.com/tusharmath) ([#196](https://github.com/tailcallhq/tailcall/pull/196))
+- chore: update deploy timeout for fly [@tusharmath](https://github.com/tusharmath) ([#195](https://github.com/tailcallhq/tailcall/pull/195))
+- Replace public API calls with mocked ones [@amitksingh1490](https://github.com/amitksingh1490) ([#194](https://github.com/tailcallhq/tailcall/pull/194))
+- Make `BuildInfo` package private [@tusharmath](https://github.com/tusharmath) ([#193](https://github.com/tailcallhq/tailcall/pull/193))
+- GPT review run only on attaching `gpt review` label [@amitksingh1490](https://github.com/amitksingh1490) ([#190](https://github.com/tailcallhq/tailcall/pull/190))
+- Experiment with Open AI for Code Reviews [@amitksingh1490](https://github.com/amitksingh1490) ([#188](https://github.com/tailcallhq/tailcall/pull/188))
+
+
+---
+## v0.2.1 
+
+### What's Changed
+* chore(deps): update flywayversion to v9.20.0 by @renovate in https://github.com/tailcallhq/tailcall/pull/183
+* Release workflow fixes by @tusharmath in https://github.com/tailcallhq/tailcall/pull/182
+* Fix monotail references by @girdharshubham in https://github.com/tailcallhq/tailcall/pull/185
+* Fix: Incorrect cli version by @tusharmath in https://github.com/tailcallhq/tailcall/pull/186
+* Update homebrew action by @amitksingh1490 in https://github.com/tailcallhq/tailcall/pull/184
+
+
+**Full Changelog**: https://github.com/tailcallhq/tailcall/compare/v0.2.0...v0.2.1
+
+
+---
+## v0.2.0 
+
+### What's Changed
+* Refactor: Use TailcallSpec for the tests by @tusharmath in https://github.com/tailcallhq/tailcall/pull/160
+* Chore: fix release workflows by @tusharmath in https://github.com/tailcallhq/tailcall/pull/163
+* chore(deps): update zioversion to v2.0.15 by @renovate in https://github.com/tailcallhq/tailcall/pull/164
+* chore(deps): update zioschemaversion to v0.4.12 by @renovate in https://github.com/tailcallhq/tailcall/pull/162
+* chore(deps): update flywayversion to v9.19.3 by @renovate in https://github.com/tailcallhq/tailcall/pull/165
+* Refactor: rename `isEmpty` and `nonEmpty` methods in `TValid` by @tusharmath in https://github.com/tailcallhq/tailcall/pull/167
+* chore(release): update release drafter by @tusharmath in https://github.com/tailcallhq/tailcall/pull/172
+* Feature: Support baseURL directly thru the `@http` directive by @tusharmath in https://github.com/tailcallhq/tailcall/pull/166
+* Refactor: Make registry-client a separate sbt project by @tusharmath in https://github.com/tailcallhq/tailcall/pull/171
+* Feature: set default publish URL to `cloud.tailcall.run` by @tusharmath in https://github.com/tailcallhq/tailcall/pull/173
+* Fix: Unreserved chars in path segment by @sujeetsr in https://github.com/tailcallhq/tailcall/pull/177
+* chore(deps): update flywayversion to v9.19.4 by @renovate in https://github.com/tailcallhq/tailcall/pull/181
+* Chore: release update workflow by @tusharmath in https://github.com/tailcallhq/tailcall/pull/180
+
+
+**Full Changelog**: https://github.com/tailcallhq/tailcall/compare/v0.1.0...v0.2.0
+
+
+---
+## v0.1.0 
+
+- Update release drafter [@tusharmath](https://github.com/tusharmath) ([#159](https://github.com/tailcallhq/tailcall/pull/159))
+- chore(deps): update dependency scala to v2.13.11 [@renovate](https://github.com/renovate) ([#151](https://github.com/tailcallhq/tailcall/pull/151))
+- feat: update release draft on pr merge [@sujeetsr](https://github.com/sujeetsr) ([#157](https://github.com/tailcallhq/tailcall/pull/157))
+- chore(deps): update dependency ch.epfl.scala:sbt-scalafix to v0.11.0 [@renovate](https://github.com/renovate) ([#154](https://github.com/tailcallhq/tailcall/pull/154))
+- chore: Add sbt-github-actions back [@tusharmath](https://github.com/tusharmath) ([#156](https://github.com/tailcallhq/tailcall/pull/156))
+- Fix: MySQL Registry Fixes [@tusharmath](https://github.com/tusharmath) ([#153](https://github.com/tailcallhq/tailcall/pull/153))
+- chore(deps): update dependency sbt/sbt to v1.9.0 [@renovate](https://github.com/renovate) ([#152](https://github.com/tailcallhq/tailcall/pull/152))
+- chore(deps): update zioquillversion to v4.6.1 [@renovate](https://github.com/renovate) ([#149](https://github.com/tailcallhq/tailcall/pull/149))
+- Refactor: SQL Cleanup [@tusharmath](https://github.com/tusharmath) ([#150](https://github.com/tailcallhq/tailcall/pull/150))
+- Feature: use mysql to persist schema information [@tusharmath](https://github.com/tusharmath) ([#148](https://github.com/tailcallhq/tailcall/pull/148))
+- Fix: Use Scalar for Blueprint [@tusharmath](https://github.com/tusharmath) ([#147](https://github.com/tailcallhq/tailcall/pull/147))
+- Fix: caliban schema generation error [@tusharmath](https://github.com/tusharmath) ([#146](https://github.com/tailcallhq/tailcall/pull/146))
+- feat:  release workflow [@sujeetsr](https://github.com/sujeetsr) ([#145](https://github.com/tailcallhq/tailcall/pull/145))
+- chore(deps): update calibanversion to v2.2.1 [@renovate](https://github.com/renovate) ([#130](https://github.com/tailcallhq/tailcall/pull/130))
+- Feature: Schema via CLI appears sorted [@tusharmath](https://github.com/tusharmath) ([#143](https://github.com/tailcallhq/tailcall/pull/143))
+- Feature: Add N + 1 detection support [@tusharmath](https://github.com/tusharmath) ([#142](https://github.com/tailcallhq/tailcall/pull/142))
+- Feature: Server settings can be set via CLI [@tusharmath](https://github.com/tusharmath) ([#140](https://github.com/tailcallhq/tailcall/pull/140))
+- chore(deps): update dependency dev.zio:zio-cli to v0.5.0 [@renovate](https://github.com/renovate) ([#136](https://github.com/tailcallhq/tailcall/pull/136))
+- Feature: TValid new operators [@tusharmath](https://github.com/tusharmath) ([#139](https://github.com/tailcallhq/tailcall/pull/139))
+- Config input type [@tusharmath](https://github.com/tusharmath) ([#138](https://github.com/tailcallhq/tailcall/pull/138))
+- Fix inline on parent resolved values [@tusharmath](https://github.com/tusharmath) ([#135](https://github.com/tailcallhq/tailcall/pull/135))
+- chore(deps): update dependency sbt/sbt to v1.8.3 [@renovate](https://github.com/renovate) ([#133](https://github.com/tailcallhq/tailcall/pull/133))
+- Fix inline type [@tusharmath](https://github.com/tusharmath) ([#134](https://github.com/tailcallhq/tailcall/pull/134))
+- fix: bug in inlining scalar fields [@amitksingh1490](https://github.com/amitksingh1490) ([#132](https://github.com/tailcallhq/tailcall/pull/132))
+- fix: schema generation issue [@tusharmath](https://github.com/tusharmath) ([#131](https://github.com/tailcallhq/tailcall/pull/131))
+- Http Batching [@tusharmath](https://github.com/tusharmath) ([#126](https://github.com/tailcallhq/tailcall/pull/126))
+- feature: tracing and slow queries support [@amitksingh1490](https://github.com/amitksingh1490) ([#129](https://github.com/tailcallhq/tailcall/pull/129))
+- chore: update java version [@tusharmath](https://github.com/tusharmath) ([#127](https://github.com/tailcallhq/tailcall/pull/127))
+- Feature: Http Caching [@tusharmath](https://github.com/tusharmath) ([#125](https://github.com/tailcallhq/tailcall/pull/125))
+- Test Clean up [@tusharmath](https://github.com/tusharmath) ([#124](https://github.com/tailcallhq/tailcall/pull/124))
+- Global vars [@tusharmath](https://github.com/tusharmath) ([#120](https://github.com/tailcallhq/tailcall/pull/120))
+- fix: should fail if http and unsafe are marked as required [@amitksingh1490](https://github.com/amitksingh1490) ([#123](https://github.com/tailcallhq/tailcall/pull/123))
+- refactor: update implementation of copyFromParent [@tusharmath](https://github.com/tusharmath) ([#121](https://github.com/tailcallhq/tailcall/pull/121))
+- refactor: rename document to blueprint [@tusharmath](https://github.com/tusharmath) ([#122](https://github.com/tailcallhq/tailcall/pull/122))
+- Inline directive [@tusharmath](https://github.com/tusharmath) ([#118](https://github.com/tailcallhq/tailcall/pull/118))
+- Feat: ability to access headers from the configuration [@amitksingh1490](https://github.com/amitksingh1490) ([#119](https://github.com/tailcallhq/tailcall/pull/119))
+- Refactor: Clean up code structure [@tusharmath](https://github.com/tusharmath) ([#117](https://github.com/tailcallhq/tailcall/pull/117))
+- Invalid Directive Errors [@tusharmath](https://github.com/tusharmath) ([#116](https://github.com/tailcallhq/tailcall/pull/116))
+- Fix: Blueprint Error Handling [@tusharmath](https://github.com/tusharmath) ([#114](https://github.com/tailcallhq/tailcall/pull/114))
+- fix: DataLoader failure handling [@amitksingh1490](https://github.com/amitksingh1490) ([#115](https://github.com/tailcallhq/tailcall/pull/115))
+- Fix: Http directive not being detected [@tusharmath](https://github.com/tusharmath) ([#113](https://github.com/tailcallhq/tailcall/pull/113))
+- feat: add cache for reading blueprint and creation of interpreter [@amitksingh1490](https://github.com/amitksingh1490) ([#112](https://github.com/tailcallhq/tailcall/pull/112))
+- Better error handling [@tusharmath](https://github.com/tusharmath) ([#111](https://github.com/tailcallhq/tailcall/pull/111))
+- feat: add support for env [@amitksingh1490](https://github.com/amitksingh1490) ([#110](https://github.com/tailcallhq/tailcall/pull/110))
+- Add Support for Validate in Parallel [@tusharmath](https://github.com/tusharmath) ([#109](https://github.com/tailcallhq/tailcall/pull/109))
+- feat: global request timeout support [@amitksingh1490](https://github.com/amitksingh1490) ([#108](https://github.com/tailcallhq/tailcall/pull/108))
+- Revert "chore(deps): update calibanversion to v2.1.0" [@tusharmath](https://github.com/tusharmath) ([#107](https://github.com/tailcallhq/tailcall/pull/107))
+- chore: fix broken build due to caliban and zhttp upgrade [@amitksingh1490](https://github.com/amitksingh1490) ([#105](https://github.com/tailcallhq/tailcall/pull/105))
+- chore(deps): update dependency dev.zio:zio-http to v0.0.5 [@renovate](https://github.com/renovate) ([#55](https://github.com/tailcallhq/tailcall/pull/55))
+- chore(deps): update dependency dev.zio:zio-parser to v0.1.9 [@renovate](https://github.com/renovate) ([#56](https://github.com/tailcallhq/tailcall/pull/56))
+- chore(deps): update calibanversion to v2.1.0 [@renovate](https://github.com/renovate) ([#96](https://github.com/tailcallhq/tailcall/pull/96))
+- chore(deps): update dependency io.spray:sbt-revolver to v0.10.0 [@renovate](https://github.com/renovate) ([#81](https://github.com/tailcallhq/tailcall/pull/81))
+- chore(deps): update ziojsonversion to v0.5.0 [@renovate](https://github.com/renovate) ([#97](https://github.com/tailcallhq/tailcall/pull/97))
+- chore(deps): update zioversion to v2.0.13 [@renovate](https://github.com/renovate) ([#101](https://github.com/tailcallhq/tailcall/pull/101))
+- Fix: TValid's getOrElse operator [@tusharmath](https://github.com/tusharmath) ([#102](https://github.com/tailcallhq/tailcall/pull/102))
+- feat: support for input value [@amitksingh1490](https://github.com/amitksingh1490) ([#88](https://github.com/tailcallhq/tailcall/pull/88))
+- Enable fatal warnings on CI only [@tusharmath](https://github.com/tusharmath) ([#99](https://github.com/tailcallhq/tailcall/pull/99))
+- Feature: add Omit in JsonT [@tusharmath](https://github.com/tusharmath) ([#100](https://github.com/tailcallhq/tailcall/pull/100))
+- Feature: Add `map` operator on JsonT [@tusharmath](https://github.com/tusharmath) ([#98](https://github.com/tailcallhq/tailcall/pull/98))
+- Feature: Add Omit Annotation on GraphQL types. [@tusharmath](https://github.com/tusharmath) ([#92](https://github.com/tailcallhq/tailcall/pull/92))
+- Refactor: Merge Lambda and Remote [@tusharmath](https://github.com/tusharmath) ([#91](https://github.com/tailcallhq/tailcall/pull/91))
+- Feature: add Dict support in TSchema [@tusharmath](https://github.com/tusharmath) ([#89](https://github.com/tailcallhq/tailcall/pull/89))
+- Refactor Drop Orc [@tusharmath](https://github.com/tusharmath) ([#90](https://github.com/tailcallhq/tailcall/pull/90))
+- chore(deps): update zio to v2.0.12 [@renovate](https://github.com/renovate) ([#79](https://github.com/tailcallhq/tailcall/pull/79))
+- To Pair Directive [@tusharmath](https://github.com/tusharmath) ([#84](https://github.com/tailcallhq/tailcall/pull/84))
+- chore: add scoverage [@girdharshubham](https://github.com/girdharshubham) ([#87](https://github.com/tailcallhq/tailcall/pull/87))
+- feat: add support for header forwarding [@amitksingh1490](https://github.com/amitksingh1490) ([#85](https://github.com/tailcallhq/tailcall/pull/85))
+- chore: remove auto merge [@amitksingh1490](https://github.com/amitksingh1490) ([#86](https://github.com/tailcallhq/tailcall/pull/86))
+- chore(deps): update dependency dev.zio:zio-redis to v0.2.0 [@renovate](https://github.com/renovate) ([#75](https://github.com/tailcallhq/tailcall/pull/75))
+- chore: add auto-merge [@tusharmath](https://github.com/tusharmath) ([#83](https://github.com/tailcallhq/tailcall/pull/83))
+- fix: add support for some and nested types [@amitksingh1490](https://github.com/amitksingh1490) ([#82](https://github.com/tailcallhq/tailcall/pull/82))
+- Rename field annotation [@tusharmath](https://github.com/tusharmath) ([#80](https://github.com/tailcallhq/tailcall/pull/80))
+- feat: Postman to Endpoints [@amitksingh1490](https://github.com/amitksingh1490) ([#77](https://github.com/tailcallhq/tailcall/pull/77))
+- Fix Transcoders [@tusharmath](https://github.com/tusharmath) ([#76](https://github.com/tailcallhq/tailcall/pull/76))
+- Postman Integration [@tusharmath](https://github.com/tusharmath) ([#74](https://github.com/tailcallhq/tailcall/pull/74))
+- CLI add better format and styling [@tusharmath](https://github.com/tusharmath) ([#73](https://github.com/tailcallhq/tailcall/pull/73))
+- CLI clean up [@tusharmath](https://github.com/tusharmath) ([#70](https://github.com/tailcallhq/tailcall/pull/70))
+- Document 2 blueprint [@tusharmath](https://github.com/tusharmath) ([#69](https://github.com/tailcallhq/tailcall/pull/69))
+- chore(deps): update dependency sbt/sbt to v1.8.2 [@renovate](https://github.com/renovate) ([#58](https://github.com/tailcallhq/tailcall/pull/58))
+- Simpler configs [@tusharmath](https://github.com/tusharmath) ([#67](https://github.com/tailcallhq/tailcall/pull/67))
+- chore(deps): update zio to v2.0.10 [@renovate](https://github.com/renovate) ([#59](https://github.com/tailcallhq/tailcall/pull/59))
+- Transcoder Support [@tusharmath](https://github.com/tusharmath) ([#66](https://github.com/tailcallhq/tailcall/pull/66))
+- CLI advanced features [@tusharmath](https://github.com/tusharmath) ([#54](https://github.com/tailcallhq/tailcall/pull/54))
+- Configure Renovate [@renovate](https://github.com/renovate) ([#53](https://github.com/tailcallhq/tailcall/pull/53))
+- CLI Integration [@tusharmath](https://github.com/tusharmath) ([#52](https://github.com/tailcallhq/tailcall/pull/52))
+- feat: DataLoader Impl [@amitksingh1490](https://github.com/amitksingh1490) ([#49](https://github.com/tailcallhq/tailcall/pull/49))
+- Fly.io Deployment [@tusharmath](https://github.com/tusharmath) ([#48](https://github.com/tailcallhq/tailcall/pull/48))
+- Config operator apply spec [@tusharmath](https://github.com/tusharmath) ([#47](https://github.com/tailcallhq/tailcall/pull/47))
+- feat: add mutation support [@amitksingh1490](https://github.com/amitksingh1490) ([#41](https://github.com/tailcallhq/tailcall/pull/41))
+- Refactor: add main server [@tusharmath](https://github.com/tusharmath) ([#35](https://github.com/tailcallhq/tailcall/pull/35))
+- feat: use zhttp client [@amitksingh1490](https://github.com/amitksingh1490) ([#37](https://github.com/tailcallhq/tailcall/pull/37))
+- Chore: create a multi module project [@tusharmath](https://github.com/tusharmath) ([#33](https://github.com/tailcallhq/tailcall/pull/33))
+- Chore: cross compile for Scala 3 [@tusharmath](https://github.com/tusharmath) ([#19](https://github.com/tailcallhq/tailcall/pull/19))
+- Feature: YML Orchestrator [@tusharmath](https://github.com/tusharmath) ([#17](https://github.com/tailcallhq/tailcall/pull/17))
+- feat: Handle HttpError in evaluation runtime [@amitksingh1490](https://github.com/amitksingh1490) ([#16](https://github.com/tailcallhq/tailcall/pull/16))
+- feat: add Endpoint support in lamda [@amitksingh1490](https://github.com/amitksingh1490) ([#15](https://github.com/tailcallhq/tailcall/pull/15))
+- YML Support [@tusharmath](https://github.com/tusharmath) ([#12](https://github.com/tailcallhq/tailcall/pull/12))
+- Yaml support [@tusharmath](https://github.com/tusharmath) ([#11](https://github.com/tailcallhq/tailcall/pull/11))
+- Rewrite 20 feb 2023 [@tusharmath](https://github.com/tusharmath) ([#5](https://github.com/tailcallhq/tailcall/pull/5))
+- feat: add tupleOps [@amitksingh1490](https://github.com/amitksingh1490) ([#1](https://github.com/tailcallhq/tailcall/pull/1))
+
+### Features
+
+- :white\_check\_mark: Create unit test suite for DynamicValueUtil [@aaditmshah](https://github.com/aaditmshah) ([#40](https://github.com/tailcallhq/tailcall/pull/40))
+- :recycle: Migrate `DynamicValueExtension` to `DynamicValueUtil` [@aaditmshah](https://github.com/aaditmshah) ([#32](https://github.com/tailcallhq/tailcall/pull/32))
+- :technologist: Add more paths to .gitignore [@aaditmshah](https://github.com/aaditmshah) ([#18](https://github.com/tailcallhq/tailcall/pull/18))

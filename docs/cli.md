@@ -375,6 +375,7 @@ The `inputs` section specifies the sources from which the GraphQL configuration 
     - Specify the **path to the proto file** (`src`) to help Tailcall create a schema and understand the gRPC methods to call when a field is queried.
     - Specify the **gRPC URL** (`url`) where the gRPC service is hosted.
     - Include a **boolean parameter** `connectRPC` (optional). If set to `true`, the proto file will be used to generate the schema, but the communication between Tailcall and the upstream will happen using the [Connect-RPC protocol](https://connectrpc.com/docs/protocol/).
+    - Specify **a set of directories** `protoPaths` (optional) to search for imported proto files. Works like the `--proto_path` flag in the [protocol compiler](https://protobuf.dev/programming-guides/proto3/#importing).
 
         <Tabs>
           <TabItem value="json" label="JSON">

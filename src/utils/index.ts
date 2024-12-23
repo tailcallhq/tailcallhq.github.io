@@ -51,3 +51,16 @@ export const isBlogPost = () => {
   const isBlogPost = pathSegments[0] === "blog" && pathSegments.length > 1 && pathSegments[1] !== "page"
   return isBlogPost
 }
+
+export const getNavDropdownItemHtml = (iconSrc: string, altText: string, label: string) => {
+  return `
+    <div class="flex items-center p-1">
+      <img
+        class="mr-2"
+        src=${iconSrc}
+        alt=${altText}
+        style="width: 16px; height: 16px;"
+      />
+      <span class="text-content-tiny font-bold lg:text-content-small lg:font-medium">${label}</span>
+    </div>`
+}

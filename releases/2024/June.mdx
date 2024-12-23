@@ -1,0 +1,530 @@
+---
+sidebar_position: 7
+toc_max_heading_level: 2
+---
+
+import VersionUpdateCard from "@site/src/components/shared/VersionUpdateCard"
+
+<VersionUpdateCard />
+
+## v0.93.5 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate serde\_json to v1.0.119 [@renovate](https://github.com/renovate) ([#2316](https://github.com/tailcallhq/tailcall/pull/2316))
+
+### 🧰 Maintenance
+
+- chore: JIT executor 11 Jun 2024 [@tusharmath](https://github.com/tusharmath) ([#2311](https://github.com/tailcallhq/tailcall/pull/2311))
+
+
+---
+## v0.93.4 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate serde\_json\_borrow to v0.5.1 [@renovate](https://github.com/renovate) ([#2310](https://github.com/tailcallhq/tailcall/pull/2310))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency tsx to v4.16.0 [@renovate](https://github.com/renovate) ([#2308](https://github.com/tailcallhq/tailcall/pull/2308))
+
+
+---
+## v0.93.3 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate clap to v4.5.8 [@renovate](https://github.com/renovate) ([#2306](https://github.com/tailcallhq/tailcall/pull/2306))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency tsx to v4.15.9 [@renovate](https://github.com/renovate) ([#2307](https://github.com/tailcallhq/tailcall/pull/2307))
+- refactor: split `tc.rs` for each command  [@beelchester](https://github.com/beelchester) ([#2286](https://github.com/tailcallhq/tailcall/pull/2286))
+
+
+---
+## v0.93.2 
+
+### 🐛 Bug Fixes
+
+- fix: dedupe dead-lock on dropped requests [@meskill](https://github.com/meskill) ([#2291](https://github.com/tailcallhq/tailcall/pull/2291))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency tsx to v4.15.8 [@renovate](https://github.com/renovate) ([#2305](https://github.com/tailcallhq/tailcall/pull/2305))
+
+
+---
+## v0.93.1 
+
+### 🐛 Bug Fixes
+
+- fix: resolve union type in response [@meskill](https://github.com/meskill) ([#2019](https://github.com/tailcallhq/tailcall/pull/2019))
+
+
+---
+## v0.93.0 
+
+- refactor: drop unused annotations [@tusharmath](https://github.com/tusharmath) ([#2269](https://github.com/tailcallhq/tailcall/pull/2269))
+
+### 🚀 Features
+
+- feat: allow union as input types [@meskill](https://github.com/meskill) ([#2221](https://github.com/tailcallhq/tailcall/pull/2221))
+
+### 🐛 Bug Fixes
+
+- Revert "fix(deps): update rust crate mimalloc to v0.1.43" [@tusharmath](https://github.com/tusharmath) ([#2292](https://github.com/tailcallhq/tailcall/pull/2292))
+- fix(deps): update rust crate lambda\_runtime to 0.12.0 [@renovate](https://github.com/renovate) ([#2288](https://github.com/tailcallhq/tailcall/pull/2288))
+- fix(deps): update rust crate lambda\_http to 0.12.0 [@renovate](https://github.com/renovate) ([#2287](https://github.com/tailcallhq/tailcall/pull/2287))
+- fix(deps): update rust crate serde\_json to v1.0.118 [@renovate](https://github.com/renovate) ([#2279](https://github.com/tailcallhq/tailcall/pull/2279))
+- fix(deps): update rust crate syn to v2.0.68 [@renovate](https://github.com/renovate) ([#2275](https://github.com/tailcallhq/tailcall/pull/2275))
+- fix(deps): update rust crate mimalloc to v0.1.43 [@renovate](https://github.com/renovate) ([#2266](https://github.com/tailcallhq/tailcall/pull/2266))
+
+### 🧰 Maintenance
+
+- fix: drop `to_sdl` from `ConfigModule` [@ssddOnTop](https://github.com/ssddOnTop) ([#2296](https://github.com/tailcallhq/tailcall/pull/2296))
+- chore: dropped pub fields from config module [@dekkku](https://github.com/dekkku) ([#2260](https://github.com/tailcallhq/tailcall/pull/2260))
+- chore(deps): update dependency wrangler to v3.62.0 [@renovate](https://github.com/renovate) ([#2284](https://github.com/tailcallhq/tailcall/pull/2284))
+- chore: JIT executor [@tusharmath](https://github.com/tusharmath) ([#2259](https://github.com/tailcallhq/tailcall/pull/2259))
+- chore(deps): update dependency miniflare to v3.20240620.0 [@renovate](https://github.com/renovate) ([#2283](https://github.com/tailcallhq/tailcall/pull/2283))
+- chore: mustache clean up [@tusharmath](https://github.com/tusharmath) ([#2280](https://github.com/tailcallhq/tailcall/pull/2280))
+- refactor: drop `compose` operator on IR [@tusharmath](https://github.com/tusharmath) ([#2270](https://github.com/tailcallhq/tailcall/pull/2270))
+- Revert "chore: dropped pub fields from config module" [@tusharmath](https://github.com/tusharmath) ([#2271](https://github.com/tailcallhq/tailcall/pull/2271))
+- chore: dropped pub fields from config module [@bnchi](https://github.com/bnchi) ([#2263](https://github.com/tailcallhq/tailcall/pull/2263))
+- chore: drop PathValue [@ssddOnTop](https://github.com/ssddOnTop) ([#2265](https://github.com/tailcallhq/tailcall/pull/2265))
+- refactor: move jit out into core [@tusharmath](https://github.com/tusharmath) ([#2264](https://github.com/tailcallhq/tailcall/pull/2264))
+- refactor: make DynamicValue polymorphic [@tusharmath](https://github.com/tusharmath) ([#2262](https://github.com/tailcallhq/tailcall/pull/2262))
+- refactor: make store polymorphic [@tusharmath](https://github.com/tusharmath) ([#2258](https://github.com/tailcallhq/tailcall/pull/2258))
+
+
+---
+## v0.92.9 
+
+### 🐛 Bug Fixes
+
+- fix: use query operation type name specified in config [@laststylebender14](https://github.com/laststylebender14) ([#2246](https://github.com/tailcallhq/tailcall/pull/2246))
+
+### 🧰 Maintenance
+
+- refactor: make store polymorphic [@tusharmath](https://github.com/tusharmath) ([#2258](https://github.com/tailcallhq/tailcall/pull/2258))
+
+
+---
+## v0.92.8 
+
+### 🐛 Bug Fixes
+
+- fix: types across multiple configs [@shashitnak](https://github.com/shashitnak) ([#2234](https://github.com/tailcallhq/tailcall/pull/2234))
+
+
+---
+## v0.92.7 
+
+### 🐛 Bug Fixes
+
+- fix: generator config clean up. [@laststylebender14](https://github.com/laststylebender14) ([#2251](https://github.com/tailcallhq/tailcall/pull/2251))
+
+### 🧰 Maintenance
+
+- chore: restructure store [@ssddOnTop](https://github.com/ssddOnTop) ([#2233](https://github.com/tailcallhq/tailcall/pull/2233))
+
+
+---
+## v0.92.6 
+
+### 🐛 Bug Fixes
+
+- fix: nested args [@ouertani](https://github.com/ouertani) ([#2255](https://github.com/tailcallhq/tailcall/pull/2255))
+
+### 🧰 Maintenance
+
+- chore: restructure store [@ssddOnTop](https://github.com/ssddOnTop) ([#2233](https://github.com/tailcallhq/tailcall/pull/2233))
+
+
+---
+## v0.92.5 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate rustls to v0.23.10 [@renovate](https://github.com/renovate) ([#2254](https://github.com/tailcallhq/tailcall/pull/2254))
+
+
+---
+## v0.92.4 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate rustls to v0.23.10 [@renovate](https://github.com/renovate) ([#2254](https://github.com/tailcallhq/tailcall/pull/2254))
+- fix(deps): update rust crate lambda\_http to v0.11.4 [@renovate](https://github.com/renovate) ([#2249](https://github.com/tailcallhq/tailcall/pull/2249))
+
+
+---
+## v0.92.3 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate lambda\_http to v0.11.4 [@renovate](https://github.com/renovate) ([#2249](https://github.com/tailcallhq/tailcall/pull/2249))
+- fix(deps): update rust crate protox to v0.6.1 [@renovate](https://github.com/renovate) ([#2252](https://github.com/tailcallhq/tailcall/pull/2252))
+
+
+---
+## v0.92.2 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate protox-parse to v0.6.1 [@renovate](https://github.com/renovate) ([#2253](https://github.com/tailcallhq/tailcall/pull/2253))
+
+
+---
+## v0.92.1 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate lambda\_runtime to v0.11.3 [@renovate](https://github.com/renovate) ([#2250](https://github.com/tailcallhq/tailcall/pull/2250))
+
+
+---
+## v0.92.0 
+
+### 🚀 Features
+
+- feat: configuration generator [@meskill](https://github.com/meskill) ([#2081](https://github.com/tailcallhq/tailcall/pull/2081))
+
+
+---
+## v0.91.7 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate lazy\_static to v1.5.0 [@renovate](https://github.com/renovate) ([#2248](https://github.com/tailcallhq/tailcall/pull/2248))
+
+
+---
+## v0.91.6 
+
+* No changes
+
+
+---
+## v0.91.5 
+
+### 🐛 Bug Fixes
+
+- fix: do not mark enums and scalars as input types [@meskill](https://github.com/meskill) ([#2241](https://github.com/tailcallhq/tailcall/pull/2241))
+
+
+---
+## v0.91.4 
+
+* No changes
+
+
+---
+## v0.91.3 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate syn to v2.0.67 [@renovate](https://github.com/renovate) ([#2238](https://github.com/tailcallhq/tailcall/pull/2238))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency tsx to v4.15.7 [@renovate](https://github.com/renovate) ([#2239](https://github.com/tailcallhq/tailcall/pull/2239))
+
+
+---
+## v0.91.2 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate proc-macro2 to v1.0.86 [@renovate](https://github.com/renovate) ([#2237](https://github.com/tailcallhq/tailcall/pull/2237))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency @cloudflare/workers-types to v4.20240620.0 [@renovate](https://github.com/renovate) ([#2236](https://github.com/tailcallhq/tailcall/pull/2236))
+
+
+---
+## v0.91.1 
+
+- refactor: add models for JIT [@tusharmath](https://github.com/tusharmath) ([#2213](https://github.com/tailcallhq/tailcall/pull/2213))
+- refactor: Prepare IR for JIT [@tusharmath](https://github.com/tusharmath) ([#2212](https://github.com/tailcallhq/tailcall/pull/2212))
+
+### 📝 Documentation
+
+- chore(deps): update docker/build-push-action action to v6 [@renovate](https://github.com/renovate) ([#2217](https://github.com/tailcallhq/tailcall/pull/2217))
+
+### 🐛 Bug Fixes
+
+- fix: query generation [@amitksingh1490](https://github.com/amitksingh1490) ([#2229](https://github.com/tailcallhq/tailcall/pull/2229))
+- fix(deps): update dependency type-fest to v4.20.1 [@renovate](https://github.com/renovate) ([#2211](https://github.com/tailcallhq/tailcall/pull/2211))
+- fix: bump rust version [@amitksingh1490](https://github.com/amitksingh1490) ([#2202](https://github.com/tailcallhq/tailcall/pull/2202))
+
+### 🧰 Maintenance
+
+- chore(deps-dev): bump braces from 3.0.2 to 3.0.3 in /tailcall-cloudflare [@dependabot](https://github.com/dependabot) ([#2222](https://github.com/tailcallhq/tailcall/pull/2222))
+- chore(deps): update docker/build-push-action action to v6 [@renovate](https://github.com/renovate) ([#2217](https://github.com/tailcallhq/tailcall/pull/2217))
+- chore(deps): update dependency wrangler to v3.61.0 [@renovate](https://github.com/renovate) ([#2225](https://github.com/tailcallhq/tailcall/pull/2225))
+- chore(deps): update rust crate url to v2.5.2 [@renovate](https://github.com/renovate) ([#2228](https://github.com/tailcallhq/tailcall/pull/2228))
+- chore(deps): update dependency miniflare to v3.20240610.1 [@renovate](https://github.com/renovate) ([#2224](https://github.com/tailcallhq/tailcall/pull/2224))
+- chore(deps): update dependency tsx to v4.15.6 [@renovate](https://github.com/renovate) ([#2216](https://github.com/tailcallhq/tailcall/pull/2216))
+- refactor: Move transform out of config [@tusharmath](https://github.com/tusharmath) ([#2214](https://github.com/tailcallhq/tailcall/pull/2214))
+- refactor: simplify Eval trait [@meskill](https://github.com/meskill) ([#2207](https://github.com/tailcallhq/tailcall/pull/2207))
+- chore(deps): update dependency wrangler to v3.60.3 [@renovate](https://github.com/renovate) ([#2189](https://github.com/tailcallhq/tailcall/pull/2189))
+
+
+---
+## v0.91.0 
+
+### 🚀 Features
+
+- feat: enum aliases @Shylock-Hg (#2139)
+
+### 🧰 Maintenance
+
+- chore: remove failing test [@ssddOnTop](https://github.com/ssddOnTop) ([#2199](https://github.com/tailcallhq/tailcall/pull/2199))
+- chore: remove unnecessary boxing [@meskill](https://github.com/meskill) ([#2191](https://github.com/tailcallhq/tailcall/pull/2191))
+- chore(deps): update dependency tsx to v4.15.5 [@renovate](https://github.com/renovate) ([#2197](https://github.com/tailcallhq/tailcall/pull/2197))
+- chore(deps): update dependency @cloudflare/workers-types to v4.20240614.0 [@renovate](https://github.com/renovate) ([#2198](https://github.com/tailcallhq/tailcall/pull/2198))
+- chore(deps): update dependency miniflare to v3.20240610.0 [@renovate](https://github.com/renovate) ([#2190](https://github.com/tailcallhq/tailcall/pull/2190))
+- chore: remove key cloning for cache [@meskill](https://github.com/meskill) ([#2188](https://github.com/tailcallhq/tailcall/pull/2188))
+
+
+---
+## v0.90.3 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate rustls to v0.23.10 [@renovate](https://github.com/renovate) ([#2184](https://github.com/tailcallhq/tailcall/pull/2184))
+
+
+---
+## v0.90.2 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate lambda\_http to v0.11.4 [@renovate](https://github.com/renovate) ([#2185](https://github.com/tailcallhq/tailcall/pull/2185))
+
+
+---
+## v0.90.1 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate lambda\_http to v0.11.4 [@renovate](https://github.com/renovate) ([#2185](https://github.com/tailcallhq/tailcall/pull/2185))
+- fix: handle plural singular type name as one. [@laststylebender14](https://github.com/laststylebender14) ([#2178](https://github.com/tailcallhq/tailcall/pull/2178))
+
+
+---
+## v0.90.0 
+
+### 🚀 Features
+
+- feat: support for default values in `InputFieldDefinition` [@shashitnak](https://github.com/shashitnak) ([#2117](https://github.com/tailcallhq/tailcall/pull/2117))
+
+
+---
+## v0.89.1 
+
+### 🐛 Bug Fixes
+
+- fix: dedupe dedupe settings [@bnchi](https://github.com/bnchi) ([#2183](https://github.com/tailcallhq/tailcall/pull/2183))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency tsx to v4.15.4 [@renovate](https://github.com/renovate) ([#2181](https://github.com/tailcallhq/tailcall/pull/2181))
+- chore(deps): update dependency tsx to v4.15.3 [@renovate](https://github.com/renovate) ([#2179](https://github.com/tailcallhq/tailcall/pull/2179))
+
+
+---
+## v0.89.0 
+
+### 🚀 Features
+
+- feat: query batching [@amitksingh1490](https://github.com/amitksingh1490) ([#2166](https://github.com/tailcallhq/tailcall/pull/2166))
+
+
+---
+## v0.88.5 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate protox to v0.6.1 [@renovate](https://github.com/renovate) ([#2174](https://github.com/tailcallhq/tailcall/pull/2174))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency wrangler to v3.60.2 [@renovate](https://github.com/renovate) ([#2172](https://github.com/tailcallhq/tailcall/pull/2172))
+
+
+---
+## v0.88.4 
+
+* No changes
+
+
+---
+## v0.88.3 
+
+### 🐛 Bug Fixes
+
+- fix: removing input and output schema from Endpoint [@shashitnak](https://github.com/shashitnak) ([#2168](https://github.com/tailcallhq/tailcall/pull/2168))
+
+
+---
+## v0.88.2 
+
+### 🐛 Bug Fixes
+
+- fix: removing input and output schema from Endpoint [@shashitnak](https://github.com/shashitnak) ([#2168](https://github.com/tailcallhq/tailcall/pull/2168))
+
+
+---
+## v0.88.1 
+
+### 🐛 Bug Fixes
+
+- fix: better package names [@amitksingh1490](https://github.com/amitksingh1490) ([#2169](https://github.com/tailcallhq/tailcall/pull/2169))
+
+
+---
+## v0.88.0 
+
+### 🚀 Features
+
+- feat: ability to set dedupe globally for `io` [@amitksingh1490](https://github.com/amitksingh1490) ([#2036](https://github.com/tailcallhq/tailcall/pull/2036))
+
+
+---
+## v0.87.0 
+
+### 🚀 Features
+
+- feat: implement type name generator transform for configuration. [@laststylebender14](https://github.com/laststylebender14) ([#2118](https://github.com/tailcallhq/tailcall/pull/2118))
+- feat: implement upstream base url generator. [@laststylebender14](https://github.com/laststylebender14) ([#2124](https://github.com/tailcallhq/tailcall/pull/2124))
+- feat(grpc): additional scalar types [@meskill](https://github.com/meskill) ([#2002](https://github.com/tailcallhq/tailcall/pull/2002))
+- feat: multiple onRequest handlers [@webbdays](https://github.com/webbdays) ([#1863](https://github.com/tailcallhq/tailcall/pull/1863))
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate http-body-util to v0.1.2 [@renovate](https://github.com/renovate) ([#2164](https://github.com/tailcallhq/tailcall/pull/2164))
+- fix(deps): update rust crate clap to v4.5.7 [@renovate](https://github.com/renovate) ([#2159](https://github.com/tailcallhq/tailcall/pull/2159))
+- fix(deps): update rust crate regex to v1.10.5 [@renovate](https://github.com/renovate) ([#2151](https://github.com/tailcallhq/tailcall/pull/2151))
+- chore: fix recursion in checking resolvers [@ssddOnTop](https://github.com/ssddOnTop) ([#2145](https://github.com/tailcallhq/tailcall/pull/2145))
+- fix(deps): update dependency yaml to v2.4.5 [@renovate](https://github.com/renovate) ([#2142](https://github.com/tailcallhq/tailcall/pull/2142))
+- fix(deps): update dependency type-fest to v4.20.0 [@renovate](https://github.com/renovate) ([#2132](https://github.com/tailcallhq/tailcall/pull/2132))
+- fix(deps): update rust crate clap to v4.5.6 [@renovate](https://github.com/renovate) ([#2125](https://github.com/tailcallhq/tailcall/pull/2125))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency wrangler to v3.60.1 [@renovate](https://github.com/renovate) ([#2163](https://github.com/tailcallhq/tailcall/pull/2163))
+- chore(deps): update dependency tsx to v4.15.2 [@renovate](https://github.com/renovate) ([#2165](https://github.com/tailcallhq/tailcall/pull/2165))
+- chore(deps): update rust crate url to v2.5.1 [@renovate](https://github.com/renovate) ([#2158](https://github.com/tailcallhq/tailcall/pull/2158))
+- chore(deps): update dependency tsx to v4.15.1 [@renovate](https://github.com/renovate) ([#2146](https://github.com/tailcallhq/tailcall/pull/2146))
+- chore: fix recursion in checking resolvers [@ssddOnTop](https://github.com/ssddOnTop) ([#2145](https://github.com/tailcallhq/tailcall/pull/2145))
+- chore(deps): update dependency tsx to v4.14.1 [@renovate](https://github.com/renovate) ([#2143](https://github.com/tailcallhq/tailcall/pull/2143))
+- chore(deps): update dependency tsx to v4.14.0 [@renovate](https://github.com/renovate) ([#2141](https://github.com/tailcallhq/tailcall/pull/2141))
+- chore(deps): update rust crate async-graphql to v7.0.6 [@renovate](https://github.com/renovate) ([#2135](https://github.com/tailcallhq/tailcall/pull/2135))
+- chore(deps): update dependency tsx to v4.13.3 [@renovate](https://github.com/renovate) ([#2134](https://github.com/tailcallhq/tailcall/pull/2134))
+- chore(deps): update dependency wrangler to v3.60.0 [@renovate](https://github.com/renovate) ([#2131](https://github.com/tailcallhq/tailcall/pull/2131))
+- refactor: use display macro instead of manual implementation [@meskill](https://github.com/meskill) ([#2133](https://github.com/tailcallhq/tailcall/pull/2133))
+- chore(deps): update dependency tsx to v4.13.2 [@renovate](https://github.com/renovate) ([#2129](https://github.com/tailcallhq/tailcall/pull/2129))
+- chore(deps): update dependency miniflare to v3.20240605.0 [@renovate](https://github.com/renovate) ([#2130](https://github.com/tailcallhq/tailcall/pull/2130))
+- chore(deps): update dependency tsx to v4.13.0 [@renovate](https://github.com/renovate) ([#2126](https://github.com/tailcallhq/tailcall/pull/2126))
+- chore(deps): update dependency @cloudflare/workers-types to v4.20240605.0 [@renovate](https://github.com/renovate) ([#2122](https://github.com/tailcallhq/tailcall/pull/2122))
+- chore(deps): update dependency tsx to v4.12.0 [@renovate](https://github.com/renovate) ([#2120](https://github.com/tailcallhq/tailcall/pull/2120))
+
+
+---
+## v0.86.0 
+
+### 🚀 Features
+
+- feat: generate tailcall config from rest endpoint. [@laststylebender14](https://github.com/laststylebender14) ([#1980](https://github.com/tailcallhq/tailcall/pull/1980))
+
+
+---
+## v0.85.8 
+
+### 🐛 Bug Fixes
+
+- fix(config): overflow issue in get\_all\_used\_type\_names in case of cyclic type [@bnchi](https://github.com/bnchi) ([#2109](https://github.com/tailcallhq/tailcall/pull/2109))
+
+### 🧰 Maintenance
+
+- chore: add IO\_ID in caches [@tusharmath](https://github.com/tusharmath) ([#2115](https://github.com/tailcallhq/tailcall/pull/2115))
+
+
+---
+## v0.85.7 
+
+### 🧰 Maintenance
+
+- chore: implement `to_children` [@ssddOnTop](https://github.com/ssddOnTop) ([#2105](https://github.com/tailcallhq/tailcall/pull/2105))
+- chore: adding tests [@shashitnak](https://github.com/shashitnak) ([#2104](https://github.com/tailcallhq/tailcall/pull/2104))
+- chore(jit): impl parent id as field ref [@ssddOnTop](https://github.com/ssddOnTop) ([#2102](https://github.com/tailcallhq/tailcall/pull/2102))
+- chore: introduce field index [@ssddOnTop](https://github.com/ssddOnTop) ([#2093](https://github.com/tailcallhq/tailcall/pull/2093))
+
+
+---
+## v0.85.6 
+
+* No changes
+
+
+---
+## v0.85.5 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate hyper to v0.14.29 [@renovate](https://github.com/renovate) ([#2100](https://github.com/tailcallhq/tailcall/pull/2100))
+
+
+---
+## v0.85.4 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate rustls to v0.23.9 [@renovate](https://github.com/renovate) ([#2098](https://github.com/tailcallhq/tailcall/pull/2098))
+- fix(deps): update dependency yaml to v2.4.3 [@renovate](https://github.com/renovate) ([#2091](https://github.com/tailcallhq/tailcall/pull/2091))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency tsx to v4.11.2 [@renovate](https://github.com/renovate) ([#2094](https://github.com/tailcallhq/tailcall/pull/2094))
+- chore: push WRK output into the bencher [REVERT] [@tusharmath](https://github.com/tusharmath) ([#2089](https://github.com/tailcallhq/tailcall/pull/2089))
+- chore(deps): update dependency wrangler to v3.58.0 [@renovate](https://github.com/renovate) ([#2083](https://github.com/tailcallhq/tailcall/pull/2083))
+
+
+---
+## v0.85.3 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate proc-macro2 to v1.0.85 [@renovate](https://github.com/renovate) ([#2088](https://github.com/tailcallhq/tailcall/pull/2088))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency wrangler to v3.58.0 [@renovate](https://github.com/renovate) ([#2083](https://github.com/tailcallhq/tailcall/pull/2083))
+
+
+---
+## v0.85.2 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate strum\_macros to v0.26.3 [@renovate](https://github.com/renovate) ([#2087](https://github.com/tailcallhq/tailcall/pull/2087))
+
+### 🧰 Maintenance
+
+- chore: push WRK output into the bencher [@ezhil56x](https://github.com/ezhil56x) ([#2080](https://github.com/tailcallhq/tailcall/pull/2080))
+
+
+---
+## v0.85.1 
+
+### 🐛 Bug Fixes
+
+- fix: parse query [@amitksingh1490](https://github.com/amitksingh1490) ([#2084](https://github.com/tailcallhq/tailcall/pull/2084))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency miniflare to v3.20240524.1 [@renovate](https://github.com/renovate) ([#2082](https://github.com/tailcallhq/tailcall/pull/2082))

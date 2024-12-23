@@ -352,7 +352,10 @@ Tailcall simplifies the process of generating GraphQL schemas from gRPC. By spec
                 "proto": {
                   "src": "./news.proto",
                   "url": "http://localhost:8080/news.NewsService/",
-                  "connectRPC": true
+                  "connectRPC": true,
+                  "protoPaths": [
+                    "./protos"
+                  ]
                 }
               }
             ],
@@ -381,6 +384,8 @@ Tailcall simplifies the process of generating GraphQL schemas from gRPC. By spec
             src: "./news.proto"
             url: "http://localhost:8080/news.NewsService/"
             connectRPC: true
+            protoPaths:
+              - "./protos"
         preset:
           mergeType: 1.0
         output:
@@ -400,6 +405,7 @@ Let's understand the above configuration file.
 - **src**: Specifies the path to the proto file (`./news.proto` in this example).
 - **url**: Specifies the url on which gRPC service is hosted. (`http://localhost:50051` in this example).
 - **connectRPC**: An optional flag indicating whether Tailcall should generate [`Connect-RPC`](https://connectrpc.com/docs/protocol/) compatible configuration.
+- **protoPaths**: An optional string array specifies additional directories to search for imported proto files.
 
 **Preset**: We've applied only one tuning parameter for the configuration. let's understand it in short.
 

@@ -2,6 +2,7 @@ import {themes as prismThemes} from "prism-react-renderer"
 import type * as Preset from "@docusaurus/preset-classic"
 import prismTheme from "./src/theme/CodeBlock/theme"
 import type {Config} from "@docusaurus/types"
+import {getNavDropdownItemHtml} from "./src/utils"
 
 const title = "Tailcall"
 const organization = "tailcallhq"
@@ -112,9 +113,25 @@ export default {
         {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},
         // {to: "/about", label: "About", position: "left"},
         // {to: "/enterprise", label: "Enterprise", position: "left"},
-        {to: "/docs", label: "Docs", position: "left"},
-        {to: "/graphql", label: "Learn", position: "left"},
         {to: "/blog", label: "Blog", position: "left"},
+        {
+          label: "Developers",
+          position: "left",
+          items: [
+            {
+              to: "/docs",
+              html: getNavDropdownItemHtml("/images/home/book.svg", "Docs Icon", "Docs"),
+            },
+            {
+              to: "/graphql",
+              html: getNavDropdownItemHtml("/images/home/archive.svg", "Learn Icon", "Learn"),
+            },
+            {
+              to: "/releases",
+              html: getNavDropdownItemHtml("/images/home/git-merge.svg", "Releases Icon", "Releases"),
+            },
+          ],
+        },
         {
           type: "search",
           position: "right",
@@ -183,6 +200,19 @@ export default {
         routeBasePath: "graphql",
         showLastUpdateTime: true,
         sidebarPath: require.resolve("./graphql/sidebar.ts"),
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "releases",
+        path: "releases",
+        routeBasePath: "releases",
+        showLastUpdateTime: true,
+        async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}: any) {
+          const sidebarItems = await defaultSidebarItemsGenerator(args)
+          return sidebarItems.reverse()
+        },
       },
     ],
     async function tailwindPlugin() {

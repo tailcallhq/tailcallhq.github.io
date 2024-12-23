@@ -272,7 +272,8 @@ input[type="radio"]:checked::before {
   font-weight: var(--ifm-font-weight-normal);
 }
 
-.navbar__item.navbar__link {
+.navbar__item.navbar__link,
+.navbar__item.dropdown .navbar__link {
   text-align: center;
 }
 
@@ -319,7 +320,8 @@ input[type="radio"]:checked::before {
   margin-left: 0;
 }
 
-.navbar__item.navbar__link {
+.navbar__item.navbar__link,
+.navbar__item.dropdown .navbar__link {
   font-weight: var(--ifm-font-weight-bold);
   font-size: var(--ifm-navbar-font-size);
 }
@@ -329,13 +331,23 @@ input[type="radio"]:checked::before {
   margin-right: 2.5rem;
 }
 
+.navbar__item.dropdown {
+  padding: 0;
+  margin-right: 2.5rem;
+}
+
+.navbar__item.dropdown .navbar__link {
+  padding: 0 0.5rem;
+}
+
 .navbar__item.navbar__link:hover {
   background-color: #f3f3f3;
   color: var(--ifm-color-gray-900);
   border-radius: 6px;
 }
 
-.navbar__item.navbar__link.navbar__link--active {
+.navbar__item.navbar__link.navbar__link--active,
+.navbar__item.dropdown.navbar__link--active {
   background-color: var(--ifm-color-brand);
   color: var(--ifm-color-gray-900);
   border-radius: 6px;
@@ -343,6 +355,36 @@ input[type="radio"]:checked::before {
 
 .navbar-sidebar__item .menu__link:hover {
   background: transparent;
+}
+
+.navbar__item .dropdown__menu {
+  display: grid;
+  padding: 24px;
+  grid-template-columns: 1fr 1fr;
+  min-width: 20rem;
+  box-shadow: none;
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+  gap: 8px;
+  top: calc(100% - var(--ifm-navbar-item-padding-vertical) + 0.3rem);
+}
+
+.navbar__item .dropdown__menu .dropdown__link.dropdown__link--active,
+.navbar__item.dropdown .navbar__link:hover {
+  color: var(--ifm-color-brand-dark-100);
+}
+
+.dropdown > .navbar__link:after {
+  content: "";
+  background: url("../../static/icons/basic/dropdown-chevron.svg") no-repeat;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-size: 1.25rem;
+  border: none;
+  top: unset;
+  bottom: -4px;
+  transform: unset;
+  margin-left: 0.25rem;
 }
 
 .header-button {
@@ -807,4 +849,12 @@ span.token.tag.script.language-javascript {
 [class*="navbarHidden"] + .main-wrapper .featured-posts-container {
   padding-bottom: var(--ifm-navbar-height);
   top: 2rem;
+}
+
+.version-update-card {
+  background-color: #121212;
+  background-image: linear-gradient(90deg, #545556 0.5px, transparent 0.5px),
+    linear-gradient(#545556 0.5px, transparent 0.5px);
+  background-size: 60px 60px;
+  background-position: 3px 23px;
 }

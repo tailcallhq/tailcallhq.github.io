@@ -1,0 +1,110 @@
+---
+sidebar_position: 1
+toc_max_heading_level: 2
+---
+
+import VersionUpdateCard from "@site/src/components/shared/VersionUpdateCard"
+
+<VersionUpdateCard />
+
+## v0.18.0 
+
+### 🚀 Features
+
+- Set the log level using env variable [@adelinaenache](https://github.com/adelinaenache) ([#800](https://github.com/tailcallhq/tailcall/pull/800))
+- Improve performance of path\_string impl for EvaluationContext [@meskill](https://github.com/meskill) ([#780](https://github.com/tailcallhq/tailcall/pull/780))
+- Entity level caching [@shashitnak](https://github.com/shashitnak) ([#749](https://github.com/tailcallhq/tailcall/pull/749))
+- gRPC Support [@amitksingh1490](https://github.com/amitksingh1490) ([#730](https://github.com/tailcallhq/tailcall/pull/730))
+- Add documentation for .tailcallrc.graphql [@neo773](https://github.com/neo773) ([#741](https://github.com/tailcallhq/tailcall/pull/741))
+- Add `--out` option to `check` command @A-N-uraag (#753)
+- Open playground in the browser automatically [@ologbonowiwi](https://github.com/ologbonowiwi) ([#736](https://github.com/tailcallhq/tailcall/pull/736))
+
+### 🔧 Improvements
+
+- Improve performance of path\_string impl for EvaluationContext [@meskill](https://github.com/meskill) ([#780](https://github.com/tailcallhq/tailcall/pull/780))
+
+### 🐛 Bug Fixes
+
+- Open localhost in browser in case of using unspecified host [@meskill](https://github.com/meskill) ([#787](https://github.com/tailcallhq/tailcall/pull/787))
+- Bug in {'{{args}}'} rendering [@Kartik1397](https://github.com/Kartik1397) ([#778](https://github.com/tailcallhq/tailcall/pull/778))
+- Inconsistent styling between check and start [@melsonic](https://github.com/melsonic) ([#772](https://github.com/tailcallhq/tailcall/pull/772))
+- Failure in lint.sh scripts on warnings in fix mode [@meskill](https://github.com/meskill) ([#769](https://github.com/tailcallhq/tailcall/pull/769))
+- Configuration merge error [@tusharmath](https://github.com/tusharmath) ([#746](https://github.com/tailcallhq/tailcall/pull/746))
+
+### 🧰 Maintenance
+
+- docs: grpc operator [@amitksingh1490](https://github.com/amitksingh1490) ([#819](https://github.com/tailcallhq/tailcall/pull/819))
+- chore(deps): update actions/checkout action to v4 [@renovate](https://github.com/renovate) ([#808](https://github.com/tailcallhq/tailcall/pull/808))
+- chore: add check spelling in ci [@jkcs](https://github.com/jkcs) ([#813](https://github.com/tailcallhq/tailcall/pull/813))
+- chore: compare micro benchmarks [@alankritdabral](https://github.com/alankritdabral) ([#762](https://github.com/tailcallhq/tailcall/pull/762))
+- Remove spawner from DataLoader [@Rutik7066](https://github.com/Rutik7066) ([#803](https://github.com/tailcallhq/tailcall/pull/803))
+- chore: syncing updated docs [@rajatbarman](https://github.com/rajatbarman) ([#802](https://github.com/tailcallhq/tailcall/pull/802))
+- chore: removed nginx setup [@ezhil56x](https://github.com/ezhil56x) ([#796](https://github.com/tailcallhq/tailcall/pull/796))
+- docs: migration [@amitksingh1490](https://github.com/amitksingh1490) ([#798](https://github.com/tailcallhq/tailcall/pull/798))
+- chore: actions/cache@v2 to actions/cache@v3  [@alankritdabral](https://github.com/alankritdabral) ([#783](https://github.com/tailcallhq/tailcall/pull/783))
+- fix: disable batching when delay is set to 0 [@adelinaenache](https://github.com/adelinaenache) ([#742](https://github.com/tailcallhq/tailcall/pull/742))
+- chore(deps): bump zerocopy from 0.7.29 to 0.7.32 [@dependabot](https://github.com/dependabot) ([#775](https://github.com/tailcallhq/tailcall/pull/775))
+- ci: lint.sh scripts fail on warnings in fix mode [@meskill](https://github.com/meskill) ([#769](https://github.com/tailcallhq/tailcall/pull/769))
+- chore: run benchmarks on CI [@alankritdabral](https://github.com/alankritdabral) ([#747](https://github.com/tailcallhq/tailcall/pull/747))
+- refactor/replace mockito by httpmock [@ologbonowiwi](https://github.com/ologbonowiwi) ([#755](https://github.com/tailcallhq/tailcall/pull/755))
+- refactor: migrate graphql to http spec [@ologbonowiwi](https://github.com/ologbonowiwi) ([#751](https://github.com/tailcallhq/tailcall/pull/751))
+- use custom data loader [@shashitnak](https://github.com/shashitnak) ([#728](https://github.com/tailcallhq/tailcall/pull/728))
+
+### 🔧 Dependency Updates
+
+- chore(deps): update actions/checkout action to v4 [@renovate](https://github.com/renovate) ([#808](https://github.com/tailcallhq/tailcall/pull/808))
+- fix(deps): update dependency type-fest to v4.9.0 [@renovate](https://github.com/renovate) ([#806](https://github.com/tailcallhq/tailcall/pull/806))
+- fix(deps): update rust crate anyhow to 1.0.77 [@renovate](https://github.com/renovate) ([#788](https://github.com/tailcallhq/tailcall/pull/788))
+- fix(deps): update rust crate thiserror to 1.0.52 [@renovate](https://github.com/renovate) ([#784](https://github.com/tailcallhq/tailcall/pull/784))
+- fix(deps): update rust-futures monorepo to 0.3.30 [@renovate](https://github.com/renovate) ([#779](https://github.com/tailcallhq/tailcall/pull/779))
+- fix(deps): update rust crate async-trait to 0.1.75 [@renovate](https://github.com/renovate) ([#771](https://github.com/tailcallhq/tailcall/pull/771))
+- fix(deps): update rust crate anyhow to 1.0.76 [@renovate](https://github.com/renovate) ([#770](https://github.com/tailcallhq/tailcall/pull/770))
+- chore(deps): update dependency tsx to v4.7.0 [@renovate](https://github.com/renovate) ([#766](https://github.com/tailcallhq/tailcall/pull/766))
+- chore(deps): update actions/checkout action to v4 [@renovate](https://github.com/renovate) ([#761](https://github.com/tailcallhq/tailcall/pull/761))
+- fix(deps): update rust crate thiserror to 1.0.51 [@renovate](https://github.com/renovate) ([#754](https://github.com/tailcallhq/tailcall/pull/754))
+- chore(deps): update actions/stale action to v9 [@renovate](https://github.com/renovate) ([#726](https://github.com/tailcallhq/tailcall/pull/726))
+- fix(deps): update rust crate futures-channel to 0.3.29 [@renovate](https://github.com/renovate) ([#732](https://github.com/tailcallhq/tailcall/pull/732))
+- fix(deps): update rust crate once\_cell to 1.19.0 [@renovate](https://github.com/renovate) ([#725](https://github.com/tailcallhq/tailcall/pull/725))
+
+
+---
+## v0.17.0 
+
+### 🚀 Features
+
+- Enhencement/recursive check resolver @Shylock-Hg (#693)
+- GraphQL DataSource implementation [@meskill](https://github.com/meskill) ([#661](https://github.com/tailcallhq/tailcall/pull/661))
+- simplifies the request handling for single vs batch request [@alexanderjophus](https://github.com/alexanderjophus) ([#701](https://github.com/tailcallhq/tailcall/pull/701))
+- refactor: remove duplicate code [@meskill](https://github.com/meskill) ([#686](https://github.com/tailcallhq/tailcall/pull/686))
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate ring to 0.17.7 [@renovate](https://github.com/renovate) ([#721](https://github.com/tailcallhq/tailcall/pull/721))
+- fix(deps): update rust crate clap to 4.4.11 [@renovate](https://github.com/renovate) ([#714](https://github.com/tailcallhq/tailcall/pull/714))
+- fix(deps): update dependency type-fest to v4.8.3 [@renovate](https://github.com/renovate) ([#711](https://github.com/tailcallhq/tailcall/pull/711))
+- add types implementing interface to  dependencies [@sujeetsr](https://github.com/sujeetsr) ([#709](https://github.com/tailcallhq/tailcall/pull/709))
+- feat/support type of nested values [@ologbonowiwi](https://github.com/ologbonowiwi) ([#685](https://github.com/tailcallhq/tailcall/pull/685))
+- Issue with `http_spec` Configuration: Tests Panic Despite `fail` Annotation [@amitksingh1490](https://github.com/amitksingh1490) ([#703](https://github.com/tailcallhq/tailcall/pull/703))
+- fix(deps): update rust crate ring to 0.17.6 [@renovate](https://github.com/renovate) ([#700](https://github.com/tailcallhq/tailcall/pull/700))
+- fix(deps): update rust crate clap to 4.4.10 [@renovate](https://github.com/renovate) ([#697](https://github.com/tailcallhq/tailcall/pull/697))
+- fix(deps): update rust crate clap to 4.4.9 [@renovate](https://github.com/renovate) ([#695](https://github.com/tailcallhq/tailcall/pull/695))
+- Fix: Cache-Control header cacheability handling @A-N-uraag (#683)
+
+### 🧰 Maintenance
+
+- Chore: http1 pipeline flush support [@amitksingh1490](https://github.com/amitksingh1490) ([#723](https://github.com/tailcallhq/tailcall/pull/723))
+- Removing Arc from Blueprint to prevent side effects [@shashitnak](https://github.com/shashitnak) ([#719](https://github.com/tailcallhq/tailcall/pull/719))
+- test: add server start [@neo773](https://github.com/neo773) ([#694](https://github.com/tailcallhq/tailcall/pull/694))
+- perf: remove unnecessary clone [@amitksingh1490](https://github.com/amitksingh1490) ([#717](https://github.com/tailcallhq/tailcall/pull/717))
+- Rename  to `@graphql` to `@graphQL` [@tusharmath](https://github.com/tusharmath) ([#713](https://github.com/tailcallhq/tailcall/pull/713))
+- chore(deps): update dependency tsx to v4.6.2 [@renovate](https://github.com/renovate) ([#710](https://github.com/tailcallhq/tailcall/pull/710))
+- GraphQL DataSource implementation [@meskill](https://github.com/meskill) ([#661](https://github.com/tailcallhq/tailcall/pull/661))
+- chore(deps): update dependency tsx to v4.6.1 [@renovate](https://github.com/renovate) ([#705](https://github.com/tailcallhq/tailcall/pull/705))
+- chore(deps): update dependency tsx to v4.6.0 [@renovate](https://github.com/renovate) ([#696](https://github.com/tailcallhq/tailcall/pull/696))
+- refactor: remove unused library http-cache-semantics [@meskill](https://github.com/meskill) ([#688](https://github.com/tailcallhq/tailcall/pull/688))
+- chore(deps): update dependency tsx to v4.5.0 [@renovate](https://github.com/renovate) ([#690](https://github.com/tailcallhq/tailcall/pull/690))
+- refactor: remove duplicate code [@meskill](https://github.com/meskill) ([#686](https://github.com/tailcallhq/tailcall/pull/686))
+- refactor/#384/make from config modular [@ologbonowiwi](https://github.com/ologbonowiwi) ([#640](https://github.com/tailcallhq/tailcall/pull/640))
+- chore(deps): update dependency tsx to v4.4.0 [@renovate](https://github.com/renovate) ([#684](https://github.com/tailcallhq/tailcall/pull/684))
+- Test for graphql batch request to upstream batched request [@sujeetsr](https://github.com/sujeetsr) ([#681](https://github.com/tailcallhq/tailcall/pull/681))
+- chore(deps): update dependency tsx to v4.3.0 [@renovate](https://github.com/renovate) ([#682](https://github.com/tailcallhq/tailcall/pull/682))

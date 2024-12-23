@@ -14,6 +14,8 @@ links:
     headers:
       - key: "header_key"
         value: "header_value"
+    protoPaths:
+      - "path to proto"
 ```
 
 The `links` configuration is used for bringing external resources into your GraphQL schema. It makes it easier to include configurations, .proto files for gRPC services, and other files into your schema. With this configuration, external resources are either merged with or used effectively in the importing configuration.
@@ -29,6 +31,8 @@ The `links` configuration requires specifying a source `src`, the resource's typ
 - `id`: This is an optional field that assigns a unique identifier to the link. It's helpful for referring to the link within the schema.
 
 - `headers`: This is an optional field that assigns custom headers to the gRPC reflection server requests. Specifying a key-value map of header names and their values achieves this. (Values supports Mustache template)
+
+- `proto_paths`: This is an optional field that specifies additional directories to search for imported proto files. It only takes effect when `type` is `Protobuf`.
 
 ### Linking other configs
 
