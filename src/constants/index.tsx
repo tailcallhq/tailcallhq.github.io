@@ -639,3 +639,30 @@ export const footerLinks: FooterLink[] = [
     link: pageLinks.privacyPolicy,
   },
 ]
+
+export const tutorialsList: TutorialItem[] = [
+  {
+    imgUrl: require("@site/static/images/tutorials/infra.png").default,
+    title: "Powerful features for comprehensive protection",
+    duration: "23 : 32",
+    authorName: "Tushar Mathur",
+    authorImgUrl: "https://avatars.githubusercontent.com/u/194482?v=4",
+    redirectionUrl: "https://www.youtube.com/watch?v=ZbIVxRla6eI",
+  },
+  {
+    imgUrl: require("@site/static/images/tutorials/infra.png").default,
+    title: "Powerful features for comprehensive protection",
+    duration: "23 : 32",
+    authorName: "Tushar Mathur",
+    authorImgUrl: "https://avatars.githubusercontent.com/u/194482?v=4",
+    redirectionUrl: "https://www.youtube.com/watch?v=ZbIVxRla6eI",
+  },
+  {
+    imgUrl: require("@site/static/images/tutorials/infra.png").default,
+    title: "Powerful features for comprehensive protection",
+    duration: "23 : 32",
+    authorName: "Tushar Mathur",
+    authorImgUrl: "https://avatars.githubusercontent.com/u/194482?v=4",
+    redirectionUrl: "https://www.youtube.com/watch?v=ZbIVxRla6eI",
+  },
+]

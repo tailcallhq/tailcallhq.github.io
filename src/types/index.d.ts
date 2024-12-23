@@ -157,3 +157,12 @@ type FooterLink = {
   name: string
   link: string
 }
+
+type TutorialItem = {
+  imgUrl: string
+  title: string
+  duration: string
+  authorName: string
+  authorImgUrl: string
+  redirectionUrl: string
+}

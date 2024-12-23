@@ -123,12 +123,16 @@ export default {
               html: getNavDropdownItemHtml("/images/home/book.svg", "Docs Icon", "Docs"),
             },
             {
-              to: "/graphql",
-              html: getNavDropdownItemHtml("/images/home/archive.svg", "Learn Icon", "Learn"),
-            },
-            {
               to: "/releases",
               html: getNavDropdownItemHtml("/images/home/git-merge.svg", "Releases Icon", "Releases"),
+            },
+            {
+              to: "/tutorials",
+              html: getNavDropdownItemHtml("/images/home/film.svg", "Tutorials Icon", "Tutorials"),
+            },
+            {
+              to: "/graphql",
+              html: getNavDropdownItemHtml("/images/home/archive.svg", "Learn Icon", "Learn"),
             },
           ],
         },
