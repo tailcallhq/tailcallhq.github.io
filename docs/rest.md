@@ -81,7 +81,7 @@ to know more about the `@rest` directive, please refer to the [Tailcall GraphQL 
 
 ### Step 3: Link the operation to the main config file
 
-checkout the `@link` directive in the config snippet below to link the operation file. This step is crucial to make the REST endpoint available.
+checkout the `links` option in the config snippet below to link the operation file. This step is crucial to make the REST endpoint available.
 
 ```yaml
 links:

@@ -135,7 +135,7 @@ upstream:
   httpCache: 42
 ```
 
-To specify the protobuf file to read types from, use the `@link` directive with the type `Protobuf` on the schema. `id` is an important part of the definition that will be used by the `@grpc` directive later
+To specify the protobuf file to read types from, use the `links` config with the type `Protobuf` on the schema. `id` is an important part of the definition that will be used by the `@grpc` directive later
 
 ```yaml
 links:

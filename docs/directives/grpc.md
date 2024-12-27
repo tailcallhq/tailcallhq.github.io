@@ -88,7 +88,7 @@ message UserGetReply {
 It is mandatory to have a package name in a protobuf file.
 :::
 
-Linking this file within a GraphQL schema is facilitated by the `@link` directive, as shown below:
+Linking this file within a GraphQL schema is facilitated by the `links` config, as shown below:
 
 ```yaml
 links:

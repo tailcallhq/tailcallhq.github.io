@@ -257,7 +257,6 @@ type Query {
 
 In this example:
 We have used the `@http` directive to attach resolvers to the `post` field in the `Query`.
-and `@upstream` directive to define the base URL for the upstream server.
 
 This configuration is enough for starting a GraphQL server using Tailcall. You can start the server using the [`start`](/docs/tailcall-graphql-cli/#start) command.
 
