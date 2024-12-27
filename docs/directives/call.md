@@ -175,10 +175,6 @@ The `@call` directive can be used to combine multiple resolvers in a sequence, p
 Consider a scenario where we have three operations (`a`, `b`, `c`), each extracting a specific part of the input:
 
 ```graphql showLineNumbers
-schema @server {
-  query: Query
-}
-
 type Query {
   a(input: JSON): JSON
     @expr(body: {value: "{{.args.input.a}}"})
@@ -194,10 +190,6 @@ type Query {
 We can create a new `abc` operation that calls `a`, `b`, and `c` in sequence to extract deeply nested data:
 
 ```graphql showLineNumbers
-schema @server {
-  query: Query
-}
-
 type Query {
   a(input: JSON): JSON
     @expr(body: {value: "{{.args.input.a}}"})

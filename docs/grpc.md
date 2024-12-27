@@ -6,6 +6,9 @@ slug: graphql-grpc-tailcall
 image: /images/docs/graphql_on_grpc.png
 ---
 
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
 <head>
   <meta property="og:type" content="article"/>
   <title>How to build GraphQL over gRPC APIs</title>
@@ -125,16 +128,20 @@ type Query {
 
 Also, let's specify options for Tailcall's ingress and egress at the beginning of the config using [`server`](./config/server.md) and [`upstream`](./config/upstream.md) options.
 
-```graphql
-schema @server(port: 8000) @upstream(httpCache: 42) {
-  query: Query
-}
+```yaml
+server:
+  port: 8000
+upstream:
+  httpCache: 42
 ```
 
 To specify the protobuf file to read types from, use the `@link` directive with the type `Protobuf` on the schema. `id` is an important part of the definition that will be used by the `@grpc` directive later
 
-```graphql
-schema @link(id: "news", src: "./news.proto", type: Protobuf)
+```yaml
+links:
+  - id: news
+    type: Protobuf
+    src: ./news.proto
 ```
 
 Now you can connect GraphQL types to gRPC types. To do this you may want to explore more about [`@grpc` directive](./directives/grpc.md). Its usage is pretty straightforward and requires you to specify the path to a method that should be used to make a call. The method name will start with the package name, followed by the service name and the method name, all separated by the `.` symbol.
@@ -159,16 +166,28 @@ type Query {
 
 Wrapping up the whole result config that may look like this:
 
+<Tabs>
+  <TabItem value="config" label="main.yaml">
+
+```yaml
+server:
+  port: 8000
+upstream:
+  httpCache: 42
+  batch:
+    delay: 10
+links:
+  - src: main.graphql
+  - id: news
+    type: Protobuf
+    src: ./news.proto
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
 ```graphql
-# file: app.graphql
-
-schema
-  @server(port: 8000)
-  @upstream(httpCache: 42)
-  @link(id: "news", src: "./news.proto", type: Protobuf) {
-  query: Query
-}
-
 type Query {
   news: NewsData!
     @grpc(
@@ -198,6 +217,9 @@ type NewsData {
   news: [News]!
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 Start the server by pointing it to the config.
 
@@ -237,14 +259,28 @@ Another important feature of the `@grpc` directive is that it allows you to impl
 
 In our protobuf example file, we have a method called `GetMultipleNews` that we can use. To enable batching we need to enable [`upstream.batch` option](./config/upstream.md#batch) first and specify `batchKey` option for the `@grpc` directive.
 
-```graphql
-schema
-  @server(port: 8000)
-  @upstream(httpCache: 42, batch: {delay: 10})
-  @link(id: "news", src: "./news.proto", type: Protobuf) {
-  query: Query
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml
+server:
+  port: 8000
+upstream:
+  httpCache: 42
+  batch:
+    delay: 10
+links:
+  - src: main.graphql
+  - id: news
+    type: Protobuf
+    src: ./news.proto
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql
 type Query {
   newsById(news: NewsInput!): News!
     @grpc(
@@ -256,6 +292,9 @@ type Query {
     )
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 Restart the GraphQL server and make the query with multiple news separately, e.g.:
 

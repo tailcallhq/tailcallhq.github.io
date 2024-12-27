@@ -17,16 +17,13 @@ By default, HTTP caching is turned off in Tailcall. Enabling it requires setting
 
 To activate HTTP caching, adjust the upstream configuration in Tailcall by setting `httpCache` to appropriate cache size, as shown in the following example:
 
-```graphql
-schema
-  @server(port: 4000)
-  @upstream(
-    # highlight-start
-    httpCache: 42
-    # highlight-end
-  ) {
-  query: Query
-}
+```yaml
+server:
+  port: 4000
+upstream:
+  # highlight-start
+  httpCache: 42
+  # highlight-end
 ```
 
 This configuration instructs Tailcall to cache responses from the designated upstream API.
@@ -37,11 +34,9 @@ Enabling the `cacheControl` setting in Tailcall ensures that [Cache-Control] hea
 
 Here is how you can enable the `cacheControl` setting within your Tailcall schema to apply these caching instructions:
 
-```graphql
-schema @server(headers: {cacheControl: true}) {
-  query: Query
-  mutation: Mutation
-}
+```yaml
+server:
+  cacheControl: true
 ```
 
 [cache-control]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control

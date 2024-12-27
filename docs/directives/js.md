@@ -4,6 +4,9 @@ description: The @js directive allows you to use JavaScript functions to resolve
 slug: ../js-directive
 ---
 
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
 The `@js` directive is defined as follows:
 
 ```graphql title="Directive Definition" showLineNumbers
@@ -41,14 +44,25 @@ function resolve(val) {
 
 Here is an example of how the `@js` directive is used within a GraphQL schema:
 
-```gql showLineNumbers
-schema
-  @link(type: Script, src: "./scripts/foo.js")
-  @server(port: 8000)
-  @upstream(httpCache: true) {
-  query: Query
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml
+server:
+  port: 8000
+upstream:
+  httpCache: true
+links:
+  - src: main.graphql
+  - type: Script
+    src: ./scripts/foo.js
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```gql showLineNumbers
 type Query {
   posts: [Post]
     @http(url: "https://jsonplaceholder.typicode.com/posts")
@@ -62,6 +76,9 @@ type Post {
   body: String!
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Error Handling
 

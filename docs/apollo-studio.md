@@ -5,6 +5,9 @@ slug: integrate-apollo-studio-graphql-tailcall
 sidebar_label: Apollo Studio
 ---
 
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
 This guide illustrates how to configure `tailcall` to send usage metrics to [Apollo Studio](https://studio.apollographql.com).
 
 ## Creating a monolith graph
@@ -42,20 +45,28 @@ To see the metrics for you queries follow these instructions:
 
 1. Start `tailcall` with the appropriate configuration for Apollo (click [here](/docs/cli.md#start) to know more). Below is an example of what a config may look like:
 
-   ```graphql
-   schema
-     @server(port: 8000)
-     @telemetry(
-       export: {
-         apollo: {
-           apiKey: "<APOLLO_API_KEY from Apollo Website>"
-           graphRef: "<APOLLO_GRAPH_REF from Apollo Website>"
-         }
-       }
-     ) {
-     query: Query
-   }
+   <Tabs>
+   <TabItem value="config" label="main.yaml">
 
+   ```yaml
+   server:
+     port: 8000
+
+   telemetry:
+     export:
+       apollo:
+         apiKey: "<APOLLO_API_KEY from Apollo Website>"
+         graphRef: "<APOLLO_GRAPH_REF from Apollo Website>"
+
+   links:
+     - src: main.graphql
+   ```
+
+   </TabItem>
+
+   <TabItem value="schema" label="main.graphql">
+
+   ```graphql
    type Query {
      posts: [Post]
        @http(
@@ -70,6 +81,9 @@ To see the metrics for you queries follow these instructions:
      body: String!
    }
    ```
+
+   </TabItem>
+   </Tabs>
 
 1. Visit `http://localhost:8000/graphql` and create a query with an appropriate name (below is an example query named `MyQuery`) and run it multiple times to send the metrics to Apollo Studio.
 

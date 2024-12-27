@@ -5,15 +5,28 @@ slug: graphql-playground-guide
 sidebar_label: GraphQL Playground
 ---
 
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
 The `@server` directive's `showcase` option allows for hands-on experimentation with server configurations in a controlled environment. This feature simplifies the process of exploring and testing different settings. This enables experimenting with random configurations hosted, without the need to restart the server or affect existing setups.
 
 #### Example Usage
 
-```graphql showLineNumbers
-schema @server(showcase: true) {
-  query: Query
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml
+server:
+  showcase: true
+links:
+  - src: main.graphql
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql showLineNumbers
 type User {
   notId: Int
   notName: String
@@ -26,6 +39,9 @@ type Query {
     )
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 To test it out, append `/showcase/graphql?config=YOUR_CONFIG_URL` to your GraphQL base URL when querying the data.
 

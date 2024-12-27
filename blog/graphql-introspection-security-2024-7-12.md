@@ -78,13 +78,10 @@ Disabling introspection in production is crucial because it significantly reduce
 
 In many GraphQL implementations, disabling introspection is straightforward. For example, in [Tailcall](https://tailcall.run/docs/server-directive/#introspection), you can disable introspection by setting the `introspection` option to `false`:
 
-```graphql
-schema
+```yaml
+server:
   # highlight-next-line
-  @server(introspection: false) {
-  query: Query
-  mutation: Mutation
-}
+  introspection: false
 ```
 
 This configuration ensures that introspection is disabled.

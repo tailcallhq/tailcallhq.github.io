@@ -5,6 +5,9 @@ slug: field-level-access-control-graphql-authentication
 sidebar_label: Authentication
 ---
 
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
 This guide will walk you through entity level authentication in GraphQL and how it could be achieved with Tailcall.
 
 ## What is Authentication?
@@ -51,18 +54,29 @@ Enabling support for authentication in Tailcall could be done in two steps:
 
 Your config could look like this now:
 
-```graphql
-schema
-  @server(port: 8000)
+<Tabs>
+  <TabItem value="config" label="main.yaml">
+
+```yaml
+server:
+  port: 8000
+links:
+  - src: main.graphql
   #highlight-start
-  @link(id: "auth-basic", type: Htpasswd, src: "htpasswd")
-  @link(id: "auth-jwt", type: Jwks, src: "jwks.json") {
+  - id: auth-basic
+    type: Htpasswd
+    src: htpasswd
+  - id: auth-jwt
+    type: Jwks
+    src: jwks.json
   #highlight-end
+```
 
-  query: Query
-  mutation: Mutation
-}
+  </TabItem>
 
+  <TabItem value="schema" label="main.graphql">
+
+```graphql
 type Query {
   posts: [Post]
     @http(url: "http://jsonplaceholder.typicode.com/posts")
@@ -103,6 +117,9 @@ type Post {
     )
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 In that case the whole `User` type and `Post.body` are marked as protected and therefore requiring authentication to resolve its content. That means following points:
 
@@ -282,13 +299,24 @@ After adding `@link` you can use the [`@protected` directive](./directives/prote
 
 The whole example could look like this:
 
-```graphql
-schema
-  @server(port: 8000)
-  @link(id: "auth-basic", type: Htpasswd, src: "htpasswd") {
-  query: Query
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml
+server:
+  port: 8000
+links:
+  - src: main.graphql
+  - id: auth-basic
+    type: Htpasswd
+    src: htpasswd
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql
 type Query {
   user(id: Int!): User
     @http(
@@ -305,6 +333,9 @@ type User @protected {
   website: String
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 ### Making test request
 
@@ -376,13 +407,24 @@ After adding `@link` you can use the [`@protected` directive](./directives/prote
 
 The whole example could look like this:
 
-```graphql
-schema
-  @server(port: 8000)
-  @link(id: "auth-jwks", type: Jwks, src: "jwks.json") {
-  query: Query
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml
+server:
+  port: 8000
+links:
+  - src: main.graphql
+  - id: auth-jwks
+    type: Jwks
+    src: jwks.json
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql
 type Query {
   user(id: Int!): User
     @http(
@@ -399,6 +441,9 @@ type User @protected {
   website: String
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 ### Making test request
 

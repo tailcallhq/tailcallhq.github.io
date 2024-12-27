@@ -47,12 +47,7 @@ const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" 
 
 export default Configuration
 
-const GRAPHQL_CONFIG = `schema
-  @server(port: 8000) {
-  query: Query
-}
-
-type Query {
+const GRAPHQL_CONFIG = `type Query {
   users: [User] @http(url: "http://jsonplaceholder.typicode.com/users")
   posts: [Post] @http(url: "http://jsonplaceholder.typicode.com/posts")
 }

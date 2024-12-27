@@ -4,6 +4,9 @@ description: The @protected directive ensures that a user must be authenticated 
 slug: ../protected-directive
 ---
 
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
 The `@protected` directive ensures that a user must be authenticated to access certain data.
 
 ```graphql title="Directive Definition" showLineNumbers
@@ -23,14 +26,14 @@ The `@protected` directive designates a type or field as protected, meaning that
 
 To use the `@protected` directive, you must configure at least one authentication provider using the [`links`](../config/links.md) configuration, such as `Htpasswd` or `Jwks`.
 
-```graphql title="Authentication Provider Configuration" showLineNumbers
-schema
-  @server
-  @upstream
-  @link(id: "basic", type: Htpasswd, src: ".htpasswd_a")
-  @link(id: "jwt", type: Jwks, src: "jwks.json") {
-  query: Query
-}
+```yaml title="Authentication Provider Configuration" showLineNumbers
+links:
+  - id: basic
+    type: Htpasswd
+    src: ".htpasswd_a"
+  - id: jwt
+    type: Jwks
+    src: jwks.json
 ```
 
 ## How It Works
@@ -91,16 +94,28 @@ Consider the following schema and authentication configuration:
 
 ### Schema
 
-```graphql showLineNumbers
-schema
-  @server
-  @upstream
-  @link(id: "a", src: ".htpasswd_a", type: Htpasswd)
-  @link(id: "b", src: ".htpasswd_b", type: Htpasswd)
-  @link(id: "c", src: ".htpasswd_c", type: Htpasswd) {
-  query: Query
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml
+links:
+  - src: main.graphql
+  - id: a
+    type: Htpasswd
+    src: .htpasswd_a
+  - id: b
+    type: Htpasswd
+    src: .htpasswd_b
+  - id: c
+    type: Htpasswd
+    src: .htpasswd_c
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql showLineNumbers
 type Query {
   animals: [Animal!]!
     @expr(
@@ -126,6 +141,9 @@ type Bird {
   tweet: String @protected
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 ### Authentication Files
 

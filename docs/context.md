@@ -5,6 +5,9 @@ slug: graphql-resolver-context-tailcall
 sidebar_label: Resolver Context
 ---
 
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
 Within Tailcall, `Context` is a pivotal component that allows for dynamic retrieval of values during the resolution of fields for a given type within the schema.
 
 ## Schema Definition
@@ -72,14 +75,23 @@ type Query {
 
 `vars` offers a mechanism for defining reusable variables within the configuration. Unlike `env`, these are embedded and can be universally applied across configurations.
 
-```graphql showLineNumbers
-schema
-  @server(
-    vars: {key: "apiKey", value: "{{.env.AUTH_TOKEN}}"}
-  ) {
-  query: Query
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml
+server:
+  vars:
+    - key: apiKey
+      value: "{{.env.AUTH_TOKEN}}"}
+links:
+  - src: main.graphql
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql showLineNumbers
 type Query {
   user(id: ID!): [User]
     @http(
@@ -93,6 +105,9 @@ type Query {
     )
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 Here, the variable `apiKey` is set using an environment variable and subsequently utilized in the `Authorization` header for HTTP requests.
 

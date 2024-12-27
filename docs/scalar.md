@@ -42,10 +42,6 @@ Apart from the pre-defined list of scalars, you can define your own custom scala
 ```graphql
 scalar AnyScalar
 
-schema @server(port: 8000, hostname: "localhost") {
-  query: Query
-}
-
 type Query {
   any(value: AnyScalar!): AnyScalar!
     @expr(body: "{{.args.value}}")
@@ -61,10 +57,6 @@ Be aware that custom scalars don't have any validation and can be mapped to any 
 Let's try using these custom scalars in our GraphQL schema.
 
 ```graphql
-schema @server(port: 8000, hostname: "localhost") {
-  query: Query
-}
-
 type Query {
   email(value: Email!): Email!
     @expr(body: "{{.args.value}}")

@@ -236,7 +236,7 @@ type Query {
           path: "./jsonplaceholder.graphql"
           format: "graphQL"
         schema:
-          query: "Query"        
+          query: "Query"
         ```
     </TabItem>
     </Tabs>
@@ -296,7 +296,7 @@ tailcall gen ./config.json
 Generated Configuration looks like following.
 
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
-schema @server @upstream {
+schema {
   mutation: Mutation
 }
 
@@ -374,29 +374,29 @@ Tailcall simplifies the process of generating GraphQL schemas from gRPC. By spec
     </TabItem>
 
     <TabItem value="yml" label="YML Config Format">
-      
-      ```yml showLineNumbers
-        inputs:
-          - proto:
-            src: "./news.proto"
-            url: "http://localhost:50051"
-          - proto:
-            src: "./news.proto"
-            url: "http://localhost:8080/news.NewsService/"
-            connectRPC: true
-            protoPaths:
-              - "./protos"
-        preset:
-          mergeType: 1.0
-        output:
-          path: "./jsonplaceholder.graphql"
-          format: "graphQL"
-        schema:
-          query: "Query"
-        ```
 
-    </TabItem>
-    </Tabs>
+   ```yml showLineNumbers
+   inputs:
+     - proto:
+       src: "./news.proto"
+       url: "http://localhost:50051"
+     - proto:
+       src: "./news.proto"
+       url: "http://localhost:8080/news.NewsService/"
+       connectRPC: true
+       protoPaths:
+         - "./protos"
+   preset:
+     mergeType: 1.0
+   output:
+     path: "./jsonplaceholder.graphql"
+     format: "graphQL"
+   schema:
+     query: "Query"
+   ```
+
+   </TabItem>
+   </Tabs>
 
 Let's understand the above configuration file.
 
@@ -421,7 +421,7 @@ Let's understand the above configuration file.
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
 ```graphql showLineNumbers title="Generated GraphQL Configuration"
-schema @link(src: "./news.proto", type: Protobuf) @server {
+schema @link(src: "./news.proto", type: Protobuf) {
   query: Query
 }
 
@@ -541,7 +541,7 @@ tailcall gen ./config.json
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
 ```graphql showLineNumbers
-schema @link(src: "./news.proto", type: Protobuf) @server {
+schema @link(src: "./news.proto", type: Protobuf) {
   query: Query
 }
 

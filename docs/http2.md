@@ -5,6 +5,9 @@ slug: graphql-http2-guide-tailcall
 sidebar_label: HTTP/2
 ---
 
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
 [HTTP/2](https://www.cloudflare.com/en-in/learning/performance/http2-vs-http1.1/) represents a significant advancement in web protocols, offering enhancements such as multiplexing, header compression, and streamlined connection handling, all designed to improve web performance.
 
 Tailcall enables support for HTTP/2 for both server (ingress) and client (egress) operations, facilitating the protocol's adoption for both incoming and outgoing server requests. For egress, there is no special setting that's required, Tailcall will automatically upgrade the connection to HTTP/2 whenever possible. To configure ingress properly, you need to provide the following settings
@@ -82,17 +85,25 @@ type User {
 
 Once HTTPS is enabled we set the version to `HTTP2` for the server:
 
-```graphql showLineNumbers
-schema
-  @link(type: "Cert", src: "./cert.pem")
-  @link(type: "Key", src: "./key.pem")
-  #highlight-start
-  @server(version: HTTP2) {
-  #highlight-end
-  query: Query
-  mutation: Mutation
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml
+server:
+  version: HTTP2
+links:
+  - src: main.graphql
+  - type: Cert
+    src: ./cert.pem
+  - type: Key
+    src: ./key.pem
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql showLineNumbers
 type Query {
   posts: [Post]
     @http(url: "https://jsonplaceholder.typicode.com/posts")
@@ -103,6 +114,9 @@ type User {
   name: String!
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 That's pretty much all that's required. Now you can go ahead and [launch](/docs/getting-started.mdx#starting-the-graphql-server) your server as usual.
 

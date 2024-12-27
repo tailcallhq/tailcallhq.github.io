@@ -75,13 +75,6 @@ Create a `tailcall` directory in the project root and add a jsonplaceholder.grap
 
 ```graphql
 # File: tailcall/jsonplaceholder.graphql
-
-schema
-  @server(port: 8000, hostname: "0.0.0.0")
-  @upstream(httpCache: 42) {
-  query: Query
-}
-
 type Query {
   posts: [Post]
     @http(url: "http://jsonplaceholder.typicode.com/posts")
