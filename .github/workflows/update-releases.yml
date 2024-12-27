@@ -1,9 +1,8 @@
 name: Update Releases
 
 on:
-  push:
-  # schedule:
-  #   - cron: "0 */4 * * *"
+  schedule:
+    - cron: "0 */4 * * *"
 
 permissions:
   contents: write
@@ -11,7 +10,7 @@ permissions:
 
 jobs:
   update-releases:
-    # if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
 
     steps:
@@ -41,7 +40,7 @@ jobs:
           branch: update-releases
           branch-suffix: timestamp
           base: develop
-          title: "Updated Releases"
+          title: "chore: updated releases"
           body: |
             This is an auto-generated pull request that updates releases.
           reviewers: tusharmath
