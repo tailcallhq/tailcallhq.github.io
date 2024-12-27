@@ -420,11 +420,21 @@ Let's understand the above configuration file.
 
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
-```graphql showLineNumbers title="Generated GraphQL Configuration"
-schema @link(src: "./news.proto", type: Protobuf) {
-  query: Query
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml title="Generated GraphQL Configuration"
+links:
+  - src: main.graphql
+  - type: Protobuf
+    src: ./news.proto
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql showLineNumbers title="Generated GraphQL Configuration"
 type News @tag(id: "news.News") {
   id: Int
   title: String
@@ -436,6 +446,9 @@ type Query {
   news: [News] @grpc(method: "news.NewsService.GetNews")
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 for more insights on how gPRC works with GraphQL, you can read this [GraphQL over gRPC](grpc.md) article.
 
@@ -540,12 +553,22 @@ tailcall gen ./config.json
 </Tabs>
 **Schema**: Specifies the name of the Query operation type, which is `Query` in this example.
 
-```graphql showLineNumbers
-schema @link(src: "./news.proto", type: Protobuf) {
-  query: Query
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
-type News @tag(id: "news.News") {
+```yaml title="Generated GraphQL Configuration"
+links:
+  - src: main.graphql
+  - type: Protobuf
+    src: ./news.proto
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql showLineNumbers title="Generated GraphQL Configuration"
+type News {
   id: Int
   title: String
   content: String
@@ -565,6 +588,9 @@ type Query {
   news: [News] @grpc(method: "news.NewsService.GetNews")
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Understanding Presets
 

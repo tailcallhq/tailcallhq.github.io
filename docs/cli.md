@@ -244,6 +244,31 @@ preset:
 </TabItem>
 </Tabs>
 
+---
+
+<Tabs>
+  <TabItem value="config" label="main.yaml">
+
+```yaml
+server:
+  port: 8000
+links:
+  - src: main.graphql
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql
+
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
 ### Inputs
 
 The `inputs` section specifies the sources from which the GraphQL configuration should be generated. Each source can be either a REST endpoint or a protobuf file.
