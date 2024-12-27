@@ -4,6 +4,9 @@ description: The @rest directive maps fields to REST API endpoints, allowing Gra
 slug: ../rest-directive
 ---
 
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
 The `@rest` directive is defined as follows:
 
 ```graphql title="Directive Definition" showLineNumbers
@@ -37,14 +40,21 @@ API orchestration is essential, yet not all can adopt GraphQL despite its benefi
 
 Define GraphQL types and queries, using the `@rest` directive to map fields to REST API endpoints.
 
-`schema.graphql`
+<Tabs>
+  <TabItem value="config" label="main.yaml">
+
+```yaml
+links:
+  - src: main.graphql
+  - type: Operation
+    src: user-operation.graphql
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
 
 ```graphql
-schema
-  @link(type: Operation, src: "user-operation.graphql") {
-  query: Query
-}
-
 type Query {
   user(id: Int!): User
     @rest(method: "GET", path: "/users/{{.args.id}}")
@@ -57,7 +67,9 @@ type User {
 }
 ```
 
-`user-operation.graphql`
+  </TabItem>
+
+  <TabItem value="operation" label="user-operation.graphql">
 
 ```graphql
 query ($id: Int!) @rest(method: GET, path: "/user/$id") {
@@ -67,6 +79,10 @@ query ($id: Int!) @rest(method: GET, path: "/user/$id") {
   }
 }
 ```
+
+  </TabItem>
+
+</Tabs>
 
 ![REST Demo](/images/docs/rest-user.png)
 

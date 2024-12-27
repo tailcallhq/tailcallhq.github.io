@@ -12,13 +12,13 @@ The guide is based on [official doc](https://docs.newrelic.com/docs/more-integra
 3. Go to `<your user name> -> Api Keys` and copy license value for key with access to write data
 4. Go to GraphQL configuration and update it with:
    ```yaml
-    telemetry:
-      export:
-        otlp:
-          url: "https://otlp.nr-data.net:4317"
-          headers:
-            - key: "api-key"
-              value: "{{.env.NEWRELIC_API_KEY}}"
+   telemetry:
+     export:
+       otlp:
+         url: "https://otlp.nr-data.net:4317"
+         headers:
+           - key: "api-key"
+             value: "{{.env.NEWRELIC_API_KEY}}"
    ```
 5. Set the api key you've copied before to the environment variable named `NEWRELIC_API_KEY` and start tailcall with updated config
 

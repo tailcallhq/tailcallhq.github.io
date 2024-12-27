@@ -321,14 +321,10 @@ gRPC reflection is a potent feature enabling clients to dynamically discover ser
 
 1. Add the gRPC endpoint as a [link](./config/links.md) with type set to `Grpc`. This enables the GraphQL server to understand that the specified source is a gRPC endpoint that supports reflection.
 
-   ```graphql
-   schema
-     @link(
-       src: "https://my-grpc-service.com:50051"
-       type: Grpc
-     ) {
-     query: Query
-   }
+   ```yaml
+    links:
+       - src: "https://my-grpc-service.com:50051"
+        type: Grpc
    ```
 
 2. Next, as before we will just add the methods with a fully qualified name:

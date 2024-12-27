@@ -92,10 +92,10 @@ This guide is based on the [official doc](https://docs.datadoghq.com/getting_sta
    Add telemetry support to your Tailcall configuration as follows:
 
    ```yaml
-    telemetry:
-      export:
-        otlp:
-          url: "http://localhost:4317"
+   telemetry:
+     export:
+       otlp:
+         url: "http://localhost:4317"
    ```
 
 6. **Set the Environment Variable for Tailcall:**

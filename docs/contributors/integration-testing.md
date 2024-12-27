@@ -235,10 +235,10 @@ function onRequest({request}) {
 }
 ```
 
-```graphql @config
-schema @link(file: "worker.js") {
-  query: Query
-}
+```yaml @config
+links:
+  - type: Script
+    src: worker.js
 ```
 ````
 

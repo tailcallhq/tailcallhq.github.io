@@ -62,16 +62,25 @@ Use self-signed certificates for HTTP/2 configurations in development environmen
 
 Once the certificate and key are generated we can link them with our main configuration using the [links](./config/links.md) configuration, to enable HTTPS.
 
-```graphql showLineNumbers
-schema
-  #highlight-start
-  @link(type: "Cert", src: "./cert.pem")
-  @link(type: "Key", src: "./key.pem") {
-  #highlight-end
-  query: Query
-  mutation: Mutation
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml
+links:
+  - src: main.graphql
+  #highlight-start
+  - type: "Cert"
+    src: "./cert.pem"
+  - type: "Key"
+    src: "./key.pem"
+  #highlight-end
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql showLineNumbers
 type Query {
   posts: [Post]
     @http(url: "https://jsonplaceholder.typicode.com/posts")
@@ -82,6 +91,9 @@ type User {
   name: String!
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 Once HTTPS is enabled we set the version to `HTTP2` for the server:
 

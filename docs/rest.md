@@ -83,13 +83,10 @@ to know more about the `@rest` directive, please refer to the [Tailcall GraphQL 
 
 checkout the `@link` directive in the config snippet below to link the operation file. This step is crucial to make the REST endpoint available.
 
-```graphql
-schema
-  #highlight-start
-  @link(type: Operation, src: "user-operation.graphql") {
-  #highlight-end
-  query: Query
-}
+```yaml
+links:
+  - type: Operation
+    src: "user-operation.graphql"
 ```
 
 To know more about the `links` configuration, please refer [it's documentation](./config/links.md).

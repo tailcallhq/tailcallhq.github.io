@@ -4,6 +4,9 @@ description: The @grpc directive enables the resolution of GraphQL fields via gR
 slug: ../grpc-directive
 ---
 
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
 The `@grpc` directive allows GraphQL fields to be resolved by fetching data through gRPC services, facilitating powerful integrations between GraphQL and gRPC.
 
 ## `@grpc` Directive Definition
@@ -25,15 +28,28 @@ directive @grpc(
 
 Here's an example demonstrating the use of the `@grpc` directive:
 
-```graphql showLineNumbers
-schema @link(src: "./users.proto", type: Protobuf) {
-  query: Query
-}
+<Tabs>
+  <TabItem value="config" label="main.yaml">
 
+```yaml
+links:
+  - src: main.graphql
+  - type: Protobuf
+    src: ./users.proto
+```
+
+  </TabItem>
+
+  <TabItem value="schema" label="main.graphql">
+
+```graphql showLineNumbers
 type Query {
   users: [User] @grpc(method: "users.UserService.ListUsers")
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 In this example, the `users` field fetches data from the gRPC method `UserService.ListUsers`.
 
@@ -74,10 +90,10 @@ It is mandatory to have a package name in a protobuf file.
 
 Linking this file within a GraphQL schema is facilitated by the `@link` directive, as shown below:
 
-```graphql
-schema @link(src: "./users.proto", type: Protobuf) {
-  query: Query
-}
+```yaml
+links:
+  - type: Protobuf
+    src: ./users.proto
 ```
 
 Tailcall automatically resolves the protobuf file for any methods referenced in the `@grpc` directive.
