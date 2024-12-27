@@ -62,15 +62,11 @@ When using HTTP/1.x, tune the connection pool with the following parameters:
 
 `poolMaxIdlePerHost` specifies the allowed number of idle connections per host, defaulting to `60`. Example:
 
-```graphql showLineNumbers
-schema
-  @upstream(
-    # highlight-start
-    poolMaxIdlePerHost: 60
-    # highlight-end
-  ) {
-  query: Query
-}
+```yaml showLineNumbers
+upstream:
+  # highlight-start
+  poolMaxIdlePerHost: 60
+  # highlight-end
 ```
 
 Too idle connections can unnecessarily consume memory and ports, while too few might cause delays as new connections need frequent establishment. `poolMaxIdlePerHost` ensures judicious use of network and memory resources, avoiding wastage on seldom-used connections.
@@ -84,15 +80,11 @@ For applications connecting to hosts, set this value lower to keep connections a
 Tailcall provides a parameter named `tcpKeepAlive` for the upstream which defaults to 5 seconds. Example:
 schema
 
-```graphql
-@upstream (
-# highlight-start
+```yaml
+upstream:
+  # highlight-start
   tcpKeepAlive: 300
-# highlight-end
-) {
-query: Query
-}
-
+  # highlight-end
 ```
 
 ### connectTimeout
@@ -101,15 +93,11 @@ query: Query
 
 Tailcall offers a `connectTimeout` parameter to set the connection timeout in seconds for the HTTP client, defaulting to 60 seconds. Example:
 
-```graphql showLineNumbers
-schema
-  @upstream(
-    # highlight-start
-    connectTimeout: 10
-    # highlight-end
-  ) {
-  query: Query
-}
+```yaml showLineNumbers
+upstream:
+  # highlight-start
+  connectTimeout: 10
+  # highlight-end
 ```
 
 In summary, maximizing HTTP client performance requires understanding the underlying protocols and configuring client settings through testing. This ensures efficient, robust, and high-performing client-server communication, crucial for the smooth operation of modern web applications.

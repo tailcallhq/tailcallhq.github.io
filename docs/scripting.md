@@ -31,11 +31,12 @@ function foo({request}) {
 
 Once you have a worker file ready, link that file to the GraphQL configuration using the [`links`](./config/links.md) configuration and define the [onRequest](./config/upstream.md#onrequest) property.
 
-```graphql
-schema
-  @link(type: Script, src: "./worker.js")
-  @upstream(onRequest: "foo") {
-  query: Query
+```yaml
+upstream:
+  onRequest: foo
+links:
+  - type: Script
+    src: ./worker.js
 }
 ```
 
