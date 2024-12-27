@@ -1,8 +1,9 @@
 name: Update Releases
 
 on:
-  schedule:
-    - cron: "0 */4 * * *"
+  workflow_dispatch
+  # schedule:
+  #   - cron: "0 */4 * * *"
 
 permissions:
   contents: write
@@ -10,7 +11,7 @@ permissions:
 
 jobs:
   update-releases:
-    if: github.ref == 'refs/heads/develop'
+    # if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
 
     steps:
