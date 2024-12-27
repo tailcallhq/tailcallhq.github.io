@@ -9,27 +9,16 @@ sidebar_label: Honeycomb
 2. Login to your account
 3. Go to `Account -> Team Settings -> Environments and API Keys -> Configuration` and create new or copy existing api key
 4. Go to your GraphQL configuration and update settings:
-   ```graphql
-   schema
-     @telemetry(
-       export: {
-         otlp: {
-           url: "https://api.honeycomb.io:443"
-           headers: [
-             {
-               key: "x-honeycomb-team"
-               value: "{{.env.HONEYCOMB_API_KEY}}"
-             }
-             {
-               key: "x-honeycomb-dataset"
-               value: "<your-dataset>"
-             }
-           ]
-         }
-       }
-     ) {
-     query: Query
-   }
+   ```yaml
+    telemetry:
+      export:
+        otlp:
+          url: "https://api.honeycomb.io:443"
+          headers:
+            - key: "x-honeycomb-team"
+              value: "{{.env.HONEYCOMB_API_KEY}}"
+            - key: "x-honeycomb-dataset"
+              value: "<your-dataset>"
    ```
 5. Set the api key you've copied before to the environment variable named `HONEYCOMB_API_KEY` and start tailcall with updated config
 

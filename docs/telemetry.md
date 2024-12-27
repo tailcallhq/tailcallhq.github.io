@@ -79,15 +79,11 @@ Telemetry configuration is provided by [`telemetry`](./config/telemetry.md) conf
 
 To enable it we can update our config with something like config below:
 
-```graphql
-schema
-  @telemetry(
-    export: {
-      otlp: {url: "http://your-otlp-compatible-backend.com"}
-    }
-  ) {
-  query: Query
-}
+```yaml
+telemetry:
+  export:
+    otlp:
+      url: "http://your-otlp-compatible-backend.com"
 ```
 
 Here, `export` specifies the format of generated data and endpoint to which to send that data. Continue reading to know more about different options for it.

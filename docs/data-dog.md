@@ -91,13 +91,11 @@ This guide is based on the [official doc](https://docs.datadoghq.com/getting_sta
 5. **Update Tailcall Configuration:**
    Add telemetry support to your Tailcall configuration as follows:
 
-   ```graphql
-   schema
-     @telemetry(
-       export: {otlp: {url: "http://localhost:4317"}}
-     ) {
-     query: Query
-   }
+   ```yaml
+    telemetry:
+      export:
+        otlp:
+          url: "http://localhost:4317"
    ```
 
 6. **Set the Environment Variable for Tailcall:**
