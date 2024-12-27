@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update-releases:
@@ -31,9 +32,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node release-notes-generator.js
 
-      - name: Commit and push changes (on develop)
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
         with:
-          branch: ${{ github.ref_name }}
-          commit_author: Author <actions@github.com>
-          commit_message: "chore: updated releases"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: updated releases"
+          branch: update-releases
+          branch-suffix: timestamp
+          base: develop
+          title: "Updated Releases"
+          body: |
+            This is an auto-generated pull request that updates releases.
+          reviewers: tusharmath
+          maintainer-can-modify: true
