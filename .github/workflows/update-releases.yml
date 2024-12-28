@@ -1,9 +1,8 @@
 name: Update Releases
 
 on:
-  push:
-  # schedule:
-  #   - cron: "0 */4 * * *"
+  schedule:
+    - cron: "0 */4 * * *"
 
 permissions:
   contents: write
@@ -11,8 +10,7 @@ permissions:
 
 jobs:
   update-releases:
-    # if: github.repository == 'tailcallhq/tailcallhq.github.io' && github.ref == 'refs/heads/develop'
-    if: github.repository == 'tailcallhq/tailcallhq.github.io'
+    if: github.repository == 'tailcallhq/tailcallhq.github.io' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
 
     steps:
