@@ -30,13 +30,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          EXISTING_PRS=$(gh pr list --state open --base develop --json headRefName --jq '.[] | select(.headRefName | startswith("update-releases"))')
-
-          if [ -n "$EXISTING_PRS" ]; then
-            echo "has_existing_pr=true" >> $GITHUB_ENV
-            exit 0
+          EXISTING_PR=$(gh pr list --state open --base develop --json headRefName --jq '.[] | select(.headRefName | startswith("update-releases")) | .headRefName')
+          if [ -n "$EXISTING_PR" ]; then
+            echo "An existing PR is already open. Exiting workflow."
+            exit 1
           else
-            echo "has_existing_pr=false" >> $GITHUB_ENV
+            echo "No existing PR found. Proceeding with new PR creation."
           fi
 
       - name: Run npm Install
@@ -48,7 +47,6 @@ jobs:
         run: node release-notes-generator.js
 
       - name: Create Pull Request
-        if: env.has_existing_pr == 'false'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
