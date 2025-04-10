@@ -4,7 +4,7 @@ import React, {useEffect, useReducer, useRef, useState} from "react"
 import clsx from "clsx"
 
 import algoliaSearchHelper from "algoliasearch-helper"
-import algoliaSearch from "algoliasearch/lite"
+import {liteClient} from "algoliasearch/lite"
 
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment"
 import Head from "@docusaurus/Head"
@@ -192,7 +192,7 @@ function SearchPageContent(): JSX.Element {
   // respect settings from the theme config for facets
   const disjunctiveFacets = contextualSearch ? ["language", "docusaurus_tag"] : []
 
-  const algoliaClient = algoliaSearch(appId, apiKey)
+  const algoliaClient = liteClient(appId, apiKey)
   const algoliaHelper = algoliaSearchHelper(algoliaClient, indexName, {
     hitsPerPage: 15,
     advancedSyntax: true,

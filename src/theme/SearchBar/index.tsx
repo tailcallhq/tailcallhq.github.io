@@ -11,9 +11,14 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import translations from "@theme/SearchTranslations"
 
 import type {AutocompleteState} from "@algolia/autocomplete-core"
-import type {DocSearchModal as DocSearchModalType, DocSearchModalProps} from "@docsearch/react"
-import type {InternalDocSearchHit, StoredDocSearchHit} from "@docsearch/react/dist/esm/types"
-import type {SearchClient} from "algoliasearch/lite"
+import type {
+  DocSearchModal as DocSearchModalType,
+  DocSearchModalProps,
+  InternalDocSearchHit,
+  StoredDocSearchHit,
+  DocSearchTransformClient,
+} from "@docsearch/react"
+import type {FacetFilters} from "algoliasearch/lite"
 import {algoliaConstants} from "@site/src/constants"
 
 type DocSearchProps = Omit<DocSearchModalProps, "onClose" | "initialScrollY"> & {
@@ -46,12 +51,9 @@ function ResultsFooter({state, onClose}: ResultsFooterProps) {
   )
 }
 
-type FacetFilters = Required<Required<DocSearchProps>["searchParameters"]>["facetFilters"]
-
 function mergeFacetFilters(f1: FacetFilters, f2: FacetFilters): FacetFilters {
-  const normalize = (f: FacetFilters): readonly string[] | readonly (string | readonly string[])[] =>
-    typeof f === "string" ? [f] : f
-  return [...normalize(f1), ...normalize(f2)] as FacetFilters
+  const normalize = (f: FacetFilters): FacetFilters => (typeof f === "string" ? [f] : f)
+  return [...normalize(f1), ...normalize(f2)]
 }
 
 function DocSearch({contextualSearch, externalUrlRegex, ...props}: DocSearchProps) {
@@ -110,6 +112,7 @@ function DocSearch({contextualSearch, externalUrlRegex, ...props}: DocSearchProp
   const closeModal = useCallback(() => {
     setIsOpen(false)
     searchButtonRef.current?.focus()
+    setInitialQuery(undefined)
   }, [])
 
   const handleInput = useCallback(
@@ -155,7 +158,7 @@ function DocSearch({contextualSearch, externalUrlRegex, ...props}: DocSearchProp
   )
 
   const transformSearchClient = useCallback(
-    (searchClient: SearchClient) => {
+    (searchClient: DocSearchTransformClient) => {
       searchClient.addAlgoliaAgent("docusaurus", siteMetadata.docusaurusVersion)
 
       return searchClient
