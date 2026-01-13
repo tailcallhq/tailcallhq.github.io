@@ -187,7 +187,12 @@
                 "name": "Hunain Ahmed",
                 "url": "https://github.com/hunxjunedo"
             },
-            "tags": []
+            "tags": [
+                "GraphQL",
+                "gRPC",
+                "backend",
+                "microservices"
+            ]
         },
         {
             "id": "https://tailcall.run/blog/exploring-graphiql/",
@@ -291,7 +296,11 @@
                 "name": "Hunain Ahmed",
                 "url": "https://github.com/hunxjunedo"
             },
-            "tags": []
+            "tags": [
+                "microservices",
+                "gRPC",
+                "API"
+            ]
         },
         {
             "id": "https://tailcall.run/blog/graphql-introspection-security/",

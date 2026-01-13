@@ -7,7 +7,7 @@
     <link rel="alternate" href="https://tailcall.run/blog/"/>
     <subtitle>Tailcall Blog</subtitle>
     <icon>https://tailcall.run/images/favicon.ico</icon>
-    <rights>Copyright © 2025 Tailcall, Inc.</rights>
+    <rights>Copyright © 2026 Tailcall, Inc.</rights>
     <entry>
         <title type="html"><![CDATA[GraphQL Configuration v2]]></title>
         <id>https://tailcall.run/blog/migrating-to-graphql-configuration-v2/</id>
@@ -1622,6 +1622,10 @@ The Cast:</p>
             <name>Hunain Ahmed</name>
             <uri>https://github.com/hunxjunedo</uri>
         </author>
+        <category label="GraphQL" term="GraphQL"/>
+        <category label="gRPC" term="gRPC"/>
+        <category label="backend" term="backend"/>
+        <category label="microservices" term="microservices"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Exploring GraphiQL: The In-Browser IDE for GraphQL]]></title>
@@ -2551,6 +2555,9 @@ When a gRPC client initiates a request to a gRPC server, it sends an HTTP/2 requ
             <name>Hunain Ahmed</name>
             <uri>https://github.com/hunxjunedo</uri>
         </author>
+        <category label="microservices" term="microservices"/>
+        <category label="gRPC" term="gRPC"/>
+        <category label="API" term="API"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Are Hackers Using Your Own GraphQL API Against You?]]></title>
