@@ -1,0 +1,25 @@
+{
+  "name": "blog-publisher",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "generate": "graphql-codegen"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@apollo/client": "^3.10.8",
+    "axios": "^1.7.2",
+    "crypto": "^1.0.1",
+    "graphql": "^16.9.0",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/schema-ast": "^4.1.0",
+    "@graphql-codegen/typed-document-node": "^5.0.9",
+    "@graphql-codegen/typescript-operations": "^4.2.3"
+  }
+}

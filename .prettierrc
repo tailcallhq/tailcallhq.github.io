@@ -1,0 +1,7 @@
+{
+  "semi": false,
+  "printWidth": 120,
+  "bracketSpacing": false,
+  "overrides": [{"files": "*.md", "options": {"printWidth": 60}}],
+  "plugins": ["prettier-plugin-sh"]
+}

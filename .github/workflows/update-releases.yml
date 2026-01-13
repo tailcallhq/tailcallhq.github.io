@@ -1,0 +1,59 @@
+name: Update Releases
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-releases:
+    if: github.repository == 'tailcallhq/tailcallhq.github.io' && github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Check for Existing Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTING_PR=$(gh pr list --state open --base develop --json headRefName --jq '.[] | select(.headRefName | startswith("update-releases")) | .headRefName')
+          if [ -n "$EXISTING_PR" ]; then
+            echo "An existing PR is already open. Exiting workflow."
+            exit 1
+          else
+            echo "No existing PR found. Proceeding with new PR creation."
+          fi
+
+      - name: Run npm Install
+        run: npm install
+
+      - name: Run Releases Docs Generator Script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node release-notes-generator.js
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: updated releases"
+          branch: update-releases
+          branch-suffix: timestamp
+          base: develop
+          title: "chore: updated releases"
+          body: |
+            This is an auto-generated pull request that updates releases.
+          reviewers: tusharmath
+          maintainer-can-modify: true

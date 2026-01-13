@@ -1,0 +1,11 @@
+mutation UpdatePost($input: UpdatePostInput!) {
+  updatePost(input: $input) {
+    post {
+      id
+      slug
+      title
+      subtitle
+      updatedAt
+    }
+  }
+}

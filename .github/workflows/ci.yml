@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  repository_dispatch:
+    types: build-and-deploy
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches: [develop]
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check spelling
+        uses: codespell-project/actions-codespell@v2
+        with:
+          ignore_words_file: .github/codespell-ignore
+          skip: .git,**/*.png,**/*.gif,**/*.jpg,**/*.svg,**/*.ico,**/*.json,package.json,package-lock.json,*.lock,*.excalidraw,*.graphql,./blog-publisher/generated/graphql.ts,./releases/**/*.mdx
+
+      - name: Install Build & Test 🔧
+        run: |
+          npm install
+          npx prettier --check "**/*.{graphql,yml,json,md,sh,ts,tsx,js,css}"
+          npm run build
+          npm run test:cypress
+
+      - name: Deploy 🚀
+        if: github.ref == 'refs/heads/develop'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build

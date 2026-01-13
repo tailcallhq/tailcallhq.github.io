@@ -1,0 +1,201 @@
+---
+sidebar_position: 2
+toc_max_heading_level: 2
+---
+
+import VersionUpdateCard from "@site/src/components/shared/VersionUpdateCard"
+
+<VersionUpdateCard />
+
+## v0.133.0 
+
+### 🚀 Features
+
+- feat: add on response body hook to http directives [@laststylebender14](https://github.com/laststylebender14) ([#2860](https://github.com/tailcallhq/tailcall/pull/2860))
+
+### 🧰 Maintenance
+
+- chore: migrate to serde\_yaml\_ng instead of serde\_yaml [@meskill](https://github.com/meskill) ([#3178](https://github.com/tailcallhq/tailcall/pull/3178))
+
+
+---
+## v0.132.0 
+
+### 🚀 Features
+
+- feat: Support mustache on link directives [@ssddOnTop](https://github.com/ssddOnTop) ([#3176](https://github.com/tailcallhq/tailcall/pull/3176))
+
+
+---
+## v0.131.3 
+
+### 🐛 Bug Fixes
+
+- fix(2999): add validation on http query [@dekkku](https://github.com/dekkku) ([#3143](https://github.com/tailcallhq/tailcall/pull/3143))
+
+
+---
+## v0.131.2 
+
+### 🐛 Bug Fixes
+
+- fix: check if graphql schema should be updated [@meskill](https://github.com/meskill) ([#3173](https://github.com/tailcallhq/tailcall/pull/3173))
+
+
+---
+## v0.131.1 
+
+### 📝 Documentation
+
+- docs(3163): adds documentation for link type @Yash-sudo-web (#3169)
+
+### 🐛 Bug Fixes
+
+- fix(2892): consider entity resolvers in n + 1 check [@meskill](https://github.com/meskill) ([#2978](https://github.com/tailcallhq/tailcall/pull/2978))
+
+
+---
+## v0.131.0 
+
+### 🚀 Features
+
+- feat: support multiple resolvers on fields [@meskill](https://github.com/meskill) ([#3124](https://github.com/tailcallhq/tailcall/pull/3124))
+- test(3010): add integration tests for dedupe [@dekkku](https://github.com/dekkku) ([#3145](https://github.com/tailcallhq/tailcall/pull/3145))
+
+
+---
+## v0.130.1 
+
+### 🐛 Bug Fixes
+
+- fix(3144): add correct auth validation traces [@dekkku](https://github.com/dekkku) ([#3152](https://github.com/tailcallhq/tailcall/pull/3152))
+
+
+---
+## v0.130.0 
+
+### 🚀 Features
+
+- feat(blueprint): replace validation String with BlueprintError [@karatakis](https://github.com/karatakis) ([#3154](https://github.com/tailcallhq/tailcall/pull/3154))
+
+
+---
+## v0.129.2 
+
+### 🐛 Bug Fixes
+
+- fix: drop blocking call to check updates [@tusharmath](https://github.com/tusharmath) ([#3160](https://github.com/tailcallhq/tailcall/pull/3160))
+
+### 🧰 Maintenance
+
+- chore(deps): update rust crate flate2 to v1.0.35 [@renovate](https://github.com/renovate) ([#3157](https://github.com/tailcallhq/tailcall/pull/3157))
+- chore(deps): update dependency vitest to v2.1.5 [@renovate](https://github.com/renovate) ([#3155](https://github.com/tailcallhq/tailcall/pull/3155))
+
+
+---
+## v0.129.1 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate rustls to v0.23.18 [security] [@renovate](https://github.com/renovate) ([#3153](https://github.com/tailcallhq/tailcall/pull/3153))
+
+### 🧰 Maintenance
+
+- chore: upgrade derive\_more to v1.0.0 [@mehulmathur16](https://github.com/mehulmathur16) ([#3151](https://github.com/tailcallhq/tailcall/pull/3151))
+
+
+---
+## v0.129.0 
+
+### 🚀 Features
+
+- feat: control authentication providers [@tusharmath](https://github.com/tusharmath) ([#3142](https://github.com/tailcallhq/tailcall/pull/3142))
+
+
+---
+## v0.128.1 
+
+- feat: add email source [@tusharmath](https://github.com/tusharmath) ([#3141](https://github.com/tailcallhq/tailcall/pull/3141))
+
+
+---
+## v0.128.0 
+
+### 🚀 Features
+
+- feat(jit): plan ahead auth requirements when required [@karatakis](https://github.com/karatakis) ([#3139](https://github.com/tailcallhq/tailcall/pull/3139))
+
+
+---
+## v0.127.0 
+
+### 🚀 Features
+
+- feat(3133 ): suggest users to update the rc files if it's are not updated [@dekkku](https://github.com/dekkku) ([#3136](https://github.com/tailcallhq/tailcall/pull/3136))
+
+
+---
+## v0.126.0 
+
+- ci: Update Bencher CLI usage [@epompeii](https://github.com/epompeii) ([#3100](https://github.com/tailcallhq/tailcall/pull/3100))
+
+### 🚀 Features
+
+- feat(3131): show upgrade warning on exit [@dekkku](https://github.com/dekkku) ([#3134](https://github.com/tailcallhq/tailcall/pull/3134))
+
+### 🚀 Performance
+
+- perf: use serde\_json\_borrow for Synth output [@meskill](https://github.com/meskill) ([#3073](https://github.com/tailcallhq/tailcall/pull/3073))
+
+
+---
+## v0.125.0 
+
+### 🚀 Features
+
+- feat(3118): add `--verify-ssl` option on CLI [@dekkku](https://github.com/dekkku) ([#3121](https://github.com/tailcallhq/tailcall/pull/3121))
+- chore: move chunk to new repo [@ssddOnTop](https://github.com/ssddOnTop) ([#3109](https://github.com/tailcallhq/tailcall/pull/3109))
+
+### 🐛 Bug Fixes
+
+- ci: use windows-2019 runner to fix windows builds of rquickjs [@meskill](https://github.com/meskill) ([#3111](https://github.com/tailcallhq/tailcall/pull/3111))
+- fix(2911): add validation in federation resolvers [@dekkku](https://github.com/dekkku) ([#3102](https://github.com/tailcallhq/tailcall/pull/3102))
+
+### 🧰 Maintenance
+
+- chore: move chunk to new repo [@ssddOnTop](https://github.com/ssddOnTop) ([#3109](https://github.com/tailcallhq/tailcall/pull/3109))
+- chore: upgrade rquickjs version [@meskill](https://github.com/meskill) ([#3112](https://github.com/tailcallhq/tailcall/pull/3112))
+- chore(3114): update rc file contents [@dekkku](https://github.com/dekkku) ([#3115](https://github.com/tailcallhq/tailcall/pull/3115))
+
+
+---
+## v0.124.0 
+
+### 🚀 Features
+
+- chore: move valid to new repo [@ssddOnTop](https://github.com/ssddOnTop) ([#3003](https://github.com/tailcallhq/tailcall/pull/3003))
+
+### 🐛 Bug Fixes
+
+- fix: dedupe operations that are cacheable [@laststylebender14](https://github.com/laststylebender14) ([#3099](https://github.com/tailcallhq/tailcall/pull/3099))
+
+### 🧰 Maintenance
+
+- chore: move valid to new repo [@ssddOnTop](https://github.com/ssddOnTop) ([#3003](https://github.com/tailcallhq/tailcall/pull/3003))
+
+
+---
+## v0.123.5 
+
+### 🐛 Bug Fixes
+
+- fix: add more meta [@tusharmath](https://github.com/tusharmath) ([#3075](https://github.com/tailcallhq/tailcall/pull/3075))
+
+### 🧰 Maintenance
+
+- chore: update rust version [@meskill](https://github.com/meskill) ([#3043](https://github.com/tailcallhq/tailcall/pull/3043))
+- chore(deps): update rust crate thiserror to v1.0.66 [@renovate](https://github.com/renovate) ([#3094](https://github.com/tailcallhq/tailcall/pull/3094))
+- chore(deps): update rust crate insta to v1.41.1 [@renovate](https://github.com/renovate) ([#3093](https://github.com/tailcallhq/tailcall/pull/3093))
+- chore(deps): update dependency wrangler to v3.84.1 [@renovate](https://github.com/renovate) ([#3092](https://github.com/tailcallhq/tailcall/pull/3092))
+- chore(deps): update dependency wrangler to v3.84.0 [@renovate](https://github.com/renovate) ([#3090](https://github.com/tailcallhq/tailcall/pull/3090))
+- refactor: move find\_field\_path to jp.rs [@ssddOnTop](https://github.com/ssddOnTop) ([#3083](https://github.com/tailcallhq/tailcall/pull/3083))

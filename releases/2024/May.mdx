@@ -1,0 +1,551 @@
+---
+sidebar_position: 8
+toc_max_heading_level: 2
+---
+
+import VersionUpdateCard from "@site/src/components/shared/VersionUpdateCard"
+
+<VersionUpdateCard />
+
+## v0.85.0 
+
+- test: @expr converts string to other primitive value [@meskill](https://github.com/meskill) ([#2038](https://github.com/tailcallhq/tailcall/pull/2038))
+- test: scalar validation as input and output type [@meskill](https://github.com/meskill) ([#2052](https://github.com/tailcallhq/tailcall/pull/2052))
+- test: missing builtin scalar validation [@meskill](https://github.com/meskill) ([#2050](https://github.com/tailcallhq/tailcall/pull/2050))
+
+### 🚀 Features
+
+- feat(grpc): preserve comments from protobuf when generating config [@mehulmathur16](https://github.com/mehulmathur16) ([#2023](https://github.com/tailcallhq/tailcall/pull/2023))
+
+### 🐛 Bug Fixes
+
+- fix(grpc): config generation for optional fields [@meskill](https://github.com/meskill) ([#2042](https://github.com/tailcallhq/tailcall/pull/2042))
+- fix: input types loose out on provided graphQL documentation [@emekaokoli19](https://github.com/emekaokoli19) ([#2015](https://github.com/tailcallhq/tailcall/pull/2015))
+
+### 🧰 Maintenance
+
+- chore: notify ci failure on Discord [@ezhil56x](https://github.com/ezhil56x) ([#2078](https://github.com/tailcallhq/tailcall/pull/2078))
+- chore: transformer auto-resolve ambiguous types [@ssddOnTop](https://github.com/ssddOnTop) ([#2024](https://github.com/tailcallhq/tailcall/pull/2024))
+
+
+---
+## v0.84.1 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate tokio to v1.38.0 [@renovate](https://github.com/renovate) ([#2079](https://github.com/tailcallhq/tailcall/pull/2079))
+
+### 🧰 Maintenance
+
+- chore: upgrade opentelemetry version [@meskill](https://github.com/meskill) ([#2049](https://github.com/tailcallhq/tailcall/pull/2049))
+
+
+---
+## v0.84.0 
+
+### 🚀 Features
+
+- feat(js): JS based resolvers [@ssddOnTop](https://github.com/ssddOnTop) ([#1867](https://github.com/tailcallhq/tailcall/pull/1867))
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate worker to 0.3.0 [@renovate](https://github.com/renovate) ([#2074](https://github.com/tailcallhq/tailcall/pull/2074))
+- fix(deps): update rust crate syn to v2.0.66 [@renovate](https://github.com/renovate) ([#2058](https://github.com/tailcallhq/tailcall/pull/2058))
+- fix(deps): update rust crate proc-macro2 to v1.0.84 [@renovate](https://github.com/renovate) ([#2047](https://github.com/tailcallhq/tailcall/pull/2047))
+- fix(deps): update rust crate serde to v1.0.203 [@renovate](https://github.com/renovate) ([#2057](https://github.com/tailcallhq/tailcall/pull/2057))
+- fix(deps): update rust crate rustls to v0.23.8 [@renovate](https://github.com/renovate) ([#2048](https://github.com/tailcallhq/tailcall/pull/2048))
+- fix(deps): update dependency type-fest to v4.18.3 [@renovate](https://github.com/renovate) ([#2044](https://github.com/tailcallhq/tailcall/pull/2044))
+- fix(deps): update rust crate hyper-util to v0.1.5 [@renovate](https://github.com/renovate) ([#2045](https://github.com/tailcallhq/tailcall/pull/2045))
+- fix: revert signing releases [@ssddOnTop](https://github.com/ssddOnTop) ([#2043](https://github.com/tailcallhq/tailcall/pull/2043))
+- fix: rquickjs windows build [@ssddOnTop](https://github.com/ssddOnTop) ([#2032](https://github.com/tailcallhq/tailcall/pull/2032))
+- fix: sign releases via gpg [@ssddOnTop](https://github.com/ssddOnTop) ([#2010](https://github.com/tailcallhq/tailcall/pull/2010))
+- fix: added utm source \& medium on playground url [@mehulmathur16](https://github.com/mehulmathur16) ([#1994](https://github.com/tailcallhq/tailcall/pull/1994))
+- fix: windows warn [@ssddOnTop](https://github.com/ssddOnTop) ([#2025](https://github.com/tailcallhq/tailcall/pull/2025))
+- fix: windows build [@ssddOnTop](https://github.com/ssddOnTop) ([#2021](https://github.com/tailcallhq/tailcall/pull/2021))
+- fix: compiling tailcall-aws-lambda for musl [@shashitnak](https://github.com/shashitnak) ([#2007](https://github.com/tailcallhq/tailcall/pull/2007))
+
+### 🚀 Performance
+
+- perf: remove unnecessary clone [@meskill](https://github.com/meskill) ([#2028](https://github.com/tailcallhq/tailcall/pull/2028))
+
+### 🧰 Maintenance
+
+- fix: release builds [@amitksingh1490](https://github.com/amitksingh1490) ([#2076](https://github.com/tailcallhq/tailcall/pull/2076))
+- chore(deps): update dependency wrangler to v3.57.2 [@renovate](https://github.com/renovate) ([#2064](https://github.com/tailcallhq/tailcall/pull/2064))
+- chore(deps): update dependency @cloudflare/workers-types to v4.20240529.0 [@renovate](https://github.com/renovate) ([#2067](https://github.com/tailcallhq/tailcall/pull/2067))
+- chore(deps): update dependency tsx to v4.11.0 [@renovate](https://github.com/renovate) ([#2063](https://github.com/tailcallhq/tailcall/pull/2063))
+- chore(deps): update dependency miniflare to v3.20240524.0 [@renovate](https://github.com/renovate) ([#2061](https://github.com/tailcallhq/tailcall/pull/2061))
+- chore(deps): update dependency @cloudflare/workers-types to v4.20240524.0 [@renovate](https://github.com/renovate) ([#2059](https://github.com/tailcallhq/tailcall/pull/2059))
+- chore: rename lambda to IR [@tusharmath](https://github.com/tusharmath) ([#2030](https://github.com/tailcallhq/tailcall/pull/2030))
+- chore: make cache\_key return `Option<u64>` [@ssddOnTop](https://github.com/ssddOnTop) ([#2009](https://github.com/tailcallhq/tailcall/pull/2009))
+
+
+---
+## v0.83.0 
+
+### 🚀 Features
+
+- feat: configure http cache size through upstream setting [@ranjitmahadik](https://github.com/ranjitmahadik) ([#1988](https://github.com/tailcallhq/tailcall/pull/1988))
+
+
+---
+## v0.82.23 
+
+### 🐛 Bug Fixes
+
+- fix: passing lambda request headers to hyper request [@shashitnak](https://github.com/shashitnak) ([#2006](https://github.com/tailcallhq/tailcall/pull/2006))
+
+
+---
+## v0.82.22 
+
+### 🐛 Bug Fixes
+
+- fix: errors on compile time on mac [@amitksingh1490](https://github.com/amitksingh1490) ([#2005](https://github.com/tailcallhq/tailcall/pull/2005))
+
+### 🧰 Maintenance
+
+- chore: Clean up merge logic for vectors of key-value structs. [@TheWizardTower](https://github.com/TheWizardTower) ([#1977](https://github.com/tailcallhq/tailcall/pull/1977))
+
+
+---
+## v0.82.21 
+
+### 🐛 Bug Fixes
+
+- fix(grpc): map type support [@meskill](https://github.com/meskill) ([#1979](https://github.com/tailcallhq/tailcall/pull/1979))
+
+### 🚀 Performance
+
+- perf: use custom HTTP Cache [@ranjitmahadik](https://github.com/ranjitmahadik) ([#1910](https://github.com/tailcallhq/tailcall/pull/1910))
+
+### 🧰 Maintenance
+
+- perf: use custom HTTP Cache [@ranjitmahadik](https://github.com/ranjitmahadik) ([#1910](https://github.com/tailcallhq/tailcall/pull/1910))
+
+
+---
+## v0.82.20 
+
+### 🐛 Bug Fixes
+
+- fix: revert CI changes for [win32-arm64-msvc \& win32-ia32-gnu] [@mehulmathur16](https://github.com/mehulmathur16) ([#1976](https://github.com/tailcallhq/tailcall/pull/1976))
+- fix(grpc): type and field names for config from protobuf generation [@meskill](https://github.com/meskill) ([#1895](https://github.com/tailcallhq/tailcall/pull/1895))
+- fix(deps): update rust crate serde to v1.0.202 [@renovate](https://github.com/renovate) ([#1967](https://github.com/tailcallhq/tailcall/pull/1967))
+- fix:  Enable JS build for all architecture [@varshith257](https://github.com/varshith257) ([#1963](https://github.com/tailcallhq/tailcall/pull/1963))
+- fix: js build on some architectures  [@mehulmathur16](https://github.com/mehulmathur16) ([#1962](https://github.com/tailcallhq/tailcall/pull/1962))
+
+### 🚀 Performance
+
+- perf: using serde borrow value [@shashitnak](https://github.com/shashitnak) ([#1981](https://github.com/tailcallhq/tailcall/pull/1981))
+
+### 🧰 Maintenance
+
+- refactor: drop the root level types [@tusharmath](https://github.com/tusharmath) ([#1969](https://github.com/tailcallhq/tailcall/pull/1969))
+- chore(deps): update rust crate insta to v1.39.0 [@renovate](https://github.com/renovate) ([#1968](https://github.com/tailcallhq/tailcall/pull/1968))
+- chore(deps): update dependency wrangler to v3.56.0 [@renovate](https://github.com/renovate) ([#1966](https://github.com/tailcallhq/tailcall/pull/1966))
+- chore(deps): update dependency miniflare to v3.20240512.0 [@renovate](https://github.com/renovate) ([#1965](https://github.com/tailcallhq/tailcall/pull/1965))
+- refactor: drop unused GRPCMethod from blueprint [@tusharmath](https://github.com/tusharmath) ([#1955](https://github.com/tailcallhq/tailcall/pull/1955))
+- refactor: update privacy of GraphQLType [@tusharmath](https://github.com/tusharmath) ([#1953](https://github.com/tailcallhq/tailcall/pull/1953))
+- refactor: rename autogen to typedefs [@tusharmath](https://github.com/tusharmath) ([#1952](https://github.com/tailcallhq/tailcall/pull/1952))
+
+
+---
+## v0.82.19 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate lambda\_http to v0.11.3 [@renovate](https://github.com/renovate) ([#1940](https://github.com/tailcallhq/tailcall/pull/1940))
+
+
+---
+## v0.82.18 
+
+* No changes
+
+
+---
+## v0.82.17 
+
+### 🐛 Bug Fixes
+
+- fix: converting lto 'thin' to 'fat' [@shashitnak](https://github.com/shashitnak) ([#1932](https://github.com/tailcallhq/tailcall/pull/1932))
+
+### 🧰 Maintenance
+
+- chore: adding nginx benchmark in ci [@shashitnak](https://github.com/shashitnak) ([#1929](https://github.com/tailcallhq/tailcall/pull/1929))
+
+
+---
+## v0.82.16 
+
+### 🐛 Bug Fixes
+
+- fix: replacing `DefaultHasher` [@shashitnak](https://github.com/shashitnak) ([#1926](https://github.com/tailcallhq/tailcall/pull/1926))
+
+### 🧰 Maintenance
+
+- chore: adding nginx benchmark in ci [@shashitnak](https://github.com/shashitnak) ([#1929](https://github.com/tailcallhq/tailcall/pull/1929))
+- chore(deps): update dependency @cloudflare/workers-types to v4.20240512.0 [@renovate](https://github.com/renovate) ([#1930](https://github.com/tailcallhq/tailcall/pull/1930))
+- chore(deps): update dependency tsx to v4.10.2 [@renovate](https://github.com/renovate) ([#1927](https://github.com/tailcallhq/tailcall/pull/1927))
+
+
+---
+## v0.82.15 
+
+### 🐛 Bug Fixes
+
+- fix: disabling dataloader when delay is set to 0 [@shashitnak](https://github.com/shashitnak) ([#1918](https://github.com/tailcallhq/tailcall/pull/1918))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency wrangler to v3.55.0 [@renovate](https://github.com/renovate) ([#1907](https://github.com/tailcallhq/tailcall/pull/1907))
+- chore(deps): update dependency tsx to v4.10.1 [@renovate](https://github.com/renovate) ([#1915](https://github.com/tailcallhq/tailcall/pull/1915))
+
+
+---
+## v0.82.14 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate syn to v2.0.63 [@renovate](https://github.com/renovate) ([#1916](https://github.com/tailcallhq/tailcall/pull/1916))
+
+### 🧰 Maintenance
+
+- refactor: move the skip marker into the heading [@ssddOnTop](https://github.com/ssddOnTop) ([#1920](https://github.com/tailcallhq/tailcall/pull/1920))
+- chore(deps): update dependency miniflare to v3.20240419.1 [@renovate](https://github.com/renovate) ([#1906](https://github.com/tailcallhq/tailcall/pull/1906))
+- chore(deps): update rust crate async-graphql to v7.0.5 [@renovate](https://github.com/renovate) ([#1901](https://github.com/tailcallhq/tailcall/pull/1901))
+- chore: adding benchmark for `handle_request` [@shashitnak](https://github.com/shashitnak) ([#1886](https://github.com/tailcallhq/tailcall/pull/1886))
+
+
+---
+## v0.82.13 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate async-graphql-value to v7.0.5 [@renovate](https://github.com/renovate) ([#1900](https://github.com/tailcallhq/tailcall/pull/1900))
+
+### 🧰 Maintenance
+
+- chore: restructure workspace [@ranjitmahadik](https://github.com/ranjitmahadik) ([#1887](https://github.com/tailcallhq/tailcall/pull/1887))
+
+
+---
+## v0.82.12 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate schemars to v0.8.19 [@renovate](https://github.com/renovate) ([#1879](https://github.com/tailcallhq/tailcall/pull/1879))
+- fix(deps): update rust crate lambda\_http to v0.11.2 [@renovate](https://github.com/renovate) ([#1893](https://github.com/tailcallhq/tailcall/pull/1893))
+- fix(deps): update rust crate serde\_json to v1.0.117 [@renovate](https://github.com/renovate) ([#1892](https://github.com/tailcallhq/tailcall/pull/1892))
+
+
+---
+## v0.82.11 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate serde to v1.0.201 [@renovate](https://github.com/renovate) ([#1891](https://github.com/tailcallhq/tailcall/pull/1891))
+
+
+---
+## v0.82.10 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate rustls-pki-types to v1.7.0 [@renovate](https://github.com/renovate) ([#1890](https://github.com/tailcallhq/tailcall/pull/1890))
+
+
+---
+## v0.82.9 
+
+### 🐛 Bug Fixes
+
+- fix: build failures [@amitksingh1490](https://github.com/amitksingh1490) ([#1888](https://github.com/tailcallhq/tailcall/pull/1888))
+- fix: track usage metrics [@amitksingh1490](https://github.com/amitksingh1490) ([#1875](https://github.com/tailcallhq/tailcall/pull/1875))
+
+
+---
+## v0.82.8 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate rustls-pki-types to v1.6.0 [@renovate](https://github.com/renovate) ([#1885](https://github.com/tailcallhq/tailcall/pull/1885))
+
+### 🧰 Maintenance
+
+- chore: upgrade rustc version [@meskill](https://github.com/meskill) ([#1874](https://github.com/tailcallhq/tailcall/pull/1874))
+
+
+---
+## v0.82.7 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate proc-macro2 to v1.0.82 [@renovate](https://github.com/renovate) ([#1884](https://github.com/tailcallhq/tailcall/pull/1884))
+
+### 🧰 Maintenance
+
+- chore: upgrade rustc version [@meskill](https://github.com/meskill) ([#1874](https://github.com/tailcallhq/tailcall/pull/1874))
+- refactor: drop type variants @Shylock-Hg (#1857)
+
+
+---
+## v0.82.6 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate syn to v2.0.61 [@renovate](https://github.com/renovate) ([#1881](https://github.com/tailcallhq/tailcall/pull/1881))
+
+
+---
+## v0.82.5 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate syn to v2.0.61 [@renovate](https://github.com/renovate) ([#1881](https://github.com/tailcallhq/tailcall/pull/1881))
+- fix(deps): update rust crate thiserror to v1.0.60 [@renovate](https://github.com/renovate) ([#1882](https://github.com/tailcallhq/tailcall/pull/1882))
+
+
+---
+## v0.82.4 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate anyhow to v1.0.83 [@renovate](https://github.com/renovate) ([#1880](https://github.com/tailcallhq/tailcall/pull/1880))
+- fix(deps): update dependency type-fest to v4.18.2 [@renovate](https://github.com/renovate) ([#1876](https://github.com/tailcallhq/tailcall/pull/1876))
+
+
+---
+## v0.82.3 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate getrandom to v0.2.15 [@renovate](https://github.com/renovate) ([#1877](https://github.com/tailcallhq/tailcall/pull/1877))
+
+### 🧰 Maintenance
+
+- refactor(config): remove explicit interface flag [@meskill](https://github.com/meskill) ([#1872](https://github.com/tailcallhq/tailcall/pull/1872))
+- chore(deps): update dependency tsx to v4.9.3 [@renovate](https://github.com/renovate) ([#1868](https://github.com/tailcallhq/tailcall/pull/1868))
+
+
+---
+## v0.82.2 
+
+### 🐛 Bug Fixes
+
+- fix: making `dedupe` nullable in `.tailcallrc.graphql` [@shashitnak](https://github.com/shashitnak) ([#1864](https://github.com/tailcallhq/tailcall/pull/1864))
+
+
+---
+## v0.82.1 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate prometheus to 0.13.4 [@renovate](https://github.com/renovate) ([#1861](https://github.com/tailcallhq/tailcall/pull/1861))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency tsx to v4.9.1 [@renovate](https://github.com/renovate) ([#1860](https://github.com/tailcallhq/tailcall/pull/1860))
+
+
+---
+## v0.82.0 
+
+### 🚀 Features
+
+- fix(js): replace `deno_core` with `rquickjs` [@mayant15](https://github.com/mayant15) ([#1713](https://github.com/tailcallhq/tailcall/pull/1713))
+
+### 🐛 Bug Fixes
+
+- fix: updated the contribution guidelines link. [@ranjitmahadik](https://github.com/ranjitmahadik) ([#1855](https://github.com/tailcallhq/tailcall/pull/1855))
+
+
+---
+## v0.81.2 
+
+### 🐛 Bug Fixes
+
+- fix: updated the contribution guidelines link. [@ranjitmahadik](https://github.com/ranjitmahadik) ([#1855](https://github.com/tailcallhq/tailcall/pull/1855))
+- fix(grpc): resolve ambiguous types [@ssddOnTop](https://github.com/ssddOnTop) ([#1718](https://github.com/tailcallhq/tailcall/pull/1718))
+- perf: removing `Concurrent` parameter from `eval` [@shashitnak](https://github.com/shashitnak) ([#1849](https://github.com/tailcallhq/tailcall/pull/1849))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency vitest to v1.6.0 [@renovate](https://github.com/renovate) ([#1851](https://github.com/tailcallhq/tailcall/pull/1851))
+- chore(deps): update dependency tsx to v4.9.0 [@renovate](https://github.com/renovate) ([#1848](https://github.com/tailcallhq/tailcall/pull/1848))
+
+
+---
+## v0.81.1 
+
+### 🐛 Bug Fixes
+
+- fix(scalar): custom scalars should return data as is [@meskill](https://github.com/meskill) ([#1844](https://github.com/tailcallhq/tailcall/pull/1844))
+
+
+---
+## v0.81.0 
+
+### 🚀 Features
+
+- feat: add `dedupe` in Upstream [@shashitnak](https://github.com/shashitnak) ([#1778](https://github.com/tailcallhq/tailcall/pull/1778))
+
+### 🐛 Bug Fixes
+
+- fix(scalar): custom scalars should return data as is [@meskill](https://github.com/meskill) ([#1844](https://github.com/tailcallhq/tailcall/pull/1844))
+
+
+---
+## v0.80.5 
+
+### 🐛 Bug Fixes
+
+- fix(grpc): show additional error info from expression [@meskill](https://github.com/meskill) ([#1809](https://github.com/tailcallhq/tailcall/pull/1809))
+
+### 🧰 Maintenance
+
+- chore: clean unwanted modules from codebase [@ranjitmahadik](https://github.com/ranjitmahadik) ([#1842](https://github.com/tailcallhq/tailcall/pull/1842))
+
+
+---
+## v0.80.4 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate serde\_json to 1.0.116 [@renovate](https://github.com/renovate) ([#1828](https://github.com/tailcallhq/tailcall/pull/1828))
+
+### 🧰 Maintenance
+
+- chore: clean unwanted modules from codebase [@ranjitmahadik](https://github.com/ranjitmahadik) ([#1842](https://github.com/tailcallhq/tailcall/pull/1842))
+- chore(deps): update dependency @cloudflare/workers-types to v4.20240502.0 [@renovate](https://github.com/renovate) ([#1846](https://github.com/tailcallhq/tailcall/pull/1846))
+
+
+---
+## v0.80.3 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update tokio-tracing monorepo [@renovate](https://github.com/renovate) ([#1838](https://github.com/tailcallhq/tailcall/pull/1838))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency wrangler to v3.53.1 [@renovate](https://github.com/renovate) ([#1845](https://github.com/tailcallhq/tailcall/pull/1845))
+- chore(deps): update dependency tsx to v4.8.2 [@renovate](https://github.com/renovate) ([#1815](https://github.com/tailcallhq/tailcall/pull/1815))
+
+
+---
+## v0.80.2 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate url to 2.5.0 [@renovate](https://github.com/renovate) ([#1837](https://github.com/tailcallhq/tailcall/pull/1837))
+
+
+---
+## v0.80.1 
+
+* No changes
+
+
+---
+## v0.80.0 
+
+### 🚀 Features
+
+- feat: migrate playground [@amitksingh1490](https://github.com/amitksingh1490) ([#1811](https://github.com/tailcallhq/tailcall/pull/1811))
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate serde\_yaml to 0.9.34 [@renovate](https://github.com/renovate) ([#1831](https://github.com/tailcallhq/tailcall/pull/1831))
+
+### 🧰 Maintenance
+
+- chore: spell check fixes [@amitksingh1490](https://github.com/amitksingh1490) ([#1843](https://github.com/tailcallhq/tailcall/pull/1843))
+- refactor: remove overrides from `.prettierrc` [@tusharmath](https://github.com/tusharmath) ([#1841](https://github.com/tailcallhq/tailcall/pull/1841))
+
+
+---
+## v0.79.6 
+
+### 🐛 Bug Fixes
+
+- fix: remote url in config is read as file [@ranjitmahadik](https://github.com/ranjitmahadik) ([#1830](https://github.com/tailcallhq/tailcall/pull/1830))
+
+### 🧰 Maintenance
+
+- refactor: merge benchmarks in `tailcall_benches.rs` [@lazyfuhrer](https://github.com/lazyfuhrer) ([#1834](https://github.com/tailcallhq/tailcall/pull/1834))
+
+
+---
+## v0.79.5 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate serde to 1.0.200 [@renovate](https://github.com/renovate) ([#1827](https://github.com/tailcallhq/tailcall/pull/1827))
+
+
+---
+## v0.79.4 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate quote to 1.0.36 [@renovate](https://github.com/renovate) ([#1825](https://github.com/tailcallhq/tailcall/pull/1825))
+
+
+---
+## v0.79.3 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate proc-macro2 to 1.0.81 [@renovate](https://github.com/renovate) ([#1824](https://github.com/tailcallhq/tailcall/pull/1824))
+- fix(deps): update dependency type-fest to v4.18.1 [@renovate](https://github.com/renovate) ([#1821](https://github.com/tailcallhq/tailcall/pull/1821))
+
+### 🧰 Maintenance
+
+- chore: added codespell [@ezhil56x](https://github.com/ezhil56x) ([#1833](https://github.com/tailcallhq/tailcall/pull/1833))
+
+
+---
+## v0.79.2 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate base64 to 0.22.1 [@renovate](https://github.com/renovate) ([#1822](https://github.com/tailcallhq/tailcall/pull/1822))
+
+
+---
+## v0.79.1 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate hyper to 0.14.28 [@renovate](https://github.com/renovate) ([#1820](https://github.com/tailcallhq/tailcall/pull/1820))
+
+
+---
+## v0.79.0 
+
+### 🚀 Features
+
+- feat(grpc): add support for reflection [@ssddOnTop](https://github.com/ssddOnTop) ([#1647](https://github.com/tailcallhq/tailcall/pull/1647))
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate dotenvy to 0.15.7 [@renovate](https://github.com/renovate) ([#1819](https://github.com/tailcallhq/tailcall/pull/1819))
+
+### 🧰 Maintenance
+
+- chore(deps): update rust crate indexmap to 2.2.6 [@renovate](https://github.com/renovate) ([#1816](https://github.com/tailcallhq/tailcall/pull/1816))
+
+
+---
+## v0.78.12 
+
+### 🐛 Bug Fixes
+
+- fix(deps): update rust crate colored to 2.1.0 [@renovate](https://github.com/renovate) ([#1817](https://github.com/tailcallhq/tailcall/pull/1817))
+
+### 🧰 Maintenance
+
+- chore(deps): update dependency wrangler to v3.53.0 [@renovate](https://github.com/renovate) ([#1814](https://github.com/tailcallhq/tailcall/pull/1814))
+- chore(deps): update dependency vitest to v1.5.3 [@renovate](https://github.com/renovate) ([#1812](https://github.com/tailcallhq/tailcall/pull/1812))

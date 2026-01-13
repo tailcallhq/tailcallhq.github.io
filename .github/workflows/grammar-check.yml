@@ -1,0 +1,26 @@
+name: Check grammar
+
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+      - "**.md"
+
+jobs:
+  check-grammar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "19"
+
+      - name: Install write-good
+        run: npm install write-good
+
+      - name: Check grammar
+        run: npx write-good docs/*.md --no-tooWordy --no-passive --no-illusion --no-weasel --no-adverb

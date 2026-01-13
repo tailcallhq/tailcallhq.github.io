@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap");
+
+main {
+  --color-prettylights-syntax-comment: #6e7781;
+  --color-prettylights-syntax-constant: #0550ae;
+  --color-prettylights-syntax-entity: #8250df;
+  --color-prettylights-syntax-storage-modifier-import: #24292f;
+  --color-prettylights-syntax-entity-tag: #116329;
+  --color-prettylights-syntax-keyword: #cf222e;
+  --color-prettylights-syntax-string: #0a3069;
+  --color-prettylights-syntax-variable: #953800;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+  --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+  --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+  --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+  --color-prettylights-syntax-carriage-return-bg: #cf222e;
+  --color-prettylights-syntax-string-regexp: #116329;
+  --color-prettylights-syntax-markup-list: #3b2300;
+  --color-prettylights-syntax-markup-heading: #0550ae;
+  --color-prettylights-syntax-markup-italic: #24292f;
+  --color-prettylights-syntax-markup-bold: #24292f;
+  --color-prettylights-syntax-markup-deleted-text: #82071e;
+  --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
+  --color-prettylights-syntax-markup-inserted-text: #116329;
+  --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
+  --color-prettylights-syntax-markup-changed-text: #953800;
+  --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+  --color-prettylights-syntax-markup-ignored-text: #eaeef2;
+  --color-prettylights-syntax-markup-ignored-bg: #0550ae;
+  --color-prettylights-syntax-meta-diff-range: #8250df;
+  --color-prettylights-syntax-brackethighlighter-angle: #57606a;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
+  --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+  --color-btn-text: #24292f;
+  --color-btn-bg: #f6f8fa;
+  --color-btn-border: #1f232826;
+  --color-btn-shadow: 0 1px 0 #1f23280a;
+  --color-btn-inset-shadow: inset 0 1px 0 #ffffff40;
+  --color-btn-hover-bg: #f3f4f6;
+  --color-btn-hover-border: #1f232826;
+  --color-btn-active-bg: #ebecf0;
+  --color-btn-active-border: #1f232826;
+  --color-btn-selected-bg: #eeeff2;
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: #121315;
+  --color-btn-primary-border: #1f232826;
+  --color-btn-primary-shadow: 0 1px 0 #1f23281a;
+  --color-btn-primary-inset-shadow: inset 0 1px 0 #ffffff08;
+  --color-btn-primary-hover-bg: #121315;
+  --color-btn-primary-hover-border: #1f232826;
+  --color-btn-primary-selected-bg: #121315;
+  --color-btn-primary-selected-shadow: inset 0 1px 0 #002d1133;
+  --color-btn-primary-disabled-text: #fffc;
+  --color-btn-primary-disabled-bg: #b4b4b4;
+  --color-btn-primary-disabled-border: #1f232826;
+  --color-action-list-item-default-hover-bg: #d0d7de52;
+  --color-segmented-control-bg: #eaeef2;
+  --color-segmented-control-button-bg: #fff;
+  --color-segmented-control-button-selected-border: #8c959f;
+  --color-fg-default: #1f2328;
+  --color-fg-muted: #323335;
+  --color-fg-subtle: #6e7781;
+  --color-canvas-default: #fff;
+  --color-canvas-overlay: #fff;
+  --color-canvas-inset: #fff;
+  --color-canvas-subtle: #f6f8fa;
+  --color-border-default: #cececf;
+  --color-border-muted: #cececf;
+  --color-neutral-muted: #afb8c133;
+  --color-accent-fg: #323335;
+  --color-accent-emphasis: #0969da;
+  --color-accent-muted: #54aeff66;
+  --color-accent-subtle: #ddf4ff;
+  --color-success-fg: #1a7f37;
+  --color-attention-fg: #9a6700;
+  --color-attention-muted: #d4a72c66;
+  --color-attention-subtle: #fff8c5;
+  --color-danger-fg: #d1242f;
+  --color-danger-muted: #ff818266;
+  --color-danger-subtle: #ffebe9;
+  --color-primer-shadow-inset: inset 0 1px 0 #d0d7de33;
+  --color-scale-gray-1: #eaeef2;
+  --color-scale-blue-1: #b6e3ff;
+
+  /*! Extensions from @primer/css/alerts/flash.scss */
+  --color-social-reaction-bg-hover: var(--color-scale-gray-1);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
+}
+
+main .pagination-loader-container {
+  background-image: url(https://github.com/images/modules/pulls/progressive-disclosure-line.svg);
+}
+
+main .gsc-loading-image {
+  background-image: url(https://github.githubassets.com/images/mona-loading-default.gif);
+}
+
+main .gsc-comment-box {
+  background-image: linear-gradient(90deg, #ececec 0.5px, transparent 0.5px),
+    linear-gradient(#ececec 0.5px, transparent 0.5px);
+  background-size: 60px 60px;
+  background-position: 3px 23px;
+  font-family: "Space Grotesk", sans-serif;
+  padding: 32px;
+  border: none;
+}
+
+main .gsc-comment-box-tabs {
+  background-color: transparent;
+  border: none;
+}
+
+main .gsc-comments .btn-primary {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20.42px;
+  padding: 12px 24px;
+  border-radius: 0.5rem !important;
+}
+
+main .gsc-comment-box-tabs button {
+  padding: 4px 16px !important;
+  border: none;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22.97px;
+  border-bottom: 2px solid #000000 !important;
+}
+
+main .gsc-comment-box-tabs .color-text-secondary {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22.97px;
+  border-bottom: none !important;
+}
+
+main .gsc-comment-box-md-toolbar button {
+  color: #323335;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border-bottom: none !important;
+}
+
+main .gsc-comment-box-md-toolbar button:hover {
+  color: #323335;
+}
+
+main .gsc-comment-box-md-toolbar button:focus {
+  color: #323335;
+}
+
+main .gsc-comment-box-main {
+  margin: 1rem 0.5rem;
+}
+
+main .gsc-comment-box-textarea {
+  padding: 12px 14px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 0.5rem 0.5rem 0 0;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+main .gsc-comment-box-textarea:focus {
+  border: 1px solid #cececf;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+main .gsc-comment-box-write:focus-within {
+  border-color: #cececf;
+  box-shadow: none;
+}
+
+main .gsc-comment-box-textarea-extras {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+main .gsc-comment-box-preview {
+  padding: 12px 14px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  border: 1px solid var(--color-border-default);
+  border-radius: 0.5rem;
+  background: white;
+  color: #000000;
+}
+
+@media (max-width: 768px) {
+  main .gsc-comment-box {
+    padding: 32px 16px;
+  }
+
+  main .gsc-comment-box-tabs button {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  main .gsc-comment-box-tabs .color-text-secondary {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  main .gsc-comment-box-textarea {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  main .gsc-comments .btn-primary {
+    padding: 10px 24px;
+  }
+
+  main .gsc-comment-box-preview {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+  }
+}

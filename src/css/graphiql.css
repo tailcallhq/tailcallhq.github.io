@@ -1,0 +1,41 @@
+.graphiql-main {
+  height: 80vh;
+}
+
+.graphiql-main * {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.graphiql-query-editor *,
+.graphiql-response * {
+  font-family: "Space Mono", sans-serif;
+}
+
+.graphiql-dialog,
+.graphiql-dialog-overlay {
+  z-index: var(--ifm-z-index-overlay) !important;
+}
+
+@media (max-width: 600px) {
+  .graphiql-main {
+    flex-direction: column;
+    overflow: scroll;
+  }
+
+  .graphiql-session {
+    flex-direction: column;
+  }
+
+  .graphiql-response {
+    margin-top: 16px;
+    height: 30vh;
+  }
+
+  .graphiql-editor-tool {
+    height: 10vh;
+  }
+
+  button[data-value="short-keys"] {
+    display: none !important;
+  }
+}

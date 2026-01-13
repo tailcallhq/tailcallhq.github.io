@@ -1,0 +1,100 @@
+.input {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-gray-800);
+  background-color: transparent;
+  height: 44px;
+  outline: 0;
+  appearance: none;
+  color: var(--ifm-navbar-search-input-color);
+  cursor: text;
+  display: inline-block;
+  font-size: var(--ifm-search-input-font-size);
+  padding: 0 0.5rem 0 2.2rem;
+  background: transparent var(--ifm-navbar-search-input-icon) no-repeat 0.75rem center/1rem 1rem;
+}
+
+.inputContainer {
+  padding: 1.3rem;
+  padding-bottom: 1rem;
+}
+
+.overlay {
+  background-color: var(--ifm-color-white-opacity-15);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  backdrop-filter: blur(3px);
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  z-index: 9;
+  background: var(--ifm-color-brand-light);
+  width: 640px;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--ifm-color-brand-dark-100);
+  border-radius: 8px;
+}
+
+.initialCase {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 44px);
+}
+
+.footer {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--ifm-color-gray-600);
+}
+
+.navigationInfoItem {
+  display: flex;
+  align-items: center;
+}
+
+.navigationInfoItem span {
+  color: var(--ifm-color-gray-800);
+  display: block;
+  margin-left: 0.25rem;
+  font-size: 12px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modalContent {
+  height: 340px;
+}
+
+.searchDocsTitle {
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.searchDocsDesc {
+  font-size: var(--ifm-search-desc-font-size);
+  line-height: 20.73px;
+  letter-spacing: -4%;
+  font-weight: 400;
+  color: var(--ifm-color-brand-dark-400);
+}
+
+@media (max-height: 600px) {
+  .modal {
+    top: calc(var(--header-height) + 1rem);
+    transform: translate(-50%, 0);
+  }
+}

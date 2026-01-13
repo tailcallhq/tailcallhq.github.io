@@ -1,0 +1,326 @@
+:root {
+  --docsearch-footer-height: 38px;
+  --docsearch-spacing: 16px;
+  --docsearch-modal-background: #f3f3f3;
+  --docsearch-primary-color: var(--ifm-color-primary);
+  --docsearch-text-color: var(--ifm-font-color-base);
+  --docsearch-hit-active-color: var(--ifm-color-primary);
+  --docsearch-hit-active-color: var(--ifm-color-gray-900);
+}
+
+.DocSearch-Button {
+  margin: 0;
+  box-shadow: none !important;
+  background: transparent;
+  padding: 0;
+  height: 33px;
+  cursor: pointer;
+  transition: all var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+  overflow: clip;
+}
+
+.DocSearch-Cancel {
+  margin: 0 10px;
+}
+
+.DocSearch-Hit-path mark,
+.DocSearch-Hit[aria-selected="true"] mark,
+.DocSearch-Hit-title mark {
+  color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-brand);
+}
+
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-action,
+.DocSearch-MagnifierLabel,
+.DocSearch-Reset,
+.DocSearch-Cancel,
+.DocSearch-Hit-Container *:not(mark),
+.DocSearch-Hit-source,
+.DocSearch-Hits ul li a,
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-icon,
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-path,
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-text,
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-title,
+.DocSearch-Hit[aria-selected="true"] .DocSearch-Hit-Tree {
+  color: var(--ifm-color-gray-900);
+}
+
+.DocSearch-Hits ul li a {
+  background-color: white;
+  box-shadow: none;
+}
+
+.DocSearch-Hit[aria-selected="true"] a {
+  background-color: var(--ifm-color-brand-light-200);
+}
+
+.DocSearch-Commands-Key {
+  box-shadow: none;
+  background: transparent;
+  border: 1px solid var(--ifm-color-brand-light-500);
+  border-radius: 4px;
+}
+
+.DocSearch-Button:hover {
+  box-shadow: none;
+}
+
+.DocSearch-Container {
+  backdrop-filter: blur(32px);
+  background: rgba(0, 0, 0, 0.1);
+  z-index: var(--ifm-z-index-overlay);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.DocSearch-Modal {
+  margin: 0;
+  box-shadow: none;
+  border: none;
+  height: fit-content;
+  width: 50vw;
+  max-width: unset;
+  border-radius: 12px;
+  overflow: clip;
+}
+
+.DocSearch-Dropdown {
+  max-height: unset;
+  height: 60vh;
+  padding: 0;
+  padding-bottom: 60px;
+}
+
+.DocSearch-SearchBar {
+  padding: 0;
+}
+
+.DocSearch-SearchBar form {
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid var(--ifm-color-gray-900);
+}
+
+.DocSearch-Footer {
+  border-top: 1px solid var(--ifm-color-brand-light-500);
+  box-shadow: none;
+}
+
+.DocSearch-HitsFooter {
+  position: absolute;
+  bottom: var(--docsearch-footer-height);
+  width: 100%;
+  z-index: 300;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ifm-color-brand-light);
+  margin-top: 16px;
+  padding: 0 var(--docsearch-spacing) !important;
+  background-color: var(--ifm-color-brand-dark-200);
+  justify-content: space-between;
+  margin-bottom: 0;
+  padding: 2px 0;
+}
+
+.DocSearch-HitsFooter a {
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: underline;
+  border-bottom: none;
+}
+
+.DocSearch-Hits {
+  padding: 0 var(--docsearch-spacing);
+}
+
+.DocSearch-Hit {
+  padding-bottom: 8px;
+}
+
+.DocSearch-Hit a {
+  padding-left: 12px;
+  border-radius: 8px;
+}
+
+.DocSearch-Hit-Container {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.DocSearch-Hit-title {
+  color: var(--ifm-color-brand-dark) !important;
+  font-family: "Space Grotesk";
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 500;
+}
+
+.DocSearch-Hit-path {
+  color: var(--ifm-color-brand-dark-200) !important;
+  font-family: "Space Grotesk";
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+.DocSearch-Hit-source {
+  font-family: "Space Grotesk";
+  font-size: 16px;
+  font-weight: 500;
+  color: #858586 !important;
+}
+
+.DocSearch-Hit-icon {
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
+}
+
+.DocSearch-Input {
+  font-family: "Space Grotesk";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: #545556;
+}
+
+.DocSearch-Form {
+  border-bottom: 1px solid var(--ifm-color-brand-light-500) !important;
+}
+
+@media only screen and (max-width: 996px) {
+  .DocSearch-Modal {
+    height: 80dvh !important;
+    bottom: 0dvh;
+    border-radius: 8px 8px 0px 0px !important;
+  }
+
+  .DocSearch-Input {
+    font-family: "Space Grotesk";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #545556;
+  }
+
+  .DocSearch-Button {
+    width: fit-content;
+    border: none;
+    margin: 0;
+    padding: 10px 8px;
+  }
+
+  .DocSearch-Button-Keys {
+    display: none;
+  }
+
+  .DocSearch-Container > div {
+    width: 100vw;
+  }
+
+  .DocSearch-Dropdown {
+    max-height: unset;
+    height: 100dvh !important;
+    padding-bottom: 300px;
+  }
+
+  .DocSearch-Container {
+    z-index: 201;
+    position: fixed;
+    height: 100dvh !important;
+    align-items: end;
+  }
+
+  .DocSearch-SearchBar form {
+    border-bottom: 1px solid var(--ifm-color-brand-light-500);
+  }
+
+  .DocSearch-Button-Keys,
+  .DocSearch-Button-Placeholder {
+    display: none;
+  }
+
+  .DocSearch-Cancel {
+    display: none !important;
+  }
+
+  .DocSearch-Footer {
+    display: none;
+  }
+
+  .DocSearch-HitsFooter {
+    position: absolute;
+    width: 100%;
+    padding: 8px 16px !important;
+    margin-top: unset;
+    margin-bottom: unset;
+    bottom: 0dvh;
+  }
+
+  .DocSearch-Search-Icon {
+    height: 20px !important;
+    width: 20px !important;
+  }
+}
+
+.DocSearch-Button-Key {
+  border: 1px solid #858586;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  padding: 0;
+  color: #858586;
+}
+
+.DocSearch-Button-Placeholder {
+  font-weight: 700;
+  font-size: 20px;
+  font-family: "Space Grotesk";
+  color: #121315;
+  padding-right: 0;
+  padding-left: 10px;
+}
+
+.DocSearch-Button-Placeholder {
+  display: none;
+}
+
+.search-icon-navbar {
+  padding: 0 !important;
+}
+
+@media only screen and (min-width: 996px) {
+  .DocSearch-Button-Placeholder {
+    display: block;
+  }
+
+  .search-icon-navbar {
+    padding: 0rem 0.5rem !important;
+  }
+
+  .search-icon-navbar:hover,
+  .DocSearch-Button:hover {
+    background: #f3f3f3;
+    color: var(--ifm-color-gray-900);
+    border-radius: 6px;
+  }
+}
+
+.DocSearch-Button-Keys kbd.DocSearch-Button-Key:first-child {
+  font-size: 16px;
+}
+
+.DocSearch-Button-Keys {
+  display: none;
+}
+
+.DocSearch-Search-Icon {
+  cursor: pointer;
+  stroke-width: 2px;
+}
