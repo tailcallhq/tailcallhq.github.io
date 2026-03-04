@@ -104,6 +104,9 @@ export default {
     },
 
     navbar: {
+      items: [
+        {to: "/app/config", label: "Config", position: "left", activeBaseRegex: "^/app/config"},
+
       hideOnScroll: true,
       logo: {
         alt: "My Site Logo",
