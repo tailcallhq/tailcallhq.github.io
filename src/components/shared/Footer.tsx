@@ -44,7 +44,12 @@ const Footer = (): JSX.Element => {
         </p>
         <div className="space-x-SPACE_04">
           {socials.map((social) => (
-            <Link href={social.href} aria-label={social.name} className="cursor-pointer" key={social.id}>
+            <Link
+              href={social.href}
+              aria-label={`Visit Tailcall on ${social.name.charAt(0).toUpperCase()}${social.name.slice(1)}`}
+              className="cursor-pointer"
+              key={social.id}
+            >
               <social.image className="h-6 w-6" />
             </Link>
           ))}

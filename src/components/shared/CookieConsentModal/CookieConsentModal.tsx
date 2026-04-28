@@ -149,14 +149,19 @@ const CookieConsentModal: React.FC<CookieConsentModalProps> = ({open, onAccept, 
                 })}
               </div>
             </div>
-            <img
+            <button
+              type="button"
               className={clsx("absolute cursor-pointer", styles.closeBtn)}
-              src={require("@site/static/images/cookie-consent/close-btn.png").default}
-              height={16}
-              width={25}
-              alt="Close cookie consent banner"
+              aria-label="Close cookie consent banner"
               onClick={handleClose}
-            />
+            >
+              <img
+                src={require("@site/static/images/cookie-consent/close-btn.png").default}
+                height={16}
+                width={25}
+                alt=""
+              />
+            </button>
           </div>
         </>
       ) : null}

@@ -30,7 +30,7 @@ const Banner = (): JSX.Element => {
               href={pageLinks.introduction}
               theme={Theme.Dark}
               width="small"
-              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              onClick={() => analyticsHandler("Home Page", "Click", "Learn GraphQL")}
             />
             <LinkButton
               title="Get Started"
@@ -46,7 +46,7 @@ const Banner = (): JSX.Element => {
               title="Learn GraphQL"
               href={pageLinks.introduction}
               theme={Theme.Dark}
-              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              onClick={() => analyticsHandler("Home Page", "Click", "Learn GraphQL")}
               width="full"
             />
             <LinkButton

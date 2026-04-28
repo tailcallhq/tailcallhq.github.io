@@ -18,7 +18,7 @@ const ChooseTailcall = (): JSX.Element => {
             <div className="h-16 w-16 sm:w-full sm:h-full">
               <img
                 src={item.image}
-                alt="Image Describing Why Tailcall"
+                alt={`${item.title} illustration`}
                 loading="lazy"
                 decoding="async"
                 className="max-w-[72px] sm:max-w-[110px]"
