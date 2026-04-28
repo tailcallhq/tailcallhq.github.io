@@ -26,7 +26,7 @@ const Banner = (): JSX.Element => {
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Learn More"
+              title="Learn GraphQL"
               href={pageLinks.introduction}
               theme={Theme.Dark}
               width="small"
@@ -43,7 +43,7 @@ const Banner = (): JSX.Element => {
 
           <div className="sm:hidden flex justify-between md:justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Learn More"
+              title="Learn GraphQL"
               href={pageLinks.introduction}
               theme={Theme.Dark}
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}

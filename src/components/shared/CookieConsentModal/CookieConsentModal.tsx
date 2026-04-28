@@ -102,7 +102,7 @@ const CookieConsentModal: React.FC<CookieConsentModalProps> = ({open, onAccept, 
                     href={pageLinks.privacyPolicy}
                     className="text-tailCall-light-300 hover:text-tailCall-light-300 underline"
                   >
-                    Learn More
+                    Read Privacy Policy
                   </Link>
                 </span>
               </div>
@@ -154,6 +154,7 @@ const CookieConsentModal: React.FC<CookieConsentModalProps> = ({open, onAccept, 
               src={require("@site/static/images/cookie-consent/close-btn.png").default}
               height={16}
               width={25}
+              alt="Close cookie consent banner"
               onClick={handleClose}
             />
           </div>

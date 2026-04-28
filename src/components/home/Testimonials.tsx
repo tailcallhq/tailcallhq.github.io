@@ -29,7 +29,7 @@ const Testimonials = () => {
     <Section className="customer-container !bg-tailCall-dark-600 h-full w-full text-tailCall-light-100 !bg-contain md:!bg-center md:!bg-top py-16 md:py-20 lg:pt-48 lg:pb-24">
       <div className="flex flex-row items-center justify-center">
         <Heading
-          as="h5"
+          as="h2"
           className="text-title-large sm:text-display-tiny lg:text-display-medium flex flex-col items-center md:flex-row lg:mb-20"
         >
           <span>Developers</span>
