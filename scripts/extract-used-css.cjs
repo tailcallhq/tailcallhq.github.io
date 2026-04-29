@@ -50,42 +50,65 @@ function isUsedRange(used, start, end) {
 }
 
 ;(async () => {
+  const viewports = [
+    {width: 412, height: 915, deviceScaleFactor: 2, label: 'mobile'},
+    {width: 768, height: 1024, deviceScaleFactor: 1, label: 'tablet'},
+    {width: 1440, height: 900, deviceScaleFactor: 1, label: 'desktop'},
+  ]
+
+  // Per-stylesheet unioned used ranges across viewports
+  const stylesheets = {} // url -> {text, used}
+
   const browser = await puppeteer.launch({
     executablePath: '/usr/bin/chromium',
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     headless: true,
   })
-  const page = await browser.newPage()
-  await page.setViewport({width: 412, height: 915, deviceScaleFactor: 2})
-  await page.coverage.startCSSCoverage()
-  await page.goto(process.env.HOME_URL, {waitUntil: 'networkidle0', timeout: 60000})
-  await page.evaluate(async () => {
-    await new Promise((resolve) => {
-      let total = 0
-      const step = window.innerHeight / 2
-      const id = setInterval(() => {
-        window.scrollBy(0, step)
-        total += step
-        if (total >= document.body.scrollHeight) { clearInterval(id); resolve() }
-      }, 50)
+
+  for (const v of viewports) {
+    const page = await browser.newPage()
+    await page.setViewport(v)
+    await page.coverage.startCSSCoverage()
+    await page.goto(process.env.HOME_URL + '?vp=' + v.label + '&t=' + Date.now(), {waitUntil: 'networkidle0', timeout: 60000})
+    await page.evaluate(async () => {
+      await new Promise((resolve) => {
+        let total = 0
+        const step = window.innerHeight / 2
+        const id = setInterval(() => {
+          window.scrollBy(0, step)
+          total += step
+          if (total >= document.body.scrollHeight) { clearInterval(id); resolve() }
+        }, 50)
+      })
     })
-  })
-  await new Promise((r) => setTimeout(r, 1500))
-  const coverage = await page.coverage.stopCSSCoverage()
+    await new Promise((r) => setTimeout(r, 1500))
+    const coverage = await page.coverage.stopCSSCoverage()
+    for (const entry of coverage) {
+      if (!entry.text || !entry.url.endsWith('.css')) continue
+      const key = entry.url
+      if (!stylesheets[key]) {
+        stylesheets[key] = {text: entry.text, used: new Uint8Array(entry.text.length)}
+      }
+      const ss = stylesheets[key]
+      for (const r of entry.ranges) {
+        for (let i = r.start; i < r.end; i++) ss.used[i] = 1
+      }
+    }
+    console.log('VP:', v.label, 'coverage entries:', coverage.length)
+    await page.close()
+  }
+
   await browser.close()
 
   let usedCss = ''
-  for (const entry of coverage) {
-    if (!entry.text || !entry.url.endsWith('.css')) continue
-    const text = entry.text
-    const used = new Uint8Array(text.length)
-    for (const r of entry.ranges) for (let i = r.start; i < r.end; i++) used[i] = 1
+  for (const url in stylesheets) {
+    const {text, used} = stylesheets[url]
     const rules = walkRules(text)
     let kept = 0
     for (const rule of rules) {
       if (isUsedRange(used, rule.start, rule.end)) { usedCss += text.slice(rule.start, rule.end); kept++ }
     }
-    console.log('CSS:', entry.url.split('/').pop(), 'rules:', rules.length, 'kept:', kept, 'bytes so far:', usedCss.length)
+    console.log('CSS:', url.split('/').pop(), 'rules:', rules.length, 'kept:', kept, 'merged bytes so far:', usedCss.length)
   }
   fs.writeFileSync('/tmp/home-used.css', usedCss)
 })().catch((e) => { console.error('FAIL:', e.message, e.stack); process.exit(1) })
