@@ -46,16 +46,6 @@ export default {
     {
       tagName: "script",
       attributes: {
-        id: "chatbotscript",
-        "data-accountid": "CZPG9aVdtk59Tjz4SMTu8w==",
-        "data-websiteid": "75VGI0NlBqessD4BQn2pFg==",
-        src: "https://app.robofy.ai/bot/js/common.js",
-        defer: "true",
-      },
-    },
-    {
-      tagName: "script",
-      attributes: {
         type: "application/ld+json",
       },
       innerHTML: JSON.stringify({
@@ -246,6 +236,7 @@ export default {
         },
       },
     ],
+    "./plugins/no-hydrate-home-plugin.ts",
     async function tailwindPlugin() {
       return {
         name: "docusaurus-tailwindcss",
