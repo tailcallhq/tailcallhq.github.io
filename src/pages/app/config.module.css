@@ -1,0 +1,80 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+  align-items: start;
+}
+
+.formColumn {
+  display: grid;
+  gap: 24px;
+}
+
+.card {
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  background: #181818;
+}
+
+.previewCard {
+  position: sticky;
+  top: 24px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #3d3d3d;
+  background: #111;
+  color: #fff;
+}
+
+.label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.button {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background: #f5f5f5;
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.preview {
+  overflow: auto;
+  padding: 16px;
+  min-height: 320px;
+  margin-top: 16px;
+  border-radius: 10px;
+  background: #0b0b0b;
+  border: 1px solid #333;
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding: 32px 16px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .previewCard {
+    position: static;
+  }
+}
