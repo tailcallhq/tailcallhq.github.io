@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tailcall GraphQL Playground</title>
+    <meta
+      name="description"
+      content="Run GraphQL queries against any API endpoint with Tailcall's lightweight playground."
+    />
+    <link rel="icon" href="/images/favicon.ico" />
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: #f7f8fa;
+        color: #121315;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+      }
+      a {
+        color: inherit;
+      }
+      .shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 24px 0;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .brand {
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        text-decoration: none;
+      }
+      .links {
+        display: flex;
+        gap: 16px;
+        font-size: 14px;
+      }
+      .links a {
+        text-decoration: none;
+        color: #545556;
+      }
+      .hero {
+        margin-bottom: 24px;
+      }
+      h1 {
+        max-width: 760px;
+        margin: 0 0 12px;
+        font-size: clamp(36px, 8vw, 72px);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+      }
+      .subhead {
+        max-width: 680px;
+        margin: 0;
+        color: #545556;
+        font-size: 18px;
+        line-height: 1.55;
+      }
+      .panel {
+        overflow: hidden;
+        border: 1px solid #e4e4e4;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 24px 80px rgba(18, 19, 21, 0.08);
+      }
+      .form {
+        display: flex;
+        gap: 12px;
+        padding: 16px;
+        border-bottom: 1px solid #e4e4e4;
+      }
+      label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+      input {
+        min-width: 0;
+        flex: 1;
+        height: 48px;
+        border: 1px solid #cececf;
+        border-radius: 12px;
+        padding: 0 14px;
+        font: inherit;
+      }
+      button {
+        height: 48px;
+        border: 0;
+        border-radius: 12px;
+        padding: 0 18px;
+        background: #121315;
+        color: #fff;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      #status {
+        padding: 24px;
+        color: #545556;
+        line-height: 1.5;
+      }
+      #graphiql {
+        min-height: 65vh;
+      }
+      @media (max-width: 640px) {
+        .links {
+          display: none;
+        }
+        .form {
+          flex-direction: column;
+        }
+        button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="/">Tailcall</a>
+        <div class="links">
+          <a href="/docs/">Docs</a>
+          <a href="/blog/">Blog</a>
+          <a href="https://github.com/tailcallhq/tailcall">GitHub</a>
+        </div>
+      </nav>
+      <section class="hero" aria-labelledby="title">
+        <h1 id="title">GraphQL Playground</h1>
+        <p class="subhead">Enter a GraphQL API endpoint to load the interactive editor only when you need it.</p>
+      </section>
+      <section class="panel" aria-label="GraphQL endpoint">
+        <form class="form" id="endpoint-form">
+          <label for="endpoint">API Endpoint</label>
+          <input id="endpoint" name="u" type="url" placeholder="https://api.example.com/graphql" autocomplete="url" />
+          <button type="submit">Load playground</button>
+        </form>
+        <div id="status">
+          The editor is deferred until an endpoint is provided, keeping this page fast on first load.
+        </div>
+        <div id="graphiql" hidden></div>
+      </section>
+    </main>
+    <script>
+      const form = document.getElementById("endpoint-form")
+      const input = document.getElementById("endpoint")
+      const status = document.getElementById("status")
+      const mount = document.getElementById("graphiql")
+      let root
+      let assetsPromise
+
+      const params = new URLSearchParams(window.location.search)
+      const initialEndpoint = params.get("u") || ""
+      if (initialEndpoint) input.value = initialEndpoint
+
+      const isValidUrl = (value) => {
+        try {
+          new URL(value)
+          return true
+        } catch {
+          return false
+        }
+      }
+
+      const loadScript = (src) =>
+        new Promise((resolve, reject) => {
+          const script = document.createElement("script")
+          script.src = src
+          script.crossOrigin = "anonymous"
+          script.onload = resolve
+          script.onerror = () => reject(new Error(`Failed to load ${src}`))
+          document.head.append(script)
+        })
+
+      const loadGraphiQLAssets = () => {
+        if (!assetsPromise) {
+          const css = document.createElement("link")
+          css.rel = "stylesheet"
+          css.href = "https://unpkg.com/graphiql@3.3.1/graphiql.min.css"
+          document.head.append(css)
+
+          assetsPromise = loadScript("https://unpkg.com/react@18.3.1/umd/react.production.min.js")
+            .then(() => loadScript("https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"))
+            .then(() => loadScript("https://unpkg.com/graphiql@3.3.1/graphiql.min.js"))
+        }
+
+        return assetsPromise
+      }
+
+      async function loadGraphiQL(endpoint) {
+        if (!isValidUrl(endpoint)) {
+          status.hidden = false
+          status.textContent = "Enter a valid API endpoint URL."
+          return
+        }
+
+        status.hidden = false
+        status.textContent = "Loading interactive GraphQL playground…"
+        mount.hidden = false
+
+        try {
+          await loadGraphiQLAssets()
+
+          const fetcher = window.GraphiQL.createFetcher({url: endpoint})
+          root = root || window.ReactDOM.createRoot(mount)
+          root.render(window.React.createElement(window.GraphiQL, {fetcher}))
+
+          status.hidden = true
+          const next = new URL(window.location.href)
+          next.searchParams.set("u", endpoint)
+          window.history.replaceState(null, "", next)
+        } catch (error) {
+          status.hidden = false
+          status.textContent = "Unable to load the interactive playground. Please try again."
+          console.error(error)
+        }
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault()
+        loadGraphiQL(input.value.trim())
+      })
+
+      if (isValidUrl(initialEndpoint)) {
+        loadGraphiQL(initialEndpoint)
+      }
+    </script>
+  </body>
+</html>
