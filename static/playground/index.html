@@ -186,6 +186,19 @@
         }
       }
 
+      // Keep the standalone route non-persistent by default. The previous
+      // Docusaurus app guarded GraphiQL localStorage behind cookie preferences;
+      // this static route avoids browser storage entirely while preserving the
+      // deferred interactive playground behavior.
+      const transientGraphiQLStorage = {
+        getItem: () => null,
+        setItem: () => undefined,
+        removeItem: () => undefined,
+        clear: () => undefined,
+        key: () => null,
+        length: 0,
+      }
+
       const loadScript = (src) =>
         new Promise((resolve, reject) => {
           const script = document.createElement("script")
@@ -227,7 +240,7 @@
 
           const fetcher = window.GraphiQL.createFetcher({url: endpoint})
           root = root || window.ReactDOM.createRoot(mount)
-          root.render(window.React.createElement(window.GraphiQL, {fetcher}))
+          root.render(window.React.createElement(window.GraphiQL, {fetcher, storage: transientGraphiQLStorage}))
 
           status.hidden = true
           const next = new URL(window.location.href)
