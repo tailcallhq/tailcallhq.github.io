@@ -4,9 +4,14 @@ import {analyticsHandler, isValidURL, sendConversionEvent} from "@site/src/utils
 import {CookiePreferenceCategory, playgroundAdsConversionId} from "@site/src/constants"
 import "graphiql/graphiql.css"
 import "../../css/graphiql.css"
-import {type FetcherParams, FetcherOpts} from "@graphiql/toolkit"
 import {useCookieConsent} from "@site/src/utils/hooks/useCookieConsent"
 import {createGraphiQLFetcher} from "@graphiql/create-fetcher"
+import Link from "@docusaurus/Link"
+import {Settings2} from "lucide-react"
+
+type PlaygroundFetcher = NonNullable<React.ComponentProps<typeof GraphiQL>["fetcher"]>
+type CreateFetcherParams = Parameters<ReturnType<typeof createGraphiQLFetcher>>[0]
+type CreateFetcherOpts = Parameters<ReturnType<typeof createGraphiQLFetcher>>[1]
 
 const useDebouncedValue = (inputValue: string, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(inputValue)
@@ -46,7 +51,7 @@ const Playground = () => {
     }
   }, [debouncedApiEndpoint])
 
-  const graphQLFetcher = async (graphQLParams: FetcherParams, opts?: FetcherOpts) => {
+  const graphQLFetcher: PlaygroundFetcher = async (graphQLParams, opts) => {
     if (apiEndpoint.toString().trim() === "") {
       return Promise.resolve({})
     }
@@ -54,7 +59,7 @@ const Playground = () => {
     sendConversionEvent(playgroundAdsConversionId)
 
     const fetcher = createGraphiQLFetcher({url: apiEndpoint.toString()})
-    return fetcher(graphQLParams, opts)
+    return fetcher(graphQLParams as CreateFetcherParams, opts as CreateFetcherOpts)
   }
 
   const emptyGraphiqlStorageObject = {
@@ -82,7 +87,7 @@ const Playground = () => {
     <div className="min-h-[90vh]">
       {typeof window !== "undefined" && (
         <div className="mt-SPACE_06">
-          <div className="flex px-SPACE_04">
+          <div className="flex flex-col gap-SPACE_03 px-SPACE_04 md:flex-row">
             <input
               name="api-endpoint"
               type="url"
@@ -91,6 +96,13 @@ const Playground = () => {
               className={apiEndpointInputClasses}
               placeholder="API Endpoint"
             />
+            <Link
+              to="/app/config"
+              className="inline-flex h-11 shrink-0 items-center justify-center gap-SPACE_02 rounded-md border border-solid border-tailCall-border-light-500 bg-white px-SPACE_04 text-content-tiny font-bold text-tailCall-dark-100 no-underline hover:text-tailCall-dark-700"
+            >
+              <Settings2 size={16} aria-hidden />
+              Config Builder
+            </Link>
           </div>
           <div className="flex my-SPACE_03">
             <GraphiQL fetcher={graphQLFetcher} storage={graphiqlStorage}>
