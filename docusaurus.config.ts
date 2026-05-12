@@ -16,15 +16,6 @@ export default {
     {
       tagName: "script",
       attributes: {
-        id: "chatbotscript",
-        "data-accountid": "CZPG9aVdtk59Tjz4SMTu8w==",
-        "data-websiteid": "75VGI0NlBqessD4BQn2pFg==",
-        src: "https://app.robofy.ai/bot/js/common.js?v=" + new Date().getTime(),
-      },
-    },
-    {
-      tagName: "script",
-      attributes: {
         type: "application/ld+json",
       },
       innerHTML: JSON.stringify({
@@ -78,9 +69,7 @@ export default {
           editUrl: `https://github.com/${organization}/${project}/tree/develop`,
         },
         blog: false,
-        theme: {
-          customCss: require.resolve("./src/css/custom.css"),
-        },
+        theme: {},
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
@@ -152,6 +141,7 @@ export default {
     tableOfContents: {},
   } satisfies Preset.ThemeConfig,
   plugins: [
+    "./plugins/static-homepage-plugin.ts",
     [
       "./plugins/custom-blog-plugin.ts",
       {

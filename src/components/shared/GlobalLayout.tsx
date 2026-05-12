@@ -23,6 +23,26 @@ const GlobalLayout: React.FC = () => {
     }
   }, [cookieConsent])
 
+  useEffect(() => {
+    if (typeof window === "undefined" || document.getElementById("chatbotscript")) return
+
+    const loadChatbot = () => {
+      const script = document.createElement("script")
+      script.id = "chatbotscript"
+      script.dataset.accountid = "CZPG9aVdtk59Tjz4SMTu8w=="
+      script.dataset.websiteid = "75VGI0NlBqessD4BQn2pFg=="
+      script.src = "https://app.robofy.ai/bot/js/common.js"
+      script.async = true
+      document.body.appendChild(script)
+    }
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(loadChatbot)
+    } else {
+      window.setTimeout(loadChatbot, 1500)
+    }
+  }, [])
+
   return (
     <>
       <CookieConsentModal

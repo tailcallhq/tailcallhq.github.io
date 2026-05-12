@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,7 +32,7 @@
 
 :root {
   /* Font and Dimension Tokens */
-  --ifm-font-family-base: "Space Grotesk", sans-serif;
+  --ifm-font-family-base: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --header-height: 6.5rem;
   --ifm-navbar-height: 6.5rem;
   --ifm-navbar-height-sm: 4.5rem;
@@ -72,7 +70,7 @@
   --ifm-color-brand-light-opacity-15: rgba(255, 255, 255, 0.15);
 
   /* Code Settings */
-  --ifm-font-family-monospace: "Space Mono";
+  --ifm-font-family-monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --ifm-code-background: rgb(246, 247, 248);
   --ifm-code-border-radius: var(--ifm-global-radius);
   --ifm-code-font-size: 0.9eem;
