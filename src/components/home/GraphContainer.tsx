@@ -71,7 +71,7 @@ const GraphContainer = ({
         <span className="text-content-tiny sm:text-content-small text-tailCall-light-400">{metricDesc}</span>
       </div>
 
-      <div className="absolute right-SPACE_01 bottom-SPACE_01">
+      <div className="absolute right-SPACE_01 bottom-SPACE_01" aria-hidden="true">
         <LottieContainer lottieRef={lottieRef} animationData={visual} interactivity={interactivity} loop={false} />
       </div>
     </div>

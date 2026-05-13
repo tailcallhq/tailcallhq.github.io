@@ -29,8 +29,57 @@
   border-radius: 0.375rem;
   z-index: 10;
   box-shadow: 0px 4px 32px 0px #ffe933;
-  background-image: url("/static/images/video-thumbnail.webp");
-  background-size: 100%;
+  background: #121315;
+}
+
+.video-thumbnail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-play-button {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.video-play-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.12);
+  z-index: 1;
+}
+
+.video-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4rem;
+  height: 4rem;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: #fdea2e;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.24);
+  z-index: 2;
+}
+
+.video-play-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-top: 0.8rem solid transparent;
+  border-bottom: 0.8rem solid transparent;
+  border-left: 1.15rem solid #121315;
 }
 
 .video-background {

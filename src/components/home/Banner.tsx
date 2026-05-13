@@ -2,7 +2,6 @@ import React from "react"
 import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
-import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
 import {Theme, codeSandboxUrl} from "@site/src/constants"
 import {pageLinks} from "@site/src/constants/routes"
@@ -11,7 +10,7 @@ import Section from "../shared/Section"
 
 const Banner = (): JSX.Element => {
   return (
-    <main className="grid justify-center">
+    <main className="w-full overflow-hidden">
       <Section className="flex flex-col sm:items-center sm:text-center w-full !pb-0">
         <div className="h-full 2xl:min-h-0">
           <Heading
@@ -26,11 +25,11 @@ const Banner = (): JSX.Element => {
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Learn More"
+              title="Learn GraphQL"
               href={pageLinks.introduction}
               theme={Theme.Dark}
               width="small"
-              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              onClick={() => analyticsHandler("Home Page", "Click", "Learn GraphQL")}
             />
             <LinkButton
               title="Get Started"
@@ -43,10 +42,10 @@ const Banner = (): JSX.Element => {
 
           <div className="sm:hidden flex justify-between md:justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Learn More"
+              title="Learn GraphQL"
               href={pageLinks.introduction}
               theme={Theme.Dark}
-              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              onClick={() => analyticsHandler("Home Page", "Click", "Learn GraphQL")}
               width="full"
             />
             <LinkButton
@@ -59,7 +58,19 @@ const Banner = (): JSX.Element => {
           </div>
         </div>
       </Section>
-      <HeroImage className="object-contain h-full sm:h-full w-full mt-8 max-w-7xl" />
+      <picture className="block w-full mt-8 max-w-7xl mx-auto" style={{aspectRatio: "1400 / 672"}}>
+        <source media="(max-width: 767px)" srcSet="/images/home/hero-mobile.avif" type="image/avif" />
+        <source srcSet="/images/home/hero.avif" type="image/avif" />
+        <img
+          src="/images/home/hero.svg"
+          alt=""
+          className="object-contain w-full h-auto"
+          width={1400}
+          height={672}
+          fetchPriority="high"
+          style={{aspectRatio: "1400 / 672"}}
+        />
+      </picture>
     </main>
   )
 }

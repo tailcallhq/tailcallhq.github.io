@@ -14,7 +14,7 @@ const Discover = (): JSX.Element => {
         <BgTailcall />
 
         <div className="flex flex-col items-center absolute max-w-3xl space-y-SPACE_04 sm:space-y-SPACE_06">
-          <Heading as="h5" className="text-title-semi-large sm:text-display-medium text-center mb-0">
+          <Heading as="h2" className="text-title-semi-large sm:text-display-medium text-center mb-0">
             Discover the power of enterprise solution.
           </Heading>
 
