@@ -24,7 +24,7 @@ const GlobalLayout: React.FC = () => {
   }, [cookieConsent])
 
   useEffect(() => {
-    if (typeof window === "undefined" || document.getElementById("chatbotscript")) return
+    if (typeof window === "undefined" || !cookieConsent?.accepted || document.getElementById("chatbotscript")) return
 
     const loadChatbot = () => {
       const script = document.createElement("script")
@@ -47,7 +47,7 @@ const GlobalLayout: React.FC = () => {
     } else {
       window.setTimeout(loadChatbot, 1500)
     }
-  }, [])
+  }, [cookieConsent?.accepted])
 
   return (
     <>
