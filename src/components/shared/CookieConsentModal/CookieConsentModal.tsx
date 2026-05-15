@@ -95,14 +95,14 @@ const CookieConsentModal: React.FC<CookieConsentModalProps> = ({open, onAccept, 
           >
             <div className="flex flex-col gap-4 text-tailCall-light-300">
               <div className="flex flex-col gap-2">
-                <span className="text-content-small font-bold xl:text-title-small">We Value Your Privacy</span>
+                <h2 className="text-content-small font-bold xl:text-title-small mb-0">We Value Your Privacy</h2>
                 <span className="text-content-tiny xl:text-content-small">
                   This website uses cookies to ensure you receive the best possible experience.{" "}
                   <Link
                     href={pageLinks.privacyPolicy}
                     className="text-tailCall-light-300 hover:text-tailCall-light-300 underline"
                   >
-                    Learn More
+                    Read the privacy policy
                   </Link>
                 </span>
               </div>
@@ -152,6 +152,7 @@ const CookieConsentModal: React.FC<CookieConsentModalProps> = ({open, onAccept, 
             <img
               className={clsx("absolute cursor-pointer", styles.closeBtn)}
               src={require("@site/static/images/cookie-consent/close-btn.png").default}
+              alt="Close cookie settings"
               height={16}
               width={25}
               onClick={handleClose}

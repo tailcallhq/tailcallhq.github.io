@@ -2,16 +2,14 @@ import React from "react"
 import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
-import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme, codeSandboxUrl} from "@site/src/constants"
+import {Theme} from "@site/src/constants"
 import {pageLinks} from "@site/src/constants/routes"
-import Link from "@docusaurus/Link"
 import Section from "../shared/Section"
 
 const Banner = (): JSX.Element => {
   return (
-    <main className="grid justify-center">
+    <main className="home-hero grid justify-center">
       <Section className="flex flex-col sm:items-center sm:text-center w-full !pb-0">
         <div className="h-full 2xl:min-h-0">
           <Heading
@@ -26,7 +24,7 @@ const Banner = (): JSX.Element => {
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Learn More"
+              title="GraphQL Guide"
               href={pageLinks.introduction}
               theme={Theme.Dark}
               width="small"
@@ -43,7 +41,7 @@ const Banner = (): JSX.Element => {
 
           <div className="sm:hidden flex justify-between md:justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Learn More"
+              title="GraphQL Guide"
               href={pageLinks.introduction}
               theme={Theme.Dark}
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
@@ -59,7 +57,16 @@ const Banner = (): JSX.Element => {
           </div>
         </div>
       </Section>
-      <HeroImage className="object-contain h-full sm:h-full w-full mt-8 max-w-7xl" />
+      <picture className="hidden sm:block h-full sm:h-full w-full mt-8 max-w-7xl">
+        <source media="(min-width: 640px)" srcSet="/images/home/hero.svg" />
+        <img
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+          alt=""
+          className="object-contain h-full sm:h-full w-full"
+          loading="lazy"
+          fetchPriority="low"
+        />
+      </picture>
     </main>
   )
 }
