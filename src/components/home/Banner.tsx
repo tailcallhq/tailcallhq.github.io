@@ -1,13 +1,33 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
-import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme, codeSandboxUrl} from "@site/src/constants"
+import {Theme} from "@site/src/constants"
 import {pageLinks} from "@site/src/constants/routes"
-import Link from "@docusaurus/Link"
 import Section from "../shared/Section"
+
+const DesktopHeroImage = (): JSX.Element | null => {
+  const [shouldRender, setShouldRender] = useState(false)
+
+  useEffect(() => {
+    setShouldRender(window.matchMedia("(min-width: 640px)").matches)
+  }, [])
+
+  if (!shouldRender) return null
+
+  return (
+    <img
+      src="/images/home/hero.svg"
+      alt="Tailcall GraphQL platform overview"
+      className="object-contain h-full sm:h-full w-full mt-8 max-w-7xl"
+      width={1400}
+      height={672}
+      loading="eager"
+      fetchPriority="high"
+    />
+  )
+}
 
 const Banner = (): JSX.Element => {
   return (
@@ -26,7 +46,7 @@ const Banner = (): JSX.Element => {
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Learn More"
+              title="Explore Tailcall"
               href={pageLinks.introduction}
               theme={Theme.Dark}
               width="small"
@@ -43,7 +63,7 @@ const Banner = (): JSX.Element => {
 
           <div className="sm:hidden flex justify-between md:justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Learn More"
+              title="Explore Tailcall"
               href={pageLinks.introduction}
               theme={Theme.Dark}
               onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
@@ -59,7 +79,7 @@ const Banner = (): JSX.Element => {
           </div>
         </div>
       </Section>
-      <HeroImage className="object-contain h-full sm:h-full w-full mt-8 max-w-7xl" />
+      <DesktopHeroImage />
     </main>
   )
 }

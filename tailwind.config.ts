@@ -71,8 +71,8 @@ module.exports = {
       },
     },
     fontFamily: {
-      "space-grotesk": ["Space Grotesk", "sans-serif"],
-      "space-mono": ["Space Mono", "monospace"],
+      "space-grotesk": ["Space Grotesk", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+      "space-mono": ["Space Mono", "SFMono-Regular", "Consolas", "Liberation Mono", "monospace"],
     },
     fontSize: {
       "display-large": [

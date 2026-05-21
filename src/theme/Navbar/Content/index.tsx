@@ -5,15 +5,15 @@ import {useHistory} from "react-router-dom"
 import {useLocation} from "@docusaurus/router"
 import NavbarItem, {type Props as NavbarItemConfig} from "@theme/NavbarItem"
 
-import Search from "../../SearchBar/index"
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle"
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle"
 import NavbarLogo from "@theme/Navbar/Logo"
-import GithubStarsButton from "@site/src/components/shared/GithubStarsButton"
 import SearchIcon from "@site/static/icons/basic/search.svg"
 import PageSearchIcon from "@site/static/icons/basic/page-search.svg"
 import styles from "./styles.module.css"
 import {getSearchInputRef, setBodyOverflow} from "@site/src/utils"
+
+const Search = React.lazy(() => import("../../SearchBar/index"))
 
 const useNavbarItems = () => {
   // TODO temporary casting until ThemeConfig type is improved (added by docusaurus)
@@ -148,7 +148,9 @@ const CustomSearch = () => {
               <div className={styles.modalContent}>
                 <div className={styles.search}>
                   <div className={styles.searchInput}>
-                    <Search />
+                    <React.Suspense fallback={null}>
+                      <Search />
+                    </React.Suspense>
                   </div>
                   <span
                     className={`${styles.searchDocsClose} ${styles.searchDocsCommon}`}
@@ -185,7 +187,7 @@ const NavbarContent = (): JSX.Element => {
         // TODO stop hardcoding items? (added by docusaurus)
         // Render left navbar items
         <>
-          {mobileSidebar.shouldRender && <Search />}
+          <CustomSearch />
           {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
           <NavbarLogo />
           <NavbarItems items={leftItems} />

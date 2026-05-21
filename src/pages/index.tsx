@@ -1,24 +1,40 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import Layout from "@theme/Layout"
-import ReactGA from "react-ga4"
 import {useLocation} from "@docusaurus/router"
 
 import HomePage from "../components/home"
 import {PageDescription, PageTitle} from "../constants/titles"
-import Announcement from "../components/shared/Announcement"
 
 const Home = (): JSX.Element => {
   const isDevelopment = process.env.NODE_ENV === "development"
   const location = useLocation()
+  const [shouldLoadScarfPixel, setShouldLoadScarfPixel] = useState(false)
 
   useEffect(() => {
-    ReactGA.send({hitType: "pageview", page: location.pathname, title: "Home Page"})
+    if (window.gtag) {
+      window.gtag("event", "page_view", {page_path: location.pathname, page_title: "Home Page"})
+    }
+  }, [location.pathname])
+
+  useEffect(() => {
+    const loadPixel = () => setShouldLoadScarfPixel(true)
+    const options = {once: true, passive: true}
+
+    window.addEventListener("pointerdown", loadPixel, options)
+    window.addEventListener("keydown", loadPixel, options)
+    window.addEventListener("touchstart", loadPixel, options)
+
+    return () => {
+      window.removeEventListener("pointerdown", loadPixel)
+      window.removeEventListener("keydown", loadPixel)
+      window.removeEventListener("touchstart", loadPixel)
+    }
   }, [])
 
   return (
     <Layout title={PageTitle.HOME} description={PageDescription.HOME}>
       <HomePage />
-      {!isDevelopment && (
+      {!isDevelopment && shouldLoadScarfPixel && (
         <img
           style={{height: 0, width: 0}}
           referrerPolicy="no-referrer-when-downgrade"

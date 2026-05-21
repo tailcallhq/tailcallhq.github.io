@@ -8,9 +8,6 @@ import {
   PluginHtmlClassNameProvider,
 } from "@docusaurus/theme-common/internal"
 import {DocsPreferredVersionContextProvider} from "@docusaurus/plugin-content-docs/client"
-import GithubStarsProvider from "@site/src/components/shared/GithubStarsProvider"
-import Footer from "@site/src/components/shared/Footer"
-import Announcement from "@site/src/components/shared/Announcement"
 import WrappedCookiesProvider from "@site/src/components/shared/WrappedCookiesProvider"
 import {CookieConsentProvider} from "@site/src/components/shared/CookieConsentProvider"
 
@@ -29,17 +26,11 @@ const Provider = composeProviders([
   DocsPreferredVersionContextProvider,
   PluginHtmlClassNameProvider,
   NavbarProvider,
-  GithubStarsProvider,
 ])
 
 // LayoutProvider component wraps the composed providers around its children
 const LayoutProvider = ({children}: LayoutProviderProps) => {
-  return (
-    <Provider>
-      {children}
-      <Footer />
-    </Provider>
-  )
+  return <Provider>{children}</Provider>
 }
 
 export default LayoutProvider
