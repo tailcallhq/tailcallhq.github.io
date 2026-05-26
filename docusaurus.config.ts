@@ -226,5 +226,13 @@ export default {
         },
       }
     },
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {to: "/config-generator", from: "/app/config"},
+        ],
+      },
+    ],
   ],
 } satisfies Config
