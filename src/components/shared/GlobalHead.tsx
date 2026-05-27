@@ -1,6 +1,6 @@
 import React from "react"
 import Head from "@docusaurus/Head"
-import {gtagScriptContent, reb2bScriptContent} from "@site/src/constants"
+import {CookiePreferenceCategory, gtagScriptContent, reb2bScriptContent} from "@site/src/constants"
 
 interface GlobalHeadProps {
   isCookieConsentAccepted?: boolean
@@ -23,11 +23,23 @@ const GlobalHead: React.FC<GlobalHeadProps> = ({isCookieConsentAccepted = false,
     )
   }
 
+  const injectMarketingScripts = () => {
+    return (
+      <script
+        id="chatbotscript"
+        data-accountid="CZPG9aVdtk59Tjz4SMTu8w=="
+        data-websiteid="75VGI0NlBqessD4BQn2pFg=="
+        src={`https://app.robofy.ai/bot/js/common.js?v=${Date.now()}`}
+      />
+    )
+  }
+
   const injectScripts = (preferences: string[] | undefined): JSX.Element[] => {
     const activeScripts: JSX.Element[] = []
 
     const preferenceMapping: Record<string, () => JSX.Element> = {
-      Analytics: injectAnalyticsScripts,
+      [CookiePreferenceCategory.ANALYTICS]: injectAnalyticsScripts,
+      [CookiePreferenceCategory.MARKETING]: injectMarketingScripts,
     }
 
     if (!preferences) {

@@ -17,10 +17,14 @@ const Configuration = (): JSX.Element => {
           Setup the Tailcall instantly via npm and unlock the power of high-performance API orchestration.
         </p>
         <div>
-          <h5>More</h5>
+          <h3 className="text-title-small">More</h3>
           <p className="text-content-small sm:text-content-medium mb-SPACE_11">
-            To dive deeper into Tailcall checkout our <Link href="/docs">docs</Link> for detailed tutorials. Ideal for
-            devs at any level, it's packed with advanced tips, powerful operators and best practices.
+            To dive deeper into Tailcall checkout our{" "}
+            <Link href="/docs" className="text-tailCall-dark-500 underline">
+              Tailcall docs
+            </Link>{" "}
+            for detailed tutorials. Ideal for devs at any level, it's packed with advanced tips, powerful operators and
+            best practices.
           </p>
         </div>
       </div>

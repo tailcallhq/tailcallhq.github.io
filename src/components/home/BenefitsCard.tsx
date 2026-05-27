@@ -4,6 +4,8 @@ import {ArrowRight} from "lucide-react"
 import Link from "@docusaurus/Link"
 import clsx from "clsx"
 
+const deferredPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+
 const BenefitsCard = (): JSX.Element => {
   return (
     <div className="mt-16 mb-10 lg:my-24">
@@ -20,7 +22,15 @@ const BenefitsCard = (): JSX.Element => {
             href={item.redirection_url}
           >
             <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-              <img src={item.image} alt="Image Describing Why Tailcall" className="w-16 h-16 object-contain" />
+              <img
+                src={deferredPixel}
+                data-src={item.image}
+                alt="Image Describing Why Tailcall"
+                className="w-16 h-16 object-contain"
+                width={64}
+                height={64}
+                loading="lazy"
+              />
             </div>
             <div className="flex-grow">
               <p className="text-title-small sm:text-title-large text-white mb-2 flex items-center justify-between">

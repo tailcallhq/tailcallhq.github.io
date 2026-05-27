@@ -2,11 +2,9 @@ import React from "react"
 import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
-import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme, codeSandboxUrl} from "@site/src/constants"
+import {Theme} from "@site/src/constants"
 import {pageLinks} from "@site/src/constants/routes"
-import Link from "@docusaurus/Link"
 import Section from "../shared/Section"
 
 const Banner = (): JSX.Element => {
@@ -26,11 +24,11 @@ const Banner = (): JSX.Element => {
           </p>
           <div className="hidden sm:flex justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Learn More"
+              title="Explore Tailcall"
               href={pageLinks.introduction}
               theme={Theme.Dark}
               width="small"
-              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              onClick={() => analyticsHandler("Home Page", "Click", "Explore Tailcall")}
             />
             <LinkButton
               title="Get Started"
@@ -43,10 +41,10 @@ const Banner = (): JSX.Element => {
 
           <div className="sm:hidden flex justify-between md:justify-center mt-SPACE_06 sm:mt-SPACE_10 space-x-SPACE_04 sm:space-x-SPACE_06">
             <LinkButton
-              title="Learn More"
+              title="Explore Tailcall"
               href={pageLinks.introduction}
               theme={Theme.Dark}
-              onClick={() => analyticsHandler("Home Page", "Click", "Playground")}
+              onClick={() => analyticsHandler("Home Page", "Click", "Explore Tailcall")}
               width="full"
             />
             <LinkButton
@@ -59,7 +57,16 @@ const Banner = (): JSX.Element => {
           </div>
         </div>
       </Section>
-      <HeroImage className="object-contain h-full sm:h-full w-full mt-8 max-w-7xl" />
+      <picture className="hidden sm:block mt-8 max-w-7xl">
+        <source media="(min-width: 640px)" srcSet="/images/home/hero.svg" />
+        <img
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="object-contain h-full sm:h-full w-full"
+        />
+      </picture>
     </main>
   )
 }

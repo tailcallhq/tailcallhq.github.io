@@ -17,6 +17,8 @@ interface TrustedByMarqueeProps {
   mobileClassName?: string
 }
 
+const deferredPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+
 const TrustedByMarquee: React.FC<TrustedByMarqueeProps> = ({
   title = "Deploy Anywhere",
   logos,
@@ -35,10 +37,26 @@ const TrustedByMarquee: React.FC<TrustedByMarqueeProps> = ({
     <div key={partner.name} className="h-20">
       {partner.link ? (
         <a href={partner.link} target="_blank" rel="noopener noreferrer">
-          <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
+          <img
+            src={deferredPixel}
+            data-src={partner.logo}
+            alt={partner.name}
+            className="max-w-[152px]"
+            width={152}
+            height={43}
+            loading="lazy"
+          />
         </a>
       ) : (
-        <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
+        <img
+          src={deferredPixel}
+          data-src={partner.logo}
+          alt={partner.name}
+          className="max-w-[152px]"
+          width={152}
+          height={43}
+          loading="lazy"
+        />
       )}
     </div>
   )

@@ -3,6 +3,8 @@ import {chooseTailcall, tailcallFeatures, Theme} from "@site/src/constants"
 import LinkButton from "../shared/LinkButton"
 import Link from "@docusaurus/Link"
 
+const deferredPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+
 const ChooseTailcall = (): JSX.Element => {
   return (
     <div className="flex flex-col items-center justify-center">
@@ -16,7 +18,15 @@ const ChooseTailcall = (): JSX.Element => {
             key={item.id}
           >
             <div className="h-16 w-16 sm:w-full sm:h-full">
-              <img src={item.image} alt="Image Describing Why Tailcall" className="max-w-[72px] sm:max-w-[110px]" />
+              <img
+                src={deferredPixel}
+                data-src={item.image}
+                alt="Image Describing Why Tailcall"
+                className="max-w-[72px] sm:max-w-[110px]"
+                width={72}
+                height={72}
+                loading="lazy"
+              />
             </div>
 
             <div>
@@ -33,7 +43,14 @@ const ChooseTailcall = (): JSX.Element => {
             className="flex w-fit p-6 border-2 border-solid border-tailCall-border-dark-300 rounded-xl md:items-center md:justify-center cursor-pointer hover:no-underline text-tailCall-light-300 hover:text-tailCall-light-300 hover:border-[#FDEA2E] benefits-drop-shadow"
             key={item.id}
           >
-            <img src={item.image} alt={`${item.title} Image`} height={24} width={24} />
+            <img
+              src={deferredPixel}
+              data-src={item.image}
+              alt={`${item.title} Image`}
+              height={24}
+              width={24}
+              loading="lazy"
+            />
             <span className="text-content-small lg:text-title-tiny ml-2">{item.title}</span>
           </Link>
         ))}
