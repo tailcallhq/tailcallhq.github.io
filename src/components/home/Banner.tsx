@@ -2,11 +2,9 @@ import React from "react"
 import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
-import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
 import {Theme, codeSandboxUrl} from "@site/src/constants"
 import {pageLinks} from "@site/src/constants/routes"
-import Link from "@docusaurus/Link"
 import Section from "../shared/Section"
 
 const Banner = (): JSX.Element => {
@@ -59,7 +57,13 @@ const Banner = (): JSX.Element => {
           </div>
         </div>
       </Section>
-      <HeroImage className="object-contain h-full sm:h-full w-full mt-8 max-w-7xl" />
+      <img
+        src="/images/home/hero.svg"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="hidden sm:block object-contain h-full sm:h-full w-full mt-8 max-w-7xl"
+      />
     </main>
   )
 }

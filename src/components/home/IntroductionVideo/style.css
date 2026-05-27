@@ -33,6 +33,33 @@
   background-size: 100%;
 }
 
+.video-play-button {
+  align-items: center;
+  background: rgba(18, 19, 21, 0.74);
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+  transition: background 0.2s ease;
+  width: 100%;
+}
+
+.video-play-button:hover,
+.video-play-button:focus-visible {
+  background: rgba(18, 19, 21, 0.62);
+}
+
+.video-play-icon {
+  border-bottom: 24px solid transparent;
+  border-left: 34px solid #fff;
+  border-top: 24px solid transparent;
+  height: 0;
+  margin-left: 8px;
+  width: 0;
+}
+
 .video-background {
   position: absolute;
   top: 0;

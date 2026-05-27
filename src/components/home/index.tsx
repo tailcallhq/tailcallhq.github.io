@@ -1,24 +1,45 @@
-import React from "react"
+import React, {Suspense, useEffect, useState} from "react"
 
 import Banner from "./Banner"
-import Graph from "./Graph"
-import Benefits from "./Benefits"
-import Discover from "../shared/Discover"
-import Configuration from "./Configuration"
-import Testimonials from "./Testimonials"
-import Announcement from "../shared/Announcement"
-import IntroductionVideo from "./IntroductionVideo"
+
+const DeferredSections = React.lazy(() => import("./DeferredSections"))
+
+const DeferredSectionsLoader = (): JSX.Element | null => {
+  const [isReady, setIsReady] = useState(() => {
+    return typeof window !== "undefined" && Boolean(window.__homeAssetsRequested)
+  })
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const loadSections = () => setIsReady(true)
+    const events: Array<keyof WindowEventMap> = ["scroll", "pointerdown", "touchstart", "keydown"]
+
+    events.forEach((eventName) => {
+      window.addEventListener(eventName, loadSections, {once: true, passive: true})
+    })
+
+    return () => {
+      events.forEach((eventName) => {
+        window.removeEventListener(eventName, loadSections)
+      })
+    }
+  }, [])
+
+  if (!isReady) return null
+
+  return (
+    <Suspense fallback={null}>
+      <DeferredSections />
+    </Suspense>
+  )
+}
+
 const HomePage = (): JSX.Element => {
   return (
     <div className="">
       <Banner />
-      <Configuration />
-      <IntroductionVideo />
-      <Testimonials />
-      <Benefits />
-      <Graph />
-      {/* <Playground /> */}
-      <Discover />
+      <DeferredSectionsLoader />
     </div>
   )
 }
