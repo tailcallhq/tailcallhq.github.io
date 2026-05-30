@@ -5,6 +5,7 @@ export const PageTitle = {
   ABOUT: `About | ${tagline}`,
   ENTERPRISE: `Enterprise | ${tagline}`,
   CONTACT: `Contact | ${tagline}`,
+  CONFIG_GENERATOR: `Configuration Generator | ${tagline}`,
   PLAYGROUND: `Playground | ${tagline}`,
 }
 
@@ -13,6 +14,7 @@ export const PageDescription = {
   ABOUT: "Know more about Tailcall and how it can help you build better, faster, and more scalable GraphQL APIs.",
   ENTERPRISE: "Tailcall is the GraphQL platform engineered for scale. Learn how Tailcall can help your enterprise.",
   CONTACT: "Get in touch with us for any queries, feedback, or support. We are here to help you.",
+  CONFIG_GENERATOR: "Generate Tailcall runtime configuration files from the latest JSON schema.",
   PLAYGROUND:
     "Play around with Tailcall's GraphQL playground to see how you can build and deploy GraphQL APIs in minutes.",
 }

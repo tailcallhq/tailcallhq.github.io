@@ -5,6 +5,7 @@ export const pageLinks = {
   pricing: "/pricing",
   // about: "/about",
   contact: "/contact",
+  configGenerator: "/app/config",
   contributors: "/docs/contribution-guidelines",
   privacyPolicy: "/privacy/",
   // enterprise: "/enterprise",

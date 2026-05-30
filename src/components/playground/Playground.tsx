@@ -7,6 +7,9 @@ import "../../css/graphiql.css"
 import {type FetcherParams, FetcherOpts} from "@graphiql/toolkit"
 import {useCookieConsent} from "@site/src/utils/hooks/useCookieConsent"
 import {createGraphiQLFetcher} from "@graphiql/create-fetcher"
+import Link from "@docusaurus/Link"
+import {FileCode2} from "lucide-react"
+import {pageLinks} from "@site/src/constants/routes"
 
 const useDebouncedValue = (inputValue: string, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(inputValue)
@@ -54,7 +57,10 @@ const Playground = () => {
     sendConversionEvent(playgroundAdsConversionId)
 
     const fetcher = createGraphiQLFetcher({url: apiEndpoint.toString()})
-    return fetcher(graphQLParams, opts)
+    return fetcher(
+      graphQLParams as unknown as Parameters<typeof fetcher>[0],
+      opts as unknown as Parameters<typeof fetcher>[1],
+    )
   }
 
   const emptyGraphiqlStorageObject = {
@@ -82,6 +88,21 @@ const Playground = () => {
     <div className="min-h-[90vh]">
       {typeof window !== "undefined" && (
         <div className="mt-SPACE_06">
+          <div className="mb-SPACE_04 flex flex-col gap-SPACE_03 px-SPACE_04 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h1 className="m-0 text-title-medium text-tailCall-dark-700 dark:text-tailCall-light-100">Playground</h1>
+              <p className="m-0 mt-SPACE_01 text-content-tiny text-tailCall-dark-100 dark:text-tailCall-light-500">
+                Test a GraphQL endpoint or generate a Tailcall runtime config before deployment.
+              </p>
+            </div>
+            <Link
+              to={pageLinks.configGenerator}
+              className="inline-flex h-10 items-center justify-center gap-SPACE_02 rounded-md border border-solid border-tailCall-border-light-500 bg-tailCall-light-100 px-SPACE_03 text-content-tiny font-bold text-tailCall-dark-500 no-underline transition-colors hover:bg-tailCall-light-200 hover:no-underline dark:border-tailCall-border-dark-200 dark:bg-tailCall-dark-400 dark:text-tailCall-light-100 dark:hover:bg-tailCall-dark-300"
+            >
+              <FileCode2 size={16} aria-hidden="true" />
+              Config generator
+            </Link>
+          </div>
           <div className="flex px-SPACE_04">
             <input
               name="api-endpoint"
