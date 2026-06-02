@@ -2,7 +2,6 @@ import React from "react"
 import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
-import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
 import {Theme, codeSandboxUrl} from "@site/src/constants"
 import {pageLinks} from "@site/src/constants/routes"
@@ -59,7 +58,13 @@ const Banner = (): JSX.Element => {
           </div>
         </div>
       </Section>
-      <HeroImage className="object-contain h-full sm:h-full w-full mt-8 max-w-7xl" />
+      <img
+        src="/images/home/hero.svg"
+        alt="Tailcall GraphQL platform workflow"
+        className="object-contain h-full sm:h-full w-full mt-8 max-w-7xl"
+        width={1400}
+        height={672}
+      />
     </main>
   )
 }
