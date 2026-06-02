@@ -8,17 +8,28 @@ import Configuration from "./Configuration"
 import Testimonials from "./Testimonials"
 import Announcement from "../shared/Announcement"
 import IntroductionVideo from "./IntroductionVideo"
+import LazyHomeSection from "./LazyHomeSection"
 const HomePage = (): JSX.Element => {
   return (
     <div className="">
       <Banner />
       <Configuration />
-      <IntroductionVideo />
-      <Testimonials />
-      <Benefits />
-      <Graph />
+      <LazyHomeSection minHeight={360}>
+        <IntroductionVideo />
+      </LazyHomeSection>
+      <LazyHomeSection minHeight={520}>
+        <Testimonials />
+      </LazyHomeSection>
+      <LazyHomeSection minHeight={520}>
+        <Benefits />
+      </LazyHomeSection>
+      <LazyHomeSection minHeight={680}>
+        <Graph />
+      </LazyHomeSection>
       {/* <Playground /> */}
-      <Discover />
+      <LazyHomeSection minHeight={208}>
+        <Discover />
+      </LazyHomeSection>
     </div>
   )
 }

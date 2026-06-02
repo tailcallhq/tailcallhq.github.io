@@ -14,6 +14,30 @@ export default {
   tagline: "GraphQL platform engineered for scale",
   headTags: [
     {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        as: "style",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap",
+        onload: "this.onload=null;this.rel='stylesheet'",
+      },
+    },
+    {
       tagName: "script",
       attributes: {
         id: "chatbotscript",
