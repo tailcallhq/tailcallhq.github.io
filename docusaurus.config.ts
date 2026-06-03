@@ -215,6 +215,7 @@ export default {
         },
       },
     ],
+    ["./plugins/playground-performance-plugin.ts", {}],
     async function tailwindPlugin() {
       return {
         name: "docusaurus-tailwindcss",
