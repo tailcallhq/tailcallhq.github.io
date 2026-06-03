@@ -13,7 +13,9 @@ const HomePage = (): JSX.Element => {
   return (
     <div className="">
       <Banner />
-      <Configuration />
+      <LazyHomeSection minHeight={560}>
+        <Configuration />
+      </LazyHomeSection>
       <LazyHomeSection minHeight={360}>
         <IntroductionVideo />
       </LazyHomeSection>
