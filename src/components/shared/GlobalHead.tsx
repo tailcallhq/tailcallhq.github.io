@@ -11,13 +11,7 @@ const GlobalHead: React.FC<GlobalHeadProps> = ({isCookieConsentAccepted = false,
   const injectAnalyticsScripts = () => {
     return (
       <>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JEP3QDWT0G"></script>
         <script>{gtagScriptContent}</script>
-        <script
-          async
-          src="https://tag.clearbitscripts.com/v1/pk_498a76355e253f5c7f4e7c7bed78748e/tags.js"
-          referrerPolicy="strict-origin-when-cross-origin"
-        />
         <script type="text/javascript">{reb2bScriptContent}</script>
       </>
     )

@@ -30,7 +30,7 @@ const Feature = ({feature}: FeatureProps): JSX.Element => {
           <span>{feature.content}</span>
         </p>
         <div className="sm:mt-SPACE_20">
-          <img src={feature.logo} alt={feature.alt} />
+          <img src={feature.logo} alt={feature.alt} loading="lazy" decoding="async" />
         </div>
       </div>
     </div>

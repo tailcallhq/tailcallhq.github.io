@@ -14,13 +14,35 @@ export default {
   tagline: "GraphQL platform engineered for scale",
   headTags: [
     {
-      tagName: "script",
+      tagName: "link",
       attributes: {
-        id: "chatbotscript",
-        "data-accountid": "CZPG9aVdtk59Tjz4SMTu8w==",
-        "data-websiteid": "75VGI0NlBqessD4BQn2pFg==",
-        src: "https://app.robofy.ai/bot/js/common.js?v=" + new Date().getTime(),
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
       },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap",
+        as: "style",
+        onload: "this.onload=null;this.rel='stylesheet'",
+      },
+    },
+    {
+      tagName: "script",
+      attributes: {},
+      innerHTML: `
+window.addEventListener("load",function(){setTimeout(function(){var s=document.createElement("script");s.id="chatbotscript";s.dataset.accountid="CZPG9aVdtk59Tjz4SMTu8w==";s.dataset.websiteid="75VGI0NlBqessD4BQn2pFg==";s.src="https://app.robofy.ai/bot/js/common.js";document.head.appendChild(s)},9e4)});
+`,
     },
     {
       tagName: "script",
@@ -181,6 +203,7 @@ export default {
         onInlineAuthors: "throw",
       },
     ],
+    ["./plugins/home-performance-plugin.ts", {}],
     [
       "@docusaurus/plugin-content-docs",
       {
