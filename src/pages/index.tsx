@@ -24,6 +24,7 @@ const Home = (): JSX.Element => {
           referrerPolicy="no-referrer-when-downgrade"
           src="https://static.scarf.sh/a.png?x-pxid=45ec365f-ab8a-4848-a6a9-bd4ffecfe72e"
           alt="pixel"
+          loading="lazy"
         />
       )}
     </Layout>

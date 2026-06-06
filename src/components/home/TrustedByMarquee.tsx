@@ -35,10 +35,10 @@ const TrustedByMarquee: React.FC<TrustedByMarqueeProps> = ({
     <div key={partner.name} className="h-20">
       {partner.link ? (
         <a href={partner.link} target="_blank" rel="noopener noreferrer">
-          <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
+          <img src={partner.logo} alt={partner.name} className="max-w-[152px]" loading="lazy" />
         </a>
       ) : (
-        <img src={partner.logo} alt={partner.name} className="max-w-[152px]" />
+        <img src={partner.logo} alt={partner.name} className="max-w-[152px]" loading="lazy" />
       )}
     </div>
   )

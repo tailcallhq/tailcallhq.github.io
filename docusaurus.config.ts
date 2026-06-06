@@ -20,6 +20,7 @@ export default {
         "data-accountid": "CZPG9aVdtk59Tjz4SMTu8w==",
         "data-websiteid": "75VGI0NlBqessD4BQn2pFg==",
         src: "https://app.robofy.ai/bot/js/common.js?v=" + new Date().getTime(),
+        defer: "true",
       },
     },
     {
@@ -61,7 +62,7 @@ export default {
     },
   },
   future: {
-    experimental_faster: false, // Required for faster production builds. For reference: https://docusaurus.io/blog/releases/3.6#adoption-strategy
+    experimental_faster: true, // Required for faster production builds. For reference: https://docusaurus.io/blog/releases/3.6#adoption-strategy
   },
   presets: [
     [
