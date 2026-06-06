@@ -6,6 +6,7 @@ export const PageTitle = {
   ENTERPRISE: `Enterprise | ${tagline}`,
   CONTACT: `Contact | ${tagline}`,
   PLAYGROUND: `Playground | ${tagline}`,
+  CONFIG_GENERATOR: `Config Generator | ${tagline}`,
 }
 
 export const PageDescription = {
@@ -15,4 +16,6 @@ export const PageDescription = {
   CONTACT: "Get in touch with us for any queries, feedback, or support. We are here to help you.",
   PLAYGROUND:
     "Play around with Tailcall's GraphQL playground to see how you can build and deploy GraphQL APIs in minutes.",
+  CONFIG_GENERATOR:
+    "Generate Tailcall configuration files with an intuitive UI. Create, update, and download configurations in JSON, YAML, or GraphQL formats.",
 }
