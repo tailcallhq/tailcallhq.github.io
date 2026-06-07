@@ -37,6 +37,11 @@ const Home = (): JSX.Element => {
       }
     }
 
+    if (document.readyState === "complete") {
+      schedulePixel()
+      return undefined
+    }
+
     window.addEventListener("load", schedulePixel, {once: true})
 
     return () => window.removeEventListener("load", schedulePixel)

@@ -29,6 +29,12 @@ function DropdownNavbarItemDesktop({items, position, className, onClick, ...prop
   const containsActive = containsActiveItems(items, localPathname)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const [showDropdown, setShowDropdown] = useState(false)
+  const hasLinkTarget = Boolean(props.to || props.href)
+  const triggerClassName = clsx(
+    "navbar__link",
+    className,
+    !hasLinkTarget && styles.dropdownNavbarItemDesktopTrigger,
+  )
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent | FocusEvent) => {
@@ -58,23 +64,33 @@ function DropdownNavbarItemDesktop({items, position, className, onClick, ...prop
         "navbar__link--active": containsActive,
       })}
     >
-      <NavbarNavLink
-        aria-haspopup="true"
-        aria-expanded={showDropdown}
-        role="button"
-        tabIndex={props.to ? undefined : 0}
-        className={clsx("navbar__link", className)}
-        {...props}
-        onClick={props.to ? undefined : (e) => e.preventDefault()}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            e.preventDefault()
-            setShowDropdown(!showDropdown)
-          }
-        }}
-      >
-        {props.children ?? props.label}
-      </NavbarNavLink>
+      {hasLinkTarget ? (
+        <NavbarNavLink
+          aria-haspopup="true"
+          aria-expanded={showDropdown}
+          role="button"
+          className={triggerClassName}
+          {...props}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault()
+              setShowDropdown(!showDropdown)
+            }
+          }}
+        >
+          {props.children ?? props.label}
+        </NavbarNavLink>
+      ) : (
+        <button
+          type="button"
+          aria-haspopup="true"
+          aria-expanded={showDropdown}
+          className={triggerClassName}
+          onClick={() => setShowDropdown((visible) => !visible)}
+        >
+          {props.children ?? props.label}
+        </button>
+      )}
       <ul className="dropdown__menu">
         {items.map((childItemProps, i) => (
           <NavbarItem isDropdownItem activeClassName="dropdown__link--active" {...childItemProps} key={i} />

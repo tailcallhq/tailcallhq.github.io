@@ -1,3 +1,11 @@
 .dropdownNavbarItemMobile {
   cursor: pointer;
 }
+
+.dropdownNavbarItemDesktopTrigger {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}

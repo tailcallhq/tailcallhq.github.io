@@ -29,6 +29,12 @@
   background: transparent;
 }
 
+.closeBtn:focus-visible {
+  outline: 2px solid #fdea2e;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 @media (max-width: 1000px) {
   .cookieConsentModal {
     bottom: 12px;

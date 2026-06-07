@@ -1,6 +1,5 @@
 import React from "react"
 import CodeBlock from "@theme/CodeBlock"
-import TabItem from "@theme/TabItem"
 
 const ConfigurationCode = (): JSX.Element => {
   return (
@@ -12,7 +11,7 @@ const ConfigurationCode = (): JSX.Element => {
 }
 
 const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" | "graphql"}) => (
-  <TabItem value={language} label={language}>
+  <>
     <CodeBlock
       language={language}
       showLineNumbers={true}
@@ -21,7 +20,7 @@ const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" 
       {code}
     </CodeBlock>
     <CodeBlock language="bash">tailcall start ./app.{language}</CodeBlock>
-  </TabItem>
+  </>
 )
 
 const GRAPHQL_CONFIG = `schema

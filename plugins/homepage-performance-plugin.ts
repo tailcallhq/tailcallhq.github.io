@@ -27,8 +27,8 @@ function optimizeHomepageHtml(html: string): string {
 
   const scriptUrls: string[] = []
   html = html.replace(
-    /<script src="([^"]*\/assets\/js\/(?:runtime~main|main)\.[^"]+\.js)" defer="defer"><\/script>/g,
-    (_match, scriptUrl) => {
+    /<script\b(?=[^>]*\bsrc=(["'])([^"']*\/assets\/js\/(?:runtime~main|main)\.[^"']+\.js)\1)[^>]*>\s*<\/script>/g,
+    (_match, _quote, scriptUrl) => {
       scriptUrls.push(scriptUrl)
       return ""
     },
@@ -38,13 +38,15 @@ function optimizeHomepageHtml(html: string): string {
     throw new Error("homepage-performance-plugin: expected Docusaurus runtime/main scripts in homepage HTML")
   }
 
-  const stylesheetMatch = html.match(/<link rel="stylesheet" href="([^"]*\/assets\/css\/styles\.[^"]+\.css)">/)
+  const stylesheetMatch = html.match(
+    /<link\b(?=[^>]*\brel=(["'])[^"']*\bstylesheet\b[^"']*\1)(?=[^>]*\bhref=(["'])([^"']*\/assets\/css\/styles\.[^"']+\.css)\2)[^>]*\/?>/,
+  )
 
   if (!stylesheetMatch) {
     throw new Error("homepage-performance-plugin: expected Docusaurus stylesheet in homepage HTML")
   }
 
-  const stylesheetHref = stylesheetMatch[1]
+  const stylesheetHref = stylesheetMatch[3]
   html = html.replace(
     stylesheetMatch[0],
     `<style data-homepage-critical>${criticalHomepageCss}</style><noscript><link rel="stylesheet" href="${stylesheetHref}"></noscript>`,
