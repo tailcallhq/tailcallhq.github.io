@@ -1,24 +1,26 @@
 import React from "react"
 
 import Banner from "./Banner"
-import Graph from "./Graph"
-import Benefits from "./Benefits"
-import Discover from "../shared/Discover"
 import Configuration from "./Configuration"
-import Testimonials from "./Testimonials"
-import Announcement from "../shared/Announcement"
 import IntroductionVideo from "./IntroductionVideo"
+import LazyHomeSection from "./LazyHomeSection"
+
+const loadTestimonials = () => import("./Testimonials")
+const loadBenefits = () => import("./Benefits")
+const loadGraph = () => import("./Graph")
+const loadDiscover = () => import("../shared/Discover")
+
 const HomePage = (): JSX.Element => {
   return (
     <div className="">
       <Banner />
       <Configuration />
       <IntroductionVideo />
-      <Testimonials />
-      <Benefits />
-      <Graph />
+      <LazyHomeSection load={loadTestimonials} minHeight={640} />
+      <LazyHomeSection load={loadBenefits} minHeight={760} />
+      <LazyHomeSection load={loadGraph} minHeight={840} />
       {/* <Playground /> */}
-      <Discover />
+      <LazyHomeSection load={loadDiscover} minHeight={240} />
     </div>
   )
 }

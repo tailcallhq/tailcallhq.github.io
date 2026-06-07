@@ -14,13 +14,21 @@ export default {
   tagline: "GraphQL platform engineered for scale",
   headTags: [
     {
-      tagName: "script",
+      tagName: "link",
       attributes: {
-        id: "chatbotscript",
-        "data-accountid": "CZPG9aVdtk59Tjz4SMTu8w==",
-        "data-websiteid": "75VGI0NlBqessD4BQn2pFg==",
-        src: "https://app.robofy.ai/bot/js/common.js?v=" + new Date().getTime(),
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: "/fonts/space-grotesk-latin.woff2",
+        crossorigin: "anonymous",
       },
+    },
+    {
+      tagName: "script",
+      attributes: {},
+      innerHTML: `
+!function(){function n(){if(document.getElementById("chatbotscript"))return;var t=document.createElement("script");t.id="chatbotscript",t.async=!0,t.defer=!0,t.dataset.accountid="CZPG9aVdtk59Tjz4SMTu8w==",t.dataset.websiteid="75VGI0NlBqessD4BQn2pFg==",t.src="https://app.robofy.ai/bot/js/common.js",document.head.appendChild(t)}function t(){window.setTimeout(n,1e4)}["pointerdown","keydown","touchstart"].forEach(function(t){window.addEventListener(t,n,{once:!0,passive:!0,capture:!0})}),"loading"===document.readyState?window.addEventListener("load",t,{once:!0}):t()}();
+`,
     },
     {
       tagName: "script",
@@ -181,6 +189,7 @@ export default {
         onInlineAuthors: "throw",
       },
     ],
+    ["./plugins/homepage-performance-plugin.ts", {}],
     [
       "@docusaurus/plugin-content-docs",
       {

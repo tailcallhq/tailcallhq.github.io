@@ -2,11 +2,9 @@ import React from "react"
 import Heading from "@theme/Heading"
 
 import LinkButton from "../shared/LinkButton"
-import HeroImage from "@site/static/images/home/hero.svg"
 import {analyticsHandler} from "@site/src/utils"
-import {Theme, codeSandboxUrl} from "@site/src/constants"
+import {Theme} from "@site/src/constants"
 import {pageLinks} from "@site/src/constants/routes"
-import Link from "@docusaurus/Link"
 import Section from "../shared/Section"
 
 const Banner = (): JSX.Element => {
@@ -59,7 +57,19 @@ const Banner = (): JSX.Element => {
           </div>
         </div>
       </Section>
-      <HeroImage className="object-contain h-full sm:h-full w-full mt-8 max-w-7xl" />
+      <picture className="hero-visual mt-8 max-w-7xl w-full">
+        <source media="(max-width: 639px)" srcSet="/images/home/hero-mobile.webp" type="image/webp" />
+        <img
+          src="/images/home/hero.svg"
+          width={1400}
+          height={672}
+          alt="Tailcall GraphQL platform workflow"
+          className="object-contain h-auto sm:h-full w-full"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
+      </picture>
     </main>
   )
 }

@@ -24,16 +24,39 @@
 .closeBtn {
   top: 8px;
   right: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 @media (max-width: 1000px) {
   .cookieConsentModal {
-    bottom: 20px;
-    left: 16px;
-    right: 16px;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
   }
 
   .closeBtn {
     right: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cookieConsentModal {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    z-index: calc(var(--ifm-z-index-fixed) - 1);
+    max-height: 45dvh;
+    overflow-y: auto;
+  }
+
+  .consentOptionsContainer {
+    gap: 0.75rem;
+  }
+
+  .closeBtn {
+    top: 6px;
+    right: 12px;
   }
 }

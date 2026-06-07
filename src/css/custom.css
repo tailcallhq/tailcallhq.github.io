@@ -1,8 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/space-grotesk-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/space-mono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 @layer utilities {
   .border-b-solid {
@@ -34,7 +52,7 @@
 
 :root {
   /* Font and Dimension Tokens */
-  --ifm-font-family-base: "Space Grotesk", sans-serif;
+  --ifm-font-family-base: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
   --header-height: 6.5rem;
   --ifm-navbar-height: 6.5rem;
   --ifm-navbar-height-sm: 4.5rem;
@@ -72,7 +90,7 @@
   --ifm-color-brand-light-opacity-15: rgba(255, 255, 255, 0.15);
 
   /* Code Settings */
-  --ifm-font-family-monospace: "Space Mono";
+  --ifm-font-family-monospace: "Space Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --ifm-code-background: rgb(246, 247, 248);
   --ifm-code-border-radius: var(--ifm-global-radius);
   --ifm-code-font-size: 0.9eem;
@@ -86,6 +104,15 @@ code {
   border: 1px solid #eee;
   letter-spacing: 0.00001px;
   vertical-align: baseline;
+}
+
+.hero-visual {
+  display: block;
+  aspect-ratio: 1400 / 672;
+}
+
+.hero-visual img {
+  aspect-ratio: 1400 / 672;
 }
 
 input[type="radio"] {
@@ -722,7 +749,12 @@ span.token.tag.script.language-javascript {
 }
 
 .customer-container {
-  background: url("../../static/images/home/bg-map.png") no-repeat;
+  background: url("../../static/images/home/bg-map.webp") no-repeat;
+}
+
+.homepage-deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
 }
 
 .customer-feedback-card {

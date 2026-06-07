@@ -62,10 +62,7 @@ function DropdownNavbarItemDesktop({items, position, className, onClick, ...prop
         aria-haspopup="true"
         aria-expanded={showDropdown}
         role="button"
-        // # hash permits to make the <a> tag focusable in case no link target
-        // See https://github.com/facebook/docusaurus/pull/6003
-        // There's probably a better solution though...
-        href={props.to ? undefined : "#"}
+        tabIndex={props.to ? undefined : 0}
         className={clsx("navbar__link", className)}
         {...props}
         onClick={props.to ? undefined : (e) => e.preventDefault()}

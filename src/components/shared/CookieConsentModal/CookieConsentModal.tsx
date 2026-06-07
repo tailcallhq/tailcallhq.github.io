@@ -89,11 +89,11 @@ const CookieConsentModal: React.FC<CookieConsentModalProps> = ({open, onAccept, 
           {/* Modal Container */}
           <div
             className={clsx(
-              "flex flex-col xl:flex-row xl:justify-between relative py-6 px-8 gap-4 sm:gap-12 xl:gap-0 font-space-mono bg-black rounded-xl",
+              "flex flex-col xl:flex-row xl:justify-between relative py-4 px-4 sm:py-6 sm:px-8 gap-3 sm:gap-6 xl:gap-0 font-space-mono bg-black rounded-xl",
               styles.cookieConsentModal,
             )}
           >
-            <div className="flex flex-col gap-4 text-tailCall-light-300">
+            <div className="flex flex-col gap-3 sm:gap-4 text-tailCall-light-300">
               <div className="flex flex-col gap-2">
                 <span className="text-content-small font-bold xl:text-title-small">We Value Your Privacy</span>
                 <span className="text-content-tiny xl:text-content-small">
@@ -129,33 +129,41 @@ const CookieConsentModal: React.FC<CookieConsentModalProps> = ({open, onAccept, 
             <div className="flex items-end">
               <div
                 className={clsx(
-                  "flex flex-col sm:flex-row flex-1 gap-6 h-fit sm:justify-end",
+                  "flex flex-col sm:flex-row flex-1 h-fit sm:justify-end",
+                  "gap-3 sm:gap-6",
                   styles.consentOptionsContainer,
                 )}
               >
                 {consentOptions.map((btn: ConsentOption, index: number) => {
                   return (
-                    <span
+                    <button
+                      type="button"
                       key={index}
                       className={clsx(
-                        "sm:whitespace-nowrap py-1 px-3 text-title-tiny bg-tailCall-dark-400 border border-solid border-tailCall-dark-300 cursor-pointer text-center",
+                        "appearance-none sm:whitespace-nowrap py-1 px-3 text-content-tiny sm:text-title-tiny bg-tailCall-dark-400 border border-solid border-tailCall-dark-300 cursor-pointer text-center",
                         styles.consentOption,
                       )}
                       onClick={btn.onClick}
                     >
                       {btn.text}
-                    </span>
+                    </button>
                   )
                 })}
               </div>
             </div>
-            <img
+            <button
+              type="button"
               className={clsx("absolute cursor-pointer", styles.closeBtn)}
-              src={require("@site/static/images/cookie-consent/close-btn.png").default}
-              height={16}
-              width={25}
+              aria-label="Close cookie preferences"
               onClick={handleClose}
-            />
+            >
+              <img
+                src={require("@site/static/images/cookie-consent/close-btn.png").default}
+                alt=""
+                height={16}
+                width={25}
+              />
+            </button>
           </div>
         </>
       ) : null}

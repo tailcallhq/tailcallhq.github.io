@@ -1,10 +1,10 @@
 import React from "react"
 import Heading from "@theme/Heading"
-import CodeBlock from "@theme/CodeBlock"
-import Tabs from "@theme/Tabs"
-import TabItem from "@theme/TabItem"
 import Link from "@docusaurus/Link"
 import Section from "../shared/Section"
+import LazyHomeSection from "./LazyHomeSection"
+
+const loadConfigurationCode = () => import("./ConfigurationCode")
 
 const Configuration = (): JSX.Element => {
   return (
@@ -19,59 +19,20 @@ const Configuration = (): JSX.Element => {
         <div>
           <h5>More</h5>
           <p className="text-content-small sm:text-content-medium mb-SPACE_11">
-            To dive deeper into Tailcall checkout our <Link href="/docs">docs</Link> for detailed tutorials. Ideal for
-            devs at any level, it's packed with advanced tips, powerful operators and best practices.
+            To dive deeper into Tailcall checkout our{" "}
+            <Link href="/docs" className="font-bold text-tailCall-dark-500 underline underline-offset-4">
+              docs
+            </Link>{" "}
+            for detailed tutorials. Ideal for devs at any level, it's packed with advanced tips, powerful operators and
+            best practices.
           </p>
         </div>
       </div>
       <div>
-        <CodeBlock language="bash">npm i -g @tailcallhq/tailcall</CodeBlock>
-        {CodeTabItem({code: GRAPHQL_CONFIG, language: "graphql"})}
+        <LazyHomeSection load={loadConfigurationCode} minHeight={560} rootMargin="0px" threshold={0.65} />
       </div>
     </Section>
   )
 }
 
-const CodeTabItem = ({code, language}: {code: string; language: "json" | "yaml" | "graphql"}) => (
-  <TabItem value={language} label={language}>
-    <CodeBlock
-      language={language}
-      showLineNumbers={true}
-      className="overflow-y-auto h-96 md:min-w-[45rem] min-w-[100%]"
-    >
-      {code}
-    </CodeBlock>
-    <CodeBlock language="bash">tailcall start ./app.{language}</CodeBlock>
-  </TabItem>
-)
-
 export default Configuration
-
-const GRAPHQL_CONFIG = `schema
-  @server(port: 8000) {
-  query: Query
-}
-
-type Query {
-  users: [User] @http(url: "http://jsonplaceholder.typicode.com/users")
-  posts: [Post] @http(url: "http://jsonplaceholder.typicode.com/posts")
-}
-
-type User {
-  id: Int!
-  name: String!
-  username: String!
-  email: String!
-}
-
-
-type Post {
-  id: Int!
-  title: String!
-  body: String!
-  userId: Int!
-
-  # Expand a post with user information
-  user: User @http(url: "http://jsonplaceholder.typicode.com/users/{{.value.userId}}")
-}
-`

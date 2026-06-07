@@ -1,28 +1,18 @@
-import React, {useRef} from "react"
-import {useCookieConsent} from "@site/src/utils/hooks/useCookieConsent"
+import React from "react"
 import "./style.css"
 
+const videoId = "1011521201"
+const videoHash = "d3576926f4"
+const vimeoWatchUrl = `https://vimeo.com/${videoId}/${videoHash}`
+
 const IntroductionVideo: React.FC = () => {
-  const videoId = "1011521201"
-  const videoRef = useRef<HTMLDivElement>(null)
-  const {getCookieConsent} = useCookieConsent()
-  const cookieConsent = getCookieConsent()
-
-  const handleVimeoAnalytics = () => {
-    return Boolean(cookieConsent?.accepted) ? "" : "&dnt=1"
-  }
-
   return (
-    <div className="video-wrapper" ref={videoRef}>
+    <div className="video-wrapper">
       <div className="video-container">
-        <iframe
-          src={`https://player.vimeo.com/video/${videoId}?autoplay=0&badge=0&autopause=0&player_id=0&app_id=58479${handleVimeoAnalytics()}`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="absolute top-0 left-0 w-full h-full"
-          title="Tailcall Introduction Video"
-          loading="lazy"
-        />
+        <a className="video-facade" href={vimeoWatchUrl} rel="noopener noreferrer" target="_blank">
+          <span className="video-play-icon" aria-hidden="true" />
+          <span className="sr-only">Open Tailcall introduction video on Vimeo</span>
+        </a>
       </div>
     </div>
   )

@@ -19,9 +19,10 @@ const GlobalLayout: React.FC = () => {
     if (typeof window !== "undefined" && window.location.pathname.includes(pageLinks.privacyPolicy)) return
 
     if (!cookieConsent) {
-      openCookieConsentModal()
+      const timer = window.setTimeout(openCookieConsentModal, 5000)
+      return () => window.clearTimeout(timer)
     }
-  }, [cookieConsent])
+  }, [cookieConsent, openCookieConsentModal])
 
   return (
     <>

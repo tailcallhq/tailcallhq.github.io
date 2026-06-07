@@ -18,9 +18,16 @@ const BenefitsCard = (): JSX.Element => {
             )}
             key={item.id}
             href={item.redirection_url}
+            aria-label={item.title}
           >
             <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-              <img src={item.image} alt="Image Describing Why Tailcall" className="w-16 h-16 object-contain" />
+              <img
+                src={item.image}
+                alt="Image Describing Why Tailcall"
+                className="w-16 h-16 object-contain"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div className="flex-grow">
               <p className="text-title-small sm:text-title-large text-white mb-2 flex items-center justify-between">
