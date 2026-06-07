@@ -539,7 +539,7 @@ function SearchableSelect({
 // ---------------------------------------------------------------------------
 // Format tabs
 // ---------------------------------------------------------------------------
-type Format = "json" | "yaml"
+type Format = "json" | "yaml" | "graphql"
 
 function toYaml(obj: unknown, indent = 0): string {
   if (obj === undefined || obj === null) return "null"
@@ -566,11 +566,89 @@ function toYaml(obj: unknown, indent = 0): string {
 
 function formatOutput(config: Record<string, unknown>, format: Format): string {
   const cleaned = stripEmpty(config) as Record<string, unknown>
+  if (format === "graphql") return configToGraphql(cleaned ?? {})
   if (!cleaned || Object.keys(cleaned).length === 0) return ""
   if (format === "json") return JSON.stringify(cleaned, null, 2)
   // Simple YAML serialization
   const entries = Object.entries(cleaned)
   return entries.map(([k, v]) => `${k}:${toYaml(v, 1)}`).join("\n") + "\n"
+}
+
+// ---------------------------------------------------------------------------
+// GraphQL SDL serializer
+// ---------------------------------------------------------------------------
+
+/** Render a single directive argument value as a GraphQL literal. */
+function gqlLiteral(val: unknown): string {
+  if (val === null || val === undefined) return "null"
+  if (typeof val === "boolean") return String(val)
+  if (typeof val === "number") return String(val)
+  if (typeof val === "string") return JSON.stringify(val)
+  if (Array.isArray(val)) {
+    return "[" + val.map(gqlLiteral).join(", ") + "]"
+  }
+  if (typeof val === "object") {
+    const entries = Object.entries(val as Record<string, unknown>).filter(([, v]) => v !== undefined && v !== null && v !== "")
+    if (entries.length === 0) return "{}"
+    return "{" + entries.map(([k, v]) => `${k}: ${gqlLiteral(v)}`).join(", ") + "}"
+  }
+  return JSON.stringify(val)
+}
+
+/** Render a directive call: @name(key: val, ...) */
+function gqlDirective(name: string, args: Record<string, unknown>): string {
+  const entries = Object.entries(args).filter(([, v]) => v !== undefined && v !== null && v !== "")
+  if (entries.length === 0) return `@${name}`
+  const argStr = entries.map(([k, v]) => `${k}: ${gqlLiteral(v)}`).join(", ")
+  return `@${name}(${argStr})`
+}
+
+/**
+ * Convert the cleaned config object to Tailcall GraphQL SDL.
+ * Only handles top-level schema directives (@server, @upstream) since the
+ * form is schema-driven from the JSON schema — type-level fields (@http etc.)
+ * are not part of the config schema and are not rendered here.
+ */
+function configToGraphql(config: Record<string, unknown>): string {
+  if (!config || Object.keys(config).length === 0) {
+    return "# Configure fields on the left to generate SDL"
+  }
+
+  const lines: string[] = []
+
+  // Schema definition with directives
+  const schemaDirectives: string[] = []
+
+  if (config.server && typeof config.server === "object") {
+    schemaDirectives.push(gqlDirective("server", config.server as Record<string, unknown>))
+  }
+
+  if (config.upstream && typeof config.upstream === "object") {
+    schemaDirectives.push(gqlDirective("upstream", config.upstream as Record<string, unknown>))
+  }
+
+  if (config.telemetry && typeof config.telemetry === "object") {
+    schemaDirectives.push(gqlDirective("telemetry", config.telemetry as Record<string, unknown>))
+  }
+
+  // links directive — rendered as @link(src: "...", type: ...) per entry
+  if (Array.isArray(config.links) && config.links.length > 0) {
+    for (const link of config.links as Record<string, unknown>[]) {
+      if (link && typeof link === "object") {
+        schemaDirectives.push(gqlDirective("link", link))
+      }
+    }
+  }
+
+  if (schemaDirectives.length > 0) {
+    lines.push("schema " + schemaDirectives.join(" ") + " {")
+    lines.push("  query: Query")
+    lines.push("}")
+  } else {
+    lines.push("# Configure fields on the left to generate SDL")
+  }
+
+  return lines.join("\n") + "\n"
 }
 
 // ---------------------------------------------------------------------------
@@ -607,7 +685,7 @@ export default function ConfigGenerator(): JSX.Element {
   const output = schema ? formatOutput(config, format) : ""
 
   const handleDownload = () => {
-    const ext = format === "json" ? "json" : "yaml"
+    const ext = format === "json" ? "json" : format === "graphql" ? "graphql" : "yaml"
     const blob = new Blob([output], {type: "text/plain"})
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
@@ -701,7 +779,7 @@ export default function ConfigGenerator(): JSX.Element {
                 <div className="bg-tailCall-dark-500 rounded-xl border border-solid border-tailCall-border-dark-200 overflow-hidden">
                   {/* Format tabs + actions */}
                   <div className="flex items-center gap-2 px-4 py-3 border-b border-solid border-tailCall-border-dark-200">
-                    {(["json", "yaml"] as Format[]).map((f) => (
+                    {(["json", "yaml", "graphql"] as Format[]).map((f) => (
                       <button
                         key={f}
                         type="button"
@@ -752,7 +830,7 @@ export default function ConfigGenerator(): JSX.Element {
                   <ul className="text-xs text-tailCall-dark-100 space-y-1 list-disc list-inside leading-relaxed">
                     <li>Click section headers to expand/collapse nested config.</li>
                     <li>Optional fields are marked with an "disabled" badge — toggle to enable.</li>
-                    <li>Use the format buttons to switch between JSON and YAML output.</li>
+                    <li>Use the format buttons to switch between JSON, YAML, and GraphQL SDL output.</li>
                     <li>Download saves the config file ready for use with Tailcall CLI.</li>
                   </ul>
                 </div>
