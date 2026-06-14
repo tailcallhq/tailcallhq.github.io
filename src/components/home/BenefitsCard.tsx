@@ -20,7 +20,7 @@ const BenefitsCard = (): JSX.Element => {
             href={item.redirection_url}
           >
             <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-              <img src={item.image} alt="Image Describing Why Tailcall" className="w-16 h-16 object-contain" />
+              <img src={item.image} alt="Image Describing Why Tailcall" className="w-16 h-16 object-contain" width={64} height={64} />
             </div>
             <div className="flex-grow">
               <p className="text-title-small sm:text-title-large text-white mb-2 flex items-center justify-between">

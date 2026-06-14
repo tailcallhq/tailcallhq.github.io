@@ -14,12 +14,36 @@ export default {
   tagline: "GraphQL platform engineered for scale",
   headTags: [
     {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap",
+      },
+    },
+    {
       tagName: "script",
       attributes: {
         id: "chatbotscript",
         "data-accountid": "CZPG9aVdtk59Tjz4SMTu8w==",
         "data-websiteid": "75VGI0NlBqessD4BQn2pFg==",
         src: "https://app.robofy.ai/bot/js/common.js?v=" + new Date().getTime(),
+        async: "true",
+        defer: "true",
       },
     },
     {
@@ -61,7 +85,7 @@ export default {
     },
   },
   future: {
-    experimental_faster: false, // Required for faster production builds. For reference: https://docusaurus.io/blog/releases/3.6#adoption-strategy
+    experimental_faster: true, // Required for faster production builds. For reference: https://docusaurus.io/blog/releases/3.6#adoption-strategy
   },
   presets: [
     [
@@ -108,6 +132,8 @@ export default {
       logo: {
         alt: "My Site Logo",
         src: "icons/companies/tailcall.svg",
+        width: 103,
+        height: 36,
       },
       items: [
         {to: "/", label: "Home", position: "left", activeBaseRegex: "^/$"},

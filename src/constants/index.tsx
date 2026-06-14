@@ -65,7 +65,7 @@ const Highlight = ({text}: {text: string}) => (
 
 export const features: Feature[] = [
   {
-    logo: require("@site/static/images/home/orchestration.png").default,
+    logo: require("@site/static/images/home/orchestration.webp").default,
     title: "Orchestration",
     content: (
       <>
@@ -77,7 +77,7 @@ export const features: Feature[] = [
     alt: "Orchestration",
   },
   {
-    logo: require("@site/static/images/home/governance.png").default,
+    logo: require("@site/static/images/home/governance.webp").default,
     title: "Governance",
     content: (
       <>
@@ -89,7 +89,7 @@ export const features: Feature[] = [
     alt: "Governance",
   },
   {
-    logo: require("@site/static/images/home/efficiency.png").default,
+    logo: require("@site/static/images/home/efficiency.webp").default,
     title: "Efficiency",
     content: (
       <>
@@ -115,7 +115,7 @@ export const features: Feature[] = [
   //   ),
   // },
   {
-    logo: require("@site/static/images/home/extendability.png").default,
+    logo: require("@site/static/images/home/extendability.webp").default,
     title: "Extendability",
     content: (
       <>
@@ -225,7 +225,7 @@ export const chooseTailcall: ChooseTailcall[] = [
     id: 1,
     title: "Top developer experience",
     description: "Design your APIs, with syntax highlighting and lint checks within your favourite IDE.",
-    image: require("@site/static/images/home/dev-experience.png").default,
+    image: require("@site/static/images/home/dev-experience.webp").default,
   },
   {
     id: 2,
@@ -237,7 +237,7 @@ export const chooseTailcall: ChooseTailcall[] = [
     id: 3,
     title: "Scale Fearlessly",
     description: "Leverage built-in best practices that guarantee robustness at any scale.",
-    image: require("@site/static/images/home/scale.png").default,
+    image: require("@site/static/images/home/scale.webp").default,
   },
 ]
 

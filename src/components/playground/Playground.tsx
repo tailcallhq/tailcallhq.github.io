@@ -2,8 +2,6 @@ import React, {useEffect, useMemo, useState} from "react"
 import {GraphiQL} from "graphiql"
 import {analyticsHandler, isValidURL, sendConversionEvent} from "@site/src/utils"
 import {CookiePreferenceCategory, playgroundAdsConversionId} from "@site/src/constants"
-import "graphiql/graphiql.css"
-import "../../css/graphiql.css"
 import {type FetcherParams, FetcherOpts} from "@graphiql/toolkit"
 import {useCookieConsent} from "@site/src/utils/hooks/useCookieConsent"
 import {createGraphiQLFetcher} from "@graphiql/create-fetcher"
@@ -25,6 +23,16 @@ const useDebouncedValue = (inputValue: string, delay: number) => {
 }
 
 const Playground = () => {
+  useEffect(() => {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "/css/graphiql.min.css"
+    document.head.appendChild(link)
+    return () => {
+      document.head.removeChild(link)
+    }
+  }, [])
+
   const apiEndpointParam = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("u")
   const initialApiEndpoint =
     (typeof apiEndpointParam === "string" && isValidURL(apiEndpointParam) && new URL(apiEndpointParam)) || ""

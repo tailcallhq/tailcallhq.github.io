@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -722,7 +720,7 @@ span.token.tag.script.language-javascript {
 }
 
 .customer-container {
-  background: url("../../static/images/home/bg-map.png") no-repeat;
+  background: url("../../static/images/home/bg-map.webp") no-repeat;
 }
 
 .customer-feedback-card {
