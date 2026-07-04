@@ -173,7 +173,7 @@ const ObjectControl = ({schema, root, value, onChange, suggestions}: FormProps):
         // suggestion list through nested objects so deeper `type` fields see it.
         const childSuggestions = key === "type" ? suggestions : childIsObjectLike ? suggestions : undefined
         return (
-          <div className={styles.field} key={key}>
+          <div className={childIsObjectLike ? `${styles.field} ${styles.fieldSection}` : styles.field} key={key}>
             <div className={styles.fieldHeader}>
               <label className={styles.fieldLabel}>
                 {key}
@@ -348,6 +348,13 @@ const SchemaForm = (props: FormProps): JSX.Element => {
     // branch so an optional field renders as its real control, not a pointless
     // two-way "Type / null" selector.
     const variants = (variantsOf(node) ?? []).filter((v) => typeOf(deref(v, props.root)) !== "null")
+    // schemars documents each enum value as its own single-value branch (e.g.
+    // LinkType). Collapse those into one dropdown instead of a variant selector.
+    const derefed = variants.map((v) => deref(v, props.root))
+    if (variants.length > 1 && derefed.every((d) => Array.isArray(d.enum) && d.enum.length > 0)) {
+      const enumValues = derefed.flatMap((d) => d.enum as Array<string | number | boolean | null>)
+      return <EnumControl {...props} node={{type: "string", enum: enumValues}} />
+    }
     if (variants.length <= 1) return <SchemaForm {...props} schema={variants[0] ?? {type: "string"}} />
     return <VariantForm {...props} schema={{...node, anyOf: undefined, oneOf: variants}} />
   }

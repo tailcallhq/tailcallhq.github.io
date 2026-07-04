@@ -2,84 +2,76 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Config",
   "type": "object",
-  "additionalProperties": false,
   "properties": {
-    "server": {"$ref": "#/definitions/Server"},
-    "upstream": {"$ref": "#/definitions/Upstream"},
-    "schema": {"$ref": "#/definitions/RootSchema"},
-    "links": {"type": "array", "items": {"$ref": "#/definitions/Link"}},
-    "types": {"type": "object", "additionalProperties": {"$ref": "#/definitions/Type"}},
-    "enums": {"type": "object", "additionalProperties": {"$ref": "#/definitions/Enum"}}
+    "server": {
+      "description": "Dictates how the server behaves for all ingress requests.",
+      "allOf": [{"$ref": "#/definitions/Server"}]
+    },
+    "upstream": {
+      "description": "Dictates how Tailcall handles upstream requests and responses.",
+      "allOf": [{"$ref": "#/definitions/Upstream"}]
+    },
+    "telemetry": {
+      "description": "Enable OpenTelemetry support.",
+      "allOf": [{"$ref": "#/definitions/Telemetry"}]
+    },
+    "links": {
+      "description": "A list of all links in the schema.",
+      "type": "array",
+      "items": {"$ref": "#/definitions/Link"}
+    }
   },
   "definitions": {
     "Server": {
       "type": "object",
-      "additionalProperties": false,
       "properties": {
-        "port": {"type": "integer", "description": "Port the server listens on."},
-        "hostname": {"type": "string", "description": "Host address the server binds to."},
-        "queryValidation": {"type": "boolean", "description": "Validate incoming queries."}
+        "port": {"type": ["integer", "null"], "description": "The port Tailcall listens on."},
+        "hostname": {"type": ["string", "null"], "description": "The host address the server binds to."},
+        "version": {
+          "description": "The HTTP version to use.",
+          "anyOf": [{"$ref": "#/definitions/HttpVersion"}, {"type": "null"}]
+        },
+        "queryValidation": {"type": ["boolean", "null"], "description": "Validate incoming queries."}
       }
     },
     "Upstream": {
       "type": "object",
-      "additionalProperties": false,
       "properties": {
-        "baseURL": {"type": "string", "description": "Base URL for upstream requests."},
-        "httpCache": {"type": "integer", "description": "Number of responses to cache."}
+        "httpCache": {"type": ["integer", "null"], "description": "Number of responses to cache."},
+        "timeout": {"type": ["integer", "null"], "description": "Upstream response timeout in seconds."},
+        "batch": {
+          "description": "Group upstream requests.",
+          "anyOf": [{"$ref": "#/definitions/Batch"}, {"type": "null"}]
+        },
+        "allowedHeaders": {"type": ["array", "null"], "items": {"type": "string"}}
       }
     },
-    "RootSchema": {
+    "Batch": {
       "type": "object",
-      "additionalProperties": false,
       "properties": {
-        "query": {"type": "string", "description": "Name of the Query type."},
-        "mutation": {"type": "string", "description": "Name of the Mutation type."}
+        "maxSize": {"type": ["integer", "null"], "description": "Maximum requests per batch."},
+        "delay": {"type": ["integer", "null"], "description": "Delay before dispatch, in ms."}
+      }
+    },
+    "Telemetry": {
+      "type": "object",
+      "properties": {
+        "requestHeaders": {"type": ["array", "null"], "items": {"type": "string"}}
       }
     },
     "Link": {
       "type": "object",
-      "additionalProperties": false,
-      "required": ["src"],
+      "required": ["src", "type"],
       "properties": {
-        "id": {"type": "string"},
-        "src": {"type": "string"},
-        "type": {"type": "string", "enum": ["Config", "Protobuf", "Script", "Grpc"]}
+        "id": {"type": ["string", "null"]},
+        "src": {"type": "string", "description": "Path or URL of the linked resource."},
+        "type": {"description": "The type of link.", "allOf": [{"$ref": "#/definitions/LinkType"}]}
       }
     },
-    "Type": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "fields": {"type": "object", "additionalProperties": {"$ref": "#/definitions/Field"}}
-      }
-    },
-    "Field": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["type"],
-      "properties": {
-        "type": {"type": "string", "description": "GraphQL type of the field."},
-        "required": {"type": "boolean"},
-        "http": {"$ref": "#/definitions/Http"}
-      }
-    },
-    "Http": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["url"],
-      "properties": {
-        "url": {"type": "string", "description": "The URL of the endpoint."},
-        "method": {"type": "string", "enum": ["GET", "POST", "PUT", "DELETE"]}
-      }
-    },
-    "Enum": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["variants"],
-      "properties": {
-        "variants": {"type": "array", "items": {"type": "string"}}
-      }
+    "HttpVersion": {"type": "string", "enum": ["HTTP1", "HTTP2"]},
+    "LinkType": {
+      "type": "string",
+      "enum": ["Config", "Protobuf", "Script", "Cert", "Key", "Operation", "Htpasswd", "Jwks", "Grpc"]
     }
   }
 }

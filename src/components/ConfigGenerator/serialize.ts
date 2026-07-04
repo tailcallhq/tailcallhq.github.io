@@ -138,7 +138,7 @@ function gqlValue(value: unknown): string {
 // Directive arguments whose values are GraphQL enums — emitted as bare
 // identifiers (e.g. `method: POST`) rather than quoted strings, which is what
 // valid SDL requires.
-const ENUM_ARG_KEYS = new Set(["method", "type", "encoding", "format"])
+const ENUM_ARG_KEYS = new Set(["method", "type", "encoding", "format", "version"])
 const IDENTIFIER = /^[A-Za-z_][A-Za-z0-9_]*$/
 
 function gqlArgs(obj: unknown): string {
@@ -194,7 +194,11 @@ export function toGraphQL(model: unknown): string {
   if (directives.length > 0 || rootLines.length > 0) {
     const dir = directives.length > 0 ? ` ${directives.join(" ")}` : ""
     const body = rootLines.length > 0 ? ` {\n${rootLines.join("\n")}\n}` : ""
-    blocks.push(`schema${dir}${body}`)
+    // A runtime config carries only directives with no operation roots. A bare
+    // `schema @dir` is not valid SDL, so emit a `SchemaExtension` — which is
+    // what a runtime config is: it augments a schema defined elsewhere.
+    const keyword = rootLines.length > 0 ? "schema" : "extend schema"
+    blocks.push(`${keyword}${dir}${body}`)
   }
 
   if (isPlainObject(m.enums)) {

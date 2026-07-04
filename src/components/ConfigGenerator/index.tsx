@@ -3,13 +3,15 @@ import Link from "@docusaurus/Link"
 import {Check, Copy, Download, RotateCcw} from "lucide-react"
 import SchemaForm from "./SchemaForm"
 import {type SelectOption} from "./SearchableSelect"
-import {serialize, type OutputFormat} from "./serialize"
+import {prune, serialize, type OutputFormat} from "./serialize"
 import {validateConfig, type ValidationError} from "./validate"
 import {fetchSchema, SCHEMA_URL, type JSONSchema} from "./jsonSchema"
 import {fallbackSchema} from "./fallbackSchema"
 import styles from "./styles.module.css"
 
-const STORAGE_KEY = "tailcall-config-generator"
+// Versioned so a stale draft from an earlier (v1-shaped) build is not restored
+// into the runtime-config form.
+const STORAGE_KEY = "tailcall-config-generator-v2"
 
 const isPlainObject = (v: unknown): v is Record<string, unknown> =>
   typeof v === "object" && v !== null && !Array.isArray(v)
@@ -17,28 +19,14 @@ const isPlainObject = (v: unknown): v is Record<string, unknown> =>
 // A small starter configuration so the page is immediately useful and shows a
 // valid, well-formed result on first load.
 const STARTER_CONFIG: Record<string, unknown> = {
-  server: {port: 8000},
-  schema: {query: "Query"},
-  types: {
-    Query: {
-      fields: {
-        posts: {type: "[Post]", http: {url: "https://jsonplaceholder.typicode.com/posts"}},
-      },
-    },
-    Post: {
-      fields: {
-        id: {type: "Int"},
-        title: {type: "String"},
-        userId: {type: "Int"},
-      },
-    },
-  },
+  server: {port: 8000, queryValidation: true, version: "HTTP2"},
+  upstream: {httpCache: 42, batch: {maxSize: 100, delay: 10}},
 }
 
 const FORMATS: Array<{id: OutputFormat; label: string}> = [
-  {id: "graphql", label: "GraphQL"},
-  {id: "json", label: "JSON"},
   {id: "yaml", label: "YAML"},
+  {id: "json", label: "JSON"},
+  {id: "graphql", label: "GraphQL"},
 ]
 
 const FILE_NAMES: Record<OutputFormat, string> = {
@@ -55,7 +43,7 @@ const ConfigGenerator = (): JSX.Element => {
   const [schema, setSchema] = useState<JSONSchema>(fallbackSchema)
   const [source, setSource] = useState<SchemaSource>("loading")
   const [config, setConfig] = useState<Record<string, unknown>>(STARTER_CONFIG)
-  const [format, setFormat] = useState<OutputFormat>("graphql")
+  const [format, setFormat] = useState<OutputFormat>("yaml")
   const [copied, setCopied] = useState(false)
 
   // Load the live schema on mount, falling back to the bundled snapshot.
@@ -113,7 +101,9 @@ const ConfigGenerator = (): JSX.Element => {
   }, [config])
 
   const output = useMemo(() => serialize(config, format), [config, format])
-  const errors = useMemo<ValidationError[]>(() => validateConfig(config, schema), [config, schema])
+  // Validate the pruned config so cleared/empty fields (which are omitted from
+  // the output) do not raise spurious type errors.
+  const errors = useMemo<ValidationError[]>(() => validateConfig(prune(config), schema), [config, schema])
 
   const onCopy = async () => {
     try {

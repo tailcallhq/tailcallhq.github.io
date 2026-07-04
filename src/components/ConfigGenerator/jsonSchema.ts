@@ -65,6 +65,8 @@ export function deref(node: JSONSchema | undefined, root: JSONSchema, depth = 0)
       merged.required = [...(merged.required ?? []), ...(resolved.required ?? [])]
       if (resolved.type) merged.type = resolved.type
       if (resolved.enum) merged.enum = resolved.enum
+      if (resolved.anyOf) merged.anyOf = resolved.anyOf
+      if (resolved.oneOf) merged.oneOf = resolved.oneOf
       if (resolved.additionalProperties !== undefined) merged.additionalProperties = resolved.additionalProperties
     }
     // Preserve sibling keywords declared alongside allOf.
