@@ -19,6 +19,7 @@ export default {
         id: "chatbotscript",
         "data-accountid": "CZPG9aVdtk59Tjz4SMTu8w==",
         "data-websiteid": "75VGI0NlBqessD4BQn2pFg==",
+        defer: "true",
         src: "https://app.robofy.ai/bot/js/common.js?v=" + new Date().getTime(),
       },
     },
