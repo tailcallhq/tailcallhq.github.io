@@ -3,6 +3,7 @@ import {pageLinks} from "@site/src/constants/routes"
 import CookieConsentModal from "./CookieConsentModal/CookieConsentModal"
 import GlobalHead from "./GlobalHead"
 import {useCookieConsentManager} from "./CookieConsentProvider"
+import LazyChatbotScript from "./LazyChatbotScript"
 
 const GlobalLayout: React.FC = () => {
   const {
@@ -33,6 +34,7 @@ const GlobalLayout: React.FC = () => {
         onPartialAccept={onPartialAccept}
       />
       <GlobalHead isCookieConsentAccepted={Boolean(cookieConsent?.accepted)} preferences={cookieConsent?.preferences} />
+      <LazyChatbotScript />
     </>
   )
 }
